@@ -1,0 +1,407 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8" />
+    <title>Gitlet设计文档v2 | Ayanami</title>
+    <meta name="author" content="Ayanami" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <link rel="icon" href="/images/head.jpg" />
+    <link rel="preconnect" href="https://cdn.staticfile.org" />
+<script src="https://cdn.staticfile.org/vue/3.3.4/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.4.0/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.loli.net" />
+<link rel="preconnect" href="https://gstatic.loli.net" crossorigin />
+<link rel="stylesheet" href="https://fonts.loli.net/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://cdn.staticfile.org/highlight.js/11.8.0/highlight.min.js"></script>
+<script src="https://cdn.staticfile.org/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://cdn.staticfile.org/highlight.js/11.8.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+<script src="https://cdn.staticfile.org/KaTeX/0.16.8/katex.min.js"></script>
+<script src="https://cdn.staticfile.org/KaTeX/0.16.8/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/KaTeX/0.16.8/katex.min.css" />
+<script src="/js/lib/math.js"></script>
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>AYANAMI</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;AYANAMI</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1>Gitlet设计文档v2</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/10/16
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            
+            <span class="tag">
+                
+                <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #03a9f4">入门</a>
+            </span>
+            
+        </span>
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <h2 id="Gitlet设计文档："><a href="#Gitlet设计文档：" class="headerlink" title="Gitlet设计文档："></a>Gitlet设计文档：</h2><p><del>.gitlet 不对工作目录进行任何变动，所有的修改都在.gitlet之中进行</del></p>
+<p><del>.gitlet 应当有以下部分</del></p>
+<ul>
+<li><del>commit：整体的提交树结构，每个树结点应该只储存各个文件的version  .getlet&#x2F;commit</del></li>
+<li><del>(commit) blob：各个文件的每一个修改版本  .gitlet&#x2F;commit&#x2F;blobs&#x2F;file-SHA&#x2F;version_i, 是序列化的持久对象</del></li>
+<li><del>stage：.getlet&#x2F;stage</del></li>
+<li><del>track ：一张表，记录已跟踪的文件</del></li>
+</ul>
+<p><del>提交树有以下部分：</del></p>
+<p><del>hash 是用来分辨同一个name的不同文件的</del></p>
+<p><del>文件结构：</del></p>
+<p><del>CWD<br>└── .gitlet├── commit    &lt;&#x3D;&#x3D;&#x3D;&#x3D; 树形结构，每一个commit结点cmNode可遍历     内commit对象，commit</del><br>                   <del>├── blobs ──  table &lt;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;   序列化的持久对象的hash table，Map&lt;hash, filepath&gt;，cm的hash值通过这个表查到对应的文件</del></p>
+<p>​											<del>├── files├── …   &lt;&#x3D;&#x3D;&#x3D;&#x3D;所有的文件</del></p>
+<p>​                   <del>├── stage  &lt;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D; 缓存区， 存Map&lt;name, file&gt; commit时对同名文件算hash取新</del><br><del>​</del>       </p>
+<p><del>代码结构├── main<br>               ├── repo</del><br>               <del>├── blobs</del></p>
+<p>​               <del>├── stage</del></p>
+<p>​			   <del>├── commit</del>           </p>
+<p>​               <del>└── dump</del></p>
+<p>第一次重构：</p>
+<p>首先，文件被存储在.gitlet&#x2F;blob之中,  文件名称是commit对象的sha1码,  不需要filename ，之前的是冗余设计；sha1码由文件内容计算得出</p>
+<p>blob&#x2F;<del>commit-sha1&#x2F;</del>所有的文件(名称是文件的sha1) + 一张&lt;filename， sha1&gt;Map  filemap</p>
+<p>其次，filemap有<strong>此次commit包含所有文件的&lt;sha1, filename&gt; Map</strong>, 其他的交给文件结构和cmNode，不保存</p>
+<p>保存commit的图结构：</p>
+<p><del>.gitlet&#x2F;cmMap cmMap是由cmNode组成的一张Graph，</del></p>
+<p>不需要Map数据结构，也不需要考虑序列化的问题，采用文件的方式表达数据结构</p>
+<p>.gitlet&#x2F;cmGraph&#x2F;cmNode文件夹（内部是各个cmNode文件，文件名为selfID） + 一张表cmMap</p>
+<p>每个cmNode只有timeStamp和parentID(commit-sha1)和message三个成员（该次commit的sha1），通过sha1 使用文件名拼接 .gitlet&#x2F;blob&#x2F;commit-sha1 可以访问到对应的commit对象;</p>
+<p>cmNode（commit）信息：（）</p>
+<ul>
+<li>timeStamp</li>
+<li>message</li>
+<li>parentID (commit-sha1 列表， 除了merge节点都是1个元素)</li>
+<li>selfID(不是实际的内容，就是文件名)</li>
+</ul>
+<p>cmMap类（也是文件名）:</p>
+<ul>
+<li>branches,  branches为Map&lt;branch-name, commit-ID&gt;  (不用指针防止序列化和反序列化出问题)</li>
+<li>HEAD， HEAD为cmNode对象的selfID(sha1), 通过文件名访问对应的cmNode</li>
+</ul>
+<p>如果只涉及到单分支信息打印，不需要blobs和cmMap，在cmNode之间解决</p>
+<p>如果需要多分支信息打印，cmMap + cmNode, 由cmMap得到分支的commit-ID，之后定位到文件</p>
+<p>如果涉及到文件信息更改，再从blob里面，使用commit-sha1直接定位到对应文件夹，使用文件名（通过.filemap 转换成sha1）或者文件的sha1</p>
+<p>暂存区：</p>
+<p>.gitlet&#x2F;stage&#x2F;… 存file</p>
+<p>删除区：</p>
+<p>.gitlet&#x2F;removal&#x2F;… 存file</p>
+<p>细节实现：</p>
+<p>追踪：用文件名称</p>
+<p>init: </p>
+<p>创建各个文件夹和文件(cmGraph, cmNode, cmMap, .gitlet, .blobs, stage, removal,.filemap)，创建初始提交</p>
+<p>add:</p>
+<p>检查CWD</p>
+<p>若存在，则复制该文件到.gitlet&#x2F;stage</p>
+<p>commit:</p>
+<p>通过parentID 找到blob里面的parent commit文件 blob&#x2F;parentID&#x2F;*</p>
+<p>复制一个包含的文件的sha1列表 的副本</p>
+<p>从时间戳+message，计算本次commit的sha1值(ID)， 创建本次commit文件夹 blob&#x2F;commit-ID</p>
+<p>对于所有在.gitlet&#x2F;stage之中的文件：计算sha1值(file-sha1)，如果不在副本之中，在.gitlet&#x2F;blob&#x2F;commit-ID 之中保留文件的副本，名称为”f_”+file-sha1</p>
+<p>构建commit对象c，parentID是HEAD</p>
+<p>更新HEAD为ID</p>
+<p>更新.gitlet&#x2F;cmGraph</p>
+<p>清空删除区</p>
+<p>status:</p>
+<p>从cmMap找到parent commit</p>
+<p>复制一个包含的文件 的副本 &lt;filename, sha1&gt; Map m;</p>
+<p>对于.gitlet&#x2F;stage之中的所有文件：看filename在不在副本m里面，如果不在m之中，那么就是新加已跟踪；如果在，比较sha1, 如果改变就是更改已跟踪(modified)；否则就是未更改</p>
+<p>再扫一遍m.keySet(), 如果在CWD的文件夹下不存在同名文件，则是删除（deleted）Modification not staged</p>
+<p>建立一个CWD的文件名Set（除了.gitlet）</p>
+<p>遍历parentID下的文件列表和stage内的文件列表，移除CWD的同名文件</p>
+<p>若CWDSet非空，即为（新加）未跟踪文件</p>
+<p>log:</p>
+<p>当前节点HEAD，直接在.gitlet&#x2F;cmGraph&#x2F;cmNode里面使用parentID名字遍历(如果有merge节点取其中1个)</p>
+<p>反序列化读取，打印信息</p>
+<p>global-log:</p>
+<p>对.gitley&#x2F;cmGraph&#x2F;cmNode&#x2F;* 反序列化读取，打印信息</p>
+<p>branch:</p>
+<p>cmMap 之中添加branch即可</p>
+<p>rm :</p>
+<p>如果又没被跟踪，又没暂存就没理由删除</p>
+<p>如果该文件没被commit，删暂存区， 不删工作目录</p>
+<p>否则，在暂存区内加上该文件，删除存储的文件和工作目录文件</p>
+<p>先看上一次commit有没有追踪，用name</p>
+<p>其次，判断文件是否在stage区域，用name</p>
+<p>find + message:</p>
+<p>遍历.gitlet&#x2F;cmGraph&#x2F;cmNode&#x2F;*, 反序列化比对message, 输出所有符合的</p>
+<p>checkout：</p>
+<ol>
+<li><p>checkout + –filename 取当前节点的file替换cwd ，计算完file-sha1之后直接blob&#x2F;HEAD&#x2F;file-sha1定位</p>
+</li>
+<li><p>checkout + commit-id + – +filename 取commit节点的file，如果commit-id是16位，直接blob&#x2F;commit-id&#x2F;filename取，如果是简略版，需要在blob文件夹里面取名字（commit-id）扫一遍</p>
+</li>
+<li><p>checkout +branch-name 从cmMap之中的branch（Set）里面取， 之后branch-name-&gt;commit-sha1,之后同1，改变branch,重新写回</p>
+</li>
+</ol>
+<pre><code>// 当前未跟踪且会被覆盖在单条路是不可能的，但在多分支情况，A分支还未提交的文件B分支未跟踪正常
+</code></pre>
+<p>rm-branch：</p>
+<p>判断是否是当前分支，</p>
+<p>改变.gitlet&#x2F;cmGraph&#x2F;cmMap 里面的branches成员，写回</p>
+<p>reset:</p>
+<p>调用status判断是否存在（新加）未跟踪的文件</p>
+<p>若不存在，可以reset, 遍历CWD reset filename</p>
+<p>清除暂存区</p>
+<p>merge:</p>
+<p>合并当前节点A和节点B</p>
+<p>快速合并：一条线上，移动HEAD到给定commit处即可（重新赋值HEAD）</p>
+<p>多路合并：</p>
+<p>先找最佳共同祖先C：以A为起点，对整张图做一个bfs，标记各个节点的距离；再以b为起点，标记各个节点的距离。选出两者距离和最小的点；最佳祖先可能有多个点，如果有多个点，<del>递归地合并这多个点</del>，选一个合并感觉就行</p>
+<p>一堆规则。</p>
+<p>![image-20230730120255696](C:\Users\Ayanami\AppData\Roaming\Typora	ypora-user-images\image-20230730120255696.png)</p>
+<p>扫一遍split节点，取对应的other、HEAD文件，搞定1、2、3、6、7</p>
+<p>扫一遍other,搞定4，5</p>
+<p><del>main函数：</del></p>
+<p><del>不实现具体的操作，处理命令符，调用repo的函数</del></p>
+<p><del>repo:</del> </p>
+<ul>
+<li><del>处理输入，根据输入调用相应类的函数</del></li>
+<li><del>计算SHA-1值和时间戳</del></li>
+<li><del>序列化和反序列化</del></li>
+</ul>
+<p><del>help :</del> </p>
+<p><del>各个命令：</del></p>
+<p><del>Gitlet init:</del></p>
+<p><del>创建初始提交和.getlet文件夹，之后再次调用检测.gitlet文件夹是否存在</del></p>
+<p><del>创建master</del></p>
+<p><del>Gitlet add + name1, name2, …(*args):</del></p>
+<ol>
+<li><del>找name对应的文件</del></li>
+<li><del>计算help</del></li>
+<li><del>序列化，存到缓存区，更新追踪</del></li>
+</ol>
+<p><del>Gitlet commit:</del></p>
+<p><del>commit类有一个TreeMap&lt;name, hash&gt;</del></p>
+<p><del>blobs 文件名是 hash， 文件内容是file,  find的时候直接由 hash找到对应的file  (HashSet)</del></p>
+<pre><code>1.  复制上一次commit的文件 
+1.  将stage内的非重复文件copy到commit区
+</code></pre>
+<ol start="3">
+<li><p><del>存入日志，更新提交树</del></p>
+</li>
+<li><p><del>清空缓存区</del></p>
+</li>
+</ol>
+<p><del>Gitlet log:</del></p>
+<ol>
+<li><del>由head指针开始，遍历整个commit tree打印</del></li>
+</ol>
+<p><del>Gitlet rm + 文件名</del></p>
+<p><del>移除该文件的跟踪和暂存（如果有的话）</del></p>
+<p><del>Gitlet global-log</del></p>
+<p><del>单纯显示所有提交，不要求顺序，遍历整个提交树即可</del></p>
+<p><del>Gitlet find</del></p>
+<p><del>类似global-log 遍历</del></p>
+<p><del>Gitlet status</del></p>
+<p><del>读取当前分支（提交树的方法）</del></p>
+<p><del>打印所有分支，打印缓存区</del></p>
+<p><del>遍历CWD内所有文件（除自己的.gitlet），按字符排序</del></p>
+<p><del>和当前commit结点比较</del></p>
+<p><del>多了的，三种情况：如果stage, 如果未缓存但已经跟踪（和上一次commit节点不一样），如果未跟踪</del></p>
+<p><del>再用跟踪表格反向扫一遍，得到删改了的文件，如果缓存了，就是removed, 如果未缓存，就是 Modifications Not Staged For Commit</del></p>
+<p><del>Gitlet checkout</del></p>
+<p><del>不使用遍历，调用一个存好的由&lt;key&#x3D;SHA-1 ，val &#x3D; pointer &gt;的Hashmap直接得到目标的commit结点</del></p>
+<p><del>签出文件：由该结点的文件路径（指针？序号？），得到结点的文件</del></p>
+<p><del>签出整个结点： 同上</del></p>
+<p><del>Gitlet branch + name</del></p>
+<p><del>新建一个指向当前结点的指针</del></p>
+<p><del>Gitlet rm-branch</del></p>
+<p><del>？？ 什么意思，只删指针</del></p>
+<p><del>Gitlet reset commit-id</del></p>
+<p><del>首先检查所有文件是否已经被跟踪</del></p>
+<p><del>删除所有文件，checkout 目标commit, 移动头部指针</del></p>
+<p><del>Gitlet Merge</del></p>
+<p><del>待补充</del></p>
+<p><del>remote 系列</del></p>
+<p><del>待补充</del></p>
+
+    </div>
+    
+    
+    
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2023 - 2023 Ayanami
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;Ayanami
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    
+    
+
+
+
+
+    
+</body>
+</html>

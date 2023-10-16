@@ -1,0 +1,322 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8" />
+    <title>游戏代码设计哲学 | Ayanami</title>
+    <meta name="author" content="Ayanami" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <link rel="icon" href="/images/head.jpg" />
+    <link rel="preconnect" href="https://cdn.staticfile.org" />
+<script src="https://cdn.staticfile.org/vue/3.3.4/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.4.0/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.loli.net" />
+<link rel="preconnect" href="https://gstatic.loli.net" crossorigin />
+<link rel="stylesheet" href="https://fonts.loli.net/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://cdn.staticfile.org/highlight.js/11.8.0/highlight.min.js"></script>
+<script src="https://cdn.staticfile.org/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://cdn.staticfile.org/highlight.js/11.8.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+<script src="https://cdn.staticfile.org/KaTeX/0.16.8/katex.min.js"></script>
+<script src="https://cdn.staticfile.org/KaTeX/0.16.8/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/KaTeX/0.16.8/katex.min.css" />
+<script src="/js/lib/math.js"></script>
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>AYANAMI</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;AYANAMI</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1>游戏代码设计哲学</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/10/16
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            
+            <span class="tag">
+                
+                <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #00bcd4">入门</a>
+            </span>
+            
+        </span>
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <h2 id="9-14-游戏代码设计哲学："><a href="#9-14-游戏代码设计哲学：" class="headerlink" title="9.14 游戏代码设计哲学："></a>9.14 游戏代码设计哲学：</h2><h4 id="本质需求：解耦合、降低复杂度"><a href="#本质需求：解耦合、降低复杂度" class="headerlink" title="本质需求：解耦合、降低复杂度"></a>本质需求：解耦合、降低复杂度</h4><h4 id="设计模式："><a href="#设计模式：" class="headerlink" title="设计模式："></a>设计模式：</h4><ol>
+<li>观察者模式：如果要设计一个“落水”的完整效果，包含声音、特效、物理等，如何解耦模块？</li>
+</ol>
+<details>
+    <summary>答</summary>
+    <p>将物理模块本身抽出，防止物理模型和UI效果耦合
+        物理模块处理完落水事件之后产生一个event</p>
+    <p>让音量模块、特效模块等作为不同的观察者observer，当检测到event产生，执行对应处理代码。</p>
+    <p>追问：设计应该是同步的还是异步的？什么情况不应该使用这个模式？</p>
+
+
+
+
+<ol start="2">
+<li><p>状态模式：善用状态机</p>
+<p>如果有这样一个逻辑：按space跳跃，空中允许二段跳，空中按J下俯冲攻击，俯冲、跳跃、落地均有动画，如何设计？</p>
+</li>
+</ol>
+<details>
+       <summary>答</summary>
+       <div>状态机：</div>
+       <pre>
+       <div>人物状态：站立、空中1段、空中2段、落地</div>
+       <div>改变状态的act：站立->跳跃->空中1段，空中1/2->俯冲，空中1/2->正常落地，空中1->跳跃->空中2</div>
+       <div>不改变状态的act：其他</div>
+       </pre>
+       <div>如果不定义状态机，你需要记录的“状态"有： 是否空中、是否落地、是否俯冲、跳跃段数......</div>
+       <p>当状态更多的时候，逻辑会很复杂<p>
+       <p>假设已经存在act inputhandler(...){}函数， return act</p>
+       <p>则只需定义这样的函数在主循环中执行</p>
+       <pre style='text-indent: 0em'><code>
+       void updateState(act Act) &#123;
+           switch (this->State) &#123;
+               case STAND: &#123;
+               // 处理站立状态逻辑
+                   break;
+               &#125;
+               case ONAIR_ONE_JUMP: &#123;
+               // 处理空中1段跳跃状态逻辑
+                   break;
+               &#125;
+               case ONAIR_TWO_JUMP: &#123;
+               // 处理空中2段跳跃状态逻辑
+                   break;
+               &#125;
+               case DIVE: &#123;
+               // 处理俯冲状态逻辑
+                   break;
+               &#125;
+           // 其他状态的处理
+           &#125;
+       &#125;
+       </pre></code>
+   </details>
+
+
+
+
+<ol start="3">
+<li>数据建模：如果我想要实现一个道具“剑”，但有二十种不同效果的剑，比如冰霜、毒素、眩晕等等，我应该如何设计？</li>
+</ol>
+<details>
+       <summary>答</summary>
+   不应该设计成一个基类+20个派生类
+   更好的方法是定义一个data文件（或者微型数据库），里面可以是诸如剑的json格式
+       <pre><code>
+   &#123;
+       name: sword,
+       prototype: basic_sword,   
+       damage: 10,
+       type: cut,
+       additional_effect: none,
+       ...
+   &#125;</pre></code>
+   这样只有当需要时，才查询记录, 并且对所有类似的都可以用一套方法
+   
+
+
+<p>   为什么？<br>   空间上 + 复杂度上产生了什么效果？</p>
+<ol start="4">
+<li>如何实现撤销任意步的操作？</li>
+</ol>
+<details>
+       <summary>答</summary>
+       <p>蠢方法是记录每一帧，但这显然太占用资源；好方法是对每一个操作实现undo接口（如果可能），如果不可能则记录每次的状态，之后重演逻辑、重新渲染</p>
+   
+
+<ol start="5">
+<li>降低耦合的固有方法：加中间件<br>例如：不想让按键输入直接与逻辑耦合（比如，想要支持改键位），那么需要加一个handleInput()函数作为中间件，通过handleInput函数，去更改状态</li>
+</ol>
+
+    </div>
+    
+    
+    
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2023 - 2023 Ayanami
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;Ayanami
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    
+    
+
+
+
+
+    
+</body>
+</html>

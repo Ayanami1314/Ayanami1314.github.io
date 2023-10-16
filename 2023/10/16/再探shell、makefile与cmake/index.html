@@ -1,0 +1,262 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8" />
+    <title>再探shell、makefile与cmake | Ayanami</title>
+    <meta name="author" content="Ayanami" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <link rel="icon" href="/images/head.jpg" />
+    <link rel="preconnect" href="https://cdn.staticfile.org" />
+<script src="https://cdn.staticfile.org/vue/3.3.4/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.4.0/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.loli.net" />
+<link rel="preconnect" href="https://gstatic.loli.net" crossorigin />
+<link rel="stylesheet" href="https://fonts.loli.net/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://cdn.staticfile.org/highlight.js/11.8.0/highlight.min.js"></script>
+<script src="https://cdn.staticfile.org/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://cdn.staticfile.org/highlight.js/11.8.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+<script src="https://cdn.staticfile.org/KaTeX/0.16.8/katex.min.js"></script>
+<script src="https://cdn.staticfile.org/KaTeX/0.16.8/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/KaTeX/0.16.8/katex.min.css" />
+<script src="/js/lib/math.js"></script>
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>AYANAMI</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;AYANAMI</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1>再探shell、makefile与cmake</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/10/16
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            
+            <span class="tag">
+                
+                <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #ffa2c4">入门</a>
+            </span>
+            
+        </span>
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <p>﻿</p>
+<h1 id="shell"><a href="#shell" class="headerlink" title="shell"></a>shell</h1><h3 id="一些命令："><a href="#一些命令：" class="headerlink" title="一些命令："></a>一些命令：</h3><p>管道和重定向：<br>例：ls | grep “bulid”<br> x | y： 将x的输出通过“管道”传递给y，作为y的输入<br> 上述指令的意思：寻找ls的内容之中和“build”匹配的部分</p>
+<p>如果想要持久化操作的结果的话，需要将内容保存到文件之中，这样的操作就是重定向</p>
+<p>x &gt; y， 将x的结果作为输出，重定向到y（类似写入）command-&gt;file<br>x &lt; y， 将y的内容重定向到x</p>
+<p>例：<br>ls &gt; ls_out<br>grep “build” &lt; ls_out</p>
+<p>效果与上面相同<br><strong>Tips:stdin默认是0，stdout默认是1，stderr默认是2， 如果要重定向stderr需要显式指定2: err_command 2 &gt; err_file</strong></p>
+<p>一些新的命令：<br>touch（创建文件），less（文件太长看少一点的cat）<br>ln<br>ln -s <source_file> <target_file>:软链接，类似win创建快捷键？在target_file处产生了一个指向source_file的东西，不产生拷贝</p>
+<p>ln <source_file> <target_file>：硬链接，在target_file处产生source_file的一个备份，同步更新，占用实际空间，source_file删除之后能独立存在</p>
+<p>sort： 排序<br>wc（word count）：统计行数、字数、字节数</p>
+<p>ag + “sth” 打印所有包含sth的内容<br>support regex, 可以模糊查找<br>如ag “*.java”</p>
+<p>awk: 类c语言快速数据处理<br><img src="/imgs/2023-07-25/zS75kfCmrbb889eC.png" alt="输入图片说明"><br>拿到指令，接受什么参数</p>
+<p>sed 文字处理和编辑<br>做文字匹配和取文字之类</p>
+<p>：遇事不决 -help –help</p>
+<h3 id="其他："><a href="#其他：" class="headerlink" title="其他："></a>其他：</h3><p>.sh 文件：就是文本文件，内容是一堆shell指令<br>支持局部变量，类似makefile</p>
+<pre><code>year=2023   # 注意不能有空格
+echo &quot;$&#123;year&#125;&quot;
+</code></pre>
+<p>$0, $1, $2… 传进来的command参数<br><code>year=$0</code><br><code>echo &quot;\$&#123;year&#125;&quot;</code><br>支持循环和函数（语法略有不同）<br>bash + &lt;xxx.sh&gt;就可以直接运行</p>
+<p><strong>只有真正被反复用到的知识才是最有用的知识，记Guide即可，即用即查</strong></p>
+<p>例：</p>
+<pre><code>exp_times=100
+result_file=temp_result
+echo &quot;&quot; &gt; result_file
+for i in &quot;seq 1 $&#123;exp_times&#125;&quot;
+do
+    run exp_run.sh | sed -n &quot;2 p&quot; | awk &quot;print $2&quot; &gt;&gt; $&#123;resuly_file&#125;
+done
+awk &quot;BEGIN &#123;cnt=0&#125; &#123;sum+=$1;cnt++;&#125; END&#123;print sum/cnt&#125; $result_file
+</code></pre>
+<h1 id="makefile基础"><a href="#makefile基础" class="headerlink" title="makefile基础"></a>makefile基础</h1><p>makefile 基础模式：<br>target: dependancy<br>    (前一个)</p>
+<h1 id="cmake基础"><a href="#cmake基础" class="headerlink" title="cmake基础"></a>cmake基础</h1>
+    </div>
+    
+    
+    
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2023 - 2023 Ayanami
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;Ayanami
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    
+    
+
+
+
+
+    
+</body>
+</html>

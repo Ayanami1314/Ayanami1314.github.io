@@ -1,0 +1,362 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8" />
+    <title>java进阶语法 | Ayanami</title>
+    <meta name="author" content="Ayanami" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <link rel="icon" href="/images/head.jpg" />
+    <link rel="preconnect" href="https://cdn.staticfile.org" />
+<script src="https://cdn.staticfile.org/vue/3.3.4/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.4.0/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.loli.net" />
+<link rel="preconnect" href="https://gstatic.loli.net" crossorigin />
+<link rel="stylesheet" href="https://fonts.loli.net/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://cdn.staticfile.org/highlight.js/11.8.0/highlight.min.js"></script>
+<script src="https://cdn.staticfile.org/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://cdn.staticfile.org/highlight.js/11.8.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+<script src="https://cdn.staticfile.org/KaTeX/0.16.8/katex.min.js"></script>
+<script src="https://cdn.staticfile.org/KaTeX/0.16.8/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/KaTeX/0.16.8/katex.min.css" />
+<script src="/js/lib/math.js"></script>
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>AYANAMI</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;AYANAMI</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1>java进阶语法</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/10/16
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            
+            <span class="tag">
+                
+                <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #00a596">入门</a>
+            </span>
+            
+        </span>
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <p>﻿<br>一个写完了streamlit的demo<br>第二个写完了deque，积累了一些写API和测试的经验</p>
+<p>java 语法和收获：</p>
+<ol>
+<li>随机测试非常好用，对应java就是StdRandom库</li>
+<li>java的接口机制 interface 有点类似c++的抽象类，继承接口的需要Override所有的接口函数声明（接口里面只写声明）（最好显式@Override）</li>
+</ol>
+<p>通过接口机制，我们可以统一不同的实现，不管你写的是AList, SLList, 还是LIST61B, 只要他们继承于同一个接口，对于使用者来说就是好的</p>
+<p>一个更有意义的地方是，接口保证了java编译时的静态编译（或者简洁性）：<br>java<strong>不需要知道</strong>一个类的内部实现到底有没有Override某个特定的方法，但它不需要知道，需要程序员在类中显式指定</p>
+<p>java官方的ArrrayList</p>
+<pre><code>
+import java.util.List;
+import java.util.ArrayList;
+
+public class Example &#123;
+    public static void main(String[] args) &#123;
+        List&lt;Integer&gt; L = new ArrayList&lt;&gt;();
+        L.add(5);
+        L.add(10);
+        System.out.println(L);
+    &#125;
+&#125;
+</code></pre>
+<ol start="3">
+<li>.equals 和 &#x3D;&#x3D; ：<br>“=&#x3D;”是一个位比较，比较两者的每一个bit位， 对于java而言，string a &#x3D;“Hello”, b&#x3D;”Hello” , a&#x3D;&#x3D;b是不成立的(a，b的对象地址不同)</li>
+</ol>
+<p>.equals 是一个对象接口的方法（Object， java任意类的父类），在自定义类之中实现.equals之后，可以比较各种各样的对象<br>(<strong>可能需要用getClass()函数</strong>)<br>例如一个数组的equals可以这么定义：</p>
+<pre><code>@Override
+public boolean equals(Object other)&#123;
+    if(this.getClass() != other.getClass())&#123;
+      return false;  // 如果不同类则认为不能比较
+    &#125;
+    if(this.size() != other.size())&#123; return false;&#125;
+    for(o : this)&#123;
+        if(!other.contains(o))&#123;
+           return false;
+        &#125;
+   &#125;
+   return true;
+&#125; 
+</code></pre>
+<ol start="3">
+<li>java的迭代器机制<br> 如果想在java之中实现可迭代（for-each循环，本质上 for(object o: array_o)）这样的循环只是</li>
+</ol>
+<pre><code>public Iterator&lt;T&gt; iterator();
+Iterator&lt;Integer&gt; seer = ArrayObj.iterator();
+while(seer.hasNext())&#123;
+   func(seer.next())  // for循环内的操作
+&#125;
+</code></pre>
+<p>也就是说，本质上迭代器需要满足的条件是：<br>有 .Iterator()方法.hasNext()方法和.next()方法，每迭代一次，迭代器走到下一个元素处，并返回前一个元素的值</p>
+<p>如何实现可迭代自定义类呢？<br>只需要继承&#x2F;接口 Iterable类<br>例如:<br>public class List<T> extends Iterable<T>{<br>    boolean hasNext();<br>    T next();<br>} </p>
+<ol start="4">
+<li>java的Set</li>
+</ol>
+<pre><code>import java.utils.Set
+import java.utils.HashSet
+Set&lt;String&gt; aset = new Hashset&lt;&gt;();
+s.add(&quot;haha&quot;);
+s.add(&quot;shit&quot;);
+s.contains(&quot;haha&quot;); // return true or false
+System.out.print(s.size());
+
+Set&lt;String&gt; bset = Set.Of(&quot;a&quot;, &quot;b&quot;,&quot;c&quot;);// a fast way to bulid a set
+</code></pre>
+<ol start="5">
+<li>java的异常机制<br>主要是对null的特殊处理<br>throw new ExceptionObject(parameter1, …)</li>
+</ol>
+<pre><code>public void add(T x) &#123;
+    if (x == null) &#123;
+        throw new IllegalArgumentException(&quot;can&#39;t add null&quot;);
+    &#125;
+    if (contains(x)) &#123;
+        return;
+    &#125;
+    items[size] = x;
+    size += 1;
+&#125;
+</code></pre>
+<blockquote>
+<p>We get an Exception either way - why is this better?<br>    1.  We have control of our code: we consciously decide at what point to stop the flow of our program<br>    2.  More useful Exception type and helpful error message for those using our code</p>
+</blockquote>
+<ol start="6">
+<li>java的继承</li>
+</ol>
+<ul>
+<li>不继承构造函数，</li>
+</ul>
+<pre><code> public class A extends B&#123;
+    super();
+    ...  
+&#125;
+</code></pre>
+<ul>
+<li>不可以多重继承，但可以多接口继承</li>
+<li>所有类都默认继承Object， 值得注意的是几个方法.equals(), .hashCode() 和 .toString()</li>
+</ul>
+<ol start="7">
+<li>java的高阶函数<br>在java之中高阶函数得间接做，因为java一切都是对象，但没有“函数”对象，所以我们需要把函数包装在对象之中，成为某个对象的方法，一般是用接口实现，例：</li>
+</ol>
+<pre><code>public interface TenX&#123;
+    public int funcX(int x);
+&#125;
+
+public class IntFunction implements TenX&#123;
+    public int funcX(int x)&#123;return 10*x;&#125;
+&#125;
+
+
+public static int HOF_doTwice(IntFunction f, int x)&#123;
+    return f.funcX(f.funcX(x));
+&#125;
+</code></pre>
+<ol start="8">
+<li>java的通用比较<img src="https://joshhug.gitbooks.io/hug61b/content/assets/dog_comparable.png"></li>
+</ol>
+<blockquote>
+<p>While this would work for now, if we give up on our dream of <strong>making a generalized max function</strong> and let the Dog class define its own max function, then we’d have to do the same for any class we define later. We’d need to write a maxCat function, a maxPenguin function, a maxWhale function, etc., <strong>resulting in unnecessary repeated work and a lot of redundant code</strong>.</p>
+</blockquote>
+<p>在java之中，我们没有c++那样的运算符重载，但我们有.equals 和 .compareTo, 使用规范的泛型接口代替可能出现问题的运算符重载，这是更安全的做法</p>
+<p>java提供的接口：<br>public interface Comparator {<br>    public int compare(T o1, T o2);  &#x2F;&#x2F; return 0 if &#x3D;&#x3D;, &gt;0 if &gt; ,&lt;0 if &lt;<br>}</p>
+<p>只需要<br>public class A implements Comparator<A>{</p>
+<p>}<br>就能让A类的对象之间比较，达到了c++运算符重载的效果；<br>如果Comparator<B>, 就能让A和B比较，类似c++的运算符重载做友元</p>
+<p>我们甚至还可以定义多种比较方式，比如NameComparator , SizeComparator, … 只要这些方法都implements Comparator并且实现了compare方法<br>(记得import java.utils.comparator)<br>9. java的string<br>java在处理string时用了一种特殊的方式，没有“变量字符串”，只有常量字符串</p>
+<p>例如：string a &#x3D; “{” + “Ciallo!”+”}”， a会被构建三次，如果不断地使用+, 字符串就会不断的析构和构建，每次的构建不是在上一次的基础上在末尾加的，都是重新构建</p>
+<p>这样对安全性有好处，但牺牲了一些效率，一种提升效率的方法是使用java内置的StringBuilder 类</p>
+<pre><code>StringBuilder SB = new StringBuilder(&quot;&#123;&quot;);
+SB.append(&quot;ciallo!&quot;);
+SB.append(&quot;&#125;&quot;);
+System.out.println(SB.toString());
+</code></pre>
+
+    </div>
+    
+    
+    
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2023 - 2023 Ayanami
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;Ayanami
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    
+    
+
+
+
+
+    
+</body>
+</html>

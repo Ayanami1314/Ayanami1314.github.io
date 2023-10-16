@@ -1,0 +1,320 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8" />
+    <title>STL-algorithm&amp;gdb | Ayanami</title>
+    <meta name="author" content="Ayanami" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <link rel="icon" href="/images/head.jpg" />
+    <link rel="preconnect" href="https://cdn.staticfile.org" />
+<script src="https://cdn.staticfile.org/vue/3.3.4/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.4.0/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.loli.net" />
+<link rel="preconnect" href="https://gstatic.loli.net" crossorigin />
+<link rel="stylesheet" href="https://fonts.loli.net/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://cdn.staticfile.org/highlight.js/11.8.0/highlight.min.js"></script>
+<script src="https://cdn.staticfile.org/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://cdn.staticfile.org/highlight.js/11.8.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+<script src="https://cdn.staticfile.org/KaTeX/0.16.8/katex.min.js"></script>
+<script src="https://cdn.staticfile.org/KaTeX/0.16.8/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/KaTeX/0.16.8/katex.min.css" />
+<script src="/js/lib/math.js"></script>
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>AYANAMI</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;AYANAMI</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1>STL-algorithm&amp;gdb</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/10/16
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            
+            <span class="tag">
+                
+                <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #ffa2c4">入门</a>
+            </span>
+            
+        </span>
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <p>﻿</p>
+<ol>
+<li><p>shuffle (first, last)<br>Rearranges the elements in the range <code>[first,last)</code> randomly</p>
+</li>
+<li><p>rotate(first, middle, end)</p>
+</li>
+</ol>
+<pre><code>for (int i=1; i&lt;10; ++i) myvector.push_back(i); // 1 2 3 4 5 6 7 8 9
+std::rotate(myvector.begin(),myvector.begin()+3,myvector.end());
+                                                  // 4 5 6 7 8 9 1 2 3
+</code></pre>
+<ol start="3">
+<li><p>sort系</p>
+</li>
+<li><p>partition系<br>patition(first, last, cond)<br>重构顺序为，所有满足cond的元素在前，不满足cond的元素在后<br>返回第一个不满足cond的元素的iter</p>
+</li>
+</ol>
+<pre><code>  for (int i=1; i&lt;10; ++i) myvector.push_back(i); // 1 2 3 4 5 6 7 8 9
+
+  std::vector&lt;int&gt;::iterator bound;
+  bound = std::partition (myvector.begin(), myvector.end(), IsOdd);
+
+  // print out content:
+  std::cout &lt;&lt; &quot;Odd Elements:&quot;;
+  for (std::vector&lt;int&gt;::iterator it=myvector.begin(); it!=bound; ++it)
+    std::cout &lt;&lt; &#39; &#39; &lt;&lt; *it;
+  std::cout &lt;&lt; &#39;\N&#39;;
+</code></pre>
+<ol start="6">
+<li>heap系</li>
+</ol>
+<ul>
+<li>make_heap(first, last, comp)<br>由于make_heap没有返回值是void(没有std::heap)，所以heap系都需要first, last参数,默认最大堆</li>
+<li>sort_heap(first, last, comp)</li>
+<li>pop_heap(first, last)</li>
+<li>push_heap(first, last)<br>(或者用priority_queue)</li>
+</ul>
+<ol start="7">
+<li>next_permutation<br>下一种组合<br>bool next_permutation(first, last)</li>
+</ol>
+<pre><code>int myInt[3]=&#123;1, 2, 3&#125;;
+do&#123;
+   ...
+&#125;while(std::next_permutation(myInt, myInt + 3))
+</code></pre>
+<ol start="9">
+<li>reverse</li>
+</ol>
+<p>组合元素<br>stable_* ：stable_sort, stable_partition…<br>is_*: is_sorted, is_heap…<br>is_*_until: is_sorted_until</p>
+<p>查询：<br>count:<br>accumulate&#x2F;(transform_) reduce(c++17, parellel):<br>inner_product: 内积<br>adajacent_difference:<br>对每个元素和前一个元素进行操作<br>adajacent_difference(first, end, result, binary_op)<br>binar_op默认是 now - prev</p>
+<p>sample:<br>    <a target="_blank" rel="noopener" href="http://en.cppreference.com/w/cpp/string/basic_string">std::string</a> in {“ABCDEFGHIJK”}, out;<br>    std::sample(in.begin(), in.end(), <a target="_blank" rel="noopener" href="http://en.cppreference.com/w/cpp/iterator/back_inserter">std::back_inserter</a>(out), 4,<br>                <a target="_blank" rel="noopener" href="http://en.cppreference.com/w/cpp/numeric/random/mersenne_twister_engine">std::mt19937</a> {<a target="_blank" rel="noopener" href="http://en.cppreference.com/w/cpp/numeric/random/random_device">std::random_device</a>{}()});<br>    <a target="_blank" rel="noopener" href="http://en.cppreference.com/w/cpp/io/cout">std::cout</a> &lt;&lt; “Four random letters out of “ &lt;&lt; in &lt;&lt; “ : “ &lt;&lt; out &lt;&lt; ‘<br>‘;</p>
+<p>all_of, any_of, none_of： bool all_of(first, last, cond)</p>
+<p>equal:<br>mismatch:  return the mismatch iter pair&lt;iter, iter&gt;</p>
+<p>find(not sorted): return iter</p>
+<p>equal_range(sorted):  get subrange of equal elements(upper and lower), return pair&lt;iter, iter&gt;</p>
+<p>search(subrange in big range):</p>
+<p>集合：<br>set_difference:<br>set_intersection:<br>set_union:<br>includes:<br>merge:</p>
+<p>copy_backwards:<br>fill:<br>fill_n: 填充从begin_iter开始的n个元素<br>fill_n(v.begin(), 5, ‘c’); &#x2F;&#x2F;正向<br>fill_n(std::back_inserter(v), 5, ‘c’); &#x2F;&#x2F;逆向</p>
+<p>generate:<br>iota: 赋值一个递增序列<br>int number[10];<br>std::iota(number, number+10, 100);<br>&#x2F;&#x2F; number: 100-109<br>replace:<br>remove&#x2F;unique:<br>transform&#x2F;for_each: 类似map in java, transform支持二元</p>
+<p>gdb: </p>
+<ol>
+<li>TUI mode</li>
+<li>inner python</li>
+<li>reverse-debug</li>
+</ol>
+<p>gdb tui:</p>
+<p>输入tui enable或 ctrl-X A启动, tui disable关闭</p>
+<p>当出现错误时，输入control + L 刷新屏幕</p>
+<p>Ctrl-X 2：切换到汇编窗格</p>
+<p>tui reg all:看寄存器</p>
+<p>tui模式下上下一条命令 CTRL+ p &#x2F; n</p>
+<p>执行python代码：</p>
+<p>第一种 source script.py 执行外部代码</p>
+<p>第二种 使用内嵌python模块</p>
+<p>（gdb）python</p>
+<p>&gt;…(code)</p>
+<p>&gt; end (结束标识符)</p>
+<p>输入record启用record模式的情况下才能使用 rs</p>
+<p>反向调试： reverse-step i 反向i步 （rs i）</p>
+<p>概率性错误，可以设两个断点，使用command语句</p>
+<p>例如 exit断点1：</p>
+<p>command 1</p>
+<p>record</p>
+<p>c</p>
+<p>main函数结尾断点2</p>
+<p>command 2</p>
+<p>r</p>
+<p>这样可以不断重复运行，直到exit错误出现，并启用record</p>
+
+    </div>
+    
+    
+    
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2023 - 2023 Ayanami
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;Ayanami
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    
+    
+
+
+
+
+    
+</body>
+</html>

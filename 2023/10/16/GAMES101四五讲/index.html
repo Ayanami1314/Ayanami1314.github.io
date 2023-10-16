@@ -1,0 +1,276 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8" />
+    <title>GAMES101四五讲 | Ayanami</title>
+    <meta name="author" content="Ayanami" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <link rel="icon" href="/images/head.jpg" />
+    <link rel="preconnect" href="https://cdn.staticfile.org" />
+<script src="https://cdn.staticfile.org/vue/3.3.4/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.4.0/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.loli.net" />
+<link rel="preconnect" href="https://gstatic.loli.net" crossorigin />
+<link rel="stylesheet" href="https://fonts.loli.net/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://cdn.staticfile.org/highlight.js/11.8.0/highlight.min.js"></script>
+<script src="https://cdn.staticfile.org/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://cdn.staticfile.org/highlight.js/11.8.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+<script src="https://cdn.staticfile.org/KaTeX/0.16.8/katex.min.js"></script>
+<script src="https://cdn.staticfile.org/KaTeX/0.16.8/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/KaTeX/0.16.8/katex.min.css" />
+<script src="/js/lib/math.js"></script>
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>AYANAMI</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;AYANAMI</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1>GAMES101四五讲</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/10/16
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            
+            <span class="tag">
+                
+                <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #ff7d73">入门</a>
+            </span>
+            
+        </span>
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <p>﻿<br>今日学习：</p>
+<ol>
+<li>GAMES101  4，5讲<br>第四讲：进一步的变换</li>
+</ol>
+<ul>
+<li><p>三维变换</p>
+</li>
+<li><p><img src="https://pic3.zhimg.com/v2-ea91281e359558f60346e70c7b11c6fa_b.jpg"></p>
+</li>
+<li><p>罗格里德旋转公式，得到任意方向n旋转α角度的公式<img src="https://pic1.zhimg.com/v2-f6ecc4664edeb4648f3b602e573bf2f4_b.jpg"></p>
+</li>
+<li><p>进一步的变换：Camera&#x2F;View Transformation<br>mvp（model view projection变换）<br><img src="/imgs/2023-06-17/f4jCIb7YE48xQgLF.png" alt="输入图片说明"><br>  相机和物体的位置关系可能有各种情况，便于研究将相机恒定置于原点，并且其方向为：朝上是Y，正对-Z（这是为了让X取在指向纸面外）</p>
+<p>  将相机的两个特征方向（-Z，Y）分别称为<br>  gaze direction(g) 和 up direction(t)</p>
+</li>
+</ul>
+<p><img src="/imgs/2023-06-17/ZK5hQW6crFCLUpoy.png" alt="输入图片说明"><img src="https://pic4.zhimg.com/v2-00d761f598c0d43864a3b2d00964898f_b.jpg"><br>    那么为了保持物体与相机的相对位置不变，物体需要左乘平移矩阵T，再左乘旋转矩阵R</p>
+<ul>
+<li><p>如何求R？<br>  直接求g，t，g<em>t如何旋转到x,y,z比较困难，但反过来，从x,y,z旋转到g,t,g*t是不难的 ，注意到旋转矩阵的对应元素就是g, t, g</em>t在xyz下的坐标，就得到了R^-1</p>
+<p>  更好的是，R作为一个旋转矩阵是正交的Rt &#x3D; R^-1, 也就是说我们只需要转置！<br>  <img src="/imgs/2023-06-17/SxOSSqAyk6YwQC09.png" alt="输入图片说明"></p>
+</li>
+</ul>
+<p>对projection 又有两种：正交投影（Orthographic）和透视投影（Perspective）</p>
+<p><img src="/imgs/2023-06-17/o0RWhrZ0ZT2geTdH.png" alt="输入图片说明"><img src="https://pic4.zhimg.com/v2-1fe46b741fcf8719c3f351ac8ab540bf_r.jpg"></p>
+<ul>
+<li>先讲正交投影：正交投影把一个[l,r]*[b,t]*[f,n]（左右下上远近）的物体区域放缩到[-1,1]^3,再取xOy平面</li>
+</ul>
+<p>其变换矩阵也很简单，将长方体的中心平移到原点+放缩 M&#x3D;ST<br><img src="/imgs/2023-06-17/wip2Ey5yO1ccVc2q.png" alt="输入图片说明"></p>
+<ul>
+<li>之后是透视投影，重点在于如何把透视归结到之前的矩阵表述之中去<br> 一个自然的想法是，我假设有两个面n和f， 其中n是“标准面”，透视的本质是视线交汇于一点而不再平行，如果把f面的xy“放缩”到和n面一样大，那么f这一块nf区域就可以变成正交投影</li>
+</ul>
+<p><img src="/imgs/2023-06-17/gvPVoST4Rx34UOfd.png" alt="输入图片说明"><br>通过这几个特征推导“压缩”矩阵：<br>压缩后远平面f上的点的齐次坐标从（x,y,f,1）变成了（x*n&#x2F;f, y*n&#x2F;f, f, 1），即M（x,y,f,1)t&#x3D; （x*n&#x2F;f, y*n&#x2F;f, f, 1）t</p>
+<p>近平面上不变，M左乘（x’, y’, n, 1）&#x3D; （x’,y’,n,1）<br>从这两个式子可以推出M(相差一个常数，注意齐次坐标（tx, ty, tz, t）和（x,y,z,1）是一样的)</p>
+<p><img src="/imgs/2023-06-17/trKj2IDWjkl9WwwC.png" alt="输入图片说明"></p>
+<p>需要注意的是这样的投影变换只保证给定近面n和远面f是严格Z不变的，中间的变换出来的结果比实际值偏大</p>
+<p>第五讲：光栅化（Rasterization）</p>
+<p>我们现在已经完成了mvp变换（model - view - projection）成功得到了一个[-1,1]^3（或者xOy面）的物体投影，如何从这个标准化的投影重建像呢？</p>
+<p>先再引入两个常用参数：fovY(Y轴截段的field of view, 垂直可视角度)和aspect ratio（宽高比）</p>
+<p>（主要是视锥体里面的参数转换关系，n,t的另一种表述）</p>
+<p>Then, 我们要如何将其<strong>画在屏幕上</strong>？<br>（屏幕小知识点，分辨率1920*1080就是1080p，etc）</p>
+<p>将[-1,1]^2 重新拉伸成 ScreenWidth * ScreenHeight, 之后平移一下，原点重新放回左下角<br><img src="/imgs/2023-06-17/kUY8v1HAOxw959Oe.png" alt="输入图片说明"></p>
+<p>接下来要做的是离散化，判断一个x,y的点所在的像素是否需要“画”（采样）</p>
+<p>以三角形为例，即判断一个点（x,y）是否在三角形内部（通常这个点取每个像素点的中心点，即int x， int y, 然后取x+0.5,y+0.5）</p>
+<p>判断点是否在三角形内部的巧妙方法：利用叉积！<br>AP叉乘AB可以通过正负号判断P在AB左还是右侧，而依次叉乘，点P在三角形三边同侧时，才是内部</p>
+<p>之后对内部的点赋值，先取一个包围盒（bounding box），三顶点x最小到最大，y最小到最大（不需要遍历整个屏幕）</p>
+
+    </div>
+    
+    
+    
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2023 - 2023 Ayanami
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;Ayanami
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    
+    
+
+
+
+
+    
+</body>
+</html>
