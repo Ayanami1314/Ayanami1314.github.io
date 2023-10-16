@@ -208,7 +208,7 @@
         
         <span class="tag">
             
-            <a href="/tags/%E8%87%AA%E6%88%91%E4%BB%8B%E7%BB%8D/" style="color: #ff7d73">自我介绍</a>
+            <a href="/tags/%E8%87%AA%E6%88%91%E4%BB%8B%E7%BB%8D/" style="color: #03a9f4">自我介绍</a>
         </span>
         
     </div>
@@ -259,7 +259,7 @@
         
         <span class="tag">
             
-            <a href="/tags/%E7%BB%8F%E9%AA%8C/" style="color: #00bcd4">经验</a>
+            <a href="/tags/%E7%BB%8F%E9%AA%8C/" style="color: #00a596">经验</a>
         </span>
         
     </div>
@@ -324,7 +324,7 @@
         
         <span class="tag">
             
-            <a href="/tags/%E7%BB%84%E6%88%90%E7%BB%93%E6%9E%84/" style="color: #03a9f4">组成结构</a>
+            <a href="/tags/%E7%BB%84%E6%88%90%E7%BB%93%E6%9E%84/" style="color: #ffa2c4">组成结构</a>
         </span>
         
     </div>
@@ -407,12 +407,12 @@
         
         <span class="tag">
             
-            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #00bcd4">入门</a>
+            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #ffa2c4">入门</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6/" style="color: #00a596">图形学</a>
+            <a href="/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6/" style="color: #ff7d73">图形学</a>
         </span>
         
     </div>
@@ -462,7 +462,7 @@
         
         <span class="tag">
             
-            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #ffa2c4">入门</a>
+            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #ff7d73">入门</a>
         </span>
         
         <span class="tag">
@@ -681,17 +681,17 @@
         
         <span class="tag">
             
-            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #03a9f4">入门</a>
+            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #00a596">入门</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/%E7%BB%8F%E9%AA%8C/" style="color: #00a596">经验</a>
+            <a href="/tags/%E7%BB%8F%E9%AA%8C/" style="color: #03a9f4">经验</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%96%87%E6%A1%A3/" style="color: #03a9f4">设计文档</a>
+            <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%96%87%E6%A1%A3/" style="color: #ffa2c4">设计文档</a>
         </span>
         
     </div>
@@ -731,12 +731,12 @@
         
         <span class="tag">
             
-            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #00bcd4">入门</a>
+            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #ff7d73">入门</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84/" style="color: #03a9f4">体系结构</a>
+            <a href="/tags/%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84/" style="color: #00a596">体系结构</a>
         </span>
         
     </div>
@@ -819,37 +819,7 @@ do&#123;
 <p>search(subrange in big range):</p>
 <p>集合：<br>set_difference:<br>set_intersection:<br>set_union:<br>includes:<br>merge:</p>
 <p>copy_backwards:<br>fill:<br>fill_n: 填充从begin_iter开始的n个元素<br>fill_n(v.begin(), 5, ‘c’); &#x2F;&#x2F;正向<br>fill_n(std::back_inserter(v), 5, ‘c’); &#x2F;&#x2F;逆向</p>
-<p>generate:<br>iota: 赋值一个递增序列<br>int number[10];<br>std::iota(number, number+10, 100);<br>&#x2F;&#x2F; number: 100-109<br>replace:<br>remove&#x2F;unique:<br>transform&#x2F;for_each: 类似map in java, transform支持二元</p>
-<p>gdb: </p>
-<ol>
-<li>TUI mode</li>
-<li>inner python</li>
-<li>reverse-debug</li>
-</ol>
-<p>gdb tui:</p>
-<p>输入tui enable或 ctrl-X A启动, tui disable关闭</p>
-<p>当出现错误时，输入control + L 刷新屏幕</p>
-<p>Ctrl-X 2：切换到汇编窗格</p>
-<p>tui reg all:看寄存器</p>
-<p>tui模式下上下一条命令 CTRL+ p &#x2F; n</p>
-<p>执行python代码：</p>
-<p>第一种 source script.py 执行外部代码</p>
-<p>第二种 使用内嵌python模块</p>
-<p>（gdb）python</p>
-<p>&gt;…(code)</p>
-<p>&gt; end (结束标识符)</p>
-<p>输入record启用record模式的情况下才能使用 rs</p>
-<p>反向调试： reverse-step i 反向i步 （rs i）</p>
-<p>概率性错误，可以设两个断点，使用command语句</p>
-<p>例如 exit断点1：</p>
-<p>command 1</p>
-<p>record</p>
-<p>c</p>
-<p>main函数结尾断点2</p>
-<p>command 2</p>
-<p>r</p>
-<p>这样可以不断重复运行，直到exit错误出现，并启用record</p>
-
+<p>generate:<br>iota: 赋值一个递增序列<br>int number[10];<br>std::iota(number, number+10, 100);</p>
             
         </div>
     </div>
@@ -863,7 +833,7 @@ do&#123;
         
         <span class="tag">
             
-            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #00bcd4">入门</a>
+            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #00a596">入门</a>
         </span>
         
         <span class="tag">
@@ -915,12 +885,12 @@ do&#123;
         
         <span class="tag">
             
-            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #00bcd4">入门</a>
+            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #03a9f4">入门</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/%E6%B8%B8%E6%88%8F/" style="color: #03a9f4">游戏</a>
+            <a href="/tags/%E6%B8%B8%E6%88%8F/" style="color: #00bcd4">游戏</a>
         </span>
         
     </div>
@@ -1008,12 +978,12 @@ do&#123;
         
         <span class="tag">
             
-            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #ffa2c4">入门</a>
+            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #03a9f4">入门</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/%E7%BB%84%E6%88%90%E7%BB%93%E6%9E%84/" style="color: #00bcd4">组成结构</a>
+            <a href="/tags/%E7%BB%84%E6%88%90%E7%BB%93%E6%9E%84/" style="color: #ffa2c4">组成结构</a>
         </span>
         
     </div>
