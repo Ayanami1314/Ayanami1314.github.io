@@ -174,7 +174,12 @@
             
             <span class="tag">
                 
-                <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #00bcd4">入门</a>
+                <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #03a9f4">入门</a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84/" style="color: #ffa2c4">体系结构</a>
             </span>
             
         </span>
@@ -182,7 +187,7 @@
     </div>
     
     <div class="content" v-pre>
-        <p>﻿<br>简述：linker入门：<br>建议直接看CSAPP 第七章，别看我这坨答辩<br>（一）为什么需要linker:<br>你也不想改了一个源文件之后需要重新编译整个标准库吧，你也不想改了一个注释之后需要重新编译整个浏览器内核吧（doge）</p>
+        <p>简述：linker入门：<br>建议直接看CSAPP 第七章，别看我这坨答辩<br>（一）为什么需要linker:<br>你也不想改了一个源文件之后需要重新编译整个标准库吧，你也不想改了一个注释之后需要重新编译整个浏览器内核吧（doge）</p>
 <p>linker使分立编译成为可能</p>
 <p>（二）linker在干啥：<br>省流：<br>分立的.o(.s产生，可重定位目标文件，gcc -c main.c产生的文件)文件+外部库（动态库、静态库）<br>被链接器全部链接起来，顺带帮你把里面大部分地址（除了动态库）全部重定向到内存，让你把程序放进内存就能跑</p>
 <p>（三）linker咋干的：<br>程序被编译器编译成assembly之后，留下了一些空位（重定向relocation），形成的是可重定向文件</p>
@@ -195,7 +200,7 @@
 <ol>
 <li><p>强弱符号：有定义的是强符号，没定义（只有声明）的是弱符号。如：int func(int x){return x;} 的func是强符号，int func;的func是弱符号，int func&#x3D;0；的func是强符号<br>（注意，局部变量是存在栈上的，只有全局和static数据+函数有符号）</p>
 </li>
-<li><p>多个强符号————错误<br> 一个强符号————解释成强符号<br> 如a.c 之中有(global) int x；b.c之中  有（global）double x&#x3D;1.1; 在link a.o b.o的过程之中，x都会被解释成1.1<br>没强符号——<strong>随机</strong>解释成一个弱符号</p>
+<li><p>多个强符号————错误<br> 一个强符号————解释成强符号<br> 如a.c 之中有(global) int x；b.c之中  有（global）double x&#x3D;1.1; 在link a.o b.o的过程之中，x都会被解释成1.1<br> 没强符号——<strong>随机</strong>解释成一个弱符号</p>
 </li>
 <li><p>函数重载：函数符号又有细微差别，编译器（compiler）在函数重载的过程中实际上会改变函数名称<br>如</p>
 </li>
