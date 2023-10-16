@@ -174,12 +174,12 @@
             
             <span class="tag">
                 
-                <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #ff7d73">入门</a>
+                <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #00bcd4">入门</a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/%E6%B8%B8%E6%88%8F/" style="color: #00a596">游戏</a>
+                <a href="/tags/%E6%B8%B8%E6%88%8F/" style="color: #ff7d73">游戏</a>
             </span>
             
         </span>
@@ -189,7 +189,7 @@
     <div class="content" v-pre>
         <p>maze ：</p>
 <ol>
-<li>memset的使用 ， memset(void* p, value, size_t n); 将从p开始的n个字节的数据设置为value</li>
+<li>memset的使用 ， memset(void* p, value, size_t n); 将从p开始的n个字节的数据设置为value<span id="more"></span></li>
 </ol>
 <p>2.迷宫生成算法：类似DFS，只需要把起始点和中间路径的选取全部换成随机取路径就行</p>
 <ol start="3">
@@ -199,6 +199,7 @@
 <li>使用按位操作来表示状态</li>
 </ul>
 <pre><code>    int* pMazeState; // 配合下面的 enum使用一个int记录每个各自的连接和填充状态
+&lt;!-- more --&gt;
     enum &#123;
         
         cell_path_EAST=0x01, //0000 0001

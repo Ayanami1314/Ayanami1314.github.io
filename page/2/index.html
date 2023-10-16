@@ -191,125 +191,6 @@
             
             <p>2.cache<br>2.1）SRAM, DRAM，闪存和磁盘<br>速度逐渐减慢，成本逐渐降低<br>原理：</p>
 <p>SRAM：一组<strong>直接接外接电源</strong>的触发器电路（这意味着功耗和对电源的极高稳定性要求，断电立即丢失数据），因而不需要刷新操作，速度快</p>
-<p>DRAM：每个存储单元不直接接外接电源，采用电容的方式存储，但电容会以漏电等方式损失电荷，所以需要定期接电源刷新（只在刷新时接电源，降低功耗；总线接电源而不是每个电容接，降低复杂度）</p>
-<p>DRAM之中的存储单元还有bank这种较小的集合，这方便了在DRAM之中的并行操作（不同bank可以同时操作）</p>
-<p>闪存:<br>为了读取和写入数据，闪存芯片中的控制逻辑电路负责管理电荷的注入和释放。当需要读取存储的数据时，控制逻辑电路会检测浮栅中的电荷状态，并将其转换为可读取的信号。当需要写入新的数据时，控制逻辑电路会控制电荷的注入或释放，以改变浮栅的电荷状态。</p>
-<p>闪存存储单元中的每个存储单元通常是基于一种称为浮栅（Floating Gate）的结构。浮栅是一个与主要电路隔离的电荷储存区域。当存储单元被要求存储数据时，电荷可以被注入到浮栅中，表示存储的信息。这些电荷在浮栅中被困住并保持不变，即使断开外部电源，电荷也不会自行流失。</p>
-<p>但电学存储自带热耗损等，故寿命比磁盘低；但整体结构比较稳定，比磁盘抗摔（）</p>
-<p>磁盘：机械结构+磁头，由于有“移动磁头”这样的机械操作，因而速度最慢</p>
-<p>2.2）cache的思想:<br>对任意存储器，存储的容量越大，其访问速度必然越慢（或者说，做到访问速度和小容量的存储器相同，成本变高）</p>
-<p>如果CPU直接和内存交换信息，从内存里面读写的典型时间是250个时钟周期，在250个时钟周期内，现代计算机可以执行上千条甚至上万条指令</p>
-<p>也就是说，一次 *p &#x3D; value，相当于上万条 p +&#x3D; 4的执行时间，这是不可忍受的。因而我们需要一种能够更快速的读取内存中数据的方法，cache就诞生了</p>
-<p>现代计算机的存储结构是多层的，从上到下是类似SRAM到DRAM到闪存或者磁盘。而所谓cache，即高速缓存技术，就是把常用的数据存放到更小、更快的存储器（称之为缓存cache）之中，CPU读数据的时候先在cache之中找，找到了就不访问内存了，直接取cache之中的值</p>
-<p>由于快的前提是小，所以不可能存所有的值；而如果找不到，相当于没有cache，所以关键在于cache里面存什么值、如何更新之，使得使用之中尽可能多的值能够找到</p>
-<p>引入理论基础:</p>
-<ul>
-<li>时间局部性（temporal locality）：如果某个数据被访问，那么它很有可能会再被访问。e.g. loop</li>
-<li>空间局部性（spatial locality）：如果某个数据被访问，临近的数据很有可能会被访问。 e.g. array</li>
-</ul>
-<p>因而，考虑时间局部性，被访问的数据可以放进cache（访问到该数据时，更新cache以加入该数据）</p>
-<p>考虑空间局部性，在cache之中设计了block的结构。一条cache的数据段未必只能对应一个数据， 可以是一个更大的block, 比如16个单字（对应4条int），也可以结合预取机制（取决于对应软硬件设计），可以做到取a[0]的时候，取下a[0],a[1],a[2],a[3]，再取a[1]的时候就能cache hit</p>
-<p>（具体表现看怎么设计的， 比如一个32位的cache在取一个char[] 数组的时候可能会只取一个char, 其他的补0， 也可能会取多个char,看设计）</p>
-<p>需要注意的是, block也不是越大越好，block（一条cache）是数据在存储层次之中传输的基本单位，更大的block必然会使数据在存储层次间传输消耗更多的时间</p>
-<p>2.3）实际cache示例<br>2.3.1 直接映射(direct mapped) cache:<br>怎么存cache呢？<br>最简单的方法是就按内存的地址，有一条加一条</p>
-<p>如：<br>0xabcdef00  …(第一条cache)<br>0x0012546   …(第二条cache)<br>…</p>
-<p><del>但这样存，如果要找某一条数据，就必须逐条比对，很是铸币</del></p>
-<p><del>联想到现实之中的图书馆，我们需要对每一条cache重新编号，并且按编号进行二分之类查找，这样找的才会快</del></p>
-<p><del>并且，由于数据本身就是2进制的，“2分查找”的实现都可以直接交给硬件，十分简单</del><br>上面不是最主要的原因，为cache重新编号的目的是使不同地址上的数据尽可能均匀分布（映射）到cache之中，以尽可能提高cache利用率和命中率</p>
-<p>（这也是为什么index要选地址的小位而不是大位的原因）</p>
-<p>一种做法是，假设我的cache 最大条数是8，那么我的地址mod 8, 就是我的cache编号index<br>（这样的cache最大容量很自然应该是二的幂，对地址取模只需要取末几位即可）<br>0xfffffff 这条地址映射到cache编号为 111  （f: 1111）<br>0x12345678 这条地址映射到cache编号为000       (8: 1000)<br>…</p>
-<p>这样会把多条地址上的值映射到一个cache上，所以我们需要比较地址的其他值来确定要求的数据是否就是cache之中的数据。对应的，一条cache之中有一个lag标签，存了0xffffffff除了111（index）之外的其他部分。比对lag即可判别是否相同。</p>
-<p>还有一些细节，比如：程序开始的时候，cache里面的值并没有清空，这些乱七八糟的值应该有一个“是否有效”的标识符valid，占一位</p>
-<p>又比如：内存之中一定要按字节对齐，并且很多时候更进一步，按字对齐（4Byte，此时一个单独的char占了1Byte 和3个空Byte），这可以不存在lag之中；如果block不止一个字，比如4个字，那么地址之中还需要分离2位出来，指示某个特定的字在block之中的位置<br><img src="/imgs/2023-08-12/NMJ90OH5r51AV7hR.png" alt="输入图片说明"><br>示例：64位存储地址，直接映射cache，cache最大容纳数据大小16KiB，cache一个block 4字，cache所占的实际空间是多少？</p>
-<p>解析：<br>16KiB&#x2F;4字 &#x3D; 1024 条cache &#x3D; 2^10<br>因而64位地址末10位是cache index<br>64位存储地址 -10- 2（内存对齐）-2(指示一个block之中单字位置,2*2&#x3D;4) &#x3D; 50位 lag </p>
-<p>[50 + 1(valid位) + 4*32（block）]*1024 &#x3D;179 Kib &#x3D; 179&#x2F;8 KiB &#x3D; 22.4KiB</p>
-<p>2.3.2 N-way set-associative cache<br>上面的直接映射cache也有铸币的一点</p>
-<p>如果来回访问不同地址，但是相同index的内存块，就会全miss, 0 hit</p>
-<p>例如<br>4 lines cache， 数据段32位(意味着 地址扣去对齐后末两位是index)</p>
-<p>如果有这样的long long int array (4 word &#x2F; unit)<br>0 4 0 4 0 4 0 4…</p>
-<p>起始位置不妨设为0x12345678</p>
-<p>1：存0， index &#x3D; 00（8：1000）<br>2：存4， index &#x3D; 00  (8+4: 1100), cache miss, 用1 替换 00 line的cache存的0<br>3:  用0替换4……<br>etc, 称为ping-pong effect， all miss</p>
-<p>更常见的实例代码如下</p>
-<pre><code>int x[12]=&#123;...&#125;;  // 12可换成任意4的倍数
-int y[12]=&#123;...&#125;;
-for(int i=0;i&lt;12; i++)&#123;
-    z[i] = x[i]*y[i];
-&#125;
-// 这个程序看起来很有空间相关性，理应得到很高的cache hit rate，但是，如果cache是direct-mapped cache,以4个block为例，由于x，y都是放在堆上且相邻定义，xy地址差的是32*4位的整数倍，两个数组的index相同，存入cache时会存入x，然后y cache miss,存入y，然后x cache miss，......
-</code></pre>
-<p>为了弥补这种铸币的错误，出现了N way set-associative cache<br>其思想为，将1个index对应1个cache block变为1个index 对应N个cache block<br><img src="/imgs/2023-08-12/yFxab2cLlTsZ0XOY.png" alt="输入图片说明"></p>
-<p>因而我们需要N个比较器，现在存0，放到index 00 block 1之中，存4， 放到index 00 block 2之中，…，能够解决周期&lt;N+1的ping-pong 问题<br>读的时候，对N个block都比较一遍lag<br>由于比较器很贵，所以不是N越大越好<br>现代处理器N一般为8， 16，32等</p>
-<p>2.4 写cache<br>先前的都是读，写主要有两种<br>write-through 和 write-back</p>
-<p>write-through: 每次写都同步更新cache和实际内存<br> 优点：数据可恢复（即使断电，内存里面也有）<br> 缺点：多次中断流水线，大大降低性能</p>
-<p>write-back：每次写，分为多种情况<br>核心思想是，将不必要立即改变的更新都先“存”到缓冲区，缓冲区满或者cache的该set满了，又或者要读一个已经被修改过的cache位时，才将缓冲区的数据写到内存，尽可能减少对流水线的打断</p>
-<p>优点：快<br>缺点：硬件实现复杂，成本高</p>
-<p>(write-back变种：如果读写共用一套cache, 那么前面说的读时就不需要从cache写回内存 ，那就是unified cache了，这样的好处是写性能是提高了，但也出现了很多新问题，比如优化策略、cache存储管理等)</p>
-<p>引入一个dirty bit来表示这个数据有没有被写过，如果一个数据是dirty的，读到它时先将写缓冲区的数据写回内存，再读内存、存入读cache（也就是说读之前需要在写那边检测一遍dirty）</p>
-<p>写时，写缓冲区满或者该cache block将要被替换之前一直写就行（还有设置dirty），如果写缓冲区满了或者该cache block将要被替换，写回内存；</p>
-<p>实际上的CPU基本都是write-back的</p>
-<p>几种cache (set)满了替换cache的策略：</p>
-<ul>
-<li><strong>LRU (Least Recently Used)</strong> — When we decide to evict a cache block to make space, we select the block that has been used the furthest back in time of all the blocks.</li>
-<li><strong>Random -</strong> When we decide to evict a cache block to make space, we randomly select one of the blocks in the cache to evict.</li>
-<li><strong>MRU (Most Recently Used)</strong> — When we decide to evict a cache block to make space, we select the block that has been used the most recently of all the blocks.</li>
-</ul>
-<p>2.4 对实际code的启示<br>1.如果要高性能，少写list和tree, 指针式的寻址模式不符合cache，即使同样都是O（N），遍历一个链表比遍历一个数组慢几十上百倍也很正常（事实上，一般标准库的给的接口都是array式的tree, map, list， 如ArrayList而不是LinkList,又比如做hash的时候，各个桶实际上是数组方式排列的）。尽量多使用连续的内存，连续的读写</p>
-<p>2.能用临时变量保存中间结果，不要开数组之类</p>
-<p>3.数组尽量做步长为1的遍历，少做函数调用（sp指针读写）——为什么快排比堆排、归并快：和归并比，更好利用cache（归并需要新数组，2倍空间相当于减半cache），并且多次函数调用；和堆排比，大长度情况下堆排几乎没有cache</p>
-<p>4.矩阵相乘的重新排序：列寻址的数组没有利用cache，同时，使用临时变量而不是一直改变数组的值会明显快</p>
-<pre><code>// 最一般的实现
-for(int i=0;i&lt;n;i++)&#123;
-    for(int j=0;j&lt;n;j++)&#123;
-        int sum = 0;  // 用临时变量sum避免不断读写C[i][j], 提升性能
-        for(int k=0;k&lt;n;k++)&#123;
-            sum += A[i][k] * B[k][j];// 这里不好，B的列寻址不符合二维数组在内存之中的存储法，n大时，会全是cache miss
-        &#125;
-        C[i][j] = sum;
-    &#125;
-&#125;
-
-
-// 改进的实现
-for(int i=0;i&lt;n;i++)&#123;
-    for(int k=0;k&lt;n;j++)&#123;
-        for(int j=0;j&lt;n;k++)&#123;
-            C[i][j] += A[i][k] * B[k][j]; //利用了cache
-        &#125;
-    &#125;
-&#125;
-// 这里利用了Cache 但是增加了读写C[i][j]的时间开销，事实证明这是完全tradeoff的，并且，由于预存的硬件机制，C[i][j]的读写实际上也能cache
-</code></pre>
-<p>5.条件传送与条件控制：尽可能使用条件传送，尤其是当条件实质上不可预测时</p>
-<pre><code>// 如果a[i]&lt;b[i]，a[i]=min, b[i]= max，一个性能上不好的实现
-if(a[i]&lt;b[i])&#123;
-   // do nothing
-&#125;
-else&#123;
-    int t = a[i];
-    a[i] = b[i];
-    b[i] = t;
-&#125;
-
-//良好的实现 
-int min = a[i]&lt;b[i] ? a[i]:b[i];
-int max = a[i]&lt;b[i] ? b[i]:a[i];
-a[i] = min;
-b[i] = max;
-
-// 原因：回想流水线的知识，当执行分支跳转的时候，如果分支预测错误，有严厉的惩罚时间。
-
-本质上， 第一种写法相当于a[i]&lt;b[i]的结果，进入一个multiplexer，multiplexer的两个输入是PC+4和PC+offset，决定的是PC跳转。而a[i]和b[i]的大小很多情况下不可预测。
-
-第二种写法相当于进入multiplexer 的不是PC+4 和 PC+ offset， 而是a[i]和b[i]，没有跳转，自然没有罚时
-</code></pre>
-<p> 6.能用临时变量保存的结果，不要有额外的开销<br> 例：</p>
-<pre><code> for(int i=0;i&lt;strlen(s);++i) &#123;
- //很烂的写法，每次都会算一遍strlen(s),如果s长不可接受
- // P.S.为什么编译器不会优化这个，因为循环体之中的func可能有额外的作用，比如 i &lt; f(s)，
-而假设f(s)改变条件的同时也更新j,编译器如果把它移到函数外面，那么j的值就会出问题。
- &#125;
-</code></pre>
-
             
         </div>
     </div>
@@ -323,7 +204,7 @@ b[i] = max;
         
         <span class="tag">
             
-            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #03a9f4">入门</a>
+            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #ffa2c4">入门</a>
         </span>
         
         <span class="tag">
@@ -379,7 +260,7 @@ b[i] = max;
         
         <span class="tag">
             
-            <a href="/tags/%E7%BB%8F%E9%AA%8C/" style="color: #ffa2c4">经验</a>
+            <a href="/tags/%E7%BB%8F%E9%AA%8C/" style="color: #03a9f4">经验</a>
         </span>
         
     </div>
@@ -439,18 +320,7 @@ b[i] = max;
 <ol start="15">
 <li><p>分支，存放git对象的一个哈希值，类似指向不同版本文件的指针<br>初始会自动新建分支master</p>
 </li>
-<li><p>查看分支 $git branch –list<img src="/imgs/2023-04-24/K1ZGce3Jm7PUh3Xl.png" alt="输入图片说明"><br>‘* ’代表当前分支</p>
-</li>
-<li><p>创建分支 git branch + 新分支name<br> 切换分支 git checkout name<br>(可以合并为 git checkout -b name)</p>
-</li>
-<li><p>git log –all –graph 看结构<br>git merge name 将当前分支（head指向的）和name分支合并<br>q退出<br>（修改同样的地方会merge conflict<br>用git status 看冲突的位置，重新编辑）<br>vi file_name 用vim 编辑file<br>esc+:wq退出保存</p>
-</li>
-<li><p>$ git fetch 拉取远程仓库的分支<br>之后 git checkout -b new_name 仓库名&#x2F;分支名</p>
-</li>
-<li><p>git stash 储存，储存了之后可以不提交切换分支<br>之后通过 git stash apply 继续编写<br>git stash list看所有储存的版本<br>git stash apply stash@{2} 指定应用版本2</p>
-</li>
-</ol>
-
+<li><p>查看分支 $git branch –list<img src="/imgs/2023-04-24/K1ZGce3Jm7PUh3Xl.png" alt="输入图片说明"></p>
             
         </div>
     </div>
@@ -464,12 +334,12 @@ b[i] = max;
         
         <span class="tag">
             
-            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #ffa2c4">入门</a>
+            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #00a596">入门</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/%E5%91%BD%E4%BB%A4%E8%A1%8C/" style="color: #00bcd4">命令行</a>
+            <a href="/tags/%E5%91%BD%E4%BB%A4%E8%A1%8C/" style="color: #03a9f4">命令行</a>
         </span>
         
     </div>
@@ -495,55 +365,7 @@ b[i] = max;
         <div class="content" v-pre>
             
             <ol>
-<li>java的编译（多文件编译，main文件在package 之中的特殊情况），命令行参数（特殊：包含引号的参数 ）</li>
-</ol>
-<p>编译 javac + path<br>例如：javac main.java class1.java</p>
-<p>运行 java main</p>
-<p>或者简化 make&#x2F;javac *.java</p>
-<p>速览文件<br>cat + path<br>命令行里面用空格分隔每一个命令符，对应程序之中的public int main(String[] args)  里面的args, 如果需要键入带空格的命令符，需要用“”</p>
-<p>当main文件在一个package之中时，不能直接main.java， 需要跳到父级目录之中之后，使用 xx&#x2F;main.java 全名调用</p>
-<p>makefile简化命令行  make 和 make check， make clean<br>nano：一个命令行文本编辑器，ctrl+字母特殊操作</p>
-<p>make check 运行python 编写的测试</p>
-<ol start="2">
-<li>java之中的文件和目录</li>
-</ol>
-<ul>
-<li>创建文件对象（本质上是创建了一个类似“指针”的东西，此时还没有创建文件）File f &#x3D; new File(“path”)；</li>
-<li>创建文件，以.txt为例：</li>
-</ul>
-<pre><code>File f = new File(&quot;sample.txt&quot;); // 在CWD下创建，或者指定完整路径 
-try&#123;
-    f.createFile();  //根据后缀名决定格式
-&#125; catch(IOexception)&#123;
-
-&#125;
-</code></pre>
-<ul>
-<li>f.exists() 返回f指向的文件是否存在</li>
-<li>路径拼接和查询：<br>String s &#x3D; System.getProperty(“user.dir”); &#x2F;&#x2F; 查询当前目录(CWD)<br>File f &#x3D; Utils.join(String s1, String s2); &#x2F;&#x2F;建立一个路径是s1+s2的文件对象</li>
-<li>创建文件夹：<br><code>File d = new File(&quot;Dic&quot;); d.mkdir();</code></li>
-<li>文件读写：<br><code>static void writeContents(File file, Object... contents)</code> - writes out strings&#x2F;byte arrays to a file. The <code>...</code> allows us to use <em>variable arguments</em>, meaning we can call <code>writeContents</code> with any number of arguments. For example, we can call <code>writeContents(outFile, &quot;dog&quot;, &quot;cat&quot;, &quot;mouse&quot;)</code>, and the function <code>writeContents</code> will have access to all three objects we pass in via an array.<br><code>static String readContentsAsString(File file)</code> - reads in a file as a string<br><code>static byte[] readContents(File file)</code> - reads in a file as a byte array</li>
-</ul>
-<p>注意writeContent 是 <strong>覆写</strong>！即c++ 的ios::trunc模式， 如果需要在后续写，需要先readContent， 存下来再一起写回去</p>
-<ol start="3">
-<li>Serialization in Java<br>前面的操作已经很好的满足了文本操作的需要，但是如何保存非文本对象，比如，一个自定义类的对象？</li>
-</ol>
-<p>这就需要java的序列化机制</p>
-<blockquote>
-<p>Serialization(序列化)：将java对象以一连串的字节保存在磁盘文件中的过程，也可以说是保存java对象状态的过程。序列化可以将数据永久保存在磁盘上(通常保存在文件中)。<br>deserialization(反序列化)：将保存在磁盘文件中的java字节码重新转换成java对象称为反序列化。<br>二、序列化和反序列化的应用<br>两个进程在远程通信时，可以发送多种数据，包括文本、图片、音频、视频等，这些数据都是以二进制序列的形式在网络上传输。<br>java是面向对象的开发方式，一切都是java对象，想要在网络中传输java对象，可以使用序列化和反序列化去实现，发送发需要将java对象转换为字节序列，然后在网络上传送，接收方收到字符序列后，会通过反序列化将字节序列恢复成java对象。<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_62414755/article/details/125886742">https://blog.csdn.net/qq_62414755/article/details/125886742</a></p>
-</blockquote>
-<p>一个细节：<br>序列化时，只存储了对象的状态，没有存它的方法；</p>
-<p>代码：</p>
-<pre><code>import java.io.Serializable
-public class Model implements Serializable&#123;
-
-&#125; 
-Model m；
-File f = new File(name);
-writeObject(f, m);
-Model m1 = readObject(f, Model.class);
-</code></pre>
-
+<li>java的编译（多文件编译，main文件在package 之中的特殊情况），命令行参数（特殊：包含引号的参数 ）
             
         </div>
     </div>
@@ -562,7 +384,7 @@ Model m1 = readObject(f, Model.class);
         
         <span class="tag">
             
-            <a href="/tags/java/" style="color: #ff7d73">java</a>
+            <a href="/tags/java/" style="color: #00a596">java</a>
         </span>
         
     </div>
@@ -591,133 +413,7 @@ Model m1 = readObject(f, Model.class);
 <p>java 语法和收获：</p>
 <ol>
 <li>随机测试非常好用，对应java就是StdRandom库</li>
-<li>java的接口机制 interface 有点类似c++的抽象类，继承接口的需要Override所有的接口函数声明（接口里面只写声明）（最好显式@Override）</li>
-</ol>
-<p>通过接口机制，我们可以统一不同的实现，不管你写的是AList, SLList, 还是LIST61B, 只要他们继承于同一个接口，对于使用者来说就是好的</p>
-<p>一个更有意义的地方是，接口保证了java编译时的静态编译（或者简洁性）：<br>java<strong>不需要知道</strong>一个类的内部实现到底有没有Override某个特定的方法，但它不需要知道，需要程序员在类中显式指定</p>
-<p>java官方的ArrrayList</p>
-<pre><code>
-import java.util.List;
-import java.util.ArrayList;
-
-public class Example &#123;
-    public static void main(String[] args) &#123;
-        List&lt;Integer&gt; L = new ArrayList&lt;&gt;();
-        L.add(5);
-        L.add(10);
-        System.out.println(L);
-    &#125;
-&#125;
-</code></pre>
-<ol start="3">
-<li>.equals 和 &#x3D;&#x3D; ：<br>“=&#x3D;”是一个位比较，比较两者的每一个bit位， 对于java而言，string a &#x3D;“Hello”, b&#x3D;”Hello” , a&#x3D;&#x3D;b是不成立的(a，b的对象地址不同)</li>
-</ol>
-<p>.equals 是一个对象接口的方法（Object， java任意类的父类），在自定义类之中实现.equals之后，可以比较各种各样的对象<br>(<strong>可能需要用getClass()函数</strong>)<br>例如一个数组的equals可以这么定义：</p>
-<pre><code>@Override
-public boolean equals(Object other)&#123;
-    if(this.getClass() != other.getClass())&#123;
-      return false;  // 如果不同类则认为不能比较
-    &#125;
-    if(this.size() != other.size())&#123; return false;&#125;
-    for(o : this)&#123;
-        if(!other.contains(o))&#123;
-           return false;
-        &#125;
-   &#125;
-   return true;
-&#125; 
-</code></pre>
-<ol start="3">
-<li>java的迭代器机制<br> 如果想在java之中实现可迭代（for-each循环，本质上 for(object o: array_o)）这样的循环只是</li>
-</ol>
-<pre><code>public Iterator&lt;T&gt; iterator();
-Iterator&lt;Integer&gt; seer = ArrayObj.iterator();
-while(seer.hasNext())&#123;
-   func(seer.next())  // for循环内的操作
-&#125;
-</code></pre>
-<p>也就是说，本质上迭代器需要满足的条件是：<br>有 .Iterator()方法.hasNext()方法和.next()方法，每迭代一次，迭代器走到下一个元素处，并返回前一个元素的值</p>
-<p>如何实现可迭代自定义类呢？<br>只需要继承&#x2F;接口 Iterable类<br>例如:<br>public class List<T> extends Iterable<T>{<br>    boolean hasNext();<br>    T next();<br>} </p>
-<ol start="4">
-<li>java的Set</li>
-</ol>
-<pre><code>import java.utils.Set
-import java.utils.HashSet
-Set&lt;String&gt; aset = new Hashset&lt;&gt;();
-s.add(&quot;haha&quot;);
-s.add(&quot;shit&quot;);
-s.contains(&quot;haha&quot;); // return true or false
-System.out.print(s.size());
-
-Set&lt;String&gt; bset = Set.Of(&quot;a&quot;, &quot;b&quot;,&quot;c&quot;);// a fast way to bulid a set
-</code></pre>
-<ol start="5">
-<li>java的异常机制<br>主要是对null的特殊处理<br>throw new ExceptionObject(parameter1, …)</li>
-</ol>
-<pre><code>public void add(T x) &#123;
-    if (x == null) &#123;
-        throw new IllegalArgumentException(&quot;can&#39;t add null&quot;);
-    &#125;
-    if (contains(x)) &#123;
-        return;
-    &#125;
-    items[size] = x;
-    size += 1;
-&#125;
-</code></pre>
-<blockquote>
-<p>We get an Exception either way - why is this better?<br>    1.  We have control of our code: we consciously decide at what point to stop the flow of our program<br>    2.  More useful Exception type and helpful error message for those using our code</p>
-</blockquote>
-<ol start="6">
-<li>java的继承</li>
-</ol>
-<ul>
-<li>不继承构造函数，</li>
-</ul>
-<pre><code> public class A extends B&#123;
-    super();
-    ...  
-&#125;
-</code></pre>
-<ul>
-<li>不可以多重继承，但可以多接口继承</li>
-<li>所有类都默认继承Object， 值得注意的是几个方法.equals(), .hashCode() 和 .toString()</li>
-</ul>
-<ol start="7">
-<li>java的高阶函数<br>在java之中高阶函数得间接做，因为java一切都是对象，但没有“函数”对象，所以我们需要把函数包装在对象之中，成为某个对象的方法，一般是用接口实现，例：</li>
-</ol>
-<pre><code>public interface TenX&#123;
-    public int funcX(int x);
-&#125;
-
-public class IntFunction implements TenX&#123;
-    public int funcX(int x)&#123;return 10*x;&#125;
-&#125;
-
-
-public static int HOF_doTwice(IntFunction f, int x)&#123;
-    return f.funcX(f.funcX(x));
-&#125;
-</code></pre>
-<ol start="8">
-<li>java的通用比较<img src="https://joshhug.gitbooks.io/hug61b/content/assets/dog_comparable.png"></li>
-</ol>
-<blockquote>
-<p>While this would work for now, if we give up on our dream of <strong>making a generalized max function</strong> and let the Dog class define its own max function, then we’d have to do the same for any class we define later. We’d need to write a maxCat function, a maxPenguin function, a maxWhale function, etc., <strong>resulting in unnecessary repeated work and a lot of redundant code</strong>.</p>
-</blockquote>
-<p>在java之中，我们没有c++那样的运算符重载，但我们有.equals 和 .compareTo, 使用规范的泛型接口代替可能出现问题的运算符重载，这是更安全的做法</p>
-<p>java提供的接口：<br>public interface Comparator {<br>    public int compare(T o1, T o2);  &#x2F;&#x2F; return 0 if &#x3D;&#x3D;, &gt;0 if &gt; ,&lt;0 if &lt;<br>}</p>
-<p>只需要<br>public class A implements Comparator<A>{</p>
-<p>}<br>就能让A类的对象之间比较，达到了c++运算符重载的效果；<br>如果Comparator<B>, 就能让A和B比较，类似c++的运算符重载做友元</p>
-<p>我们甚至还可以定义多种比较方式，比如NameComparator , SizeComparator, … 只要这些方法都implements Comparator并且实现了compare方法<br>(记得import java.utils.comparator)<br>9. java的string<br>java在处理string时用了一种特殊的方式，没有“变量字符串”，只有常量字符串</p>
-<p>例如：string a &#x3D; “{” + “Ciallo!”+”}”， a会被构建三次，如果不断地使用+, 字符串就会不断的析构和构建，每次的构建不是在上一次的基础上在末尾加的，都是重新构建</p>
-<p>这样对安全性有好处，但牺牲了一些效率，一种提升效率的方法是使用java内置的StringBuilder 类</p>
-<pre><code>StringBuilder SB = new StringBuilder(&quot;&#123;&quot;);
-SB.append(&quot;ciallo!&quot;);
-SB.append(&quot;&#125;&quot;);
-System.out.println(SB.toString());
-</code></pre>
-
+<li>java的接口机制 interface 有点类似c++的抽象类，继承接口的需要Override所有的接口函数声明（接口里面只写声明）（最好显式@Override）
             
         </div>
     </div>
@@ -731,12 +427,12 @@ System.out.println(SB.toString());
         
         <span class="tag">
             
-            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #00a596">入门</a>
+            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #ff7d73">入门</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/java/" style="color: #ff7d73">java</a>
+            <a href="/tags/java/" style="color: #00a596">java</a>
         </span>
         
     </div>
@@ -762,49 +458,6 @@ System.out.println(SB.toString());
         <div class="content" v-pre>
             
             <p>简述：linker入门：<br>建议直接看CSAPP 第七章，别看我这坨答辩<br>（一）为什么需要linker:<br>你也不想改了一个源文件之后需要重新编译整个标准库吧，你也不想改了一个注释之后需要重新编译整个浏览器内核吧（doge）</p>
-<p>linker使分立编译成为可能</p>
-<p>（二）linker在干啥：<br>省流：<br>分立的.o(.s产生，可重定位目标文件，gcc -c main.c产生的文件)文件+外部库（动态库、静态库）<br>被链接器全部链接起来，顺带帮你把里面大部分地址（除了动态库）全部重定向到内存，让你把程序放进内存就能跑</p>
-<p>（三）linker咋干的：<br>程序被编译器编译成assembly之后，留下了一些空位（重定向relocation），形成的是可重定向文件</p>
-<p>linker的主要任务：<br>1.符号解析<br>2.重定位</p>
-<p>符号解析什么？<br>外部的函数和数据——a.c 要引用b.c的全局变量，extern之类，现在单独变成了a.o和b.o，这些地方还是空的</p>
-<p>又比如printf，程序如何知道printf是啥，从哪个库来，进而找到printf在哪里？在汇编代码之中，现在调用这个函数的地方暂时只有一个抽象的符号“printf”</p>
-<p>把printf这个”符号”和实际函数定义对应起来的就是符号解析</p>
-<p>重定位：编译器和汇编器不知道电脑上哪些内存是可用的，产生的都是清一色的从0x0开始的汇编代码。<br>一是需要重新选地方（和操作系统结合）<br>二是现在符号已经对应到一个定义了，要在代码和数据之中将它们出现的地方用实际的内存操作替换</p>
-<p>(四) 一些应用的重要细节<br>linker解析符号的过程依照如下的规则：</p>
-<ol>
-<li><p>强弱符号：有定义的是强符号，没定义（只有声明）的是弱符号。如：int func(int x){return x;} 的func是强符号，int func;的func是弱符号，int func&#x3D;0；的func是强符号<br>（注意，局部变量是存在栈上的，只有全局和static数据+函数有符号）</p>
-</li>
-<li><p>多个强符号————错误<br> 一个强符号————解释成强符号<br> 如a.c 之中有(global) int x；b.c之中  有（global）double x&#x3D;1.1; 在link a.o b.o的过程之中，x都会被解释成1.1<br> 没强符号——<strong>随机</strong>解释成一个弱符号</p>
-</li>
-<li><p>函数重载：函数符号又有细微差别，编译器（compiler）在函数重载的过程中实际上会改变函数名称<br>如</p>
-</li>
-</ol>
-<pre><code>class Foo&#123;
-     int func(int a, double b);
-     int func(string s);
-&#125;
-</code></pre>
-<p> 编译之后func会变成 func__3Fooid<br>和func__3Foos<br>其中，3是Foo的字母个数， i d s是int， double,  string的缩写<br> 4. （静态）库依赖的细节<br>假设有静态库lib1.a和目标文件main，且main依赖于lib1.a，链接的时候，一定是从左到右先main</p>
-<p>原因：链接器链接的时候是这样的过程：<br>先建立三个符号集：可重定位目标文件集合E，未解析符号集合U，已定义符号集合D<br>其中，E上所有内容会被整合成可执行文件</p>
-<p><strong>三个集合最开始均为空！</strong></p>
-<p>对命令行上输入文件f（从左到右），<br>如果f是目标文件，则将f添加到E，根据f修改U、D<br>如果f是库文件，对U之中的所有元素，查找f之中有没有在库之中成员m与之匹配<br>如果有，那么将m加入E，并更改U、D</p>
-<p>如果到最后U不空，报错</p>
-<p>如果先加lib1.a, 此时不会加入E！（这是为了只在可执行文件之中包含<strong>用到的</strong>库文件而不是整个库（太大了））E、U、D之中，则加入main之后，U不空，编译报错</p>
-<p>进一步<br>假设库A.a之中的class A中funcA引用了库B.a中class B的funcShare,class B中引用了class A中的funcShare2</p>
-<p>我现在有目标文件C.o， 依赖于class A, 如何链接？<br>gcc C.o A.a B.a A.a -o C<br>第一次加A.a的时候，A.a本身还有未定义符号（funcShare），所以要在加了B.a之后，再加一次A.a</p>
-<p> (五) 格式与符号基础知识<br> 可执行文件：ELF(linux&amp;Unix), PE(Windows)<br> 静态库: .a(archive,存档)<br> 动态库: .so, .dll</p>
-<p>工具和指令：</p>
-<ol>
-<li><p>ar 创建静态库<br>linux&gt; ar rcs lib.a obj1.o obj2.o</p>
-</li>
-<li><p>构建动态库（共享库，减少静态库更新和每个.exe都要带一个占空间的麻烦）<br>linux&gt; gcc -shared -fpic -o sharedlib.so obj1.o obj2.o</p>
-</li>
-<li><p>读ELF文件<br>linux&gt; readelf -h(文件头) 或-l(程序头) -S（节头）-s(符号表) 等等</p>
-</li>
-<li><p>反汇编器<br>linux&gt;objdump -d obj.o</p>
-</li>
-</ol>
-
             
         </div>
     </div>
@@ -818,12 +471,12 @@ System.out.println(SB.toString());
         
         <span class="tag">
             
-            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #00bcd4">入门</a>
+            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #ff7d73">入门</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84/" style="color: #ffa2c4">体系结构</a>
+            <a href="/tags/%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84/" style="color: #03a9f4">体系结构</a>
         </span>
         
     </div>
@@ -857,72 +510,6 @@ System.out.println(SB.toString());
 <li>write back(to regfile)<br>下图是一个单周期的数据路径<br><img src="/imgs/2023-08-18/HrmB5tJl89MG5GcW.png" alt="输入图片说明"></li>
 </ul>
 <p>有一种提高效率的思想叫流水线pipeline, 在上图之中，一条指令执行的过程中alu只在EXE阶段工作，其他阶段不工作；regfile只在ID阶段工作，其他阶段也不工作。既然要提升效率，自然想到，如何让alu、regfile等所有原件一直工作？类似工厂流水线的模式，alu计算完这一条指令之后立刻计算下一条，而不是等待这一条指令执行完再算。</p>
-<p>先不管实现细节，假设5个阶段需要的时间为100ns，200ns，100ns, 200ns, 200ns, 不使用流水线和超标量技术的情况下，一个时钟周期最多对应一条指令，那么一条指令至少需要800ns</p>
-<p>如果使用流水线技术，将5个阶段统一为200ns，那么我们的时钟周期可以压缩至200ns（我们通过寄存器保存了中间结果，相当于把一条指令“拆”成多条更小的单元，一个时钟周期只需要计算一个单元即可）</p>
-<p>这样之后，我们执行“完”一条指令需要200*5&#x3D;1000ns，但是，我们同时在执行5条指令，平均每条指令只需要200ns</p>
-<p>这是极大的加速</p>
-<h2 id="二、为什么流水线在硬件上是可行的"><a href="#二、为什么流水线在硬件上是可行的" class="headerlink" title="二、为什么流水线在硬件上是可行的"></a>二、为什么流水线在硬件上是可行的</h2><p>多亏了<strong>寄存器（在一个时钟周期内）保存了中间数据</strong>（一般是在时钟上升沿读入，保留到时钟下降沿输出），可以通过加几个寄存器来控制某个数据保留到之后的某个周期，让“一条指令”可以横跨多个时钟周期，进而提高时钟频率和吞吐量，快说谢谢寄存器！<br>（寄存器的硬件原理，通过门电路搭建锁存器）</p>
-<h2 id="三、实现的各种细节"><a href="#三、实现的各种细节" class="headerlink" title="三、实现的各种细节"></a>三、实现的各种细节</h2><p>以上的流水线描述看起来很美好，实际上实现的过程中有种种问题，而为了解决这些问题诞生了现代cpu的架构</p>
-<p>现在一条指令被拆成多个更小的单元了，但是从逻辑上，我们的运算还是以指令为单位的。最大的问题就在于，如何解决<strong>后一条指令依赖前一条指令的结果</strong>的情况？</p>
-<p>例如， </p>
-<pre><code>addi t0, x0, 5
-sw t0, 0(sp)
-</code></pre>
-<p>在addi指令还没有写回t0的值时，由于流水线缘故，sw已经需要将t0的值存回内存了，怎么办？</p>
-<p>接下来逐渐分类解决这个问题<br>这种流水线带来的问题可以分成3类</p>
-<ul>
-<li>structual hazard</li>
-<li>data hazard</li>
-<li>control hazard</li>
-</ul>
-<h3 id="structural-hazard"><a href="#structural-hazard" class="headerlink" title="structural hazard"></a>structural hazard</h3><p>主要是多个部分竞争一个物理元件</p>
-<p>在流水线之中，会出现多条指令的执行竞争一个部件的使用权的情况，比如regfile，可以出现时间上早的指令想要在Write Back阶段向寄存器读取值，同时时间上晚的指令也想要在ID阶段从寄存器读取值</p>
-<p>解决方法：</p>
-<ul>
-<li>对于regfile的读写冲突，在regfile上开出多个读端口和一个写端口，读端口可以一起执行。</li>
-<li>对于广义的内存数据（注意IF阶段取指令也是从IMEM(一个特殊的指令内存)之中取的），IF阶段的取指令可能会和MEM阶段的内存操作冲突，我们知道<strong>内存之中，数据和指令是存储在一起的（当前的计算机架构，早期架构也有分开的）</strong>，但是我们可以通过<strong>分开数据的cache和指令的cache</strong>来避免这个冲突（实际上一般只有L1 cache是分开的）。这样，指令在IMEM之中读，数据在DMEM之中读写<br><img src="/imgs/2023-08-18/kOFRqReyUKxW9Rah.png" alt="输入图片说明"></li>
-</ul>
-<h3 id="data-hazard："><a href="#data-hazard：" class="headerlink" title="data hazard："></a>data hazard：</h3><p>主要是指令之间的因果依赖被破坏</p>
-<p><strong>第一种是regfile的依赖</strong>，可以出现时间上早的指令想要在Write Back阶段向寄存器写值，同时时间上晚的指令也想要在ID阶段从寄存器读值</p>
-<p>解决方法：<strong>规定ID段前半段时间写，后半段时间读（先写再读）</strong>（这样做还有一个基础是ID阶段一般是几个阶段里面较短的一个阶段，因而再多耗点时间也不影响性能）</p>
-<p><strong>第二种是ALU的依赖</strong>，例如</p>
-<pre><code>addi s0, x0, 5
-sw s0, 0(sp)
-sub s0, s0, 3
-...
-</code></pre>
-<p>在前面的指令回写之前，后面的指令就需要用到更新的值。</p>
-<p>解决方法是添加所谓的前递（forwarding）或者旁路（bypassing）机制，如下两图。<br>拿到进行EXE阶段的指令和进行ID阶段的指令，比较两条指令，看ID指令是否依赖于EXE指令的结果，如果是，将EXE指令的结果传递到ID指令的EXE阶段覆盖原来的输入</p>
-<p><img src="/imgs/2023-08-19/iQzNDJ54feXOb5ij.png" alt="输入图片说明"><br><img src="/imgs/2023-08-19/m4hBzCCRxrgIN9Go.png" alt="输入图片说明"><br>只需要比较本条指令和前一条指令，因为相隔两条指令的指令的话，前面指令执行write back的时候，后一条指令刚好在ID阶段，由前面所说的先写后读，不会出现问题<br>（然而如果流水线进一步加深，还是会有问题，需要更多的硬件机制）</p>
-<p><strong>第三种是MEM的依赖</strong><br>例如</p>
-<pre><code>lw s0,0(sp)
-addi s0, s0, 4 
-</code></pre>
-<p>由于MEM和ID差两个阶段，所以bypassing失效</p>
-<ul>
-<li><p>解决方法一：<br>硬件检测到这样的依赖的时候，让addi和后面的指令停顿一个时间周期</p>
-</li>
-<li><p>解决方法二（不总是能成功）：<br>由编译器&#x2F;程序员重排代码顺序，错开依赖<br>如</p>
-</li>
-</ul>
-<pre><code>lw s0, 0(sp)
-lw s1, 4(sp)
-addi s0, s0, 4
-addi s1, s1, 4
-</code></pre>
-<p>这样lw和addi隔了两条指令，可以使用bypassing</p>
-<p>control hazard:<br>主要是不能确定分支指令是否被实行</p>
-<p>如</p>
-<pre><code>bne s0, t1, end 
-addi s0, s0, 4
-</code></pre>
-<p>addi指令不能知道bne指令是否被实施</p>
-<p>解决方法：<br>由于这种指令结构在实际编程之中非常常见（比如循环），并且会被执行非常多次，一般不采用等待策略，而是预测分支的结果，即先假定分支会实行或者不会实行，如果假定不成立，再将流水线的错误进行全部无效（如果有load&amp;save还需要更改cache），重新执行</p>
-<p>怎么预测？需要设计对应的硬件机制，比如，永远预测不跳转（对应loop，跳出去的是少数情况）、预测这一次的branch会采用和上一次一样的值、branch出现两次预测错误时改变branch预测等等</p>
-<h2 id="四、超标量处理器"><a href="#四、超标量处理器" class="headerlink" title="四、超标量处理器"></a>四、超标量处理器</h2><p>上面的流水线能够提高性能的底层逻辑是提高了时钟频率，但是由于功率的影响（太大会发热严重损坏器件）和流水线变深之后各种hazard的增加，硬件设计更难，现代处理器的时钟频率提高较难。</p>
-<p>还想提高性能，一个方向就是试图在一个时钟周期内执行多条指令，这样的多条指令将会是完全“同时”的，没有办法分辨前后</p>
-<p>然而依赖关系不可避免，因而超标量处理器会尽可能打乱指令的顺序关系，加以一系列纠错机制，达成并行的效果</p>
-
             
         </div>
     </div>
@@ -936,7 +523,7 @@ addi s0, s0, 4
         
         <span class="tag">
             
-            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #00bcd4">入门</a>
+            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #00a596">入门</a>
         </span>
         
         <span class="tag">
@@ -996,9 +583,6 @@ addi s0, s0, 4
 <p>batcat …</p>
 </blockquote>
 <p>fd：更简单的find(<strong>注意是fd-find 不是fdclone!</strong>  sudo ln -s $(which fdfind) &#x2F;usr&#x2F;bin&#x2F;fd   )</p>
-<p>fd + [string（support regex）]</p>
-<p>fd [str] –e（extension) txt 只寻找txt文件</p>
-
             
         </div>
     </div>
@@ -1017,7 +601,7 @@ addi s0, s0, 4
         
         <span class="tag">
             
-            <a href="/tags/%E5%91%BD%E4%BB%A4%E8%A1%8C/" style="color: #ffa2c4">命令行</a>
+            <a href="/tags/%E5%91%BD%E4%BB%A4%E8%A1%8C/" style="color: #03a9f4">命令行</a>
         </span>
         
     </div>
@@ -1051,6 +635,7 @@ addi s0, s0, 4
 <pre><code>threads = []
 for _ in range(count):
     thread = threading.Thread(target = f, args=(...))
+&lt;!-- more --&gt;
     threads.append(thread)
 for thread in threads:
     thread.start()
@@ -1058,19 +643,7 @@ for thread in threads:
     thread.join()
 </code></pre>
 <p>如果多个线程之间存在共享资源<br>需要加锁，<br>lock &#x3D; threading.Lock()给需要线程独占的运行函数f套上with lock:</p>
-<p>当对一个类的某个方法加锁的时候，需要在__init__上锁self.lock &#x3D; threading.Lock()<br>在方法调用之中<br>with self.lock：<br>而不是直接在方法调用之中创建lock, 这样无法保证创建lock与线程切换的顺序</p>
-<hr>
-<h3 id="生产者-消费者模型："><a href="#生产者-消费者模型：" class="headerlink" title="生产者-消费者模型："></a>生产者-消费者模型：</h3><p>以爬虫为例：<br>生产者线程get网络资源，存储到任务序列之中<br>消费者线程取出任务序列的值，存储到目标文件</p>
-<h2 id="任务序列-queue-Queue例buffer-queue-Queue-maxsize-10-def-producer-item-buffer-put-item-def-consumer-while-True-item-buffer-get-do-something"><a href="#任务序列-queue-Queue例buffer-queue-Queue-maxsize-10-def-producer-item-buffer-put-item-def-consumer-while-True-item-buffer-get-do-something" class="headerlink" title="任务序列 queue.Queue例buffer = queue.Queue(maxsize = 10) def producer():     item = ...;     buffer.put(item) def consumer():     while(True):         item = buffer.get()         # do something"></a>任务序列 queue.Queue<br>例<br><code>buffer = queue.Queue(maxsize = 10) def producer():     item = ...;     buffer.put(item) def consumer():     while(True):         item = buffer.get()         # do something</code></h2><h3 id="线程池："><a href="#线程池：" class="headerlink" title="线程池："></a>线程池：</h3><p><img src="/imgs/2023-09-11/xSgp09GLbuwTaiLI.png" alt="输入图片说明"></p>
-<pre><code>from concurrent.futures import ThreadPoolExetutor
-with concurrent.futures.ThreadPoolExetutor as pool:
-    tasks = [...]
-    results = pool.map(func, tasks)
-    for res in results:
-        print(res)
-</code></pre>
-<h2 id="多进程"><a href="#多进程" class="headerlink" title="多进程"></a>多进程</h2><p>库函数基本和多线程完全一样<br>把threading 库换成multiprocess就行<br>还有就是queue.Queue() 换成 multiprocess.Queue()</p>
-
+<p>当对一个类的某个方法加锁的时候，需要在__init__上锁self.lock &#x3D; threading.Lock()</p>
             
         </div>
     </div>
@@ -1084,17 +657,17 @@ with concurrent.futures.ThreadPoolExetutor as pool:
         
         <span class="tag">
             
-            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #ff7d73">入门</a>
+            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #00bcd4">入门</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/python/" style="color: #00bcd4">python</a>
+            <a href="/tags/python/" style="color: #ff7d73">python</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/%E5%B9%B6%E5%8F%91/" style="color: #ffa2c4">并发</a>
+            <a href="/tags/%E5%B9%B6%E5%8F%91/" style="color: #03a9f4">并发</a>
         </span>
         
     </div>
@@ -1121,31 +694,7 @@ with concurrent.futures.ThreadPoolExetutor as pool:
             
             <p>maze ：</p>
 <ol>
-<li>memset的使用 ， memset(void* p, value, size_t n); 将从p开始的n个字节的数据设置为value</li>
-</ol>
-<p>2.迷宫生成算法：类似DFS，只需要把起始点和中间路径的选取全部换成随机取路径就行</p>
-<ol start="3">
-<li>一些c++的骚操作：</li>
-</ol>
-<ul>
-<li>使用按位操作来表示状态</li>
-</ul>
-<pre><code>    int* pMazeState; // 配合下面的 enum使用一个int记录每个各自的连接和填充状态
-    enum &#123;
-        
-        cell_path_EAST=0x01, //0000 0001
-        cell_path_WEST=0x02, //0000 0010
-        cell_path_NORTH=0x04, //0000 0100
-        cell_path_SOUTH = 0x08, //0000 1000
-        cell_have_visited = 0x10 // 0001 0000
-        //一种通过按位与&amp; 节省空间的方案， 并且可以简单的表示复合状态
-    &#125;;
-</code></pre>
-<p>这样最大的好处在于复合状态表示极其简单<br>不同状态之间复合按位或，是否存在某个状态按位与判断是否为0</p>
-<ul>
-<li>熟悉了一下pair</li>
-</ul>
-
+<li>memset的使用 ， memset(void* p, value, size_t n); 将从p开始的n个字节的数据设置为value
             
         </div>
     </div>
@@ -1159,12 +708,12 @@ with concurrent.futures.ThreadPoolExetutor as pool:
         
         <span class="tag">
             
-            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #ffa2c4">入门</a>
+            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #00a596">入门</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/%E6%B8%B8%E6%88%8F/" style="color: #00bcd4">游戏</a>
+            <a href="/tags/%E6%B8%B8%E6%88%8F/" style="color: #03a9f4">游戏</a>
         </span>
         
     </div>

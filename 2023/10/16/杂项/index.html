@@ -187,23 +187,37 @@
 <li>OneLoneCoder&#x2F;PixelGameEngine&#x2F;TUTORIAL</li>
 </ol>
 <ul>
-<li><p>Sprite (中文翻译：子图形？图形元素？) 调用外部的图形元素（pixelgameengine之中支持.png）, 可以放大，不可以缩小，是一种最小层次的，由<strong>CPU</strong>绘制的纹理。<br>png图形，一个int_32数组, 每个像素RGBA（透明度）各8位，一般是ARGB的顺序排列，但最好还是通过不同的图形引擎指定的接口调用</p>
+<li><p>Sprite (中文翻译：子图形？图形元素？) 调用外部的图形元素（pixelgameengine之中支持.png）, 可以放大，不可以缩小，是一种最小层次的，由<strong>CPU</strong>绘制的纹理。</p>
+<span id="more"></span>
+<p>png图形，一个int_32数组, 每个像素RGBA（透明度）各8位，一般是ARGB的顺序排列，但最好还是通过不同的图形引擎指定的接口调用</p>
+<!-- more -->
+
+
 </li>
 <li><p>Decals(不知道中文咋翻译了)，GPU上的图形元素，CPU上的图形Sprite十分的灵活，尤其适合需要逐帧改变的元素，但也因为每帧都要重新画，一旦图形加上透明度、旋转等特效，容易影响性能；特效一般使用GPU上的Decal实现。Decal快的原因是它在GPU上存有副本，省去了重新绘制的时间，并且GPU自动是并行的。</p>
-</li>
+<!-- more --></li>
 </ul>
 <p>Sprite的优点是灵活性，Decals的优点是性能<br>一般有复杂逻辑的东西用Sprite操控</p>
 <p>拿拳皇98来说，人物的图像由于需要精密实时变化，用sprite更好；而人物攻击的火焰等特效是固定的，用decal提升性能</p>
-<p>通过 Sprite，你可以控制人物的动作、位置、大小和动画序列等属性，以实现流畅的动画效果和交互性。<br>对于人物攻击的火焰等特效，这些特效通常是相对固定的，而且可能会出现大量重叠的情况。在这种情况下，使用 Decals 可以提高性能。通过在 GPU 上渲染 Decals，可以减轻 CPU 的工作负担，并且可以利用 GPU 的并行处理能力，以更高效地绘制和处理这些特效。这样可以确保特效的实时性和性能稳定性。</p>
+<!-- more -->
+
+<p>通过 Sprite，你可以控制人物的动作、位置、大小和动画序列等属性，以实现流畅的动画效果和交互性。</p>
+<!-- more -->
+<p>对于人物攻击的火焰等特效，这些特效通常是相对固定的，而且可能会出现大量重叠的情况。在这种情况下，使用 Decals 可以提高性能。通过在 GPU 上渲染 Decals，可以减轻 CPU 的工作负担，并且可以利用 GPU 的并行处理能力，以更高效地绘制和处理这些特效。这样可以确保特效的实时性和性能稳定性。</p>
+<!-- more -->
+
 <p>例如：设计一个碎裂的特效，先找到一个破碎的碎片的图形（decal），然后碰撞时，让这个碰到的图形消失，再产生一定数量的各个方向飞行的碎片，再加上重力和逐渐消失的效果（根据时间改变透明度，透明度为0时删除这个图形），就会十分逼真</p>
+<!-- more -->
+
 <ol start="2">
 <li>c++智能指针， 自动delete</li>
 </ol>
 <pre><code> #include&lt;memory&gt; 
 std::unique_ptr&lt;MyClass&gt; ptr = std::make_unique&lt;MyClass&gt;();
+&lt;!-- more --&gt;
 </code></pre>
 <ol start="3">
-<li>为了更好的兼容Sprite和Decal，常常把画面分成一定大小的方块（如16*16），每个大小上一个sprite, 更便于操控；同时，在游戏制作之中一般会把画面空间和实际空间分开处理，两者像素不是一一对应的</li>
+<li>为了更好的兼容Sprite和Decal，常常把画面分成一定大小的方块（如16*16），每个大小上一个sprite, 更便于操控；同时，在游戏制作之中一般会把画面空间和实际空间分开处理，两者像素不是一一对应的<!-- more --></li>
 </ol>
 <hr>
 <p>cs61b L9</p>
@@ -211,12 +225,14 @@ std::unique_ptr&lt;MyClass&gt; ptr = std::make_unique&lt;MyClass&gt;();
 <li><p>继承是破坏封装的（Inheritance breaks encapsulation）<br><img src="/imgs/2023-06-20/JlfC0xmCPNVxVwJV.png" alt="输入图片说明"><br>我觉得这或许就是抽象类产生的原因（）<br>还有就是尽量让一个方法对应一种功能，避免嵌套</p>
 </li>
 <li><p>java没有函数指针，主要是因为Java没有函数（指针）类型，所以要在java实现函数指针和高阶函数（Higher Order Function, 以函数为变量的函数）就需要使用接口给函数套一个对象类型，再通过继承的方法模拟函数指针<img src="/imgs/2023-06-20/MaAWAdEjuvweGvaC.png" alt="输入图片说明"></p>
-</li>
+<!-- more --></li>
 </ul>
 <ol start="4">
 <li>今天写完了61b proj1:deque(读作dek)的前半部分<br>主要复习到的是一些java设计思想，如使用接口来保证安全性，避免函数指针等<br>还有就是一个deque 的API怎么写，尤其是双哨兵和进一步的封装思想</li>
 </ol>
 <p>还有就是ArrayDeque，也挺妙的。采用head, tail记录数组的头尾。采用循环（使用取模实现，如head &#x3D; (head -1 +MaxSize)%MaxSize）处理下标越界，之后加上适当的resize就得到了一个</p>
+<!-- more -->
+
 <p>可以在常数时间在头尾添加元素和取任一元素的数据结构</p>
 
     </div>

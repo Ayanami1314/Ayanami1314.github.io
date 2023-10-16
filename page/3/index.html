@@ -189,22 +189,7 @@
     <div class="description">
         <div class="content" v-pre>
             
-            <p>程序执行：<br>程序和大部分变量在内存之中，需要运算的变量从内存之中取出，放到寄存器内，再经过ALU运算之后，存回内存<br><img src="/imgs/2023-08-03/J42RUv8MQQgCxoE1.png" alt="输入图片说明"></p>
-<p>register<br>少、快（比DRAM（动态存储）快上百倍），通常由编译器复杂将最常用到的变量放在寄存器内<br>寄存器数量固定的原因：</p>
-<ol>
-<li>寄存器由硬件实现，smaller make faster, easier and cheaper</li>
-<li>存储寄存器的地址本身也需要空间</li>
-</ol>
-<p>RISC-V：32个寄存器x0到x31<br>x0值固定为 0</p>
-<p>每个寄存器4字节（1 word），32位<br>寄存器没有类型，根据操作的类型决定怎么解释寄存器内的内容</p>
-<p>大端和小端机器</p>
-<p>小端：最高有效字节在最高地址处，最低有效字节在最低地址处。<br>如 地址0x00 到 0x03存了一个int32<br>最高位（符号位）在0x03的最高位是小端机器</p>
-<p>大端：相反<br>内存对齐：<br>内存对齐（Memory Alignment）是计算机系统中一种常用的数据存储方式，它指的是将数据存储在内存中时，按照某个特定的规则进行排列，以便于处理器访问和处理数据。具体来说，内存对齐是指将数据存储在内存中时，将其放置到内存地址是其大小的整数倍的位置上。</p>
-<p>进行内存对齐的主要原因是<strong>处理器在访问内存时通常是按照一定的块大小进行的</strong>，而<strong>内存对齐可以确保数据存储在块的开始位置上，从而减少处理器访问内存时需要读取的字节数，提高内存读写的效率</strong>。例如，在32位处理器中，通常采用4字节对齐的方式，即数据存储在内存地址是4的倍数的位置上。</p>
-<p>符号拓展：<br>使用lb 将一个byte写入寄存器，是放在末8位（小端）<br>32位的register剩下24位是什么？<br>如果btye是正数，最高位是0，为了保持其值不变，前24位补0；<br>如果是负数，前24位补1。<br>（如果使用lbu, 看成是unsigned的类型，固定补0）<br>（没有sbu, save只是单纯的copy所有位。如果有内存对齐的部分都是补0）</p>
-<p>立即数（内置常数）：<br>作为指令集的一部分被编码，不需要从内存之中读取。<br>共12位，无符号</p>
-<p><img src="/imgs/2023-08-03/87oGtEqfTgsvKkfr.png" alt="输入图片说明"><br>答案为0x3<br><img src="/imgs/2023-08-03/8PxB0KVyawvBtMiG.png" alt="输入图片说明"><br>第一条指令，x11 内发生了符号拓展<br>x11 内为<br>11…1 + 1000 1111 1010(0x8f5)<br>同样存到x5内<br>所以lb读到的byte是 1111 1000 (注意小端)<br>符号补全<br>x12内是 24位1 + 1111 1000（f8）<br>即0xfffffff8 </p>
-
+            <p>程序执行：<br>程序和大部分变量在内存之中，需要运算的变量从内存之中取出，放到寄存器内，再经过ALU运算之后，存回内存</p>
             
         </div>
     </div>
@@ -218,12 +203,12 @@
         
         <span class="tag">
             
-            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #00a596">入门</a>
+            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #00bcd4">入门</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84/" style="color: #ff7d73">体系结构</a>
+            <a href="/tags/%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84/" style="color: #03a9f4">体系结构</a>
         </span>
         
     </div>
@@ -268,7 +253,7 @@
         
         <span class="tag">
             
-            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #00a596">入门</a>
+            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #00bcd4">入门</a>
         </span>
         
         <span class="tag">
@@ -320,12 +305,12 @@
         
         <span class="tag">
             
-            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #ffa2c4">入门</a>
+            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #ff7d73">入门</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/%E5%91%BD%E4%BB%A4%E8%A1%8C/" style="color: #03a9f4">命令行</a>
+            <a href="/tags/%E5%91%BD%E4%BB%A4%E8%A1%8C/" style="color: #00bcd4">命令行</a>
         </span>
         
     </div>
@@ -356,32 +341,6 @@
 <p>x &gt; y， 将x的结果作为输出，重定向到y（类似写入）command-&gt;file<br>x &lt; y， 将y的内容重定向到x</p>
 <p>例：<br>ls &gt; ls_out<br>grep “build” &lt; ls_out</p>
 <p>效果与上面相同<br><strong>Tips:stdin默认是0，stdout默认是1，stderr默认是2， 如果要重定向stderr需要显式指定2: err_command 2 &gt; err_file</strong></p>
-<p>一些新的命令：<br>touch（创建文件），less（文件太长看少一点的cat）<br>ln<br>ln -s <source_file> <target_file>:软链接，类似win创建快捷键？在target_file处产生了一个指向source_file的东西，不产生拷贝</p>
-<p>ln <source_file> <target_file>：硬链接，在target_file处产生source_file的一个备份，同步更新，占用实际空间，source_file删除之后能独立存在</p>
-<p>sort： 排序<br>wc（word count）：统计行数、字数、字节数</p>
-<p>ag + “sth” 打印所有包含sth的内容<br>support regex, 可以模糊查找<br>如ag “*.java”</p>
-<p>awk: 类c语言快速数据处理<br><img src="/imgs/2023-07-25/zS75kfCmrbb889eC.png" alt="输入图片说明"><br>拿到指令，接受什么参数</p>
-<p>sed 文字处理和编辑<br>做文字匹配和取文字之类</p>
-<p>：遇事不决 -help –help</p>
-<h3 id="其他："><a href="#其他：" class="headerlink" title="其他："></a>其他：</h3><p>.sh 文件：就是文本文件，内容是一堆shell指令<br>支持局部变量，类似makefile</p>
-<pre><code>year=2023   # 注意不能有空格
-echo &quot;$&#123;year&#125;&quot;
-</code></pre>
-<p>$0, $1, $2… 传进来的command参数<br><code>year=$0</code><br><code>echo &quot;\$&#123;year&#125;&quot;</code><br>支持循环和函数（语法略有不同）<br>bash + &lt;xxx.sh&gt;就可以直接运行</p>
-<p><strong>只有真正被反复用到的知识才是最有用的知识，记Guide即可，即用即查</strong></p>
-<p>例：</p>
-<pre><code>exp_times=100
-&lt;!-- more --&gt;
-result_file=temp_result
-echo &quot;&quot; &gt; result_file
-for i in &quot;seq 1 $&#123;exp_times&#125;&quot;
-do
-    run exp_run.sh | sed -n &quot;2 p&quot; | awk &quot;print $2&quot; &gt;&gt; $&#123;resuly_file&#125;
-done
-awk &quot;BEGIN &#123;cnt=0&#125; &#123;sum+=$1;cnt++;&#125; END&#123;print sum/cnt&#125; $result_file
-</code></pre>
-<h1 id="makefile基础"><a href="#makefile基础" class="headerlink" title="makefile基础"></a>makefile基础</h1><p>makefile 基础模式：<br>target: dependancy<br>    (前一个)</p>
-<h1 id="cmake基础"><a href="#cmake基础" class="headerlink" title="cmake基础"></a>cmake基础</h1>
             
         </div>
     </div>
@@ -395,7 +354,7 @@ awk &quot;BEGIN &#123;cnt=0&#125; &#123;sum+=$1;cnt++;&#125; END&#123;print sum/
         
         <span class="tag">
             
-            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #00bcd4">入门</a>
+            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #ff7d73">入门</a>
         </span>
         
     </div>
@@ -421,46 +380,7 @@ awk &quot;BEGIN &#123;cnt=0&#125; &#123;sum+=$1;cnt++;&#125; END&#123;print sum/
         <div class="content" v-pre>
             
             <p>﻿## 软件设计哲学：<br>让代码变得复杂的有两个主要因素：<br>Obscurity and dependency<br>为了避免Obscurity, 我们需要命名有意义的变量和抽象，比如用枚举代替奇怪的条件常数<br>为了避免dependency，我们需要避免重复，要做到“对一个bug，只修正一个方法”</p>
-<p>管理复杂度：<br>1.编程时要更多地在“战略上”而不是“战术上”思考<br>2.我们无法一次处理完所有复杂度，所以我们需要隐藏复杂度<br>3. build things deep: 最好的模块是使用起来简单易懂，但能够执行复杂操作的模块（不要让接口直接和底层绑定，尽可能少让一个模块的内部信息“泄露”到另一个模块）<br>4. 警惕“时间分解”，事物发生的顺序并不是一个编程的好顺序，从整体上俯瞰是一个更好的做法</p>
-<p>群体协作：<br>1.轮流发言远胜于一人“独裁”<br>2.尊重每一个人<br>3.持续提供和接受反思</p>
-<h2 id="压缩：compress"><a href="#压缩：compress" class="headerlink" title="压缩：compress"></a>压缩：compress</h2><p>首先，所有的文件本质上都是字节序列，因而本质上不存在对一个<strong>完全随机</strong>的文件，可以稳定<strong>无损</strong>压缩的算法（要保证对能够表示任意N长度字节流，同样也需要N长度）</p>
-<p>但对现实世界之中真正存在的文件，都不是真正随机的字节流，比如有的文件存在大量重复的部分（音频，图像之中相同的颜色之类）因而可以构想出类似于“X6”（表示6个X）之类的压缩方法；也有的文件的字节序列有固定的实际意义范围，例如一个纯英文文档不需要使用UNICODE来表示（因而可以在这方面压缩）；在现实情况下，各个符号的出现频率也是不同的，因而如果我们设法使出现频率高的符号用更少的位数表示，也能达到压缩的效果。<br><img src="/imgs/2023-07-22/QhnfowI5g40xkwea.png" alt="输入图片说明"></p>
-<p>讨论对一种进行压缩的通用方法，对文件之中的“符号”进行重新表示</p>
-<p>例如，如果有一个文件，只含有“典乐孝绷麻急”，那我们完全可以创造一个表，其中“典”对应字符001，“乐”对应000，“孝”对应010等等，总共我们只需要三位就可以表示这几个字符，而不必用UNICODE（16位每个字符），从而将文件大致压缩到3&#x2F;16（略大，因为还要包括压缩和解压缩算法、字符对照表）</p>
-<p>我们甚至可以做得更好，如果“典”的出现概率为99%，我们可以将“典”设置为0，这样，整个文件的长度将会大大减少。</p>
-<p>那么问题来了，在诸如00010101010111这样的流之中，如何确认怎么划分字符呢？（也就是说怎么解码呢？）</p>
-<p>方法就是所谓的<strong>无前缀编码</strong>，任何两个编码不能互相包含，例如不能存在一个编码是0，另一个是01；</p>
-<p>例如一种无前缀编码是1，01，001，0001, …假设它们对应ABCD<br>那么字节流10100100101010001对应<br>ABCCBBD，没有任何歧义</p>
-<p>这种解码的实现方法是伸展树tries，每一次分支左&#x2F;右代表0&#x2F;1，而解码的过程就是不断读入字节流，直到伸展树的叶结点， 即为解码了一个字符（无前缀就是在保证所有节点都在叶结点上）</p>
-<p>又有了更进一步的问题，这样的编码树有很多种，哪种编码树能够压缩得更小呢？<br>这个问题复杂在，每个符号（广义的“字符”，但可以引申到图像的像素，音频的单个音，etc）在文件之中出现频率（我们可以扫一遍文件来统计）是不同的，如果让出现的多的符号在编码树浅的地方，那么空间和时间的消耗都会减少。</p>
-<ul>
-<li><p>香农的算法：<br> 对所有的符号，按权值和大致各50%分成左右两部分，之后不断这样递归的分割</p>
-</li>
-<li><p>huffman算法（远优于香农算法，且保证给出最优解）：<br>构建一个最小堆，每次取出两个权值最小的符号作为叶结点，并构建一个权值等于两者之和的父节点重新加入堆之中，如图<img src="/imgs/2023-07-22/574O1GNh59Qbj0gC.png" alt="输入图片说明"></p>
-</li>
-</ul>
-<h2 id="压缩拓展"><a href="#压缩拓展" class="headerlink" title="压缩拓展"></a>压缩拓展</h2><h3 id="对符号串的压缩方法：LZW"><a href="#对符号串的压缩方法：LZW" class="headerlink" title="对符号串的压缩方法：LZW"></a>对符号串的压缩方法：LZW</h3><p>我们现在已经有了对单个“符号”压缩的最佳方法Huffman算法，但是对形如ababababab这样的字符串，肯定还有压缩的余量。</p>
-<p>一种拓展的方法是LZW方法，其主要目的是捕捉“符号串”的重复</p>
-<p>算法如下：<br>编码：<br><img src="/imgs/2023-07-22/cIf8ZVG5H11biqLw.png" alt="输入图片说明"></p>
-<p>即，如果我们有字符串<br><img src="/imgs/2023-07-22/tjGFSCfEpQekLQ69.png" alt="输入图片说明"></p>
-<p>先对出现的所有可能字符建一个表<br>然后，如果出现表上的字符，就把“该字符+后一个字符”作为新的元素加入表中<br>如：a在表上，则加入aa进入表中（下一次查询（<strong>通过tries，查找到最长匹配为止</strong>）就可以查询到aa而将aa整体压缩）；再往后，还是a在表上, 后一位变成b，将ab加入进表之中；再往后，发现ab已经在表之中，则加入abc</p>
-<p><img src="/imgs/2023-07-22/T82cIsaYgnAyfP96.png" alt="输入图片说明"></p>
-<p>解码：<br>一种可能的解码方案是像之前Huffman编码所做的那样，将码表随文件一同发送。<br>但问题是，先前Huffman码表的大小依赖于符号的种类，是一个常数O(1)大小，在大一点的文件里面都可以无视，现在的码表是O(N), 如果文件重复很少的情况下，码表就和文件差不多大，压缩反而会增大文件！</p>
-<p>能不能从基础的码表（每个“单”符号种类一个码）和编码后的值重建码表呢？<br>可以<br><img src="/imgs/2023-07-22/CH01A8qXiQz81rs8.png" alt="输入图片说明"><br>由先前的编码值C(B)&#x3D;0x61616281来说：</p>
-<ol>
-<li>61 –&gt;a，由于能够查询到a, 所以由前面的规则，a必然添加了一个东西</li>
-<li>61 –&gt;a,  第二个字符是a, 并且我们知道了，上一个字符添加的东西是aa，将aa添加到码表</li>
-<li>62 –&gt;b. 第三个字符是b, 并且我们知道了，上一个字符添加的东西是ab，将ab添加到码表</li>
-</ol>
-<p>…<br>由此，我们通过下一个字符的值确认了上一个字符添加到码表的新编码<br>剩下唯一的一个特殊情况是，下一个字符恰好就是上一个字符添加的新编码的情况，如图：<br><img src="/imgs/2023-07-22/ivEfoZ96nKcM4hHm.png" alt="输入图片说明"><br><img src="/imgs/2023-07-22/VioOLRaDIiNPxTCZ.png" alt="输入图片说明"></p>
-<p>在这种情况下，设上一个字符（串）的码为X，这个（字符串）为Y，记Y1为Y字符串开头的字符，我们知道上一个字符新加到码表的是X+Y1的，并且Y在已知码表查不到，那么Y &#x3D; X+Y1<br>X的码我们是已知的，由上式：<br>Y1 &#x3D; Y的第一个字符 &#x3D; X+Y1 的第一个字符（在X内，已知）<br>得到了Y1，就得到了X+Y1， 就得到了X+Y</p>
-<h3 id="压缩的极限："><a href="#压缩的极限：" class="headerlink" title="压缩的极限："></a>压缩的极限：</h3><p>给定一个长为N的字节流，能够将其表示的最短字节流是多少？（可以想象，一种可能的短序列对应长序列的典例是：java源代码和编译产生的字节流）</p>
-<p>甚至我们可以更进一步，能不能找出这样的表示方法？能不能找出对一个字节流通用的寻找的算法？</p>
-<p>以上问题答案均是：<br><em>存在这样的值，但不存在能够在有限时间内确保找到的算法。</em></p>
-<p>事实上，拿java程序举例，假设我们生成所有长为m的字节流，然后去编译运行，看看能不能和N一样，<em>运行所需的时间是没有上界的</em></p>
-<p>对于有约束条件的情况下，例如：空间小于S，时间小于T，存在这样的算法（还是同上，生成2^S条字节流，分别尝试编译运行T时间）</p>
-<p>但这样的算法实质上是不可行的，是一个指数级算法，这个问题也是NP-完全的</p>
-
+<p>管理复杂度：<br>1.编程时要更多地在“战略上”而不是“战术上”思考<br>2.我们无法一次处理完所有复杂度，所以我们需要隐藏复杂度<br>3. build things deep: 最好的模块是使用起来简单易懂，但能够执行复杂操作的模块（不要让接口直接和底层绑定，尽可能少让一个模块的内部信息“泄露”到另一个模块）</p>
             
         </div>
     </div>
@@ -474,12 +394,12 @@ awk &quot;BEGIN &#123;cnt=0&#125; &#123;sum+=$1;cnt++;&#125; END&#123;print sum/
         
         <span class="tag">
             
-            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #00bcd4">入门</a>
+            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #ff7d73">入门</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/%E7%AE%97%E6%B3%95/" style="color: #03a9f4">算法</a>
+            <a href="/tags/%E7%AE%97%E6%B3%95/" style="color: #00a596">算法</a>
         </span>
         
     </div>
@@ -512,146 +432,7 @@ awk &quot;BEGIN &#123;cnt=0&#125; &#123;sum+=$1;cnt++;&#125; END&#123;print sum/
 <p>算法是O（V+E）的</p>
 <ol>
 <li>计算所有点的入度 O（V+E）</li>
-<li>维护一个队列，包含所有入度为0的点，每次除去一个点和其邻边，并将相邻节点的入度减一（无向图）O（V+E）<br>故总共是O（V+E）</li>
-</ol>
-<h2 id="2-图API与设计"><a href="#2-图API与设计" class="headerlink" title="2. 图API与设计"></a>2. 图API与设计</h2><p>图：一般算法里面说的图都是简单图，即两个节点之间只有一条边；图可以有很多分法，有环图&#x2F;无环图，有权图&#x2F;无权图等等</p>
-<p>图一般表示成以下的元素：节点vertex和边edge（边一般用（u,v）表示）</p>
-<p>首先是图的生成和添加：</p>
-<pre><code>public class Graph &#123;
-  public Graph(int V):               // Create empty graph with v vertices
-  public void addEdge(int v, int w): // add an edge v-w
-  Iterable&lt;Integer&gt; adj(int v):      // vertices adjacent to v
-  int V():                           // number of vertices
-  int E():                           // number of edges
-...
-</code></pre>
-<p>对一个图可以有很多的问题，从而有更多的算法：</p>
-<ul>
-<li>s-t Path: Is there a path between vertices s and t?</li>
-<li>Connectivity: Is the graph connected, i.e. is there a path between all vertices?</li>
-<li>Biconnectivity: Is there a vertex whose removal disconnects the graph?</li>
-<li>Shortest s-t Path: What is the shortest path between vertices s and t?</li>
-<li>Cycle Detection: Does the graph contain any cycles?</li>
-<li>Euler Tour: Is there a cycle that uses every edge exactly once?</li>
-<li>Hamilton Tour: Is there a cycle that uses every vertex exactly once?</li>
-<li>Planarity: Can you draw the graph on paper with no crossing edges?</li>
-<li>Isomorphism: Are two graphs isomorphic (the same graph in disguise)?</li>
-<li>……</li>
-</ul>
-<p>但是我们不希望把图的API搞得如此复杂，所以一个好的图的API不应该包含具体的算法实现，而把实现的东西变成一个接收图的函数之类</p>
-<p>例如，在下面的BFS或者DFS（广度&#x2F;深度优先搜索），我们可以把它写成一个接受两个参数：Graph g, vertex source 的一个function； 在搜索之中产生的路径Path我们也应该写成包含这个函数方法的类内部的一个成员, 而不是把路径放到图API里面去</p>
-<p>那我们应该在图的API里面放什么呢？<br>比如： </p>
-<ul>
-<li>.adj（vertex v）方法，返回一个可迭代的列表或者集合之类，表示和某个结点相连的点</li>
-<li>一个通过某种数据结构（通常是一个最小堆）实现的边的排好序的集合（这对最小生成树很有用）</li>
-<li>isConnected（vertex u, vertex v）判断两个节点是否相连（内部并查集）</li>
-<li>计算某个节点的入度和出度</li>
-<li>…….<br>总之，我们要放的东西是图的某种内部性质和一些辅助的实现（Iterable之类），而不是依赖于某个算法的东西；这能够保持我们代码的层次性</li>
-</ul>
-<h2 id="3-邻接矩阵、邻接表"><a href="#3-邻接矩阵、邻接表" class="headerlink" title="3.  邻接矩阵、邻接表"></a>3.  邻接矩阵、邻接表</h2><p>表示一张图有两种方法：邻接矩阵、邻接表<br>邻接矩阵：一个V*V（V为节点总数）的矩阵，记录（i, j）边的权值（距离、边长）<br>对于一个无权图，可以设置为连接是1， 不连接是0<br>对于一个有权图，可以设置为连接是w(权值)， 不连接是inf<br>（一条边是不是有向的不重要，如果无方向，看成两条相反的有向边即可）<br><strong>复杂度O（V*V）</strong></p>
-<p>邻接表：<br>对于每个节点，维护一张表，记录和这个节点相连的节点（和权值）<br>（表的内部结构是啥无所谓，可以是链表，BST，HashSet之类，按照实践需要定）<br><strong>复杂度O（V+E）</strong></p>
-<p>表示一张图的方法是最重要的部分！这部分的实现效率决定了算法时间复杂度的上界！<br>在很多问题上，图算法本身的复杂度能够做到O（V+E），E是边数，如果采用邻接矩阵，算法的上界只能是O（V<em>V），<strong>一般都是用邻接表</strong>，因为现实的图一般都是稀疏的，边数E不会达到V</em>V量级</p>
-<h2 id="4-dfs-bfs"><a href="#4-dfs-bfs" class="headerlink" title="4. dfs, bfs"></a>4. dfs, bfs</h2><p>我们先来解决s-t问题<br>s-t Path: Is there a path between vertices s and t?<br>对任意两点s-t，是否存在一条路径？<br>更进一步的，如果存在路径，如何找出这条路径？</p>
-<p>路径的存在性可以由并查集给出，但是如果采用WQUPC，没有方法给出完整的路径</p>
-<p>考虑一步一步找，先找s的相邻点s1，然后再找s1的相邻点s2，……直至所有的点都被遍历；<br>为了避免s1又找回s（出现环），我们需要对走过的点做标记，所以<strong>最后的路径是一颗树</strong>！<br>树有先序、中序、后序和层序遍历，对应在图中就是深度优先搜索（dfs, 先或中或后）或广度优先搜索（bfs, 层序）</p>
-<p>实现思路：<br>dfs: 维护一个栈，挑选<strong>一个</strong>此刻点的临近点入栈，之后走到那个点上，如果走到死路了，出栈一个点回溯，直到走到目标点；入栈出栈的过程之中更新节点的路径（每个节点记录自己的上一个节点）</p>
-<p>bfs：维护一个队列，令此刻点的<strong>所有</strong>临近点入队，之后出队此刻的点<br>当队列空或者搜索到目标时，结束搜索<br>伪代码：</p>
-<pre><code>Initialize the fringe (a queue with the starting vertex) and mark that vertex.
-Repeat until fringe is empty:
-Remove vertex v from the fringe.
-For each unmarked neighbor n of v:
-Mark n.
-Add n to fringe.
-Set edgeTo[n] = v.
-Set distTo[n] = distTo[v] + 1.
-</code></pre>
-<p>dfs vs bfs，不好说哪个好。<br>从时间上说：两者的复杂度都是O（V+E），dfs的优点是，如果只需要找一条路径，可能会略微快；bfs的优点是，找到的路径必定是最短的路径</p>
-<p>从空间上说：bfs较优，维护一个队列比维护一个可能很长的调用栈轻松（dfs递归容易爆炸）</p>
-<blockquote>
-<ul>
-<li>DFS is worse for spindly graphs. Imagine a graph with 10000 nodes all spindly. We’ll end up making 10000 recursive calls, which is bad for space.</li>
-<li>BFS is worse for “bushy” graphs, because our queue gets used a lot.</li>
-</ul>
-</blockquote>
-<h2 id="5-dijkstra-A"><a href="#5-dijkstra-A" class="headerlink" title="5. dijkstra, A*"></a>5. dijkstra, A*</h2><h3 id="dijkstra"><a href="#dijkstra" class="headerlink" title="dijkstra:"></a>dijkstra:</h3><p>如果只是在无权图上找一条路径，dfs和bfs是好的，但如果我们想在有权图上找一条最短路径，无法处理含权值的边的dfs和bfs就不行了</p>
-<p>为了解决这个问题，出现了dijkstra算法：</p>
-<pre><code>def dijkstras(source):
-    PQ.add(source, 0)
-    For all other vertices, v, PQ.add(v, infinity)
-    while PQ is not empty:
-        p = PQ.removeSmallest()
-        relax(all edges from p)
-</code></pre>
-<pre><code>def relax(edge p,q):
-   if q is visited (i.e., q is not in PQ):
-       return
-
-   if distTo[p] + weight(edge) &lt; distTo[q]:
-       distTo[q] = distTo[p] + w
-       edgeTo[q] = p
-       PQ.changePriority(q, distTo[q])
-</code></pre>
-<p>在bfs之中，我们利用了层序遍历的思想，如果根据距离源点的边数多少把节点分成若干层，那么，s到一个在k层的t节点的最短路径一定不可能涉及k+1之后的层</p>
-<p>在dijkstra之中，虽然由于权值的影响，不能像bfs那样分层，但依然需要将这个问题分步处理</p>
-<p>我们放弃一次性给出从s到某点t的全局最优路径，而是不断的优化（贪心）</p>
-<p>对于一个点来说，进入它的所有边都是可能优化其到源点的最小距离的，总共有E条边，所以我们理想的时间界是O（E+V）</p>
-<p>dijkstra算法的伪代码如上：</p>
-<ol>
-<li>所有点入队</li>
-<li>找到当前距离s最短的点p</li>
-<li>遍历除p之外所有点，如果w(p,q)+dis[p]&lt;dis[q], 那么更新dis[q]</li>
-<li>从队列之中移除p，如果队列不空，循环23</li>
-</ol>
-<p>正确性的证明：<br>首先，第一步是对的，假设s的相邻点是s1,s2,…，其中w（s, s1）最小，那么s1的最短路径必然是w（s，s1）</p>
-<p>第二步，找到此时除s1之外距离s最短者，记为s2，如果存在某条路径，使得此时s到s2不是真正的最短距离，那么<br>只有一种可能：这条路径的第一步是s-&gt;一个除s1,s2的其他点，那么由假设，第一步的路径就已经比此时的最短路径大，矛盾！</p>
-<p>所以s2也必然是全局的最短，以此类推</p>
-<p>算法复杂性？<br>如果图是稠密的，那么没啥优化的方法，找最小值就老实扫描一次，是O（V）调用V次是O（V*V），relax对边优化是O（E），总共是<br>O（V*V+E）&#x3D;O(V*V)，考虑到稠密图的创建也是这个复杂度，算法复杂度可以接受</p>
-<p>如果图是稀疏的，可以建立一个含有各个点的距离s的数据的最小堆，由于图是稀疏的，每个点只连接常数的点，故只需要更新常数次堆，复杂度为O（logV）<br>总体复杂度就是O（ElogV）</p>
-<h3 id="A-："><a href="#A-：" class="headerlink" title="A*："></a>A*：</h3><p>dijkstra的好处在于，一趟下来，不仅指定s,t的最短路径知道了，我们实际上知道了s与任意一个其他点的最短路径</p>
-<p>但很多时候我们不需要知道到其他点的路径，各个方向同权的dijkstra就有点慢了</p>
-<p>如果只需要一个点的路径的话，<br>我们希望设计这样一种算法，使得“试探”路径的时候，更倾向于当前点到终点的方向</p>
-<p>显然这样的算法不保证是全局最优的，但我们只需要一个“较优”的答案<br>In Dijkstra’s, we used <strong>bestKnownDistToV</strong> as the priority in our algorithm. This time, we’ll use<br><strong>bestKnownDistToV+estimateFromVToGoal</strong> <strong>as our heuristic.</strong></p>
-<p>在dijkstra之中，我们设法用“已知的最优距离”替代了全局最优距离；在A*之中，我们用“已知最优+从目前点到终点估计距离”替代全局最优</p>
-<p>什么是“估计距离”？一种简单泛用的取法是取当前点到目标点的直线距离<br>“估计距离”让算法带有方向性，这也是A*算法作为启发式算法的特征（有AI的味道）</p>
-<p>具体步骤：<br>对于相邻的所有点，计算从源点到该点的“已知距离”，再加上从该点到目标点的“估计距离”，选取两者和最小的一个点作为实际走的下一个点</p>
-<p>正确性：<br>考虑到终点有一个必经之地p， 现在如果把p的“估计距离”取为无穷，那我们永远到不了终点；<br>也就是说，A*算法的正确性对“估计距离”的选取有一定的要求</p>
-<blockquote>
-<p>The takeaway here is that heuristics need to be good. There are two definitions required for goodness.</p>
-<ol>
-<li>Admissibility. heuristic(v, target) ≤≤ trueDistance(v, target). (Think about the problem above. The true distance from the neighbor of<br>C to C wasn’t infinity, it was much, much smaller. But our heuristic<br>said it was ∞ , so we broke this rule.)</li>
-<li>Consistency. For each neighbor v of w:<ul>
-<li>heuristic(v, target) ≤ dist(v, w) + heuristic(w, target)</li>
-<li>where dist(v, w) is the weight of the edge from v to w.</li>
-</ul>
-</li>
-</ol>
-</blockquote>
-<h2 id="6-最小生成树，割性质"><a href="#6-最小生成树，割性质" class="headerlink" title="6. 最小生成树，割性质"></a>6. 最小生成树，割性质</h2><p>最小生成树（Minimun spanning tree, MST）：<br>定义：连接一张图所有节点的树叫生成树，最小生成树就是生成树之中各个边的权值加起来最小的树。与一般的树不同的是，最小生成树没有“根”或者“叶”的结构，因为最小生成树是图的一个固有性质，和选择的生成起点无关（这就和dijkstra算法所得到的树不同）</p>
-<p>最小生成树常常和以某个点作为起点的dijkstra算法产生的最短路径树相同，但<strong>不是始终存在令两者相同的点</strong></p>
-<p>割性质：<br>为了高效的得到最小生成树，需要引入割性质<br><img src="/imgs/2023-07-01/byxKrmtR7A3PsFq2.png" alt="输入图片说明"><br>如图，把一张图分成两个点集AB（AB随意指定），连接A集之中一个点和B集之中一个点的边叫做“割（cut）”</p>
-<p>比如图中的（2，7），（1，2），（1，3）</p>
-<p><strong>性质：最短的一条割必然是最小生成树的一部分</strong><br>证明：<br>反证法：假设不是，存在一棵不经过割w（i,j）的最小生成树，由其经过所有节点的特性知，书中必然存在另一条割连接A，B点集，记为w(p, q)</p>
-<p>由于w(i,j)是最短的割，那么w(i,j)&lt;w(p,q)</p>
-<p>将w(p,q)+w(i,p)+w(q,j)三段替换成w(p,i)+w(i,j)+w(j,q)依然满足生成树的性质，且更小，矛盾！<br>证毕</p>
-<p>特例：w(i,j)&#x3D;w(p,q)<br>同理，w(p,q)+w(i,p)+w(q,j) &#x3D; w(p,i)+w(i,j)+w(j,q)<br>若其中一条边在最小生成树之中，必有另一棵最小生成树（按照上式替换），使另一条边在该树之中</p>
-<p>而同上，两条边至少有一条在最小生成树之中<br>所以两条边都在最小生成树之中，可以任取一个（最小生成树可能是同一棵，可能是不同）</p>
-<p>垫脚石：单纯运用割性质，我们也能得到一个不好的算法，不断的随机取点集划分，再找到最小割，直到找到了V-1条边</p>
-<p>Prims算法:</p>
-<ol>
-<li>取离已经走过的点形成的树最近的一条边</li>
-<li>由割性质（两个点集为走过的和未走的），1取出的边一定是最小生成树的部分</li>
-<li>重复V-1次</li>
-</ol>
-<p>算法复杂度：<br>3是O（V），问题在步骤1时间复杂度是多少<br>算法1：暴搜，那O（E）不好<br>算法2：维护一个包含割的优先队列，每次从里面remove一条最短边是O（logE）的，新增边是常数的，因而维护堆也是O（logE）的，<br>所以总时间复杂度是O（ElogE）&#x3D; O（ElogV）(E&lt;V*V)的</p>
-<p>Kruskal算法：<br>思想更直观：</p>
-<ol>
-<li>建一个包含所有边的优先队列</li>
-<li>不断的移除最小边，如果形成环，则跳过，否则移除的最小边加入最小生成树（割性质），直至有V-1条边</li>
-</ol>
-<p>时间复杂度：<br>判断是否成环，并查集WQUPC, 稀疏图新节点产生的新边是常数条，对于第一条新边相连的节点，找祖先节点，对于第二条新边相连的节点，找祖先节点，如果两祖先相同则成环，….. 常数两两组合还是常数</p>
-<p>建立队列，O（ElogE）&#x3D; O（ElogV）<br>判断成环O（Elg*V）(最多E次，每次lg*V)<br>总共O（Elg*V+ElogE）<br>如果图API提供了排好序的边，就是O（Elg*V）<br>在任意有现实意义大小的图的情况下<br>O（Elg*V）&#x3D;<strong>O（E）</strong>！！！</p>
-<h2 id="7-网络流算法"><a href="#7-网络流算法" class="headerlink" title="7. 网络流算法"></a>7. 网络流算法</h2><p>未完待续……</p>
-
+<li>维护一个队列，包含所有入度为0的点，每次除去一个点和其邻边，并将相邻节点的入度减一（无向图）O（V+E）
             
         </div>
     </div>
@@ -665,12 +446,12 @@ Set distTo[n] = distTo[v] + 1.
         
         <span class="tag">
             
-            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #03a9f4">入门</a>
+            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #00a596">入门</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/%E7%AE%97%E6%B3%95/" style="color: #ffa2c4">算法</a>
+            <a href="/tags/%E7%AE%97%E6%B3%95/" style="color: #03a9f4">算法</a>
         </span>
         
     </div>
@@ -696,31 +477,7 @@ Set distTo[n] = distTo[v] + 1.
         <div class="content" v-pre>
             
             <p>﻿61b数据结构部分正式开始</p>
-<h2 id="1-并查集（Disjoint-Set-Union）："><a href="#1-并查集（Disjoint-Set-Union）：" class="headerlink" title="1. 并查集（Disjoint Set Union）："></a>1. 并查集（Disjoint Set Union）：</h2><p>先从一个问题引入，我们现在有N个数据，某些数据之间有相连的关系（已知，比如AB相连，BD相连）；现在我们想要判断数据A和数据D是否相连，或者数据C属于哪个集合，怎么做？<br>（对应的现实情况有很多，比如社交网络等等；并且N经常很大，比如上亿）</p>
-<p>最低效的做法肯定是将同类的数据放到一个集合之中，比如<br>[{A}, {B},{C}]， AC相连就先检索到C，再将C移出集合{C}，放入集合{A}</p>
-<p>明显这种做法（ListOfSet）下，对于找数据，添加相连，判断数据是哪个类的都是theta(N)的</p>
-<h3 id="改进1（QuickFind）："><a href="#改进1（QuickFind）：" class="headerlink" title="改进1（QuickFind）："></a>改进1（QuickFind）：</h3><p>集合的操作非常耗时并且不好检索，采用类似数组的结构来对应集合<br><img src="/imgs/2023-06-24/CeZ5KPKJSHDMY1NF.png" alt="输入图片说明"><br>现有一个初始值为 ABCDEFG的数组，代表1 2 3 4 5 6 7 8 9号（下标）数据</p>
-<p>之后如果把 AC相连， 那么我就把下标3的对应值改成A（代表3（对应数据C）现在是1集合（对应A）了， 变成ABADEFG）</p>
-<p>这种方法明显地快，但还是O（N）的，比如现在值为<br>AAAABBBB，让1和5相连，我需要先检索一遍整个数组找到值为B的所有值，再改成A</p>
-<p>这个方法的好处在于判断一个数据属于哪个类是O（1）的了，只要看对应值就行</p>
-<h3 id="改进2-QuickUnion-："><a href="#改进2-QuickUnion-：" class="headerlink" title="改进2(QuickUnion)："></a>改进2(QuickUnion)：</h3><p>一种进阶的思路是：</p>
-<p>在连接的时候，不再一次改写所有的值（这样的操作很多是无用的，因为要改来改去）</p>
-<p>我们只记录和改写一个数据的父节点，形成一个树结构<br><img src="/imgs/2023-06-24/TsJ5B310UzB0NM29.png" alt="输入图片说明"></p>
-<p>如图，我要连接5和2，先沿着5的父亲–5的父亲的父亲—这条路找到5的根节点，再找到2的根节点，再将2的根节点的父亲设置为5的根节点</p>
-<p>判断一个数据属于哪一类也只要从底层不断沿父亲往上找就行</p>
-<p>如果树是平衡的，那么这种方法就是O（logN）(对于连接和判断两种操作)</p>
-<p>但这种方法的最坏情况还是theta(N), 设想这样的情况<br> 1 2 3 4 5 5个数据，先让45连，再让34连…最后得到了一个深度 &#x3D; N的树<br><img src="/imgs/2023-06-24/WKcaddjK5pgMSFCe.png" alt="输入图片说明"></p>
-<h3 id="改进3："><a href="#改进3：" class="headerlink" title="改进3："></a>改进3：</h3><p>那我们就想，如何调整树，使它接近于平衡呢？<br>注意到我们之前合并的时候，连接34实际上无所谓3做父节点还是4做父节点，从深度尽量小的角度来说，我们希望这个选择能让合并的树的深度尽可能小</p>
-<p>于是有了Weighted Quick Union(WQU)<br>我们总是让元素比较多的树的根节点作为父节点，可以证明它是O（log(N)）的，最坏也不会超过logN</p>
-<p>(当然还有Heighted Quick Union，让深度较低的树的根作为父节点，但这样也是O（logN）编程却麻烦不少，用得比较少)</p>
-<h3 id="改进4：路径压缩（WeightedQuickUnionWithPathCompression）"><a href="#改进4：路径压缩（WeightedQuickUnionWithPathCompression）" class="headerlink" title="改进4：路径压缩（WeightedQuickUnionWithPathCompression）"></a>改进4：路径压缩（WeightedQuickUnionWithPathCompression）</h3><p>在查找父节点的过程之中，我们实际上可以把路径之中（A的父亲，祖父, 等等等）全部改成A的最古老的先祖（根节点）的直接的儿子，在下一次查找之中，这一整条路上的所有元素都只需要一次找父亲</p>
-<p>这样的复杂度是O（lg* N）的，lg*()是迭代对数，对任意实际情况的N都可以认为它&lt;5, 基本就是O（1）</p>
-<p><strong>也就是我们使用O（1）的时间界完成了查找和连接的操作，多美妙！</strong></p>
-<p><img src="/imgs/2023-06-24/pXy81UjzXdoTK5C6.png" alt="输入图片说明"></p>
-<ol start="2">
-<li>git操作进一步理解<br><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=yWBzCAY_5UI">https://www.youtube.com/watch?v=yWBzCAY_5UI</a><br>lab4 这个部分 1-6</li>
-</ol>
-
+<h2 id="1-并查集（Disjoint-Set-Union）："><a href="#1-并查集（Disjoint-Set-Union）：" class="headerlink" title="1. 并查集（Disjoint Set Union）："></a>1. 并查集（Disjoint Set Union）：</h2><p>先从一个问题引入，我们现在有N个数据，某些数据之间有相连的关系（已知，比如AB相连，BD相连）；现在我们想要判断数据A和数据D是否相连，或者数据C属于哪个集合，怎么做？</p>
             
         </div>
     </div>
@@ -739,7 +496,7 @@ Set distTo[n] = distTo[v] + 1.
         
         <span class="tag">
             
-            <a href="/tags/%E7%AE%97%E6%B3%95/" style="color: #00a596">算法</a>
+            <a href="/tags/%E7%AE%97%E6%B3%95/" style="color: #03a9f4">算法</a>
         </span>
         
     </div>
@@ -769,38 +526,7 @@ Set distTo[n] = distTo[v] + 1.
 <li>OneLoneCoder&#x2F;PixelGameEngine&#x2F;TUTORIAL</li>
 </ol>
 <ul>
-<li><p>Sprite (中文翻译：子图形？图形元素？) 调用外部的图形元素（pixelgameengine之中支持.png）, 可以放大，不可以缩小，是一种最小层次的，由<strong>CPU</strong>绘制的纹理。<br>png图形，一个int_32数组, 每个像素RGBA（透明度）各8位，一般是ARGB的顺序排列，但最好还是通过不同的图形引擎指定的接口调用</p>
-</li>
-<li><p>Decals(不知道中文咋翻译了)，GPU上的图形元素，CPU上的图形Sprite十分的灵活，尤其适合需要逐帧改变的元素，但也因为每帧都要重新画，一旦图形加上透明度、旋转等特效，容易影响性能；特效一般使用GPU上的Decal实现。Decal快的原因是它在GPU上存有副本，省去了重新绘制的时间，并且GPU自动是并行的。</p>
-</li>
-</ul>
-<p>Sprite的优点是灵活性，Decals的优点是性能<br>一般有复杂逻辑的东西用Sprite操控</p>
-<p>拿拳皇98来说，人物的图像由于需要精密实时变化，用sprite更好；而人物攻击的火焰等特效是固定的，用decal提升性能</p>
-<p>通过 Sprite，你可以控制人物的动作、位置、大小和动画序列等属性，以实现流畅的动画效果和交互性。<br>对于人物攻击的火焰等特效，这些特效通常是相对固定的，而且可能会出现大量重叠的情况。在这种情况下，使用 Decals 可以提高性能。通过在 GPU 上渲染 Decals，可以减轻 CPU 的工作负担，并且可以利用 GPU 的并行处理能力，以更高效地绘制和处理这些特效。这样可以确保特效的实时性和性能稳定性。</p>
-<p>例如：设计一个碎裂的特效，先找到一个破碎的碎片的图形（decal），然后碰撞时，让这个碰到的图形消失，再产生一定数量的各个方向飞行的碎片，再加上重力和逐渐消失的效果（根据时间改变透明度，透明度为0时删除这个图形），就会十分逼真</p>
-<ol start="2">
-<li>c++智能指针， 自动delete</li>
-</ol>
-<pre><code> #include&lt;memory&gt; 
-std::unique_ptr&lt;MyClass&gt; ptr = std::make_unique&lt;MyClass&gt;();
-</code></pre>
-<ol start="3">
-<li>为了更好的兼容Sprite和Decal，常常把画面分成一定大小的方块（如16*16），每个大小上一个sprite, 更便于操控；同时，在游戏制作之中一般会把画面空间和实际空间分开处理，两者像素不是一一对应的</li>
-</ol>
-<hr>
-<p>cs61b L9</p>
-<ul>
-<li><p>继承是破坏封装的（Inheritance breaks encapsulation）<br><img src="/imgs/2023-06-20/JlfC0xmCPNVxVwJV.png" alt="输入图片说明"><br>我觉得这或许就是抽象类产生的原因（）<br>还有就是尽量让一个方法对应一种功能，避免嵌套</p>
-</li>
-<li><p>java没有函数指针，主要是因为Java没有函数（指针）类型，所以要在java实现函数指针和高阶函数（Higher Order Function, 以函数为变量的函数）就需要使用接口给函数套一个对象类型，再通过继承的方法模拟函数指针<img src="/imgs/2023-06-20/MaAWAdEjuvweGvaC.png" alt="输入图片说明"></p>
-</li>
-</ul>
-<ol start="4">
-<li>今天写完了61b proj1:deque(读作dek)的前半部分<br>主要复习到的是一些java设计思想，如使用接口来保证安全性，避免函数指针等<br>还有就是一个deque 的API怎么写，尤其是双哨兵和进一步的封装思想</li>
-</ol>
-<p>还有就是ArrayDeque，也挺妙的。采用head, tail记录数组的头尾。采用循环（使用取模实现，如head &#x3D; (head -1 +MaxSize)%MaxSize）处理下标越界，之后加上适当的resize就得到了一个</p>
-<p>可以在常数时间在头尾添加元素和取任一元素的数据结构</p>
-
+<li><p>Sprite (中文翻译：子图形？图形元素？) 调用外部的图形元素（pixelgameengine之中支持.png）, 可以放大，不可以缩小，是一种最小层次的，由<strong>CPU</strong>绘制的纹理。</p>
             
         </div>
     </div>
@@ -814,7 +540,7 @@ std::unique_ptr&lt;MyClass&gt; ptr = std::make_unique&lt;MyClass&gt;();
         
         <span class="tag">
             
-            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #03a9f4">入门</a>
+            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #ff7d73">入门</a>
         </span>
         
     </div>
@@ -840,45 +566,6 @@ std::unique_ptr&lt;MyClass&gt; ptr = std::make_unique&lt;MyClass&gt;();
         <div class="content" v-pre>
             
             <p>﻿# 从BST说起<br>BST（Binary Search Tree, 二叉搜索树）的平均深度是Θ（logN）（一棵随机生成的BST（不管有没有随机插入和删除）的深度和期望高度都是 Θ（logN）的）</p>
-<p>但现实之中的树不一定都是随机的，有很多情况（比如带有时间顺序的数据，就不是随机的），我们需要避免Θ（N）的最坏情况，要把树的深度压到O（logN）</p>
-<p><em><strong>二叉树的删除：无儿子、单儿子、双儿子：双儿子通过前驱&#x2F;后继节点转换为单儿子情况</strong></em></p>
-<h3 id="思路一："><a href="#思路一：" class="headerlink" title="思路一："></a>思路一：</h3><hr>
-<p>我们给添加节点增加一个规则：不允许“手动加深”树，即不能在新的一层添加新的数据，只允许在已有层添加数据，但我们允许一个节点有最多L个数据（不然设想对一个节点一直加数据，我们的树退化成链表了）<br><img src="/imgs/2023-06-28/pJfTO8TPQKDDICGL.png" alt="输入图片说明"></p>
-<p>由此诞生了B树，这是一种保证所有的叶节点都是等深的数据结构</p>
-<p>B树的检索：基本同二叉搜索树，但在每一个包含L个数据的节点会进行L次比较操作，所以检索操作时O（LlogN） &#x3D; O(logN)的<br><img src="/imgs/2023-06-28/jRRrhwLHmSvJjUfE.png" alt="输入图片说明"></p>
-<p>B树的插入<br>先检索到插入的位置插入，这一部分同BST，但可能让插入的节点超过了L个数据的限制，这个时候就需要分裂（让中间的节点而不是其他节点进入上一层比较好）<br>一棵2-3-4树（表示一个节点可以有2&#x2F;3&#x2F;4个子节点）示例：<br><img src="/imgs/2023-06-28/07VVDbuYF9MGM1ew.png" alt="输入图片说明"></p>
-<p>B树的用处：1.L很小，作为一种简单的平衡搜索  2. L很大，用在数据库、硬盘之类</p>
-<p>B树的不足：</p>
-<ol>
-<li>难编程（可以设想L大的时候事情会变得多少复杂，再想想删除有多少种情况）</li>
-<li>很多情况下慢（都是logN 但常数因子大）</li>
-<li>每个节点甚至需要一个链表<br>(漂亮的算法不一定是最好的)<br><img src="/imgs/2023-06-28/R9Nz9VAQ49KuFk56.png" alt="输入图片说明"></li>
-</ol>
-<p>拓展：B树的删除，B+树（一颗只在叶子节点存数据，内部结点只做查找索引，并且叶子节点类似链表链接的树）<br><img src="https://pic1.zhimg.com/80/v2-4908e05e1d1bb851ebf0dfbe5121571c_1440w.webp"></p>
-<h3 id="思路二："><a href="#思路二：" class="headerlink" title="思路二："></a>思路二：</h3><hr>
-<p>前置：AVL树与旋转</p>
-<p><em>相同节点的BST有许多种形态，而旋转就是从其中一种过渡到另一种的方法</em><br><img src="/imgs/2023-06-28/XfFeXvGdNpD755R3.png" alt="输入图片说明"><br>N个节点构成的二叉搜索树的种类是Catalen(N)</p>
-<p>对N较大时，任意两个状态之间所需要的旋转数&lt; 2N-6<br>左旋：将选定节点变成右儿子的左子树<br>右转：将选定节点变成左儿子的右子树<br><img src="/imgs/2023-06-28/IrhZXiOVhuubcnaH.png" alt="输入图片说明"><br><img src="/imgs/2023-06-28/g32wVf0jB1n9DJ7o.png" alt="输入图片说明"></p>
-<hr>
-<h4 id="红黑树："><a href="#红黑树：" class="headerlink" title="红黑树："></a>红黑树：</h4><p>B树有许多良好的性质，但是它的建立和删除实在是太繁琐了，如果能建立这样的一种树，<strong>它是一棵BST，但却和一棵2-3 B树一一对应，形成一个双射</strong>，不就综合了两者的优点？</p>
-<p>这样的数据结构就是红黑树，也是实际之中运用得最多的树，是java TreeMap() 的底层实现</p>
-<p>我们设想将B树含有多个数据的节点可以“暂时分离”，并将分出来的线用红色表示<br><img src="/imgs/2023-06-28/KRbCfSYeMQCdwlOE.png" alt="输入图片说明"></p>
-<p>（如果我们指定分离到更深一层的是df的d或者f，这种分离就是一一对应的，以指定d（左倾红黑树， LLRB，Left-Leaning Red Black BST）为例）</p>
-<p>现在有一颗这样搭建好深为N1 &#x3D; Θ（logN）的B树，将其这样分离，形成的红黑树深度最多是 N2 &#x3D; N1+1（红线贡献的额外深度）+N1，还是 Θ（logN）的</p>
-<p>现在考虑2-3树的插入，插入的分裂操作还没对应红黑树的操作</p>
-<p>插入可以分解为：</p>
-<ol>
-<li>插入一个节点</li>
-<li>如果数据数超过L，将中间的数据移动到父节点</li>
-</ol>
-<p>直接给出对应规则<br><img src="/imgs/2023-06-28/sKC97RP9xNxAywZG.png" alt="输入图片说明"><br><img src="/imgs/2023-06-28/HoTk0yRicNh7zTbc.png" alt="输入图片说明"><br><img src="/imgs/2023-06-28/GAtCadr1YJxeE9Ro.png" alt="输入图片说明"></p>
-<p>那么我们就构建了一棵红黑树！可以总结它的插入规则如下（通过和B树的对应理解！）：</p>
-<p>1.（B树）如果有超过数据限制数的节点————&gt;旋转（红黑）<br>2. （B树）如果要向上合并————&gt; 节点所连的所有线变色（红黑）<br>3. 如果有连续两条左倾红色连接 ————&gt;旋转（辅助2）</p>
-<p><img src="/imgs/2023-06-28/gNe6cl5n3sWVIEeE.png" alt="输入图片说明"></p>
-<p>伪代码实现：（<strong>优雅，太优雅了.jpg</strong>）<br><img src="/imgs/2023-06-28/xYrcsS2A9EjRyw08.png" alt="输入图片说明"></p>
-<p>红黑的删除本质上和B树是一样的，所以还是非常复杂……，慢慢分类讨论……</p>
-<p>（p.s. 我觉得这不是什么重要的东西，重要的是理解思想）</p>
-
             
         </div>
     </div>
@@ -892,12 +579,12 @@ std::unique_ptr&lt;MyClass&gt; ptr = std::make_unique&lt;MyClass&gt;();
         
         <span class="tag">
             
-            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #00bcd4">入门</a>
+            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #00a596">入门</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/%E7%AE%97%E6%B3%95/" style="color: #03a9f4">算法</a>
+            <a href="/tags/%E7%AE%97%E6%B3%95/" style="color: #ff7d73">算法</a>
         </span>
         
     </div>
@@ -930,89 +617,6 @@ std::unique_ptr&lt;MyClass&gt; ptr = std::make_unique&lt;MyClass&gt;();
     <p>将物理模块本身抽出，防止物理模型和UI效果耦合
         物理模块处理完落水事件之后产生一个event</p>
     <p>让音量模块、特效模块等作为不同的观察者observer，当检测到event产生，执行对应处理代码。</p>
-    <p>追问：设计应该是同步的还是异步的？什么情况不应该使用这个模式？</p>
-
-
-
-
-<ol start="2">
-<li><p>状态模式：善用状态机</p>
-<p>如果有这样一个逻辑：按space跳跃，空中允许二段跳，空中按J下俯冲攻击，俯冲、跳跃、落地均有动画，如何设计？</p>
-</li>
-</ol>
-<details>
-       <summary>答</summary>
-       <div>状态机：</div>
-       <pre>
-       <div>人物状态：站立、空中1段、空中2段、落地</div>
-       <div>改变状态的act：站立->跳跃->空中1段，空中1/2->俯冲，空中1/2->正常落地，空中1->跳跃->空中2</div>
-       <div>不改变状态的act：其他</div>
-       </pre>
-       <div>如果不定义状态机，你需要记录的“状态"有： 是否空中、是否落地、是否俯冲、跳跃段数......</div>
-       <p>当状态更多的时候，逻辑会很复杂<p>
-       <p>假设已经存在act inputhandler(...){}函数， return act</p>
-       <p>则只需定义这样的函数在主循环中执行</p>
-       <pre style='text-indent: 0em'><code>
-       void updateState(act Act) &#123;
-           switch (this->State) &#123;
-               case STAND: &#123;
-               // 处理站立状态逻辑
-                   break;
-               &#125;
-               case ONAIR_ONE_JUMP: &#123;
-               // 处理空中1段跳跃状态逻辑
-                   break;
-               &#125;
-               case ONAIR_TWO_JUMP: &#123;
-               // 处理空中2段跳跃状态逻辑
-                   break;
-               &#125;
-               case DIVE: &#123;
-               // 处理俯冲状态逻辑
-                   break;
-               &#125;
-           // 其他状态的处理
-           &#125;
-       &#125;
-       </pre></code>
-   </details>
-
-
-
-
-<ol start="3">
-<li>数据建模：如果我想要实现一个道具“剑”，但有二十种不同效果的剑，比如冰霜、毒素、眩晕等等，我应该如何设计？</li>
-</ol>
-<details>
-       <summary>答</summary>
-   不应该设计成一个基类+20个派生类
-   更好的方法是定义一个data文件（或者微型数据库），里面可以是诸如剑的json格式
-       <pre><code>
-   &#123;
-       name: sword,
-       prototype: basic_sword,   
-       damage: 10,
-       type: cut,
-       additional_effect: none,
-       ...
-   &#125;</pre></code>
-   这样只有当需要时，才查询记录, 并且对所有类似的都可以用一套方法
-   
-
-
-<p>   为什么？<br>   空间上 + 复杂度上产生了什么效果？</p>
-<ol start="4">
-<li>如何实现撤销任意步的操作？</li>
-</ol>
-<details>
-       <summary>答</summary>
-       <p>蠢方法是记录每一帧，但这显然太占用资源；好方法是对每一个操作实现undo接口（如果可能），如果不可能则记录每次的状态，之后重演逻辑、重新渲染</p>
-   
-
-<ol start="5">
-<li>降低耦合的固有方法：加中间件<br>例如：不想让按键输入直接与逻辑耦合（比如，想要支持改键位），那么需要加一个handleInput()函数作为中间件，通过handleInput函数，去更改状态</li>
-</ol>
-
             
         </div>
     </div>
@@ -1031,12 +635,12 @@ std::unique_ptr&lt;MyClass&gt; ptr = std::make_unique&lt;MyClass&gt;();
         
         <span class="tag">
             
-            <a href="/tags/%E6%B8%B8%E6%88%8F/" style="color: #00a596">游戏</a>
+            <a href="/tags/%E6%B8%B8%E6%88%8F/" style="color: #00bcd4">游戏</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="color: #ff7d73">设计模式</a>
+            <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="color: #ffa2c4">设计模式</a>
         </span>
         
     </div>

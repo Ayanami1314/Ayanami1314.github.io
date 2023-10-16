@@ -179,7 +179,7 @@
             
             <span class="tag">
                 
-                <a href="/tags/java/" style="color: #ff7d73">java</a>
+                <a href="/tags/java/" style="color: #00bcd4">java</a>
             </span>
             
         </span>
@@ -191,10 +191,14 @@
 <p>java 语法和收获：</p>
 <ol>
 <li>随机测试非常好用，对应java就是StdRandom库</li>
-<li>java的接口机制 interface 有点类似c++的抽象类，继承接口的需要Override所有的接口函数声明（接口里面只写声明）（最好显式@Override）</li>
+<li>java的接口机制 interface 有点类似c++的抽象类，继承接口的需要Override所有的接口函数声明（接口里面只写声明）（最好显式@Override）<span id="more"></span></li>
 </ol>
 <p>通过接口机制，我们可以统一不同的实现，不管你写的是AList, SLList, 还是LIST61B, 只要他们继承于同一个接口，对于使用者来说就是好的</p>
+<!-- more -->
+
 <p>一个更有意义的地方是，接口保证了java编译时的静态编译（或者简洁性）：<br>java<strong>不需要知道</strong>一个类的内部实现到底有没有Override某个特定的方法，但它不需要知道，需要程序员在类中显式指定</p>
+<!-- more -->
+
 <p>java官方的ArrrayList</p>
 <pre><code>
 import java.util.List;
@@ -210,9 +214,11 @@ public class Example &#123;
 &#125;
 </code></pre>
 <ol start="3">
-<li>.equals 和 &#x3D;&#x3D; ：<br>“=&#x3D;”是一个位比较，比较两者的每一个bit位， 对于java而言，string a &#x3D;“Hello”, b&#x3D;”Hello” , a&#x3D;&#x3D;b是不成立的(a，b的对象地址不同)</li>
+<li>.equals 和 &#x3D;&#x3D; ：<br>“=&#x3D;”是一个位比较，比较两者的每一个bit位， 对于java而言，string a &#x3D;“Hello”, b&#x3D;”Hello” , a&#x3D;&#x3D;b是不成立的(a，b的对象地址不同)<!-- more --></li>
 </ol>
-<p>.equals 是一个对象接口的方法（Object， java任意类的父类），在自定义类之中实现.equals之后，可以比较各种各样的对象<br>(<strong>可能需要用getClass()函数</strong>)<br>例如一个数组的equals可以这么定义：</p>
+<p>.equals 是一个对象接口的方法（Object， java任意类的父类），在自定义类之中实现.equals之后，可以比较各种各样的对象</p>
+<!-- more -->
+<p>(<strong>可能需要用getClass()函数</strong>)<br>例如一个数组的equals可以这么定义：</p>
 <pre><code>@Override
 public boolean equals(Object other)&#123;
     if(this.getClass() != other.getClass())&#123;
@@ -228,7 +234,7 @@ public boolean equals(Object other)&#123;
 &#125; 
 </code></pre>
 <ol start="3">
-<li>java的迭代器机制<br> 如果想在java之中实现可迭代（for-each循环，本质上 for(object o: array_o)）这样的循环只是</li>
+<li>java的迭代器机制<br> 如果想在java之中实现可迭代（for-each循环，本质上 for(object o: array_o)）这样的循环只是<!-- more --></li>
 </ol>
 <pre><code>public Iterator&lt;T&gt; iterator();
 Iterator&lt;Integer&gt; seer = ArrayObj.iterator();
@@ -237,6 +243,8 @@ while(seer.hasNext())&#123;
 &#125;
 </code></pre>
 <p>也就是说，本质上迭代器需要满足的条件是：<br>有 .Iterator()方法.hasNext()方法和.next()方法，每迭代一次，迭代器走到下一个元素处，并返回前一个元素的值</p>
+<!-- more -->
+
 <p>如何实现可迭代自定义类呢？<br>只需要继承&#x2F;接口 Iterable类<br>例如:<br>public class List<T> extends Iterable<T>{<br>    boolean hasNext();<br>    T next();<br>} </p>
 <ol start="4">
 <li>java的Set</li>
@@ -250,6 +258,7 @@ s.contains(&quot;haha&quot;); // return true or false
 System.out.print(s.size());
 
 Set&lt;String&gt; bset = Set.Of(&quot;a&quot;, &quot;b&quot;,&quot;c&quot;);// a fast way to bulid a set
+&lt;!-- more --&gt;
 </code></pre>
 <ol start="5">
 <li>java的异常机制<br>主要是对null的特殊处理<br>throw new ExceptionObject(parameter1, …)</li>
@@ -257,6 +266,7 @@ Set&lt;String&gt; bset = Set.Of(&quot;a&quot;, &quot;b&quot;,&quot;c&quot;);// a
 <pre><code>public void add(T x) &#123;
     if (x == null) &#123;
         throw new IllegalArgumentException(&quot;can&#39;t add null&quot;);
+&lt;!-- more --&gt;
     &#125;
     if (contains(x)) &#123;
         return;
@@ -266,8 +276,16 @@ Set&lt;String&gt; bset = Set.Of(&quot;a&quot;, &quot;b&quot;,&quot;c&quot;);// a
 &#125;
 </code></pre>
 <blockquote>
-<p>We get an Exception either way - why is this better?<br>    1.  We have control of our code: we consciously decide at what point to stop the flow of our program<br>    2.  More useful Exception type and helpful error message for those using our code</p>
+<p>We get an Exception either way - why is this better?</p>
 </blockquote>
+<!-- more -->
+<pre><code>1.  We have control of our code: we consciously decide at what point to stop the flow of our program
+</code></pre>
+<!-- more -->
+<pre><code>2.  More useful Exception type and helpful error message for those using our code
+</code></pre>
+<!-- more -->
+
 <ol start="6">
 <li>java的继承</li>
 </ol>
@@ -281,10 +299,10 @@ Set&lt;String&gt; bset = Set.Of(&quot;a&quot;, &quot;b&quot;,&quot;c&quot;);// a
 </code></pre>
 <ul>
 <li>不可以多重继承，但可以多接口继承</li>
-<li>所有类都默认继承Object， 值得注意的是几个方法.equals(), .hashCode() 和 .toString()</li>
+<li>所有类都默认继承Object， 值得注意的是几个方法.equals(), .hashCode() 和 .toString()<!-- more --></li>
 </ul>
 <ol start="7">
-<li>java的高阶函数<br>在java之中高阶函数得间接做，因为java一切都是对象，但没有“函数”对象，所以我们需要把函数包装在对象之中，成为某个对象的方法，一般是用接口实现，例：</li>
+<li>java的高阶函数<br>在java之中高阶函数得间接做，因为java一切都是对象，但没有“函数”对象，所以我们需要把函数包装在对象之中，成为某个对象的方法，一般是用接口实现，例：<!-- more --></li>
 </ol>
 <pre><code>public interface TenX&#123;
     public int funcX(int x);
@@ -296,22 +314,35 @@ public class IntFunction implements TenX&#123;
 
 
 public static int HOF_doTwice(IntFunction f, int x)&#123;
+&lt;!-- more --&gt;
     return f.funcX(f.funcX(x));
 &#125;
 </code></pre>
 <ol start="8">
-<li>java的通用比较<img src="https://joshhug.gitbooks.io/hug61b/content/assets/dog_comparable.png"></li>
+<li>java的通用比较<img src="https://joshhug.gitbooks.io/hug61b/content/assets/dog_comparable.png"><!-- more --></li>
 </ol>
 <blockquote>
 <p>While this would work for now, if we give up on our dream of <strong>making a generalized max function</strong> and let the Dog class define its own max function, then we’d have to do the same for any class we define later. We’d need to write a maxCat function, a maxPenguin function, a maxWhale function, etc., <strong>resulting in unnecessary repeated work and a lot of redundant code</strong>.</p>
 </blockquote>
+<!-- more -->
+
 <p>在java之中，我们没有c++那样的运算符重载，但我们有.equals 和 .compareTo, 使用规范的泛型接口代替可能出现问题的运算符重载，这是更安全的做法</p>
-<p>java提供的接口：<br>public interface Comparator {<br>    public int compare(T o1, T o2);  &#x2F;&#x2F; return 0 if &#x3D;&#x3D;, &gt;0 if &gt; ,&lt;0 if &lt;<br>}</p>
+<!-- more -->
+
+<p>java提供的接口：<br>public interface Comparator {<br>    public int compare(T o1, T o2);  &#x2F;&#x2F; return 0 if &#x3D;&#x3D;, &gt;0 if &gt; ,&lt;0 if &lt;</p>
+<!-- more -->
+<p>}</p>
 <p>只需要<br>public class A implements Comparator<A>{</p>
 <p>}<br>就能让A类的对象之间比较，达到了c++运算符重载的效果；<br>如果Comparator<B>, 就能让A和B比较，类似c++的运算符重载做友元</p>
-<p>我们甚至还可以定义多种比较方式，比如NameComparator , SizeComparator, … 只要这些方法都implements Comparator并且实现了compare方法<br>(记得import java.utils.comparator)<br>9. java的string<br>java在处理string时用了一种特殊的方式，没有“变量字符串”，只有常量字符串</p>
+<p>我们甚至还可以定义多种比较方式，比如NameComparator , SizeComparator, … 只要这些方法都implements Comparator并且实现了compare方法</p>
+<!-- more -->
+<p>(记得import java.utils.comparator)<br>9. java的string<br>java在处理string时用了一种特殊的方式，没有“变量字符串”，只有常量字符串</p>
 <p>例如：string a &#x3D; “{” + “Ciallo!”+”}”， a会被构建三次，如果不断地使用+, 字符串就会不断的析构和构建，每次的构建不是在上一次的基础上在末尾加的，都是重新构建</p>
+<!-- more -->
+
 <p>这样对安全性有好处，但牺牲了一些效率，一种提升效率的方法是使用java内置的StringBuilder 类</p>
+<!-- more -->
+
 <pre><code>StringBuilder SB = new StringBuilder(&quot;&#123;&quot;);
 SB.append(&quot;ciallo!&quot;);
 SB.append(&quot;&#125;&quot;);

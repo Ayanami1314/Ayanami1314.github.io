@@ -174,12 +174,12 @@
             
             <span class="tag">
                 
-                <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #ffa2c4">入门</a>
+                <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #ff7d73">入门</a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/java/" style="color: #00a596">java</a>
+                <a href="/tags/java/" style="color: #00bcd4">java</a>
             </span>
             
         </span>
@@ -188,23 +188,28 @@
     
     <div class="content" v-pre>
         <ol>
-<li>java的编译（多文件编译，main文件在package 之中的特殊情况），命令行参数（特殊：包含引号的参数 ）</li>
+<li>java的编译（多文件编译，main文件在package 之中的特殊情况），命令行参数（特殊：包含引号的参数 ）<span id="more"></span></li>
 </ol>
 <p>编译 javac + path<br>例如：javac main.java class1.java</p>
 <p>运行 java main</p>
 <p>或者简化 make&#x2F;javac *.java</p>
 <p>速览文件<br>cat + path<br>命令行里面用空格分隔每一个命令符，对应程序之中的public int main(String[] args)  里面的args, 如果需要键入带空格的命令符，需要用“”</p>
+<!-- more -->
+
 <p>当main文件在一个package之中时，不能直接main.java， 需要跳到父级目录之中之后，使用 xx&#x2F;main.java 全名调用</p>
+<!-- more -->
+
 <p>makefile简化命令行  make 和 make check， make clean<br>nano：一个命令行文本编辑器，ctrl+字母特殊操作</p>
 <p>make check 运行python 编写的测试</p>
 <ol start="2">
 <li>java之中的文件和目录</li>
 </ol>
 <ul>
-<li>创建文件对象（本质上是创建了一个类似“指针”的东西，此时还没有创建文件）File f &#x3D; new File(“path”)；</li>
+<li>创建文件对象（本质上是创建了一个类似“指针”的东西，此时还没有创建文件）File f &#x3D; new File(“path”)；<!-- more --></li>
 <li>创建文件，以.txt为例：</li>
 </ul>
 <pre><code>File f = new File(&quot;sample.txt&quot;); // 在CWD下创建，或者指定完整路径 
+&lt;!-- more --&gt;
 try&#123;
     f.createFile();  //根据后缀名决定格式
 &#125; catch(IOexception)&#123;
@@ -213,18 +218,32 @@ try&#123;
 </code></pre>
 <ul>
 <li>f.exists() 返回f指向的文件是否存在</li>
-<li>路径拼接和查询：<br>String s &#x3D; System.getProperty(“user.dir”); &#x2F;&#x2F; 查询当前目录(CWD)<br>File f &#x3D; Utils.join(String s1, String s2); &#x2F;&#x2F;建立一个路径是s1+s2的文件对象</li>
+<li>路径拼接和查询：<br>String s &#x3D; System.getProperty(“user.dir”); &#x2F;&#x2F; 查询当前目录(CWD)<!-- more -->
+File f &#x3D; Utils.join(String s1, String s2); &#x2F;&#x2F;建立一个路径是s1+s2的文件对象<!-- more --></li>
 <li>创建文件夹：<br><code>File d = new File(&quot;Dic&quot;); d.mkdir();</code></li>
-<li>文件读写：<br><code>static void writeContents(File file, Object... contents)</code> - writes out strings&#x2F;byte arrays to a file. The <code>...</code> allows us to use <em>variable arguments</em>, meaning we can call <code>writeContents</code> with any number of arguments. For example, we can call <code>writeContents(outFile, &quot;dog&quot;, &quot;cat&quot;, &quot;mouse&quot;)</code>, and the function <code>writeContents</code> will have access to all three objects we pass in via an array.<br><code>static String readContentsAsString(File file)</code> - reads in a file as a string<br><code>static byte[] readContents(File file)</code> - reads in a file as a byte array</li>
+<li>文件读写：<br><code>static void writeContents(File file, Object... contents)</code> - writes out strings&#x2F;byte arrays to a file. The <code>...</code> allows us to use <em>variable arguments</em>, meaning we can call <code>writeContents</code> with any number of arguments. For example, we can call <code>writeContents(outFile, &quot;dog&quot;, &quot;cat&quot;, &quot;mouse&quot;)</code>, and the function <code>writeContents</code> will have access to all three objects we pass in via an array.<!-- more -->
+<code>static String readContentsAsString(File file)</code> - reads in a file as a string<!-- more -->
+<code>static byte[] readContents(File file)</code> - reads in a file as a byte array<!-- more --></li>
 </ul>
 <p>注意writeContent 是 <strong>覆写</strong>！即c++ 的ios::trunc模式， 如果需要在后续写，需要先readContent， 存下来再一起写回去</p>
+<!-- more -->
+
+
 <ol start="3">
 <li>Serialization in Java<br>前面的操作已经很好的满足了文本操作的需要，但是如何保存非文本对象，比如，一个自定义类的对象？</li>
 </ol>
 <p>这就需要java的序列化机制</p>
 <blockquote>
-<p>Serialization(序列化)：将java对象以一连串的字节保存在磁盘文件中的过程，也可以说是保存java对象状态的过程。序列化可以将数据永久保存在磁盘上(通常保存在文件中)。<br>deserialization(反序列化)：将保存在磁盘文件中的java字节码重新转换成java对象称为反序列化。<br>二、序列化和反序列化的应用<br>两个进程在远程通信时，可以发送多种数据，包括文本、图片、音频、视频等，这些数据都是以二进制序列的形式在网络上传输。<br>java是面向对象的开发方式，一切都是java对象，想要在网络中传输java对象，可以使用序列化和反序列化去实现，发送发需要将java对象转换为字节序列，然后在网络上传送，接收方收到字符序列后，会通过反序列化将字节序列恢复成java对象。<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_62414755/article/details/125886742">https://blog.csdn.net/qq_62414755/article/details/125886742</a></p>
+<p>Serialization(序列化)：将java对象以一连串的字节保存在磁盘文件中的过程，也可以说是保存java对象状态的过程。序列化可以将数据永久保存在磁盘上(通常保存在文件中)。</p>
 </blockquote>
+<!-- more -->
+<p>deserialization(反序列化)：将保存在磁盘文件中的java字节码重新转换成java对象称为反序列化。</p>
+<!-- more -->
+<p>二、序列化和反序列化的应用<br>两个进程在远程通信时，可以发送多种数据，包括文本、图片、音频、视频等，这些数据都是以二进制序列的形式在网络上传输。</p>
+<!-- more -->
+<p>java是面向对象的开发方式，一切都是java对象，想要在网络中传输java对象，可以使用序列化和反序列化去实现，发送发需要将java对象转换为字节序列，然后在网络上传送，接收方收到字符序列后，会通过反序列化将字节序列恢复成java对象。<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_62414755/article/details/125886742">https://blog.csdn.net/qq_62414755/article/details/125886742</a></p>
+<!-- more -->
+
 <p>一个细节：<br>序列化时，只存储了对象的状态，没有存它的方法；</p>
 <p>代码：</p>
 <pre><code>import java.io.Serializable
