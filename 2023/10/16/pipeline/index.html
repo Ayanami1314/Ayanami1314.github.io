@@ -174,7 +174,7 @@
             
             <span class="tag">
                 
-                <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #00a596">入门</a>
+                <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #00bcd4">入门</a>
             </span>
             
             <span class="tag">
@@ -187,7 +187,7 @@
     </div>
     
     <div class="content" v-pre>
-        <p>﻿## 一、为什么要引入流水线<br>pipeline: 同时执行多条指令<br>每一条指令的执行可以分解成多个阶段，<strong>在5级流水RISC-V之中为IF, ID, EXE, MEM和WB</strong>，即</p>
+        <h2 id="一、为什么要引入流水线"><a href="#一、为什么要引入流水线" class="headerlink" title="一、为什么要引入流水线"></a>一、为什么要引入流水线</h2><p>pipeline: 同时执行多条指令<br>每一条指令的执行可以分解成多个阶段，<strong>在5级流水RISC-V之中为IF, ID, EXE, MEM和WB</strong>，即</p>
 <ul>
 <li>instruction fetch</li>
 <li>instruction decode(regfile op &amp; imm-gen)</li>
@@ -195,6 +195,8 @@
 <li>memory operation</li>
 <li>write back(to regfile)<br>下图是一个单周期的数据路径<br><img src="/../imgs/pipeline.png" alt="输入图片说明"></li>
 </ul>
+<span id="more"></span>
+
 <p>有一种提高效率的思想叫流水线pipeline, 在上图之中，一条指令执行的过程中alu只在EXE阶段工作，其他阶段不工作；regfile只在ID阶段工作，其他阶段也不工作。既然要提升效率，自然想到，如何让alu、regfile等所有原件一直工作？类似工厂流水线的模式，alu计算完这一条指令之后立刻计算下一条，而不是等待这一条指令执行完再算。</p>
 <p>先不管实现细节，假设5个阶段需要的时间为100ns，200ns，100ns, 200ns, 200ns, 不使用流水线和超标量技术的情况下，一个时钟周期最多对应一条指令，那么一条指令至少需要800ns</p>
 <p>如果使用流水线技术，将5个阶段统一为200ns，那么我们的时钟周期可以压缩至200ns（我们通过寄存器保存了中间结果，相当于把一条指令“拆”成多条更小的单元，一个时钟周期只需要计算一个单元即可）</p>
