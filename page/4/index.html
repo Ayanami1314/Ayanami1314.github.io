@@ -172,6 +172,77 @@
         
 
 <div class="post">
+    <a href="/2023/10/16/%E6%B8%B8%E6%88%8F%E8%AE%BE%E8%AE%A1%E5%92%8CGAMES101%E5%89%8D%E4%B8%89%E8%AE%B2/">
+        <h2 class="post-title">游戏设计和GAMES101前三讲</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/10/16
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <p>﻿</p>
+<p>今日学习：</p>
+<ol>
+<li>Ball programming:</li>
+</ol>
+<ul>
+<li>screen的本质：一个字符串，screen[y*width+x]，其中每个字符包含了字形（Glyphs，eg. Unicode(w_char)）和颜色（前景和后景,eg, RGB）</li>
+<li>游戏的底层设计<img src="/imgs/2023-06-14/CF28XXYwLipeG2Gq.png" alt="输入图片说明"><br>首先我们需要一个控制台去得到更高的 IO速率和可控的窗口大小(Console)，之后我们需要去创造&#x2F;加载需要的资源（OnUserCreate()）</li>
+</ul>
+<p>在之后是处理计时和用户输入，这部分有个细节就是不绑定“常量时间”——由于不同的程序对电脑的占用实时变化，游戏程序的帧率（fps, frame per second）是实时变化的，所以我们需要通过一个变化的ElapsedTime （两次函数调用之间的绝对时间差）来计算游戏的状态更新，并最后将其输出到显示器</p>
+<p>同时还需要处理用户的输入，这部分引入了虚拟键码的概念，使得软件能够脱离硬件编写，硬件的键位通过厂家的驱动程序（.dll）映射到虚拟键码，软件的编写无需考虑硬件，同时检测的是键的触发（e.g. released(释放), held（拖拽）,click（点击）），不需要IO（游戏底层IO会大大拖慢速度），这是非常重要的一点</p>
+<p>游戏的运行使用线程阻塞来运行无限的时间直到关闭，同时使用线程的计时去处理TIMING 的部分，执行GAME LOOP</p>
+<ul>
+<li>绘图：先实现几个基本的函数，如填充，画线等等。之后我们可以使用基本的线创建一些几何图形，比如三角形，圆形（使用正多边形的像素近似）；一个细节是先画单位圆再放缩</li>
+<li>碰撞检测：采用几何图形而不是像素点之间的关系，对于复杂的图片，也可以将其分割成简单几何图形&#x2F;绘制出碰撞框；</li>
+<li>碰撞检测需要非常注意的一点是，由于帧率等因素，实际程序运行中，不是一碰撞（相切），就能检测到，碰撞的图形需要先分开，再对其抽象几何图形做处理</li>
+<li>性能：能用平方不用开方，能用ID不用检索</li>
+</ul>
+<ol start="2">
+<li>GAMES101 前3讲</li>
+</ol>
+<ul>
+<li><p>什么是图形学（computer graphic, CG）：处理model 2 model和model 2 image， 处理image 2 model和image 2 image的是CV</p>
+</li>
+<li><p>GAME101 包括部分：光栅化成像（3D物体的2D视觉投影），渲染等等</p>
+</li>
+<li><p>坐标变换与齐次矩阵：<br> 剪切、旋转变换R（α），伸缩变换S（x），反射变换（镜面），都可以用矩阵表示<br> 即r’ &#x3D; Mr</p>
+<p>  但是平移变换不行，r’ &#x3D; Mr + r0，破坏了一致性，引入齐次坐标升维， 平移T(tx， ty)可以包含进三维的表示<br>  <img src="/imgs/2023-06-15/a0Uz6mXJE1b6ysNp.png" alt="输入图片说明"><br>  其中p1,p2,p3就是平移量，R是原本的变换矩阵</p>
+<p>  这样不仅能包括平移，还能统一运算，一个点p（x, y, 1）一个向量v（x,y,0）自然满足p-p &#x3D;v,v+-v&#x3D;v, p+p采用拓展定义（x,y,w）&#x3D;(x&#x2F;w,y&#x2F;w,1)也可得物理意义是中点</p>
+<p>  有了矩阵表示之后，我们就可以把复杂的变换拆成简单变换的叠加（对应变换矩阵的不断左乘）,并且可以化简矩阵表示，对一个复杂的变换找到简化的矩阵结构<br>  例如绕c点转90度，可以表示成<br>  M &#x3D; T（c）R(90)T(-c)</p>
+</li>
+</ul>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <i class="fa-solid fa-tags fa-fw"></i>
+        </span>
+        
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #00bcd4">入门</a>
+        </span>
+        
+    </div>
+    <a href="/2023/10/16/%E6%B8%B8%E6%88%8F%E8%AE%BE%E8%AE%A1%E5%92%8CGAMES101%E5%89%8D%E4%B8%89%E8%AE%B2/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
     <a href="/2023/10/16/%E8%BF%9B%E9%98%B6%E7%AE%97%E6%B3%95/">
         <h2 class="post-title">进阶算法</h2>
     </a>
@@ -215,7 +286,7 @@
         
         <span class="tag">
             
-            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #ff7d73">入门</a>
+            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #ffa2c4">入门</a>
         </span>
         
     </div>
