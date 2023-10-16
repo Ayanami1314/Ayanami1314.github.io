@@ -174,12 +174,17 @@
             
             <span class="tag">
                 
-                <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #00a596">入门</a>
+                <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #03a9f4">入门</a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/%E7%AE%97%E6%B3%95/" style="color: #ffa2c4">算法</a>
+                <a href="/tags/%E7%AE%97%E6%B3%95/" style="color: #00bcd4">算法</a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/%E5%91%BD%E4%BB%A4%E8%A1%8C/" style="color: #ffa2c4">命令行</a>
             </span>
             
         </span>
@@ -195,12 +200,9 @@
 <li><p>rotate(first, middle, end)</p>
 </li>
 </ol>
-<pre><code>for (int i=1; i&lt;10; ++i) myvector.push_back(i); // 1 2 3 4 5 6 7 8 9
-&lt;!-- more --&gt;
+<pre><code class="c++">for (int i=1; i&lt;10; ++i) myvector.push_back(i); // 1 2 3 4 5 6 7 8 9
 std::rotate(myvector.begin(),myvector.begin()+3,myvector.end());
-&lt;!-- more --&gt;
                                                   // 4 5 6 7 8 9 1 2 3
-&lt;!-- more --&gt;
 </code></pre>
 <ol start="3">
 <li><p>sort系</p>
@@ -208,17 +210,12 @@ std::rotate(myvector.begin(),myvector.begin()+3,myvector.end());
 <li><p>partition系<br>patition(first, last, cond)<br>重构顺序为，所有满足cond的元素在前，不满足cond的元素在后<br>返回第一个不满足cond的元素的iter</p>
 </li>
 </ol>
-<pre><code>  for (int i=1; i&lt;10; ++i) myvector.push_back(i); // 1 2 3 4 5 6 7 8 9
-&lt;!-- more --&gt;
-
+<pre><code class="c++">  for (int i=1; i&lt;10; ++i) myvector.push_back(i); // 1 2 3 4 5 6 7 8 9
   std::vector&lt;int&gt;::iterator bound;
   bound = std::partition (myvector.begin(), myvector.end(), IsOdd);
-&lt;!-- more --&gt;
-
   // print out content:
   std::cout &lt;&lt; &quot;Odd Elements:&quot;;
   for (std::vector&lt;int&gt;::iterator it=myvector.begin(); it!=bound; ++it)
-&lt;!-- more --&gt;
     std::cout &lt;&lt; &#39; &#39; &lt;&lt; *it;
   std::cout &lt;&lt; &#39;\N&#39;;
 </code></pre>
@@ -226,7 +223,7 @@ std::rotate(myvector.begin(),myvector.begin()+3,myvector.end());
 <li>heap系</li>
 </ol>
 <ul>
-<li>make_heap(first, last, comp)<br>由于make_heap没有返回值是void(没有std::heap)，所以heap系都需要first, last参数,默认最大堆<!-- more --></li>
+<li>make_heap(first, last, comp)<br>由于make_heap没有返回值是void(没有std::heap)，所以heap系都需要first, last参数,默认最大堆</li>
 <li>sort_heap(first, last, comp)</li>
 <li>pop_heap(first, last)</li>
 <li>push_heap(first, last)<br>(或者用priority_queue)</li>
@@ -234,7 +231,7 @@ std::rotate(myvector.begin(),myvector.begin()+3,myvector.end());
 <ol start="7">
 <li>next_permutation<br>下一种组合<br>bool next_permutation(first, last)</li>
 </ol>
-<pre><code>int myInt[3]=&#123;1, 2, 3&#125;;
+<pre><code class="c++">int myInt[3]=&#123;1, 2, 3&#125;;
 do&#123;
    ...
 &#125;while(std::next_permutation(myInt, myInt + 3))
@@ -244,59 +241,36 @@ do&#123;
 </ol>
 <p>组合元素<br>stable_* ：stable_sort, stable_partition…<br>is_*: is_sorted, is_heap…<br>is_*_until: is_sorted_until</p>
 <p>查询：<br>count:<br>accumulate&#x2F;(transform_) reduce(c++17, parellel):<br>inner_product: 内积<br>adajacent_difference:<br>对每个元素和前一个元素进行操作<br>adajacent_difference(first, end, result, binary_op)</p>
-<!-- more -->
 <p>binar_op默认是 now - prev</p>
-<p>sample:<br>    <a target="_blank" rel="noopener" href="http://en.cppreference.com/w/cpp/string/basic_string">std::string</a> in {“ABCDEFGHIJK”}, out;</p>
-<!-- more -->
-<pre><code>std::sample(in.begin(), in.end(), [std::back_inserter](http://en.cppreference.com/w/cpp/iterator/back_inserter)(out), 4,
-</code></pre>
-<!-- more -->
-<pre><code>            [std::mt19937](http://en.cppreference.com/w/cpp/numeric/random/mersenne_twister_engine) &#123;[std::random_device](http://en.cppreference.com/w/cpp/numeric/random/random_device)&#123;&#125;()&#125;);
-</code></pre>
-<!-- more -->
-<pre><code>[std::cout](http://en.cppreference.com/w/cpp/io/cout) &lt;&lt; &quot;Four random letters out of &quot; &lt;&lt; in &lt;&lt; &quot; : &quot; &lt;&lt; out &lt;&lt; &#39;
-</code></pre>
-<!-- more -->
-<p>‘;</p>
+<p>sample:</p>
+<p>​    <a target="_blank" rel="noopener" href="http://en.cppreference.com/w/cpp/string/basic_string">std::string</a> in {“ABCDEFGHIJK”}, out;</p>
+<p>​    std::sample(in.begin(), in.end(), <a target="_blank" rel="noopener" href="http://en.cppreference.com/w/cpp/iterator/back_inserter">std::back_inserter</a>(out), 4,</p>
+<p>​    <a target="_blank" rel="noopener" href="http://en.cppreference.com/w/cpp/numeric/random/mersenne_twister_engine">std::mt19937</a> {<a target="_blank" rel="noopener" href="http://en.cppreference.com/w/cpp/numeric/random/random_device">std::random_device</a>{}()});<br>​    <a target="_blank" rel="noopener" href="http://en.cppreference.com/w/cpp/io/cout">std::cout</a> &lt;&lt; “Four random letters out of “ &lt;&lt; in &lt;&lt; “ : “ &lt;&lt; out &lt;&lt; ‘’;</p>
 <p>all_of, any_of, none_of： bool all_of(first, last, cond)</p>
-<!-- more -->
-
 <p>equal:<br>mismatch:  return the mismatch iter pair&lt;iter, iter&gt;</p>
-<!-- more -->
-
 <p>find(not sorted): return iter</p>
 <p>equal_range(sorted):  get subrange of equal elements(upper and lower), return pair&lt;iter, iter&gt;</p>
-<!-- more -->
-
 <p>search(subrange in big range):</p>
 <p>集合：<br>set_difference:<br>set_intersection:<br>set_union:<br>includes:<br>merge:</p>
 <p>copy_backwards:<br>fill:<br>fill_n: 填充从begin_iter开始的n个元素<br>fill_n(v.begin(), 5, ‘c’); &#x2F;&#x2F;正向<br>fill_n(std::back_inserter(v), 5, ‘c’); &#x2F;&#x2F;逆向</p>
-<p>generate:<br>iota: 赋值一个递增序列<br>int number[10];<br>std::iota(number, number+10, 100);</p>
-<!-- more -->
-<p>&#x2F;&#x2F; number: 100-109</p>
-<!-- more -->
-<p>replace:<br>remove&#x2F;unique:<br>transform&#x2F;for_each: 类似map in java, transform支持二元</p>
-<p>gdb: </p>
-<ol>
-<li>TUI mode</li>
-<li>inner python</li>
-<li>reverse-debug</li>
+<p>generate:<br>iota: 赋值一个递增序列<br>int number[10];<br>std::iota(number, number+10, 100);<br>&#x2F;&#x2F; number: 100-109<br>replace:<br>remove&#x2F;unique:<br>transform&#x2F;for_each: 类似map in java, transform支持二元</p>
+<h3 id="gdb"><a href="#gdb" class="headerlink" title="gdb:"></a>gdb:</h3><ol>
+<li><strong>TUI mode</strong></li>
+<li><strong>inner python</strong></li>
+<li><strong>reverse-debug</strong></li>
 </ol>
-<p>gdb tui:</p>
-<p>输入tui enable或 ctrl-X A启动, tui disable关闭</p>
+<h4 id="gdb-tui"><a href="#gdb-tui" class="headerlink" title="gdb tui:"></a>gdb tui:</h4><p>输入tui enable或 ctrl-X A启动, tui disable关闭</p>
 <p>当出现错误时，输入control + L 刷新屏幕</p>
 <p>Ctrl-X 2：切换到汇编窗格</p>
 <p>tui reg all:看寄存器</p>
 <p>tui模式下上下一条命令 CTRL+ p &#x2F; n</p>
-<p>执行python代码：</p>
-<p>第一种 source script.py 执行外部代码</p>
+<h4 id="执行python代码："><a href="#执行python代码：" class="headerlink" title="执行python代码："></a>执行python代码：</h4><p>第一种 source script.py 执行外部代码</p>
 <p>第二种 使用内嵌python模块</p>
 <p>（gdb）python</p>
 <p>&gt;…(code)</p>
 <p>&gt; end (结束标识符)</p>
 <p>输入record启用record模式的情况下才能使用 rs</p>
-<p>反向调试： reverse-step i 反向i步 （rs i）</p>
-<p>概率性错误，可以设两个断点，使用command语句</p>
+<h4 id="反向调试：-reverse-step-i-反向i步-（rs-i）"><a href="#反向调试：-reverse-step-i-反向i步-（rs-i）" class="headerlink" title="反向调试： reverse-step i 反向i步 （rs i）"></a>反向调试： reverse-step i 反向i步 （rs i）</h4><p>概率性错误，可以设两个断点，使用command语句</p>
 <p>例如 exit断点1：</p>
 <p>command 1</p>
 <p>record</p>

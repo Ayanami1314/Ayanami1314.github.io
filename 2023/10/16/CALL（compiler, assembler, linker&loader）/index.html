@@ -174,12 +174,12 @@
             
             <span class="tag">
                 
-                <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #ff7d73">入门</a>
+                <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #03a9f4">入门</a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/%E7%BB%84%E6%88%90%E7%BB%93%E6%9E%84/" style="color: #00a596">组成结构</a>
+                <a href="/tags/%E7%BB%84%E6%88%90%E7%BB%93%E6%9E%84/" style="color: #ffa2c4">组成结构</a>
             </span>
             
         </span>
@@ -188,30 +188,20 @@
     
     <div class="content" v-pre>
         <p>﻿</p>
-<ol>
-<li>diff from Intepreter and compiler<br>Interpreter 高级语言–&gt;高级语言<br>compiler 高级语言–&gt;机器码&#x2F;汇编（包含很多的优化）</li>
-<li>C flow<br>CALL chain<br>.c–&gt;compiler–&gt;.s<br>.s–&gt;assember(translate pesudo instruction)–&gt;.o(object file)<span id="more"></span></li>
-</ol>
-<p>.o –&gt;linker(.a static lib)–&gt;可执行文件<br>.exe–&gt;loader(加载进内存)–&gt;输出<br>(如果使用动态库，link只使用动态库.so解析符号表, 具体的动态库代码、数据不放入.exe的.text 和 .data段之中， 剩下一部分的link放在load的时候执行)</p>
-<!-- more -->
+<h4 id="diff-from-Intepreter-and-compiler"><a href="#diff-from-Intepreter-and-compiler" class="headerlink" title="diff from Intepreter and compiler"></a>diff from Intepreter and compiler</h4><p>Interpreter 高级语言–&gt;高级语言<br>compiler 高级语言–&gt;机器码&#x2F;汇编（包含很多的优化）</p>
+<h4 id="C-flow"><a href="#C-flow" class="headerlink" title="C flow"></a>C flow</h4><p>CALL chain<br>.c–&gt;compiler–&gt;.s<br>.s–&gt;assember(translate pesudo instruction)–&gt;.o(object file)</p>
+<span id="more"></span>
 
-<ol start="3">
-<li>compiler:<br>lexer: 词法分析器，把输入<br>int foo(int a, double b){<br>}<br>拆成一系列的token, 比如 “int” “foo” “（”</li>
-</ol>
+<p>.o –&gt;linker(.a static lib)–&gt;可执行文件<br>.exe–&gt;loader(加载进内存)–&gt;输出<br>(如果使用动态库，link只使用动态库.so解析符号表, 具体的动态库代码、数据不放入.exe的.text 和 .data段之中， 剩下一部分的link放在load的时候执行)</p>
+<h4 id="compiler"><a href="#compiler" class="headerlink" title="compiler:"></a>compiler:</h4><p>lexer: 词法分析器，把输入<br>int foo(int a, double b){<br>}<br>拆成一系列的token, 比如 “int” “foo” “（”</p>
 <p>然后通过构建好的语法树parse tree进行语义分析 </p>
-<p>assember: 翻译汇编伪指令，将所有指令转换成机器码<br>机器码之中还附带了一些信息<br>.header : 一些程序信息，如大小等<br>.text 代码段<br>.data 静态和全局变量<br>debug info 调试信息<br>relocation table 重定位表，列出了所有assembler不能解决，需要重定位的东西（比如malloc的地址）</p>
-<!-- more -->
+<h4 id="assember-翻译汇编伪指令，将所有指令转换成机器码"><a href="#assember-翻译汇编伪指令，将所有指令转换成机器码" class="headerlink" title="assember: 翻译汇编伪指令，将所有指令转换成机器码"></a>assember: 翻译汇编伪指令，将所有指令转换成机器码</h4><p>机器码之中还附带了一些信息<br>.header : 一些程序信息，如大小等<br>.text 代码段<br>.data 静态和全局变量<br>debug info 调试信息<br>relocation table 重定位表，列出了所有assembler不能解决，需要重定位的东西（比如malloc的地址）</p>
 <p>symbol table 符号表， 列出了本代码之中的符号</p>
 <p>assember 顺带的把j label的label和branch 的 label 变成PC-relative address</p>
-<!-- more -->
 <p>这样这些东西就不需要被linker和loader修改</p>
-<p>linker<br><img src="/imgs/2023-08-10/4xfuJRjN50LlxKY2.png" alt="输入图片说明"><br>整合代码段、数据段信息<br>重定位外部函数和静态、全局变量<br>（遍历整个relocation table,先在symbol table里面找，如果没有，再到外部lib里面找，找到了之后使用绝对的地址替换之）</p>
-<!-- more -->
+<h4 id="linker"><a href="#linker" class="headerlink" title="linker"></a>linker</h4><p><img src="/..%5Cimgs%5Clinker.png"><br>整合代码段、数据段信息<br>重定位外部函数和静态、全局变量<br>（遍历整个relocation table,先在symbol table里面找，如果没有，再到外部lib里面找，找到了之后使用绝对的地址替换之)</p>
 <p>linker 假定程序均从0x40000000开始，这体现了虚拟内存的概念，load进内存的时候还要改变程序的一些绝对地址</p>
-<!-- more -->
-
-<p>in reality, loader is OS</p>
-<p>loader干什么：</p>
+<h4 id="in-reality-loader-is-OS"><a href="#in-reality-loader-is-OS" class="headerlink" title="in reality, loader is OS"></a><em><strong>in reality, loader is OS</strong></em></h4><p>loader干什么：</p>
 <ol>
 <li>读取linker产生的executable的文件的信息，包括大小等，为它分配一段空间</li>
 <li>copy 数据和程序到空间之中</li>

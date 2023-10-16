@@ -174,12 +174,12 @@
             
             <span class="tag">
                 
-                <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #00bcd4">入门</a>
+                <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #ff7d73">入门</a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/%E7%AE%97%E6%B3%95/" style="color: #00a596">算法</a>
+                <a href="/tags/%E7%AE%97%E6%B3%95/" style="color: #03a9f4">算法</a>
             </span>
             
         </span>
@@ -187,18 +187,17 @@
     </div>
     
     <div class="content" v-pre>
-        <p>﻿ 1. 文本相似度分析：</p>
-<ul>
-<li><p>方法一：先统计出一篇文章内的词频，得到词频向量<br>余弦相似度&#x2F;欧式&#x2F;曼哈顿距离&#x2F;Jacard距离<br>缺点：算得慢，分辨度不算高</p>
+        <h3 id="文本相似度分析："><a href="#文本相似度分析：" class="headerlink" title="文本相似度分析："></a>文本相似度分析：</h3><ul>
+<li><p>方法一：先统计出一篇文章内的词频，<strong>得到词频向量</strong><br><strong>余弦相似度&#x2F;欧式&#x2F;曼哈顿距离&#x2F;Jacard距离</strong><br>缺点：算得慢，分辨度不算高</p>
+<span id="more"></span>
 </li>
-<li><p>方法二：<br>对于大量的文章，simhash（相似度哈希），将每个词映射到64位hash, 0变成-1后加权求和，再让大于0的为1，小于0的为0，得到了一篇文章的hash<br>两篇文章的hash code 取个异或就得到了其汉明距离，由距离可算相似度<br>优点：快，分辨度非常高<br>这种算法也可以和抽特征词结合，英文直接做词频统计（TF-IDF之类）+堆排 nlogn时间。中文可以先用n-gram（一个n个字宽的滑动窗口）取词，再同理。对于长文章，这种做法准确率也不低，并且快</p>
+<li><p>方法二：<br><strong>对于大量的文章</strong>，<strong>simhash（相似度哈希）</strong>，将每个词映射到64位hash, 0变成-1后加权求和，再让大于0的为1，小于0的为0，得到了一篇文章的hash<br>两篇文章的hash code 取个异或就得到了其汉明距离，由距离可算相似度<br>优点：快，分辨度非常高<br>这种算法也可以和抽特征词结合，英文直接做词频统计（TF-IDF之类）+堆排 nlogn时间。中文可以先用n-gram（一个n个字宽的滑动窗口）取词，再同理。对于长文章，这种做法准确率也不低，并且快</p>
 </li>
-<li><p>方法三：Levenshtein 距离(Levenshtein Distance)最小编辑距离<br> 动态规划<br><img src="/imgs/2023-07-12/hEsPUfado50ooCHo.png" alt="输入图片说明"><br>类似的方法还有最长公共子序列(LCS）（子序列可以不连续）</p>
+<li><p>方法三：Levenshtein 距离(Levenshtein Distance)最小编辑距离<br> 动态规划<br><img src="/../imgs/%E6%9C%80%E5%B0%8F%E7%BC%96%E8%BE%91%E8%B7%9D%E7%A6%BB.png" alt="输入图片说明"><br>类似的方法还有最长公共子序列(LCS）（子序列可以不连续)</p>
 </li>
 </ul>
-<ol start="2">
-<li>倒排索引（inverted index）<br> 例：文档检索，从文档————&gt;包含的内容反向建立一个特定的内容（词等）————&gt;哪些文档里包含</li>
-</ol>
+<h3 id="倒排索引（inverted-index）"><a href="#倒排索引（inverted-index）" class="headerlink" title="倒排索引（inverted index）"></a>倒排索引（inverted index）</h3><p>例：文档检索，从文档————&gt;包含的内容</p>
+<p>反向建立               特定的内容（词等）————&gt;哪些文档里包含 的映射</p>
 
     </div>
     

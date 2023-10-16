@@ -174,7 +174,7 @@
             
             <span class="tag">
                 
-                <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #00a596">入门</a>
+                <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #00bcd4">入门</a>
             </span>
             
             <span class="tag">
@@ -187,29 +187,48 @@
     </div>
     
     <div class="content" v-pre>
-        <p>linux 命令拓展</p>
-<p>whatis: 简述man</p>
-<p>whereis:列出所有， which 是一个</p>
-<p>curl [url] &gt; somefile：从url下载到somefile</p>
-<p>find [root dir] -name “name(可包含通配符)”</p>
-<p>eg find .&#x2F; -name “prefix*”</p>
-<p>find . -perm &#x2F;a&#x3D;x 找到可执行文件</p>
-<p>chmod +x [filename]让此文件可执行</p>
-<p>ip address | grep eth0: 只看以太网0的ip地址</p>
-<p>看dns</p>
-<p>resolvectl status</p>
-<p>ping [website, eg <a href="http://www.google.com]">www.google.com]</a> ctl+c 退出</p>
-<p>free：看内存</p>
-<p>df -H: 看可用空间</p>
-<p>ps -aux：看详细进程</p>
-<p>ps -aux | grep [programName] 找到pid，然后可以kill pid</p>
-<p>或者 pkill -f [program name]</p>
-<p>time .&#x2F;a.out计时</p>
-<p>现代linux工具（参见tldr）</p>
-<p>如果出现找不到包的问题，或许</p>
-<pre><code> 1. 换成阿里源
- 2. 使用aptitude 替代apt
-</code></pre>
+        <h3 id="linux-命令拓展"><a href="#linux-命令拓展" class="headerlink" title="linux 命令拓展"></a>linux 命令拓展</h3><ul>
+<li><p>whatis: 简述man</p>
+</li>
+<li><p>whereis:列出所有， which 是一个</p>
+</li>
+<li><p>curl [url] &gt; somefile：从url下载到somefile</p>
+</li>
+<li><p>find [root dir] -name “name(可包含通配符)”</p>
+</li>
+</ul>
+<p>​       eg find .&#x2F; -name “prefix*”</p>
+<ul>
+<li><p>find . -perm &#x2F;a&#x3D;x 找到可执行文件</p>
+</li>
+<li><p>chmod +x [filename]让此文件可执行</p>
+</li>
+</ul>
+<span id="more"></span>
+
+<ul>
+<li><p>ip address | grep eth0: 只看以太网0的ip地址</p>
+</li>
+<li><p>看dns：resolvectl status</p>
+</li>
+<li><p>ping [website, eg <a href="http://www.google.com]">www.google.com]</a> ctl+c 退出</p>
+</li>
+<li><p>free：看内存</p>
+</li>
+<li><p>df -H: 看可用空间</p>
+</li>
+<li><p>ps -aux：看详细进程</p>
+</li>
+<li><p>ps -aux | grep [programName] 找到pid，然后可以kill pid或者 pkill -f [program name]</p>
+</li>
+<li><p>time .&#x2F;a.out计时</p>
+</li>
+</ul>
+<h3 id="现代linux工具（参见tldr）"><a href="#现代linux工具（参见tldr）" class="headerlink" title="现代linux工具（参见tldr）"></a>现代linux工具（参见tldr）</h3><p><u>如果出现找不到包的问题，或许</u></p>
+<ol>
+<li><u>换成阿里源</u></li>
+<li><u>使用aptitude 替代apt</u></li>
+</ol>
 <p>会有帮助</p>
 <p>bat: cat的高级替代</p>
 <p><strong>由于sbin有个包定义了bat，所以改成了batcat</strong></p>
@@ -217,8 +236,6 @@
 <p>batcat …</p>
 </blockquote>
 <p>fd：更简单的find(<strong>注意是fd-find 不是fdclone!</strong>  sudo ln -s $(which fdfind) &#x2F;usr&#x2F;bin&#x2F;fd   )</p>
-<span id="more"></span>
-
 <p>fd + [string（support regex）]</p>
 <p>fd [str] –e（extension) txt 只寻找txt文件</p>
 

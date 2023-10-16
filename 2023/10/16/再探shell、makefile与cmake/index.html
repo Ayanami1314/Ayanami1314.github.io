@@ -174,7 +174,7 @@
             
             <span class="tag">
                 
-                <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #ff7d73">入门</a>
+                <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #ffa2c4">入门</a>
             </span>
             
         </span>
@@ -182,46 +182,40 @@
     </div>
     
     <div class="content" v-pre>
-        <p>﻿</p>
-<h1 id="shell"><a href="#shell" class="headerlink" title="shell"></a>shell</h1><h3 id="一些命令："><a href="#一些命令：" class="headerlink" title="一些命令："></a>一些命令：</h3><p>管道和重定向：<br>例：ls | grep “bulid”<br> x | y： 将x的输出通过“管道”传递给y，作为y的输入<br> 上述指令的意思：寻找ls的内容之中和“build”匹配的部分</p>
+        <h1 id="shell"><a href="#shell" class="headerlink" title="shell"></a>shell</h1><h3 id="一些命令："><a href="#一些命令：" class="headerlink" title="一些命令："></a>一些命令：</h3><p>管道和重定向：<br>例：ls | grep “bulid”<br> x | y： 将x的输出通过“管道”传递给y，作为y的输入<br> 上述指令的意思：寻找ls的内容之中和“build”匹配的部分</p>
 <p>如果想要持久化操作的结果的话，需要将内容保存到文件之中，这样的操作就是重定向</p>
 <p>x &gt; y， 将x的结果作为输出，重定向到y（类似写入）command-&gt;file<br>x &lt; y， 将y的内容重定向到x</p>
-<p>例：<br>ls &gt; ls_out<br>grep “build” &lt; ls_out</p>
+<p>例：<br><code>ls &gt; ls_out</code><br><code>grep &quot;build&quot; &lt; ls_out</code></p>
 <p>效果与上面相同<br><strong>Tips:stdin默认是0，stdout默认是1，stderr默认是2， 如果要重定向stderr需要显式指定2: err_command 2 &gt; err_file</strong></p>
 <span id="more"></span>
 
 <p>一些新的命令：<br>touch（创建文件），less（文件太长看少一点的cat）<br>ln<br>ln -s <source_file> <target_file>:软链接，类似win创建快捷键？在target_file处产生了一个指向source_file的东西，不产生拷贝</p>
-<!-- more -->
-
 <p>ln <source_file> <target_file>：硬链接，在target_file处产生source_file的一个备份，同步更新，占用实际空间，source_file删除之后能独立存在</p>
-<!-- more -->
-
 <p>sort： 排序<br>wc（word count）：统计行数、字数、字节数</p>
 <p>ag + “sth” 打印所有包含sth的内容<br>support regex, 可以模糊查找<br>如ag “*.java”</p>
-<p>awk: 类c语言快速数据处理<br><img src="/imgs/2023-07-25/zS75kfCmrbb889eC.png" alt="输入图片说明"><br>拿到指令，接受什么参数</p>
+<p>awk: 类c语言快速数据处理</p>
 <p>sed 文字处理和编辑<br>做文字匹配和取文字之类</p>
 <p>：遇事不决 -help –help</p>
-<h3 id="其他："><a href="#其他：" class="headerlink" title="其他："></a>其他：</h3><p>.sh 文件：就是文本文件，内容是一堆shell指令<br>支持局部变量，类似makefile</p>
+<h3 id="其他："><a href="#其他：" class="headerlink" title="其他："></a>其他：</h3><p>.sh 文件：就是文本文件，内容是一堆shell指令 chmod +x<br>支持局部变量，类似makefile</p>
 <pre><code>year=2023   # 注意不能有空格
 echo &quot;$&#123;year&#125;&quot;
 </code></pre>
 <p>$0, $1, $2… 传进来的command参数<br><code>year=$0</code><br><code>echo &quot;\$&#123;year&#125;&quot;</code><br>支持循环和函数（语法略有不同）<br>bash + &lt;xxx.sh&gt;就可以直接运行</p>
 <p><strong>只有真正被反复用到的知识才是最有用的知识，记Guide即可，即用即查</strong></p>
 <p>例：</p>
-<pre><code>exp_times=100
-&lt;!-- more --&gt;
+<pre><code class="bash">exp_times=100
 result_file=temp_result
 echo &quot;&quot; &gt; result_file
 for i in &quot;seq 1 $&#123;exp_times&#125;&quot;
 do
-    run exp_run.sh | sed -n &quot;2 p&quot; | awk &quot;print $2&quot; &gt;&gt; $&#123;resuly_file&#125;
-&lt;!-- more --&gt;
+    run exp_run.sh | sed -n &quot;2 p&quot; | awk &quot;print $2&quot; &gt;&gt; $&#123;result_file&#125;
 done
 awk &quot;BEGIN &#123;cnt=0&#125; &#123;sum+=$1;cnt++;&#125; END&#123;print sum/cnt&#125; $result_file
-&lt;!-- more --&gt;
 </code></pre>
-<h1 id="makefile基础"><a href="#makefile基础" class="headerlink" title="makefile基础"></a>makefile基础</h1><p>makefile 基础模式：<br>target: dependancy<br>    (前一个)</p>
-<h1 id="cmake基础"><a href="#cmake基础" class="headerlink" title="cmake基础"></a>cmake基础</h1>
+<h1 id="makefile基础"><a href="#makefile基础" class="headerlink" title="makefile基础"></a>makefile基础</h1><p>makefile 基础模式：<br>target: dependancy<br>(tab)command</p>
+<p>其余参加 陈皓《和我一起写makefile》</p>
+<h1 id="cmake基础"><a href="#cmake基础" class="headerlink" title="cmake基础"></a>cmake基础</h1><p>待补充</p>
+
     </div>
     
     

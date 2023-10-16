@@ -174,7 +174,7 @@
             
             <span class="tag">
                 
-                <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #00bcd4">入门</a>
+                <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #ffa2c4">入门</a>
             </span>
             
             <span class="tag">
@@ -184,7 +184,7 @@
             
             <span class="tag">
                 
-                <a href="/tags/%E5%B9%B6%E5%8F%91/" style="color: #00bcd4">并发</a>
+                <a href="/tags/%E5%B9%B6%E5%8F%91/" style="color: #ff7d73">并发</a>
             </span>
             
         </span>
@@ -194,14 +194,13 @@
     <div class="content" v-pre>
         <p>﻿并发：多协程、多线程、多进程、多机器</p>
 <p>任务：IO密集和cpu密集<br>IO密集：数据库、文件读写等<br>cpu密集： 计算密集</p>
-<p>多线程：单cpu，目的是io和cpu分离并行执行，适用于io密集，内存开销比多进程少</p>
+<p>多线程：单cpu（<strong>前提：python GIL锁</strong>），目的是io和cpu分离并行执行，适用于io密集，内存开销比多进程少</p>
 <p>多进程：多cpu，目的是多cpu并行计算，适用于cpu密集，内存开销大</p>
 <h2 id="线程threading库"><a href="#线程threading库" class="headerlink" title="线程threading库"></a>线程threading库</h2><p>t &#x3D; threading.Thread(target&#x3D;func, args&#x3D;(…))<br>t.start()  # 开始线程，执行func<br>t.join()  # 等待线程结束</p>
 <p>例 </p>
-<pre><code>threads = []
+<pre><code class="python">threads = []
 for _ in range(count):
     thread = threading.Thread(target = f, args=(...))
-&lt;!-- more --&gt;
     threads.append(thread)
 for thread in threads:
     thread.start()
@@ -209,15 +208,13 @@ for thread in threads:
     thread.join()
 </code></pre>
 <p>如果多个线程之间存在共享资源<br>需要加锁，<br>lock &#x3D; threading.Lock()给需要线程独占的运行函数f套上with lock:</p>
-<p>当对一个类的某个方法加锁的时候，需要在__init__上锁self.lock &#x3D; threading.Lock()</p>
-<span id="more"></span>
-<p>在方法调用之中<br>with self.lock：<br>而不是直接在方法调用之中创建lock, 这样无法保证创建lock与线程切换的顺序</p>
+<p>当对一个类的某个方法加锁的时候，需要在__init__上锁self.lock &#x3D; threading.Lock()<br>在方法调用之中<br>with self.lock：<br>而不是直接在方法调用之中创建lock, 这样无法保证创建lock与线程切换的顺序</p>
 <hr>
 <h3 id="生产者-消费者模型："><a href="#生产者-消费者模型：" class="headerlink" title="生产者-消费者模型："></a>生产者-消费者模型：</h3><p>以爬虫为例：<br>生产者线程get网络资源，存储到任务序列之中<br>消费者线程取出任务序列的值，存储到目标文件</p>
-<h2 id="任务序列-queue-Queue例buffer-queue-Queue-maxsize-10-def-producer-item-buffer-put-item-def-consumer-while-True-item-buffer-get-do-something"><a href="#任务序列-queue-Queue例buffer-queue-Queue-maxsize-10-def-producer-item-buffer-put-item-def-consumer-while-True-item-buffer-get-do-something" class="headerlink" title="任务序列 queue.Queue例buffer = queue.Queue(maxsize = 10) def producer():     item = ...;     buffer.put(item) def consumer():     while(True):         item = buffer.get()         # do something"></a>任务序列 queue.Queue<br>例<br><code>buffer = queue.Queue(maxsize = 10) def producer():     item = ...;     buffer.put(item) def consumer():     while(True):         item = buffer.get()         # do something</code></h2><h3 id="线程池："><a href="#线程池：" class="headerlink" title="线程池："></a>线程池：</h3><p><img src="/imgs/2023-09-11/xSgp09GLbuwTaiLI.png" alt="输入图片说明"></p>
-<pre><code>from concurrent.futures import ThreadPoolExetutor
+<h2 id="任务序列-queue-Queue例python-buffer-queue-Queue-maxsize-10-def-producer-item-buffer-put-item-def-consumer-while-True-item-buffer-get-do-something"><a href="#任务序列-queue-Queue例python-buffer-queue-Queue-maxsize-10-def-producer-item-buffer-put-item-def-consumer-while-True-item-buffer-get-do-something" class="headerlink" title="任务序列 queue.Queue例python buffer = queue.Queue(maxsize = 10) def producer():     item = ...;     buffer.put(item) def consumer():     while(True):         item = buffer.get()         # do something "></a>任务序列 queue.Queue<br>例<br><code>python buffer = queue.Queue(maxsize = 10) def producer():     item = ...;     buffer.put(item) def consumer():     while(True):         item = buffer.get()         # do something </code></h2><h3 id="线程池："><a href="#线程池：" class="headerlink" title="线程池："></a>线程池：</h3><p><img src="/../imgs/%E7%BA%BF%E7%A8%8B%E6%B1%A0.png" alt="输入图片说明"></p>
+<pre><code class="python">from concurrent.futures import ThreadPoolExetutor
 with concurrent.futures.ThreadPoolExetutor as pool:
-&lt;!-- more --&gt;
+
     tasks = [...]
     results = pool.map(func, tasks)
     for res in results:

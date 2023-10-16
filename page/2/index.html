@@ -172,51 +172,6 @@
         
 
 <div class="post">
-    <a href="/2023/10/16/c-memory-management%E3%80%81gdb%E3%80%81IEEE754/">
-        <h2 class="post-title">c-memory-management、gdb、IEEE754</h2>
-    </a>
-    <div class="category-and-date">
-        
-        <span class="date">
-            <span class="icon">
-                <i class="fa-solid fa-calendar fa-fw"></i>
-            </span>
-            2023/10/16
-        </span>
-        
-        
-    </div>
-    <div class="description">
-        <div class="content" v-pre>
-            
-            <p>C的内存管理机制：<br>一、概览<br>对多程序同时并行：虚拟内存<br>对其中一个程序：<br>stack, heap</p>
-<p>function + local var –&gt; stack<br>last in, first out<br>函数不断调用<br>funcA<br>var in funA<br>    func B<br>    var in funB<br>        funC<br>        …<br>当函数return的时候回收stack 空间<br>（因而返回一个local var的指针是错误的，相当于在stack上占了一个位置，这个位置此时也没有东西了；free一个stack上的变量也是错误的）</p>
-            
-        </div>
-    </div>
-    <div class="post-tags">
-        
-        <span class="icon">
-            <i class="fa-solid fa-tags fa-fw"></i>
-        </span>
-        
-        
-        
-        <span class="tag">
-            
-            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #03a9f4">入门</a>
-        </span>
-        
-        <span class="tag">
-            
-            <a href="/tags/%E7%BB%84%E6%88%90%E7%BB%93%E6%9E%84/" style="color: #ffa2c4">组成结构</a>
-        </span>
-        
-    </div>
-    <a href="/2023/10/16/c-memory-management%E3%80%81gdb%E3%80%81IEEE754/" class="go-post">阅读全文</a>
-</div>
-
-<div class="post">
     <a href="/2023/10/16/cache/">
         <h2 class="post-title">cache</h2>
     </a>
@@ -234,7 +189,7 @@
     <div class="description">
         <div class="content" v-pre>
             
-            <p>2.cache<br>2.1）SRAM, DRAM，闪存和磁盘<br>速度逐渐减慢，成本逐渐降低<br>原理：</p>
+            <h2 id="2-cache"><a href="#2-cache" class="headerlink" title="2.cache"></a>2.cache</h2><h3 id="2-1）SRAM-DRAM，闪存和磁盘"><a href="#2-1）SRAM-DRAM，闪存和磁盘" class="headerlink" title="2.1）SRAM, DRAM，闪存和磁盘"></a>2.1）SRAM, DRAM，闪存和磁盘</h3><p>速度逐渐减慢，成本逐渐降低<br>原理：</p>
 <p>SRAM：一组<strong>直接接外接电源</strong>的触发器电路（这意味着功耗和对电源的极高稳定性要求，断电立即丢失数据），因而不需要刷新操作，速度快</p>
             
         </div>
@@ -249,12 +204,12 @@
         
         <span class="tag">
             
-            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #00bcd4">入门</a>
+            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #ffa2c4">入门</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/%E7%BB%84%E6%88%90%E7%BB%93%E6%9E%84/" style="color: #ff7d73">组成结构</a>
+            <a href="/tags/%E7%BB%84%E6%88%90%E7%BB%93%E6%9E%84/" style="color: #03a9f4">组成结构</a>
         </span>
         
     </div>
@@ -279,12 +234,11 @@
     <div class="description">
         <div class="content" v-pre>
             
-            <p>cs61a踩过的坑</p>
-<p>\1.   Git Bash 无法构建python 环境：</p>
+            <h3 id="cs61a踩过的坑"><a href="#cs61a踩过的坑" class="headerlink" title="cs61a踩过的坑"></a>cs61a踩过的坑</h3><p>\1.   Git Bash 无法构建python 环境：</p>
 <p>不要打 python 打 python -i(如果命令行里python –version 有用就行)</p>
-<p>\2.   python 命令行不是c++ 编译器，不要老是按着shift, shift+数字看起来没区别，但会报错</p>
+<p>\2.   python 命令行不是c++ 编译器，**<u>不要老是按着shift</u>**, shift+数字看起来没区别，但会报错</p>
 <p>\3.   改代码的lab&#x2F;project之类，用pycharm 打开对应的.py文件</p>
-<p>\4.   需要输入多行答案，windows 换行 ctrl+enter</p>
+<p>\4.   <strong>需要输入多行答案，windows 换行 ctrl+enter</strong></p>
 <p>\5.   Ctrl+上箭头 复制上一次命令行代码</p>
 
             
@@ -305,7 +259,7 @@
         
         <span class="tag">
             
-            <a href="/tags/%E7%BB%8F%E9%AA%8C/" style="color: #ffa2c4">经验</a>
+            <a href="/tags/%E7%BB%8F%E9%AA%8C/" style="color: #ff7d73">经验</a>
         </span>
         
     </div>
@@ -330,42 +284,7 @@
     <div class="description">
         <div class="content" v-pre>
             
-            <p>﻿</p>
-<ol>
-<li><p>git bash</p>
-</li>
-<li><p>$git clone +url 下载别人的项目</p>
-</li>
-<li><p>$git init 在当前目录文件夹新建一个git仓库</p>
-</li>
-<li><p>$git add name （前提有仓库）跟踪某个文件</p>
-</li>
-<li><p>$git rm name 删除</p>
-</li>
-<li><p>$git rm –cache name 不被跟踪但不删除</p>
-</li>
-<li><p>修改完一个文件 再次$git add file-name 把它设置为缓存状态</p>
-</li>
-<li><p>$git reset HEAD file-name 取消缓存状态</p>
-</li>
-<li><p>通过$git commit 提交此次修改</p>
-</li>
-<li><p>$ git commit -m “对本次修改的一些注释” </p>
-</li>
-<li><p>$git status 看文件状态</p>
-</li>
-<li><p>$git diff 查看细节的修改位置</p>
-</li>
-<li><p>$git log 查看提交历史</p>
-</li>
-<li><p>远程仓库 remote<br>$ git remote add name(你起的名字) +url<br>$ git remote rename …改名<br>$git push 仓库名字 分支， 提交代码（需要github令牌）</p>
-</li>
-</ol>
-<p>另一种：ssh协议，相对复杂</p>
-<ol start="15">
-<li><p>分支，存放git对象的一个哈希值，类似指向不同版本文件的指针<br>初始会自动新建分支master</p>
-</li>
-<li><p>查看分支 $git branch –list<img src="/imgs/2023-04-24/K1ZGce3Jm7PUh3Xl.png" alt="输入图片说明"></p>
+            <p>看learning git branch</p>
             
         </div>
     </div>
@@ -379,12 +298,12 @@
         
         <span class="tag">
             
-            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #ffa2c4">入门</a>
+            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #00bcd4">入门</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/%E5%91%BD%E4%BB%A4%E8%A1%8C/" style="color: #ff7d73">命令行</a>
+            <a href="/tags/%E5%91%BD%E4%BB%A4%E8%A1%8C/" style="color: #ffa2c4">命令行</a>
         </span>
         
     </div>
@@ -409,8 +328,7 @@
     <div class="description">
         <div class="content" v-pre>
             
-            <ol>
-<li>java的编译（多文件编译，main文件在package 之中的特殊情况），命令行参数（特殊：包含引号的参数 ）
+            <h4 id="1-java的编译"><a href="#1-java的编译" class="headerlink" title="1. java的编译"></a>1. java的编译</h4><p>（多文件编译，main文件在package 之中的特殊情况），命令行参数（特殊：包含引号的参数 ）</p>
             
         </div>
     </div>
@@ -424,12 +342,12 @@
         
         <span class="tag">
             
-            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #ff7d73">入门</a>
+            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #03a9f4">入门</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/java/" style="color: #03a9f4">java</a>
+            <a href="/tags/java/" style="color: #00bcd4">java</a>
         </span>
         
     </div>
@@ -455,10 +373,7 @@
         <div class="content" v-pre>
             
             <p>一个写完了streamlit的demo<br>第二个写完了deque，积累了一些写API和测试的经验</p>
-<p>java 语法和收获：</p>
-<ol>
-<li>随机测试非常好用，对应java就是StdRandom库</li>
-<li>java的接口机制 interface 有点类似c++的抽象类，继承接口的需要Override所有的接口函数声明（接口里面只写声明）（最好显式@Override）
+<h3 id="java-语法和收获："><a href="#java-语法和收获：" class="headerlink" title="java 语法和收获："></a>java 语法和收获：</h3><h4 id="1-随机测试非常好用，对应java就是StdRandom库"><a href="#1-随机测试非常好用，对应java就是StdRandom库" class="headerlink" title="1.随机测试非常好用，对应java就是StdRandom库"></a>1.随机测试非常好用，对应java就是StdRandom库</h4><h4 id="2-java的接口机制-interface-有点类似c-的抽象类，继承接口的需要Override所有的接口函数声明（接口里面只写声明）（最好显式-Override）"><a href="#2-java的接口机制-interface-有点类似c-的抽象类，继承接口的需要Override所有的接口函数声明（接口里面只写声明）（最好显式-Override）" class="headerlink" title="2.java的接口机制 interface 有点类似c++的抽象类，继承接口的需要Override所有的接口函数声明（接口里面只写声明）（最好显式@Override）"></a>2.java的接口机制 interface 有点类似c++的抽象类，继承接口的需要Override所有的接口函数声明（接口里面只写声明）（最好显式@Override）</h4>
             
         </div>
     </div>
@@ -472,12 +387,12 @@
         
         <span class="tag">
             
-            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #ffa2c4">入门</a>
+            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #03a9f4">入门</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/java/" style="color: #00bcd4">java</a>
+            <a href="/tags/java/" style="color: #ff7d73">java</a>
         </span>
         
     </div>
@@ -502,7 +417,9 @@
     <div class="description">
         <div class="content" v-pre>
             
-            <p>简述：linker入门：<br>建议直接看CSAPP 第七章，别看我这坨答辩<br>（一）为什么需要linker:<br>你也不想改了一个源文件之后需要重新编译整个标准库吧，你也不想改了一个注释之后需要重新编译整个浏览器内核吧（doge）</p>
+            <h3 id="简述：linker入门-除动态链接部分-："><a href="#简述：linker入门-除动态链接部分-：" class="headerlink" title="简述：linker入门(除动态链接部分)："></a>简述：linker入门(除动态链接部分)：</h3><p>建议直接看CSAPP 第七章，别看我这坨答辩</p>
+<h4 id="（一）为什么需要linker"><a href="#（一）为什么需要linker" class="headerlink" title="（一）为什么需要linker:"></a>（一）为什么需要linker:</h4><p>你也不想改了一个源文件之后需要重新编译整个标准库吧，你也不想改了一个注释之后需要重新编译整个浏览器内核吧（doge）</p>
+<p>linker使分立编译成为可能</p>
             
         </div>
     </div>
@@ -516,7 +433,7 @@
         
         <span class="tag">
             
-            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #ffa2c4">入门</a>
+            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #00bcd4">入门</a>
         </span>
         
         <span class="tag">
@@ -546,15 +463,85 @@
     <div class="description">
         <div class="content" v-pre>
             
-            <p>﻿## 一、为什么要引入流水线<br>pipeline: 同时执行多条指令<br>每一条指令的执行可以分解成多个阶段，在RISC-V之中为IF, ID, EXE, MEM和WB，即</p>
+            <p>﻿## 一、为什么要引入流水线<br>pipeline: 同时执行多条指令<br>每一条指令的执行可以分解成多个阶段，<strong>在5级流水RISC-V之中为IF, ID, EXE, MEM和WB</strong>，即</p>
 <ul>
 <li>instruction fetch</li>
 <li>instruction decode(regfile op &amp; imm-gen)</li>
 <li>execution(alu and branch-compare)</li>
 <li>memory operation</li>
-<li>write back(to regfile)<br>下图是一个单周期的数据路径<br><img src="/imgs/2023-08-18/HrmB5tJl89MG5GcW.png" alt="输入图片说明"></li>
+<li>write back(to regfile)<br>下图是一个单周期的数据路径<br><img src="/../imgs/pipeline.png" alt="输入图片说明"></li>
 </ul>
 <p>有一种提高效率的思想叫流水线pipeline, 在上图之中，一条指令执行的过程中alu只在EXE阶段工作，其他阶段不工作；regfile只在ID阶段工作，其他阶段也不工作。既然要提升效率，自然想到，如何让alu、regfile等所有原件一直工作？类似工厂流水线的模式，alu计算完这一条指令之后立刻计算下一条，而不是等待这一条指令执行完再算。</p>
+<p>先不管实现细节，假设5个阶段需要的时间为100ns，200ns，100ns, 200ns, 200ns, 不使用流水线和超标量技术的情况下，一个时钟周期最多对应一条指令，那么一条指令至少需要800ns</p>
+<p>如果使用流水线技术，将5个阶段统一为200ns，那么我们的时钟周期可以压缩至200ns（我们通过寄存器保存了中间结果，相当于把一条指令“拆”成多条更小的单元，一个时钟周期只需要计算一个单元即可）</p>
+<p>这样之后，我们执行“完”一条指令需要200*5&#x3D;1000ns，但是，我们同时在执行5条指令，平均每条指令只需要200ns</p>
+<p>这是极大的加速</p>
+<h2 id="二、为什么流水线在硬件上是可行的"><a href="#二、为什么流水线在硬件上是可行的" class="headerlink" title="二、为什么流水线在硬件上是可行的"></a>二、为什么流水线在硬件上是可行的</h2><p>多亏了<strong>寄存器（在一个时钟周期内）保存了中间数据</strong>（一般是在时钟上升沿读入，保留到时钟下降沿输出），可以通过加几个寄存器来控制某个数据保留到之后的某个周期，让“一条指令”可以横跨多个时钟周期，进而提高时钟频率和吞吐量，快说谢谢寄存器！</p>
+<p>（寄存器的硬件原理，通过门电路搭建锁存器）</p>
+<h2 id="三、实现的各种细节"><a href="#三、实现的各种细节" class="headerlink" title="三、实现的各种细节"></a>三、实现的各种细节</h2><p>以上的流水线描述看起来很美好，实际上实现的过程中有种种问题，而为了解决这些问题诞生了现代cpu的架构</p>
+<p>现在一条指令被拆成多个更小的单元了，但是从逻辑上，我们的运算还是以指令为单位的。最大的问题就在于，如何解决<strong>后一条指令依赖前一条指令的结果</strong>的情况？</p>
+<p>例如， </p>
+<pre><code class="assembly">addi t0, x0, 5
+sw t0, 0(sp)
+</code></pre>
+<p>在addi指令还没有写回t0的值时，由于流水线缘故，sw已经需要将t0的值存回内存了，怎么办？</p>
+<p>接下来逐渐分类解决这个问题<br>这种流水线带来的问题可以分成3类</p>
+<ul>
+<li><strong>structual hazard</strong></li>
+<li><strong>data hazard</strong></li>
+<li><strong>control hazard</strong></li>
+</ul>
+<h3 id="structural-hazard"><a href="#structural-hazard" class="headerlink" title="structural hazard"></a>structural hazard</h3><p>主要是多个部分竞争一个物理元件</p>
+<p>在流水线之中，会出现多条指令的执行竞争一个部件的使用权的情况，比如regfile，可以出现时间上早的指令想要在Write Back阶段向寄存器读取值，同时时间上晚的指令也想要在ID阶段从寄存器读取值</p>
+<p>解决方法：</p>
+<ul>
+<li><p>对于regfile的读写冲突，在regfile上开出多个读端口和一个写端口，读端口可以一起执行。</p>
+</li>
+<li><p>对于广义的内存数据（注意IF阶段取指令也是从IMEM(一个特殊的指令内存)之中取的），IF阶段的取指令可能会和MEM阶段的内存操作冲突，我们知道<strong>内存之中，数据和指令是存储在一起的（当前的计算机架构，早期架构也有分开的）</strong>，但是我们可以通过<strong>分开数据的cache和指令的cache</strong>来避免这个冲突（实际上一般只有L1 cache是分开的）。这样，指令在IMEM之中读，数据在DMEM之中读写</p>
+</li>
+</ul>
+<p><img src="/../imgs/2-kind-cache.png" alt="输入图片说明"></p>
+<h3 id="data-hazard："><a href="#data-hazard：" class="headerlink" title="data hazard："></a>data hazard：</h3><p>主要是指令之间的因果依赖被破坏</p>
+<p><strong>第一种是regfile的依赖</strong>，可以出现时间上早的指令想要在Write Back阶段向寄存器写值，同时时间上晚的指令也想要在ID阶段从寄存器读值</p>
+<p>解决方法：<strong>规定ID段前半段时间写，后半段时间读（先写再读）</strong>（这样做还有一个基础是ID阶段一般是几个阶段里面较短的一个阶段，因而再多耗点时间也不影响性能）</p>
+<p><strong>第二种是ALU的依赖</strong>，例如</p>
+<pre><code class="assembly">addi s0, x0, 5
+sw s0, 0(sp)
+sub s0, s0, 3
+...
+</code></pre>
+<p>在前面的指令回写之前，后面的指令就需要用到更新的值。</p>
+<p>解决方法是添加所谓的前递（forwarding）或者旁路（bypassing）机制，如下两图。<br>拿到进行EXE阶段的指令和进行ID阶段的指令，比较两条指令，看ID指令是否依赖于EXE指令的结果，如果是，将EXE指令的结果传递到ID指令的EXE阶段覆盖原来的输入</p>
+<p><img src="/../imgs/forwarding.png" alt="输入图片说明"><br><img src="/../imgs/forwarding2.png" alt="输入图片说明"><br>只需要比较本条指令和前一条指令，因为相隔两条指令的指令的话，前面指令执行write back的时候，后一条指令刚好在ID阶段，由前面所说的先写后读，不会出现问题<br>（然而如果流水线进一步加深，还是会有问题，需要更多的硬件机制)</p>
+<p><strong>第三种是MEM的依赖</strong><br>例如</p>
+<pre><code class="assembly">lw s0,0(sp)
+addi s0, s0, 4 
+</code></pre>
+<p>由于MEM和ID差两个阶段，所以bypassing失效</p>
+<ul>
+<li><p>解决方法一：<br>硬件检测到这样的依赖的时候，让addi和后面的指令停顿一个时间周期</p>
+</li>
+<li><p>解决方法二（不总是能成功）：<br>由编译器&#x2F;程序员重排代码顺序，错开依赖<br>如</p>
+</li>
+</ul>
+<pre><code class="assembly">lw s0, 0(sp)
+lw s1, 4(sp)
+addi s0, s0, 4
+addi s1, s1, 4
+</code></pre>
+<p>这样lw和addi隔了两条指令，可以使用bypassing</p>
+<p>control hazard:<br>主要是不能确定分支指令是否被实行</p>
+<p>如</p>
+<pre><code class="assembly">bne s0, t1, end 
+addi s0, s0, 4
+</code></pre>
+<p>addi指令不能知道bne指令是否被实施</p>
+<p>解决方法：<br>由于这种指令结构在实际编程之中非常常见（比如循环），并且会被执行非常多次，一般不采用等待策略，而是预测分支的结果，即先假定分支会实行或者不会实行，如果假定不成立，再将流水线的错误进行全部无效（如果有load&amp;save还需要更改cache），重新执行</p>
+<p>怎么预测？需要设计对应的硬件机制，比如，永远预测不跳转（对应loop，跳出去的是少数情况）、预测这一次的branch会采用和上一次一样的值、<strong>branch出现两次预测错误时改变branch预测</strong>（两位预测位，现代最常见的做法，<strong>参见<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/486239354/answer/3245281606%EF%BC%89%E7%AD%89%E7%AD%89">https://www.zhihu.com/question/486239354/answer/3245281606）等等</a></strong></p>
+<h2 id="四、超标量处理器"><a href="#四、超标量处理器" class="headerlink" title="四、超标量处理器"></a>四、超标量处理器</h2><p>上面的流水线能够提高性能的底层逻辑是提高了时钟频率，但是由于功率的影响（太大会发热严重损坏器件）和流水线变深之后各种hazard的增加，硬件设计更难，现代处理器的时钟频率提高较难。</p>
+<p>还想提高性能，一个方向就是试图在一个时钟周期内执行多条指令，这样的多条指令将会是完全“同时”的，没有办法分辨前后</p>
+<p>然而依赖关系不可避免，因而超标量处理器会尽可能打乱指令的顺序关系，加以一系列纠错机制，达成并行的效果</p>
+
             
         </div>
     </div>
@@ -568,12 +555,12 @@
         
         <span class="tag">
             
-            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #ff7d73">入门</a>
+            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #03a9f4">入门</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84/" style="color: #ffa2c4">体系结构</a>
+            <a href="/tags/%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84/" style="color: #00a596">体系结构</a>
         </span>
         
     </div>
@@ -598,36 +585,23 @@
     <div class="description">
         <div class="content" v-pre>
             
-            <p>linux 命令拓展</p>
-<p>whatis: 简述man</p>
-<p>whereis:列出所有， which 是一个</p>
-<p>curl [url] &gt; somefile：从url下载到somefile</p>
-<p>find [root dir] -name “name(可包含通配符)”</p>
-<p>eg find .&#x2F; -name “prefix*”</p>
-<p>find . -perm &#x2F;a&#x3D;x 找到可执行文件</p>
-<p>chmod +x [filename]让此文件可执行</p>
-<p>ip address | grep eth0: 只看以太网0的ip地址</p>
-<p>看dns</p>
-<p>resolvectl status</p>
-<p>ping [website, eg <a href="http://www.google.com]">www.google.com]</a> ctl+c 退出</p>
-<p>free：看内存</p>
-<p>df -H: 看可用空间</p>
-<p>ps -aux：看详细进程</p>
-<p>ps -aux | grep [programName] 找到pid，然后可以kill pid</p>
-<p>或者 pkill -f [program name]</p>
-<p>time .&#x2F;a.out计时</p>
-<p>现代linux工具（参见tldr）</p>
-<p>如果出现找不到包的问题，或许</p>
-<pre><code> 1. 换成阿里源
- 2. 使用aptitude 替代apt
-</code></pre>
-<p>会有帮助</p>
-<p>bat: cat的高级替代</p>
-<p><strong>由于sbin有个包定义了bat，所以改成了batcat</strong></p>
-<blockquote>
-<p>batcat …</p>
-</blockquote>
-<p>fd：更简单的find(<strong>注意是fd-find 不是fdclone!</strong>  sudo ln -s $(which fdfind) &#x2F;usr&#x2F;bin&#x2F;fd   )</p>
+            <h3 id="linux-命令拓展"><a href="#linux-命令拓展" class="headerlink" title="linux 命令拓展"></a>linux 命令拓展</h3><ul>
+<li><p>whatis: 简述man</p>
+</li>
+<li><p>whereis:列出所有， which 是一个</p>
+</li>
+<li><p>curl [url] &gt; somefile：从url下载到somefile</p>
+</li>
+<li><p>find [root dir] -name “name(可包含通配符)”</p>
+</li>
+</ul>
+<p>​       eg find .&#x2F; -name “prefix*”</p>
+<ul>
+<li><p>find . -perm &#x2F;a&#x3D;x 找到可执行文件</p>
+</li>
+<li><p>chmod +x [filename]让此文件可执行</p>
+</li>
+</ul>
             
         </div>
     </div>
@@ -641,12 +615,12 @@
         
         <span class="tag">
             
-            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #03a9f4">入门</a>
+            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #00a596">入门</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/%E5%91%BD%E4%BB%A4%E8%A1%8C/" style="color: #00bcd4">命令行</a>
+            <a href="/tags/%E5%91%BD%E4%BB%A4%E8%A1%8C/" style="color: #ff7d73">命令行</a>
         </span>
         
     </div>
@@ -673,14 +647,13 @@
             
             <p>﻿并发：多协程、多线程、多进程、多机器</p>
 <p>任务：IO密集和cpu密集<br>IO密集：数据库、文件读写等<br>cpu密集： 计算密集</p>
-<p>多线程：单cpu，目的是io和cpu分离并行执行，适用于io密集，内存开销比多进程少</p>
+<p>多线程：单cpu（<strong>前提：python GIL锁</strong>），目的是io和cpu分离并行执行，适用于io密集，内存开销比多进程少</p>
 <p>多进程：多cpu，目的是多cpu并行计算，适用于cpu密集，内存开销大</p>
 <h2 id="线程threading库"><a href="#线程threading库" class="headerlink" title="线程threading库"></a>线程threading库</h2><p>t &#x3D; threading.Thread(target&#x3D;func, args&#x3D;(…))<br>t.start()  # 开始线程，执行func<br>t.join()  # 等待线程结束</p>
 <p>例 </p>
-<pre><code>threads = []
+<pre><code class="python">threads = []
 for _ in range(count):
     thread = threading.Thread(target = f, args=(...))
-&lt;!-- more --&gt;
     threads.append(thread)
 for thread in threads:
     thread.start()
@@ -688,7 +661,20 @@ for thread in threads:
     thread.join()
 </code></pre>
 <p>如果多个线程之间存在共享资源<br>需要加锁，<br>lock &#x3D; threading.Lock()给需要线程独占的运行函数f套上with lock:</p>
-<p>当对一个类的某个方法加锁的时候，需要在__init__上锁self.lock &#x3D; threading.Lock()</p>
+<p>当对一个类的某个方法加锁的时候，需要在__init__上锁self.lock &#x3D; threading.Lock()<br>在方法调用之中<br>with self.lock：<br>而不是直接在方法调用之中创建lock, 这样无法保证创建lock与线程切换的顺序</p>
+<hr>
+<h3 id="生产者-消费者模型："><a href="#生产者-消费者模型：" class="headerlink" title="生产者-消费者模型："></a>生产者-消费者模型：</h3><p>以爬虫为例：<br>生产者线程get网络资源，存储到任务序列之中<br>消费者线程取出任务序列的值，存储到目标文件</p>
+<h2 id="任务序列-queue-Queue例python-buffer-queue-Queue-maxsize-10-def-producer-item-buffer-put-item-def-consumer-while-True-item-buffer-get-do-something"><a href="#任务序列-queue-Queue例python-buffer-queue-Queue-maxsize-10-def-producer-item-buffer-put-item-def-consumer-while-True-item-buffer-get-do-something" class="headerlink" title="任务序列 queue.Queue例python buffer = queue.Queue(maxsize = 10) def producer():     item = ...;     buffer.put(item) def consumer():     while(True):         item = buffer.get()         # do something "></a>任务序列 queue.Queue<br>例<br><code>python buffer = queue.Queue(maxsize = 10) def producer():     item = ...;     buffer.put(item) def consumer():     while(True):         item = buffer.get()         # do something </code></h2><h3 id="线程池："><a href="#线程池：" class="headerlink" title="线程池："></a>线程池：</h3><p><img src="/../imgs/%E7%BA%BF%E7%A8%8B%E6%B1%A0.png" alt="输入图片说明"></p>
+<pre><code class="python">from concurrent.futures import ThreadPoolExetutor
+with concurrent.futures.ThreadPoolExetutor as pool:
+
+    tasks = [...]
+    results = pool.map(func, tasks)
+    for res in results:
+        print(res)
+</code></pre>
+<h2 id="多进程"><a href="#多进程" class="headerlink" title="多进程"></a>多进程</h2><p>库函数基本和多线程完全一样<br>把threading 库换成multiprocess就行<br>还有就是queue.Queue() 换成 multiprocess.Queue()</p>
+
             
         </div>
     </div>
@@ -702,21 +688,89 @@ for thread in threads:
         
         <span class="tag">
             
-            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #03a9f4">入门</a>
+            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #00bcd4">入门</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/python/" style="color: #ff7d73">python</a>
+            <a href="/tags/python/" style="color: #00a596">python</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/%E5%B9%B6%E5%8F%91/" style="color: #00a596">并发</a>
+            <a href="/tags/%E5%B9%B6%E5%8F%91/" style="color: #03a9f4">并发</a>
         </span>
         
     </div>
     <a href="/2023/10/16/python%E5%B9%B6%E5%8F%91/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/2023/10/16/maze/">
+        <h2 class="post-title">maze</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/10/16
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <p>maze ：</p>
+<ol>
+<li><p>memset的使用 ， memset(void* p, value, size_t n); 将从p开始的n个字节的数据设置为value</p>
+</li>
+<li><p><u><strong>迷宫生成算法：类似DFS，只需要把起始点和中间路径的选取全部换成随机取路径就行（从那个方向来“打破”本格子那个方向的墙壁）</strong></u></p>
+</li>
+<li><p>一些c++的骚操作：</p>
+</li>
+</ol>
+<ul>
+<li><strong>使用按位操作来表示状态</strong></li>
+</ul>
+<pre><code class="c++">    int* pMazeState; // 配合下面的 enum使用一个int记录每个各自的连接和填充状态
+    enum &#123;
+        
+        cell_path_EAST=0x01, //0000 0001
+        cell_path_WEST=0x02, //0000 0010
+        cell_path_NORTH=0x04, //0000 0100
+        cell_path_SOUTH = 0x08, //0000 1000
+        cell_have_visited = 0x10 // 0001 0000
+        //一种通过按位与&amp; 节省空间的方案， 并且可以简单的表示复合状态
+    &#125;;
+</code></pre>
+<p>这样最大的好处在于复合状态表示极其简单<br>不同状态之间复合按位或，是否存在某个状态按位与判断是否为0</p>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <i class="fa-solid fa-tags fa-fw"></i>
+        </span>
+        
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #ffa2c4">入门</a>
+        </span>
+        
+        <span class="tag">
+            
+            <a href="/tags/%E6%B8%B8%E6%88%8F/" style="color: #ff7d73">游戏</a>
+        </span>
+        
+    </div>
+    <a href="/2023/10/16/maze/" class="go-post">阅读全文</a>
 </div>
 
 

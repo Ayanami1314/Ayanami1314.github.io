@@ -174,12 +174,12 @@
             
             <span class="tag">
                 
-                <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #00a596">入门</a>
+                <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #03a9f4">入门</a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/%E6%B8%B8%E6%88%8F/" style="color: #ff7d73">游戏</a>
+                <a href="/tags/%E6%B8%B8%E6%88%8F/" style="color: #00a596">游戏</a>
             </span>
             
         </span>
@@ -189,17 +189,17 @@
     <div class="content" v-pre>
         <p>maze ：</p>
 <ol>
-<li>memset的使用 ， memset(void* p, value, size_t n); 将从p开始的n个字节的数据设置为value<span id="more"></span></li>
-</ol>
-<p>2.迷宫生成算法：类似DFS，只需要把起始点和中间路径的选取全部换成随机取路径就行</p>
-<ol start="3">
-<li>一些c++的骚操作：</li>
+<li><p>memset的使用 ， memset(void* p, value, size_t n); 将从p开始的n个字节的数据设置为value</p>
+</li>
+<li><p><u><strong>迷宫生成算法：类似DFS，只需要把起始点和中间路径的选取全部换成随机取路径就行（从那个方向来“打破”本格子那个方向的墙壁）</strong></u></p>
+</li>
+<li><p>一些c++的骚操作：</p>
+</li>
 </ol>
 <ul>
-<li>使用按位操作来表示状态</li>
+<li><strong>使用按位操作来表示状态</strong></li>
 </ul>
-<pre><code>    int* pMazeState; // 配合下面的 enum使用一个int记录每个各自的连接和填充状态
-&lt;!-- more --&gt;
+<pre><code class="c++">    int* pMazeState; // 配合下面的 enum使用一个int记录每个各自的连接和填充状态
     enum &#123;
         
         cell_path_EAST=0x01, //0000 0001
@@ -211,9 +211,6 @@
     &#125;;
 </code></pre>
 <p>这样最大的好处在于复合状态表示极其简单<br>不同状态之间复合按位或，是否存在某个状态按位与判断是否为0</p>
-<ul>
-<li>熟悉了一下pair</li>
-</ul>
 
     </div>
     
