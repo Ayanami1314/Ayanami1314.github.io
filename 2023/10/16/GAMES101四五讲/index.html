@@ -174,12 +174,12 @@
             
             <span class="tag">
                 
-                <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #00bcd4">入门</a>
+                <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #00a596">入门</a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6/" style="color: #ffa2c4">图形学</a>
+                <a href="/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6/" style="color: #ff7d73">图形学</a>
             </span>
             
         </span>
@@ -193,10 +193,11 @@
 <li><p>三维变换</p>
 </li>
 <li><p><img src="https://pic3.zhimg.com/v2-ea91281e359558f60346e70c7b11c6fa_b.jpg"></p>
-<span id="more"></span></li>
+<span id="more"></span>
+</li>
 <li><p>罗格里德旋转公式，得到任意方向n旋转α角度的公式<img src="https://pic1.zhimg.com/v2-f6ecc4664edeb4648f3b602e573bf2f4_b.jpg"></p>
 </li>
-<li><p>进一步的变换：Camera&#x2F;View Transformation<br>  <strong>mvp（model view projection变换）</strong><br>  ![输入图片说明](..&#x2F;imgs&#x2F;view trans.png)<br>  相机和物体的位置关系可能有各种情况，便于研究将相机恒定置于原点，并且其方向为：朝上是Y，正对-Z（这是为了让X取在指向纸面外)</p>
+<li><p>进一步的变换：Camera&#x2F;View Transformation<br>  <strong>mvp（model view projection变换）</strong><br>  <img src="/../imgs/view_trans.png" alt="输入图片说明"><br>  相机和物体的位置关系可能有各种情况，便于研究将相机恒定置于原点，并且其方向为：朝上是Y，正对-Z（这是为了让X取在指向纸面外)</p>
 <p>  将相机的两个特征方向（-Z，Y）分别称为<br>  gaze direction(g) 和 up direction(t)<br>  <img src="https://pic4.zhimg.com/v2-00d761f598c0d43864a3b2d00964898f_b.jpg"></p>
 <p>  那么为了保持物体与相机的相对位置不变，物体需要左乘平移矩阵T，再左乘旋转矩阵R</p>
 </li>
@@ -215,7 +216,7 @@
 </ul>
 <p><img src="/../imgs/PROJ.png" alt="输入图片说明"><br>通过这几个特征推导“压缩”矩阵：<br>压缩后远平面f上的点的齐次坐标从（x,y,f,1）变成了（x*n&#x2F;f, y*n&#x2F;f, f, 1），即M（x,y,f,1)t&#x3D; （x*n&#x2F;f, y*n&#x2F;f, f, 1)t</p>
 <p>近平面上不变，M左乘（x’, y’, n, 1）&#x3D; （x’,y’,n,1）<br>从这两个式子可以推出M(相差一个常数，注意齐次坐标（tx, ty, tz, t）和（x,y,z,1）是一样的)</p>
-<p>![输入图片说明](..&#x2F;imgs&#x2F;屏幕截图 2023-10-17 002204.png)</p>
+<p><img src="/../imgs/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE_2023-10-17_002204.png" alt="输入图片说明"></p>
 <p>需要注意的是这样的投影变换只保证给定近面n和远面f是严格Z不变的，中间的变换出来的结果比实际值偏大</p>
 <h2 id="第五讲：光栅化（Rasterization）"><a href="#第五讲：光栅化（Rasterization）" class="headerlink" title="第五讲：光栅化（Rasterization）"></a>第五讲：光栅化（Rasterization）</h2><p>我们现在已经完成了mvp变换（model - view - projection）成功得到了一个[-1,1]^3（或者xOy面）的物体投影，如何从这个标准化的投影重建像呢？</p>
 <p>先再引入两个常用参数：fovY(Y轴截段的field of view, 垂直可视角度)和aspect ratio（宽高比）</p>

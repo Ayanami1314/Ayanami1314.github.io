@@ -174,12 +174,12 @@
             
             <span class="tag">
                 
-                <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #00a596">入门</a>
+                <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #00bcd4">入门</a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/%E7%AE%97%E6%B3%95/" style="color: #03a9f4">算法</a>
+                <a href="/tags/%E7%AE%97%E6%B3%95/" style="color: #00a596">算法</a>
             </span>
             
         </span>
@@ -229,10 +229,13 @@
 <p><img src="/../imgs/LLRBsplit.png" alt="输入图片说明"></p>
 <p><img src="/../imgs/llrbfinal.png" alt="输入图片说明"></p>
 <p>那么我们就构建了一棵红黑树！可以总结它的插入规则如下（通过和B树的对应理解！）：</p>
-<p>1.（B树）如果有超过数据限制数的节点————&gt;旋转（红黑）</p>
-<ol start="2">
-<li>（B树）如果要向上合并————&gt; 节点所连的所有线变色（红黑）</li>
-<li>如果有连续两条左倾红色连接 ————&gt;旋转（辅助2）</li>
+<ol>
+<li><p>（B树）如果和左子树是黑线，右子树是红线————&gt;左旋（保证左倾）</p>
+</li>
+<li><p>（B树）如果要向上合并————&gt; 节点所连的所有线变色（红黑）</p>
+</li>
+<li><p>如果有连续两条左倾红色连接 ————&gt;旋转（辅助2）</p>
+</li>
 </ol>
 <p><img src="/../imgs/rbtree-rule.png" alt="输入图片说明"></p>
 <p>伪代码实现：（<strong>优雅，太优雅了.jpg</strong>）<br><img src="/../imgs/llrbcode.png" alt="输入图片说明"></p>
