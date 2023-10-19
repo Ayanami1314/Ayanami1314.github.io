@@ -174,12 +174,12 @@
             
             <span class="tag">
                 
-                <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #ff7d73">入门</a>
+                <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #ffa2c4">入门</a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6/" style="color: #00bcd4">图形学</a>
+                <a href="/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6/" style="color: #ff7d73">图形学</a>
             </span>
             
         </span>
@@ -197,12 +197,12 @@
 </li>
 <li><p>罗格里德旋转公式，得到任意方向n旋转α角度的公式<img src="https://pic1.zhimg.com/v2-f6ecc4664edeb4648f3b602e573bf2f4_b.jpg"></p>
 </li>
-<li><p>进一步的变换：Camera&#x2F;View Transformation<br>  <strong>mvp（model view projection变换）</strong><br>  <img src="/../imgs/view_trans.png" alt="输入图片说明"><br>  相机和物体的位置关系可能有各种情况，便于研究将相机恒定置于原点，并且其方向为：朝上是Y，正对-Z（这是为了让X取在指向纸面外)</p>
+<li><p>进一步的变换：Camera&#x2F;View Transformation<br>  <strong>mvp（model view projection变换）</strong><br>  <img src="/2023/10/16/GAMES101%E5%9B%9B%E4%BA%94%E8%AE%B2/imgs/view_trans.png" alt="输入图片说明"><br>  相机和物体的位置关系可能有各种情况，便于研究将相机恒定置于原点，并且其方向为：朝上是Y，正对-Z（这是为了让X取在指向纸面外)</p>
 <p>  将相机的两个特征方向（-Z，Y）分别称为<br>  gaze direction(g) 和 up direction(t)<br>  <img src="https://pic4.zhimg.com/v2-00d761f598c0d43864a3b2d00964898f_b.jpg"></p>
 <p>  那么为了保持物体与相机的相对位置不变，物体需要左乘平移矩阵T，再左乘旋转矩阵R</p>
 </li>
 <li><p>如何求R？<br>  直接求g，t，g*t如何旋转到x,y,z比较困难，但反过来，从x,y,z旋转到g,t,g*t是不难的 ，注意到旋转矩阵的对应元素就是g, t, g*t在xyz下的坐标，就得到了R^-1</p>
-<p>  更好的是，R作为一个旋转矩阵是正交的Rt &#x3D; R^-1, 也就是说我们只需要转置！<br>  <img src="/../imgs/Mview.png" alt="输入图片说明"></p>
+<p>  更好的是，R作为一个旋转矩阵是正交的Rt &#x3D; R^-1, 也就是说我们只需要转置！<br>  <img src="/2023/10/16/GAMES101%E5%9B%9B%E4%BA%94%E8%AE%B2/imgs/Mview.png" alt="输入图片说明"></p>
 </li>
 </ul>
 <p>对projection 又有两种：正交投影（Orthographic）和透视投影（Perspective）</p>
@@ -210,19 +210,19 @@
 <ul>
 <li>先讲正交投影：正交投影把一个[l,r]*[b,t]*[f,n]（左右下上远近）的物体区域放缩到[-1,1]^3,再取xOy平面</li>
 </ul>
-<p>其变换矩阵也很简单，将长方体的中心平移到原点+放缩 M&#x3D;ST<br><img src="/../imgs/games.png" alt="输入图片说明"></p>
+<p>其变换矩阵也很简单，将长方体的中心平移到原点+放缩 M&#x3D;ST<br><img src="/2023/10/16/GAMES101%E5%9B%9B%E4%BA%94%E8%AE%B2/imgs/games.png" alt="输入图片说明"></p>
 <ul>
 <li>之后是透视投影，重点在于如何把透视归结到之前的矩阵表述之中去<br> 一个自然的想法是，我假设有两个面n和f， 其中n是“标准面”，透视的本质是视线交汇于一点而不再平行，如果把f面的xy“放缩”到和n面一样大，那么f这一块nf区域就可以变成正交投影</li>
 </ul>
-<p><img src="/../imgs/PROJ.png" alt="输入图片说明"><br>通过这几个特征推导“压缩”矩阵：<br>压缩后远平面f上的点的齐次坐标从（x,y,f,1）变成了（x*n&#x2F;f, y*n&#x2F;f, f, 1），即M（x,y,f,1)t&#x3D; （x*n&#x2F;f, y*n&#x2F;f, f, 1)t</p>
+<p><img src="/2023/10/16/GAMES101%E5%9B%9B%E4%BA%94%E8%AE%B2/imgs/PROJ.png" alt="输入图片说明"><br>通过这几个特征推导“压缩”矩阵：<br>压缩后远平面f上的点的齐次坐标从（x,y,f,1）变成了（x*n&#x2F;f, y*n&#x2F;f, f, 1），即M（x,y,f,1)t&#x3D; （x*n&#x2F;f, y*n&#x2F;f, f, 1)t</p>
 <p>近平面上不变，M左乘（x’, y’, n, 1）&#x3D; （x’,y’,n,1）<br>从这两个式子可以推出M(相差一个常数，注意齐次坐标（tx, ty, tz, t）和（x,y,z,1）是一样的)</p>
-<p><img src="/../imgs/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE_2023-10-17_002204.png" alt="输入图片说明"></p>
+<p><img src="/2023/10/16/GAMES101%E5%9B%9B%E4%BA%94%E8%AE%B2/imgs/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE_2023-10-17_002204.png" alt="输入图片说明"></p>
 <p>需要注意的是这样的投影变换只保证给定近面n和远面f是严格Z不变的，中间的变换出来的结果比实际值偏大</p>
 <h2 id="第五讲：光栅化（Rasterization）"><a href="#第五讲：光栅化（Rasterization）" class="headerlink" title="第五讲：光栅化（Rasterization）"></a>第五讲：光栅化（Rasterization）</h2><p>我们现在已经完成了mvp变换（model - view - projection）成功得到了一个[-1,1]^3（或者xOy面）的物体投影，如何从这个标准化的投影重建像呢？</p>
 <p>先再引入两个常用参数：fovY(Y轴截段的field of view, 垂直可视角度)和aspect ratio（宽高比）</p>
 <p>（主要是视锥体里面的参数转换关系，n,t的另一种表述）</p>
 <p>Then, 我们要如何将其<strong>画在屏幕上</strong>？<br>（屏幕小知识点，分辨率1920*1080就是1080p，etc）</p>
-<p>将[-1,1]^2 重新拉伸成 ScreenWidth * ScreenHeight, 之后平移一下，原点重新放回左下角<br><img src="/../imgs/M_viewport.png" alt="输入图片说明"></p>
+<p>将[-1,1]^2 重新拉伸成 ScreenWidth * ScreenHeight, 之后平移一下，原点重新放回左下角<br><img src="/2023/10/16/GAMES101%E5%9B%9B%E4%BA%94%E8%AE%B2/imgs/M_viewport.png" alt="输入图片说明"></p>
 <p>接下来要做的是离散化，判断一个x,y的点所在的像素是否需要“画”（采样）</p>
 <p>以三角形为例，即判断一个点（x,y）是否在三角形内部（通常这个点取每个像素点的中心点，即int x， int y, 然后取x+0.5,y+0.5）</p>
 <p>判断点是否在三角形内部的巧妙方法：利用叉积！<br>AP叉乘AB可以通过正负号判断P在AB左还是右侧，而依次叉乘，点P在三角形三边同侧时，才是内部</p>

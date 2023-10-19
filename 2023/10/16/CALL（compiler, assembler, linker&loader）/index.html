@@ -174,12 +174,12 @@
             
             <span class="tag">
                 
-                <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #03a9f4">入门</a>
+                <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #ff7d73">入门</a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/%E7%BB%84%E6%88%90%E7%BB%93%E6%9E%84/" style="color: #00bcd4">组成结构</a>
+                <a href="/tags/%E7%BB%84%E6%88%90%E7%BB%93%E6%9E%84/" style="color: #00a596">组成结构</a>
             </span>
             
         </span>
@@ -199,7 +199,7 @@
 <p>symbol table 符号表， 列出了本代码之中的符号</p>
 <p>assember 顺带的把j label的label和branch 的 label 变成PC-relative address</p>
 <p>这样这些东西就不需要被linker和loader修改</p>
-<h4 id="linker"><a href="#linker" class="headerlink" title="linker"></a>linker</h4><p><img src="/..%5Cimgs%5Clinker.png"><br>整合代码段、数据段信息<br>重定位外部函数和静态、全局变量<br>（遍历整个relocation table,先在symbol table里面找，如果没有，再到外部lib里面找，找到了之后使用绝对的地址替换之)</p>
+<h4 id="linker"><a href="#linker" class="headerlink" title="linker"></a>linker</h4><p><img src="/2023/10/16/CALL%EF%BC%88compiler,%20assembler,%20linker&loader%EF%BC%89/..%5Cimgs%5Clinker.png"><br>整合代码段、数据段信息<br>重定位外部函数和静态、全局变量<br>（遍历整个relocation table,先在symbol table里面找，如果没有，再到外部lib里面找，找到了之后使用绝对的地址替换之)</p>
 <p>linker 假定程序均从0x40000000开始，这体现了虚拟内存的概念，load进内存的时候还要改变程序的一些绝对地址</p>
 <h4 id="in-reality-loader-is-OS"><a href="#in-reality-loader-is-OS" class="headerlink" title="in reality, loader is OS"></a><em><strong>in reality, loader is OS</strong></em></h4><p>loader干什么：</p>
 <ol>

@@ -174,17 +174,17 @@
             
             <span class="tag">
                 
-                <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #ff7d73">入门</a>
+                <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #03a9f4">入门</a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/%E6%B8%B8%E6%88%8F/" style="color: #03a9f4">游戏</a>
+                <a href="/tags/%E6%B8%B8%E6%88%8F/" style="color: #00bcd4">游戏</a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="color: #ff7d73">设计模式</a>
+                <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="color: #ffa2c4">设计模式</a>
             </span>
             
         </span>
@@ -215,10 +215,10 @@
        <div>不改变状态的act：其他</div>
        </pre>
        <div>如果不定义状态机，你需要记录的“状态"有： 是否空中、是否落地、是否俯冲、跳跃段数......</div>
-       <p>当状态更多的时候，逻辑会很复杂<p>
-       <p>假设已经存在act inputhandler(...){}函数， return act</p>
+       <p>当状态更多的时候，逻辑会很复杂</p><p>
+       </p><p>假设已经存在act inputhandler(...){}函数， return act</p>
        <p>则只需定义这样的函数在主循环中执行</p>
-       <pre style='text-indent: 0em'><code>
+       <pre style="text-indent: 0em"><code>
        void updateState(act Act) &#123;
            switch (this->State) &#123;
                case STAND: &#123;
@@ -240,7 +240,7 @@
            // 其他状态的处理
            &#125;
        &#125;
-       </pre></code>
+       </code></pre>
    </details>
 
 
@@ -260,7 +260,7 @@
        type: cut,
        additional_effect: none,
        ...
-   &#125;</pre></code>
+   &#125;</code></pre>
    这样只有当需要时，才查询记录, 并且对所有类似的都可以用一套方法
    
 
@@ -273,7 +273,7 @@
    
 
 <h4 id="降低耦合的固有方法：加中间件"><a href="#降低耦合的固有方法：加中间件" class="headerlink" title="降低耦合的固有方法：加中间件"></a>降低耦合的固有方法：加中间件</h4><p>例如：不想让按键输入直接与逻辑耦合（比如，想要支持改键位），那么需要加一个handleInput()函数作为中间件，通过handleInput函数，去更改状态</p>
-
+</details></details></details>
     </div>
     
     
