@@ -3,7 +3,7 @@
 <html lang="zh-CN">
 <head>
     <meta charset="utf-8" />
-    <title>并查集 | Ayanami&#39;s cave</title>
+    <title>categories | Ayanami&#39;s cave</title>
     <meta name="author" content="Ayanami" />
     <meta name="description" content="very good web, love from ayanami(x)" />
     <meta name="keywords" content="" />
@@ -155,63 +155,21 @@
         <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
             <div class="article">
     <div>
-        <h1>并查集</h1>
+        <h1>categories</h1>
     </div>
     <div class="info">
         <span class="date">
             <span class="icon">
                 <i class="fa-solid fa-calendar fa-fw"></i>
             </span>
-            2023/10/16
+            2023/10/19
         </span>
         
-        
-        <span class="tags">
-            <span class="icon">
-                <i class="fa-solid fa-tags fa-fw"></i>
-            </span>
-            
-            
-            <span class="tag">
-                
-                <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #03a9f4">入门</a>
-            </span>
-            
-            <span class="tag">
-                
-                <a href="/tags/%E7%AE%97%E6%B3%95/" style="color: #00a596">算法</a>
-            </span>
-            
-        </span>
         
     </div>
     
     <div class="content" v-pre>
-        <p>﻿61b数据结构部分正式开始</p>
-<h2 id="1-并查集（Disjoint-Set-Union）："><a href="#1-并查集（Disjoint-Set-Union）：" class="headerlink" title="1. 并查集（Disjoint Set Union）："></a>1. 并查集（Disjoint Set Union）：</h2><p>先从一个问题引入，我们现在有N个数据，某些数据之间有相连的关系（已知，比如AB相连，BD相连）；现在我们想要判断数据A和数据D是否相连，或者数据C属于哪个集合，怎么做？</p>
-<span id="more"></span>
-<p>（对应的现实情况有很多，比如社交网络等等；并且N经常很大，比如上亿）</p>
-<p>最低效的做法肯定是将同类的数据放到一个集合之中，比如<br>[{A}, {B},{C}]， AC相连就先检索到C，再将C移出集合{C}，放入集合{A}</p>
-<p>明显这种做法（ListOfSet）下，对于找数据，添加相连，判断数据是哪个类的都是theta(N)的</p>
-<h3 id="改进1（QuickFind）："><a href="#改进1（QuickFind）：" class="headerlink" title="改进1（QuickFind）："></a>改进1（QuickFind）：</h3><p>集合的操作非常耗时并且不好检索，采用类似数组的结构来对应集合<br><img src="/../imgs/%E5%B9%B6%E6%9F%A5%E9%9B%861.png" alt="输入图片说明"><br>现有一个初始值为 ABCDEFG的数组，代表1 2 3 4 5 6 7 8 9号（下标)数据</p>
-<p>之后如果把 AC相连， 那么我就把下标3的对应值改成A（代表3（对应数据C）现在是1集合（对应A）了， 变成ABADEFG）</p>
-<p>这种方法明显地快，但还是O（N）的，比如现在值为<br>AAAABBBB，让1和5相连，我需要先检索一遍整个数组找到值为B的所有值，再改成A</p>
-<p>这个方法的好处在于判断一个数据属于哪个类是O（1）的了，只要看对应值就行</p>
-<h3 id="改进2-QuickUnion-："><a href="#改进2-QuickUnion-：" class="headerlink" title="改进2(QuickUnion)："></a>改进2(QuickUnion)：</h3><p>一种进阶的思路是：</p>
-<p>在连接的时候，不再一次改写所有的值（这样的操作很多是无用的，因为要改来改去）</p>
-<p>我们只记录和改写一个数据的父节点，形成一个树结构<br><img src="/../imgs/disjointset.png" alt="输入图片说明"></p>
-<p>如图，我要连接5和2，先沿着5的父亲–5的父亲的父亲—这条路找到5的根节点，再找到2的根节点，再将2的根节点的父亲设置为5的根节点</p>
-<p>判断一个数据属于哪一类也只要从底层不断沿父亲往上找就行</p>
-<p>如果树是平衡的，那么这种方法就是O（logN）(对于连接和判断两种操作)</p>
-<p>但这种方法的最坏情况还是theta(N), 设想这样的情况<br> 1 2 3 4 5 5个数据，先让45连，再让34连…最后得到了一个深度 &#x3D; N的树</p>
-<h3 id="改进3："><a href="#改进3：" class="headerlink" title="改进3："></a>改进3：</h3><p>那我们就想，如何调整树，使它接近于平衡呢？<br>注意到我们之前合并的时候，连接34实际上无所谓3做父节点还是4做父节点，从深度尽量小的角度来说，我们希望这个选择能让合并的树的深度尽可能小</p>
-<p>于是有了Weighted Quick Union(WQU)<br><strong>我们总是让元素比较多的树的根节点作为父节点</strong>，可以证明它是O（log(N)）的，最坏也不会超过logN</p>
-<p>(当然还有Heighted Quick Union，让深度较低的树的根作为父节点，但这样也是O（logN）编程却麻烦不少，用得比较少)</p>
-<h3 id="改进4：路径压缩（WeightedQuickUnionWithPathCompression）"><a href="#改进4：路径压缩（WeightedQuickUnionWithPathCompression）" class="headerlink" title="改进4：路径压缩（WeightedQuickUnionWithPathCompression）"></a>改进4：路径压缩（WeightedQuickUnionWithPathCompression）</h3><p>在查找父节点的过程之中，我们实际上可以把路径之中（A的父亲，祖父, 等等等）全部改成A的最古老的先祖（根节点）的直接的儿子，在下一次查找之中，这一整条路上的所有元素都只需要一次找父亲</p>
-<p>这样的复杂度是O（lg* N）的，lg*()是迭代对数，对任意实际情况的N都可以认为它&lt;5, 基本就是O（1）</p>
-<p><strong>也就是我们使用O（1）的时间界完成了查找和连接的操作，多美妙！</strong></p>
-<p><img src="/../imgs/%E5%B9%B6%E6%9F%A5O.png" alt="输入图片说明"></p>
-<p><img src="/../imgs/%E5%B9%B6%E6%9F%A5O2.png"></p>
+        <h2 id="施工中……"><a href="#施工中……" class="headerlink" title="施工中……"></a>施工中……</h2><h4 id="此功能暂时不可用，原谅笨笨的ayanami，后续会改的"><a href="#此功能暂时不可用，原谅笨笨的ayanami，后续会改的" class="headerlink" title="此功能暂时不可用，原谅笨笨的ayanami，后续会改的"></a>此功能暂时不可用，原谅笨笨的ayanami，后续会改的</h4><p><img src="/....%5Cthemes%5Cparticlex%5Csource%5Cimages%5C%E8%B5%A4%E9%9F%B3.jpg"></p>
 
     </div>
     
