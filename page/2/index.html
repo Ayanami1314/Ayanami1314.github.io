@@ -194,12 +194,17 @@
 <li><p>配置环境：openCV+Eigen</p>
 <p>OpenCV的  $(opencv)\build\vc16 下，两个文件夹\bin,\lib都要加到系统变量</p>
 <p>Eigen的eigen3文件夹加系统变量</p>
-<p>之后vs之中，附加包含目录需要加上</p>
+<p>之后vs之中，附加包含目录需要加上…\build\include， 附加库加上…\vc16\lib</p>
 </li>
 </ol>
-<p>​		…\build\include</p>
-<p>​		附加库加上…\vc16\lib</p>
-<pre><code>    链接器-输入加上opencv_world470d.lib（470随版本变化）
+<p>​	链接器-输入加上opencv_world470d.lib（470随版本变化）</p>
+<ol start="2">
+<li>使用cmake完成后续HW时，</li>
+</ol>
+<pre><code class="bash">&gt; mkdir build
+&gt; cd build
+&gt; cmake ..
+&gt; build make # 此处的build少掉了
 </code></pre>
 
             
@@ -215,12 +220,12 @@
         
         <span class="tag">
             
-            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #03a9f4">入门</a>
+            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #ffa2c4">入门</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/%E7%BB%8F%E9%AA%8C/" style="color: #ffa2c4">经验</a>
+            <a href="/tags/%E7%BB%8F%E9%AA%8C/" style="color: #03a9f4">经验</a>
         </span>
         
     </div>
@@ -264,7 +269,7 @@
         
         <span class="tag">
             
-            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #03a9f4">入门</a>
+            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #ffa2c4">入门</a>
         </span>
         
         <span class="tag">
@@ -296,7 +301,7 @@
             
             <span id="more"></span>
 
-<p><img src="/2023/10/16/SEC-DED%E7%BA%A0%E9%94%99%E7%AE%97%E6%B3%95/imgs/%E7%BA%A0%E9%94%990.jpg" alt="输入图片说明"><br><img src="/2023/10/16/SEC-DED%E7%BA%A0%E9%94%99%E7%AE%97%E6%B3%95/imgs/%E7%BA%A0%E9%94%991.jpg" alt="输入图片说明"><br><img src="/2023/10/16/SEC-DED%E7%BA%A0%E9%94%99%E7%AE%97%E6%B3%95/imgs/%E7%BA%A0%E9%94%992.jpg" alt="输入图片说明"></p>
+<p><img src="https://s2.loli.net/2023/10/20/4fwLsxAFliYMNj5.jpg"><br><img src="https://s2.loli.net/2023/10/20/ZOvjwAg7unLRCBS.jpg"><br><img src="https://s2.loli.net/2023/10/20/b7f3IXBSjueoWnt.jpg"></p>
 
             
         </div>
@@ -311,12 +316,12 @@
         
         <span class="tag">
             
-            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #03a9f4">入门</a>
+            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #00a596">入门</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84/" style="color: #00bcd4">体系结构</a>
+            <a href="/tags/%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84/" style="color: #03a9f4">体系结构</a>
         </span>
         
     </div>
@@ -358,7 +363,7 @@
         
         <span class="tag">
             
-            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #ffa2c4">入门</a>
+            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #00a596">入门</a>
         </span>
         
         <span class="tag">
@@ -368,7 +373,7 @@
         
         <span class="tag">
             
-            <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%96%87%E6%A1%A3/" style="color: #00a596">设计文档</a>
+            <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%96%87%E6%A1%A3/" style="color: #00bcd4">设计文档</a>
         </span>
         
     </div>
@@ -415,12 +420,12 @@
         
         <span class="tag">
             
-            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #00a596">入门</a>
+            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #03a9f4">入门</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/%E6%B8%B8%E6%88%8F/" style="color: #00bcd4">游戏</a>
+            <a href="/tags/%E6%B8%B8%E6%88%8F/" style="color: #00a596">游戏</a>
         </span>
         
     </div>
@@ -470,7 +475,7 @@
         
         <span class="tag">
             
-            <a href="/tags/%E7%BB%8F%E9%AA%8C/" style="color: #00bcd4">经验</a>
+            <a href="/tags/%E7%BB%8F%E9%AA%8C/" style="color: #03a9f4">经验</a>
         </span>
         
     </div>
@@ -495,7 +500,7 @@
     <div class="description">
         <div class="content" v-pre>
             
-            <h3 id="简述：linker入门-除动态链接部分-："><a href="#简述：linker入门-除动态链接部分-：" class="headerlink" title="简述：linker入门(除动态链接部分)："></a>简述：linker入门(除动态链接部分)：</h3><p>建议直接看CSAPP 第七章，别看我这坨答辩</p>
+            <h3 id="简述：linker入门-除动态链接部分-："><a href="#简述：linker入门-除动态链接部分-：" class="headerlink" title="简述：linker入门(除动态链接部分)："></a>简述：linker入门(除动态链接部分)：</h3><p>建议好好看CSAPP 第七章，别看我这坨答辩</p>
 <h4 id="（一）为什么需要linker"><a href="#（一）为什么需要linker" class="headerlink" title="（一）为什么需要linker:"></a>（一）为什么需要linker:</h4><p>你也不想改了一个源文件之后需要重新编译整个标准库吧，你也不想改了一个注释之后需要重新编译整个浏览器内核吧（doge）</p>
 <p>linker使分立编译成为可能</p>
             
@@ -511,12 +516,12 @@
         
         <span class="tag">
             
-            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #00bcd4">入门</a>
+            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #ffa2c4">入门</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84/" style="color: #00a596">体系结构</a>
+            <a href="/tags/%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84/" style="color: #03a9f4">体系结构</a>
         </span>
         
     </div>
@@ -555,12 +560,12 @@
         
         <span class="tag">
             
-            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #00bcd4">入门</a>
+            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #00a596">入门</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/%E5%91%BD%E4%BB%A4%E8%A1%8C/" style="color: #ffa2c4">命令行</a>
+            <a href="/tags/%E5%91%BD%E4%BB%A4%E8%A1%8C/" style="color: #00bcd4">命令行</a>
         </span>
         
     </div>
@@ -600,7 +605,7 @@
         
         <span class="tag">
             
-            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #00a596">入门</a>
+            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #ff7d73">入门</a>
         </span>
         
         <span class="tag">
@@ -644,12 +649,12 @@
         
         <span class="tag">
             
-            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #ff7d73">入门</a>
+            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #00a596">入门</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/java/" style="color: #00bcd4">java</a>
+            <a href="/tags/java/" style="color: #03a9f4">java</a>
         </span>
         
     </div>

@@ -189,7 +189,7 @@
     <div class="content" v-pre>
         <h3 id="程序执行："><a href="#程序执行：" class="headerlink" title="程序执行："></a>程序执行：</h3><p>程序和大部分变量在内存之中，需要运算的变量从内存之中取出，放到寄存器内，再经过ALU运算之后，存回内存</p>
 <span id="more"></span>
-<p><img src="/2023/10/16/risc-v-intro/imgs/2-cache.png" alt="输入图片说明"></p>
+<p><img src="https://s2.loli.net/2023/10/20/LBgjHFl4pTws2JX.png"></p>
 <h3 id="register"><a href="#register" class="headerlink" title="register"></a>register</h3><p>少、快（比DRAM（动态存储）快上百倍），通常由编译器复杂将最常用到的变量放在寄存器内<br>寄存器数量固定的原因：</p>
 <ol>
 <li>寄存器由硬件实现，smaller make faster, easier and cheaper</li>
@@ -203,8 +203,8 @@
 <p>进行内存对齐的主要原因是<strong>处理器在访问内存时通常是按照一定的块大小进行的</strong>，而<strong>内存对齐可以确保数据存储在块的开始位置上，从而减少处理器访问内存时需要读取的字节数，提高内存读写的效率</strong>。例如，在32位处理器中，**<u>通常采用4字节对齐</u>**的方式，即数据存储在内存地址是4的倍数的位置上。</p>
 <h4 id="符号拓展："><a href="#符号拓展：" class="headerlink" title="符号拓展："></a>符号拓展：</h4><p>使用lb 将一个byte写入寄存器，是放在末8位（小端）<br>32位的register剩下24位是什么？<br>如果btye是正数，最高位是0，为了保持其值不变，前24位补0；<br>如果是负数，前24位补1。<br>（如果使用lbu, 看成是unsigned的类型，固定补0）<br>（没有sbu, save只是单纯的copy所有位。如果有内存对齐的部分都是补0）</p>
 <p>立即数（内置常数）：<br>作为指令集的一部分被编码，不需要从内存之中读取。<br>共12位，无符号</p>
-<p><img src="/2023/10/16/risc-v-intro/imgs/riscq.png" alt="输入图片说明"><br>答案为0x3</p>
-<p><img src="/2023/10/16/risc-v-intro/imgs/risca.png" alt="输入图片说明"><br>第一条指令，x11 内发生了符号拓展<br>x11 内为11…1 + 1000 1111 1010(0x8f5) , 同样存到x5内<br>所以lb读到的byte是 1111 1000 (注意小端) , 符号补全<br>x12内是 24位1 + 1111 1000（f8) , 即0xfffffff8 </p>
+<p><img src="https://s2.loli.net/2023/10/20/deP8mlAgpzBsvfG.png"><br>答案为0x3</p>
+<p><img src="https://s2.loli.net/2023/10/20/Z1aOnNqmK4AbIyJ.png"><br>第一条指令，x11 内发生了符号拓展<br>x11 内为11…1 + 1000 1111 1010(0x8f5) , 同样存到x5内<br>所以lb读到的byte是 1111 1000 (注意小端) , 符号补全<br>x12内是 24位1 + 1111 1000（f8) , 即0xfffffff8 </p>
 
     </div>
     

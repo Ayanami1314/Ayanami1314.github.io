@@ -174,7 +174,7 @@
             
             <span class="tag">
                 
-                <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #00a596">入门</a>
+                <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #ffa2c4">入门</a>
             </span>
             
             <span class="tag">
@@ -216,23 +216,23 @@
 <ul>
 <li><p>香农的算法：<br> 对所有的符号，按权值和大致各50%分成左右两部分，之后不断这样递归的分割</p>
 </li>
-<li><p>huffman算法（远优于香农算法，且保证给出最优解）：<br>构建一个最小堆，每次取出两个权值最小的符号作为叶结点，并构建一个权值等于两者之和的父节点重新加入堆之中，如图<img src="/2023/10/16/%E5%8E%8B%E7%BC%A9%E5%92%8C%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E5%93%B2%E5%AD%A6/imgs/huffman.png" alt="输入图片说明"></p>
+<li><p>huffman算法（远优于香农算法，且保证给出最优解）：<br>构建一个最小堆，每次取出两个权值最小的符号作为叶结点，并构建一个权值等于两者之和的父节点重新加入堆之中，如图<img src="https://s2.loli.net/2023/10/20/SaoHheMfuW8Ui1v.png"></p>
 </li>
 </ul>
 <h2 id="压缩拓展"><a href="#压缩拓展" class="headerlink" title="压缩拓展"></a>压缩拓展</h2><h3 id="对符号串的压缩方法：LZW"><a href="#对符号串的压缩方法：LZW" class="headerlink" title="对符号串的压缩方法：LZW"></a>对符号串的压缩方法：LZW</h3><p>我们现在已经有了对单个“符号”压缩的最佳方法Huffman算法，但是对形如ababababab这样的字符串，肯定还有压缩的余量。</p>
 <p>一种拓展的方法是LZW方法，其主要目的是捕捉“符号串”的重复</p>
-<p>算法如下：<br>编码：<br><img src="/2023/10/16/%E5%8E%8B%E7%BC%A9%E5%92%8C%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E5%93%B2%E5%AD%A6/imgs/LZWkeyidea.png" alt="输入图片说明"></p>
-<p>即，如果我们有字符串<br><img src="/2023/10/16/%E5%8E%8B%E7%BC%A9%E5%92%8C%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E5%93%B2%E5%AD%A6/imgs/LZW2.png" alt="输入图片说明"></p>
+<p>算法如下：<br>编码：<br><img src="https://s2.loli.net/2023/10/20/uRxo3UnLqijE5rh.png"></p>
+<p>即，如果我们有字符串<br><img src="https://s2.loli.net/2023/10/20/AYzI2dqZCH9bmt4.png"></p>
 <p>先对出现的所有可能字符建一个表<br>然后，如果出现表上的字符，就把“该字符+后一个字符”作为新的元素加入表中<br>如：a在表上，则加入aa进入表中（下一次查询（<strong>通过tries，查找到最长匹配为止</strong>）就可以查询到aa而将aa整体压缩）；再往后，还是a在表上, 后一位变成b，将ab加入进表之中；再往后，发现ab已经在表之中，则加入abc</p>
-<p><img src="/2023/10/16/%E5%8E%8B%E7%BC%A9%E5%92%8C%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E5%93%B2%E5%AD%A6/imgs/LZW1.png" alt="输入图片说明"></p>
+<p><img src="https://s2.loli.net/2023/10/20/5kOXBxhQPMCcJ8n.png"></p>
 <p>解码：<br>一种可能的解码方案是像之前Huffman编码所做的那样，将码表随文件一同发送。<br>但问题是，先前Huffman码表的大小依赖于符号的种类，是一个常数O(1)大小，在大一点的文件里面都可以无视，现在的码表是O(N), 如果文件重复很少的情况下，码表就和文件差不多大，压缩反而会增大文件！</p>
-<p>能不能从基础的码表（每个“单”符号种类一个码）和编码后的值重建码表呢？<br>可以<br><img src="/2023/10/16/%E5%8E%8B%E7%BC%A9%E5%92%8C%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E5%93%B2%E5%AD%A6/imgs/decodeLZW.png" alt="输入图片说明"><br>由先前的编码值C(B)&#x3D;0x61616281来说：</p>
+<p>能不能从基础的码表（每个“单”符号种类一个码）和编码后的值重建码表呢？<br>可以<br><img src="https://s2.loli.net/2023/10/20/ybXe3hgZHnUxa8Q.png"><br>由先前的编码值C(B)&#x3D;0x61616281来说：</p>
 <ol>
 <li>61 –&gt;a，由于能够查询到a, 所以由前面的规则，a必然添加了一个东西</li>
 <li>61 –&gt;a,  第二个字符是a, 并且我们知道了，上一个字符添加的东西是aa，将aa添加到码表</li>
 <li>62 –&gt;b. 第三个字符是b, 并且我们知道了，上一个字符添加的东西是ab，将ab添加到码表</li>
 </ol>
-<p>…<br>由此，我们通过下一个字符的值确认了上一个字符添加到码表的新编码<br>剩下唯一的一个特殊情况是，下一个字符恰好就是上一个字符添加的新编码的情况，如图：<br><img src="/2023/10/16/%E5%8E%8B%E7%BC%A9%E5%92%8C%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E5%93%B2%E5%AD%A6/imgs/LZW3.png" alt="输入图片说明"></p>
+<p>…<br>由此，我们通过下一个字符的值确认了上一个字符添加到码表的新编码<br>剩下唯一的一个特殊情况是，下一个字符恰好就是上一个字符添加的新编码的情况，如图：<br><img src="https://s2.loli.net/2023/10/20/hVl8PQjMJk5GOrU.png"></p>
 <p>在这种情况下，设上一个字符（串）的码为X，这个（字符串）为Y，记Y1为Y字符串开头的字符，我们知道上一个字符新加到码表的是X+Y1的，并且Y在已知码表查不到，那么Y &#x3D; X+Y1</p>
 <p>X的码我们是已知的，由上式：<br>Y1 &#x3D; Y的第一个字符 &#x3D; X+Y1 的第一个字符（在X内，已知）<br>得到了Y1，就得到了X+Y1， 就得到了X+Y</p>
 <h3 id="压缩的极限："><a href="#压缩的极限：" class="headerlink" title="压缩的极限："></a>压缩的极限：</h3><p>给定一个长为N的字节流，能够将其表示的最短字节流是多少？（可以想象，一种可能的短序列对应长序列的典例是：java源代码和编译产生的字节流）</p>

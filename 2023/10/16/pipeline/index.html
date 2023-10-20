@@ -174,12 +174,12 @@
             
             <span class="tag">
                 
-                <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #03a9f4">入门</a>
+                <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #00a596">入门</a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84/" style="color: #ffa2c4">体系结构</a>
+                <a href="/tags/%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84/" style="color: #00bcd4">体系结构</a>
             </span>
             
         </span>
@@ -193,7 +193,7 @@
 <li>instruction decode(regfile op &amp; imm-gen)</li>
 <li>execution(alu and branch-compare)</li>
 <li>memory operation</li>
-<li>write back(to regfile)<br>下图是一个单周期的数据路径<br><img src="/2023/10/16/pipeline/imgs/pipeline.png" alt="输入图片说明"></li>
+<li>write back(to regfile)<br>下图是一个单周期的数据路径<br><img src="https://s2.loli.net/2023/10/20/rlCgITQ1PHYtomB.png"></li>
 </ul>
 <span id="more"></span>
 
@@ -238,7 +238,7 @@ sub s0, s0, 3
 </code></pre>
 <p>在前面的指令回写之前，后面的指令就需要用到更新的值。</p>
 <p>解决方法是添加所谓的前递（forwarding）或者旁路（bypassing）机制，如下两图。<br>拿到进行EXE阶段的指令和进行ID阶段的指令，比较两条指令，看ID指令是否依赖于EXE指令的结果，如果是，将EXE指令的结果传递到ID指令的EXE阶段覆盖原来的输入</p>
-<p><img src="/2023/10/16/pipeline/imgs/forwarding.png" alt="输入图片说明"><br><img src="/2023/10/16/pipeline/imgs/forwarding2.png" alt="输入图片说明"><br>只需要比较本条指令和前一条指令，因为相隔两条指令的指令的话，前面指令执行write back的时候，后一条指令刚好在ID阶段，由前面所说的先写后读，不会出现问题<br>（然而如果流水线进一步加深，还是会有问题，需要更多的硬件机制)</p>
+<p><img src="https://s2.loli.net/2023/10/20/x6Zijaq2LETQUcH.png"><br><img src="https://s2.loli.net/2023/10/20/i3OUPd59nzZEDwA.png"><br>只需要比较本条指令和前一条指令，因为相隔两条指令的指令的话，前面指令执行write back的时候，后一条指令刚好在ID阶段，由前面所说的先写后读，不会出现问题<br>（然而如果流水线进一步加深，还是会有问题，需要更多的硬件机制)</p>
 <p><strong>第三种是MEM的依赖</strong><br>例如</p>
 <pre><code class="assembly">lw s0,0(sp)
 addi s0, s0, 4 

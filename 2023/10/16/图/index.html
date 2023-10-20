@@ -179,7 +179,7 @@
             
             <span class="tag">
                 
-                <a href="/tags/%E7%AE%97%E6%B3%95/" style="color: #00bcd4">算法</a>
+                <a href="/tags/%E7%AE%97%E6%B3%95/" style="color: #ffa2c4">算法</a>
             </span>
             
         </span>
@@ -331,7 +331,7 @@ Set distTo[n] = distTo[v] + 1.
 </blockquote>
 <h2 id="6-最小生成树，割性质"><a href="#6-最小生成树，割性质" class="headerlink" title="6. 最小生成树，割性质"></a>6. 最小生成树，割性质</h2><p>最小生成树（Minimun spanning tree, MST）：<br>定义：连接一张图所有节点的树叫生成树，最小生成树就是生成树之中各个边的权值加起来最小的树。与一般的树不同的是，最小生成树没有“根”或者“叶”的结构，因为最小生成树是图的一个固有性质，和选择的生成起点无关（这就和dijkstra算法所得到的树不同）</p>
 <p>最小生成树常常和以某个点作为起点的dijkstra算法产生的最短路径树相同，但<strong>不是始终存在令两者相同的点</strong></p>
-<p>割性质：<br>为了高效的得到最小生成树，需要引入割性质<br><img src="/2023/10/16/%E5%9B%BE/imgs/cut.png" alt="输入图片说明"><br>如图，把一张图分成两个点集AB（AB随意指定），连接A集之中一个点和B集之中一个点的边叫做“割（cut)”</p>
+<p>割性质：<br>为了高效的得到最小生成树，需要引入割性质<br><img src="https://s2.loli.net/2023/10/20/BnDpctQATe3byME.png"><br>如图，把一张图分成两个点集AB（AB随意指定），连接A集之中一个点和B集之中一个点的边叫做“割（cut)”</p>
 <p>比如图中的（2，7），（1，2），（1，3）</p>
 <p><strong>性质：最短的一条割必然是最小生成树的一部分</strong><br>证明：<br>反证法：假设不是，存在一棵不经过割w（i,j）的最小生成树，由其经过所有节点的特性知，书中必然存在另一条割连接A，B点集，记为w(p, q)</p>
 <p>由于w(i,j)是最短的割，那么w(i,j)&lt;w(p,q)</p>
@@ -356,6 +356,7 @@ Set distTo[n] = distTo[v] + 1.
 <p>时间复杂度：<br>判断是否成环，并查集WQUPC, 稀疏图新节点产生的新边是常数条，对于第一条新边相连的节点，找祖先节点，对于第二条新边相连的节点，找祖先节点，如果两祖先相同则成环，….. 常数两两组合还是常数</p>
 <p>建立队列，O（ElogE）&#x3D; O（ElogV）<br>判断成环O（Elg*V）(最多E次，每次lg*V)<br>总共O（Elg*V+ElogE）<br>如果图API提供了排好序的边，就是O（Elg*V）<br>在任意有现实意义大小的图的情况下<br>O（Elg*V）&#x3D;<strong>O（E）</strong>！！！</p>
 <h2 id="7-网络流算法"><a href="#7-网络流算法" class="headerlink" title="7. 网络流算法"></a>7. 网络流算法</h2><p>未完待续……</p>
+<p>参考 南京大学 蒋炎岩 网络流</p>
 
     </div>
     

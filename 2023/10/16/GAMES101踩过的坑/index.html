@@ -174,12 +174,12 @@
             
             <span class="tag">
                 
-                <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #03a9f4">入门</a>
+                <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #00bcd4">入门</a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/%E7%BB%8F%E9%AA%8C/" style="color: #ff7d73">经验</a>
+                <a href="/tags/%E7%BB%8F%E9%AA%8C/" style="color: #ffa2c4">经验</a>
             </span>
             
         </span>
@@ -192,12 +192,17 @@
 <li><p>配置环境：openCV+Eigen</p>
 <p>OpenCV的  $(opencv)\build\vc16 下，两个文件夹\bin,\lib都要加到系统变量</p>
 <p>Eigen的eigen3文件夹加系统变量</p>
-<p>之后vs之中，附加包含目录需要加上</p>
+<p>之后vs之中，附加包含目录需要加上…\build\include， 附加库加上…\vc16\lib</p>
 </li>
 </ol>
-<p>​		…\build\include</p>
-<p>​		附加库加上…\vc16\lib</p>
-<pre><code>    链接器-输入加上opencv_world470d.lib（470随版本变化）
+<p>​	链接器-输入加上opencv_world470d.lib（470随版本变化）</p>
+<ol start="2">
+<li>使用cmake完成后续HW时，</li>
+</ol>
+<pre><code class="bash">&gt; mkdir build
+&gt; cd build
+&gt; cmake ..
+&gt; build make # 此处的build少掉了
 </code></pre>
 
     </div>
