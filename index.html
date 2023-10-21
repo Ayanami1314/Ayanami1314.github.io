@@ -216,280 +216,11 @@
         
         <span class="tag">
             
-            <a href="/tags/%E8%87%AA%E6%88%91%E4%BB%8B%E7%BB%8D/" style="color: #00a596">自我介绍</a>
+            <a href="/tags/%E8%87%AA%E6%88%91%E4%BB%8B%E7%BB%8D/" style="color: #ffa2c4">自我介绍</a>
         </span>
         
     </div>
     <a href="/2023/10/16/Hello-World/" class="go-post">阅读全文</a>
-</div>
-
-<div class="post">
-    <a href="/2023/10/16/pipeline/">
-        <h2 class="post-title">pipeline</h2>
-    </a>
-    <div class="category-and-date">
-        
-        <span class="date">
-            <span class="icon">
-                <i class="fa-solid fa-calendar fa-fw"></i>
-            </span>
-            2023/10/16
-        </span>
-        
-        
-        <span class="special">
-            <i class="fa-solid fa-grip-vertical fa-fw"></i>
-        </span>
-        
-    </div>
-    <div class="description">
-        <div class="content" v-pre>
-            
-            <h2 id="一、为什么要引入流水线"><a href="#一、为什么要引入流水线" class="headerlink" title="一、为什么要引入流水线"></a>一、为什么要引入流水线</h2><p>pipeline: 同时执行多条指令<br>每一条指令的执行可以分解成多个阶段，<strong>在5级流水RISC-V之中为IF, ID, EXE, MEM和WB</strong>，即</p>
-<ul>
-<li>instruction fetch</li>
-<li>instruction decode(regfile op &amp; imm-gen)</li>
-<li>execution(alu and branch-compare)</li>
-<li>memory operation</li>
-<li>write back(to regfile)<br>下图是一个单周期的数据路径<br><img src="https://s2.loli.net/2023/10/20/rlCgITQ1PHYtomB.png"></li>
-</ul>
-            
-        </div>
-    </div>
-    <div class="post-tags">
-        
-        <span class="icon">
-            <i class="fa-solid fa-tags fa-fw"></i>
-        </span>
-        
-        
-        
-        <span class="tag">
-            
-            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #00a596">入门</a>
-        </span>
-        
-        <span class="tag">
-            
-            <a href="/tags/%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84/" style="color: #00bcd4">体系结构</a>
-        </span>
-        
-    </div>
-    <a href="/2023/10/16/pipeline/" class="go-post">阅读全文</a>
-</div>
-
-<div class="post">
-    <a href="/2023/10/16/cache/">
-        <h2 class="post-title">cache</h2>
-    </a>
-    <div class="category-and-date">
-        
-        <span class="date">
-            <span class="icon">
-                <i class="fa-solid fa-calendar fa-fw"></i>
-            </span>
-            2023/10/16
-        </span>
-        
-        
-        <span class="special">
-            <i class="fa-solid fa-grip-vertical fa-fw"></i>
-        </span>
-        
-    </div>
-    <div class="description">
-        <div class="content" v-pre>
-            
-            <h2 id="2-cache"><a href="#2-cache" class="headerlink" title="2.cache"></a>2.cache</h2><h3 id="2-1）SRAM-DRAM，闪存和磁盘"><a href="#2-1）SRAM-DRAM，闪存和磁盘" class="headerlink" title="2.1）SRAM, DRAM，闪存和磁盘"></a>2.1）SRAM, DRAM，闪存和磁盘</h3><p>速度逐渐减慢，成本逐渐降低<br>原理：</p>
-<p>SRAM：一组<strong>直接接外接电源</strong>的触发器电路（这意味着功耗和对电源的极高稳定性要求，断电立即丢失数据），因而不需要刷新操作，速度快</p>
-            
-        </div>
-    </div>
-    <div class="post-tags">
-        
-        <span class="icon">
-            <i class="fa-solid fa-tags fa-fw"></i>
-        </span>
-        
-        
-        
-        <span class="tag">
-            
-            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #03a9f4">入门</a>
-        </span>
-        
-        <span class="tag">
-            
-            <a href="/tags/%E7%BB%84%E6%88%90%E7%BB%93%E6%9E%84/" style="color: #ffa2c4">组成结构</a>
-        </span>
-        
-    </div>
-    <a href="/2023/10/16/cache/" class="go-post">阅读全文</a>
-</div>
-
-<div class="post">
-    <a href="/2023/10/16/%E5%8E%8B%E7%BC%A9%E5%92%8C%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E5%93%B2%E5%AD%A6/">
-        <h2 class="post-title">压缩和软件设计哲学</h2>
-    </a>
-    <div class="category-and-date">
-        
-        <span class="date">
-            <span class="icon">
-                <i class="fa-solid fa-calendar fa-fw"></i>
-            </span>
-            2023/10/16
-        </span>
-        
-        
-        <span class="special">
-            <i class="fa-solid fa-grip-vertical fa-fw"></i>
-        </span>
-        
-    </div>
-    <div class="description">
-        <div class="content" v-pre>
-            
-            <h2 id="软件设计哲学："><a href="#软件设计哲学：" class="headerlink" title="软件设计哲学："></a>软件设计哲学：</h2><p>让代码变得复杂的有两个主要因素：</p>
-<h4 id="Obscurity-and-dependency"><a href="#Obscurity-and-dependency" class="headerlink" title="Obscurity and dependency"></a>Obscurity and dependency</h4><p>为了避免Obscurity, 我们需要命名有意义的变量和抽象，比如用枚举代替奇怪的条件常数<br>为了避免dependency，我们需要避免重复，要做到“对一个bug，只修正一个方法”</p>
-<p>管理复杂度：</p>
-<ol>
-<li><p>编程时要更多地在“战略上”而不是“战术上”思考</p>
-</li>
-<li><p>我们无法一次处理完所有复杂度，所以我们需要隐藏复杂度</p>
-</li>
-<li><p>build things deep: 最好的模块是使用起来简单易懂，但能够执行复杂操作的模块（不要让接口直接和底层绑定，尽可能少让一个模块的内部信息“泄露”到另一个模块）</p>
-</li>
-<li><p>警惕“时间分解”，事物发生的顺序并不是一个编程的好顺序，从整体上俯瞰是一个更好的做法</p>
-</li>
-</ol>
-            
-        </div>
-    </div>
-    <div class="post-tags">
-        
-        <span class="icon">
-            <i class="fa-solid fa-tags fa-fw"></i>
-        </span>
-        
-        
-        
-        <span class="tag">
-            
-            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #00a596">入门</a>
-        </span>
-        
-        <span class="tag">
-            
-            <a href="/tags/%E7%AE%97%E6%B3%95/" style="color: #00bcd4">算法</a>
-        </span>
-        
-    </div>
-    <a href="/2023/10/16/%E5%8E%8B%E7%BC%A9%E5%92%8C%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E5%93%B2%E5%AD%A6/" class="go-post">阅读全文</a>
-</div>
-
-<div class="post">
-    <a href="/2023/10/16/%E5%9B%BE/">
-        <h2 class="post-title">图</h2>
-    </a>
-    <div class="category-and-date">
-        
-        <span class="date">
-            <span class="icon">
-                <i class="fa-solid fa-calendar fa-fw"></i>
-            </span>
-            2023/10/16
-        </span>
-        
-        
-        <span class="special">
-            <i class="fa-solid fa-grip-vertical fa-fw"></i>
-        </span>
-        
-    </div>
-    <div class="description">
-        <div class="content" v-pre>
-            
-            <h2 id="1-拓扑排序"><a href="#1-拓扑排序" class="headerlink" title="1. 拓扑排序"></a>1. 拓扑排序</h2><p>对于任意的节点i,j 如果存在从i到j的一条边，则j应该排序在i的后面<br>满足这样性质的排序叫拓扑排序</p>
-<p>存在拓扑排序的条件：图是无环的</p>
-<p>构建拓扑排序的方法：<br>对节点引入两个量，入度和出度，代表进入节点和从节点发出的边条数</p>
-<p>首先，由于图是无环的，必然可以找到一个入度为0的点（“起点”）<br>抛去起点和与起点相连的边之后，子图必然有一个新“起点”</p>
-<p>不断找这样的“起点”就得到了拓扑排序</p>
-<p>算法是O（V+E）的</p>
-<ol>
-<li>计算所有点的入度 O（V+E）</li>
-<li>维护一个队列，包含所有入度为0的点，每次除去一个点和其邻边，并将相邻节点的入度减一（无向图）O（V+E）</li></ol>
-            
-        </div>
-    </div>
-    <div class="post-tags">
-        
-        <span class="icon">
-            <i class="fa-solid fa-tags fa-fw"></i>
-        </span>
-        
-        
-        
-        <span class="tag">
-            
-            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #ff7d73">入门</a>
-        </span>
-        
-        <span class="tag">
-            
-            <a href="/tags/%E7%AE%97%E6%B3%95/" style="color: #00bcd4">算法</a>
-        </span>
-        
-    </div>
-    <a href="/2023/10/16/%E5%9B%BE/" class="go-post">阅读全文</a>
-</div>
-
-<div class="post">
-    <a href="/2023/10/16/%E6%A0%91/">
-        <h2 class="post-title">树</h2>
-    </a>
-    <div class="category-and-date">
-        
-        <span class="date">
-            <span class="icon">
-                <i class="fa-solid fa-calendar fa-fw"></i>
-            </span>
-            2023/10/16
-        </span>
-        
-        
-        <span class="special">
-            <i class="fa-solid fa-grip-vertical fa-fw"></i>
-        </span>
-        
-    </div>
-    <div class="description">
-        <div class="content" v-pre>
-            
-            <h2 id="从BST说起"><a href="#从BST说起" class="headerlink" title="从BST说起"></a>从BST说起</h2><p>BST（Binary Search Tree, 二叉搜索树）的平均深度是Θ（logN）（一棵随机生成的BST（不管有没有随机插入和删除）的深度和期望高度都是 Θ（logN）的）</p>
-<p>但现实之中的树不一定都是随机的，有很多情况（比如带有时间顺序的数据，就不是随机的），我们需要避免Θ（N）的最坏情况，要把树的深度压到O（logN）</p>
-            
-        </div>
-    </div>
-    <div class="post-tags">
-        
-        <span class="icon">
-            <i class="fa-solid fa-tags fa-fw"></i>
-        </span>
-        
-        
-        
-        <span class="tag">
-            
-            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #ff7d73">入门</a>
-        </span>
-        
-        <span class="tag">
-            
-            <a href="/tags/%E7%AE%97%E6%B3%95/" style="color: #03a9f4">算法</a>
-        </span>
-        
-    </div>
-    <a href="/2023/10/16/%E6%A0%91/" class="go-post">阅读全文</a>
 </div>
 
 <div class="post">
@@ -603,11 +334,379 @@ for j in &#123;0..8..2&#125;  # 步长2
         
         <span class="tag">
             
-            <a href="/tags/%E6%8A%80%E6%9C%AF%E9%9A%8F%E7%AC%94/" style="color: #03a9f4">技术随笔</a>
+            <a href="/tags/%E6%8A%80%E6%9C%AF%E9%9A%8F%E7%AC%94/" style="color: #00a596">技术随笔</a>
         </span>
         
     </div>
     <a href="/2023/10/21/10-22%E9%9A%8F%E7%AC%94-argparse-bash%E9%80%9A%E9%85%8D%E7%AC%A6/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/2023/10/16/pipeline/">
+        <h2 class="post-title">pipeline</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/10/16
+        </span>
+        
+        
+        <span class="special">
+            <i class="fa-solid fa-grip-vertical fa-fw"></i>
+        </span>
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <h2 id="一、为什么要引入流水线"><a href="#一、为什么要引入流水线" class="headerlink" title="一、为什么要引入流水线"></a>一、为什么要引入流水线</h2><p>pipeline: 同时执行多条指令<br>每一条指令的执行可以分解成多个阶段，<strong>在5级流水RISC-V之中为IF, ID, EXE, MEM和WB</strong>，即</p>
+<ul>
+<li>instruction fetch</li>
+<li>instruction decode(regfile op &amp; imm-gen)</li>
+<li>execution(alu and branch-compare)</li>
+<li>memory operation</li>
+<li>write back(to regfile)<br>下图是一个单周期的数据路径<br><img src="https://s2.loli.net/2023/10/20/rlCgITQ1PHYtomB.png"></li>
+</ul>
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <i class="fa-solid fa-tags fa-fw"></i>
+        </span>
+        
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #ff7d73">入门</a>
+        </span>
+        
+        <span class="tag">
+            
+            <a href="/tags/%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84/" style="color: #03a9f4">体系结构</a>
+        </span>
+        
+    </div>
+    <a href="/2023/10/16/pipeline/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/2023/10/16/cache/">
+        <h2 class="post-title">cache</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/10/16
+        </span>
+        
+        
+        <span class="special">
+            <i class="fa-solid fa-grip-vertical fa-fw"></i>
+        </span>
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <h2 id="2-cache"><a href="#2-cache" class="headerlink" title="2.cache"></a>2.cache</h2><h3 id="2-1）SRAM-DRAM，闪存和磁盘"><a href="#2-1）SRAM-DRAM，闪存和磁盘" class="headerlink" title="2.1）SRAM, DRAM，闪存和磁盘"></a>2.1）SRAM, DRAM，闪存和磁盘</h3><p>速度逐渐减慢，成本逐渐降低<br>原理：</p>
+<p>SRAM：一组<strong>直接接外接电源</strong>的触发器电路（这意味着功耗和对电源的极高稳定性要求，断电立即丢失数据），因而不需要刷新操作，速度快</p>
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <i class="fa-solid fa-tags fa-fw"></i>
+        </span>
+        
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #00bcd4">入门</a>
+        </span>
+        
+        <span class="tag">
+            
+            <a href="/tags/%E7%BB%84%E6%88%90%E7%BB%93%E6%9E%84/" style="color: #03a9f4">组成结构</a>
+        </span>
+        
+    </div>
+    <a href="/2023/10/16/cache/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/2023/10/16/%E5%8E%8B%E7%BC%A9%E5%92%8C%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E5%93%B2%E5%AD%A6/">
+        <h2 class="post-title">压缩和软件设计哲学</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/10/16
+        </span>
+        
+        
+        <span class="special">
+            <i class="fa-solid fa-grip-vertical fa-fw"></i>
+        </span>
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <h2 id="软件设计哲学："><a href="#软件设计哲学：" class="headerlink" title="软件设计哲学："></a>软件设计哲学：</h2><p>让代码变得复杂的有两个主要因素：</p>
+<h4 id="Obscurity-and-dependency"><a href="#Obscurity-and-dependency" class="headerlink" title="Obscurity and dependency"></a>Obscurity and dependency</h4><p>为了避免Obscurity, 我们需要命名有意义的变量和抽象，比如用枚举代替奇怪的条件常数<br>为了避免dependency，我们需要避免重复，要做到“对一个bug，只修正一个方法”</p>
+<p>管理复杂度：</p>
+<ol>
+<li><p>编程时要更多地在“战略上”而不是“战术上”思考</p>
+</li>
+<li><p>我们无法一次处理完所有复杂度，所以我们需要隐藏复杂度</p>
+</li>
+<li><p>build things deep: 最好的模块是使用起来简单易懂，但能够执行复杂操作的模块（不要让接口直接和底层绑定，尽可能少让一个模块的内部信息“泄露”到另一个模块）</p>
+</li>
+<li><p>警惕“时间分解”，事物发生的顺序并不是一个编程的好顺序，从整体上俯瞰是一个更好的做法</p>
+</li>
+</ol>
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <i class="fa-solid fa-tags fa-fw"></i>
+        </span>
+        
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #03a9f4">入门</a>
+        </span>
+        
+        <span class="tag">
+            
+            <a href="/tags/%E7%AE%97%E6%B3%95/" style="color: #ffa2c4">算法</a>
+        </span>
+        
+    </div>
+    <a href="/2023/10/16/%E5%8E%8B%E7%BC%A9%E5%92%8C%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E5%93%B2%E5%AD%A6/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/2023/10/16/%E5%9B%BE/">
+        <h2 class="post-title">图</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/10/16
+        </span>
+        
+        
+        <span class="special">
+            <i class="fa-solid fa-grip-vertical fa-fw"></i>
+        </span>
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <h2 id="1-拓扑排序"><a href="#1-拓扑排序" class="headerlink" title="1. 拓扑排序"></a>1. 拓扑排序</h2><p>对于任意的节点i,j 如果存在从i到j的一条边，则j应该排序在i的后面<br>满足这样性质的排序叫拓扑排序</p>
+<p>存在拓扑排序的条件：图是无环的</p>
+<p>构建拓扑排序的方法：<br>对节点引入两个量，入度和出度，代表进入节点和从节点发出的边条数</p>
+<p>首先，由于图是无环的，必然可以找到一个入度为0的点（“起点”）<br>抛去起点和与起点相连的边之后，子图必然有一个新“起点”</p>
+<p>不断找这样的“起点”就得到了拓扑排序</p>
+<p>算法是O（V+E）的</p>
+<ol>
+<li>计算所有点的入度 O（V+E）</li>
+<li>维护一个队列，包含所有入度为0的点，每次除去一个点和其邻边，并将相邻节点的入度减一（无向图）O（V+E）</li></ol>
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <i class="fa-solid fa-tags fa-fw"></i>
+        </span>
+        
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #ff7d73">入门</a>
+        </span>
+        
+        <span class="tag">
+            
+            <a href="/tags/%E7%AE%97%E6%B3%95/" style="color: #ffa2c4">算法</a>
+        </span>
+        
+    </div>
+    <a href="/2023/10/16/%E5%9B%BE/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/2023/10/16/CALL%EF%BC%88compiler,%20assembler,%20linker&loader%EF%BC%89/">
+        <h2 class="post-title">CALL（compiler, assembler, linker&amp;loader）</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/10/16
+        </span>
+        
+        
+        <span class="special">
+            <i class="fa-solid fa-grip-vertical fa-fw"></i>
+        </span>
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <p>﻿</p>
+<h4 id="diff-from-Intepreter-and-compiler"><a href="#diff-from-Intepreter-and-compiler" class="headerlink" title="diff from Intepreter and compiler"></a>diff from Intepreter and compiler</h4><p>Interpreter 高级语言–&gt;高级语言<br>compiler 高级语言–&gt;机器码&#x2F;汇编（包含很多的优化）</p>
+<h4 id="C-flow"><a href="#C-flow" class="headerlink" title="C flow"></a>C flow</h4><p>CALL chain<br>.c–&gt;compiler–&gt;.s<br>.s–&gt;assember(translate pesudo instruction)–&gt;.o(object file)</p>
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <i class="fa-solid fa-tags fa-fw"></i>
+        </span>
+        
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #ff7d73">入门</a>
+        </span>
+        
+        <span class="tag">
+            
+            <a href="/tags/%E7%BB%84%E6%88%90%E7%BB%93%E6%9E%84/" style="color: #03a9f4">组成结构</a>
+        </span>
+        
+    </div>
+    <a href="/2023/10/16/CALL%EF%BC%88compiler,%20assembler,%20linker&loader%EF%BC%89/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/2023/10/16/java%E8%BF%9B%E9%98%B6%E8%AF%AD%E6%B3%95/">
+        <h2 class="post-title">java进阶语法</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/10/16
+        </span>
+        
+        
+        <span class="special">
+            <i class="fa-solid fa-grip-vertical fa-fw"></i>
+        </span>
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <p>一个写完了streamlit的demo<br>第二个写完了deque，积累了一些写API和测试的经验</p>
+<h3 id="java-语法和收获："><a href="#java-语法和收获：" class="headerlink" title="java 语法和收获："></a>java 语法和收获：</h3><h4 id="1-随机测试非常好用，对应java就是StdRandom库"><a href="#1-随机测试非常好用，对应java就是StdRandom库" class="headerlink" title="1.随机测试非常好用，对应java就是StdRandom库"></a>1.随机测试非常好用，对应java就是StdRandom库</h4><h4 id="2-java的接口机制-interface-有点类似c-的抽象类，继承接口的需要Override所有的接口函数声明（接口里面只写声明）（最好显式-Override）"><a href="#2-java的接口机制-interface-有点类似c-的抽象类，继承接口的需要Override所有的接口函数声明（接口里面只写声明）（最好显式-Override）" class="headerlink" title="2.java的接口机制 interface 有点类似c++的抽象类，继承接口的需要Override所有的接口函数声明（接口里面只写声明）（最好显式@Override）"></a>2.java的接口机制 interface 有点类似c++的抽象类，继承接口的需要Override所有的接口函数声明（接口里面只写声明）（最好显式@Override）</h4>
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <i class="fa-solid fa-tags fa-fw"></i>
+        </span>
+        
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #ffa2c4">入门</a>
+        </span>
+        
+        <span class="tag">
+            
+            <a href="/tags/java/" style="color: #03a9f4">java</a>
+        </span>
+        
+    </div>
+    <a href="/2023/10/16/java%E8%BF%9B%E9%98%B6%E8%AF%AD%E6%B3%95/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/2023/10/16/%E6%A0%91/">
+        <h2 class="post-title">树</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/10/16
+        </span>
+        
+        
+        <span class="special">
+            <i class="fa-solid fa-grip-vertical fa-fw"></i>
+        </span>
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <h2 id="从BST说起"><a href="#从BST说起" class="headerlink" title="从BST说起"></a>从BST说起</h2><p>BST（Binary Search Tree, 二叉搜索树）的平均深度是Θ（logN）（一棵随机生成的BST（不管有没有随机插入和删除）的深度和期望高度都是 Θ（logN）的）</p>
+<p>但现实之中的树不一定都是随机的，有很多情况（比如带有时间顺序的数据，就不是随机的），我们需要避免Θ（N）的最坏情况，要把树的深度压到O（logN）</p>
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <i class="fa-solid fa-tags fa-fw"></i>
+        </span>
+        
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #00bcd4">入门</a>
+        </span>
+        
+        <span class="tag">
+            
+            <a href="/tags/%E7%AE%97%E6%B3%95/" style="color: #ff7d73">算法</a>
+        </span>
+        
+    </div>
+    <a href="/2023/10/16/%E6%A0%91/" class="go-post">阅读全文</a>
 </div>
 
 <div class="post">
@@ -687,115 +786,21 @@ with concurrent.futures.ThreadPoolExetutor as pool:
         
         <span class="tag">
             
-            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #ffa2c4">入门</a>
+            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #ff7d73">入门</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/python/" style="color: #00bcd4">python</a>
+            <a href="/tags/python/" style="color: #03a9f4">python</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/%E5%B9%B6%E5%8F%91/" style="color: #ffa2c4">并发</a>
+            <a href="/tags/%E5%B9%B6%E5%8F%91/" style="color: #ff7d73">并发</a>
         </span>
         
     </div>
     <a href="/2023/10/16/python%E5%B9%B6%E5%8F%91/" class="go-post">阅读全文</a>
-</div>
-
-<div class="post">
-    <a href="/2023/10/16/%E5%B9%B6%E6%9F%A5%E9%9B%86/">
-        <h2 class="post-title">并查集</h2>
-    </a>
-    <div class="category-and-date">
-        
-        <span class="date">
-            <span class="icon">
-                <i class="fa-solid fa-calendar fa-fw"></i>
-            </span>
-            2023/10/16
-        </span>
-        
-        
-        <span class="special">
-            <i class="fa-solid fa-grip-vertical fa-fw"></i>
-        </span>
-        
-    </div>
-    <div class="description">
-        <div class="content" v-pre>
-            
-            <p>﻿61b数据结构部分正式开始</p>
-<h2 id="1-并查集（Disjoint-Set-Union）："><a href="#1-并查集（Disjoint-Set-Union）：" class="headerlink" title="1. 并查集（Disjoint Set Union）："></a>1. 并查集（Disjoint Set Union）：</h2><p>先从一个问题引入，我们现在有N个数据，某些数据之间有相连的关系（已知，比如AB相连，BD相连）；现在我们想要判断数据A和数据D是否相连，或者数据C属于哪个集合，怎么做？</p>
-            
-        </div>
-    </div>
-    <div class="post-tags">
-        
-        <span class="icon">
-            <i class="fa-solid fa-tags fa-fw"></i>
-        </span>
-        
-        
-        
-        <span class="tag">
-            
-            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #03a9f4">入门</a>
-        </span>
-        
-        <span class="tag">
-            
-            <a href="/tags/%E7%AE%97%E6%B3%95/" style="color: #ffa2c4">算法</a>
-        </span>
-        
-    </div>
-    <a href="/2023/10/16/%E5%B9%B6%E6%9F%A5%E9%9B%86/" class="go-post">阅读全文</a>
-</div>
-
-<div class="post">
-    <a href="/2023/10/16/61c%E8%B8%A9%E8%BF%87%E7%9A%84%E5%9D%91/">
-        <h2 class="post-title">61c踩过的坑</h2>
-    </a>
-    <div class="category-and-date">
-        
-        <span class="date">
-            <span class="icon">
-                <i class="fa-solid fa-calendar fa-fw"></i>
-            </span>
-            2023/10/16
-        </span>
-        
-        
-    </div>
-    <div class="description">
-        <div class="content" v-pre>
-            
-            <h3 id="61c-踩过的坑"><a href="#61c-踩过的坑" class="headerlink" title="61c 踩过的坑"></a>61c 踩过的坑</h3><h4 id="1-Proj-1-long-测试realloc似乎会爆炸"><a href="#1-Proj-1-long-测试realloc似乎会爆炸" class="headerlink" title="1. Proj 1 long 测试realloc似乎会爆炸"></a>1. Proj 1 long 测试realloc似乎会爆炸</h4><h4 id="2-Lab3-不知为何，venus在gitKraken-的CLI界面打不开，必须git-bash"><a href="#2-Lab3-不知为何，venus在gitKraken-的CLI界面打不开，必须git-bash" class="headerlink" title="2. Lab3 不知为何，venus在gitKraken 的CLI界面打不开，必须git bash"></a>2. Lab3 不知为何，venus在gitKraken 的CLI界面打不开，必须git bash</h4><h4 id="3-启动venus-jave-jar-tools-venus-jar-space-dm"><a href="#3-启动venus-jave-jar-tools-venus-jar-space-dm" class="headerlink" title="3. 启动venus       jave -jar tools&#x2F;venus.jar .(space)-dm"></a>3. 启动venus       jave -jar tools&#x2F;venus.jar .<em><u>(space)</u></em>-dm</h4><p><del>还是lab3, venus能否正常打开似乎取决于网络……多刷新</del></p>
-<h4 id="用edge而不是google，不挂梯子能够稳定打开"><a href="#用edge而不是google，不挂梯子能够稳定打开" class="headerlink" title="用edge而不是google，不挂梯子能够稳定打开"></a><em><strong>用edge而不是google，不挂梯子</strong></em>能够稳定打开</h4><h4 id="4-Proj-2-最后一项-m0-为什么文件显示地址0x0"><a href="#4-Proj-2-最后一项-m0-为什么文件显示地址0x0" class="headerlink" title="4. Proj 2 最后一项 m0 为什么文件显示地址0x0?"></a>4. Proj 2 最后一项 m0 为什么文件显示地址0x0?</h4><h4 id="5-Proj-3-google表格不要下载到本地，数据似乎会丢"><a href="#5-Proj-3-google表格不要下载到本地，数据似乎会丢" class="headerlink" title="5. Proj 3 google表格不要下载到本地，数据似乎会丢"></a>5. Proj 3 google表格不要下载到本地，数据似乎会丢</h4>
-            
-        </div>
-    </div>
-    <div class="post-tags">
-        
-        <span class="icon">
-            <i class="fa-solid fa-tags fa-fw"></i>
-        </span>
-        
-        
-        
-        <span class="tag">
-            
-            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #00bcd4">入门</a>
-        </span>
-        
-        <span class="tag">
-            
-            <a href="/tags/%E7%BB%8F%E9%AA%8C/" style="color: #ffa2c4">经验</a>
-        </span>
-        
-    </div>
-    <a href="/2023/10/16/61c%E8%B8%A9%E8%BF%87%E7%9A%84%E5%9D%91/" class="go-post">阅读全文</a>
 </div>
 
 
