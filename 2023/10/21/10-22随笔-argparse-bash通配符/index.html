@@ -3,7 +3,7 @@
 <html lang="zh-CN">
 <head>
     <meta charset="utf-8" />
-    <title>cs61a踩过的坑 | Ayanami&#39;s cave</title>
+    <title>10.22随笔-argparse,bash通配符 | Ayanami&#39;s cave</title>
     <meta name="author" content="Ayanami" />
     <meta name="description" content="very good web, love from ayanami(x)" />
     <meta name="keywords" content="" />
@@ -155,14 +155,14 @@
         <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
             <div class="article">
     <div>
-        <h1>cs61a踩过的坑</h1>
+        <h1>10.22随笔-argparse,bash通配符</h1>
     </div>
     <div class="info">
         <span class="date">
             <span class="icon">
                 <i class="fa-solid fa-calendar fa-fw"></i>
             </span>
-            2023/10/16
+            2023/10/21
         </span>
         
         
@@ -174,12 +174,7 @@
             
             <span class="tag">
                 
-                <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #03a9f4">入门</a>
-            </span>
-            
-            <span class="tag">
-                
-                <a href="/tags/%E7%BB%8F%E9%AA%8C/" style="color: #ff7d73">经验</a>
+                <a href="/tags/%E6%8A%80%E6%9C%AF%E9%9A%8F%E7%AC%94/" style="color: #00a596">技术随笔</a>
             </span>
             
         </span>
@@ -187,12 +182,81 @@
     </div>
     
     <div class="content" v-pre>
-        <h3 id="cs61a踩过的坑"><a href="#cs61a踩过的坑" class="headerlink" title="cs61a踩过的坑"></a>cs61a踩过的坑</h3><p>\1.   Git Bash 无法构建python 环境：</p>
-<p>不要打 python 打 python -i(如果命令行里python –version 有用就行)</p>
-<p>\2.   python 命令行不是c++ 编译器，**<u>不要老是按着shift</u>**, shift+数字看起来没区别，但会报错</p>
-<p>\3.   改代码的lab&#x2F;project之类，用pycharm 打开对应的.py文件</p>
-<p>\4.   <strong>需要输入多行答案，windows 换行 ctrl+enter</strong></p>
-<p>\5.   Ctrl+上箭头 复制上一次命令行代码</p>
+        <p>10.20 随笔</p>
+<p>shell 的 命令行处理具体实现？</p>
+<p>argparse –&gt; 后续处理</p>
+<p>argparse是通用的</p>
+<p>怎么做argparse? 原始方法： 约定argv[0], [1],…分别代表什么，或者就是bash之中$1, $2</p>
+<p>缺点：当支持的东西多起来的时候，几乎无法处理</p>
+<p>一种方法：</p>
+<p>一般bash 命令参数有以下四种模式</p>
+<p>-s 短参数， –help长参数， -i 100带值参数，&#x2F;src 捕获组</p>
+<p>还有不同的写法</p>
+<p>-i 100 : 正常空格</p>
+<p>–std&#x3D;c99 ：等号形式</p>
+<p>-Isrc&#x2F; ：粘连形式，本质上等效于正常空格</p>
+<p>-sabcd： 短参数粘连，&#x3D;&#x3D; -s a -s b … -s d</p>
+<p>假设已经解析完成了，解析出来的参数还应该有以下形式</p>
+<ul>
+<li>bool 类型   -h, -v  对应程序内可能是一个宏 #define OPT_VERSION_ENABLE (1 &lt;&lt; x) x &#x3D; 0, 1 , 2 ，… 类似这种，其状态只有开和关，对应该位为1和0</li>
+<li>int 类型， 比如 -i 100</li>
+<li>捕获组,  &#x2F;src</li>
+<li>str类型， ”Hello world“</li>
+</ul>
+<p>对于–help, 我还希望帮助信息不是人手工一条条修改的，而是代码自动生成的</p>
+<p>拓展：子命令</p>
+<p>git remote -v 和 git -v的区别————&gt;实现需要模块化</p>
+<p>关于怎么实现这个argparser，……我的码力可能还不够，</p>
+<p>但大体的思路应该还是把整个读取的流按字符扫描，然后通过状态机前进、回退和解析字符</p>
+<p>bash命令学习</p>
+<p>字符拓展：</p>
+<ul>
+<li></li>
+</ul>
+<p>匹配子目录*</p>
+<pre><code class="bash">ls */*.txt # 匹配一层子目录
+ls **/*.txt # **匹配0/多层子目录，要求globstar参数打开
+</code></pre>
+<p>? 匹配单字符</p>
+<p>方括号拓展 […] 匹配在方括号内任意字符，[!…]匹配方括号外的字符。应用 ： program.[cho]</p>
+<p>[start-end] : [a-z].txt， [a-zA-Z0-9]  <strong>是文件名匹配</strong></p>
+<p>大括号拓展：拓展成<strong>所有</strong>括号内的值， <strong>不是文件名拓展</strong> {a,b,c}</p>
+<p>{start..end}</p>
+<p>应用：</p>
+<ol>
+<li>新建一系列目录</li>
+</ol>
+<pre><code class="bash">mkdir &#123;2023..2033&#125;-&#123;01..12&#125;
+</code></pre>
+<ol start="2">
+<li>for 循环</li>
+</ol>
+<pre><code class="bash">for i in &#123;1..5&#125;
+for j in &#123;0..8..2&#125;  # 步长2
+</code></pre>
+<p>变量拓展 $ $() ${}</p>
+<p>${!string*} 或者 ${!string@} 返回所有匹配string的变量名  # 这一项在zsh里面好像不适用</p>
+<p>数字拓展</p>
+<p>$((…)) 例如 $((2+2))</p>
+<p>字符类</p>
+<p>[[:class:]] 例如 echo [[:upper:]]* 输出所有大写字符开头文件名</p>
+<p>完整</p>
+<ul>
+<li><code>[[:alnum:]]</code>：匹配任意英文字母与数字</li>
+<li><code>[[:alpha:]]</code>：匹配任意英文字母</li>
+<li><code>[[:blank:]]</code>：空格和 Tab 键。</li>
+<li><code>[[:cntrl:]]</code>：ASCII 码 0-31 的不可打印字符。</li>
+<li><code>[[:digit:]]</code>：匹配任意数字 0-9。</li>
+<li><code>[[:graph:]]</code>：A-Z、a-z、0-9 和标点符号。</li>
+<li><code>[[:lower:]]</code>：匹配任意小写字母 a-z。</li>
+<li><code>[[:print:]]</code>：ASCII 码 32-127 的可打印字符。</li>
+<li><code>[[:punct:]]</code>：标点符号（除了 A-Z、a-z、0-9 的可打印字符）。</li>
+<li><code>[[:space:]]</code>：空格、Tab、LF（10）、VT（11）、FF（12）、CR（13）。</li>
+<li><code>[[:upper:]]</code>：匹配任意大写字母 A-Z。</li>
+<li><code>[[:xdigit:]]</code>：16进制字符（A-F、a-f、0-9）。</li>
+</ul>
+<p>加！否定， [![:alnum:]]</p>
+<p><strong>bash的shopt对应zsh的setopt</strong></p>
 
     </div>
     
