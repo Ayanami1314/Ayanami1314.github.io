@@ -3,7 +3,7 @@
 <html lang="zh-CN">
 <head>
     <meta charset="utf-8" />
-    <title>python并发 | Ayanami&#39;s cave</title>
+    <title>2023-11-6-正则表达式 | Ayanami&#39;s cave</title>
     <meta name="author" content="Ayanami" />
     <meta name="description" content="very good web, love from ayanami(x)" />
     <meta name="keywords" content="" />
@@ -155,14 +155,14 @@
         <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
             <div class="article">
     <div>
-        <h1>python并发</h1>
+        <h1>2023-11-6-正则表达式</h1>
     </div>
     <div class="info">
         <span class="date">
             <span class="icon">
                 <i class="fa-solid fa-calendar fa-fw"></i>
             </span>
-            2023/10/16
+            2023/11/15
         </span>
         
         
@@ -174,17 +174,7 @@
             
             <span class="tag">
                 
-                <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #00a596">入门</a>
-            </span>
-            
-            <span class="tag">
-                
-                <a href="/tags/python/" style="color: #00bcd4">python</a>
-            </span>
-            
-            <span class="tag">
-                
-                <a href="/tags/%E5%B9%B6%E5%8F%91/" style="color: #03a9f4">并发</a>
+                <a href="/tags/%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%9F%BA%E7%A1%80/" style="color: #00a596">命令行基础</a>
             </span>
             
         </span>
@@ -192,47 +182,192 @@
     </div>
     
     <div class="content" v-pre>
-        <p>﻿</p>
-<p>并发：多协程、多线程、多进程、多机器</p>
-<p>任务：IO密集和cpu密集<br>IO密集：数据库、文件读写等<br>cpu密集： 计算密集</p>
-<p>多线程：单cpu（<strong>前提：python GIL锁</strong>），目的是io和cpu分离并行执行，适用于io密集，内存开销比多进程少</p>
-<p>多进程：多cpu，目的是多cpu并行计算，适用于cpu密集，内存开销大</p>
-<h2 id="线程threading库"><a href="#线程threading库" class="headerlink" title="线程threading库"></a>线程threading库</h2><p>t &#x3D; threading.Thread(target&#x3D;func, args&#x3D;(…))<br>t.start()  # 开始线程，执行func<br>t.join()  # 等待线程结束</p>
-<p>例如：</p>
-<pre><code class="python">threads = []
-for _ in range(count):
-    thread = threading.Thread(target = f, args=(...))
-    threads.append(thread)
-for thread in threads:
-    thread.start()
-for thread in threads:
-    thread.join()
-</code></pre>
-<p>如果多个线程之间存在共享资源<br>需要加锁，<br>lock &#x3D; threading.Lock()给需要线程独占的运行函数f套上with lock:</p>
-<p>当对一个类的某个方法加锁的时候，需要在__init__上锁self.lock &#x3D; threading.Lock()<br>在方法调用之中<br>with self.lock：<br>而不是直接在方法调用之中创建lock, 这样无法保证创建lock与线程切换的顺序</p>
-<hr>
-<h3 id="生产者-消费者模型："><a href="#生产者-消费者模型：" class="headerlink" title="生产者-消费者模型："></a>生产者-消费者模型：</h3><p>以爬虫为例：<br>生产者线程get网络资源，存储到任务序列之中<br>消费者线程取出任务序列的值，存储到目标文件</p>
-<p>任务序列 queue.Queue<br>例 </p>
-<pre><code class="python">buffer = queue.Queue(maxsize = 10)
-def producer():
-    item = ...;
-    buffer.put(item)
-def consumer():
-    while(True):
-        item = buffer.get()
-        # do something
-</code></pre>
-<hr>
-<h3 id="线程池："><a href="#线程池：" class="headerlink" title="线程池："></a>线程池：</h3><p><img src="https://s2.loli.net/2023/10/20/jmZEYRw758yaICf.png"></p>
-<pre><code class="python">from concurrent.futures import ThreadPoolExetutor
-with concurrent.futures.ThreadPoolExetutor as pool:
+        <p>2023.11.6 正则表达式</p>
+<p>正则：描述文本匹配的代码</p>
+<p>最简单的正则：hi 匹配 hi</p>
+<p>如果精确匹配hi，那么需要在前后加上\b，\b代表单词的开头或结尾, 是一个占位符，不代表空格或者换行（前后有一个空格能识别出这是一个单词即可）</p>
+<p>\bhi\b.*\Ayanami\b 表示匹配{hi(若干个字符)Ayanami}</p>
+<p>大概这样</p>
+<pre><code>\bhi\b.*\bayanami
 
-    tasks = [...]
-    results = pool.map(func, tasks)
-    for res in results:
-        print(res)
+hi,ddd ayanami
 </code></pre>
-<h2 id="多进程"><a href="#多进程" class="headerlink" title="多进程"></a>多进程</h2><p>库函数基本和多线程完全一样<br>把threading 库换成multiprocess就行<br>还有就是queue.Queue() 换成 multiprocess.Queue()</p>
+<p>.表示匹配任意字符（除了换行），*表示前一个字符.可以重复任意次</p>
+<p>\d ：0-9的一位数字</p>
+<p>\d\d\d\d-\d\d\d\d\d\d\d\d 0579-12345678</p>
+<p>重复简化语法</p>
+<p>\d{4}-\d{8}</p>
+<p>其他元字符</p>
+<p>\s:匹配任意空白符</p>
+<p>\w：数字、字母、下划线、（甚至可能支持汉字）</p>
+<pre><code>-D\w*=\w*\s
+</code></pre>
+<p>抓取make之中&#x3D;的预定义宏-D</p>
+<p>需要注意在这个时候，如果使用\s或者\b前后包裹起来，由于文本之中的-D可能是连着的，而两个连着的之间的空格只匹配一次，会漏匹配</p>
+<p>抓-I</p>
+<pre><code>-I[a-zA-Z0-9\/]*
+</code></pre>
+<p>^匹配字符串开始</p>
+<p>$匹配字符串结束</p>
+<p>5-12位数字</p>
+<p>^\d{5,12}$  (如果不用^$只能保证匹配的是数字，但不能保证数字连续)</p>
+<blockquote>
+<p>对于<code>\d&#123;5,12&#125;</code>而言，使用这样的方法就只能保证字符串里<code>包含5到12连续位数字</code>，而不是整个字符串就是5到12位数字。</p>
+</blockquote>
+<p>字符转义</p>
+<pre><code>元字符或者\， \\, \*,\.  
+</code></pre>
+<p>重复</p>
+<table>
+<thead>
+<tr>
+<th align="left">代码&#x2F;语法</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>*</code></td>
+<td align="left"><code>重复零次或更多次</code></td>
+</tr>
+<tr>
+<td align="left"><code>+</code></td>
+<td align="left"><code>重复一次或更多次</code></td>
+</tr>
+<tr>
+<td align="left"><code>?</code></td>
+<td align="left"><code>重复零次或一次</code></td>
+</tr>
+<tr>
+<td align="left"><code>&#123;n&#125;</code></td>
+<td align="left"><code>重复n次</code></td>
+</tr>
+<tr>
+<td align="left"><code>&#123;n,&#125;</code></td>
+<td align="left"><code>重复n次或更多次</code></td>
+</tr>
+<tr>
+<td align="left"><code>&#123;n,m&#125;</code></td>
+<td align="left"><code>重复n到m次</code></td>
+</tr>
+</tbody></table>
+<p>字符集</p>
+<p>[aeiou]匹配a,e,i,o,u</p>
+<p>[0-9a-zA-Z]</p>
+<p>分支条件, 多种匹配取其一（有截断，先匹配左边）</p>
+<p>|分割</p>
+<pre><code>\(\d&#123;4&#125;\)-\d&#123;8&#125;|\d&#123;4&#125;-\d&#123;8&#125;
+</code></pre>
+<p>反义：</p>
+<ul>
+<li><p>\W：不是字母数字下划线</p>
+</li>
+<li><p>\S: 不是空白字符</p>
+</li>
+<li><p>\D: 不是数字</p>
+</li>
+<li><p>\B：不是单词的开始或结束</p>
+</li>
+<li><p>[^x]：不是x的任意字符</p>
+</li>
+<li><p>[^aeiou] ： 不是aeiou的任意字符</p>
+</li>
+</ul>
+<p>\S+ 不包含空白符的字符串</p>
+<p>分组：多字符重复</p>
+<p>多字符重复需要将子表达式套上小括号</p>
+<p>(\d{1-3}.){3}\d{1-3}  简易ip地址匹配</p>
+<p>但存在问题，ip之中三位是0-255</p>
+<p>只能用很呆的方法</p>
+<pre><code>(2[0-4]\d|25[0-5]|[01]?\d?\d\.)&#123;3&#125;(2[0-4]\d|25[0-5]|[01]?\d?\d)
+</code></pre>
+<p>后向引用：</p>
+<p>子表达式会拥有组号，从左到右1，2，… 组号0是整体的表达式</p>
+<p>后向引用用于重复某种分组匹配, 可以用\1指定第一组，\2指定第二组，etc</p>
+<p>例如</p>
+<pre><code>\b(\w+)\b\s\1\b
+</code></pre>
+<p>用于匹配shit shit或者oh oh这样的连续重复单词，这里的\1是前面1组匹配的最终结果而不是字面表达式的复制</p>
+<p>指定组名</p>
+<p>(?”GroupName”\w+) 指定了这个组名为GroupName</p>
+<p>引用时使用\k&lt;GroupName&gt;</p>
+<p>零宽断言</p>
+<p>断言：当断言为假的时候停止匹配</p>
+<p>(?&#x3D;exp) 断言：匹配的位置后面是exp</p>
+<p>如：\b\w+(?&#x3D;ing\b) 捕获singing, dancing等等，匹配结果为sing, danc</p>
+<p>(?&lt;&#x3D;exp)断言：匹配位置的前面是exp</p>
+<p>如：(?&lt;&#x3D;\bpre)\w+\b 捕获prereading 等等，匹配结果为reading</p>
+<p>(?!exp)断言：匹配的位置后面不是exp</p>
+<p>用于处理[^u]虽然达成了不是u的效果，但是要求必须存在一个字符的side effect</p>
+<p>\b\w+\q(?!u)\w*\b 包含字母q，且后面不是u的单词</p>
+<p>(?!&lt;exp)断言：匹配的位置前面不是exp</p>
+<p>\b(?!&lt;_)usr\w*\b: 匹配usr而不匹配_user</p>
+<p><strong>(?&lt;&#x3D;&lt;(\w+)&gt;).*(?&#x3D;&lt;/\1&gt;): 匹配&lt;html&gt;&lt;&#x2F;html&gt;格式</strong></p>
+<p>注释：（?#comment）</p>
+<p>可以（?#cm1 #cm2 #cm3）</p>
+<p>贪婪匹配和懒惰匹配：</p>
+<p>通常情况：多是贪婪匹配，即匹配尽可能长的文本</p>
+<p>a.*b 匹配aabab时，会匹配aabab全体</p>
+<p>有时候我们需要匹配尽可能短的文本（懒惰匹配）</p>
+<p>a.*?b 匹配aabab就会匹配aab和ab</p>
+<p>懒惰限定符号：</p>
+<ul>
+<li>*？</li>
+<li>+？</li>
+<li>?? 重复0或1次，但尽量少重复</li>
+<li>{n, m}?</li>
+<li>{n,}?</li>
+</ul>
+<p>平衡组和递归匹配：</p>
+<p>抓取嵌套结构</p>
+<p>(?’group’exp) : 把匹配的exp命名为group，并压入堆栈</p>
+<p>(?’-group’exp): 匹配到exp时，堆栈上弹出group捕获内容，若栈空，则匹配失败</p>
+<p>(?(group)yes|no):如果栈上有group,那么匹配yes，否则匹配no</p>
+<p>(?!): 断言，由于没有后续的匹配部分?&#x3D;exp，exp为空，必然失败</p>
+<p>应用，匹配嵌套&lt;div&gt;</p>
+<p>&lt;		# 最外层左括号</p>
+<p>​	[^&lt;&gt;]*  # 不是括号的东西：最外层的内容</p>
+<p>​		(</p>
+<p>​			(?’bracket’&lt;)          # 匹配&lt;, 并且命名为braket组, 入栈</p>
+<p>​			[^&lt;&gt;]*</p>
+<p>​		)+                                 # 1-n个左括号</p>
+<p>​		(</p>
+<p>​			(?’-bracket’&gt;)       #匹配&gt;,出栈braket</p>
+<p>​			[^&lt;&gt;]*		  </p>
+<p>​		)+</p>
+<p>​	(?(bracket)(?!))             # 如果bracket栈不空，即左右括号数量不匹配，则执行失败断言(?!)</p>
+<p>&gt;</p>
+<p>在c++之中使用正则表达式</p>
+<p>c11</p>
+<pre><code class="c++">#include&lt;iostream&gt;
+#include&lt;regex&gt;
+#include&lt;string&gt;
+using namespace std;
+int main()&#123;
+    string handle_string=&quot;_ARanddomFileName1&quot;;
+    regex regex_pattern(&quot;[A-Za-z0-9_]+[A-Za-z0-9]+&quot;);
+    // 判断
+    if(regex_match(handle_string, regex_pattern))&#123;
+        cout&lt;&lt;&quot;matched\n&quot;;
+    &#125;
+    if(regex_match(handle_string.begin(),handle_string.end(), regex_pattern))&#123;
+        printf(&quot;string:range(0-%d)=&gt;matched\n&quot;, handle_string.end()-handle_string.begin());
+    &#125;
+    // 搜索
+    smatch sm;
+    regex_search(handle_string, sm, regex_pattern);
+    for(auto x: sm)&#123;
+        cout&lt;&lt;x&lt;&lt;&quot; &quot;;
+    &#125;
+    // 替换
+    regex_replace(handle_string, regexp, &quot;replace_new_word&quot;);
+    return 0;
+&#125;
+
+// Terminal
+matched
+string:range(0-18)=&gt;matched
+_ARanddomFileName1 
+</code></pre>
 
     </div>
     

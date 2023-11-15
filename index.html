@@ -216,11 +216,473 @@
         
         <span class="tag">
             
-            <a href="/tags/%E8%87%AA%E6%88%91%E4%BB%8B%E7%BB%8D/" style="color: #ffa2c4">自我介绍</a>
+            <a href="/tags/%E8%87%AA%E6%88%91%E4%BB%8B%E7%BB%8D/" style="color: #03a9f4">自我介绍</a>
         </span>
         
     </div>
     <a href="/2023/10/16/Hello-World/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/2023/11/15/2023-11-6-11-13%E5%AD%A6%E4%B9%A0%E5%91%A8%E8%AE%B0/">
+        <h2 class="post-title">2023-11-6-11-13学习周记</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/11/15
+        </span>
+        
+        
+        <span class="special">
+            <i class="fa-solid fa-grip-vertical fa-fw"></i>
+        </span>
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <p>2023.11.6-2023.11.13学习周记</p>
+<h3 id="part1-jyy-lec"><a href="#part1-jyy-lec" class="headerlink" title="part1: jyy lec"></a>part1: jyy lec</h3><h4 id="调试理论"><a href="#调试理论" class="headerlink" title="调试理论"></a>调试理论</h4><p><strong>核心：程序是一个状态机，其状态是内存M，寄存器R的结合{M，R}，通过每一条指令转移状态</strong></p>
+<p><strong>一个错误的程序Bug&#x2F;fault，在经过一定的指令数之后，出现了理论状态与实际状态不符合的情况（Error）, 此时开始，可以被检测到，再经过一定的指令数（可能很长很长甚至没有）后，程序会崩溃形成一个直接可见的failure</strong></p>
+<p>程序状态：</p>
+<p>​          |fault                  |Error					 |failure</p>
+<p>right–&gt;right–&gt;…right–&gt;error–&gt;error–&gt;error–&gt;… </p>
+<p><strong>只有在right–&gt;error这一步，才能被gdb调试出来</strong>，其他的right–&gt;right, error–&gt;error都是无法使用单步调试调出bug的</p>
+<p>如何从failure定位fault?</p>
+<p>printf: 抽取程序状态主要部分，可视化</p>
+<p><strong>二分</strong>printf, 寻找right–&gt;error这一步，找到error处，进而回溯fault</p>
+<p>更进一步？避免二分的麻烦</p>
+<p>写好充足的assert等，<strong>让Error尽早变成failure</strong></p>
+<p>放到pa之中，即为Assert(), Log(), panic()函数的使用</p>
+<p>更进一步：防御性编程</p>
+<p>一些技巧：</p>
+<ol>
+<li><p>使用const，volatile(并行，防止编译优化打乱顺序)，坚持给单模块函数加上static（pa里面体现明显）</p>
+</li>
+<li><p>打开所有警告开关 -Wall -Werror</p>
+</li>
+<li><p>缓冲区溢出：使用strncpy代替strcpy, -fsantinize&#x3D;address</p>
+</li>
+<li><p>显式初始化所有变量，等等等</p>
+</li>
+</ol>
+<hr>
+<h4 id="IO和显卡"><a href="#IO和显卡" class="headerlink" title="IO和显卡"></a>IO和显卡</h4><p>OS眼中的外设：三（或更多）个寄存器+一个程序</p>
+<p><strong>三个典型寄存器：外设状态state, 外设交换数据data，外设命令command</strong></p>
+<p>外设一般有自己的微型cpu，内存，芯片等，在OS眼中<strong>外设只是一些接口</strong>（软件上还附带了如何使用这些接口的驱动文件），OS只负责给外设发指令（指令集和发什么指令，什么时候发指令由外设的驱动提供），之后外设自己处理指令，并通过接口告诉OS</p>
+<p><strong>两种IO模式：memory-mapped IO &amp; port-mapped IO (MMIO&amp;PMIO)</strong></p>
+<p>mmap：在内存<strong>中</strong>保留一段地址空间用于存放外部设备</p>
+<p>外设提供寄存器—&gt;OS将其映射到某个内存地址—&gt;之后如果其它程序要读写外设（当然它们只知道读写那个内存地址）—&gt;OS转发给外设寄存器—&gt;外设执行命令，OS使用polling或者interrupt的方式获取命令结果</p>
+<p>OSTEP的伪代码（polling方式）</p>
+<pre><code>While (STATUS==BUSY)
+    ; // wait until device is not busy 
+Write data to DATA REG
+Write command to COMMAND REG
+    (device do something)
+While (STATUS==BUSY)
+    ; // wait until device is done 
+</code></pre>
+<p>interrupt方式需要在中断表之中添加表项（现代的中断控制器集成在cpu之中，管理中断优先级和屏蔽等）</p>
+<p>mmap好处是对硬件要求低，坏处提高了软件代码的编写难度</p>
+<p>pmap: 在<strong>cpu上</strong>开出不同的IO端口</p>
+<p><strong>此时，IO的指令不再是和内存相同的write, read，而变成了特殊cpu指令；IO的存储也和内存分开，变成独立的空间</strong></p>
+<p>优点：省内存，缺点：耗cpu引脚</p>
+<p>典型外设工作分析：</p>
+<p>鼠标：（现代光学鼠标）工作原理为，</p>
+<blockquote>
+<p>工作时发光二极管照亮鼠标底部表面，微型摄像头以一定时间间隔不断进行图像拍摄。鼠标在移动过程中产生的不同图像传送给光学引擎进行数字化处理，由定位芯片判断出鼠标的移动方向和距离，分析出来的结果转换成坐标偏移量从而实现光标定位。</p>
+</blockquote>
+<p>省流就是拍照–&gt;算出移动—&gt;发给电脑，乘以鼠标灵敏度—&gt;屏幕光标移动</p>
+<p>打印机：</p>
+<p>简单打印：ASCII，复杂打印：图片等</p>
+<p>一种”编程语言“，描述各个字符、图片的位置、字体、旋转等等等</p>
+<p><strong>postscript —-&gt; pdf</strong></p>
+<p>打印：cpu发送脚本给打印机，打印机执行</p>
+<p>总线：管理IO的IO</p>
+<p>”即插即用“是怎么实现的？电脑接口–&gt;电信号—&gt;IO总线，通过某种协议处理—-&gt;通知cpu，分配、管理硬件地址、发现设备……</p>
+<p>lspci -t    lsucb -t可以列出电脑上的总线</p>
+<p>显卡：从打印机的视角理解</p>
+<p><strong>显卡就是另一种”打印机“</strong></p>
+<p>cpu—&gt;发送”脚本“—&gt;显卡执行</p>
+<p>（例：cpu—&gt;贴图位置x,y, 方向，前景后景？，使用哪个调色板？—&gt;gpu接受，绘图）</p>
+<p>如果让cpu画图：一条指令，一个像素，一次IO（典型情况）</p>
+<p>cpu发<strong>脚本和素材</strong>给gpu, gpu并行计算脚本、画图</p>
+<p><strong>素材存在gpu的显存之中</strong> 以纹理，如8*8的小贴块的形式</p>
+<p>马里奥是如何在几十kb的空间之中被编出来的？</p>
+<p>蘑菇：左右移动？水平翻转！</p>
+<p>大圆球：实际纹理只有1&#x2F;4圆，翻转四次</p>
+<p>1，2P：同一个贴图，不同调色板</p>
+<p>cpu和显卡的本质区别：</p>
+<p>cpu是冯诺依曼机，执行任意程序；显卡只做计算-画图这一件事</p>
+<p>cpu需要处理强时序问题，并行性有限；显卡各像素独立，可以在电路规模上大幅度并行</p>
+<p>2D-&gt;3D 多边形三角剖分，三角管线、运算、渲染</p>
+<hr>
+<h4 id="基础设施："><a href="#基础设施：" class="headerlink" title="基础设施："></a>基础设施：</h4><p>OJ with 错误姿势 &#x3D;&#x3D; 面向浪费时间编程</p>
+<p>克服人短时记忆有限的正确姿势——不打断工作流——自动化编译测试</p>
+<p>假如一件事情要做很多次，geek的做法一定是将其自动化</p>
+<p><strong>自动化需要的时间如何估计（在一定的时间内完成自动化任务），就是真正的“编程训练”</strong></p>
+<p>敲100次 make–&gt;敲100次make -j8–&gt;export mkj8&#x3D;”make -j8”–&gt;alias make “make -j8”&#x2F;MAKEFLAGS+&#x3D; -j 8 ……</p>
+<hr>
+<h3 id="part2-PA1-1，PA1-2"><a href="#part2-PA1-1，PA1-2" class="headerlink" title="part2 PA1.1，PA1.2"></a>part2 PA1.1，PA1.2</h3><p>编译前端:</p>
+<p>代码（字符流）–&gt;lexer,转换成tokens—&gt;parser,转换成parse tree（又称AST）AST–&gt;代码优化—&gt; 转换成中间代码</p>
+<p>编译后端：</p>
+<p>中间代码—&gt;转化成目标代码（各个平台的汇编）并优化—&gt;转换成可执行文件</p>
+<p>lexer: 可以用正则表达式</p>
+<p>parser: BST递归下降</p>
+<p>例如：</p>
+<p>表达式求值</p>
+<p>什么是表达式</p>
+<blockquote>
+<p><expr> ::&#x3D; <operand> &#x2F;&#x2F; number, register, etc</operand></expr></p>
+<p>​	| “(“ <expr> “)”</expr></p>
+<p>​	| <expr> <binary-op> <expr> &#x2F;&#x2F; binary-op: + - * &#x2F; etc</expr></binary-op></expr></p>
+<p>​	|<prefix-single-op><expr></expr></prefix-single-op></p>
+<p>​	|<expr><suffix-single-op></suffix-single-op></expr></p>
+</blockquote>
+<p>那么对应的求值器就可以这么写</p>
+<pre><code class="c">// pseudo code
+word_t eval_expr(Token *e, int start, int end)&#123;
+    if(start==end)&#123;
+        return token[start];
+    &#125;
+    if(check_bracket(start, end))&#123;
+        return eval_expr(start+1, end-1);
+    &#125;
+    else&#123;
+        int main_op_idx=find_main_op(e, start, end);
+        Token* main_op_tk = e + main_op_idx;
+        if(main_op_tk.type == BINARY_OP)&#123;
+            switch(main_op_tk.type)&#123;
+                case &#39;+&#39;: return eval_expr(start, main_op_idx-1) + \
+                    eval_expr(main_op_idx+1, end);
+                // ... etc      
+            &#125;
+        &#125;
+        else if(main_op_tk.type == SINGLE_PREFIX_OP)&#123;
+            switch(main_op_tk.type)&#123;
+                assert(main_op_idx == start + 1);
+                case DEREF: return mem[eval_expr(start, main_op_idx-1)];
+                // ... etc      
+            &#125;
+        &#125;
+        else if(main_op_tk.type == SINGLE_SUBFIX_OP)&#123;
+            // ...etc
+        &#125;
+        //...
+    &#125;
+&#125;
+
+int find_main_op(Token *e, int start, int end)&#123;
+    // 括号外，且优先级最高的op是主op
+    Token ops[32] = &#123;&#125;;
+    int main_op_idx = start;
+    int max_priority = something;
+    Token* cur = e;
+    for(cur = e+start;cur!=end;++cur)&#123;
+        if(cur-&gt;type == &#39;(&#39;)&#123;
+            while(cur-&gt;type!=&#39;)&#39;)&#123;
+                cur++;
+            &#125;
+            // 错误处理
+        &#125;
+        else if(is_op(cur-&gt;type) &amp;&amp; priority(cur-&gt;type)&gt;max_priority)&#123;
+            main_op_idx = cur - (e+start);
+            max_priority = priority(cur-&gt;type);
+        &#125;
+    &#125;
+    return main_op_idx;
+&#125;
+</code></pre>
+<p>同理，我们可以递归地写出更复杂的编译前端</p>
+<p>以c–为例</p>
+<blockquote>
+<p><code>::=<global-func> | <global-data></global-data></global-func></code></p>
+<p><global-data>::= <statement></statement></global-data></p>
+<p><global-func>::=<type><funcName><param><func-body></func-body></funcName></type></global-func></p>
+<param>::="(" <type><varName>","  * ")"  // * represent repeats 0-inf times
+
+<p><func-body>::="&#123;" \</func-body></p>
+<p>​	<statement> *</statement></p>
+<p>​	<func-call> *</func-call></p>
+<p>​	*</p>
+<p>"&#125;"</p>
+<p>// ... etc</p>
+</varName></type></blockquote>
+<p>进一步学习：craftinginterpreter、c4</p>
+<p>编译后端的成熟实现：LLVM</p>
+<hr>
+<p>一种测试手法：</p>
+<p>使用成熟的实现做differential test</p>
+<p>例如：NEMU利用QEMU，编译器利用gcc，pa的表达式求值器利用c自带的求值</p>
+<p>c语言system函数调用</p>
+<pre><code class="c">int system(char *command);// error ret -1
+
+e.g. system(&quot;ls -l&quot;); 
+</code></pre>
+<p>popen函数调用</p>
+<pre><code class="c">//类似 fork之后pipe开管道再exec
+FILE* fp popen(const char* command, const char* mode);
+e.g. 
+FILE* fp=popen(&quot;ls -l&quot;, &quot;r&quot;);
+// 之后可以使用fgets等获取管道内的值
+</code></pre>
+<hr>
+<h3 id="part3-正则表达式"><a href="#part3-正则表达式" class="headerlink" title="part3: 正则表达式"></a>part3: 正则表达式</h3><p>详见正则基础学习笔记</p>
+<p>需要注意的是c的regex.h库不支持（?=）(?!=) (?<=)等语法< p>
+<hr>
+<h3 id="part4-前后端"><a href="#part4-前后端" class="headerlink" title="part4: 前后端"></a>part4: 前后端</h3><p>这周主要还是忙别的东西+期中补天去了，学的比较少，等到多学点再写吧</p>
+</=)等语法<></p>
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <i class="fa-solid fa-tags fa-fw"></i>
+        </span>
+        
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/%E5%AD%A6%E4%B9%A0%E5%91%A8%E8%AE%B0/" style="color: #00bcd4">学习周记</a>
+        </span>
+        
+    </div>
+    <a href="/2023/11/15/2023-11-6-11-13%E5%AD%A6%E4%B9%A0%E5%91%A8%E8%AE%B0/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/2023/11/15/2023-11-6-%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">
+        <h2 class="post-title">2023-11-6-正则表达式</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/11/15
+        </span>
+        
+        
+        <span class="special">
+            <i class="fa-solid fa-grip-vertical fa-fw"></i>
+        </span>
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <p>2023.11.6 正则表达式</p>
+<p>正则：描述文本匹配的代码</p>
+<p>最简单的正则：hi 匹配 hi</p>
+<p>如果精确匹配hi，那么需要在前后加上\b，\b代表单词的开头或结尾, 是一个占位符，不代表空格或者换行（前后有一个空格能识别出这是一个单词即可）</p>
+<p>\bhi\b.*\Ayanami\b 表示匹配{hi(若干个字符)Ayanami}</p>
+<p>大概这样</p>
+<pre><code>\bhi\b.*\bayanami
+
+hi,ddd ayanami
+</code></pre>
+<p>.表示匹配任意字符（除了换行），*表示前一个字符.可以重复任意次</p>
+<p>\d ：0-9的一位数字</p>
+<p>\d\d\d\d-\d\d\d\d\d\d\d\d 0579-12345678</p>
+<p>重复简化语法</p>
+<p>\d{4}-\d{8}</p>
+<p>其他元字符</p>
+<p>\s:匹配任意空白符</p>
+<p>\w：数字、字母、下划线、（甚至可能支持汉字）</p>
+<pre><code>-D\w*=\w*\s
+</code></pre>
+<p>抓取make之中&#x3D;的预定义宏-D</p>
+<p>需要注意在这个时候，如果使用\s或者\b前后包裹起来，由于文本之中的-D可能是连着的，而两个连着的之间的空格只匹配一次，会漏匹配</p>
+<p>抓-I</p>
+<pre><code>-I[a-zA-Z0-9\/]*
+</code></pre>
+<p>^匹配字符串开始</p>
+<p>$匹配字符串结束</p>
+<p>5-12位数字</p>
+<p>^\d{5,12}$  (如果不用^$只能保证匹配的是数字，但不能保证数字连续)</p>
+<blockquote>
+<p>对于<code>\d&#123;5,12&#125;</code>而言，使用这样的方法就只能保证字符串里<code>包含5到12连续位数字</code>，而不是整个字符串就是5到12位数字。</p>
+</blockquote>
+<p>字符转义</p>
+<pre><code>元字符或者\， \\, \*,\.  
+</code></pre>
+<p>重复</p>
+<table>
+<thead>
+<tr>
+<th align="left">代码&#x2F;语法</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>*</code></td>
+<td align="left"><code>重复零次或更多次</code></td>
+</tr>
+<tr>
+<td align="left"><code>+</code></td>
+<td align="left"><code>重复一次或更多次</code></td>
+</tr>
+<tr>
+<td align="left"><code>?</code></td>
+<td align="left"><code>重复零次或一次</code></td>
+</tr>
+<tr>
+<td align="left"><code>&#123;n&#125;</code></td>
+<td align="left"><code>重复n次</code></td>
+</tr>
+<tr>
+<td align="left"><code>&#123;n,&#125;</code></td>
+<td align="left"><code>重复n次或更多次</code></td>
+</tr>
+<tr>
+<td align="left"><code>&#123;n,m&#125;</code></td>
+<td align="left"><code>重复n到m次</code></td>
+</tr>
+</tbody></table>
+<p>字符集</p>
+<p>[aeiou]匹配a,e,i,o,u</p>
+<p>[0-9a-zA-Z]</p>
+<p>分支条件, 多种匹配取其一（有截断，先匹配左边）</p>
+<p>|分割</p>
+<pre><code>\(\d&#123;4&#125;\)-\d&#123;8&#125;|\d&#123;4&#125;-\d&#123;8&#125;
+</code></pre>
+<p>反义：</p>
+<ul>
+<li><p>\W：不是字母数字下划线</p>
+</li>
+<li><p>\S: 不是空白字符</p>
+</li>
+<li><p>\D: 不是数字</p>
+</li>
+<li><p>\B：不是单词的开始或结束</p>
+</li>
+<li><p>[^x]：不是x的任意字符</p>
+</li>
+<li><p>[^aeiou] ： 不是aeiou的任意字符</p>
+</li>
+</ul>
+<p>\S+ 不包含空白符的字符串</p>
+<p>分组：多字符重复</p>
+<p>多字符重复需要将子表达式套上小括号</p>
+<p>(\d{1-3}.){3}\d{1-3}  简易ip地址匹配</p>
+<p>但存在问题，ip之中三位是0-255</p>
+<p>只能用很呆的方法</p>
+<pre><code>(2[0-4]\d|25[0-5]|[01]?\d?\d\.)&#123;3&#125;(2[0-4]\d|25[0-5]|[01]?\d?\d)
+</code></pre>
+<p>后向引用：</p>
+<p>子表达式会拥有组号，从左到右1，2，… 组号0是整体的表达式</p>
+<p>后向引用用于重复某种分组匹配, 可以用\1指定第一组，\2指定第二组，etc</p>
+<p>例如</p>
+<pre><code>\b(\w+)\b\s\1\b
+</code></pre>
+<p>用于匹配shit shit或者oh oh这样的连续重复单词，这里的\1是前面1组匹配的最终结果而不是字面表达式的复制</p>
+<p>指定组名</p>
+<p>(?”GroupName”\w+) 指定了这个组名为GroupName</p>
+<p>引用时使用\k&lt;GroupName&gt;</p>
+<p>零宽断言</p>
+<p>断言：当断言为假的时候停止匹配</p>
+<p>(?&#x3D;exp) 断言：匹配的位置后面是exp</p>
+<p>如：\b\w+(?&#x3D;ing\b) 捕获singing, dancing等等，匹配结果为sing, danc</p>
+<p>(?&lt;&#x3D;exp)断言：匹配位置的前面是exp</p>
+<p>如：(?&lt;&#x3D;\bpre)\w+\b 捕获prereading 等等，匹配结果为reading</p>
+<p>(?!exp)断言：匹配的位置后面不是exp</p>
+<p>用于处理[^u]虽然达成了不是u的效果，但是要求必须存在一个字符的side effect</p>
+<p>\b\w+\q(?!u)\w*\b 包含字母q，且后面不是u的单词</p>
+<p>(?!&lt;exp)断言：匹配的位置前面不是exp</p>
+<p>\b(?!&lt;_)usr\w*\b: 匹配usr而不匹配_user</p>
+<p><strong>(?&lt;&#x3D;&lt;(\w+)&gt;).*(?&#x3D;&lt;/\1&gt;): 匹配&lt;html&gt;&lt;&#x2F;html&gt;格式</strong></p>
+<p>注释：（?#comment）</p>
+<p>可以（?#cm1 #cm2 #cm3）</p>
+<p>贪婪匹配和懒惰匹配：</p>
+<p>通常情况：多是贪婪匹配，即匹配尽可能长的文本</p>
+<p>a.*b 匹配aabab时，会匹配aabab全体</p>
+<p>有时候我们需要匹配尽可能短的文本（懒惰匹配）</p>
+<p>a.*?b 匹配aabab就会匹配aab和ab</p>
+<p>懒惰限定符号：</p>
+<ul>
+<li>*？</li>
+<li>+？</li>
+<li>?? 重复0或1次，但尽量少重复</li>
+<li>{n, m}?</li>
+<li>{n,}?</li>
+</ul>
+<p>平衡组和递归匹配：</p>
+<p>抓取嵌套结构</p>
+<p>(?’group’exp) : 把匹配的exp命名为group，并压入堆栈</p>
+<p>(?’-group’exp): 匹配到exp时，堆栈上弹出group捕获内容，若栈空，则匹配失败</p>
+<p>(?(group)yes|no):如果栈上有group,那么匹配yes，否则匹配no</p>
+<p>(?!): 断言，由于没有后续的匹配部分?&#x3D;exp，exp为空，必然失败</p>
+<p>应用，匹配嵌套&lt;div&gt;</p>
+<p>&lt;		# 最外层左括号</p>
+<p>​	[^&lt;&gt;]*  # 不是括号的东西：最外层的内容</p>
+<p>​		(</p>
+<p>​			(?’bracket’&lt;)          # 匹配&lt;, 并且命名为braket组, 入栈</p>
+<p>​			[^&lt;&gt;]*</p>
+<p>​		)+                                 # 1-n个左括号</p>
+<p>​		(</p>
+<p>​			(?’-bracket’&gt;)       #匹配&gt;,出栈braket</p>
+<p>​			[^&lt;&gt;]*		  </p>
+<p>​		)+</p>
+<p>​	(?(bracket)(?!))             # 如果bracket栈不空，即左右括号数量不匹配，则执行失败断言(?!)</p>
+<p>&gt;</p>
+<p>在c++之中使用正则表达式</p>
+<p>c11</p>
+<pre><code class="c++">#include&lt;iostream&gt;
+#include&lt;regex&gt;
+#include&lt;string&gt;
+using namespace std;
+int main()&#123;
+    string handle_string=&quot;_ARanddomFileName1&quot;;
+    regex regex_pattern(&quot;[A-Za-z0-9_]+[A-Za-z0-9]+&quot;);
+    // 判断
+    if(regex_match(handle_string, regex_pattern))&#123;
+        cout&lt;&lt;&quot;matched\n&quot;;
+    &#125;
+    if(regex_match(handle_string.begin(),handle_string.end(), regex_pattern))&#123;
+        printf(&quot;string:range(0-%d)=&gt;matched\n&quot;, handle_string.end()-handle_string.begin());
+    &#125;
+    // 搜索
+    smatch sm;
+    regex_search(handle_string, sm, regex_pattern);
+    for(auto x: sm)&#123;
+        cout&lt;&lt;x&lt;&lt;&quot; &quot;;
+    &#125;
+    // 替换
+    regex_replace(handle_string, regexp, &quot;replace_new_word&quot;);
+    return 0;
+&#125;
+
+// Terminal
+matched
+string:range(0-18)=&gt;matched
+_ARanddomFileName1 
+</code></pre>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <i class="fa-solid fa-tags fa-fw"></i>
+        </span>
+        
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%9F%BA%E7%A1%80/" style="color: #03a9f4">命令行基础</a>
+        </span>
+        
+    </div>
+    <a href="/2023/11/15/2023-11-6-%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" class="go-post">阅读全文</a>
 </div>
 
 <div class="post">
@@ -334,7 +796,12 @@ for j in &#123;0..8..2&#125;  # 步长2
         
         <span class="tag">
             
-            <a href="/tags/%E6%8A%80%E6%9C%AF%E9%9A%8F%E7%AC%94/" style="color: #00a596">技术随笔</a>
+            <a href="/tags/%E6%8A%80%E6%9C%AF%E9%9A%8F%E7%AC%94/" style="color: #03a9f4">技术随笔</a>
+        </span>
+        
+        <span class="tag">
+            
+            <a href="/tags/%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%9F%BA%E7%A1%80/" style="color: #00bcd4">命令行基础</a>
         </span>
         
     </div>
@@ -384,7 +851,7 @@ for j in &#123;0..8..2&#125;  # 步长2
         
         <span class="tag">
             
-            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #ff7d73">入门</a>
+            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #00a596">入门</a>
         </span>
         
         <span class="tag">
@@ -433,12 +900,12 @@ for j in &#123;0..8..2&#125;  # 步长2
         
         <span class="tag">
             
-            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #00bcd4">入门</a>
+            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #03a9f4">入门</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/%E7%BB%84%E6%88%90%E7%BB%93%E6%9E%84/" style="color: #03a9f4">组成结构</a>
+            <a href="/tags/%E7%BB%84%E6%88%90%E7%BB%93%E6%9E%84/" style="color: #ffa2c4">组成结构</a>
         </span>
         
     </div>
@@ -549,12 +1016,12 @@ for j in &#123;0..8..2&#125;  # 步长2
         
         <span class="tag">
             
-            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #ff7d73">入门</a>
+            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #03a9f4">入门</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/%E7%AE%97%E6%B3%95/" style="color: #ffa2c4">算法</a>
+            <a href="/tags/%E7%AE%97%E6%B3%95/" style="color: #00a596">算法</a>
         </span>
         
     </div>
@@ -599,12 +1066,12 @@ for j in &#123;0..8..2&#125;  # 步长2
         
         <span class="tag">
             
-            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #ff7d73">入门</a>
+            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #00a596">入门</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/%E7%BB%84%E6%88%90%E7%BB%93%E6%9E%84/" style="color: #03a9f4">组成结构</a>
+            <a href="/tags/%E7%BB%84%E6%88%90%E7%BB%93%E6%9E%84/" style="color: #ff7d73">组成结构</a>
         </span>
         
     </div>
@@ -648,159 +1115,16 @@ for j in &#123;0..8..2&#125;  # 步长2
         
         <span class="tag">
             
-            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #ffa2c4">入门</a>
+            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #03a9f4">入门</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/java/" style="color: #03a9f4">java</a>
+            <a href="/tags/java/" style="color: #ffa2c4">java</a>
         </span>
         
     </div>
     <a href="/2023/10/16/java%E8%BF%9B%E9%98%B6%E8%AF%AD%E6%B3%95/" class="go-post">阅读全文</a>
-</div>
-
-<div class="post">
-    <a href="/2023/10/16/%E6%A0%91/">
-        <h2 class="post-title">树</h2>
-    </a>
-    <div class="category-and-date">
-        
-        <span class="date">
-            <span class="icon">
-                <i class="fa-solid fa-calendar fa-fw"></i>
-            </span>
-            2023/10/16
-        </span>
-        
-        
-        <span class="special">
-            <i class="fa-solid fa-grip-vertical fa-fw"></i>
-        </span>
-        
-    </div>
-    <div class="description">
-        <div class="content" v-pre>
-            
-            <h2 id="从BST说起"><a href="#从BST说起" class="headerlink" title="从BST说起"></a>从BST说起</h2><p>BST（Binary Search Tree, 二叉搜索树）的平均深度是Θ（logN）（一棵随机生成的BST（不管有没有随机插入和删除）的深度和期望高度都是 Θ（logN）的）</p>
-<p>但现实之中的树不一定都是随机的，有很多情况（比如带有时间顺序的数据，就不是随机的），我们需要避免Θ（N）的最坏情况，要把树的深度压到O（logN）</p>
-            
-        </div>
-    </div>
-    <div class="post-tags">
-        
-        <span class="icon">
-            <i class="fa-solid fa-tags fa-fw"></i>
-        </span>
-        
-        
-        
-        <span class="tag">
-            
-            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #00bcd4">入门</a>
-        </span>
-        
-        <span class="tag">
-            
-            <a href="/tags/%E7%AE%97%E6%B3%95/" style="color: #ff7d73">算法</a>
-        </span>
-        
-    </div>
-    <a href="/2023/10/16/%E6%A0%91/" class="go-post">阅读全文</a>
-</div>
-
-<div class="post">
-    <a href="/2023/10/16/python%E5%B9%B6%E5%8F%91/">
-        <h2 class="post-title">python并发</h2>
-    </a>
-    <div class="category-and-date">
-        
-        <span class="date">
-            <span class="icon">
-                <i class="fa-solid fa-calendar fa-fw"></i>
-            </span>
-            2023/10/16
-        </span>
-        
-        
-        <span class="special">
-            <i class="fa-solid fa-grip-vertical fa-fw"></i>
-        </span>
-        
-    </div>
-    <div class="description">
-        <div class="content" v-pre>
-            
-            <p>﻿</p>
-<p>并发：多协程、多线程、多进程、多机器</p>
-<p>任务：IO密集和cpu密集<br>IO密集：数据库、文件读写等<br>cpu密集： 计算密集</p>
-<p>多线程：单cpu（<strong>前提：python GIL锁</strong>），目的是io和cpu分离并行执行，适用于io密集，内存开销比多进程少</p>
-<p>多进程：多cpu，目的是多cpu并行计算，适用于cpu密集，内存开销大</p>
-<h2 id="线程threading库"><a href="#线程threading库" class="headerlink" title="线程threading库"></a>线程threading库</h2><p>t &#x3D; threading.Thread(target&#x3D;func, args&#x3D;(…))<br>t.start()  # 开始线程，执行func<br>t.join()  # 等待线程结束</p>
-<p>例如：</p>
-<pre><code class="python">threads = []
-for _ in range(count):
-    thread = threading.Thread(target = f, args=(...))
-    threads.append(thread)
-for thread in threads:
-    thread.start()
-for thread in threads:
-    thread.join()
-</code></pre>
-<p>如果多个线程之间存在共享资源<br>需要加锁，<br>lock &#x3D; threading.Lock()给需要线程独占的运行函数f套上with lock:</p>
-<p>当对一个类的某个方法加锁的时候，需要在__init__上锁self.lock &#x3D; threading.Lock()<br>在方法调用之中<br>with self.lock：<br>而不是直接在方法调用之中创建lock, 这样无法保证创建lock与线程切换的顺序</p>
-<hr>
-<h3 id="生产者-消费者模型："><a href="#生产者-消费者模型：" class="headerlink" title="生产者-消费者模型："></a>生产者-消费者模型：</h3><p>以爬虫为例：<br>生产者线程get网络资源，存储到任务序列之中<br>消费者线程取出任务序列的值，存储到目标文件</p>
-<p>任务序列 queue.Queue<br>例 </p>
-<pre><code class="python">buffer = queue.Queue(maxsize = 10)
-def producer():
-    item = ...;
-    buffer.put(item)
-def consumer():
-    while(True):
-        item = buffer.get()
-        # do something
-</code></pre>
-<hr>
-<h3 id="线程池："><a href="#线程池：" class="headerlink" title="线程池："></a>线程池：</h3><p><img src="https://s2.loli.net/2023/10/20/jmZEYRw758yaICf.png"></p>
-<pre><code class="python">from concurrent.futures import ThreadPoolExetutor
-with concurrent.futures.ThreadPoolExetutor as pool:
-
-    tasks = [...]
-    results = pool.map(func, tasks)
-    for res in results:
-        print(res)
-</code></pre>
-<h2 id="多进程"><a href="#多进程" class="headerlink" title="多进程"></a>多进程</h2><p>库函数基本和多线程完全一样<br>把threading 库换成multiprocess就行<br>还有就是queue.Queue() 换成 multiprocess.Queue()</p>
-
-            
-        </div>
-    </div>
-    <div class="post-tags">
-        
-        <span class="icon">
-            <i class="fa-solid fa-tags fa-fw"></i>
-        </span>
-        
-        
-        
-        <span class="tag">
-            
-            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #ff7d73">入门</a>
-        </span>
-        
-        <span class="tag">
-            
-            <a href="/tags/python/" style="color: #03a9f4">python</a>
-        </span>
-        
-        <span class="tag">
-            
-            <a href="/tags/%E5%B9%B6%E5%8F%91/" style="color: #ff7d73">并发</a>
-        </span>
-        
-    </div>
-    <a href="/2023/10/16/python%E5%B9%B6%E5%8F%91/" class="go-post">阅读全文</a>
 </div>
 
 
