@@ -216,7 +216,7 @@
         
         <span class="tag">
             
-            <a href="/tags/%E8%87%AA%E6%88%91%E4%BB%8B%E7%BB%8D/" style="color: #03a9f4">自我介绍</a>
+            <a href="/tags/%E8%87%AA%E6%88%91%E4%BB%8B%E7%BB%8D/" style="color: #ff7d73">自我介绍</a>
         </span>
         
     </div>
@@ -304,7 +304,7 @@ While (STATUS==BUSY)
 <p>打印：cpu发送脚本给打印机，打印机执行</p>
 <p>总线：管理IO的IO</p>
 <p>”即插即用“是怎么实现的？电脑接口–&gt;电信号—&gt;IO总线，通过某种协议处理—-&gt;通知cpu，分配、管理硬件地址、发现设备……</p>
-<p>lspci -t    lsucb -t可以列出电脑上的总线</p>
+<p>lspci -t    lsusb -t可以列出电脑上的总线</p>
 <p>显卡：从打印机的视角理解</p>
 <p><strong>显卡就是另一种”打印机“</strong></p>
 <p>cpu—&gt;发送”脚本“—&gt;显卡执行</p>
@@ -337,11 +337,11 @@ While (STATUS==BUSY)
 <p>表达式求值</p>
 <p>什么是表达式</p>
 <blockquote>
-<p><expr> ::&#x3D; <operand> &#x2F;&#x2F; number, register, etc</operand></expr></p>
-<p>​	| “(“ <expr> “)”</expr></p>
-<p>​	| <expr> <binary-op> <expr> &#x2F;&#x2F; binary-op: + - * &#x2F; etc</expr></binary-op></expr></p>
-<p>​	|<prefix-single-op><expr></expr></prefix-single-op></p>
-<p>​	|<expr><suffix-single-op></suffix-single-op></expr></p>
+<p>&lt;expr&gt; ::&#x3D; &lt;operand&gt; &#x2F;&#x2F; number, register, etc</p>
+<p>​	| “(“ &lt;expr&gt; “)”</p>
+<p>​	| &lt;expr&gt; &lt;binary-op&gt; &lt;expr&gt; &#x2F;&#x2F; binary-op: + - * &#x2F; etc</p>
+<p>​	|&lt;prefix-single-op&gt;&lt;expr&gt;</p>
+<p>​	|&lt;expr&gt;&lt;suffix-single-op&gt;</p>
 </blockquote>
 <p>那么对应的求值器就可以这么写</p>
 <pre><code class="c">// pseudo code
@@ -400,18 +400,17 @@ int find_main_op(Token *e, int start, int end)&#123;
 <p>同理，我们可以递归地写出更复杂的编译前端</p>
 <p>以c–为例</p>
 <blockquote>
-<p><code>::=<global-func> | <global-data></global-data></global-func></code></p>
-<p><global-data>::= <statement></statement></global-data></p>
-<p><global-func>::=<type><funcName><param><func-body></func-body></funcName></type></global-func></p>
-<param>::="(" <type><varName>","  * ")"  // * represent repeats 0-inf times
-
-<p><func-body>::="&#123;" \</func-body></p>
-<p>​	<statement> *</statement></p>
-<p>​	<func-call> *</func-call></p>
+<p>&lt;code&gt;::&#x3D;&lt;global-func&gt; | &lt;global-data&gt;</p>
+<p>&lt;global-data&gt;::&#x3D; &lt;statement&gt;</p>
+<p>&lt;global-func&gt;::&#x3D;&lt;type&gt;&lt;funcName&gt;&lt;param&gt;&lt;func-body&gt;</p>
+<p>&lt;param&gt;::&#x3D;”(“ &lt;type&gt;&lt;varName&gt;“,”  * “)”      # * represent repeats 0-inf times</p>
+<p>&lt;func-body&gt;::&#x3D;”{“ \</p>
+<p>​	&lt;statement&gt; *</p>
+<p>​	&lt;func-call&gt; *</p>
 <p>​	*</p>
-<p>"&#125;"</p>
-<p>// ... etc</p>
-</varName></type></blockquote>
+<p>“}”</p>
+<p>&#x2F;&#x2F; … etc</p>
+</blockquote>
 <p>进一步学习：craftinginterpreter、c4</p>
 <p>编译后端的成熟实现：LLVM</p>
 <hr>
@@ -432,10 +431,11 @@ FILE* fp=popen(&quot;ls -l&quot;, &quot;r&quot;);
 </code></pre>
 <hr>
 <h3 id="part3-正则表达式"><a href="#part3-正则表达式" class="headerlink" title="part3: 正则表达式"></a>part3: 正则表达式</h3><p>详见正则基础学习笔记</p>
-<p>需要注意的是c的regex.h库不支持（?=）(?!=) (?<=)等语法< p>
+<p>需要注意的是c的regex.h库不支持（?&#x3D;）(?!&#x3D;) (?&lt;&#x3D;)等语法</p>
 <hr>
-<h3 id="part4-前后端"><a href="#part4-前后端" class="headerlink" title="part4: 前后端"></a>part4: 前后端</h3><p>这周主要还是忙别的东西+期中补天去了，学的比较少，等到多学点再写吧</p>
-</=)等语法<></p>
+<h3 id="part4-前后端"><a href="#part4-前后端" class="headerlink" title="part4: 前后端"></a>part4: 前后端</h3><p>上周主要还是忙别的东西+期中补天去了，学的比较少，等到多学点再写吧</p>
+<p>这周要好好学cs</p>
+
             
         </div>
     </div>
@@ -449,7 +449,7 @@ FILE* fp=popen(&quot;ls -l&quot;, &quot;r&quot;);
         
         <span class="tag">
             
-            <a href="/tags/%E5%AD%A6%E4%B9%A0%E5%91%A8%E8%AE%B0/" style="color: #00bcd4">学习周记</a>
+            <a href="/tags/%E5%AD%A6%E4%B9%A0%E5%91%A8%E8%AE%B0/" style="color: #ff7d73">学习周记</a>
         </span>
         
     </div>
@@ -678,7 +678,7 @@ _ARanddomFileName1
         
         <span class="tag">
             
-            <a href="/tags/%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%9F%BA%E7%A1%80/" style="color: #03a9f4">命令行基础</a>
+            <a href="/tags/%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%9F%BA%E7%A1%80/" style="color: #ffa2c4">命令行基础</a>
         </span>
         
     </div>
@@ -796,12 +796,12 @@ for j in &#123;0..8..2&#125;  # 步长2
         
         <span class="tag">
             
-            <a href="/tags/%E6%8A%80%E6%9C%AF%E9%9A%8F%E7%AC%94/" style="color: #03a9f4">技术随笔</a>
+            <a href="/tags/%E6%8A%80%E6%9C%AF%E9%9A%8F%E7%AC%94/" style="color: #00a596">技术随笔</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%9F%BA%E7%A1%80/" style="color: #00bcd4">命令行基础</a>
+            <a href="/tags/%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%9F%BA%E7%A1%80/" style="color: #ff7d73">命令行基础</a>
         </span>
         
     </div>
@@ -851,7 +851,7 @@ for j in &#123;0..8..2&#125;  # 步长2
         
         <span class="tag">
             
-            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #00a596">入门</a>
+            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #00bcd4">入门</a>
         </span>
         
         <span class="tag">
@@ -900,12 +900,12 @@ for j in &#123;0..8..2&#125;  # 步长2
         
         <span class="tag">
             
-            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #03a9f4">入门</a>
+            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #00bcd4">入门</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/%E7%BB%84%E6%88%90%E7%BB%93%E6%9E%84/" style="color: #ffa2c4">组成结构</a>
+            <a href="/tags/%E7%BB%84%E6%88%90%E7%BB%93%E6%9E%84/" style="color: #ff7d73">组成结构</a>
         </span>
         
     </div>
@@ -960,7 +960,7 @@ for j in &#123;0..8..2&#125;  # 步长2
         
         <span class="tag">
             
-            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #03a9f4">入门</a>
+            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #ff7d73">入门</a>
         </span>
         
         <span class="tag">
@@ -1016,12 +1016,12 @@ for j in &#123;0..8..2&#125;  # 步长2
         
         <span class="tag">
             
-            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #03a9f4">入门</a>
+            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #00a596">入门</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/%E7%AE%97%E6%B3%95/" style="color: #00a596">算法</a>
+            <a href="/tags/%E7%AE%97%E6%B3%95/" style="color: #ffa2c4">算法</a>
         </span>
         
     </div>
@@ -1066,7 +1066,7 @@ for j in &#123;0..8..2&#125;  # 步长2
         
         <span class="tag">
             
-            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #00a596">入门</a>
+            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #ffa2c4">入门</a>
         </span>
         
         <span class="tag">
@@ -1115,12 +1115,12 @@ for j in &#123;0..8..2&#125;  # 步长2
         
         <span class="tag">
             
-            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #03a9f4">入门</a>
+            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #ffa2c4">入门</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/java/" style="color: #ffa2c4">java</a>
+            <a href="/tags/java/" style="color: #00bcd4">java</a>
         </span>
         
     </div>

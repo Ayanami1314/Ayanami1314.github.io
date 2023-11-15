@@ -174,7 +174,7 @@
             
             <span class="tag">
                 
-                <a href="/tags/%E5%AD%A6%E4%B9%A0%E5%91%A8%E8%AE%B0/" style="color: #ff7d73">学习周记</a>
+                <a href="/tags/%E5%AD%A6%E4%B9%A0%E5%91%A8%E8%AE%B0/" style="color: #ffa2c4">学习周记</a>
             </span>
             
         </span>
@@ -241,7 +241,7 @@ While (STATUS==BUSY)
 <p>打印：cpu发送脚本给打印机，打印机执行</p>
 <p>总线：管理IO的IO</p>
 <p>”即插即用“是怎么实现的？电脑接口–&gt;电信号—&gt;IO总线，通过某种协议处理—-&gt;通知cpu，分配、管理硬件地址、发现设备……</p>
-<p>lspci -t    lsucb -t可以列出电脑上的总线</p>
+<p>lspci -t    lsusb -t可以列出电脑上的总线</p>
 <p>显卡：从打印机的视角理解</p>
 <p><strong>显卡就是另一种”打印机“</strong></p>
 <p>cpu—&gt;发送”脚本“—&gt;显卡执行</p>
@@ -274,11 +274,11 @@ While (STATUS==BUSY)
 <p>表达式求值</p>
 <p>什么是表达式</p>
 <blockquote>
-<p><expr> ::&#x3D; <operand> &#x2F;&#x2F; number, register, etc</operand></expr></p>
-<p>​	| “(“ <expr> “)”</expr></p>
-<p>​	| <expr> <binary-op> <expr> &#x2F;&#x2F; binary-op: + - * &#x2F; etc</expr></binary-op></expr></p>
-<p>​	|<prefix-single-op><expr></expr></prefix-single-op></p>
-<p>​	|<expr><suffix-single-op></suffix-single-op></expr></p>
+<p>&lt;expr&gt; ::&#x3D; &lt;operand&gt; &#x2F;&#x2F; number, register, etc</p>
+<p>​	| “(“ &lt;expr&gt; “)”</p>
+<p>​	| &lt;expr&gt; &lt;binary-op&gt; &lt;expr&gt; &#x2F;&#x2F; binary-op: + - * &#x2F; etc</p>
+<p>​	|&lt;prefix-single-op&gt;&lt;expr&gt;</p>
+<p>​	|&lt;expr&gt;&lt;suffix-single-op&gt;</p>
 </blockquote>
 <p>那么对应的求值器就可以这么写</p>
 <pre><code class="c">// pseudo code
@@ -337,18 +337,17 @@ int find_main_op(Token *e, int start, int end)&#123;
 <p>同理，我们可以递归地写出更复杂的编译前端</p>
 <p>以c–为例</p>
 <blockquote>
-<p><code>::=<global-func> | <global-data></global-data></global-func></code></p>
-<p><global-data>::= <statement></statement></global-data></p>
-<p><global-func>::=<type><funcName><param><func-body></func-body></funcName></type></global-func></p>
-<param>::="(" <type><varName>","  * ")"  // * represent repeats 0-inf times
-
-<p><func-body>::="&#123;" \</func-body></p>
-<p>​	<statement> *</statement></p>
-<p>​	<func-call> *</func-call></p>
+<p>&lt;code&gt;::&#x3D;&lt;global-func&gt; | &lt;global-data&gt;</p>
+<p>&lt;global-data&gt;::&#x3D; &lt;statement&gt;</p>
+<p>&lt;global-func&gt;::&#x3D;&lt;type&gt;&lt;funcName&gt;&lt;param&gt;&lt;func-body&gt;</p>
+<p>&lt;param&gt;::&#x3D;”(“ &lt;type&gt;&lt;varName&gt;“,”  * “)”      # * represent repeats 0-inf times</p>
+<p>&lt;func-body&gt;::&#x3D;”{“ \</p>
+<p>​	&lt;statement&gt; *</p>
+<p>​	&lt;func-call&gt; *</p>
 <p>​	*</p>
-<p>"&#125;"</p>
-<p>// ... etc</p>
-</varName></type></blockquote>
+<p>“}”</p>
+<p>&#x2F;&#x2F; … etc</p>
+</blockquote>
 <p>进一步学习：craftinginterpreter、c4</p>
 <p>编译后端的成熟实现：LLVM</p>
 <hr>
@@ -369,10 +368,11 @@ FILE* fp=popen(&quot;ls -l&quot;, &quot;r&quot;);
 </code></pre>
 <hr>
 <h3 id="part3-正则表达式"><a href="#part3-正则表达式" class="headerlink" title="part3: 正则表达式"></a>part3: 正则表达式</h3><p>详见正则基础学习笔记</p>
-<p>需要注意的是c的regex.h库不支持（?=）(?!=) (?<=)等语法< p>
+<p>需要注意的是c的regex.h库不支持（?&#x3D;）(?!&#x3D;) (?&lt;&#x3D;)等语法</p>
 <hr>
-<h3 id="part4-前后端"><a href="#part4-前后端" class="headerlink" title="part4: 前后端"></a>part4: 前后端</h3><p>这周主要还是忙别的东西+期中补天去了，学的比较少，等到多学点再写吧</p>
-</=)等语法<></p>
+<h3 id="part4-前后端"><a href="#part4-前后端" class="headerlink" title="part4: 前后端"></a>part4: 前后端</h3><p>上周主要还是忙别的东西+期中补天去了，学的比较少，等到多学点再写吧</p>
+<p>这周要好好学cs</p>
+
     </div>
     
     
