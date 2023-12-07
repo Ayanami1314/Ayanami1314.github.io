@@ -3,7 +3,7 @@
 <html lang="zh-CN">
 <head>
     <meta charset="utf-8" />
-    <title>程序员的自我修养note1 | Ayanami&#39;s cave</title>
+    <title>11-14-11-26学习双周记 | Ayanami&#39;s cave</title>
     <meta name="author" content="Ayanami" />
     <meta name="description" content="very good web, love from ayanami(x)" />
     <meta name="keywords" content="" />
@@ -155,57 +155,21 @@
         <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
             <div class="article">
     <div>
-        <h1>程序员的自我修养note1</h1>
+        <h1>11-14-11-26学习双周记</h1>
     </div>
     <div class="info">
         <span class="date">
             <span class="icon">
                 <i class="fa-solid fa-calendar fa-fw"></i>
             </span>
-            2023/10/16
+            2023/12/7
         </span>
         
-        
-        <span class="tags">
-            <span class="icon">
-                <i class="fa-solid fa-tags fa-fw"></i>
-            </span>
-            
-            
-            <span class="tag">
-                
-                <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #ffa2c4">入门</a>
-            </span>
-            
-            <span class="tag">
-                
-                <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="color: #00a596">操作系统</a>
-            </span>
-            
-        </span>
         
     </div>
     
     <div class="content" v-pre>
-        <h3 id="一、线程安全："><a href="#一、线程安全：" class="headerlink" title="一、线程安全："></a>一、线程安全：</h3><p>类似i++这样的非原子操作（编译成汇编代码后不止一条指令）是多线程不安全的（因为可能被操作系统强制打断而破坏指令顺序）</p>
-<p>不能让两个程序同时读写一个共享数据</p>
-<span id="more"></span>
-
-<p>解决方法：同步和锁<br>同步：一个线程结束对一个数据的访问之前，其他线程不可访问</p>
-<p>锁：同步的一种简单方法，当一个线程执行时，闭锁；结束时开锁。只有当锁是开时才可以访问</p>
-<p>读写锁：不同线程同时读取是没有问题的，但写操作可能会有问题，因此允许多线程读，禁止多线程写（通过两种状态：共享和独占）</p>
-<p>可重入：一段程序（函数调用）在a线程执行中，b线程也可以调用该程序而不造成不好的后果，称为可重入</p>
-<p>不可重入的例子：非const全局变量和静态局部变量</p>
-<p>计算机（编译器和cpu）过度优化（为了效率改变语句执行的顺序和数量）可能也会妨碍线程安全<br>编译器可以用volatile 关键字阻止</p>
-<blockquote>
-<p>对 <code>volatile</code> 变量的访问，编译器不能做任何假设和推理，都必须按部就班地与「内存」进行交互</p>
-</blockquote>
-<p>阻止cpu换序：难，barrier（）函数，阻止cpu换序穿过barrier()</p>
-<p>线程安全：原子指令到锁到volatile（volatile type x，防止编译器交换有关x指令的顺序）到barrier（）（阻止cpu换序穿过barrier）  </p>
-<p>linux task任务概念：类似单线程进程，可以通过clone等方法多任务共享内存空间  </p>
-<p>防止线程饿死：改变长时间得不到执行的线程的线程优先级  </p>
-<p>unix 硬件&#x3D;普通文件，win 图形硬件gdi，声音多媒体directx对象</p>
-
+        
     </div>
     
     
