@@ -3,7 +3,7 @@
 <html lang="zh-CN">
 <head>
     <meta charset="utf-8" />
-    <title>risc-v-intro | Ayanami&#39;s cave</title>
+    <title>浅入理解断点和调试器 | Ayanami&#39;s cave</title>
     <meta name="author" content="Ayanami" />
     <meta name="description" content="very good web, love from ayanami(x)" />
     <meta name="keywords" content="" />
@@ -155,57 +155,21 @@
         <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
             <div class="article">
     <div>
-        <h1>risc-v-intro</h1>
+        <h1>浅入理解断点和调试器</h1>
     </div>
     <div class="info">
         <span class="date">
             <span class="icon">
                 <i class="fa-solid fa-calendar fa-fw"></i>
             </span>
-            2023/10/16
+            2023/12/7
         </span>
         
-        
-        <span class="tags">
-            <span class="icon">
-                <i class="fa-solid fa-tags fa-fw"></i>
-            </span>
-            
-            
-            <span class="tag">
-                
-                <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #00bcd4">入门</a>
-            </span>
-            
-            <span class="tag">
-                
-                <a href="/tags/%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84/" style="color: #ff7d73">体系结构</a>
-            </span>
-            
-        </span>
         
     </div>
     
     <div class="content" v-pre>
-        <h3 id="程序执行："><a href="#程序执行：" class="headerlink" title="程序执行："></a>程序执行：</h3><p>程序和大部分变量在内存之中，需要运算的变量从内存之中取出，放到寄存器内，再经过ALU运算之后，存回内存</p>
-<span id="more"></span>
-<p><img src="https://s2.loli.net/2023/10/20/LBgjHFl4pTws2JX.png"></p>
-<h3 id="register"><a href="#register" class="headerlink" title="register"></a>register</h3><p>少、快（比DRAM（动态存储）快上百倍），通常由编译器复杂将最常用到的变量放在寄存器内<br>寄存器数量固定的原因：</p>
-<ol>
-<li>寄存器由硬件实现，smaller make faster, easier and cheaper</li>
-<li>存储寄存器的地址本身也需要空间</li>
-</ol>
-<h3 id="RISC-V：32个寄存器x0到x31"><a href="#RISC-V：32个寄存器x0到x31" class="headerlink" title="RISC-V：32个寄存器x0到x31"></a>RISC-V：32个寄存器x0到x31</h3><p>x0值固定为 0</p>
-<p>每个寄存器4字节（1 word），32位<br>寄存器没有类型，根据操作的类型决定怎么解释寄存器内的内容</p>
-<h4 id="大端和小端机器"><a href="#大端和小端机器" class="headerlink" title="大端和小端机器"></a>大端和小端机器</h4><p>小端：最高有效字节在最高地址处，最低有效字节在最低地址处。<br>如 地址0x00 到 0x03存了一个int32<br>最高位（符号位）在0x03的最高位是小端机器</p>
-<p>大端：相反</p>
-<h4 id="内存对齐："><a href="#内存对齐：" class="headerlink" title="内存对齐："></a>内存对齐：</h4><p>内存对齐（Memory Alignment）是计算机系统中一种常用的数据存储方式，它指的是将数据存储在内存中时，按照某个特定的规则进行排列，以便于处理器访问和处理数据。具体来说，内存对齐是指将数据存储在内存中时，将其放置到内存地址是其大小的整数倍的位置上。</p>
-<p>进行内存对齐的主要原因是<strong>处理器在访问内存时通常是按照一定的块大小进行的</strong>，而<strong>内存对齐可以确保数据存储在块的开始位置上，从而减少处理器访问内存时需要读取的字节数，提高内存读写的效率</strong>。例如，在32位处理器中，**<u>通常采用4字节对齐</u>**的方式，即数据存储在内存地址是4的倍数的位置上。</p>
-<h4 id="符号拓展："><a href="#符号拓展：" class="headerlink" title="符号拓展："></a>符号拓展：</h4><p>使用lb 将一个byte写入寄存器，是放在末8位（小端）<br>32位的register剩下24位是什么？<br>如果btye是正数，最高位是0，为了保持其值不变，前24位补0；<br>如果是负数，前24位补1。<br>（如果使用lbu, 看成是unsigned的类型，固定补0）<br>（没有sbu, save只是单纯的copy所有位。如果有内存对齐的部分都是补0）</p>
-<p>立即数（内置常数）：<br>作为指令集的一部分被编码，不需要从内存之中读取。<br>共12位，无符号</p>
-<p><img src="https://s2.loli.net/2023/10/20/deP8mlAgpzBsvfG.png"><br>答案为0x3</p>
-<p><img src="https://s2.loli.net/2023/10/20/Z1aOnNqmK4AbIyJ.png"><br>第一条指令，x11 内发生了符号拓展<br>x11 内为11…1 + 1000 1111 1010(0x8f5) , 同样存到x5内<br>所以lb读到的byte是 1111 1000 (注意小端) , 符号补全<br>x12内是 24位1 + 1111 1000（f8) , 即0xfffffff8 </p>
-
+        
     </div>
     
     
