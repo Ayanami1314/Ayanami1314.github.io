@@ -172,6 +172,119 @@
         
 
 <div class="post">
+    <a href="/2023/10/16/GAMES101%E8%B8%A9%E8%BF%87%E7%9A%84%E5%9D%91/">
+        <h2 class="post-title">GAMES101踩过的坑</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/10/16
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <p>GAMES101踩过的坑</p>
+<ol>
+<li><p>配置环境：openCV+Eigen</p>
+<p>OpenCV的  $(opencv)\build\vc16 下，两个文件夹\bin,\lib都要加到系统变量</p>
+<p>Eigen的eigen3文件夹加系统变量</p>
+<p>之后vs之中，附加包含目录需要加上…\build\include， 附加库加上…\vc16\lib</p>
+</li>
+</ol>
+<p>​	链接器-输入加上opencv_world470d.lib（470随版本变化）</p>
+<ol start="2">
+<li>使用cmake完成后续HW时，</li>
+</ol>
+<pre><code class="bash">&gt; mkdir build
+&gt; cd build
+&gt; cmake ..
+&gt; build make # 此处的build少掉了
+</code></pre>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <i class="fa-solid fa-tags fa-fw"></i>
+        </span>
+        
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #00a596">入门</a>
+        </span>
+        
+        <span class="tag">
+            
+            <a href="/tags/%E7%BB%8F%E9%AA%8C/" style="color: #ffa2c4">经验</a>
+        </span>
+        
+    </div>
+    <a href="/2023/10/16/GAMES101%E8%B8%A9%E8%BF%87%E7%9A%84%E5%9D%91/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/2023/10/16/Gitlet%E8%AE%BE%E8%AE%A1%E6%96%87%E6%A1%A3v2/">
+        <h2 class="post-title">Gitlet设计文档v2</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/10/16
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <h2 id="Gitlet设计文档："><a href="#Gitlet设计文档：" class="headerlink" title="Gitlet设计文档："></a>Gitlet设计文档：</h2><p><del>.gitlet 不对工作目录进行任何变动，所有的修改都在.gitlet之中进行</del></p>
+<p><del>.gitlet 应当有以下部分</del></p>
+<ul>
+<li><del>commit：整体的提交树结构，每个树结点应该只储存各个文件的version  .getlet&#x2F;commit</del></li></ul>
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <i class="fa-solid fa-tags fa-fw"></i>
+        </span>
+        
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #ffa2c4">入门</a>
+        </span>
+        
+        <span class="tag">
+            
+            <a href="/tags/%E7%BB%8F%E9%AA%8C/" style="color: #ff7d73">经验</a>
+        </span>
+        
+        <span class="tag">
+            
+            <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%96%87%E6%A1%A3/" style="color: #ffa2c4">设计文档</a>
+        </span>
+        
+    </div>
+    <a href="/2023/10/16/Gitlet%E8%AE%BE%E8%AE%A1%E6%96%87%E6%A1%A3v2/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
     <a href="/2023/10/16/SEC-DED%E7%BA%A0%E9%94%99%E7%AE%97%E6%B3%95/">
         <h2 class="post-title">SEC-DED纠错算法</h2>
     </a>
@@ -206,12 +319,12 @@
         
         <span class="tag">
             
-            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #ff7d73">入门</a>
+            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #00a596">入门</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84/" style="color: #00bcd4">体系结构</a>
+            <a href="/tags/%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84/" style="color: #03a9f4">体系结构</a>
         </span>
         
     </div>
@@ -252,17 +365,17 @@
         
         <span class="tag">
             
-            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #00a596">入门</a>
+            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #03a9f4">入门</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/%E7%AE%97%E6%B3%95/" style="color: #03a9f4">算法</a>
+            <a href="/tags/%E7%AE%97%E6%B3%95/" style="color: #ffa2c4">算法</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/%E5%91%BD%E4%BB%A4%E8%A1%8C/" style="color: #ff7d73">命令行</a>
+            <a href="/tags/%E5%91%BD%E4%BB%A4%E8%A1%8C/" style="color: #00a596">命令行</a>
         </span>
         
     </div>
@@ -309,12 +422,12 @@
         
         <span class="tag">
             
-            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #00bcd4">入门</a>
+            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #ff7d73">入门</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/%E6%B8%B8%E6%88%8F/" style="color: #ff7d73">游戏</a>
+            <a href="/tags/%E6%B8%B8%E6%88%8F/" style="color: #03a9f4">游戏</a>
         </span>
         
     </div>
@@ -355,66 +468,16 @@
         
         <span class="tag">
             
-            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #ff7d73">入门</a>
+            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #00a596">入门</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/%E7%BB%84%E6%88%90%E7%BB%93%E6%9E%84/" style="color: #00bcd4">组成结构</a>
+            <a href="/tags/%E7%BB%84%E6%88%90%E7%BB%93%E6%9E%84/" style="color: #ff7d73">组成结构</a>
         </span>
         
     </div>
     <a href="/2023/10/16/c-memory-management%E3%80%81gdb%E3%80%81IEEE754/" class="go-post">阅读全文</a>
-</div>
-
-<div class="post">
-    <a href="/2023/10/16/cs61a%E8%B8%A9%E8%BF%87%E7%9A%84%E5%9D%91/">
-        <h2 class="post-title">cs61a踩过的坑</h2>
-    </a>
-    <div class="category-and-date">
-        
-        <span class="date">
-            <span class="icon">
-                <i class="fa-solid fa-calendar fa-fw"></i>
-            </span>
-            2023/10/16
-        </span>
-        
-        
-    </div>
-    <div class="description">
-        <div class="content" v-pre>
-            
-            <h3 id="cs61a踩过的坑"><a href="#cs61a踩过的坑" class="headerlink" title="cs61a踩过的坑"></a>cs61a踩过的坑</h3><p>\1.   Git Bash 无法构建python 环境：</p>
-<p>不要打 python 打 python -i(如果命令行里python –version 有用就行)</p>
-<p>\2.   python 命令行不是c++ 编译器，**<u>不要老是按着shift</u>**, shift+数字看起来没区别，但会报错</p>
-<p>\3.   改代码的lab&#x2F;project之类，用pycharm 打开对应的.py文件</p>
-<p>\4.   <strong>需要输入多行答案，windows 换行 ctrl+enter</strong></p>
-<p>\5.   Ctrl+上箭头 复制上一次命令行代码</p>
-
-            
-        </div>
-    </div>
-    <div class="post-tags">
-        
-        <span class="icon">
-            <i class="fa-solid fa-tags fa-fw"></i>
-        </span>
-        
-        
-        
-        <span class="tag">
-            
-            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #ff7d73">入门</a>
-        </span>
-        
-        <span class="tag">
-            
-            <a href="/tags/%E7%BB%8F%E9%AA%8C/" style="color: #00bcd4">经验</a>
-        </span>
-        
-    </div>
-    <a href="/2023/10/16/cs61a%E8%B8%A9%E8%BF%87%E7%9A%84%E5%9D%91/" class="go-post">阅读全文</a>
 </div>
 
 <div class="post">
@@ -454,7 +517,7 @@
         
         <span class="tag">
             
-            <a href="/tags/%E5%91%BD%E4%BB%A4%E8%A1%8C/" style="color: #ff7d73">命令行</a>
+            <a href="/tags/%E5%91%BD%E4%BB%A4%E8%A1%8C/" style="color: #00a596">命令行</a>
         </span>
         
     </div>
@@ -506,8 +569,8 @@
 </div>
 
 <div class="post">
-    <a href="/2023/10/16/linker/">
-        <h2 class="post-title">linker</h2>
+    <a href="/2023/10/16/cs61a%E8%B8%A9%E8%BF%87%E7%9A%84%E5%9D%91/">
+        <h2 class="post-title">cs61a踩过的坑</h2>
     </a>
     <div class="category-and-date">
         
@@ -523,69 +586,13 @@
     <div class="description">
         <div class="content" v-pre>
             
-            <h3 id="简述：linker入门-除动态链接部分-："><a href="#简述：linker入门-除动态链接部分-：" class="headerlink" title="简述：linker入门(除动态链接部分)："></a>简述：linker入门(除动态链接部分)：</h3><p>建议好好看CSAPP 第七章，别看我这坨答辩</p>
-<h4 id="（一）为什么需要linker"><a href="#（一）为什么需要linker" class="headerlink" title="（一）为什么需要linker:"></a>（一）为什么需要linker:</h4><p>你也不想改了一个源文件之后需要重新编译整个标准库吧，你也不想改了一个注释之后需要重新编译整个浏览器内核吧（doge）</p>
-<p>linker使分立编译成为可能</p>
-            
-        </div>
-    </div>
-    <div class="post-tags">
-        
-        <span class="icon">
-            <i class="fa-solid fa-tags fa-fw"></i>
-        </span>
-        
-        
-        
-        <span class="tag">
-            
-            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #ffa2c4">入门</a>
-        </span>
-        
-        <span class="tag">
-            
-            <a href="/tags/%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84/" style="color: #00bcd4">体系结构</a>
-        </span>
-        
-    </div>
-    <a href="/2023/10/16/linker/" class="go-post">阅读全文</a>
-</div>
+            <h3 id="cs61a踩过的坑"><a href="#cs61a踩过的坑" class="headerlink" title="cs61a踩过的坑"></a>cs61a踩过的坑</h3><p>\1.   Git Bash 无法构建python 环境：</p>
+<p>不要打 python 打 python -i(如果命令行里python –version 有用就行)</p>
+<p>\2.   python 命令行不是c++ 编译器，**<u>不要老是按着shift</u>**, shift+数字看起来没区别，但会报错</p>
+<p>\3.   改代码的lab&#x2F;project之类，用pycharm 打开对应的.py文件</p>
+<p>\4.   <strong>需要输入多行答案，windows 换行 ctrl+enter</strong></p>
+<p>\5.   Ctrl+上箭头 复制上一次命令行代码</p>
 
-<div class="post">
-    <a href="/2023/10/16/linux%E5%91%BD%E4%BB%A4%E6%8B%93%E5%B1%95/">
-        <h2 class="post-title">linux命令拓展</h2>
-    </a>
-    <div class="category-and-date">
-        
-        <span class="date">
-            <span class="icon">
-                <i class="fa-solid fa-calendar fa-fw"></i>
-            </span>
-            2023/10/16
-        </span>
-        
-        
-    </div>
-    <div class="description">
-        <div class="content" v-pre>
-            
-            <h3 id="linux-命令拓展"><a href="#linux-命令拓展" class="headerlink" title="linux 命令拓展"></a>linux 命令拓展</h3><ul>
-<li><p>whatis: 简述man</p>
-</li>
-<li><p>whereis:列出所有， which 是一个</p>
-</li>
-<li><p>curl [url] &gt; somefile：从url下载到somefile</p>
-</li>
-<li><p>find [root dir] -name “name(可包含通配符)”</p>
-</li>
-</ul>
-<p>​       eg find .&#x2F; -name “prefix*”</p>
-<ul>
-<li><p>find . -perm &#x2F;a&#x3D;x 找到可执行文件</p>
-</li>
-<li><p>chmod +x [filename]让此文件可执行</p>
-</li>
-</ul>
             
         </div>
     </div>
@@ -599,16 +606,16 @@
         
         <span class="tag">
             
-            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #ff7d73">入门</a>
+            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #00bcd4">入门</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/%E5%91%BD%E4%BB%A4%E8%A1%8C/" style="color: #03a9f4">命令行</a>
+            <a href="/tags/%E7%BB%8F%E9%AA%8C/" style="color: #ffa2c4">经验</a>
         </span>
         
     </div>
-    <a href="/2023/10/16/linux%E5%91%BD%E4%BB%A4%E6%8B%93%E5%B1%95/" class="go-post">阅读全文</a>
+    <a href="/2023/10/16/cs61a%E8%B8%A9%E8%BF%87%E7%9A%84%E5%9D%91/" class="go-post">阅读全文</a>
 </div>
 
 <div class="post">
@@ -667,12 +674,12 @@
         
         <span class="tag">
             
-            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #ff7d73">入门</a>
+            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #00a596">入门</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/%E6%B8%B8%E6%88%8F/" style="color: #00a596">游戏</a>
+            <a href="/tags/%E6%B8%B8%E6%88%8F/" style="color: #ffa2c4">游戏</a>
         </span>
         
     </div>
