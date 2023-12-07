@@ -3,7 +3,7 @@
 <html lang="zh-CN">
 <head>
     <meta charset="utf-8" />
-    <title>git初步 | Ayanami&#39;s cave</title>
+    <title>11-14-11-26学习双周记 | Ayanami&#39;s cave</title>
     <meta name="author" content="Ayanami" />
     <meta name="description" content="very good web, love from ayanami(x)" />
     <meta name="keywords" content="" />
@@ -155,88 +155,21 @@
         <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
             <div class="article">
     <div>
-        <h1>git初步</h1>
+        <h1>11-14-11-26学习双周记</h1>
     </div>
     <div class="info">
         <span class="date">
             <span class="icon">
                 <i class="fa-solid fa-calendar fa-fw"></i>
             </span>
-            2023/10/16
+            2023/12/7
         </span>
         
-        
-        <span class="tags">
-            <span class="icon">
-                <i class="fa-solid fa-tags fa-fw"></i>
-            </span>
-            
-            
-            <span class="tag">
-                
-                <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #00a596">入门</a>
-            </span>
-            
-            <span class="tag">
-                
-                <a href="/tags/%E5%91%BD%E4%BB%A4%E8%A1%8C/" style="color: #ffa2c4">命令行</a>
-            </span>
-            
-        </span>
         
     </div>
     
     <div class="content" v-pre>
-        <p>看learning git branch</p>
-<span id="more"></span>
-
-<p> git bash</p>
-<ol>
-<li><p>$git clone +url 下载别人的项目</p>
-</li>
-<li><p>$git init 在当前目录文件夹新建一个git仓库</p>
-</li>
-<li><p>$git add name （前提有仓库）跟踪某个文件</p>
-</li>
-<li><p>$git rm name 删除</p>
-</li>
-<li><p>$git rm –cache name 不被跟踪但不删除</p>
-</li>
-<li><p>修改完一个文件 再次$git add file-name 把它设置为缓存状态</p>
-</li>
-<li><p>$git reset HEAD file-name 取消缓存状态</p>
-</li>
-<li><p>通过$git commit 提交此次修改</p>
-</li>
-<li><p>$ git commit -m “对本次修改的一些注释” </p>
-</li>
-<li><p>$git status 看文件状态</p>
-</li>
-<li><p>$git diff 查看细节的修改位置</p>
-</li>
-<li><p>$git log 查看提交历史</p>
-</li>
-<li><p>远程仓库 remote<br>$ git remote add name(你起的名字) +url<br>$ git remote rename …改名<br>$git push 仓库名字 分支， 提交代码（需要github令牌）</p>
-</li>
-</ol>
-<p>另一种：ssh协议，相对复杂</p>
-<ol start="15">
-<li><p>分支，存放git对象的一个哈希值，类似指向不同版本文件的指针<br>初始会自动新建分支master</p>
-</li>
-<li><p>查看分支 $git branch –list<img src="/2023/10/16/git%E5%88%9D%E6%AD%A5/2023-04-24/K1ZGce3Jm7PUh3Xl.png" alt="输入图片说明"></p>
-<!-- more -->
-<p>‘* ’代表当前分支</p>
-</li>
-<li><p>创建分支 git branch + 新分支name<br> 切换分支 git checkout name<br>(可以合并为 git checkout -b name)</p>
-</li>
-<li><p>git log –all –graph 看结构<br>git merge name 将当前分支（head指向的）和name分支合并<br>q退出<br>（修改同样的地方会merge conflict<br>用git status 看冲突的位置，重新编辑）<br>vi file_name 用vim 编辑file<br>esc+:wq退出保存</p>
-</li>
-<li><p>$ git fetch 拉取远程仓库的分支<br>之后 git checkout -b new_name 仓库名&#x2F;分支名</p>
-</li>
-<li><p>git stash 储存，储存了之后可以不提交切换分支<br>之后通过 git stash apply 继续编写<br>git stash list看所有储存的版本<br>git stash apply stash@{2} 指定应用版本2</p>
-</li>
-</ol>
-
+        
     </div>
     
     
