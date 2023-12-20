@@ -3,7 +3,7 @@
 <html lang="zh-CN">
 <head>
     <meta charset="utf-8" />
-    <title>浅入理解断点和调试器 | Ayanami&#39;s cave</title>
+    <title>11-14-11-26学习双周记 | Ayanami&#39;s cave</title>
     <meta name="author" content="Ayanami" />
     <meta name="description" content="very good web, love from ayanami(x)" />
     <meta name="keywords" content="" />
@@ -155,30 +155,73 @@
         <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
             <div class="article">
     <div>
-        <h1>浅入理解断点和调试器</h1>
+        <h1>11-14-11-26学习双周记</h1>
     </div>
     <div class="info">
         <span class="date">
             <span class="icon">
                 <i class="fa-solid fa-calendar fa-fw"></i>
             </span>
-            2023/12/7
+            2023/12/21
         </span>
         
         
     </div>
     
     <div class="content" v-pre>
-        <h4 id="浅入理解断点和调试器"><a href="#浅入理解断点和调试器" class="headerlink" title="浅入理解断点和调试器"></a>浅入理解断点和调试器</h4><p>主要参考</p>
-<p><a target="_blank" rel="noopener" href="https://events.static.linuxfound.org/sites/events/files/slides/slides_16.pdf">https://events.static.linuxfound.org/sites/events/files/slides/slides_16.pdf</a></p>
-<p><a target="_blank" rel="noopener" href="https://eli.thegreenplace.net/2011/02/07/how-debuggers-work-part-3-debugging-information">https://eli.thegreenplace.net/2011/02/07/how-debuggers-work-part-3-debugging-information</a><br>在写知识之前，不如先问自己几个问题：</p>
+        <p>11.14-11.26 学习双周记：</p>
+<p>最近事务稍多，且更多时间花在了写代码上<del>且略摆</del>，故学习的知识型内容较少</p>
+<p>完成了 pa1 和 081 的 lab1</p>
+<hr>
 <span id="more"></span>
+<h4 id="小知识-get"><a href="#小知识-get" class="headerlink" title="小知识 get:"></a>小知识 get:</h4><h5 id="搜索引擎的小技巧：英文符号"><a href="#搜索引擎的小技巧：英文符号" class="headerlink" title="搜索引擎的小技巧：英文符号"></a>搜索引擎的小技巧：英文符号</h5><p>搜索引擎对符号的支持是很差的，甚至会被识别成通配符之类</p>
+<p>正确的搜索符号的姿势是使用英文代替符号</p>
+<p>e.g.（google）可以搜搜对比一下</p>
+<p>python __ 和 python bundle 的对比</p>
+<p>* in bash 和 asterisk in bash 的对比</p>
+<p>常用特殊符号英文：</p>
+<p>? question mark ! exclamation mask</p>
+<p>&#96; backtick $ dollar - hyphen # sharp or hash ~ tilde</p>
+<p>&amp; ampersand * asterisk _ underscore ^ caret , comma</p>
+<p>. dot &#x2F; forward slash \ backslash &lt;&gt; angle bracket [] bracket () brace</p>
+<p>“” quotation mark</p>
+<h5 id="正则表达式错用让-cpu-占用率提升-N-倍（雾）"><a href="#正则表达式错用让-cpu-占用率提升-N-倍（雾）" class="headerlink" title="正则表达式错用让 cpu 占用率提升 N 倍（雾）"></a>正则表达式错用让 cpu 占用率提升 N 倍（雾）</h5><p><code>$(\d+)*^</code> : 一个 <code>*</code> 是如何让算法复杂度从 O(N)变成 O(2^N^)的，匹配 1111111111111111111111111111a 直接爆炸</p>
+<p><code>$(1+1+)+0^</code> : 同理 匹配 11111111111111111111111111111 就寄了</p>
+<p>原理：参考这个，写得真不错<a target="_blank" rel="noopener" href="https://houbb.github.io/2020/01/07/regex-and-dfa-02">https://houbb.github.io/2020/01/07/regex-and-dfa-02</a></p>
+<p>画个图就懂了</p>
+<hr>
+<h4 id="配置-wsl-的代理"><a href="#配置-wsl-的代理" class="headerlink" title="配置 wsl 的代理"></a>配置 wsl 的代理</h4><p>使用 CFW，打开系统代理、允许局域网链接，使用此脚本</p>
+<pre><code class="bash"># 转载自 https://www.cnblogs.com/jaycethanks/p/17360464.html
+# 获取wsl虚拟机的ip， 并代理至windows 7890 端口
+echo &quot;设定wsl网络代理到7890外网访问端口......&quot;
+host_ip=$(cat /etc/resolv.conf |grep &quot;nameserver&quot; |cut -f 2 -d &quot; &quot;)
+export ALL_PROXY=&quot;http://$host_ip:7890&quot;
+# curl 命令检查，并仅输出状态码
+echo &quot;尝试通过curl命令检查 google 是否可以访问......返回状态码为：&quot;
+curl -s -o /dev/null -w &quot;%&#123;http_code&#125;\n&quot; https://www.google.com
+</code></pre>
+<p>放到<code>~/.bashrc</code>下</p>
+<p>再<code>source ~/.bashrc</code>即可</p>
+<p>碎碎念：本来配置 wsl 代理主要就是为了解决代码补全在 wsl 之中（即 vsc 开启 remote 模式下）不可用的问题，结果配完之后看到这样的 issue</p>
+<blockquote>
+<p><strong><a target="_blank" rel="noopener" href="https://github.com/yxw820603">yxw820603</a></strong> commented <a target="_blank" rel="noopener" href="https://github.com/THUDM/CodeGeeX2/issues/110#issuecomment-1751579150">on Oct 7</a> • edited</p>
+<p>经过简单测试，确定插件无法在 Remote-SSH 的情况下工作。</p>
+</blockquote>
+<p>不过 codeium 倒是折腾半天能用了，虽然也不知道为什么，wsl 下的效果比起正常本机差不少……延迟很大</p>
+<p>写码的时候还碰到一个很搞的事情</p>
+<p><code>grep "-D"</code>会把”-D”解释成参数-D,””解释成字面量</p>
+<p>想到的规避方法是敲个空格 <code>grep "[space]-D"</code></p>
+<hr>
+<h4 id="浅入理解断点和调试器"><a href="#浅入理解断点和调试器" class="headerlink" title="浅入理解断点和调试器"></a>浅入理解断点和调试器</h4><p>主要参考</p>
+<p><a target="_blank" rel="noopener" href="https://events.static.linuxfound.org/sites/events/files/slides/slides_16.pdf">https://events.static.linuxfound.org/sites/events/files/slides/slides_16.pdf</a></p>
+<p><a target="_blank" rel="noopener" href="https://eli.thegreenplace.net/2011/02/07/how-debuggers-work-part-3-debugging-information">https://eli.thegreenplace.net/2011/02/07/how-debuggers-work-part-3-debugging-information</a></p>
+<p>在写知识之前，不如先问自己几个问题：</p>
 <ul>
 <li>debugger 的实现原理是什么？</li>
 <li>断点(breakpoint)和监视点(watchpoint)的区别？</li>
 <li>断点有哪些实现方法？具体到 gdb 之中，它是怎么实现的？</li>
 </ul>
-<p><span style="color:red"><strong>debugger 的最基本原理，就是这样的代码</strong></span></p>
+<p>debugger 的最基本原理，就是这样的代码</p>
 <pre><code class="c++">int main(int argc, char** argv)
 &#123;
     pid_t child_pid;
@@ -209,14 +252,14 @@
 <li>已经控制了，debug 信息从哪来（如果不做处理，高级语言编译之后是没有原来的代码行数、变量符号等信息的）</li>
 </ol>
 <p>又可以进一步总结出以下几点，</p>
-<p><strong>debug 需要信息：</strong></p>
+<p>debug 需要信息：</p>
 <ol>
 <li><p>在高级代码—&gt;汇编的过程之中，我们需要代码的一一对应关系，比如第几行的高级代码对应第几行（到第几行）的汇编代码</p>
 </li>
 <li><p>在汇编代码—&gt;可执行文件的过程之中，我们需要将有用的信息保存在可执行文件内</p>
 </li>
 </ol>
-<p><strong>debug 需要断点：</strong></p>
+<p>debug 需要断点：</p>
 <ol start="3">
 <li>需要有一种方法在 gdb 或者在可执行文件之中达成中断</li>
 <li>进一步地，需要让 gdb（父进程）能够控制、监视、改变子进程（被调试的进程）</li>
@@ -226,7 +269,7 @@
 <p>下图转载： <code>gdb br</code>的失败例子</p>
 <p><img src="https://s2.loli.net/2023/11/24/LlfdwUEMvmtT3S2.png" alt="image-20231123221703870"></p>
 <p><img src="https://s2.loli.net/2023/11/24/nxWOHEMZNSKTa9G.png" alt="image-20231123221731588"></p>
-<p>问题 2，这就是为什么需要 gcc <strong>-g</strong> 的理由，<strong>也是为什么可以不止于对内存地址设断点，还能对一个函数，一行源代码设断点的原因</strong></p>
+<p>问题 2，这就是为什么需要 gcc <strong>-g</strong> 的理由，也是为什么可以不止于对内存地址设断点，还能对一个函数，一行源代码设断点的原因</p>
 <blockquote>
 <p>现代编译器在将高级代码转换为高级代码方面做得很好，其缩进和嵌套的控制结构以及任意类型的变量可以很好地转换为一大堆称为机器代码的位，其唯一目的是在目标 CPU 上尽可能快地运行。大多数 C 行被转换为多个机器代码指令。变量被推到各处 - 进入堆栈、寄存器或完全优化。<strong>结构和对象甚至不存在于生成的代码中 - 它们只是一个抽象</strong>，被转换为硬编码的偏移量到内存缓冲区中。</p>
 <p>那么，当您要求调试器在某个函数的入口处中断时，调试器如何知道在哪里停止呢？当你向它询问变量的值时，它是如何找到要显示的内容的？<strong>答案是 - 调试信息</strong>。</p>
@@ -245,8 +288,8 @@
 <li>软件支持</li>
 <li>硬件支持</li>
 </ul>
-<p>先讲硬件支持是怎么实现的。如果设备有实现硬件 debug，<span style="color:red"><strong>它会在内存之中占据一段特殊的位置，使得这个硬件支持对 cpu 是可见的</strong></span></p>
-<p>（cpu 也实现了 debug 的控制寄存器和控制单元）。<strong>而 gdb 在 debug 时，会先确定本机的架构和硬件信息，之后根据硬件信息去寻找相关的 debug 是否有硬件支持。</strong></p>
+<p>先讲硬件支持是怎么实现的。如果设备有实现硬件 debug，它会在内存之中占据一段特殊的位置，使得这个硬件支持对 cpu 是可见的</p>
+<p>（cpu 也实现了 debug 的控制寄存器和控制单元）。而 gdb 在 debug 时，会先确定本机的架构和硬件信息，之后根据硬件信息去寻找相关的 debug 是否有硬件支持。</p>
 <p>而这个硬件支持表现在能够硬件上单步执行，通过比较器设置断点，etc</p>
 <blockquote>
 <p>Gateway between re-purposed JTAG bit protocol and debug logic</p>
@@ -321,9 +364,9 @@
 <p>单字节使得它能够替换到任何一条指令的开头，并且不会覆盖两条及以上的指令</p>
 <p>在设置断点的时候，<strong>gdb 可以将断点处的指令保存起来，之后替换它的首个字节为 int 3</strong></p>
 <blockquote>
-<p><span style="color:red"><strong>Instruction at the given address is read, saved and replaced with a breakpoint:</strong> </span></p>
-<p>​ <strong>- either a special instruction, &#x2F;&#x2F; SIGTRAP, int 3</strong></p>
-<p>​ <strong>- or an undefined encoding. &#x2F;&#x2F; SIGILL</strong></p>
+<p><strong>Instruction at the given address is read, saved and replaced with a breakpoint:</strong></p>
+<p>​ - either a special instruction, &#x2F;&#x2F; SIGTRAP, int 3</p>
+<p>​ - or an undefined encoding. &#x2F;&#x2F; SIGILL</p>
 </blockquote>
 <p>之后程序正常运行，执行到 int 3 时产生中断（SIGTRAP，int 3 就是第三号 TRAP，x86 的调试器中断），而 gdb 程序作为父进程收到这个信号，达成中断（通过 ptrace 设置了中断的 handler），之后也可以将原来的指令替换回来继续执行。</p>
 <p>继续执行的细节：</p>
@@ -336,7 +379,34 @@
 <p>A：<strong>但 install 是特权指令（笑）</strong>，Linux 之中，二进制文件是自动具备可执行的默认权限的（<strong>file mode</strong>），而不是像 bash 脚本那样需要 sudo chmod +x 给予权限。</p>
 <p>并且咨询 gpt 还得到一个有趣的事情：ptrace 调用确实可以修改其他的进程，<strong>所以 ptrace 调用是需要 root 权限</strong>，但是，<strong>用户权限下，可以使用 setuid 或者 setcap 机制，是 gdb 能对特定的文件，具有特定系统调用的权限</strong></p>
 <p>读寄存器值是使用了特定的中断，读内存是读的虚拟内存。</p>
-
+<h4 id="对页表的进一步探讨"><a href="#对页表的进一步探讨" class="headerlink" title="对页表的进一步探讨"></a>对页表的进一步探讨</h4><p>在写知识之前，不如先问自己几个问题：</p>
+<ul>
+<li>为什么要引入多级页表？多级页表的原理和具体实现是什么？什么是页表目录（page table dir）？</li>
+<li>页表的基址寄存器，在 xv6 中是什么？在页表还没有建立之前和建立页表，设置基址之时，内核代码是怎么运行的？</li>
+<li>计算机的 cache 具体是在什么位置？它接受的和返回的是物理地址还是虚拟地址？</li>
+<li>多进程下，内核栈在实际内存的哪里？有几个？又是如何保证多个内核栈不重叠的？</li>
+</ul>
+<h4 id="xv6-的文件系统和系统调用"><a href="#xv6-的文件系统和系统调用" class="headerlink" title="xv6 的文件系统和系统调用"></a>xv6 的文件系统和系统调用</h4><p>在写知识之前，不如先问自己几个问题：</p>
+<ul>
+<li><p>使用系统调用写一个 ls 的大体思路？</p>
+</li>
+<li><p>文件重命名，软硬链接究竟是什么？文件夹又是什么？</p>
+</li>
+<li><p>文件描述符和管道是怎么实现的？</p>
+</li>
+<li><p>系统调用是如何实现的</p>
+</li>
+<li><p>多进程下，内核栈在实际内存的哪里？有几个？又是如何保证多个内核栈不重叠的？</p>
+</li>
+<li><p>宏内核和微内核的利弊？</p>
+</li>
+</ul>
+<p>文件系统部分：</p>
+<p>Linux 文件的核心标识是 inode</p>
+<p>名字之于 inode 号好比域名之于 ip 地址</p>
+<p>是由文件所在的文件夹管理这一个 &lt;filename, inode number&gt;的 map</p>
+<p>这就又引出了文件夹是什么，实际上就是——什么也不是，它只是一个 记录了底下文件的&lt;filename, inode number&gt;的 map 数据</p>
+<h4 id="KISS-法则，risc-和-cisc"><a href="#KISS-法则，risc-和-cisc" class="headerlink" title="KISS 法则，risc 和 cisc"></a>KISS 法则，risc 和 cisc</h4>
     </div>
     
     
