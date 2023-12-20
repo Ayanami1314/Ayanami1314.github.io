@@ -1,0 +1,305 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8" />
+    <title>10.26 技术随笔 | Ayanami&#39;s cave</title>
+    <meta name="author" content="Ayanami" />
+    <meta name="description" content="very good web, love from ayanami(x)" />
+    <meta name="keywords" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <link rel="icon" href="/images/head.jpg" />
+    <link rel="preconnect" href="https://cdn.staticfile.org" />
+<script src="https://cdn.staticfile.org/vue/3.3.4/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.4.0/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.loli.net" />
+<link rel="preconnect" href="https://gstatic.loli.net" crossorigin />
+<link rel="stylesheet" href="https://fonts.loli.net/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://cdn.staticfile.org/highlight.js/11.8.0/highlight.min.js"></script>
+<script src="https://cdn.staticfile.org/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://cdn.staticfile.org/highlight.js/11.8.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+<script src="https://cdn.staticfile.org/KaTeX/0.16.8/katex.min.js"></script>
+<script src="https://cdn.staticfile.org/KaTeX/0.16.8/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/KaTeX/0.16.8/katex.min.css" />
+<script src="/js/lib/math.js"></script>
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="/images/mika_loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>AYANAMI&#39;S CAVE</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;AYANAMI&#39;S CAVE</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1>10.26 技术随笔</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/12/21
+        </span>
+        
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <p>10.26 技术随笔</p>
+<h4 id="回调函数："><a href="#回调函数：" class="headerlink" title="回调函数："></a>回调函数：</h4><p>假设有这样的工作流</p>
+<p>​        &#x2F;&#x2F; some code</p>
+<span id="more"></span>
+<p>​	result &#x3D;  do_something（args)</p>
+<p>​	&#x2F;&#x2F; some code related to “result”</p>
+<p>​	&#x2F;&#x2F; some other code</p>
+<p>假如这个do_something是一个网络&#x2F;磁盘IO等需要等待的操作，那么有几种执行的策略</p>
+<ul>
+<li><p>从上到下，卡在do_something这里</p>
+</li>
+<li><p>暂时不管do_something, 先做some other code, 并polling do_something这个函数，一旦它return 了，就执行some code related to “result”</p>
+</li>
+<li><p>尝试把some code related to “result” 丢到 do_something之中， 这样外部工作流就与do_something解耦了</p>
+</li>
+</ul>
+<p>显然最后一种较好，但问题是，do_something这个函数，可能是一个库之类，它在编写的时候不知道自己的result会被哪些函数用，怎么办? </p>
+<p>只能用户自定义</p>
+<p><strong>而策略是将do_something添加一个函数参数callback, 意为do_something这个函数返回之后执行的函数（使用result的some code related to “result” 部分）</strong></p>
+<p>变成        </p>
+<p>​	&#x2F;&#x2F; some code</p>
+<p>​	result &#x3D;  do_something（args， callback)</p>
+<p>​	&#x2F;&#x2F; some other code </p>
+<p>而此时注释部分与非注释部分已经可以分离并行，提高了效率</p>
+<h4 id="继续看bash"><a href="#继续看bash" class="headerlink" title="继续看bash"></a>继续看bash</h4><h4 id="Section-5：bash-变量："><a href="#Section-5：bash-变量：" class="headerlink" title="Section 5：bash 变量："></a>Section 5：bash 变量：</h4><ul>
+<li><p>环境变量</p>
+<pre><code class="bash">$ printenv
+$ env
+# 打印所有环境变量
+$ printenv PATH
+$ echo $PATH
+# 打印单个
+# 需要注意bash变量区分大小写
+$ set
+# 显示所有变量，包括自定义变量和bash函数
+</code></pre>
+</li>
+<li><p>关于变量，<strong>所有的变量都是字符串， 变量可以是命令执行结果</strong></p>
+</li>
+<li><p>$a_file 与${a}_file</p>
+</li>
+<li><p>可以嵌套变量，USER&#x3D;Ayanami  myvar&#x3D;USER, echo ${!myvar} 得到的是Ayanami, !展开变量</p>
+</li>
+<li><p>删除变量， unset 或者赋值为空字符串</p>
+</li>
+</ul>
+<p>export, set, setx的区别</p>
+<p>set（bash） 只是设置当前bash进程(不包括子进程)的变量, eg</p>
+<pre><code class="bash">Ayanami@LAPTOP-5ASA2K3P MINGW64 /d/Desktop/notes
+$ echo $name
+haha
+
+Ayanami@LAPTOP-5ASA2K3P MINGW64 /d/Desktop/notes
+$ bash
+
+Ayanami@LAPTOP-5ASA2K3P MINGW64 /d/Desktop/notes
+$ echo $name
+</code></pre>
+<p>export VAR&#x3D;… 设置的变量能够被子进程识别，但是bash重启时会删除</p>
+<p>要永久更改bash的path, 需要更改配置文件</p>
+<p>Windows下提供了setx命令，免去了配置文件的更改，相等于直接修改环境变量</p>
+<pre><code class="powershell">setx VAR VAL
+</code></pre>
+<p>特殊变量</p>
+<pre><code class="bash">$ echo $?  #$?为上一个命令的退出码
+$ echo $$ # $$是shell 进程ID
+# $_是上一个命令的最后一个参数
+# $# 脚本的参数数量，$@脚本参数值
+</code></pre>
+<p>变量默认值</p>
+<pre><code class="bash">$&#123;varname:-word&#125; # return var exist? value: word
+$&#123;varname:=word&#125; # return var exist? value: word;if !var, value= word;
+$&#123;varname:+word&#125; # return var exist? empty: word;Test if the var exist
+$&#123;varname:?message&#125; # var exist? return value: print &quot;varname:&#123;message&#125;&quot; and interrupt the bash script.
+
+# 例
+ayanami@LAPTOP-5ASA2K3P:~$ ayanami=kawai
+ayanami@LAPTOP-5ASA2K3P:~$ $&#123;aya:?&quot;aya is not ayanami&quot;&#125;
+-bash: aya: aya is not ayanami
+
+# 例二
+filename=$&#123;1:?&quot;filename missing&quot;&#125; # 1 是脚本的第一个参数
+</code></pre>
+<p>declare -r VAR 设定只读变量， -u自动转换大写， -l自动转换小写</p>
+<p>declare -p 输出所有变量信息</p>
+<p>let 声明，直接执行算术表达式 let var&#x3D;1+2</p>
+
+    </div>
+    
+    
+    
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2023 - 2023 Ayanami&#39;s cave
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;Ayanami
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    
+    
+
+
+
+
+    
+</body>
+</html>

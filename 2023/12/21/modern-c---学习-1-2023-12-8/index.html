@@ -1,0 +1,431 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8" />
+    <title>modern c++ 学习（1）2023-12-8 | Ayanami&#39;s cave</title>
+    <meta name="author" content="Ayanami" />
+    <meta name="description" content="very good web, love from ayanami(x)" />
+    <meta name="keywords" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <link rel="icon" href="/images/head.jpg" />
+    <link rel="preconnect" href="https://cdn.staticfile.org" />
+<script src="https://cdn.staticfile.org/vue/3.3.4/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.4.0/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.loli.net" />
+<link rel="preconnect" href="https://gstatic.loli.net" crossorigin />
+<link rel="stylesheet" href="https://fonts.loli.net/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://cdn.staticfile.org/highlight.js/11.8.0/highlight.min.js"></script>
+<script src="https://cdn.staticfile.org/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://cdn.staticfile.org/highlight.js/11.8.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+<script src="https://cdn.staticfile.org/KaTeX/0.16.8/katex.min.js"></script>
+<script src="https://cdn.staticfile.org/KaTeX/0.16.8/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/KaTeX/0.16.8/katex.min.css" />
+<script src="/js/lib/math.js"></script>
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="/images/mika_loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>AYANAMI&#39;S CAVE</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;AYANAMI&#39;S CAVE</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1>modern c++ 学习（1）2023-12-8</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/12/21
+        </span>
+        
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <p>modern c++ 学习（1）：2023-12-8</p>
+<p>主要参考<a target="_blank" rel="noopener" href="https://www.bookstack.cn/read/modern-cpp-tutorial-zh">https://www.bookstack.cn/read/modern-cpp-tutorial-zh</a></p>
+<h4 id="constexpr"><a href="#constexpr" class="headerlink" title="constexpr:"></a>constexpr:</h4><p>编译器计算常量, 甚至可以修饰函数（接受const变量）</p>
+<span id="more"></span>
+<pre><code class="c++">constexpr int n=3+2+1;
+constexpr int fib(const int n)&#123;
+    // c++11, 如果使用if而不是三元运算符需要c++14
+    return n==1 || n==2 ? 1 : fib(n-1)+fib(n-2);
+&#125;
+
+int array[fib(10) + 5];
+</code></pre>
+<p>例：</p>
+<pre><code class="c++">#include &lt;iostream&gt;
+#include &lt;array&gt;
+using namespace std;
+
+constexpr int n=3+2+1;
+constexpr int fib(const int n)&#123;
+    // c++11, 如果使用if而不是三元运算符需要c++14
+    return n==1 || n==2 ? 1 : fib(n-1)+fib(n-2);
+&#125;
+
+std::array&lt;int, fib(10) + 5&gt; Array;
+int main() &#123; 
+    cout&lt;&lt;Array.size()&lt;&lt;endl;
+    return 0; 
+&#125;
+</code></pre>
+<h4 id="nullptr"><a href="#nullptr" class="headerlink" title="nullptr:"></a>nullptr:</h4><p>NULL会随着编译器的不同被解释成<code>((void*)0)</code> 和<code>0</code>, c++<strong>不允许</strong>将<code>void*</code>指针隐式转换成别的类型</p>
+<p>于是<code>char *ch=NULL</code>之中只好定义NULL为0</p>
+<p>但这又会出现重载的反直觉行为</p>
+<pre><code class="c++">int foo(char*)&#123;
+    // 1
+&#125;
+int foo(int)&#123;
+    // 2
+&#125;
+foo(NULL); // 等效于foo(0)，调用2而不是1
+</code></pre>
+<p>为了解决这个问题，c++引入了nullptr， 并且定义它的类型是nullptr_t，可以隐式转换成任意指针和成员指针的类型，并做比较</p>
+<h4 id="初始化列表"><a href="#初始化列表" class="headerlink" title="初始化列表"></a>初始化列表</h4><pre><code class="c++">#include &lt;initializer_list&gt;
+class Magic&#123;
+private:
+    vector&lt;int&gt; numbers;
+public:
+     Magic(std::initializer_list ilist)&#123;
+        for(auto i: ilist)&#123;
+            numbers.push_back(i);
+        &#125;
+    &#125;  
+&#125;;
+Magic m=&#123;1,2,3,4,5&#125;; // act as args in c
+// 也可以用initializer_list做普通函数的形参
+void foo(std::initializer_list&lt;int&gt; ilist)&#123;
+    //...
+&#125;
+</code></pre>
+<h4 id="结构化绑定"><a href="#结构化绑定" class="headerlink" title="结构化绑定"></a>结构化绑定</h4><pre><code class="c++">#include&lt;tuple&gt;
+#include&lt;string&gt;
+std::tuple&lt;int, double, std::string&gt; testbind()&#123;
+    return std::make_tuple(1, 2.0, &quot;3&quot;);
+&#125;
+int main() &#123; 
+    auto [x, y, z]=testbind();
+    cout&lt;&lt;x&lt;&lt;&quot; &quot;&lt;&lt;y&lt;&lt;&quot; &quot;&lt;&lt;z&lt;&lt;endl;
+    return 0; 
+&#125;
+</code></pre>
+<h4 id="decltype"><a href="#decltype" class="headerlink" title="decltype"></a>decltype</h4><p>为了解决auto 只能推断 变量 的不足</p>
+<p>引入了decltype来推断表达式等，可以和<code>std::is_same</code>配合</p>
+<pre><code class="c++">if(std::is_same&lt;decltype(x+y*z), int&gt;::value)
+    std::cout&lt;&lt;&quot;is int&quot;&lt;&lt;endl;
+</code></pre>
+<p>尾返回类型</p>
+<pre><code class="c++">// 传统c++
+template&lt;typename R, typename T, typename U&gt;
+R add(T x, U y) &#123;
+    return x+y
+&#125;
+// 不足：1.丑 2.需要指定R，但实际上不知道R是什么类型
+
+// modern cpp
+template&lt;typename T, typename U&gt;
+auto add(T x, U y)-&gt;decltype(x+y)&#123;
+    return x+y;
+&#125;
+// 甚至，c++14
+template&lt;typename T, typename U&gt;
+auto add(T x, U y)&#123;
+    return x+y;
+&#125;
+</code></pre>
+<h4 id="区间for"><a href="#区间for" class="headerlink" title="区间for"></a>区间for</h4><pre><code class="c++">#include &lt;iostream&gt;
+#include &lt;vector&gt;
+#include &lt;algorithm&gt;
+int main() &#123;
+    std::vector&lt;int&gt; vec = &#123;1, 2, 3, 4&#125;;
+    if (auto itr = std::find(vec.begin(), vec.end(), 3); itr != vec.end()) *itr = 4;
+    for (auto element : vec)
+        std::cout &lt;&lt; element &lt;&lt; std::endl; // read only
+    for (auto &amp;element : vec) &#123;
+        element += 1;                      // writeable
+    &#125;
+&#125;
+</code></pre>
+<h4 id="类型别名模板"><a href="#类型别名模板" class="headerlink" title="类型别名模板"></a>类型别名模板</h4><p>typedef只能作用于<strong>类型</strong></p>
+<p>但是函数指针等特殊类型，模板（不是类型！）等不可以typedef</p>
+<p>使用using语法代替</p>
+<pre><code class="c++">using NewProcess=int (*)(void*);
+auto p = new NewProcess();
+
+template&lt;typename T, typename R&gt;
+class foo&#123;
+public:
+    T type;
+    R result;
+    // ...
+&#125;;
+
+template&lt;typename T&gt;
+using somefoo=foo&lt;std::vector&lt;T&gt;, std::string&gt;;  // somefoo is a template now
+somefoo&lt;int&gt; s;
+</code></pre>
+<h4 id="模板默认参数"><a href="#模板默认参数" class="headerlink" title="模板默认参数"></a>模板默认参数</h4><pre><code class="c++">template&lt;typename T=int, typename R=double&gt;
+</code></pre>
+<h4 id="变长模板"><a href="#变长模板" class="headerlink" title="变长模板"></a>变长模板</h4><p>著名黑魔法之一</p>
+<pre><code class="c++">// sizeof和打包
+template&lt;typename... Ts&gt;
+void magic(Ts... args)&#123;
+    cout&lt;&lt;sizeof...(args)&lt;&lt;endl;
+&#125;
+
+// 解包1: 递归
+template&lt;typename T0&gt;
+void myprintf(T0 x)&#123;
+    cout&lt;&lt;x&lt;&lt;endl;
+&#125;
+template&lt;typename T, typename ...Ts&gt;
+void myprintf(T value, Ts ...args)&#123;
+    cout&lt;&lt;value&lt;&lt;endl;
+    myprintf(args...);
+&#125;
+
+myprintf(1, 0.2, &quot;0.1&quot;, &quot;haha&quot;);
+
+// 解包2: 变参数模板展开 c++17
+template&lt;typename T0, typename... Ts&gt;
+void myprintf(T0 t, Ts ...args)&#123;
+    cout&lt;&lt;t&lt;&lt;endl;
+    if constexpr(sizeof...(args) &gt; 0) myprintf(args...);
+&#125;
+</code></pre>
+<h4 id="折叠表达式"><a href="#折叠表达式" class="headerlink" title="折叠表达式"></a>折叠表达式</h4><pre><code class="c++">template&lt;typename... Ts&gt;
+auto sum(Ts... t)&#123;
+    return t+...;
+&#125;
+</code></pre>
+<h4 id="哈希"><a href="#哈希" class="headerlink" title="哈希"></a>哈希</h4><pre><code class="c++">#include&lt;functional&gt;
+#include&lt;string&gt;
+string s1 = &quot;hello&quot;;
+std::hash&lt;std::string&gt; hash_fn;
+std::size_t hash_val = hash_fn(s1);
+cout&lt;&lt;hash_val&lt;&lt;endl;
+</code></pre>
+<h4 id="线程和锁"><a href="#线程和锁" class="headerlink" title="线程和锁"></a>线程和锁</h4><pre><code class="c++">#include&lt;thread&gt;
+void critical_section(int v)&#123;
+    static std::mutex mtx;
+    std::unique_lock&lt;std::mutex&gt; lock;
+    lock.lock();
+    // 竞争代码
+    v += 1
+    
+    lock.unlock();
+&#125;
+int main()&#123;
+    std::thread t1(critical_section, 10),t2(critical_section, 20);
+    t1.join();
+    t2.join();
+&#125;
+</code></pre>
+<h4 id="容器"><a href="#容器" class="headerlink" title="容器"></a>容器</h4><h5 id="std-array"><a href="#std-array" class="headerlink" title="std::array"></a>std::array</h5><p>好处： 和容器算法交互，modern cpp的检查和特性等</p>
+<pre><code class="c++">// 退化回c示例
+std::array&lt;int, 5&gt; arr;
+void foo(int *arr, int length)&#123;
+    // ...
+&#125;
+foo(&amp;arr[0], arr.size()); // 法一
+foo(arr.data(), arr.size()); // 法二
+
+
+// 使用
+std::sort(arr.begin(), arr.end());
+</code></pre>
+<h5 id="元组：std-tuple"><a href="#元组：std-tuple" class="headerlink" title="元组：std::tuple"></a>元组：std::tuple</h5><pre><code class="c++">#include&lt;iostream&gt;
+#include&lt;tuple&gt;
+#include&lt;string&gt;
+#include&lt;functional&gt;
+int main()&#123;
+    std::tuple&lt;int, int, std::string, double&gt; t = std::make_tuple(0, 1, &quot;zhangsan&quot;, 4.2);
+    int x = std::get&lt;0&gt;(t);
+    int y = std::get&lt;1&gt;(t);
+    std::string s=std::get&lt;std::string&gt;(t);
+    std::cout&lt;&lt;x&lt;&lt;&quot; &quot;&lt;&lt;y&lt;&lt;&quot; &quot;&lt;&lt;s&lt;&lt;std::endl;
+    
+    double d;
+    std::tuple&lt;int, int, std::string, double&gt; t2 = std::make_tuple(5, 6, &quot;niuma&quot;, 4.3);
+    std::tie(x, y, s, d)=t2;
+    std::cout&lt;&lt;x&lt;&lt;&quot; &quot;&lt;&lt;y&lt;&lt;&quot; &quot;&lt;&lt;s&lt;&lt;&quot; &quot;&lt;&lt;d&lt;&lt;std::endl;
+    return 0;
+&#125;
+</code></pre>
+
+    </div>
+    
+    
+    
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2023 - 2023 Ayanami&#39;s cave
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;Ayanami
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    
+    
+
+
+
+
+    
+</body>
+</html>
