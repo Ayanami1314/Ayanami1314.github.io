@@ -3,7 +3,7 @@
 <html lang="zh-CN">
 <head>
     <meta charset="utf-8" />
-    <title>modern c++ 学习（1）2023-12-8 | Ayanami&#39;s cave</title>
+    <title>modern-cpp-学习-1-2023-12-8 | Ayanami&#39;s cave</title>
     <meta name="author" content="Ayanami" />
     <meta name="description" content="very good web, love from ayanami(x)" />
     <meta name="keywords" content="" />
@@ -155,7 +155,7 @@
         <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
             <div class="article">
     <div>
-        <h1>modern c++ 学习（1）2023-12-8</h1>
+        <h1>modern-cpp-学习-1-2023-12-8</h1>
     </div>
     <div class="info">
         <span class="date">
@@ -169,10 +169,13 @@
     </div>
     
     <div class="content" v-pre>
-        <p>modern c++ 学习（1）：2023-12-8</p>
+        <hr>
+<h2 id="title-modern-c-学习（1）2023-12-8date-2023-12-21pinned-9"><a href="#title-modern-c-学习（1）2023-12-8date-2023-12-21pinned-9" class="headerlink" title="title: modern c++ 学习（1）2023-12-8date: 2023-12-21pinned: 9"></a>title: modern c++ 学习（1）2023-12-8<br>date: 2023-12-21<br>pinned: 9</h2><p>modern c++ 学习（1）：2023-12-8</p>
 <p>主要参考<a target="_blank" rel="noopener" href="https://www.bookstack.cn/read/modern-cpp-tutorial-zh">https://www.bookstack.cn/read/modern-cpp-tutorial-zh</a></p>
-<h4 id="constexpr"><a href="#constexpr" class="headerlink" title="constexpr:"></a>constexpr:</h4><p>编译器计算常量, 甚至可以修饰函数（接受const变量）</p>
-<span id="more"></span>
+<h4 id="constexpr"><a href="#constexpr" class="headerlink" title="constexpr:"></a>constexpr:</h4><span id="more"></span>
+<p>编译器计算常量, 甚至可以修饰函数（接受 const 变量）</p>
+<!-- more -->
+
 <pre><code class="c++">constexpr int n=3+2+1;
 constexpr int fib(const int n)&#123;
     // c++11, 如果使用if而不是三元运算符需要c++14
@@ -193,13 +196,13 @@ constexpr int fib(const int n)&#123;
 &#125;
 
 std::array&lt;int, fib(10) + 5&gt; Array;
-int main() &#123; 
+int main() &#123;
     cout&lt;&lt;Array.size()&lt;&lt;endl;
-    return 0; 
+    return 0;
 &#125;
 </code></pre>
-<h4 id="nullptr"><a href="#nullptr" class="headerlink" title="nullptr:"></a>nullptr:</h4><p>NULL会随着编译器的不同被解释成<code>((void*)0)</code> 和<code>0</code>, c++<strong>不允许</strong>将<code>void*</code>指针隐式转换成别的类型</p>
-<p>于是<code>char *ch=NULL</code>之中只好定义NULL为0</p>
+<h4 id="nullptr"><a href="#nullptr" class="headerlink" title="nullptr:"></a>nullptr:</h4><p>NULL 会随着编译器的不同被解释成<code>((void*)0)</code> 和<code>0</code>, c++<strong>不允许</strong>将<code>void*</code>指针隐式转换成别的类型</p>
+<p>于是<code>char *ch=NULL</code>之中只好定义 NULL 为 0</p>
 <p>但这又会出现重载的反直觉行为</p>
 <pre><code class="c++">int foo(char*)&#123;
     // 1
@@ -209,7 +212,7 @@ int foo(int)&#123;
 &#125;
 foo(NULL); // 等效于foo(0)，调用2而不是1
 </code></pre>
-<p>为了解决这个问题，c++引入了nullptr， 并且定义它的类型是nullptr_t，可以隐式转换成任意指针和成员指针的类型，并做比较</p>
+<p>为了解决这个问题，c++引入了 nullptr， 并且定义它的类型是 nullptr_t，可以隐式转换成任意指针和成员指针的类型，并做比较</p>
 <h4 id="初始化列表"><a href="#初始化列表" class="headerlink" title="初始化列表"></a>初始化列表</h4><pre><code class="c++">#include &lt;initializer_list&gt;
 class Magic&#123;
 private:
@@ -219,7 +222,7 @@ public:
         for(auto i: ilist)&#123;
             numbers.push_back(i);
         &#125;
-    &#125;  
+    &#125;
 &#125;;
 Magic m=&#123;1,2,3,4,5&#125;; // act as args in c
 // 也可以用initializer_list做普通函数的形参
@@ -232,14 +235,14 @@ void foo(std::initializer_list&lt;int&gt; ilist)&#123;
 std::tuple&lt;int, double, std::string&gt; testbind()&#123;
     return std::make_tuple(1, 2.0, &quot;3&quot;);
 &#125;
-int main() &#123; 
+int main() &#123;
     auto [x, y, z]=testbind();
     cout&lt;&lt;x&lt;&lt;&quot; &quot;&lt;&lt;y&lt;&lt;&quot; &quot;&lt;&lt;z&lt;&lt;endl;
-    return 0; 
+    return 0;
 &#125;
 </code></pre>
-<h4 id="decltype"><a href="#decltype" class="headerlink" title="decltype"></a>decltype</h4><p>为了解决auto 只能推断 变量 的不足</p>
-<p>引入了decltype来推断表达式等，可以和<code>std::is_same</code>配合</p>
+<h4 id="decltype"><a href="#decltype" class="headerlink" title="decltype"></a>decltype</h4><p>为了解决 auto 只能推断 变量 的不足</p>
+<p>引入了 decltype 来推断表达式等，可以和<code>std::is_same</code>配合</p>
 <pre><code class="c++">if(std::is_same&lt;decltype(x+y*z), int&gt;::value)
     std::cout&lt;&lt;&quot;is int&quot;&lt;&lt;endl;
 </code></pre>
@@ -262,7 +265,7 @@ auto add(T x, U y)&#123;
     return x+y;
 &#125;
 </code></pre>
-<h4 id="区间for"><a href="#区间for" class="headerlink" title="区间for"></a>区间for</h4><pre><code class="c++">#include &lt;iostream&gt;
+<h4 id="区间-for"><a href="#区间-for" class="headerlink" title="区间 for"></a>区间 for</h4><pre><code class="c++">#include &lt;iostream&gt;
 #include &lt;vector&gt;
 #include &lt;algorithm&gt;
 int main() &#123;
@@ -275,9 +278,9 @@ int main() &#123;
     &#125;
 &#125;
 </code></pre>
-<h4 id="类型别名模板"><a href="#类型别名模板" class="headerlink" title="类型别名模板"></a>类型别名模板</h4><p>typedef只能作用于<strong>类型</strong></p>
-<p>但是函数指针等特殊类型，模板（不是类型！）等不可以typedef</p>
-<p>使用using语法代替</p>
+<h4 id="类型别名模板"><a href="#类型别名模板" class="headerlink" title="类型别名模板"></a>类型别名模板</h4><p>typedef 只能作用于<strong>类型</strong></p>
+<p>但是函数指针等特殊类型，模板（不是类型！）等不可以 typedef</p>
+<p>使用 using 语法代替</p>
 <pre><code class="c++">using NewProcess=int (*)(void*);
 auto p = new NewProcess();
 
@@ -341,7 +344,7 @@ void critical_section(int v)&#123;
     lock.lock();
     // 竞争代码
     v += 1
-    
+
     lock.unlock();
 &#125;
 int main()&#123;
@@ -350,7 +353,7 @@ int main()&#123;
     t2.join();
 &#125;
 </code></pre>
-<h4 id="容器"><a href="#容器" class="headerlink" title="容器"></a>容器</h4><h5 id="std-array"><a href="#std-array" class="headerlink" title="std::array"></a>std::array</h5><p>好处： 和容器算法交互，modern cpp的检查和特性等</p>
+<h4 id="容器"><a href="#容器" class="headerlink" title="容器"></a>容器</h4><h5 id="std-array"><a href="#std-array" class="headerlink" title="std::array"></a>std::array</h5><p>好处： 和容器算法交互，modern cpp 的检查和特性等</p>
 <pre><code class="c++">// 退化回c示例
 std::array&lt;int, 5&gt; arr;
 void foo(int *arr, int length)&#123;
@@ -373,7 +376,7 @@ int main()&#123;
     int y = std::get&lt;1&gt;(t);
     std::string s=std::get&lt;std::string&gt;(t);
     std::cout&lt;&lt;x&lt;&lt;&quot; &quot;&lt;&lt;y&lt;&lt;&quot; &quot;&lt;&lt;s&lt;&lt;std::endl;
-    
+
     double d;
     std::tuple&lt;int, int, std::string, double&gt; t2 = std::make_tuple(5, 6, &quot;niuma&quot;, 4.3);
     std::tie(x, y, s, d)=t2;
