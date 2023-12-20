@@ -215,12 +215,12 @@
         
         <span class="tag">
             
-            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #ffa2c4">入门</a>
+            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #00a596">入门</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/%E7%AE%97%E6%B3%95/" style="color: #00bcd4">算法</a>
+            <a href="/tags/%E7%AE%97%E6%B3%95/" style="color: #ffa2c4">算法</a>
         </span>
         
     </div>
@@ -265,7 +265,7 @@
         
         <span class="tag">
             
-            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #ff7d73">入门</a>
+            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #00bcd4">入门</a>
         </span>
         
         <span class="tag">
@@ -314,12 +314,12 @@
         
         <span class="tag">
             
-            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #00bcd4">入门</a>
+            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #ffa2c4">入门</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/java/" style="color: #ffa2c4">java</a>
+            <a href="/tags/java/" style="color: #00a596">java</a>
         </span>
         
     </div>
@@ -363,12 +363,12 @@
         
         <span class="tag">
             
-            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #00bcd4">入门</a>
+            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #00a596">入门</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/%E7%AE%97%E6%B3%95/" style="color: #ffa2c4">算法</a>
+            <a href="/tags/%E7%AE%97%E6%B3%95/" style="color: #ff7d73">算法</a>
         </span>
         
     </div>
@@ -452,7 +452,7 @@ with concurrent.futures.ThreadPoolExetutor as pool:
         
         <span class="tag">
             
-            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #ffa2c4">入门</a>
+            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #ff7d73">入门</a>
         </span>
         
         <span class="tag">
@@ -462,7 +462,7 @@ with concurrent.futures.ThreadPoolExetutor as pool:
         
         <span class="tag">
             
-            <a href="/tags/%E5%B9%B6%E5%8F%91/" style="color: #00bcd4">并发</a>
+            <a href="/tags/%E5%B9%B6%E5%8F%91/" style="color: #ff7d73">并发</a>
         </span>
         
     </div>
@@ -551,7 +551,7 @@ with concurrent.futures.ThreadPoolExetutor as pool:
         
         <span class="tag">
             
-            <a href="/tags/python/" style="color: #ffa2c4">python</a>
+            <a href="/tags/python/" style="color: #00a596">python</a>
         </span>
         
         <span class="tag">
@@ -600,12 +600,12 @@ with concurrent.futures.ThreadPoolExetutor as pool:
         
         <span class="tag">
             
-            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #03a9f4">入门</a>
+            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #ff7d73">入门</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/%E7%AE%97%E6%B3%95/" style="color: #00a596">算法</a>
+            <a href="/tags/%E7%AE%97%E6%B3%95/" style="color: #00bcd4">算法</a>
         </span>
         
     </div>
@@ -640,13 +640,13 @@ with concurrent.futures.ThreadPoolExetutor as pool:
     <p>将物理模块本身抽出，防止物理模型和UI效果耦合
         物理模块处理完落水事件之后产生一个event</p>
     <p>让音量模块、特效模块等作为不同的观察者observer，当检测到event产生，执行对应处理代码。</p>
+</details>
 
 <p>追问：设计应该是同步的还是异步的？什么情况不应该使用这个模式？</p>
 
 
 
-
-
+<p>&lt;—!more—&gt;</p>
 <h4 id="状态模式：善用状态机"><a href="#状态模式：善用状态机" class="headerlink" title="状态模式：善用状态机"></a>状态模式：善用状态机</h4><p>如果有这样一个逻辑：按space跳跃，空中允许二段跳，空中按J下俯冲攻击，俯冲、跳跃、落地均有动画，如何设计？</p>
 <details>
        <summary>答</summary>
@@ -683,13 +683,13 @@ with concurrent.futures.ThreadPoolExetutor as pool:
            &#125;
        &#125;
        </code></pre>
-   </details>
+</details>
 
 
 
 
 
-<h3 id="数据建模："><a href="#数据建模：" class="headerlink" title="数据建模："></a>数据建模：</h3><p>如果我想要实现一个道具“剑”，但有二十种不同效果的剑，比如冰霜、毒素、眩晕等等，我应该如何设计？</p>
+<h3 id="数据建模："><a href="#数据建模：" class="headerlink" title="数据建模："></a>数据建模：</h3><p>如果我想要实现一个道具“剑”，但有二十种不同效果的剑，比如冰霜、毒素、眩晕等等，我应该如何设计？为什么？空间上 + 复杂度上产生了什么效果？</p>
 <details>
        <summary>答</summary>
    不应该设计成一个基类+20个派生类
@@ -704,13 +704,19 @@ with concurrent.futures.ThreadPoolExetutor as pool:
        ...
    &#125;</code></pre>
    这样只有当需要时，才查询记录, 并且对所有类似的都可以用一套方法
+</details>
+
+
+
+
+<h4 id="如何实现撤销任意步的操作？"><a href="#如何实现撤销任意步的操作？" class="headerlink" title="如何实现撤销任意步的操作？"></a>如何实现撤销任意步的操作？</h4><details>
+<summary>答</summary>
+<p>蠢方法是记录每一帧，但这显然太占用资源；好方法是对每一个操作实现undo接口（如果可能），如果不可能则记录每次的状态，之后重演逻辑、重新渲染</p>
+</details>
    
 
+<h4 id="降低耦合的固有方法：加中间件"><a href="#降低耦合的固有方法：加中间件" class="headerlink" title="降低耦合的固有方法：加中间件"></a>降低耦合的固有方法：加中间件</h4><p>例如：不想让按键输入直接与逻辑耦合（比如，想要支持改键位），那么需要加一个handleInput()函数作为中间件，通过handleInput函数，去更改状态</p>
 
-<p>   为什么？<br>   空间上 + 复杂度上产生了什么效果？</p>
-<h4 id="如何实现撤销任意步的操作？"><a href="#如何实现撤销任意步的操作？" class="headerlink" title="如何实现撤销任意步的操作？"></a>如何实现撤销任意步的操作？</h4><details>
-       <summary>答</summary>
-       <p>蠢方法是记录每一帧，但这显然太占用资源；好方法是对每一个操作实现undo接口（如果可能），如果不可能则记录每次的状态，之后重演逻辑、重新渲染</p></details></details></details>
             
         </div>
     </div>
@@ -724,17 +730,17 @@ with concurrent.futures.ThreadPoolExetutor as pool:
         
         <span class="tag">
             
-            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #00a596">入门</a>
+            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #00bcd4">入门</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/%E6%B8%B8%E6%88%8F/" style="color: #03a9f4">游戏</a>
+            <a href="/tags/%E6%B8%B8%E6%88%8F/" style="color: #ffa2c4">游戏</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="color: #00a596">设计模式</a>
+            <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="color: #ff7d73">设计模式</a>
         </span>
         
     </div>
@@ -809,7 +815,7 @@ with concurrent.futures.ThreadPoolExetutor as pool:
         
         <span class="tag">
             
-            <a href="/tags/%E7%BB%8F%E9%AA%8C/" style="color: #03a9f4">经验</a>
+            <a href="/tags/%E7%BB%8F%E9%AA%8C/" style="color: #ffa2c4">经验</a>
         </span>
         
     </div>
