@@ -3,7 +3,7 @@
 <html lang="zh-CN">
 <head>
     <meta charset="utf-8" />
-    <title>树 | Ayanami&#39;s cave</title>
+    <title>11-14-11-26学习双周记 | Ayanami&#39;s cave</title>
     <meta name="author" content="Ayanami" />
     <meta name="description" content="very good web, love from ayanami(x)" />
     <meta name="keywords" content="" />
@@ -155,94 +155,21 @@
         <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
             <div class="article">
     <div>
-        <h1>树</h1>
+        <h1>11-14-11-26学习双周记</h1>
     </div>
     <div class="info">
         <span class="date">
             <span class="icon">
                 <i class="fa-solid fa-calendar fa-fw"></i>
             </span>
-            2023/10/16
+            2023/12/21
         </span>
         
-        
-        <span class="tags">
-            <span class="icon">
-                <i class="fa-solid fa-tags fa-fw"></i>
-            </span>
-            
-            
-            <span class="tag">
-                
-                <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #ff7d73">入门</a>
-            </span>
-            
-            <span class="tag">
-                
-                <a href="/tags/%E7%AE%97%E6%B3%95/" style="color: #03a9f4">算法</a>
-            </span>
-            
-        </span>
         
     </div>
     
     <div class="content" v-pre>
-        <h2 id="从BST说起"><a href="#从BST说起" class="headerlink" title="从BST说起"></a>从BST说起</h2><p>BST（Binary Search Tree, 二叉搜索树）的平均深度是Θ（logN）（一棵随机生成的BST（不管有没有随机插入和删除）的深度和期望高度都是 Θ（logN）的）</p>
-<p>但现实之中的树不一定都是随机的，有很多情况（比如带有时间顺序的数据，就不是随机的），我们需要避免Θ（N）的最坏情况，要把树的深度压到O（logN）</p>
-<span id="more"></span>
-
-<p><em><strong>二叉树的删除：无儿子、单儿子、双儿子：双儿子通过前驱&#x2F;后继节点转换为单儿子情况</strong></em></p>
-<h3 id="思路一："><a href="#思路一：" class="headerlink" title="思路一："></a>思路一：</h3><hr>
-<p>我们给添加节点增加一个规则：不允许“手动加深”树，即不能在新的一层添加新的数据，只允许在已有层添加数据，但我们允许一个节点有最多L个数据（不然设想对一个节点一直加数据，我们的树退化成链表了）</p>
-<p><img src="https://s2.loli.net/2023/10/20/aoZEcv6Q1uOCG7M.png"></p>
-<p>由此诞生了B树，这是一种保证所有的叶节点都是等深的数据结构</p>
-<p>B树的检索：基本同二叉搜索树，但在每一个包含L个数据的节点会进行L次比较操作，所以检索操作时O（LlogN） &#x3D; O(logN)的</p>
-<p><img src="https://s2.loli.net/2023/10/20/SVAzaxgedF3InTM.png"></p>
-<p>B树的插入<br>先检索到插入的位置插入，这一部分同BST，但可能让插入的节点超过了L个数据的限制，这个时候就需要分裂（让中间的节点而不是其他节点进入上一层比较好）</p>
-<p><img src="https://s2.loli.net/2023/10/20/NPxDUzluqXvCh53.png"></p>
-<p>B树的用处：1.L很小，作为一种简单的平衡搜索  2. L很大，用在数据库、硬盘之类</p>
-<p>B树的不足：</p>
-<ol>
-<li>难编程（可以设想L大的时候事情会变得多少复杂，再想想删除有多少种情况）</li>
-<li>很多情况下慢（都是logN 但常数因子大）</li>
-<li>每个节点甚至需要一个链表<br>(漂亮的算法不一定是最好的)<br><img src="https://s2.loli.net/2023/10/20/B2ZdDMzyGWRCac1.png"></li>
-</ol>
-<p>拓展：B树的删除，B+树（一颗只在叶子节点存数据，内部结点只做查找索引，并且叶子节点类似链表链接的树）</p>
-<p><img src="https://s2.loli.net/2023/10/20/8VsRIGUL574oTiu.webp"></p>
-<h3 id="思路二："><a href="#思路二：" class="headerlink" title="思路二："></a>思路二：</h3><hr>
-<p>前置：AVL树与旋转</p>
-<p><em>相同节点的BST有许多种形态，而旋转就是从其中一种过渡到另一种的方法</em><br><img src="https://s2.loli.net/2023/10/20/nPhxDMLCH6IwKZl.png"><br>N个节点构成的二叉搜索树的种类是Catalen(N)</p>
-<p>对N较大时，任意两个状态之间所需要的旋转数&lt; 2N-6<br>左旋：将选定节点变成右儿子的左子树<br>右转：将选定节点变成左儿子的右子树<br><img src="https://s2.loli.net/2023/10/20/COZWUyqTLhp8xPt.png"><br><img src="https://s2.loli.net/2023/10/20/ErTCtSR8ZfyhAvw.png"></p>
-<hr>
-<h4 id="红黑树："><a href="#红黑树：" class="headerlink" title="红黑树："></a>红黑树：</h4><p>B树有许多良好的性质，但是它的建立和删除实在是太繁琐了，如果能建立这样的一种树，<strong>它是一棵BST，但却和一棵2-3 B树一一对应，形成一个双射</strong>，不就综合了两者的优点？</p>
-<p>这样的数据结构就是红黑树，也是实际之中运用得最多的树，是java TreeMap() 的底层实现</p>
-<p>我们设想将B树含有多个数据的节点可以“暂时分离”，并将分出来的线用红色表示<br><img src="https://s2.loli.net/2023/10/20/XyDxGwHdliFTVPc.png"></p>
-<p>（如果我们指定分离到更深一层的是df的d或者f，这种分离就是一一对应的，以指定d（左倾红黑树， LLRB，Left-Leaning Red Black BST）为例）</p>
-<p>现在有一颗这样搭建好深为N1 &#x3D; Θ（logN）的B树，将其这样分离，形成的红黑树深度最多是 N2 &#x3D; N1+1（红线贡献的额外深度）+N1，还是 Θ（logN）的</p>
-<p>现在考虑2-3树的插入，插入的分裂操作还没对应红黑树的操作</p>
-<p>插入可以分解为：</p>
-<ol>
-<li>插入一个节点</li>
-<li>如果数据数超过L，将中间的数据移动到父节点</li>
-</ol>
-<p>直接给出对应规则</p>
-<p><img src="https://s2.loli.net/2023/10/20/UwmQJXHbM2pfVTS.png"></p>
-<p><img src="https://s2.loli.net/2023/10/20/2frHsaRGJYeZbSp.png"></p>
-<p><img src="https://s2.loli.net/2023/10/20/yhRSregxXMsZHpJ.png"></p>
-<p>那么我们就构建了一棵红黑树！可以总结它的插入规则如下（通过和B树的对应理解！）：</p>
-<ol>
-<li><p>（B树）如果和左子树是黑线，右子树是红线————&gt;左旋（保证左倾）</p>
-</li>
-<li><p>（B树）如果要向上合并————&gt; 节点所连的所有线变色（红黑）</p>
-</li>
-<li><p>如果有连续两条左倾红色连接 ————&gt;旋转（辅助2）</p>
-</li>
-</ol>
-<p><img src="https://s2.loli.net/2023/10/20/FztJxnX3LYSBjus.png"></p>
-<p>伪代码实现：（<strong>优雅，太优雅了.jpg</strong>）<br><img src="https://s2.loli.net/2023/10/20/fAeL7vtahD2VikM.png"></p>
-<p>红黑的删除本质上和B树是一样的，所以还是非常复杂……，慢慢分类讨论……</p>
-<p>（p.s. 我觉得这不是什么重要的东西，重要的是理解思想）</p>
-
+        
     </div>
     
     
