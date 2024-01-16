@@ -187,7 +187,7 @@
 <p>“” quotation mark</p>
 <h5 id="正则表达式错用让-cpu-占用率提升-N-倍（雾）"><a href="#正则表达式错用让-cpu-占用率提升-N-倍（雾）" class="headerlink" title="正则表达式错用让 cpu 占用率提升 N 倍（雾）"></a>正则表达式错用让 cpu 占用率提升 N 倍（雾）</h5><p><code>$(\d+)*^</code> : 一个 <code>*</code> 是如何让算法复杂度从 O(N)变成 O(2^N^)的，匹配 1111111111111111111111111111a 直接爆炸</p>
 <p><code>$(1+1+)+0^</code> : 同理 匹配 11111111111111111111111111111 就寄了</p>
-<p>原理：参考这个，写得真不错<a class="link" target="_blank" rel="noopener" href="https://houbb.github.io/2020/01/07/regex-and-dfa-02">https://houbb.github.io/2020/01/07/regex-and-dfa-02 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p>原理：参考这个，写得真不错<a target="_blank" rel="noopener" href="https://houbb.github.io/2020/01/07/regex-and-dfa-02">https://houbb.github.io/2020/01/07/regex-and-dfa-02</a></p>
 <p>画个图就懂了</p>
 <hr>
 <h4 id="配置-wsl-的代理"><a href="#配置-wsl-的代理" class="headerlink" title="配置 wsl 的代理"></a>配置 wsl 的代理</h4><p>使用 CFW，打开系统代理、允许局域网链接，使用此脚本</p>
@@ -204,7 +204,7 @@ curl -s -o /dev/null -w &quot;%&#123;http_code&#125;\n&quot; https://www.google.
 <p>再<code>source ~/.bashrc</code>即可</p>
 <p>碎碎念：本来配置 wsl 代理主要就是为了解决代码补全在 wsl 之中（即 vsc 开启 remote 模式下）不可用的问题，结果配完之后看到这样的 issue</p>
 <blockquote>
-<p><strong><a class="link" target="_blank" rel="noopener" href="https://github.com/yxw820603">yxw820603 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></strong> commented <a class="link" target="_blank" rel="noopener" href="https://github.com/THUDM/CodeGeeX2/issues/110#issuecomment-1751579150">on Oct 7 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> • edited</p>
+<p><strong><a target="_blank" rel="noopener" href="https://github.com/yxw820603">yxw820603</a></strong> commented <a target="_blank" rel="noopener" href="https://github.com/THUDM/CodeGeeX2/issues/110#issuecomment-1751579150">on Oct 7</a> • edited</p>
 <p>经过简单测试，确定插件无法在 Remote-SSH 的情况下工作。</p>
 </blockquote>
 <p>不过 codeium 倒是折腾半天能用了，虽然也不知道为什么，wsl 下的效果比起正常本机差不少……延迟很大</p>
@@ -213,8 +213,8 @@ curl -s -o /dev/null -w &quot;%&#123;http_code&#125;\n&quot; https://www.google.
 <p>想到的规避方法是敲个空格 <code>grep "[space]-D"</code></p>
 <hr>
 <h4 id="浅入理解断点和调试器"><a href="#浅入理解断点和调试器" class="headerlink" title="浅入理解断点和调试器"></a>浅入理解断点和调试器</h4><p>主要参考</p>
-<p><a class="link" target="_blank" rel="noopener" href="https://events.static.linuxfound.org/sites/events/files/slides/slides_16.pdf">https://events.static.linuxfound.org/sites/events/files/slides/slides_16.pdf <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<p><a class="link" target="_blank" rel="noopener" href="https://eli.thegreenplace.net/2011/02/07/how-debuggers-work-part-3-debugging-information">https://eli.thegreenplace.net/2011/02/07/how-debuggers-work-part-3-debugging-information <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p><a target="_blank" rel="noopener" href="https://events.static.linuxfound.org/sites/events/files/slides/slides_16.pdf">https://events.static.linuxfound.org/sites/events/files/slides/slides_16.pdf</a></p>
+<p><a target="_blank" rel="noopener" href="https://eli.thegreenplace.net/2011/02/07/how-debuggers-work-part-3-debugging-information">https://eli.thegreenplace.net/2011/02/07/how-debuggers-work-part-3-debugging-information</a></p>
 <p>在写知识之前，不如先问自己几个问题：</p>
 <ul>
 <li>debugger 的实现原理是什么？</li>
@@ -267,8 +267,8 @@ curl -s -o /dev/null -w &quot;%&#123;http_code&#125;\n&quot; https://www.google.
 <p>解决了这几个问题，理论上就能产生 debugger</p>
 <p>问题 1，很遗憾，由于现代编译器的优化和现代编程语言的复杂性，源程序语言和编译完成的汇编，又或者说最后执行的机器指令很难完美对应，编译器开启对应的编译指令之后也只能做到近似（**不能完全相信 back trace!**）但大体上还是对的。（也可以强制让编译器不优化）</p>
 <p>下图转载： <code>gdb br</code>的失败例子</p>
-<p><img lazyload src="/images/loading.svg" data-src="https://s2.loli.net/2023/11/24/LlfdwUEMvmtT3S2.png" alt="image-20231123221703870"></p>
-<p><img lazyload src="/images/loading.svg" data-src="https://s2.loli.net/2023/11/24/nxWOHEMZNSKTa9G.png" alt="image-20231123221731588"></p>
+<p><img src="https://s2.loli.net/2023/11/24/LlfdwUEMvmtT3S2.png" alt="image-20231123221703870"></p>
+<p><img src="https://s2.loli.net/2023/11/24/nxWOHEMZNSKTa9G.png" alt="image-20231123221731588"></p>
 <p>问题 2，这就是为什么需要 gcc <strong>-g</strong> 的理由，也是为什么可以不止于对内存地址设断点，还能对一个函数，一行源代码设断点的原因</p>
 <blockquote>
 <p>现代编译器在将高级代码转换为高级代码方面做得很好，其缩进和嵌套的控制结构以及任意类型的变量可以很好地转换为一大堆称为机器代码的位，其唯一目的是在目标 CPU 上尽可能快地运行。大多数 C 行被转换为多个机器代码指令。变量被推到各处 - 进入堆栈、寄存器或完全优化。<strong>结构和对象甚至不存在于生成的代码中 - 它们只是一个抽象</strong>，被转换为硬编码的偏移量到内存缓冲区中。</p>
@@ -276,12 +276,12 @@ curl -s -o /dev/null -w &quot;%&#123;http_code&#125;\n&quot; https://www.google.
 <p><strong>调试信息由编译器与机器代码一起生成。它是可执行程序和原始源代码之间关系的表示。这些信息被编码为预定义的格式，并与机器代码一起存储</strong>。多年来，为不同的平台和可执行文件发明了许多这样的格式。由于本文的目的不是调查这些格式的历史，而是展示它们的工作原理，因此我们必须确定一些事情。这将是 DWARF，它今天几乎无处不在地用作 Linux 和其他 Unix-y 平台上 ELF 可执行文件的调试信息格式。</p>
 </blockquote>
 <p>对应 elf 文件中的.debug_**段</p>
-<p><img lazyload src="/images/loading.svg" data-src="https://s2.loli.net/2023/11/24/gCWjndKMXcq4Gyi.png" alt="image-20231123223152372"></p>
+<p><img src="https://s2.loli.net/2023/11/24/gCWjndKMXcq4Gyi.png" alt="image-20231123223152372"></p>
 <p>如何进一步阅读?</p>
 <p><code>objdump --dwarf=info</code></p>
 <p>info 可以换成别的</p>
-<p><img lazyload src="/images/loading.svg" data-src="https://s2.loli.net/2023/11/24/DQtJcnh7CyRp9mK.png" alt="image-20231123223310051"></p>
-<p><img lazyload src="/images/loading.svg" data-src="https://s2.loli.net/2023/11/24/lypIGeNi9BZJ8Mc.png" alt="image-20231123223328905"></p>
+<p><img src="https://s2.loli.net/2023/11/24/DQtJcnh7CyRp9mK.png" alt="image-20231123223310051"></p>
+<p><img src="https://s2.loli.net/2023/11/24/lypIGeNi9BZJ8Mc.png" alt="image-20231123223328905"></p>
 <p>问题 3、4</p>
 <p>debug 需要断点，需要某种可恢复的中断，怎么做？</p>
 <ul>
@@ -310,7 +310,7 @@ curl -s -o /dev/null -w &quot;%&#123;http_code&#125;\n&quot; https://www.google.
 </blockquote>
 <p>另一种就是软件支持，</p>
 <p>首先是中断，当程序运行到断点的时候，它应该向 gdb 发出一个中断信号（比如 SIGTRAP），之后 gdb 程序（父进程）接收到中断信号后，辨别出这个是断点产生的中断还是程序正常运行的中断，并加以处理</p>
-<p><img lazyload src="/images/loading.svg" data-src="https://s2.loli.net/2023/11/27/a1AtXh7PgYDwsCW.png" alt="image-20231127222802586"></p>
+<p><img src="https://s2.loli.net/2023/11/27/a1AtXh7PgYDwsCW.png" alt="image-20231127222802586"></p>
 <p>然后是 ptrace 系统调用，这个系统调用允许一个进程去得到另一个进程的控制权，包括监视、改变、发送命令等</p>
 <pre><code class="c++">void run_target(const char* programname)
 &#123;

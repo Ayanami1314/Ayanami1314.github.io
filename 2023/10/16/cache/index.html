@@ -179,7 +179,7 @@
             
             <span class="tag">
                 
-                <a href="/tags/%E7%BB%84%E6%88%90%E7%BB%93%E6%9E%84/" style="color: #ff7d73">组成结构</a>
+                <a href="/tags/%E7%BB%84%E6%88%90%E7%BB%93%E6%9E%84/" style="color: #03a9f4">组成结构</a>
             </span>
             
         </span>
@@ -223,7 +223,7 @@
 <p>这样会把多条地址上的值映射到一个cache上，所以我们需要比较地址的其他值来确定要求的数据是否就是cache之中的数据。对应的，一条cache之中有一个lag标签，存了0xffffffff除了111（index）之外的其他部分。比对lag即可判别是否相同。</p>
 <p>还有一些细节，比如：程序开始的时候，cache里面的值并没有清空，这些乱七八糟的值应该有一个“是否有效”的标识符valid，占一位</p>
 <p>又比如：内存之中一定要按字节对齐，并且很多时候更进一步，按字对齐（4Byte，此时一个单独的char占了1Byte 和3个空Byte），这可以不存在lag之中；如果block不止一个字，比如4个字，那么地址之中还需要分离2位出来，指示某个特定的字在block之中的位置</p>
-<p><img lazyload src="/images/loading.svg" data-src="https://s2.loli.net/2023/10/20/tqA3a2VLgYsOSIN.png"><br>示例：64位存储地址，直接映射cache，cache最大容纳数据大小16KiB，cache一个block 4字，cache所占的实际空间是多少？</p>
+<p><img src="https://s2.loli.net/2023/10/20/tqA3a2VLgYsOSIN.png"><br>示例：64位存储地址，直接映射cache，cache最大容纳数据大小16KiB，cache一个block 4字，cache所占的实际空间是多少？</p>
 <p>解析：<br>16KiB&#x2F;4字 &#x3D; 1024 条cache &#x3D; 2^10<br>因而64位地址末10位是cache index<br>64位存储地址 -10- 2（内存对齐）-2(指示一个block之中单字位置,2*2&#x3D;4) &#x3D; 50位 lag </p>
 <p>[50 + 1(valid位) + 4*32（block）]*1024 &#x3D;179 Kib &#x3D; 179&#x2F;8 KiB &#x3D; 22.4KiB</p>
 <h4 id="2-3-2-N-way-set-associative-cache"><a href="#2-3-2-N-way-set-associative-cache" class="headerlink" title="2.3.2 N-way set-associative cache"></a>2.3.2 N-way set-associative cache</h4><p>上面的直接映射cache也有铸币的一点</p>
@@ -242,7 +242,7 @@ for(int i=0;i&lt;12; i++)&#123;
 // 这个程序看起来很有空间相关性，理应得到很高的cache hit rate，但是，如果cache是direct-mapped cache,以4个block为例，由于x，y都是放在堆上且相邻定义，xy地址差的是32*4位的整数倍，两个数组的index相同，存入cache时会存入x，然后y cache miss,存入y，然后x cache miss，......
 </code></pre>
 <p>为了弥补这种铸币的错误，出现了N way set-associative cache<br>其思想为，将1个index对应1个cache block变为1个index 对应N个cache block</p>
-<p><img lazyload src="/images/loading.svg" data-src="https://s2.loli.net/2023/10/20/YD1N943hErwypgP.png"></p>
+<p><img src="https://s2.loli.net/2023/10/20/YD1N943hErwypgP.png"></p>
 <p>因而我们需要N个比较器，现在存0，放到index 00 block 1之中，存4， 放到index 00 block 2之中，…，能够解决周期&lt;N+1的ping-pong 问题</p>
 <p>读的时候，对N个block都比较一遍lag<br>由于比较器很贵，所以不是N越大越好<br>现代处理器N一般为8， 16，32等</p>
 <h3 id="2-4-写cache"><a href="#2-4-写cache" class="headerlink" title="2.4 写cache"></a>2.4 写cache</h3><p>先前的都是读，写主要有两种<br>write-through 和 write-back</p>
@@ -313,7 +313,7 @@ b[i] = max;
  // P.S.为什么编译器不会优化这个，因为循环体之中的func可能有额外的作用，比如 i &lt; f(s)，而假设f(s)改变条件的同时也更新j,编译器如果把它移到函数外面，那么j的值就会出问题。
  &#125;
 </code></pre>
-<h3 id="2-6-拓展链接"><a href="#2-6-拓展链接" class="headerlink" title="2.6 拓展链接"></a>2.6 拓展链接</h3><p><strong>现代CPU是怎么解决cache冲突的？</strong> <a class="link" target="_blank" rel="noopener" href="https://www.zhihu.com/collection/913723833">https://www.zhihu.com/collection/913723833 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<h3 id="2-6-拓展链接"><a href="#2-6-拓展链接" class="headerlink" title="2.6 拓展链接"></a>2.6 拓展链接</h3><p><strong>现代CPU是怎么解决cache冲突的？</strong> <a target="_blank" rel="noopener" href="https://www.zhihu.com/collection/913723833">https://www.zhihu.com/collection/913723833</a></p>
 
     </div>
     

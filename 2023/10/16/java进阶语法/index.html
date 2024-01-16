@@ -174,12 +174,12 @@
             
             <span class="tag">
                 
-                <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #00bcd4">入门</a>
+                <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #ff7d73">入门</a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/java/" style="color: #00a596">java</a>
+                <a href="/tags/java/" style="color: #ffa2c4">java</a>
             </span>
             
         </span>
@@ -292,7 +292,7 @@ public static int HOF_doTwice(IntFunction f, int x)&#123;
     return f.funcX(f.funcX(x));
 &#125;
 </code></pre>
-<h4 id="9-java的通用比较"><a href="#9-java的通用比较" class="headerlink" title="9.java的通用比较"></a>9.java的通用比较<img lazyload src="/images/loading.svg" data-src="https://joshhug.gitbooks.io/hug61b/content/assets/dog_comparable.png"></h4><blockquote>
+<h4 id="9-java的通用比较"><a href="#9-java的通用比较" class="headerlink" title="9.java的通用比较"></a>9.java的通用比较<img src="https://joshhug.gitbooks.io/hug61b/content/assets/dog_comparable.png"></h4><blockquote>
 <p>While this would work for now, if we give up on our dream of <strong>making a generalized max function</strong> and let the Dog class define its own max function, then we’d have to do the same for any class we define later. We’d need to write a maxCat function, a maxPenguin function, a maxWhale function, etc., <strong>resulting in unnecessary repeated work and a lot of redundant code</strong>.</p>
 </blockquote>
 <p>在java之中，我们没有c++那样的运算符重载，但我们有.equals 和 .compareTo, 使用规范的泛型接口代替可能出现问题的运算符重载，这是更安全的做法</p>

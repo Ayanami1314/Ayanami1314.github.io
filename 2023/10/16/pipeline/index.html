@@ -174,12 +174,12 @@
             
             <span class="tag">
                 
-                <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #03a9f4">入门</a>
+                <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #00a596">入门</a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84/" style="color: #ffa2c4">体系结构</a>
+                <a href="/tags/%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84/" style="color: #03a9f4">体系结构</a>
             </span>
             
         </span>
@@ -193,7 +193,7 @@
 <li>instruction decode(regfile op &amp; imm-gen)</li>
 <li>execution(alu and branch-compare)</li>
 <li>memory operation</li>
-<li>write back(to regfile)<br>下图是一个单周期的数据路径<br><img lazyload src="/images/loading.svg" data-src="https://s2.loli.net/2023/10/20/rlCgITQ1PHYtomB.png"></li>
+<li>write back(to regfile)<br>下图是一个单周期的数据路径<br><img src="https://s2.loli.net/2023/10/20/rlCgITQ1PHYtomB.png"></li>
 </ul>
 <span id="more"></span>
 
@@ -226,7 +226,7 @@ sw t0, 0(sp)
 <li><p>对于广义的内存数据（注意IF阶段取指令也是从IMEM(一个特殊的指令内存)之中取的），IF阶段的取指令可能会和MEM阶段的内存操作冲突，我们知道<strong>内存之中，数据和指令是存储在一起的（当前的计算机架构，早期架构也有分开的）</strong>，但是我们可以通过<strong>分开数据的cache和指令的cache</strong>来避免这个冲突（实际上一般只有L1 cache是分开的）。这样，指令在IMEM之中读，数据在DMEM之中读写</p>
 </li>
 </ul>
-<p><img lazyload src="/images/loading.svg" data-src="/../imgs/2-kind-cache.png" alt="输入图片说明"></p>
+<p><img src="/2023/10/16/pipeline/imgs/2-kind-cache.png" alt="输入图片说明"></p>
 <h3 id="data-hazard："><a href="#data-hazard：" class="headerlink" title="data hazard："></a>data hazard：</h3><p>主要是指令之间的因果依赖被破坏</p>
 <p><strong>第一种是regfile的依赖</strong>，可以出现时间上早的指令想要在Write Back阶段向寄存器写值，同时时间上晚的指令也想要在ID阶段从寄存器读值</p>
 <p>解决方法：<strong>规定ID段前半段时间写，后半段时间读（先写再读）</strong>（这样做还有一个基础是ID阶段一般是几个阶段里面较短的一个阶段，因而再多耗点时间也不影响性能）</p>
@@ -238,7 +238,7 @@ sub s0, s0, 3
 </code></pre>
 <p>在前面的指令回写之前，后面的指令就需要用到更新的值。</p>
 <p>解决方法是添加所谓的前递（forwarding）或者旁路（bypassing）机制，如下两图。<br>拿到进行EXE阶段的指令和进行ID阶段的指令，比较两条指令，看ID指令是否依赖于EXE指令的结果，如果是，将EXE指令的结果传递到ID指令的EXE阶段覆盖原来的输入</p>
-<p><img lazyload src="/images/loading.svg" data-src="https://s2.loli.net/2023/10/20/x6Zijaq2LETQUcH.png"><br><img lazyload src="/images/loading.svg" data-src="https://s2.loli.net/2023/10/20/i3OUPd59nzZEDwA.png"><br>只需要比较本条指令和前一条指令，因为相隔两条指令的指令的话，前面指令执行write back的时候，后一条指令刚好在ID阶段，由前面所说的先写后读，不会出现问题<br>（然而如果流水线进一步加深，还是会有问题，需要更多的硬件机制)</p>
+<p><img src="https://s2.loli.net/2023/10/20/x6Zijaq2LETQUcH.png"><br><img src="https://s2.loli.net/2023/10/20/i3OUPd59nzZEDwA.png"><br>只需要比较本条指令和前一条指令，因为相隔两条指令的指令的话，前面指令执行write back的时候，后一条指令刚好在ID阶段，由前面所说的先写后读，不会出现问题<br>（然而如果流水线进一步加深，还是会有问题，需要更多的硬件机制)</p>
 <p><strong>第三种是MEM的依赖</strong><br>例如</p>
 <pre><code class="assembly">lw s0,0(sp)
 addi s0, s0, 4 
@@ -263,7 +263,7 @@ addi s0, s0, 4
 </code></pre>
 <p>addi指令不能知道bne指令是否被实施</p>
 <p>解决方法：<br>由于这种指令结构在实际编程之中非常常见（比如循环），并且会被执行非常多次，一般不采用等待策略，而是预测分支的结果，即先假定分支会实行或者不会实行，如果假定不成立，再将流水线的错误进行全部无效（如果有load&amp;save还需要更改cache），重新执行</p>
-<p>怎么预测？需要设计对应的硬件机制，比如，永远预测不跳转（对应loop，跳出去的是少数情况）、预测这一次的branch会采用和上一次一样的值、<strong>branch出现两次预测错误时改变branch预测</strong>（两位预测位，现代最常见的做法，<strong>参见<a class="link" target="_blank" rel="noopener" href="https://www.zhihu.com/question/486239354/answer/3245281606%EF%BC%89%E7%AD%89%E7%AD%89">https://www.zhihu.com/question/486239354/answer/3245281606）等等 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></strong></p>
+<p>怎么预测？需要设计对应的硬件机制，比如，永远预测不跳转（对应loop，跳出去的是少数情况）、预测这一次的branch会采用和上一次一样的值、<strong>branch出现两次预测错误时改变branch预测</strong>（两位预测位，现代最常见的做法，<strong>参见<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/486239354/answer/3245281606%EF%BC%89%E7%AD%89%E7%AD%89">https://www.zhihu.com/question/486239354/answer/3245281606）等等</a></strong></p>
 <h2 id="四、超标量处理器"><a href="#四、超标量处理器" class="headerlink" title="四、超标量处理器"></a>四、超标量处理器</h2><p>上面的流水线能够提高性能的底层逻辑是提高了时钟频率，但是由于功率的影响（太大会发热严重损坏器件）和流水线变深之后各种hazard的增加，硬件设计更难，现代处理器的时钟频率提高较难。</p>
 <p>还想提高性能，一个方向就是试图在一个时钟周期内执行多条指令，这样的多条指令将会是完全“同时”的，没有办法分辨前后</p>
 <p>然而依赖关系不可避免，因而超标量处理器会尽可能打乱指令的顺序关系，加以一系列纠错机制，达成并行的效果</p>

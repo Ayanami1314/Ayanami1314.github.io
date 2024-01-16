@@ -171,7 +171,7 @@
     <div class="content" v-pre>
         <p>mit 6.s081 踩过的坑</p>
 <p>ubuntu 22.04 不能向后兼容 20.04， 需参考这篇知乎帖子配置环境</p>
-<p><a class="link" target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/537461426">https://zhuanlan.zhihu.com/p/537461426 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/537461426">https://zhuanlan.zhihu.com/p/537461426</a></p>
 <p>vscode alt+shift+f format 会改变几个头文件的顺序</p>
 <span id="more"></span>
 <p>会使得编译不通过</p>
@@ -179,7 +179,7 @@
 <p>解决方法：把 sort include 改成 false</p>
 <p><code>clang-format -style=llvm -dump-config > .clang-format</code></p>
 <p>在.clang-format 文件中</p>
-<p><img lazyload src="/images/loading.svg" data-src="https://s2.loli.net/2023/11/24/sWU7G4ie5y2EXFt.png" alt="image-20231124141342067"></p>
+<p><img src="https://s2.loli.net/2023/11/24/sWU7G4ie5y2EXFt.png" alt="image-20231124141342067"></p>
 <p>记得在 setting.json 之中设置 clang-format 为默认格式化工具</p>
 <pre><code class="js">    &quot;[cpp]&quot;: &#123;
         &quot;editor.defaultFormatter&quot;: &quot;xaver.clang-format&quot;
@@ -204,12 +204,12 @@
 <p>如果出现问题多半是最开始没配好环境</p>
 <p>看看 riscv-gnu-toolchain 装了没，光一个 qemu 源码不行</p>
 <p>如果 git clone 失败(没在 wsl 下面配置代理)</p>
-<p><a class="link" target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/153124468">https://zhuanlan.zhihu.com/p/153124468 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<p><a class="link" target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/windows/wsl/wsl-config#wslconfig">https://learn.microsoft.com/en-us/windows/wsl/wsl-config#wslconfig <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/153124468">https://zhuanlan.zhihu.com/p/153124468</a></p>
+<p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/windows/wsl/wsl-config#wslconfig">https://learn.microsoft.com/en-us/windows/wsl/wsl-config#wslconfig</a></p>
 <p>但我暂时还是不行</p>
 <p><del>gan，现在 ping 都 ping 不通了</del></p>
 <p>用这个似乎可以</p>
-<p><a class="link" target="_blank" rel="noopener" href="https://github.com/sakai135/wsl-vpnkit">https://github.com/sakai135/wsl-vpnkit <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p><a target="_blank" rel="noopener" href="https://github.com/sakai135/wsl-vpnkit">https://github.com/sakai135/wsl-vpnkit</a></p>
 <p>启动</p>
 <pre><code class="powershell">wsl.exe -d wsl-vpnkit --cd /app wsl-vpnkit
 </code></pre>
@@ -217,27 +217,27 @@
 <p>配置 gdb 环境</p>
 <p>知乎上那个高赞我试了没用，不知道其他人可不可以，gdb-multiarch 那个</p>
 <p>必看：</p>
-<p><a class="link" target="_blank" rel="noopener" href="https://www.cnblogs.com/KatyuMarisaBlog/p/13727565.html">https://www.cnblogs.com/KatyuMarisaBlog/p/13727565.html <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> —— （1）</p>
-<p><a class="link" target="_blank" rel="noopener" href="https://stackoverflow.com/questions/10534798/debugging-user-code-on-xv6-with-gdb">https://stackoverflow.com/questions/10534798/debugging-user-code-on-xv6-with-gdb <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> ——（2）</p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/KatyuMarisaBlog/p/13727565.html">https://www.cnblogs.com/KatyuMarisaBlog/p/13727565.html</a> —— （1）</p>
+<p><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/10534798/debugging-user-code-on-xv6-with-gdb">https://stackoverflow.com/questions/10534798/debugging-user-code-on-xv6-with-gdb</a> ——（2）</p>
 <p>需要注意，如果没下过</p>
-<p><a class="link" target="_blank" rel="noopener" href="https://pdos.csail.mit.edu/6.S081/2020/tools.html">https://pdos.csail.mit.edu/6.S081/2020/tools.html <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> 里面的</p>
+<p><a target="_blank" rel="noopener" href="https://pdos.csail.mit.edu/6.S081/2020/tools.html">https://pdos.csail.mit.edu/6.S081/2020/tools.html</a> 里面的</p>
 <p><strong>Other Linux distributions (i.e. compiling your own toolchain)</strong></p>
 <p>里面的 <strong>16G</strong> 的 riscv-gnu-toolchain 的话，是没有 riscv64-unknown-elf-gdb 的</p>
 <p>我暂时不知道这样是否一定不可以正常使用 gdb，我自己没有找到不下载的使用方法</p>
 <p>下载了之后</p>
 <p>make qemu 大概率会报一个错误</p>
-<p><img lazyload src="/images/loading.svg" data-src="https://s2.loli.net/2023/11/18/QrftY3wGjKbNVE1.png" alt="image-20231118201909680"></p>
+<p><img src="https://s2.loli.net/2023/11/18/QrftY3wGjKbNVE1.png" alt="image-20231118201909680"></p>
 <p>是开了-Werror -Wall 导致的</p>
 <p>这里面有解决方案</p>
-<p><a class="link" target="_blank" rel="noopener" href="https://github.com/mit-pdos/xv6-riscv/issues/125">https://github.com/mit-pdos/xv6-riscv/issues/125 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p><a target="_blank" rel="noopener" href="https://github.com/mit-pdos/xv6-riscv/issues/125">https://github.com/mit-pdos/xv6-riscv/issues/125</a></p>
 <blockquote>
 <p>this can be solved by adding <code>__attribute__((noreturn))</code> just above line 56 in sh.c the infinite recursion is then resolved</p>
 </blockquote>
 <p>跟着（1）配置，改完.gdbinit 之后有可能会这样</p>
-<p><img lazyload src="/images/loading.svg" data-src="https://s2.loli.net/2023/11/18/9PdZiQ1acK25z4l.png" alt="image-20231118205434105"></p>
+<p><img src="https://s2.loli.net/2023/11/18/9PdZiQ1acK25z4l.png" alt="image-20231118205434105"></p>
 <p>简单的重启电脑即可</p>
 <p>成功后如图</p>
-<p><img lazyload src="/images/loading.svg" data-src="https://s2.loli.net/2023/11/18/9ZXkWmHNMLpAuf1.png" alt="image-20231118213519863"></p>
+<p><img src="https://s2.loli.net/2023/11/18/9ZXkWmHNMLpAuf1.png" alt="image-20231118213519863"></p>
 
     </div>
     

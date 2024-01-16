@@ -174,7 +174,7 @@
 <p>23.9.3</p>
 <p>配置环境 之前装完 Ubuntu 觉得已经好了，结果第一个 poweroff 命令就发现不支持，查阅了不少资料，发现都是过时的脚本（根本跑不起来），结果最后看了 wsl2 的官方公告上成功通过 wsl2 配置了 systemd!</p>
 <span id="more"></span>
-<p>好耶！<a class="link" target="_blank" rel="noopener" href="https://devblogs.microsoft.com/commandline/systemd-support-is-now-available-in-wsl/">https://devblogs.microsoft.com/commandline/systemd-support-is-now-available-in-wsl/ <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p>好耶！<a target="_blank" rel="noopener" href="https://devblogs.microsoft.com/commandline/systemd-support-is-now-available-in-wsl/">https://devblogs.microsoft.com/commandline/systemd-support-is-now-available-in-wsl/</a></p>
 <p>配置环境下：</p>
 <p>之前甚至没加过用户，一直 root 权限开在那里</p>
 <p>查阅资料，root(su -)和 sudo 还是有区别，于是开了一个账户</p>
@@ -270,14 +270,14 @@ apt-get install llvm-11 llvm-11-dev # only for ubuntu20.04
 <p>然后加上 set -g mouse on</p>
 <hr>
 <p>nemu state( nemu&#x2F;include&#x2F;utils.h)</p>
-<p><img lazyload src="/images/loading.svg" data-src="https://s2.loli.net/2023/11/18/ZiT32enIf59EKRy.png" alt="image-20231104002218432"></p>
-<p><img lazyload src="/images/loading.svg" data-src="https://s2.loli.net/2023/11/18/K2vkF9WuwRQiS7g.png" alt="image-20231104002556122"></p>
+<p><img src="https://s2.loli.net/2023/11/18/ZiT32enIf59EKRy.png" alt="image-20231104002218432"></p>
+<p><img src="https://s2.loli.net/2023/11/18/K2vkF9WuwRQiS7g.png" alt="image-20231104002556122"></p>
 <p>至于为什么 sdb_mainloop()没有显式 include“utils.h”，但却可以使用 nemu_state</p>
 <p>可能是由于 nemu&#x2F;src&#x2F;filelist.mk</p>
-<p><img lazyload src="/images/loading.svg" data-src="https://s2.loli.net/2023/11/18/GUuys8g6ZxiE5tB.png" alt="image-20231104004214734"></p>
+<p><img src="https://s2.loli.net/2023/11/18/GUuys8g6ZxiE5tB.png" alt="image-20231104004214734"></p>
 <p>这里，DIRS + 了 utils，相当于 include 了 utils</p>
-<p><img lazyload src="/images/loading.svg" data-src="https://s2.loli.net/2023/12/21/zxt5jUC2ODmJydV.png" alt="image-20231104004553628"></p>
-<p><img lazyload src="/images/loading.svg" data-src="https://s2.loli.net/2023/12/21/9f2wiXRFACrJYqo.png" alt="image-20231104004714327"></p>
+<p><img src="https://s2.loli.net/2023/12/21/zxt5jUC2ODmJydV.png" alt="image-20231104004553628"></p>
+<p><img src="https://s2.loli.net/2023/12/21/9f2wiXRFACrJYqo.png" alt="image-20231104004714327"></p>
 <p>可以看到 utils 已经默认被 include 进去了（恼）</p>
 <p>至此完成了优雅的退出</p>
 <hr>
@@ -304,7 +304,7 @@ apt-get install llvm-11 llvm-11-dev # only for ubuntu20.04
 <p>2.使用 bear（stfw）</p>
 <p><code>bear -- make</code>（在 wsl bash 里面运行）</p>
 <p>之后会发现 vscode 多了一个 commands.json 文件，再在 setting.json 之中加上以下设置</p>
-<p><img lazyload src="/images/loading.svg" data-src="C:\Users\Ayanami\AppData\Roaming\Typora\typora-user-images\image-20231105143421530.png" alt="image-20231105143421530"></p>
+<p><img src="/2023/12/21/%E5%8D%97%E5%A4%A7PA%E5%8E%86%E9%99%A9%E8%AE%B0-%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%E4%B8%AD/Users\Ayanami\AppData\Roaming\Typora\typora-user-images\image-20231105143421530.png" alt="image-20231105143421530"></p>
 <p>来避免微软自带的 c++和 clangd 的提示冲突，同时提醒 clangd 读取工作区的 command.json</p>
 <hr>
 <p>pa1 基础设施</p>
