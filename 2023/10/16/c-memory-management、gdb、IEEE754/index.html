@@ -389,294 +389,263 @@
             <div class="main-content">
 
                 
-                    <div class="post-page-container flex relative justify-between box-border w-full h-full">
-    <div class="article-content-container">
+                    @import '../common/variables'
 
-        <div class="article-title relative w-full">
-            
-                <div class="w-full flex items-center pt-6 justify-start">
-                    <h1 class="article-title-regular text-second-text-color text-4xl md:text-6xl font-bold px-2 sm:px-6 md:px-8 py-3">c-memory-management、gdb、IEEE754</h1>
-                </div>
-            
-            </div>
+$arrow-icon-width = 16px
+$post-nav-max-width = 220px
+$article-title-font-size = 3.2rem
+$temp-toc-width = hexo-config('global.sidebar_width')
+$toc-container-width = $temp-toc-width ? convert($temp-toc-width) : 210px
+$without-toc-container-width = calc(100% - $temp-toc-width)
+$gap = 30px
 
-        
-            <div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
-                <div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
-                    <img src="/images/head.jpg">
-                </div>
-                <div class="info flex flex-col justify-between">
-                    <div class="author flex items-center">
-                        <span class="name text-default-text-color text-lg font-semibold">Ayanami</span>
-                        
-                            <span class="author-label ml-1.5 text-xs px-2 py-0.5 rounded-small text-third-text-color border border-shadow-color-1">Lv4</span>
-                        
-                    </div>
-                    <div class="meta-info">
-                        <div class="article-meta-info">
-    <span class="article-date article-meta-item">
-        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
-        <span class="desktop">2023-10-16</span>
-        <span class="mobile">2023-10-16</span>
-        <span class="hover-info">创建</span>
-    </span>
-    
-        <span class="article-date article-meta-item">
-            <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2023-10-20 20:27:03</span>
-            <span class="mobile">2023-10-20 20:27:03</span>
-            <span class="hover-info">更新</span>
-        </span>
-    
+.post-page-container
+  gap 0px
 
-    
-    
-        <span class="article-tags article-meta-item">
-            <i class="fa-regular fa-tags"></i>&nbsp;
-            <ul>
-                
-                    <li>
-                        <a href="/tags/%E5%85%A5%E9%97%A8/">入门</a>&nbsp;
-                    </li>
-                
-                    <li>
-                        | <a href="/tags/%E7%BB%84%E6%88%90%E7%BB%93%E6%9E%84/">组成结构</a>&nbsp;
-                    </li>
-                
-            </ul>
-        </span>
-    
-
-    
-    
-    
-    
-        <span class="article-pv article-meta-item">
-            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
-        </span>
-    
-</div>
-
-                    </div>
-                </div>
-            </div>
-        
-
-        
+  +redefine-mobile()
+    overflow-x hidden
 
 
-        <div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
-            <p>C的内存管理机制：</p>
-<h3 id="一、概览"><a href="#一、概览" class="headerlink" title="一、概览"></a>一、概览</h3><p>对多程序同时并行：虚拟内存<br>对其中一个程序：<br>stack, heap</p>
-<p>function + local var –&gt; stack<br>last in, first out<br>函数不断调用<br>funcA<br>var in funA<br>    func B<br>    var in funB<br>        funC<br>        …<br>当函数return的时候回收stack 空间<br>（因而返回一个local var的指针是错误的，相当于在stack上占了一个位置，这个位置此时也没有东西了；free一个stack上的变量也是错误的）</p>
-<span id="more"></span>
+  &.show-toc
+    gap 30px
 
-<p>heap：三个存储区对应三种数据：</p>
-<ol>
-<li>自由存储区，对应malloc </li>
-<li>静态存储区，存global + static</li>
-<li>常量存储区，不允许修改，存常量</li>
-</ol>
-<h3 id="二、malloc、calloc、realloc"><a href="#二、malloc、calloc、realloc" class="headerlink" title="二、malloc、calloc、realloc"></a>二、malloc、calloc、realloc</h3><p>直接与操作系统对接，让操作系统在堆区域分配一块给定大小的区域</p>
-<p>malloc:分配，内部是随机值<br>calloc:分配之后初始化为0<br>realloc:重量级。如果此时指向的内存有足够的空间，则就是单纯的加长；如果空间不够，会重新找一个够的区域，相当于malloc新区域，copy原区域，free 原始区域内存</p>
-<p>但假设有void* p1 &#x3D; malloc(sizeof(int)<em>2)<br>void</em> p2 &#x3D; p1;<br>p1 &#x3D; realloc(…)<br>p2不会随着改变！如果调用p2，会让程序崩溃</p>
-<p>为什么free只有一个参数？<strong>free如何知道是指向什么的指针</strong>？（所有指针都是本质上void*，单纯一个地址值）</p>
-<p>答：这就是free一定要搭配malloc的原因，malloc之后存储了一些额外的标记，free能捕获之</p>
-<h3 id="三、内存泄漏"><a href="#三、内存泄漏" class="headerlink" title="三、内存泄漏"></a>三、内存泄漏</h3><p>不只是空间问题，程序结束时会释放所有占用的空间，对于小型程序，空间不是问题</p>
-<p>但内存泄漏会带来以下的问题：</p>
-<ol>
-<li>堆之中，大块的连续内存减少，使得程序速度减慢</li>
-<li>代码安全性–缓存区攻击等<br>（例如在一个程序中，有一个缓冲区用于存储用户输入的字符串，程序会将该字符串复制到一个指定的内存地址中。如果攻击者输入的字符串长度超过了程序预期的缓冲区长度，那么程序可能会将超出缓冲区长度的数据写入相邻的内存区域中，这有可能包括程序的代码区域。攻击者可以构造一段恶意代码，将其插入到超出缓冲区长度的内存区域中，并通过修改指向该代码的指针，使程序执行这段恶意代码。修改指针可以将程序的控制流从正常的代码路径转移到恶意代码路径，从而实现攻击者的目标。攻击者可以利用缓存区溢出漏洞或其他漏洞，溢出缓存区并覆盖代码指针，从而将程序的控制流重定向到恶意代码路径。攻击者可以通过这种方式执行任意代码，例如窃取敏感信息、篡改数据、破坏系统稳定性等。）</li>
-</ol>
-<p>GDB&amp;Linux使用:<br>Linux切换d盘<br><code>cd /mnt/d</code></p>
-<p>gdb<br><code>gcc -g x.c -o target</code><br><code>cgdb target</code></p>
-<blockquote>
-<p>start开始调试</p>
-</blockquote>
-<blockquote>
-<p>run&#x2F;r运行，step&#x2F;s进入，finish步出函数<br>n&#x2F;next下一行</p>
-</blockquote>
-<blockquote>
-<p>b&#x2F;breakpoint断点</p>
-</blockquote>
-<p>b 31 if cond<br>在31行设置条件为cond的断点<br>c&#x2F;continue在到达断点后继续运行</p>
-<ol>
-<li><p><code>clear</code>：取消当前行的断点。</p>
-</li>
-<li><p><code>clear file.c:line</code>：取消指定源文件 <code>file.c</code> 中指定行号 <code>line</code> 的断点。</p>
-</li>
-<li><p><code>clear function</code>：取消指定函数名 <code>function</code> 中的所有断点。</p>
-</li>
-<li><p><code>clear breakpoint_number</code>：取消指定断点编号 <code>breakpoint_number</code> 的断点。</p>
-</li>
-</ol>
-<blockquote>
-<p>info local 打印当前栈帧之中所有局部变量的值</p>
-</blockquote>
-<blockquote>
-<p>backtrace&#x2F;bt 回溯调用栈<br>p&#x2F;print 打印</p>
-</blockquote>
-<p>双指针（快慢指针）检测链表是否成环<br>时间O（N），空间O（1）<br><img lazyload src="/images/loading.svg" data-src="https://s2.loli.net/2023/10/20/JRMKvgcsAFemI7S.png"><br>每次快指针前进2，慢指针前进1<br><strong>若有环，O（N)必相遇</strong></p>
-<h3 id="四、浮点数计算-IEEE754标准"><a href="#四、浮点数计算-IEEE754标准" class="headerlink" title="四、浮点数计算 IEEE754标准"></a>四、浮点数计算 IEEE754标准</h3><p>第一位0 + 1 -<br>后面float32 –&gt; 8位指数， 23位小数<br>double64 –&gt; 11位指数，52位小数<br>-1^s * (1 + F)^exponent</p>
-<p>精度和range不能得兼，类似科学计数法，在表达极大或极小的数的时候，重要的只是几位有效数字</p>
-<p>牺牲精度换范围</p>
-<p>二进制 “科学计数” 都是 1.xxx*2^k<br>因而可以忽略1.，只表示小数部分xxx(F)</p>
-<p>有效数字F：无符号正常编码<br>指数exponent: 无符号正常编码<br>-127-127  –&gt; 0-256<br>不用补码的原因是这样比较方便比较</p>
-<p>这样设计比较两个浮点数不需要考虑浮点部分，比较指数从高到低位即可</p>
-<p> 表达特殊数的设计：<br> 正负inf: 浮点数0， 指数位全1</p>
-<p> NaN：浮点数不为0，指数全1<br> 规定NaN的&gt;&lt; &#x3D;&#x3D; 比较全为false<br> (特例NaN &#x3D;&#x3D; NaN)是未定义行为</p>
-<p>0：浮点数为0，指数位全0<br>对于介于最小表示2^-127和0之间的数，不采用自动补1，即允许不是科学计数，直接使用F而不是1+F，这样补全了中间的空间</p>
-<p>0.0000001*2^127</p>
+    .toc-content-container
+      display block
+      opacity 1
+      transition opacity 0.2s ease-in 0.2s
+      width $toc-container-width
 
-        </div>
+      &:hover::-webkit-scrollbar-thumb
+        border 3px solid rgba(183, 183, 183, 0.3)
 
-        
-            <div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
-                <div class="article-copyright-info-container">
-    <ul>
-        <li><strong>标题:</strong> c-memory-management、gdb、IEEE754</li>
-        <li><strong>作者:</strong> Ayanami</li>
-        <li><strong>创建于
-                :</strong> 2023-10-16 00:00:00</li>
-        
-            <li>
-                <strong>更新于
-                    :</strong> 2023-10-20 20:27:03
-            </li>
-        
-        <li>
-            <strong>链接:</strong> https://ayanami1314.github.io/2023/10/16/c-memory-management、gdb、IEEE754/
-        </li>
-        <li>
-            <strong>
-                版权声明:
-            </strong>
-            
+      &::-webkit-scrollbar
+        width 6px
+        height 6px
+        transition all 0.2s ease
+        display block
 
-            
-                本文章采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY-NC-SA 4.0</a> 进行许可。
-            
-        </li>
-    </ul>
-</div>
+      &::-webkit-scrollbar-track
+        background transparent
+        border none
 
-            </div>
-        
+      &::-webkit-scrollbar-thumb
+        border-radius 20px
+        border 3px solid rgba(183, 183, 183, 0)
+        transition all 0.2s ease
 
-        
-            <ul class="post-tags-box text-lg mt-1.5 flex-wrap justify-center flex md:hidden">
-                
-                    <li class="tag-item mx-0.5">
-                        <a href="/tags/%E5%85%A5%E9%97%A8/">#入门</a>&nbsp;
-                    </li>
-                
-                    <li class="tag-item mx-0.5">
-                        <a href="/tags/%E7%BB%84%E6%88%90%E7%BB%93%E6%9E%84/">#组成结构</a>&nbsp;
-                    </li>
-                
-            </ul>
-        
+    .article-content-container
+      width calc(100% - 210px) !important
 
-        
+  +redefine-tablet()
+    .toc-content-container
+      display none !important
 
-        
-            <div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
-                
-                    <div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
-                        <a class="prev"
-                        rel="prev"
-                        href="/2023/10/16/ball-programming/"
-                        >
-                            <span class="left arrow-icon flex justify-center items-center">
-                                <i class="fa-solid fa-chevron-left"></i>
-                            </span>
-                            <span class="title flex justify-center items-center">
-                                <span class="post-nav-title-item">ball-programming</span>
-                                <span class="post-nav-item">上一篇</span>
-                            </span>
-                        </a>
-                    </div>
-                
-                
-                    <div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
-                        <a class="next"
-                        rel="next"
-                        href="/2023/10/16/cache/"
-                        >
-                            <span class="title flex justify-center items-center">
-                                <span class="post-nav-title-item">cache</span>
-                                <span class="post-nav-item">下一篇</span>
-                            </span>
-                            <span class="right arrow-icon flex justify-center items-center">
-                                <i class="fa-solid fa-chevron-right"></i>
-                            </span>
-                        </a>
-                    </div>
-                
-            </div>
-        
+    .article-content-container
+      width 100% !important
 
+    &.show-toc
+      .toc-content-container
+        display none
 
-        
-            <div class="comment-container px-2 sm:px-6 md:px-8 pb-8">
-                <div class="comments-container mt-10 w-full ">
-    <div id="comment-anchor" class="w-full h-2.5"></div>
-    <div class="comment-area-title w-full my-1.5 md:my-2.5 text-xl md:text-3xl font-bold">
-        评论
-    </div>
-    
+      .article-content-container
+        width 100% !important
 
-        
-            
-    <div id="waline"></div>
-    <script type="module" data-swup-reload-script>
-      import { init } from '/js/libs/waline.mjs';
+  .article-content-container
+    width 100%
+    transition width 0.2s ease
+    redefine-container(
+      false,
+      0,
+      0,
+      0,
+      30px
+    )
 
-      function loadWaline() {
-        init({
-          el: '#waline',
-          serverURL: 'https://example.example.com',
-          lang: 'zh-CN',
-          dark: 'body[class~="dark-mode"]',
-          requiredMeta: ['nick', 'mail'],
-          emoji: [],
-          recaptchaV3Key: "wasd",
-          
-        });
-      }
+    +redefine-mobile()
+      padding 1.2rem 0.2rem
+      box-shadow none !important
+      max-width 100vw
 
-      if (typeof swup !== 'undefined') {
-        loadWaline();
-      } else {
-        window.addEventListener('DOMContentLoaded', loadWaline);
-      }
-    </script>
+    .article-header .avatar img
+          border-radius: $redefine-border-radius-medium * 0.87
+          width 100%
+          height 100%
+          // background var(--avatar-background-color)
 
+    .article-header, .article-header-meta-info
+      margin-top 16px
 
+      +redefine-tablet()
+        transform scale(0.9)
+        transform-origin left top
 
-        
-    
-</div>
+    .article-content
+      margin-top $spacing-unit
+      padding-bottom 10px
+      word-wrap break-word
+      border-bottom 1px solid var(--border-color)
+      color var(--default-text-color)
 
-            </div>
-        
-    </div>
+      &>:first-child
+        margin-top 0 !important
 
-    
-        <div class="toc-content-container">
-            <div class="post-toc-wrap">
-    <div class="post-toc">
-        <div class="toc-title">此页目录</div>
-        <div class="page-title">c-memory-management、gdb、IEEE754</div>
-        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E6%A6%82%E8%A7%88"><span class="nav-text">一、概览</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E3%80%81malloc%E3%80%81calloc%E3%80%81realloc"><span class="nav-text">二、malloc、calloc、realloc</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F"><span class="nav-text">三、内存泄漏</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E6%B5%AE%E7%82%B9%E6%95%B0%E8%AE%A1%E7%AE%97-IEEE754%E6%A0%87%E5%87%86"><span class="nav-text">四、浮点数计算 IEEE754标准</span></a></li></ol>
+    .article-prev, .article-next
 
-    </div>
-</div>
-        </div>
-    
-</div>
+        a
+          position relative
+          display block
+          width 100%
+          height 100%
+          box-sizing border-box
 
+          &.prev
+            padding-left $arrow-icon-width
 
+          &.next
+            padding-right $arrow-icon-width
+
+          .arrow-icon
+            position absolute
+            top 0
+            height 100%
+            width $arrow-icon-width
+
+            &.left
+              left 0
+
+            &.right
+              right 0
+
+          .title
+            width 100%
+            height 100%
+
+      .post-nav-item
+        display none
+
+        +redefine-tablet()
+          display inline-block
+
+      .post-nav-title-item
+        overflow hidden
+        text-overflow ellipsis
+        white-space nowrap
+
+        +redefine-tablet()
+          display none
+
+    .recommended-article
+      overflow visible !important
+
+      .recommended-mobile
+        display none
+        +redefine-tablet()
+          display block
+
+      .recommended-desktop
+        display block
+        +redefine-tablet()
+          display none
+
+      .recommended-article-group
+        padding 10px 0
+        display flex
+        justify-content space-between
+        flex-wrap wrap
+        overflow visible !important
+
+        @media screen and (max-width $device-tablet)
+          height 190px
+          overflow scroll
+
+          &::-webkit-scrollbar
+            width 0 !important
+
+          -ms-overflow-style none
+
+        .recommended-article-item
+          redefine-container(
+            false,
+            0,
+            0,
+            10px,
+            0
+          )
+          box-shadow var(--redefine-box-shadow-flat)
+          padding 12px !important
+          display flex
+          flex-wrap wrap
+          align-content center
+          justify-content center
+          align-items center
+          overflow hidden
+          width 32%
+          max-height 200px
+          margin-top: $gap * 0.5
+          margin-right 0
+
+          +redefine-tablet()
+            width 49%
+
+          img
+            display flex
+            width calc(100% + 24px)
+            height 150px
+            object-fit cover
+            border-radius $redefine-border-radius-medium-top
+            margin -12px -12px 0 -12px !important
+
+          span
+            margin-top 0.5rem
+            display block
+            display -webkit-box
+            -webkit-box-orient vertical
+            -webkit-line-clamp 1
+            overflow hidden
+
+  .toc-content-container
+    white-space nowrap
+    opacity 0
+    position sticky
+    top: $navbar-height + $spacing-unit
+    // border-radius $redefine-border-radius-large
+    border-radius $redefine-border-radius-none
+    // display none
+    // visibility hidden
+    // width $toc-container-width
+    width 0
+    height auto
+    max-height calc(100vh - 210px)
+    //margin-left 30px
+    // z-index $z-index-6
+    overflow-y auto
+    overflow-x hidden
+    float right
+    padding 10px
+    box-sizing border-box
+    box-shadow none !important
+    transition opacity 0.3s ease-out 0.3s
+    hover-style(
+      false,
+      0,
+      0
+    )
+    transition-t('display', '0', '0.3', 'ease-out')
+
+    +redefine-tablet()
+      left 0 !important
+      display none !important
+
+  figure.image-caption
+    img
+      margin-bottom 0
+
+    figcaption
+      margin-top 5px
+      margin-bottom 10px
+      text-align center
+      font-size 0.9rem
+      color var(--third-text-color)
 
                 
 

@@ -387,241 +387,263 @@
             <div class="main-content">
 
                 
-                    <div class="post-page-container flex relative justify-between box-border w-full h-full">
-    <div class="article-content-container">
+                    @import '../common/variables'
 
-        <div class="article-title relative w-full">
-            
-                <div class="w-full flex items-center pt-6 justify-start">
-                    <h1 class="article-title-regular text-second-text-color text-4xl md:text-6xl font-bold px-2 sm:px-6 md:px-8 py-3">ball-programming</h1>
-                </div>
-            
-            </div>
+$arrow-icon-width = 16px
+$post-nav-max-width = 220px
+$article-title-font-size = 3.2rem
+$temp-toc-width = hexo-config('global.sidebar_width')
+$toc-container-width = $temp-toc-width ? convert($temp-toc-width) : 210px
+$without-toc-container-width = calc(100% - $temp-toc-width)
+$gap = 30px
 
-        
-            <div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
-                <div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
-                    <img src="/images/head.jpg">
-                </div>
-                <div class="info flex flex-col justify-between">
-                    <div class="author flex items-center">
-                        <span class="name text-default-text-color text-lg font-semibold">Ayanami</span>
-                        
-                            <span class="author-label ml-1.5 text-xs px-2 py-0.5 rounded-small text-third-text-color border border-shadow-color-1">Lv4</span>
-                        
-                    </div>
-                    <div class="meta-info">
-                        <div class="article-meta-info">
-    <span class="article-date article-meta-item">
-        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
-        <span class="desktop">2023-10-16</span>
-        <span class="mobile">2023-10-16</span>
-        <span class="hover-info">创建</span>
-    </span>
-    
-        <span class="article-date article-meta-item">
-            <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2023-10-16 23:46:22</span>
-            <span class="mobile">2023-10-16 23:46:22</span>
-            <span class="hover-info">更新</span>
-        </span>
-    
+.post-page-container
+  gap 0px
 
-    
-    
-        <span class="article-tags article-meta-item">
-            <i class="fa-regular fa-tags"></i>&nbsp;
-            <ul>
-                
-                    <li>
-                        <a href="/tags/%E5%85%A5%E9%97%A8/">入门</a>&nbsp;
-                    </li>
-                
-                    <li>
-                        | <a href="/tags/%E6%B8%B8%E6%88%8F/">游戏</a>&nbsp;
-                    </li>
-                
-            </ul>
-        </span>
-    
-
-    
-    
-    
-    
-        <span class="article-pv article-meta-item">
-            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
-        </span>
-    
-</div>
-
-                    </div>
-                </div>
-            </div>
-        
-
-        
+  +redefine-mobile()
+    overflow-x hidden
 
 
-        <div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
-            <p>﻿球碰撞迭代思路：</p>
-<p>总体目标：</p>
-<ol>
-<li>球的碰撞检测</li>
-<li>球的反弹（按质量）+ 阻力</li>
-<li>球的操控（左键移动，右键拖动给力）</li>
-<li>渲染<br> 一：碰撞<br> 性能点：避免sqrt<br> 检测点是否在球内，避免自己和自己碰撞，多球碰撞检测先分开两球<br> 二：反弹 vx,vy,ax,ay，运动出界时另一端回<br> 三：操控，olcConsoleGameEngine<br> 四：渲染，建立一个单位圆多边形模型<br> 之后使用画多边形的方法</li>
-</ol>
+  &.show-toc
+    gap 30px
 
-        </div>
+    .toc-content-container
+      display block
+      opacity 1
+      transition opacity 0.2s ease-in 0.2s
+      width $toc-container-width
 
-        
-            <div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
-                <div class="article-copyright-info-container">
-    <ul>
-        <li><strong>标题:</strong> ball-programming</li>
-        <li><strong>作者:</strong> Ayanami</li>
-        <li><strong>创建于
-                :</strong> 2023-10-16 00:00:00</li>
-        
-            <li>
-                <strong>更新于
-                    :</strong> 2023-10-16 23:46:22
-            </li>
-        
-        <li>
-            <strong>链接:</strong> https://ayanami1314.github.io/2023/10/16/ball-programming/
-        </li>
-        <li>
-            <strong>
-                版权声明:
-            </strong>
-            
+      &:hover::-webkit-scrollbar-thumb
+        border 3px solid rgba(183, 183, 183, 0.3)
 
-            
-                本文章采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY-NC-SA 4.0</a> 进行许可。
-            
-        </li>
-    </ul>
-</div>
+      &::-webkit-scrollbar
+        width 6px
+        height 6px
+        transition all 0.2s ease
+        display block
 
-            </div>
-        
+      &::-webkit-scrollbar-track
+        background transparent
+        border none
 
-        
-            <ul class="post-tags-box text-lg mt-1.5 flex-wrap justify-center flex md:hidden">
-                
-                    <li class="tag-item mx-0.5">
-                        <a href="/tags/%E5%85%A5%E9%97%A8/">#入门</a>&nbsp;
-                    </li>
-                
-                    <li class="tag-item mx-0.5">
-                        <a href="/tags/%E6%B8%B8%E6%88%8F/">#游戏</a>&nbsp;
-                    </li>
-                
-            </ul>
-        
+      &::-webkit-scrollbar-thumb
+        border-radius 20px
+        border 3px solid rgba(183, 183, 183, 0)
+        transition all 0.2s ease
 
-        
+    .article-content-container
+      width calc(100% - 210px) !important
 
-        
-            <div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
-                
-                    <div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
-                        <a class="prev"
-                        rel="prev"
-                        href="/2023/10/16/SEC-DED%E7%BA%A0%E9%94%99%E7%AE%97%E6%B3%95/"
-                        >
-                            <span class="left arrow-icon flex justify-center items-center">
-                                <i class="fa-solid fa-chevron-left"></i>
-                            </span>
-                            <span class="title flex justify-center items-center">
-                                <span class="post-nav-title-item">SEC-DED纠错算法</span>
-                                <span class="post-nav-item">上一篇</span>
-                            </span>
-                        </a>
-                    </div>
-                
-                
-                    <div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
-                        <a class="next"
-                        rel="next"
-                        href="/2023/10/16/c-memory-management%E3%80%81gdb%E3%80%81IEEE754/"
-                        >
-                            <span class="title flex justify-center items-center">
-                                <span class="post-nav-title-item">c-memory-management、gdb、IEEE754</span>
-                                <span class="post-nav-item">下一篇</span>
-                            </span>
-                            <span class="right arrow-icon flex justify-center items-center">
-                                <i class="fa-solid fa-chevron-right"></i>
-                            </span>
-                        </a>
-                    </div>
-                
-            </div>
-        
+  +redefine-tablet()
+    .toc-content-container
+      display none !important
 
+    .article-content-container
+      width 100% !important
 
-        
-            <div class="comment-container px-2 sm:px-6 md:px-8 pb-8">
-                <div class="comments-container mt-10 w-full ">
-    <div id="comment-anchor" class="w-full h-2.5"></div>
-    <div class="comment-area-title w-full my-1.5 md:my-2.5 text-xl md:text-3xl font-bold">
-        评论
-    </div>
-    
+    &.show-toc
+      .toc-content-container
+        display none
 
-        
-            
-    <div id="waline"></div>
-    <script type="module" data-swup-reload-script>
-      import { init } from '/js/libs/waline.mjs';
+      .article-content-container
+        width 100% !important
 
-      function loadWaline() {
-        init({
-          el: '#waline',
-          serverURL: 'https://example.example.com',
-          lang: 'zh-CN',
-          dark: 'body[class~="dark-mode"]',
-          requiredMeta: ['nick', 'mail'],
-          emoji: [],
-          recaptchaV3Key: "wasd",
-          
-        });
-      }
+  .article-content-container
+    width 100%
+    transition width 0.2s ease
+    redefine-container(
+      false,
+      0,
+      0,
+      0,
+      30px
+    )
 
-      if (typeof swup !== 'undefined') {
-        loadWaline();
-      } else {
-        window.addEventListener('DOMContentLoaded', loadWaline);
-      }
-    </script>
+    +redefine-mobile()
+      padding 1.2rem 0.2rem
+      box-shadow none !important
+      max-width 100vw
 
+    .article-header .avatar img
+          border-radius: $redefine-border-radius-medium * 0.87
+          width 100%
+          height 100%
+          // background var(--avatar-background-color)
 
+    .article-header, .article-header-meta-info
+      margin-top 16px
 
-        
-    
-</div>
+      +redefine-tablet()
+        transform scale(0.9)
+        transform-origin left top
 
-            </div>
-        
-    </div>
+    .article-content
+      margin-top $spacing-unit
+      padding-bottom 10px
+      word-wrap break-word
+      border-bottom 1px solid var(--border-color)
+      color var(--default-text-color)
 
-    
-        <div class="toc-content-container">
-            <div class="post-toc-wrap">
-    <div class="post-toc">
-        <div class="toc-title">此页目录</div>
-        <div class="page-title">ball-programming</div>
-        
+      &>:first-child
+        margin-top 0 !important
 
-    </div>
-</div>
-        </div>
-    
-</div>
+    .article-prev, .article-next
 
+        a
+          position relative
+          display block
+          width 100%
+          height 100%
+          box-sizing border-box
 
+          &.prev
+            padding-left $arrow-icon-width
+
+          &.next
+            padding-right $arrow-icon-width
+
+          .arrow-icon
+            position absolute
+            top 0
+            height 100%
+            width $arrow-icon-width
+
+            &.left
+              left 0
+
+            &.right
+              right 0
+
+          .title
+            width 100%
+            height 100%
+
+      .post-nav-item
+        display none
+
+        +redefine-tablet()
+          display inline-block
+
+      .post-nav-title-item
+        overflow hidden
+        text-overflow ellipsis
+        white-space nowrap
+
+        +redefine-tablet()
+          display none
+
+    .recommended-article
+      overflow visible !important
+
+      .recommended-mobile
+        display none
+        +redefine-tablet()
+          display block
+
+      .recommended-desktop
+        display block
+        +redefine-tablet()
+          display none
+
+      .recommended-article-group
+        padding 10px 0
+        display flex
+        justify-content space-between
+        flex-wrap wrap
+        overflow visible !important
+
+        @media screen and (max-width $device-tablet)
+          height 190px
+          overflow scroll
+
+          &::-webkit-scrollbar
+            width 0 !important
+
+          -ms-overflow-style none
+
+        .recommended-article-item
+          redefine-container(
+            false,
+            0,
+            0,
+            10px,
+            0
+          )
+          box-shadow var(--redefine-box-shadow-flat)
+          padding 12px !important
+          display flex
+          flex-wrap wrap
+          align-content center
+          justify-content center
+          align-items center
+          overflow hidden
+          width 32%
+          max-height 200px
+          margin-top: $gap * 0.5
+          margin-right 0
+
+          +redefine-tablet()
+            width 49%
+
+          img
+            display flex
+            width calc(100% + 24px)
+            height 150px
+            object-fit cover
+            border-radius $redefine-border-radius-medium-top
+            margin -12px -12px 0 -12px !important
+
+          span
+            margin-top 0.5rem
+            display block
+            display -webkit-box
+            -webkit-box-orient vertical
+            -webkit-line-clamp 1
+            overflow hidden
+
+  .toc-content-container
+    white-space nowrap
+    opacity 0
+    position sticky
+    top: $navbar-height + $spacing-unit
+    // border-radius $redefine-border-radius-large
+    border-radius $redefine-border-radius-none
+    // display none
+    // visibility hidden
+    // width $toc-container-width
+    width 0
+    height auto
+    max-height calc(100vh - 210px)
+    //margin-left 30px
+    // z-index $z-index-6
+    overflow-y auto
+    overflow-x hidden
+    float right
+    padding 10px
+    box-sizing border-box
+    box-shadow none !important
+    transition opacity 0.3s ease-out 0.3s
+    hover-style(
+      false,
+      0,
+      0
+    )
+    transition-t('display', '0', '0.3', 'ease-out')
+
+    +redefine-tablet()
+      left 0 !important
+      display none !important
+
+  figure.image-caption
+    img
+      margin-bottom 0
+
+    figcaption
+      margin-top 5px
+      margin-bottom 10px
+      text-align center
+      font-size 0.9rem
+      color var(--third-text-color)
 
                 
 
