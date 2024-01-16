@@ -1,1298 +1,1068 @@
+
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="keywords" content="Hexo Theme Redefine">
-    
-    <meta name="author" content="Ayanami">
-    <!-- preconnect -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <meta charset="utf-8" />
+    <title>Ayanami&#39;s cave</title>
+    <meta name="author" content="Ayanami" />
+    <meta name="description" content="very good web, love from ayanami(x)" />
+    <meta name="keywords" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <link rel="icon" href="/images/head.jpg" />
+    <link rel="preconnect" href="https://cdn.staticfile.org" />
+<script src="https://cdn.staticfile.org/vue/3.3.4/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.4.0/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.loli.net" />
+<link rel="preconnect" href="https://gstatic.loli.net" crossorigin />
+<link rel="stylesheet" href="https://fonts.loli.net/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap" />
+<script> const mixins = {}; </script>
 
-    
-    <!--- Seo Part-->
-    
-    <link rel="canonical" href="http://example.com/page/3/"/>
-    <meta name="robots" content="index,follow">
-    <meta name="googlebot" content="index,follow">
-    <meta name="revisit-after" content="1 days">
-    
-        <meta name="description" content="very good web, love from ayanami(x)">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Ayanami&#39;s cave">
-<meta property="og:url" content="http://example.com/page/3/index.html">
-<meta property="og:site_name" content="Ayanami&#39;s cave">
-<meta property="og:description" content="very good web, love from ayanami(x)">
-<meta property="og:locale" content="zh_CN">
-<meta property="article:author" content="Ayanami">
-<meta name="twitter:card" content="summary">
-    
-    
-    <!--- Icon Part-->
-    <link rel="icon" type="image/png" href="/images/redefine-favicon.svg" sizes="192x192">
-    <link rel="apple-touch-icon" sizes="180x180" href="/images/redefine-favicon.svg">
-    <meta name="theme-color" content="#A31F34">
-    <link rel="shortcut icon" href="/images/redefine-favicon.svg">
-    <!--- Page Info-->
-    
-    <title>
-        
-        Ayanami&#39;s Cave
-    </title>
-
-    
-<link rel="stylesheet" href="/fonts/Chillax/chillax.css">
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 
 
-    
-        <style>
-    :root {
-        --preloader-background-color: #fff;
-        --preloader-text-color: #000;
-    }
-
-    @media (prefers-color-scheme: dark) {
-        :root {
-            --preloader-background-color: #202124;
-            --preloader-text-color: #fff;
-        }
-    }
-
-    @media (prefers-color-scheme: light) {
-        :root {
-            --preloader-background-color: #fff;
-            --preloader-text-color: #000;
-        }
-    }
-
-    @media (max-width: 600px) {
-        .ml13 {
-            font-size: 2.6rem !important; /* Adjust this value as needed */
-        }
-    }
-
-    .preloader {
-        display: flex;
-        flex-direction: column;
-        gap: 1rem; /* Tailwind 'gap-4' is 1rem */
-        align-items: center;
-        justify-content: center;
-        position: fixed;
-        padding: 12px;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-        width: 100vw;
-        height: 100vh; /* 'h-screen' is 100% of the viewport height */
-        background-color: var(--preloader-background-color);
-        z-index: 1100; /* 'z-[1100]' sets the z-index */
-        transition: opacity 0.2s ease-in-out;
-    }
-
-    .ml13 {
-        font-size: 3.2rem;
-        /* text-transform: uppercase; */
-        color: var(--preloader-text-color);
-        letter-spacing: -1px;
-        font-weight: 500;
-        font-family: 'Chillax-Variable', sans-serif;
-        text-align: center;
-    }
-
-    .ml13 .word {
-        display: inline-flex;
-        flex-wrap: wrap;
-        white-space: nowrap;
-    }
-
-    .ml13 .letter {
-        display: inline-block;
-        line-height: 1em;
-    }
-</style>
-
-<div class="preloader">
-    
-<script src="/js/libs/anime.min.js"></script>
-
-    <h1 class="ml13">
-        Ayanami&#39;s Cave
-    </h1>
-    <script>
-        var textWrapper = document.querySelector('.ml13');
-        // Split text into words
-        var words = textWrapper.textContent.trim().split(' ');
-
-        // Clear the existing content
-        textWrapper.innerHTML = '';
-
-        // Wrap each word and its letters in spans
-        words.forEach(function(word) {
-            var wordSpan = document.createElement('span');
-            wordSpan.classList.add('word');
-            wordSpan.innerHTML = word.replace(/\S/g, "<span class='letter'>$&</span>");
-            textWrapper.appendChild(wordSpan);
-            textWrapper.appendChild(document.createTextNode(' ')); // Add space between words
-        });
+<script src="https://cdn.staticfile.org/highlight.js/11.8.0/highlight.min.js"></script>
+<script src="https://cdn.staticfile.org/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://cdn.staticfile.org/highlight.js/11.8.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
 
 
-        anime.timeline({loop: true})
-            .add({
-                targets: '.ml13 .letter',
-                translateY: [100,0],
-                translateZ: 0,
-                opacity: [0,1],
-                easing: "easeOutExpo",
-                duration: 1400,
-                delay: (el, i) => 300 + 30 * i
-            }).add({
-            targets: '.ml13 .letter',
-            translateY: [0,-100],
-            opacity: [1,0],
-            easing: "easeInExpo",
-            duration: 1200,
-            delay: (el, i) => 100 + 30 * i
-        });
-
-        let themeStatus = JSON.parse(localStorage.getItem('REDEFINE-THEME-STATUS'))?.isDark;
-
-        // If the theme status is not found in local storage, check the preferred color scheme
-        if (themeStatus === undefined || themeStatus === null) {
-            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-                themeStatus = 'dark';
-            } else {
-                themeStatus = 'light';
-            }
-        }
-
-        // Now you can use the themeStatus variable in your code
-        if (themeStatus) {
-            document.documentElement.style.setProperty('--preloader-background-color', '#202124');
-            document.documentElement.style.setProperty('--preloader-text-color', '#fff');
-        } else {
-            document.documentElement.style.setProperty('--preloader-background-color', '#fff');
-            document.documentElement.style.setProperty('--preloader-text-color', '#000');
-        }
-
-        window.addEventListener('load', function () {
-            hidePreloaderAfterTimeout(1000); // Hide after 1000 milliseconds once the window has loaded
-        });
-
-        // Backup failsafe: Hide preloader after a maximum of 5000 milliseconds, regardless of the window load event
-        hidePreloaderAfterTimeout(5000);
-
-        function hidePreloaderAfterTimeout(delay) {
-            setTimeout(function () {
-                var preloader = document.querySelector('.preloader');
-                preloader.style.opacity = '0';
-                setTimeout(function () {
-                    preloader.style.display = 'none';
-                }, 200);
-            }, delay);
-        }
-    </script>
-</div>
-    
-
-    
-<link rel="stylesheet" href="/css/style.css">
+<script src="https://cdn.staticfile.org/KaTeX/0.16.8/katex.min.js"></script>
+<script src="https://cdn.staticfile.org/KaTeX/0.16.8/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/KaTeX/0.16.8/katex.min.css" />
+<script src="/js/lib/math.js"></script>
 
 
-    
-        
-<link rel="stylesheet" href="/assets/build/styles.css">
+<script src="/js/lib/preview.js"></script>
 
-    
 
-    
-<link rel="stylesheet" href="/fonts/fonts.css">
 
-    
-<link rel="stylesheet" href="/fonts/Satoshi/satoshi.css">
 
-    <!--- Font Part-->
-    
-    
-    
-        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap# Font URL to CSS file" rel="stylesheet">
-    
-    
-        <link href="https://github.com/ryanoasis/nerd-fonts/blob/master/css/nerd-fonts-generated.css" rel="stylesheet">
-    
 
-    <!--- Inject Part-->
-    
-    <script id="hexo-configurations">
-    window.config = {"hostname":"example.com","root":"/","language":"zh-CN"};
-    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true,"title_alignment":"left"},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":{"enable":true,"default":"cc_by_nc_sa"},"lazyload":true,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null},"global":{"fonts":{"chinese":{"enable":true,"family":"Noto Sans SC","url":"https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap# Font URL to CSS file"},"english":{"enable":true,"family":"Nerd Fonts","url":"https://github.com/ryanoasis/nerd-fonts/blob/master/css/nerd-fonts-generated.css"}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":true,"percentage":true},"website_counter":{"url":"https://cn.vercount.one/js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"preloader":true,"open_graph":true,"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/wallhaven-wqery6-light.webp","dark":"/images/wallhaven-wqery6-dark.webp"},"title":"Ayanami's Cave","subtitle":{"text":["Can code make the world better?"],"hitokoto":{"enable":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":false,"links":{"github":null,"instagram":null,"zhihu":null,"twitter":null,"email":null},"qrs":{"weixin":null}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null}]},"mermaid":{"enable":false,"version":"9.3.0"}},"version":"2.6.0","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"}},"search":{"enable":false,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":null,"links":null},"article_date_format":"auto","categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footerStart":"2022/8/17 11:45:14"};
-    window.lang_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
-    window.data = {"masonry":false};
-  </script>
-    
-    <!--- Fontawesome Part-->
-    
-<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
+<script src="/js/lib/home.js"></script>
 
-    
-<link rel="stylesheet" href="/fontawesome/brands.min.css">
+<link rel="stylesheet" href="/css/main.css" />
 
-    
-<link rel="stylesheet" href="/fontawesome/solid.min.css">
-
-    
-<link rel="stylesheet" href="/fontawesome/regular.min.css">
-
-    
-    
-    
-    
-        
-<link rel="stylesheet" href="/fontawesome/sharp-solid.min.css">
-
-    
 <meta name="generator" content="Hexo 6.3.0"></head>
-
-
 <body>
-<div class="progress-bar-container">
-    
-        <span class="scroll-progress-bar"></span>
-    
-
-    
-        <span class="pjax-progress-bar"></span>
-<!--        <span class="swup-progress-icon">-->
-<!--            <i class="fa-solid fa-circle-notch fa-spin"></i>-->
-<!--        </span>-->
-    
-</div>
-
-
-<main class="page-container" id="swup">
-
-    
-        <style>
-    .home-article-item,
-    .sidebar-links,
-    .sidebar-content,
-    a.page-number,
-    a.extend,
-    .sidebar-links .links:hover,
-    .right-bottom-tools,
-    footer.footer {
-        background-color: var(--background-color-transparent-80) !important;
-    }
-    .right-bottom-tools:hover,
-    a.page-number:hover,
-    a.extend:hover {
-        background-color: var(--primary-color) !important;
-    }
-    .site-info,
-    .home-article-sticky-label {
-        background-color: var(--background-color-transparent-15) !important;
-    }
-    .home-article-sticky-label {
-        backdrop-filter: none !important;
-    }
-    .home-banner-background {
-        filter: blur(15px);
-    }
-</style>
-
-<div class="home-banner-background">
-</div>
-
-
-    
-
-    <div class="main-content-container">
-
-
-        <div class="main-content-header">
-            <header class="navbar-container">
-
-    <div class="navbar-content">
-        <div class="left">
-            
-            <a class="logo-title" href="/">
-                <h1>
-                Ayanami&#39;s Cave
-                </h1>
-            </a>
-        </div>
-
-        <div class="right">
-            <!-- PC -->
-            <div class="desktop">
-                <ul class="navbar-list">
-                    
-                        
-                            
-
-                            <li class="navbar-item">
-                                <!-- Menu -->
-                                <a class="active"
-                                   href="/"
-                                        >
-                                    <i class="fa-regular fa-house fa-fw"></i>
-                                    首页
-                                    
-                                </a>
-
-                                <!-- Submenu -->
-                                
-                            </li>
-                    
-                    
-                </ul>
-            </div>
-            <!-- Mobile -->
-            <div class="mobile">
-                
-                <div class="icon-item navbar-bar">
-                    <div class="navbar-bar-middle"></div>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="/images/mika_loading.gif" />
                 </div>
             </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>AYANAMI&#39;S CAVE</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;AYANAMI&#39;S CAVE</span>
         </div>
-    </div>
-
-    <!-- Mobile drawer -->
-    <div class="navbar-drawer h-screen w-full absolute top-0 left-0 bg-background-color flex flex-col justify-between">
-        <ul class="drawer-navbar-list flex flex-col px-4 justify-center items-start">
-            
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
                 
-                    
-
-                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
-                        
-                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full active"
-                           href="/"
-                        >
-                            <span>
-                                首页
-                            </span>
-                            
-                                <i class="fa-regular fa-house fa-sm fa-fw"></i>
-                            
-                        </a>
-                        
-
-                        
-                    </li>
-            
-        </ul>
-
-        <div class="statistics flex justify-around my-2.5">
-    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">19</div>
-        <div class="label text-third-text-color text-sm">标签</div>
-    </a>
-    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">1</div>
-        <div class="label text-third-text-color text-sm">分类</div>
-    </a>
-    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">46</div>
-        <div class="label text-third-text-color text-sm">文章</div>
-    </a>
-</div>
-    </div>
-
-    <div class="window-mask"></div>
-
-</header>
-
-
-        </div>
-
-        <div class="main-content-body">
-
-            
-                <div class="home-sidebar-container">
-    <div class="sticky-container sticky">
-        
-        
-            
-            <div class="sidebar-content" >
-                <div class="avatar flex justify-center">
-    <img src="/images/head.jpg">
-</div>
-                <div class="author flex flex-col justify-center my-2.5 mx-0">
-    <div class="name">Ayanami</div>
-    
-        <div class="label">Lv4</div>
-    
-</div>
-                <div class="statistics flex justify-around my-2.5">
-    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">19</div>
-        <div class="label text-third-text-color text-sm">标签</div>
-    </a>
-    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">1</div>
-        <div class="label text-third-text-color text-sm">分类</div>
-    </a>
-    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">46</div>
-        <div class="label text-third-text-color text-sm">文章</div>
-    </a>
-</div>
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
             </div>
-        
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
 
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div id="home-head">
+    <div id="home-background" ref="homeBackground" data-images="/images/bg.jpg"></div>
+    <div id="home-info" @click="homeClick">
+        <span class="loop"></span>
+        <span class="loop"></span>
+        <span class="loop"></span>
+        <span class="loop"></span>
+        <span class="info">
+            <div class="wrap">
+                <h1>Ayanami&#39;s cave</h1>
+                <h3></h3>
+                <h5>very good web, love from ayanami(x)</h5>
+            </div>
+        </span>
     </div>
 </div>
+<div id="home-posts-wrap" true ref="homePostsWrap">
+    <div id="home-posts">
+        
+
+<div class="post">
+    <a href="/2023/10/16/%E6%A0%91/">
+        <h2 class="post-title">树</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/10/16
+        </span>
+        
+        
+        <span class="special">
+            <i class="fa-solid fa-grip-vertical fa-fw"></i>
+        </span>
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <h2 id="从BST说起"><a href="#从BST说起" class="headerlink" title="从BST说起"></a>从BST说起</h2><p>BST（Binary Search Tree, 二叉搜索树）的平均深度是Θ（logN）（一棵随机生成的BST（不管有没有随机插入和删除）的深度和期望高度都是 Θ（logN）的）</p>
+<p>但现实之中的树不一定都是随机的，有很多情况（比如带有时间顺序的数据，就不是随机的），我们需要避免Θ（N）的最坏情况，要把树的深度压到O（logN）</p>
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <i class="fa-solid fa-tags fa-fw"></i>
+        </span>
+        
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #ff7d73">入门</a>
+        </span>
+        
+        <span class="tag">
+            
+            <a href="/tags/%E7%AE%97%E6%B3%95/" style="color: #00bcd4">算法</a>
+        </span>
+        
+    </div>
+    <a href="/2023/10/16/%E6%A0%91/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/2023/10/16/2023-10-16-python%E5%B9%B6%E5%8F%91/">
+        <h2 class="post-title">python并发</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/10/16
+        </span>
+        
+        
+        <span class="special">
+            <i class="fa-solid fa-grip-vertical fa-fw"></i>
+        </span>
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <p>﻿</p>
+<p>并发：多协程、多线程、多进程、多机器</p>
+<p>任务：IO密集和cpu密集<br>IO密集：数据库、文件读写等<br>cpu密集： 计算密集</p>
+<p>多线程：单cpu（<strong>前提：python GIL锁</strong>），目的是io和cpu分离并行执行，适用于io密集，内存开销比多进程少</p>
+<p>多进程：多cpu，目的是多cpu并行计算，适用于cpu密集，内存开销大</p>
+<h2 id="线程threading库"><a href="#线程threading库" class="headerlink" title="线程threading库"></a>线程threading库</h2><p>t &#x3D; threading.Thread(target&#x3D;func, args&#x3D;(…))<br>t.start()  # 开始线程，执行func<br>t.join()  # 等待线程结束</p>
+<p>例如：</p>
+<pre><code class="python">threads = []
+for _ in range(count):
+    thread = threading.Thread(target = f, args=(...))
+    threads.append(thread)
+for thread in threads:
+    thread.start()
+for thread in threads:
+    thread.join()
+</code></pre>
+<p>如果多个线程之间存在共享资源<br>需要加锁，<br>lock &#x3D; threading.Lock()给需要线程独占的运行函数f套上with lock:</p>
+<p>当对一个类的某个方法加锁的时候，需要在__init__上锁self.lock &#x3D; threading.Lock()<br>在方法调用之中<br>with self.lock：<br>而不是直接在方法调用之中创建lock, 这样无法保证创建lock与线程切换的顺序</p>
+<hr>
+<h3 id="生产者-消费者模型："><a href="#生产者-消费者模型：" class="headerlink" title="生产者-消费者模型："></a>生产者-消费者模型：</h3><p>以爬虫为例：<br>生产者线程get网络资源，存储到任务序列之中<br>消费者线程取出任务序列的值，存储到目标文件</p>
+<p>任务序列 queue.Queue<br>例 </p>
+<pre><code class="python">buffer = queue.Queue(maxsize = 10)
+def producer():
+    item = ...;
+    buffer.put(item)
+def consumer():
+    while(True):
+        item = buffer.get()
+        # do something
+</code></pre>
+<hr>
+<h3 id="线程池："><a href="#线程池：" class="headerlink" title="线程池："></a>线程池：</h3><p><img lazyload src="/images/loading.svg" data-src="https://s2.loli.net/2023/10/20/jmZEYRw758yaICf.png"></p>
+<pre><code class="python">from concurrent.futures import ThreadPoolExetutor
+with concurrent.futures.ThreadPoolExetutor as pool:
+
+    tasks = [...]
+    results = pool.map(func, tasks)
+    for res in results:
+        print(res)
+</code></pre>
+<h2 id="多进程"><a href="#多进程" class="headerlink" title="多进程"></a>多进程</h2><p>库函数基本和多线程完全一样<br>把threading 库换成multiprocess就行<br>还有就是queue.Queue() 换成 multiprocess.Queue()</p>
 
             
-
-            <div class="main-content">
-
-                
-                    <div class="home-content-container">
-    <ul class="home-article-list">
+        </div>
+    </div>
+    <div class="post-tags">
         
-            <li class="home-article-item">
-
-                
-
-                
-
-                
-                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
-                    <h3 class="home-article-title">
-                        <a href="/2023/10/16/SEC-DED%E7%BA%A0%E9%94%99%E7%AE%97%E6%B3%95/">
-                            SEC-DED纠错算法
-                        </a>
-                    </h3>
-
-                    <div class="home-article-content markdown-body">
-                        
-                            
-
-
-
-                        
-                    </div>
-
-                    <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fa-solid fa-calendars"></i>&nbsp;
-            <span class="home-article-date" data-date="Mon Oct 16 2023 00:00:00 GMT+0800">
-                
-                    2023-10-16
-                
-            </span>
+        <span class="icon">
+            <i class="fa-solid fa-tags fa-fw"></i>
         </span>
         
         
-            <span class="home-article-tag">
-                <i class="fa-solid fa-tags"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/tags/%E5%85%A5%E9%97%A8/">入门</a>&nbsp;
-                        </li>
-                    
-                        <li>
-                            | 
-                            <a href="/tags/%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84/">体系结构</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            </span>
+        
+        <span class="tag">
+            
+            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #ff7d73">入门</a>
+        </span>
+        
+        <span class="tag">
+            
+            <a href="/tags/python/" style="color: #00bcd4">python</a>
+        </span>
+        
+        <span class="tag">
+            
+            <a href="/tags/%E5%B9%B6%E5%8F%91/" style="color: #ffa2c4">并发</a>
+        </span>
         
     </div>
-
-    <a href="/2023/10/16/SEC-DED%E7%BA%A0%E9%94%99%E7%AE%97%E6%B3%95/">阅读全文<span class="seo-reader-text">SEC-DED纠错算法</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+    <a href="/2023/10/16/2023-10-16-python%E5%B9%B6%E5%8F%91/" class="go-post">阅读全文</a>
 </div>
 
-                </div>
-            </li>
+<div class="post">
+    <a href="/2023/10/16/python%E5%B9%B6%E5%8F%91/">
+        <h2 class="post-title">python并发</h2>
+    </a>
+    <div class="category-and-date">
         
-            <li class="home-article-item">
-
-                
-
-                
-
-                
-                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
-                    <h3 class="home-article-title">
-                        <a href="/2023/10/16/ball-programming/">
-                            ball-programming
-                        </a>
-                    </h3>
-
-                    <div class="home-article-content markdown-body">
-                        
-                            ﻿球碰撞迭代思路：
-总体目标：
-
-球的碰撞检测
-球的反弹（按质量）+ 阻力
-球的操控（左键移动，右键拖动给力）
-渲染 一：碰撞 性能点：避免sqrt 检测点是否在球内，避免自己和自己碰撞，多球碰撞检测先分开两球 二：反弹 vx,vy,ax,ay，运动...
-                        
-                    </div>
-
-                    <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fa-solid fa-calendars"></i>&nbsp;
-            <span class="home-article-date" data-date="Mon Oct 16 2023 00:00:00 GMT+0800">
-                
-                    2023-10-16
-                
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
             </span>
+            2023/10/16
         </span>
         
         
-            <span class="home-article-tag">
-                <i class="fa-solid fa-tags"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/tags/%E5%85%A5%E9%97%A8/">入门</a>&nbsp;
-                        </li>
-                    
-                        <li>
-                            | 
-                            <a href="/tags/%E6%B8%B8%E6%88%8F/">游戏</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            </span>
+        <span class="special">
+            <i class="fa-solid fa-grip-vertical fa-fw"></i>
+        </span>
         
     </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <p>﻿</p>
+<p>并发：多协程、多线程、多进程、多机器</p>
+<p>任务：IO密集和cpu密集<br>IO密集：数据库、文件读写等<br>cpu密集： 计算密集</p>
+<p>多线程：单cpu（<strong>前提：python GIL锁</strong>），目的是io和cpu分离并行执行，适用于io密集，内存开销比多进程少</p>
+<p>多进程：多cpu，目的是多cpu并行计算，适用于cpu密集，内存开销大</p>
+<h2 id="线程threading库"><a href="#线程threading库" class="headerlink" title="线程threading库"></a>线程threading库</h2><p>t &#x3D; threading.Thread(target&#x3D;func, args&#x3D;(…))<br>t.start()  # 开始线程，执行func<br>t.join()  # 等待线程结束</p>
+<p>例如：</p>
+<pre><code class="python">threads = []
+for _ in range(count):
+    thread = threading.Thread(target = f, args=(...))
+    threads.append(thread)
+for thread in threads:
+    thread.start()
+for thread in threads:
+    thread.join()
+</code></pre>
+<p>如果多个线程之间存在共享资源<br>需要加锁，<br>lock &#x3D; threading.Lock()给需要线程独占的运行函数f套上with lock:</p>
+<p>当对一个类的某个方法加锁的时候，需要在__init__上锁self.lock &#x3D; threading.Lock()<br>在方法调用之中<br>with self.lock：<br>而不是直接在方法调用之中创建lock, 这样无法保证创建lock与线程切换的顺序</p>
+<hr>
+<h3 id="生产者-消费者模型："><a href="#生产者-消费者模型：" class="headerlink" title="生产者-消费者模型："></a>生产者-消费者模型：</h3><p>以爬虫为例：<br>生产者线程get网络资源，存储到任务序列之中<br>消费者线程取出任务序列的值，存储到目标文件</p>
+<p>任务序列 queue.Queue<br>例 </p>
+<pre><code class="python">buffer = queue.Queue(maxsize = 10)
+def producer():
+    item = ...;
+    buffer.put(item)
+def consumer():
+    while(True):
+        item = buffer.get()
+        # do something
+</code></pre>
+<hr>
+<h3 id="线程池："><a href="#线程池：" class="headerlink" title="线程池："></a>线程池：</h3><p><img lazyload src="/images/loading.svg" data-src="https://s2.loli.net/2023/10/20/jmZEYRw758yaICf.png"></p>
+<pre><code class="python">from concurrent.futures import ThreadPoolExetutor
+with concurrent.futures.ThreadPoolExetutor as pool:
 
-    <a href="/2023/10/16/ball-programming/">阅读全文<span class="seo-reader-text">ball-programming</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
-</div>
+    tasks = [...]
+    results = pool.map(func, tasks)
+    for res in results:
+        print(res)
+</code></pre>
+<h2 id="多进程"><a href="#多进程" class="headerlink" title="多进程"></a>多进程</h2><p>库函数基本和多线程完全一样<br>把threading 库换成multiprocess就行<br>还有就是queue.Queue() 换成 multiprocess.Queue()</p>
 
-                </div>
-            </li>
+            
+        </div>
+    </div>
+    <div class="post-tags">
         
-            <li class="home-article-item">
-
-                
-
-                
-
-                
-                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
-                    <h3 class="home-article-title">
-                        <a href="/2023/10/16/c-memory-management%E3%80%81gdb%E3%80%81IEEE754/">
-                            c-memory-management、gdb、IEEE754
-                        </a>
-                    </h3>
-
-                    <div class="home-article-content markdown-body">
-                        
-                            <p>C的内存管理机制：</p>
-<h3 id="一、概览"><a href="#一、概览" class="headerlink" title="一、概览"></a>一、概览</h3><p>对多程序同时并行：虚拟内存<br>对其中一个程序：<br>stack, heap</p>
-<p>function + local var –&gt; stack<br>last in, first out<br>函数不断调用<br>funcA<br>var in funA<br>    func B<br>    var in funB<br>        funC<br>        …<br>当函数return的时候回收stack 空间<br>（因而返回一个local var的指针是错误的，相当于在stack上占了一个位置，这个位置此时也没有东西了；free一个stack上的变量也是错误的）</p>
-                        
-                    </div>
-
-                    <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fa-solid fa-calendars"></i>&nbsp;
-            <span class="home-article-date" data-date="Mon Oct 16 2023 00:00:00 GMT+0800">
-                
-                    2023-10-16
-                
-            </span>
+        <span class="icon">
+            <i class="fa-solid fa-tags fa-fw"></i>
         </span>
         
         
-            <span class="home-article-tag">
-                <i class="fa-solid fa-tags"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/tags/%E5%85%A5%E9%97%A8/">入门</a>&nbsp;
-                        </li>
-                    
-                        <li>
-                            | 
-                            <a href="/tags/%E7%BB%84%E6%88%90%E7%BB%93%E6%9E%84/">组成结构</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            </span>
+        
+        <span class="tag">
+            
+            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #00a596">入门</a>
+        </span>
+        
+        <span class="tag">
+            
+            <a href="/tags/python/" style="color: #03a9f4">python</a>
+        </span>
+        
+        <span class="tag">
+            
+            <a href="/tags/%E5%B9%B6%E5%8F%91/" style="color: #00a596">并发</a>
+        </span>
         
     </div>
-
-    <a href="/2023/10/16/c-memory-management%E3%80%81gdb%E3%80%81IEEE754/">阅读全文<span class="seo-reader-text">c-memory-management、gdb、IEEE754</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+    <a href="/2023/10/16/python%E5%B9%B6%E5%8F%91/" class="go-post">阅读全文</a>
 </div>
 
-                </div>
-            </li>
+<div class="post">
+    <a href="/2023/10/16/%E5%B9%B6%E6%9F%A5%E9%9B%86/">
+        <h2 class="post-title">并查集</h2>
+    </a>
+    <div class="category-and-date">
         
-            <li class="home-article-item">
-
-                
-
-                
-
-                
-                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
-                    <h3 class="home-article-title">
-                        <a href="/2023/10/16/cache/">
-                            cache
-                        </a>
-                    </h3>
-
-                    <div class="home-article-content markdown-body">
-                        
-                            <h2 id="2-cache"><a href="#2-cache" class="headerlink" title="2.cache"></a>2.cache</h2><h3 id="2-1）SRAM-DRAM，闪存和磁盘"><a href="#2-1）SRAM-DRAM，闪存和磁盘" class="headerlink" title="2.1）SRAM, DRAM，闪存和磁盘"></a>2.1）SRAM, DRAM，闪存和磁盘</h3><p>速度逐渐减慢，成本逐渐降低<br>原理：</p>
-<p>SRAM：一组<strong>直接接外接电源</strong>的触发器电路（这意味着功耗和对电源的极高稳定性要求，断电立即丢失数据），因而不需要刷新操作，速度快</p>
-                        
-                    </div>
-
-                    <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fa-solid fa-calendars"></i>&nbsp;
-            <span class="home-article-date" data-date="Mon Oct 16 2023 00:00:00 GMT+0800">
-                
-                    2023-10-16
-                
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
             </span>
+            2023/10/16
         </span>
         
         
-            <span class="home-article-tag">
-                <i class="fa-solid fa-tags"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/tags/%E5%85%A5%E9%97%A8/">入门</a>&nbsp;
-                        </li>
-                    
-                        <li>
-                            | 
-                            <a href="/tags/%E7%BB%84%E6%88%90%E7%BB%93%E6%9E%84/">组成结构</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            </span>
+        <span class="special">
+            <i class="fa-solid fa-grip-vertical fa-fw"></i>
+        </span>
         
     </div>
-
-    <a href="/2023/10/16/cache/">阅读全文<span class="seo-reader-text">cache</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
-</div>
-
-                </div>
-            </li>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <p>﻿61b数据结构部分正式开始</p>
+<h2 id="1-并查集（Disjoint-Set-Union）："><a href="#1-并查集（Disjoint-Set-Union）：" class="headerlink" title="1. 并查集（Disjoint Set Union）："></a>1. 并查集（Disjoint Set Union）：</h2><p>先从一个问题引入，我们现在有N个数据，某些数据之间有相连的关系（已知，比如AB相连，BD相连）；现在我们想要判断数据A和数据D是否相连，或者数据C属于哪个集合，怎么做？</p>
+            
+        </div>
+    </div>
+    <div class="post-tags">
         
-            <li class="home-article-item">
-
-                
-
-                
-
-                
-                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
-                    <h3 class="home-article-title">
-                        <a href="/2023/10/16/cs61a%E8%B8%A9%E8%BF%87%E7%9A%84%E5%9D%91/">
-                            cs61a踩过的坑
-                        </a>
-                    </h3>
-
-                    <div class="home-article-content markdown-body">
-                        
-                            cs61a踩过的坑\1.   Git Bash 无法构建python 环境：
-不要打 python 打 python -i(如果命令行里python –version 有用就行)
-\2.   python 命令行不是c++ 编译器，**不要老是按着s...
-                        
-                    </div>
-
-                    <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fa-solid fa-calendars"></i>&nbsp;
-            <span class="home-article-date" data-date="Mon Oct 16 2023 00:00:00 GMT+0800">
-                
-                    2023-10-16
-                
-            </span>
+        <span class="icon">
+            <i class="fa-solid fa-tags fa-fw"></i>
         </span>
         
         
-            <span class="home-article-tag">
-                <i class="fa-solid fa-tags"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/tags/%E5%85%A5%E9%97%A8/">入门</a>&nbsp;
-                        </li>
-                    
-                        <li>
-                            | 
-                            <a href="/tags/%E7%BB%8F%E9%AA%8C/">经验</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            </span>
+        
+        <span class="tag">
+            
+            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #00bcd4">入门</a>
+        </span>
+        
+        <span class="tag">
+            
+            <a href="/tags/%E7%AE%97%E6%B3%95/" style="color: #03a9f4">算法</a>
+        </span>
         
     </div>
-
-    <a href="/2023/10/16/cs61a%E8%B8%A9%E8%BF%87%E7%9A%84%E5%9D%91/">阅读全文<span class="seo-reader-text">cs61a踩过的坑</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+    <a href="/2023/10/16/%E5%B9%B6%E6%9F%A5%E9%9B%86/" class="go-post">阅读全文</a>
 </div>
 
-                </div>
-            </li>
+<div class="post">
+    <a href="/2023/10/16/%E6%B8%B8%E6%88%8F%E4%BB%A3%E7%A0%81%E8%AE%BE%E8%AE%A1%E5%93%B2%E5%AD%A6/">
+        <h2 class="post-title">游戏代码设计哲学</h2>
+    </a>
+    <div class="category-and-date">
         
-            <li class="home-article-item">
-
-                
-
-                
-
-                
-                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
-                    <h3 class="home-article-title">
-                        <a href="/2023/10/16/git%E5%88%9D%E6%AD%A5/">
-                            git初步
-                        </a>
-                    </h3>
-
-                    <div class="home-article-content markdown-body">
-                        
-                            <p>看learning git branch</p>
-                        
-                    </div>
-
-                    <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fa-solid fa-calendars"></i>&nbsp;
-            <span class="home-article-date" data-date="Mon Oct 16 2023 00:00:00 GMT+0800">
-                
-                    2023-10-16
-                
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
             </span>
+            2023/10/16
         </span>
         
         
-            <span class="home-article-tag">
-                <i class="fa-solid fa-tags"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/tags/%E5%85%A5%E9%97%A8/">入门</a>&nbsp;
-                        </li>
-                    
-                        <li>
-                            | 
-                            <a href="/tags/%E5%91%BD%E4%BB%A4%E8%A1%8C/">命令行</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            </span>
+        <span class="special">
+            <i class="fa-solid fa-grip-vertical fa-fw"></i>
+        </span>
         
     </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <h2 id="9-14-游戏代码设计哲学："><a href="#9-14-游戏代码设计哲学：" class="headerlink" title="9.14 游戏代码设计哲学："></a>9.14 游戏代码设计哲学：</h2><h4 id="本质需求：解耦合、降低复杂度"><a href="#本质需求：解耦合、降低复杂度" class="headerlink" title="本质需求：解耦合、降低复杂度"></a>本质需求：解耦合、降低复杂度</h4><h3 id="设计模式："><a href="#设计模式：" class="headerlink" title="设计模式："></a>设计模式：</h3><h4 id="观察者模式："><a href="#观察者模式：" class="headerlink" title="观察者模式："></a>观察者模式：</h4><p>如果要设计一个“落水”的完整效果，包含声音、特效、物理等，如何解耦模块？</p>
+<details>
+    <summary>答</summary>
+    <p>将物理模块本身抽出，防止物理模型和UI效果耦合
+        物理模块处理完落水事件之后产生一个event</p>
+    <p>让音量模块、特效模块等作为不同的观察者observer，当检测到event产生，执行对应处理代码。</p>
+</details>
 
-    <a href="/2023/10/16/git%E5%88%9D%E6%AD%A5/">阅读全文<span class="seo-reader-text">git初步</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
-</div>
+<p>追问：设计应该是同步的还是异步的？什么情况不应该使用这个模式？</p>
 
-                </div>
-            </li>
+
+
+<h4 id="状态模式：善用状态机"><a href="#状态模式：善用状态机" class="headerlink" title="状态模式：善用状态机"></a>状态模式：善用状态机</h4><p>如果有这样一个逻辑：按space跳跃，空中允许二段跳，空中按J下俯冲攻击，俯冲、跳跃、落地均有动画，如何设计？</p>
+<details>
+       <summary>答</summary>
+       <div>状态机：</div>
+       <pre>
+       <div>人物状态：站立、空中1段、空中2段、落地</div>
+       <div>改变状态的act：站立->跳跃->空中1段，空中1/2->俯冲，空中1/2->正常落地，空中1->跳跃->空中2</div>
+       <div>不改变状态的act：其他</div>
+       </pre>
+       <div>如果不定义状态机，你需要记录的“状态"有： 是否空中、是否落地、是否俯冲、跳跃段数......</div>
+       <p>当状态更多的时候，逻辑会很复杂</p><p>
+       </p><p>假设已经存在act inputhandler(...){}函数， return act</p>
+       <p>则只需定义这样的函数在主循环中执行</p>
+       <pre style="text-indent: 0em"><code>
+       void updateState(act Act) &#123;
+           switch (this->State) &#123;
+               case STAND: &#123;
+               // 处理站立状态逻辑
+                   break;
+               &#125;
+               case ONAIR_ONE_JUMP: &#123;
+               // 处理空中1段跳跃状态逻辑
+                   break;
+               &#125;
+               case ONAIR_TWO_JUMP: &#123;
+               // 处理空中2段跳跃状态逻辑
+                   break;
+               &#125;
+               case DIVE: &#123;
+               // 处理俯冲状态逻辑
+                   break;
+               &#125;
+           // 其他状态的处理
+           &#125;
+       &#125;
+       </code></pre>
+</details>
+
+
+
+
+
+<h3 id="数据建模："><a href="#数据建模：" class="headerlink" title="数据建模："></a>数据建模：</h3><p>如果我想要实现一个道具“剑”，但有二十种不同效果的剑，比如冰霜、毒素、眩晕等等，我应该如何设计？为什么？空间上 + 复杂度上产生了什么效果？</p>
+<details>
+       <summary>答</summary>
+   不应该设计成一个基类+20个派生类
+   更好的方法是定义一个data文件（或者微型数据库），里面可以是诸如剑的json格式
+       <pre><code>
+   &#123;
+       name: sword,
+       prototype: basic_sword,   
+       damage: 10,
+       type: cut,
+       additional_effect: none,
+       ...
+   &#125;</code></pre>
+   这样只有当需要时，才查询记录, 并且对所有类似的都可以用一套方法
+</details>
+
+
+
+
+<h4 id="如何实现撤销任意步的操作？"><a href="#如何实现撤销任意步的操作？" class="headerlink" title="如何实现撤销任意步的操作？"></a>如何实现撤销任意步的操作？</h4><details>
+<summary>答</summary>
+<p>蠢方法是记录每一帧，但这显然太占用资源；好方法是对每一个操作实现undo接口（如果可能），如果不可能则记录每次的状态，之后重演逻辑、重新渲染</p>
+</details>
+   
+
+<h4 id="降低耦合的固有方法：加中间件"><a href="#降低耦合的固有方法：加中间件" class="headerlink" title="降低耦合的固有方法：加中间件"></a>降低耦合的固有方法：加中间件</h4><p>例如：不想让按键输入直接与逻辑耦合（比如，想要支持改键位），那么需要加一个handleInput()函数作为中间件，通过handleInput函数，去更改状态</p>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
         
-            <li class="home-article-item">
-
-                
-
-                
-
-                
-                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
-                    <h3 class="home-article-title">
-                        <a href="/2023/10/16/java%E6%96%87%E4%BB%B6%E8%AF%BB%E5%86%99/">
-                            java文件读写
-                        </a>
-                    </h3>
-
-                    <div class="home-article-content markdown-body">
-                        
-                            <h4 id="1-java的编译"><a href="#1-java的编译" class="headerlink" title="1. java的编译"></a>1. java的编译</h4><p>（多文件编译，main文件在package 之中的特殊情况），命令行参数（特殊：包含引号的参数 ）</p>
-                        
-                    </div>
-
-                    <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fa-solid fa-calendars"></i>&nbsp;
-            <span class="home-article-date" data-date="Mon Oct 16 2023 00:00:00 GMT+0800">
-                
-                    2023-10-16
-                
-            </span>
+        <span class="icon">
+            <i class="fa-solid fa-tags fa-fw"></i>
         </span>
         
         
-            <span class="home-article-tag">
-                <i class="fa-solid fa-tags"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/tags/%E5%85%A5%E9%97%A8/">入门</a>&nbsp;
-                        </li>
-                    
-                        <li>
-                            | 
-                            <a href="/tags/java/">java</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            </span>
+        
+        <span class="tag">
+            
+            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #00bcd4">入门</a>
+        </span>
+        
+        <span class="tag">
+            
+            <a href="/tags/%E6%B8%B8%E6%88%8F/" style="color: #ffa2c4">游戏</a>
+        </span>
+        
+        <span class="tag">
+            
+            <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="color: #ff7d73">设计模式</a>
+        </span>
         
     </div>
-
-    <a href="/2023/10/16/java%E6%96%87%E4%BB%B6%E8%AF%BB%E5%86%99/">阅读全文<span class="seo-reader-text">java文件读写</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+    <a href="/2023/10/16/%E6%B8%B8%E6%88%8F%E4%BB%A3%E7%A0%81%E8%AE%BE%E8%AE%A1%E5%93%B2%E5%AD%A6/" class="go-post">阅读全文</a>
 </div>
 
-                </div>
-            </li>
+<div class="post">
+    <a href="/2023/10/16/61c%E8%B8%A9%E8%BF%87%E7%9A%84%E5%9D%91/">
+        <h2 class="post-title">61c踩过的坑</h2>
+    </a>
+    <div class="category-and-date">
         
-            <li class="home-article-item">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/10/16
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <h3 id="61c-踩过的坑"><a href="#61c-踩过的坑" class="headerlink" title="61c 踩过的坑"></a>61c 踩过的坑</h3><h4 id="1-Proj-1-long-测试realloc似乎会爆炸"><a href="#1-Proj-1-long-测试realloc似乎会爆炸" class="headerlink" title="1. Proj 1 long 测试realloc似乎会爆炸"></a>1. Proj 1 long 测试realloc似乎会爆炸</h4><h4 id="2-Lab3-不知为何，venus在gitKraken-的CLI界面打不开，必须git-bash"><a href="#2-Lab3-不知为何，venus在gitKraken-的CLI界面打不开，必须git-bash" class="headerlink" title="2. Lab3 不知为何，venus在gitKraken 的CLI界面打不开，必须git bash"></a>2. Lab3 不知为何，venus在gitKraken 的CLI界面打不开，必须git bash</h4><h4 id="3-启动venus-jave-jar-tools-venus-jar-space-dm"><a href="#3-启动venus-jave-jar-tools-venus-jar-space-dm" class="headerlink" title="3. 启动venus       jave -jar tools&#x2F;venus.jar .(space)-dm"></a>3. 启动venus       jave -jar tools&#x2F;venus.jar .<em><u>(space)</u></em>-dm</h4><p><del>还是lab3, venus能否正常打开似乎取决于网络……多刷新</del></p>
+<h4 id="用edge而不是google，不挂梯子能够稳定打开"><a href="#用edge而不是google，不挂梯子能够稳定打开" class="headerlink" title="用edge而不是google，不挂梯子能够稳定打开"></a><em><strong>用edge而不是google，不挂梯子</strong></em>能够稳定打开</h4><h4 id="4-Proj-2-最后一项-m0-为什么文件显示地址0x0"><a href="#4-Proj-2-最后一项-m0-为什么文件显示地址0x0" class="headerlink" title="4. Proj 2 最后一项 m0 为什么文件显示地址0x0?"></a>4. Proj 2 最后一项 m0 为什么文件显示地址0x0?</h4><h4 id="5-Proj-3-google表格不要下载到本地，数据似乎会丢"><a href="#5-Proj-3-google表格不要下载到本地，数据似乎会丢" class="headerlink" title="5. Proj 3 google表格不要下载到本地，数据似乎会丢"></a>5. Proj 3 google表格不要下载到本地，数据似乎会丢</h4>
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <i class="fa-solid fa-tags fa-fw"></i>
+        </span>
+        
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #ff7d73">入门</a>
+        </span>
+        
+        <span class="tag">
+            
+            <a href="/tags/%E7%BB%8F%E9%AA%8C/" style="color: #00a596">经验</a>
+        </span>
+        
+    </div>
+    <a href="/2023/10/16/61c%E8%B8%A9%E8%BF%87%E7%9A%84%E5%9D%91/" class="go-post">阅读全文</a>
+</div>
 
-                
+<div class="post">
+    <a href="/2023/10/16/GAMES101%E5%9B%9B%E4%BA%94%E8%AE%B2/">
+        <h2 class="post-title">GAMES101四五讲</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/10/16
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <p>今日学习：</p>
+<p>GAMES101  4，5讲</p>
+<h2 id="第四讲：进一步的变换"><a href="#第四讲：进一步的变换" class="headerlink" title="第四讲：进一步的变换"></a>第四讲：进一步的变换</h2><ul>
+<li><p>三维变换</p>
+</li>
+<li><p><img lazyload src="/images/loading.svg" data-src="https://pic3.zhimg.com/v2-ea91281e359558f60346e70c7b11c6fa_b.jpg"></p></li></ul>
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <i class="fa-solid fa-tags fa-fw"></i>
+        </span>
+        
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #00a596">入门</a>
+        </span>
+        
+        <span class="tag">
+            
+            <a href="/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6/" style="color: #00bcd4">图形学</a>
+        </span>
+        
+    </div>
+    <a href="/2023/10/16/GAMES101%E5%9B%9B%E4%BA%94%E8%AE%B2/" class="go-post">阅读全文</a>
+</div>
 
-                
-
-                
-                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
-                    <h3 class="home-article-title">
-                        <a href="/2023/10/16/STL-algorithm&gdb/">
-                            STL-algorithm&amp;gdb
-                        </a>
-                    </h3>
-
-                    <div class="home-article-content markdown-body">
-                        
-                            <p>﻿</p>
+<div class="post">
+    <a href="/2023/10/16/GAMES101%E8%B8%A9%E8%BF%87%E7%9A%84%E5%9D%91/">
+        <h2 class="post-title">GAMES101踩过的坑</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/10/16
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <p>GAMES101踩过的坑</p>
 <ol>
-<li><p>shuffle (first, last)<br>Rearranges the elements in the range <code>[first,last)</code> randomly</p></li></ol>
-                        
-                    </div>
+<li><p>配置环境：openCV+Eigen</p>
+<p>OpenCV的  $(opencv)\build\vc16 下，两个文件夹\bin,\lib都要加到系统变量</p>
+<p>Eigen的eigen3文件夹加系统变量</p>
+<p>之后vs之中，附加包含目录需要加上…\build\include， 附加库加上…\vc16\lib</p>
+</li>
+</ol>
+<p>​	链接器-输入加上opencv_world470d.lib（470随版本变化）</p>
+<ol start="2">
+<li>使用cmake完成后续HW时，</li>
+</ol>
+<pre><code class="bash">&gt; mkdir build
+&gt; cd build
+&gt; cmake ..
+&gt; build make # 此处的build少掉了
+</code></pre>
 
-                    <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fa-solid fa-calendars"></i>&nbsp;
-            <span class="home-article-date" data-date="Mon Oct 16 2023 00:00:00 GMT+0800">
-                
-                    2023-10-16
-                
-            </span>
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <i class="fa-solid fa-tags fa-fw"></i>
         </span>
         
         
-            <span class="home-article-tag">
-                <i class="fa-solid fa-tags"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/tags/%E5%85%A5%E9%97%A8/">入门</a>&nbsp;
-                        </li>
-                    
-                        <li>
-                            | 
-                            <a href="/tags/%E5%91%BD%E4%BB%A4%E8%A1%8C/">命令行</a>&nbsp;
-                        </li>
-                    
-                        <li>
-                            | 
-                            <a href="/tags/%E7%AE%97%E6%B3%95/">算法</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            </span>
+        
+        <span class="tag">
+            
+            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #ff7d73">入门</a>
+        </span>
+        
+        <span class="tag">
+            
+            <a href="/tags/%E7%BB%8F%E9%AA%8C/" style="color: #00bcd4">经验</a>
+        </span>
         
     </div>
-
-    <a href="/2023/10/16/STL-algorithm&gdb/">阅读全文<span class="seo-reader-text">STL-algorithm&amp;gdb</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+    <a href="/2023/10/16/GAMES101%E8%B8%A9%E8%BF%87%E7%9A%84%E5%9D%91/" class="go-post">阅读全文</a>
 </div>
 
-                </div>
-            </li>
+<div class="post">
+    <a href="/2023/10/16/Gitlet%E8%AE%BE%E8%AE%A1%E6%96%87%E6%A1%A3v2/">
+        <h2 class="post-title">Gitlet设计文档v2</h2>
+    </a>
+    <div class="category-and-date">
         
-            <li class="home-article-item">
-
-                
-
-                
-
-                
-                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
-                    <h3 class="home-article-title">
-                        <a href="/2023/10/16/java%E8%BF%9B%E9%98%B6%E8%AF%AD%E6%B3%95/">
-                            java进阶语法
-                        </a>
-                    </h3>
-
-                    <div class="home-article-content markdown-body">
-                        
-                            <p>一个写完了streamlit的demo<br>第二个写完了deque，积累了一些写API和测试的经验</p>
-<h3 id="java-语法和收获："><a href="#java-语法和收获：" class="headerlink" title="java 语法和收获："></a>java 语法和收获：</h3><h4 id="1-随机测试非常好用，对应java就是StdRandom库"><a href="#1-随机测试非常好用，对应java就是StdRandom库" class="headerlink" title="1.随机测试非常好用，对应java就是StdRandom库"></a>1.随机测试非常好用，对应java就是StdRandom库</h4><h4 id="2-java的接口机制-interface-有点类似c-的抽象类，继承接口的需要Override所有的接口函数声明（接口里面只写声明）（最好显式-Override）"><a href="#2-java的接口机制-interface-有点类似c-的抽象类，继承接口的需要Override所有的接口函数声明（接口里面只写声明）（最好显式-Override）" class="headerlink" title="2.java的接口机制 interface 有点类似c++的抽象类，继承接口的需要Override所有的接口函数声明（接口里面只写声明）（最好显式@Override）"></a>2.java的接口机制 interface 有点类似c++的抽象类，继承接口的需要Override所有的接口函数声明（接口里面只写声明）（最好显式@Override）</h4>
-                        
-                    </div>
-
-                    <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fa-solid fa-calendars"></i>&nbsp;
-            <span class="home-article-date" data-date="Mon Oct 16 2023 00:00:00 GMT+0800">
-                
-                    2023-10-16
-                
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
             </span>
+            2023/10/16
         </span>
         
         
-            <span class="home-article-tag">
-                <i class="fa-solid fa-tags"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/tags/%E5%85%A5%E9%97%A8/">入门</a>&nbsp;
-                        </li>
-                    
-                        <li>
-                            | 
-                            <a href="/tags/java/">java</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            </span>
-        
     </div>
-
-    <a href="/2023/10/16/java%E8%BF%9B%E9%98%B6%E8%AF%AD%E6%B3%95/">阅读全文<span class="seo-reader-text">java进阶语法</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
-</div>
-
-                </div>
-            </li>
-        
-            <li class="home-article-item">
-
-                
-
-                
-
-                
-                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
-                    <h3 class="home-article-title">
-                        <a href="/2023/10/16/linux%E5%91%BD%E4%BB%A4%E6%8B%93%E5%B1%95/">
-                            linux命令拓展
-                        </a>
-                    </h3>
-
-                    <div class="home-article-content markdown-body">
-                        
-                            <h3 id="linux-命令拓展"><a href="#linux-命令拓展" class="headerlink" title="linux 命令拓展"></a>linux 命令拓展</h3><ul>
-<li><p>whatis: 简述man</p>
-</li>
-<li><p>whereis:列出所有， which 是一个</p>
-</li>
-<li><p>curl [url] &gt; somefile：从url下载到somefile</p>
-</li>
-<li><p>find [root dir] -name “name(可包含通配符)”</p>
-</li>
-</ul>
-<p>​       eg find .&#x2F; -name “prefix*”</p>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <h2 id="Gitlet设计文档："><a href="#Gitlet设计文档：" class="headerlink" title="Gitlet设计文档："></a>Gitlet设计文档：</h2><p><del>.gitlet 不对工作目录进行任何变动，所有的修改都在.gitlet之中进行</del></p>
+<p><del>.gitlet 应当有以下部分</del></p>
 <ul>
-<li><p>find . -perm &#x2F;a&#x3D;x 找到可执行文件</p>
-</li>
-<li><p>chmod +x [filename]让此文件可执行</p>
-</li>
-</ul>
-                        
-                    </div>
-
-                    <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fa-solid fa-calendars"></i>&nbsp;
-            <span class="home-article-date" data-date="Mon Oct 16 2023 00:00:00 GMT+0800">
-                
-                    2023-10-16
-                
-            </span>
+<li><del>commit：整体的提交树结构，每个树结点应该只储存各个文件的version  .getlet&#x2F;commit</del></li></ul>
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <i class="fa-solid fa-tags fa-fw"></i>
         </span>
         
         
-            <span class="home-article-tag">
-                <i class="fa-solid fa-tags"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/tags/%E5%85%A5%E9%97%A8/">入门</a>&nbsp;
-                        </li>
-                    
-                        <li>
-                            | 
-                            <a href="/tags/%E5%91%BD%E4%BB%A4%E8%A1%8C/">命令行</a>&nbsp;
-                        </li>
-                    
-                </ul>
+        
+        <span class="tag">
+            
+            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #00bcd4">入门</a>
+        </span>
+        
+        <span class="tag">
+            
+            <a href="/tags/%E7%BB%8F%E9%AA%8C/" style="color: #ff7d73">经验</a>
+        </span>
+        
+        <span class="tag">
+            
+            <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%96%87%E6%A1%A3/" style="color: #00bcd4">设计文档</a>
+        </span>
+        
+    </div>
+    <a href="/2023/10/16/Gitlet%E8%AE%BE%E8%AE%A1%E6%96%87%E6%A1%A3v2/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/2023/10/16/SEC-DED%E7%BA%A0%E9%94%99%E7%AE%97%E6%B3%95/">
+        <h2 class="post-title">SEC-DED纠错算法</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
             </span>
+            2023/10/16
+        </span>
+        
         
     </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <span id="more"></span>
 
-    <a href="/2023/10/16/linux%E5%91%BD%E4%BB%A4%E6%8B%93%E5%B1%95/">阅读全文<span class="seo-reader-text">linux命令拓展</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
-</div>
-
-                </div>
-            </li>
-        
-    </ul>
-
-    <div class="home-paginator px-7 py-5">
-        <div class="paginator">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa-regular fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/4/"><i class="fa-regular fa-angle-right"></i></a>
-</div>
-
-    </div>
-</div>
-
-                    <div class="comment-container pjax"></div>
-                
-
-            </div>
+<p><img lazyload src="/images/loading.svg" data-src="https://s2.loli.net/2023/10/20/4fwLsxAFliYMNj5.jpg"><br><img lazyload src="/images/loading.svg" data-src="https://s2.loli.net/2023/10/20/ZOvjwAg7unLRCBS.jpg"><br><img lazyload src="/images/loading.svg" data-src="https://s2.loli.net/2023/10/20/b7f3IXBSjueoWnt.jpg"></p>
 
             
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <i class="fa-solid fa-tags fa-fw"></i>
+        </span>
+        
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #ff7d73">入门</a>
+        </span>
+        
+        <span class="tag">
+            
+            <a href="/tags/%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84/" style="color: #03a9f4">体系结构</a>
+        </span>
+        
+    </div>
+    <a href="/2023/10/16/SEC-DED%E7%BA%A0%E9%94%99%E7%AE%97%E6%B3%95/" class="go-post">阅读全文</a>
+</div>
+
+
+        <div class="page-current">
+    
+    <a class="page-num" href="/page/2/">
+        <i class="fa-solid fa-caret-left fa-fw"></i>
+    </a>
+    <a class="page-num" href="/">1</a>
+    <span class="page-omit">...</span>
+    
+    <span class="current">3</span>
+    
+    <a class="page-num" href="/page/4">4</a>
+    
+    
+    <a class="page-num" href="/page/5">5</a>
+    
+    
+    
+    <a class="page-num" href="/page/4/">
+        <i class="fa-solid fa-caret-right fa-fw"></i>
+    </a>
+    
+</div>
+
+    </div>
+    
+    <div id="home-card">
+        <div id="card-style">
+    <div id="card-div">
+        <div class="avatar">
+            <img src="/images/head.jpg" alt="avatar" />
+        </div>
+        <div class="name">Ayanami</div>
+        <div class="description">
+            <p>嗨多磨!这里是SJTU Ayanami的个人主页！</p>
 
         </div>
-
-        <div class="main-content-footer">
-            <footer class="footer mt-5 py-5 h-auto text-base text-third-text-color relative border-t-2 border-t-border-color">
-    <div class="info-container py-3 text-center">
         
-        <div class="text-center">
+        <div class="icon-links">
+            
+            <span class="icon-link">
+                <a href="/function%20link()%20%7B%20%5Bnative%20code%5D%20%7D">
+                    <i
+                        class="fa- fa- fa-fw"
+                    ></i>
+                </a>
+            </span>
+            
+            <span class="icon-link">
+                <a href="/function%20link()%20%7B%20%5Bnative%20code%5D%20%7D">
+                    <i
+                        class="fa- fa- fa-fw"
+                    ></i>
+                </a>
+            </span>
+            
+            <span class="icon-link">
+                <a href="/function%20link()%20%7B%20%5Bnative%20code%5D%20%7D">
+                    <i
+                        class="fa- fa- fa-fw"
+                    ></i>
+                </a>
+            </span>
+            
+            <span class="icon-link">
+                <a href="/function%20link()%20%7B%20%5Bnative%20code%5D%20%7D">
+                    <i
+                        class="fa- fa- fa-fw"
+                    ></i>
+                </a>
+            </span>
+            
+            <span class="icon-link">
+                <a href="/function%20link()%20%7B%20%5Bnative%20code%5D%20%7D">
+                    <i
+                        class="fa- fa- fa-fw"
+                    ></i>
+                </a>
+            </span>
+            
+            <span class="icon-link">
+                <a href="/function%20link()%20%7B%20%5Bnative%20code%5D%20%7D">
+                    <i
+                        class="fa- fa- fa-fw"
+                    ></i>
+                </a>
+            </span>
+            
+            <span class="icon-link">
+                <a href="/function%20link()%20%7B%20%5Bnative%20code%5D%20%7D">
+                    <i
+                        class="fa- fa- fa-fw"
+                    ></i>
+                </a>
+            </span>
+            
+            <span class="icon-link">
+                <a href="/function%20link()%20%7B%20%5Bnative%20code%5D%20%7D">
+                    <i
+                        class="fa- fa- fa-fw"
+                    ></i>
+                </a>
+            </span>
+            
+            <span class="icon-link">
+                <a href="/function%20link()%20%7B%20%5Bnative%20code%5D%20%7D">
+                    <i
+                        class="fa- fa- fa-fw"
+                    ></i>
+                </a>
+            </span>
+            
+            <span class="icon-link">
+                <a href="/function%20link()%20%7B%20%5Bnative%20code%5D%20%7D">
+                    <i
+                        class="fa- fa- fa-fw"
+                    ></i>
+                </a>
+            </span>
+            
+            <span class="icon-link">
+                <a href="/function%20link()%20%7B%20%5Bnative%20code%5D%20%7D">
+                    <i
+                        class="fa- fa- fa-fw"
+                    ></i>
+                </a>
+            </span>
+            
+            <span class="icon-link">
+                <a href="/function%20link()%20%7B%20%5Bnative%20code%5D%20%7D">
+                    <i
+                        class="fa- fa- fa-fw"
+                    ></i>
+                </a>
+            </span>
+            
+            <span class="icon-link">
+                <a href="/function%20link()%20%7B%20%5Bnative%20code%5D%20%7D">
+                    <i
+                        class="fa- fa- fa-fw"
+                    ></i>
+                </a>
+            </span>
+            
+            <span class="icon-link">
+                <a href="/function%20link()%20%7B%20%5Bnative%20code%5D%20%7D">
+                    <i
+                        class="fa- fa- fa-fw"
+                    ></i>
+                </a>
+            </span>
+            
+            <span class="icon-link">
+                <a href="/function%20link()%20%7B%20%5Bnative%20code%5D%20%7D">
+                    <i
+                        class="fa- fa- fa-fw"
+                    ></i>
+                </a>
+            </span>
+            
+            <span class="icon-link">
+                <a href="/function%20link()%20%7B%20%5Bnative%20code%5D%20%7D">
+                    <i
+                        class="fa- fa- fa-fw"
+                    ></i>
+                </a>
+            </span>
+            
+        </div>
+        
+        
+        <div class="friend-links">
+            
+            <div class="friend-link">
+                <a target="_blank" rel="noopener" href="https://github.com/Ayanami1314">Ayanami-GitHub</a>
+            </div>
+            
+            <div class="friend-link">
+                <a target="_blank" rel="noopener" href="https://argvchs.github.io">Quote from-Argvchs</a>
+            </div>
+            
+        </div>
+        
+    </div>
+</div>
+
+    </div>
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
             &copy;
-            
-              <span>2022</span>
-              -
-            
-            2024&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">Ayanami</a>
+            2023 - 2024 Ayanami&#39;s cave
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;Ayanami
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
         </div>
         
-            <script data-swup-reload-script src="https://cn.vercount.one/js"></script>
-            <div class="relative text-center lg:absolute lg:right-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-right">
-                
-                    <span id="busuanzi_container_site_uv" class="lg:!block">
-                        <span class="text-sm">访问人数</span>
-                        <span id="busuanzi_value_site_uv"></span>
-                    </span>
-                
-                
-                    <span id="busuanzi_container_site_pv" class="lg:!block">
-                        <span class="text-sm">总访问量</span>
-                        <span id="busuanzi_value_site_pv"></span>
-                    </span>
-                
-            </div>
-        
-        <div class="relative text-center lg:absolute lg:left-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-left">
-            <span class="lg:block text-sm">由 <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg class="relative top-[2px] inline-block align-baseline" version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" class="text-base" href="https://hexo.io">Hexo</a> 驱动</span>
-            <span class="text-sm lg:block">主题&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.6.0</a></span>
-        </div>
-        
-        
-            <div>
-                博客已运行 <span class="odometer" id="runtime_days" ></span> 天 <span class="odometer" id="runtime_hours"></span> 小时 <span class="odometer" id="runtime_minutes"></span> 分钟 <span class="odometer" id="runtime_seconds"></span> 秒
-            </div>
-        
-        
-            <script data-swup-reload-script>
-                try {
-                    function odometer_init() {
-                    const elements = document.querySelectorAll('.odometer');
-                    elements.forEach(el => {
-                        new Odometer({
-                            el,
-                            format: '( ddd).dd',
-                            duration: 200
-                        });
-                    });
-                    }
-                    odometer_init();
-                } catch (error) {}
-            </script>
-        
-        
-        
-    </div>  
+    </div>
 </footer>
+
         </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
     </div>
-
+    <script src="/js/main.js"></script>
     
-
-    <div class="right-side-tools-container">
-        <div class="side-tools-container">
-    <ul class="hidden-tools-list">
-        <li class="right-bottom-tools tool-font-adjust-plus flex justify-center items-center">
-            <i class="fa-regular fa-magnifying-glass-plus"></i>
-        </li>
-
-        <li class="right-bottom-tools tool-font-adjust-minus flex justify-center items-center">
-            <i class="fa-regular fa-magnifying-glass-minus"></i>
-        </li>
-
-        <li class="right-bottom-tools tool-dark-light-toggle flex justify-center items-center">
-            <i class="fa-regular fa-moon"></i>
-        </li>
-
-        <!-- rss -->
-        
-
-        
-
-        <li class="right-bottom-tools tool-scroll-to-bottom flex justify-center items-center">
-            <i class="fa-regular fa-arrow-down"></i>
-        </li>
-    </ul>
-
-    <ul class="visible-tools-list">
-        <li class="right-bottom-tools toggle-tools-list flex justify-center items-center">
-            <i class="fa-regular fa-cog fa-spin"></i>
-        </li>
-        
-            <li class="right-bottom-tools tool-scroll-to-top flex justify-center items-center">
-                <i class="arrow-up fas fa-arrow-up"></i>
-                <span class="percent"></span>
-            </li>
-        
-        
-    </ul>
-</div>
-
-    </div>
-
-    <div class="image-viewer-container">
-    <img src="">
-</div>
-
-
-    
-
-</main>
-
-
-    
-<script src="/js/libs/Swup.min.js"></script>
-
-<script src="/js/libs/SwupSlideTheme.min.js"></script>
-
-<script src="/js/libs/SwupScriptsPlugin.min.js"></script>
-
-<script src="/js/libs/SwupProgressPlugin.min.js"></script>
-
-<script src="/js/libs/SwupScrollPlugin.min.js"></script>
-
-<script src="/js/libs/SwupPreloadPlugin.min.js"></script>
-
-<script>
-    const swup = new Swup({
-        plugins: [
-            new SwupScriptsPlugin({
-                optin: true,
-            }),
-            new SwupProgressPlugin(),
-            new SwupScrollPlugin({
-                offset: 80,
-            }),
-            new SwupSlideTheme({
-                mainElement: ".main-content-body",
-            }),
-            new SwupPreloadPlugin(),
-        ],
-        containers: ["#swup"],
-    });
-</script>
-
-
-
-
-
-
-
-
-<script src="/js/tools/imageViewer.js" type="module"></script>
-
-<script src="/js/utils.js" type="module"></script>
-
-<script src="/js/main.js" type="module"></script>
-
-<script src="/js/layouts/navbarShrink.js" type="module"></script>
-
-<script src="/js/tools/scrollTopBottom.js" type="module"></script>
-
-<script src="/js/tools/lightDarkSwitch.js" type="module"></script>
-
-<script src="/js/layouts/categoryList.js" type="module"></script>
-
-
-
-
-
-    
-<script src="/js/tools/codeBlock.js" type="module"></script>
-
-
-
-
-    
-<script src="/js/layouts/lazyload.js" type="module"></script>
-
-
-
-
-    
-<script src="/js/tools/runtime.js"></script>
-
-    
-<script src="/js/libs/odometer.min.js"></script>
-
-    
-<link rel="stylesheet" href="/assets/odometer-theme-minimal.css">
-
-
-
-
-  
-<script src="/js/libs/Typed.min.js"></script>
-
-  
-<script src="/js/plugins/typed.js" type="module"></script>
-
-
-
-
-
-
-
-
-
-<div class="post-scripts" data-swup-reload-script>
-    
-        
-<script src="/js/tools/tocToggle.js" type="module"></script>
-
-<script src="/js/layouts/toc.js" type="module"></script>
-
-<script src="/js/plugins/tabs.js" type="module"></script>
-
-    
-</div>
-
-
 </body>
 </html>
