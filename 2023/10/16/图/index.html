@@ -389,263 +389,403 @@
             <div class="main-content">
 
                 
-                    @import '../common/variables'
+                    <div class="post-page-container flex relative justify-between box-border w-full h-full">
+    <div class="article-content-container">
 
-$arrow-icon-width = 16px
-$post-nav-max-width = 220px
-$article-title-font-size = 3.2rem
-$temp-toc-width = hexo-config('global.sidebar_width')
-$toc-container-width = $temp-toc-width ? convert($temp-toc-width) : 210px
-$without-toc-container-width = calc(100% - $temp-toc-width)
-$gap = 30px
+        <div class="article-title relative w-full">
+            
+                <div class="w-full flex items-center pt-6 justify-start">
+                    <h1 class="article-title-regular text-second-text-color text-4xl md:text-6xl font-bold px-2 sm:px-6 md:px-8 py-3">图</h1>
+                </div>
+            
+            </div>
 
-.post-page-container
-  gap 0px
+        
+            <div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
+                <div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
+                    <img src="/images/head.jpg">
+                </div>
+                <div class="info flex flex-col justify-between">
+                    <div class="author flex items-center">
+                        <span class="name text-default-text-color text-lg font-semibold">Ayanami</span>
+                        
+                            <span class="author-label ml-1.5 text-xs px-2 py-0.5 rounded-small text-third-text-color border border-shadow-color-1">Lv4</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2023-10-16</span>
+        <span class="mobile">2023-10-16</span>
+        <span class="hover-info">创建</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2023-12-30 20:37:36</span>
+            <span class="mobile">2023-12-30 20:37:36</span>
+            <span class="hover-info">更新</span>
+        </span>
+    
 
-  +redefine-mobile()
-    overflow-x hidden
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/%E5%85%A5%E9%97%A8/">入门</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/%E7%AE%97%E6%B3%95/">算法</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        
 
 
-  &.show-toc
-    gap 30px
+        <div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
+            <h2 id="1-拓扑排序"><a href="#1-拓扑排序" class="headerlink" title="1. 拓扑排序"></a>1. 拓扑排序</h2><p>对于任意的节点i,j 如果存在从i到j的一条边，则j应该排序在i的后面<br>满足这样性质的排序叫拓扑排序</p>
+<p>存在拓扑排序的条件：图是无环的</p>
+<p>构建拓扑排序的方法：<br>对节点引入两个量，入度和出度，代表进入节点和从节点发出的边条数</p>
+<p>首先，由于图是无环的，必然可以找到一个入度为0的点（“起点”）<br>抛去起点和与起点相连的边之后，子图必然有一个新“起点”</p>
+<p>不断找这样的“起点”就得到了拓扑排序</p>
+<p>算法是O（V+E）的</p>
+<ol>
+<li>计算所有点的入度 O（V+E）</li>
+<li>维护一个队列，包含所有入度为0的点，每次除去一个点和其邻边，并将相邻节点的入度减一（无向图）O（V+E）<span id="more"></span>
+故总共是O（V+E）</li>
+</ol>
+<h2 id="2-图API与设计"><a href="#2-图API与设计" class="headerlink" title="2. 图API与设计"></a>2. 图API与设计</h2><p>图：一般算法里面说的图都是简单图，即两个节点之间只有一条边；图可以有很多分法，有环图&#x2F;无环图，有权图&#x2F;无权图等等</p>
+<p>图一般表示成以下的元素：节点vertex和边edge（边一般用（u,v）表示）</p>
+<p>首先是图的生成和添加：</p>
+<pre><code class="JAVA">public class Graph &#123;
+  public Graph(int V):               // Create empty graph with v vertices
 
-    .toc-content-container
-      display block
-      opacity 1
-      transition opacity 0.2s ease-in 0.2s
-      width $toc-container-width
+  public void addEdge(int v, int w): // add an edge v-w
 
-      &:hover::-webkit-scrollbar-thumb
-        border 3px solid rgba(183, 183, 183, 0.3)
+  Iterable&lt;Integer&gt; adj(int v):      // vertices adjacent to v
 
-      &::-webkit-scrollbar
-        width 6px
-        height 6px
-        transition all 0.2s ease
-        display block
+  int V():                           // number of vertices
 
-      &::-webkit-scrollbar-track
-        background transparent
-        border none
+  int E():                           // number of edges
 
-      &::-webkit-scrollbar-thumb
-        border-radius 20px
-        border 3px solid rgba(183, 183, 183, 0)
-        transition all 0.2s ease
+...
+</code></pre>
+<p>对一个图可以有很多的问题，从而有更多的算法：</p>
+<ul>
+<li>s-t Path: Is there a path between vertices s and t? (引出了st割)</li>
+<li>Connectivity: Is the graph connected, i.e. is there a path between all vertices?</li>
+<li>Biconnectivity: Is there a vertex whose removal disconnects the graph?</li>
+<li>Shortest s-t Path: What is the shortest path between vertices s and t?</li>
+<li>Cycle Detection: Does the graph contain any cycles?</li>
+<li>Euler Tour: Is there a cycle that uses every edge exactly once?</li>
+<li>Hamilton Tour: Is there a cycle that uses every vertex exactly once?</li>
+<li>Planarity: Can you draw the graph on paper with no crossing edges?</li>
+<li>Isomorphism: Are two graphs isomorphic (the same graph in disguise)?</li>
+<li>……</li>
+</ul>
+<p>但是我们不希望把图的API搞得如此复杂，所以一个好的图的API不应该包含具体的算法实现，而把实现的东西变成一个接收图的函数之类</p>
+<p>例如，在下面的BFS或者DFS（广度&#x2F;深度优先搜索），我们可以把它写成一个接受两个参数：Graph g, vertex source 的一个function； 在搜索之中产生的路径Path我们也应该写成包含这个函数方法的类内部的一个成员, 而不是把路径放到图API里面去</p>
+<p>那我们应该在图的API里面放什么呢？<br>比如： </p>
+<ul>
+<li>.adj（vertex v）方法，返回一个可迭代的列表或者集合之类，表示和某个结点相连的点</li>
+<li>一个通过某种数据结构（通常是一个最小堆）实现的边的排好序的集合（这对最小生成树很有用）</li>
+<li>isConnected（vertex u, vertex v）判断两个节点是否相连（内部并查集）</li>
+<li>计算某个节点的入度和出度</li>
+<li>…….<br><strong>总之，我们要放的东西是图的某种内部性质和一些辅助的实现（Iterable之类），而不是依赖于某个算法的东西；这能够保持我们代码的层次性</strong></li>
+</ul>
+<h2 id="3-邻接矩阵、邻接表"><a href="#3-邻接矩阵、邻接表" class="headerlink" title="3.  邻接矩阵、邻接表"></a>3.  邻接矩阵、邻接表</h2><p>表示一张图有两种方法：邻接矩阵、邻接表<br>邻接矩阵：一个V*V（V为节点总数）的矩阵，记录（i, j）边的权值（距离、边长）<br>对于一个无权图，可以设置为连接是1， 不连接是0<br>对于一个有权图，可以设置为连接是w(权值)， 不连接是inf<br>（一条边是不是有向的不重要，如果无方向，看成两条相反的有向边即可）<br><strong>复杂度O（V*V）</strong></p>
+<p>邻接表：<br>对于每个节点，维护一张表，记录和这个节点相连的节点（和权值）<br>（表的内部结构是啥无所谓，可以是链表，BST，HashSet之类，按照实践需要定）<br><strong>复杂度O（V+E）</strong></p>
+<p>表示一张图的方法是最重要的部分！这部分的实现效率决定了算法时间复杂度的上界！<br>在很多问题上，图算法本身的复杂度能够做到O（V+E），E是边数，如果采用邻接矩阵，算法的上界只能是O（V*V），<strong>一般都是用邻接表</strong>，因为现实的图一般都是稀疏的，边数E不会达到V*V量级</p>
+<h2 id="4-dfs-bfs"><a href="#4-dfs-bfs" class="headerlink" title="4. dfs, bfs"></a>4. dfs, bfs</h2><p>我们先来解决s-t问题<br>s-t Path: Is there a path between vertices s and t?</p>
+<p>对任意两点s-t，是否存在一条路径？<br>更进一步的，如果存在路径，如何找出这条路径？</p>
+<p>路径的存在性可以由并查集给出，但是如果采用WQUPC，没有方法给出完整的路径</p>
+<p>考虑一步一步找，先找s的相邻点s1，然后再找s1的相邻点s2，……直至所有的点都被遍历；<br>为了避免s1又找回s（出现环），我们需要对走过的点做标记，所以<strong>最后的路径是一颗树</strong>！<br>树有先序、中序、后序和层序遍历，对应在图中就是深度优先搜索（dfs, 先或中或后）或广度优先搜索（bfs, 层序）</p>
+<p>实现思路：<br>dfs: 维护一个栈，挑选<strong>一个</strong>此刻点的临近点入栈，之后走到那个点上，如果走到死路了，出栈一个点回溯，直到走到目标点；入栈出栈的过程之中更新节点的路径（每个节点记录自己的上一个节点）</p>
+<p>bfs：维护一个队列，令此刻点的<strong>所有</strong>临近点入队，之后出队此刻的点<br>当队列空或者搜索到目标时，结束搜索<br>伪代码：</p>
+<pre><code>Initialize the fringe (a queue with the starting vertex) and mark that vertex.
+Repeat until fringe is empty:
+Remove vertex v from the fringe.
+For each unmarked neighbor n of v:
+Mark n.
+Add n to fringe.
+Set edgeTo[n] = v.
+Set distTo[n] = distTo[v] + 1.
+</code></pre>
+<p>dfs vs bfs，不好说哪个好。<br>从时间上说：两者的复杂度都是O（V+E），dfs的优点是，如果只需要找一条路径，可能会略微快；bfs的优点是，找到的路径必定是最短的路径</p>
+<p>从空间上说：bfs较优，维护一个队列比维护一个可能很长的调用栈轻松（dfs递归容易爆炸）</p>
+<blockquote>
+<ul>
+<li>DFS is worse for spindly graphs. Imagine a graph with 10000 nodes all spindly. We’ll end up making 10000 recursive calls, which is bad for space.</li>
+</ul>
+</blockquote>
+<ul>
+<li>BFS is worse for “bushy” graphs, because our queue gets used a lot.</li>
+</ul>
+<h2 id="5-dijkstra-A"><a href="#5-dijkstra-A" class="headerlink" title="5. dijkstra, A*"></a>5. dijkstra, A*</h2><h3 id="dijkstra"><a href="#dijkstra" class="headerlink" title="dijkstra:"></a>dijkstra:</h3><p>如果只是在无权图上找一条路径，dfs和bfs是好的，但如果我们想在有权图上找一条最短路径，无法处理含权值的边的dfs和bfs就不行了</p>
+<p>为了解决这个问题，出现了dijkstra算法：</p>
+<pre><code class="python">def dijkstras(source):
+    PQ.add(source, 0)
+    For all other vertices, v, PQ.add(v, infinity)
+    while PQ is not empty:
+        p = PQ.removeSmallest()
+        relax(all edges from p)
+</code></pre>
+<pre><code class="python">def relax(edge p,q):
+   if q is visited (i.e., q is not in PQ):
+       return
 
-    .article-content-container
-      width calc(100% - 210px) !important
+   if distTo[p] + weight(edge) &lt; distTo[q]:
+       distTo[q] = distTo[p] + w
+       edgeTo[q] = p
+       PQ.changePriority(q, distTo[q])
+</code></pre>
+<p>在bfs之中，我们利用了层序遍历的思想，如果根据距离源点的边数多少把节点分成若干层，那么，s到一个在k层的t节点的最短路径一定不可能涉及k+1之后的层</p>
+<p>在dijkstra之中，虽然由于权值的影响，不能像bfs那样分层，但依然需要将这个问题分步处理</p>
+<p>我们放弃一次性给出从s到某点t的全局最优路径，而是不断的优化（贪心）</p>
+<p>对于一个点来说，进入它的所有边都是可能优化其到源点的最小距离的，总共有E条边，所以我们理想的时间界是O（E+V）</p>
+<p>dijkstra算法的伪代码如上：</p>
+<ol>
+<li>所有点入队</li>
+<li>找到当前距离s最短的点p</li>
+<li>遍历除p之外所有点，如果w(p,q)+dis[p]&lt;dis[q], 那么更新dis[q]</li>
+<li>从队列之中移除p，如果队列不空，循环23</li>
+</ol>
+<p>正确性的证明：<br>首先，第一步是对的，假设s的相邻点是s1,s2,…，其中w（s, s1）最小，那么s1的最短路径必然是w（s，s1）</p>
+<p>第二步，找到此时除s1之外距离s最短者，记为s2，如果存在某条路径，使得此时s到s2不是真正的最短距离，那么</p>
+<p>只有一种可能：这条路径的第一步是s-&gt;一个除s1,s2的其他点，那么由假设，第一步的路径就已经比此时的最短路径大，矛盾！</p>
+<p>所以s2也必然是全局的最短，以此类推</p>
+<p>算法复杂性？<br>如果图是稠密的，那么没啥优化的方法，找最小值就老实扫描一次，是O（V）调用V次是O（V*V），relax对边优化是O（E），总共是</p>
+<p>O（V*V+E）&#x3D;O(V*V)，考虑到稠密图的创建也是这个复杂度，算法复杂度可以接受</p>
+<p>如果图是稀疏的，可以建立一个含有各个点的距离s的数据的最小堆，由于图是稀疏的，每个点只连接常数的点，故只需要更新常数次堆，复杂度为O（logV）</p>
+<p>总体复杂度就是O（ElogV）</p>
+<h3 id="A-："><a href="#A-：" class="headerlink" title="A*："></a>A*：</h3><p>dijkstra的好处在于，一趟下来，不仅指定s,t的最短路径知道了，我们实际上知道了s与任意一个其他点的最短路径</p>
+<p>但很多时候我们不需要知道到其他点的路径，各个方向同权的dijkstra就有点慢了</p>
+<p>如果只需要一个点的路径的话，<br>我们希望设计这样一种算法，使得“试探”路径的时候，更倾向于当前点到终点的方向</p>
+<p>显然这样的算法不保证是全局最优的，但我们只需要一个“较优”的答案<br>In Dijkstra’s, we used <strong>bestKnownDistToV</strong> as the priority in our algorithm. This time, we’ll use </p>
+<p><strong>bestKnownDistToV+estimateFromVToGoal</strong> <strong>as our heuristic.</strong></p>
+<p>在dijkstra之中，我们设法用“已知的最优距离”替代了全局最优距离；在A*之中，我们用“已知最优+从目前点到终点估计距离”替代全局最优</p>
+<p>什么是“估计距离”？一种简单泛用的取法是取当前点到目标点的直线距离<br>“估计距离”让算法带有方向性，这也是A*算法作为启发式算法的特征（有AI的味道）</p>
+<p>具体步骤：<br>对于相邻的所有点，计算从源点到该点的“已知距离”，再加上从该点到目标点的“估计距离”，选取两者和最小的一个点作为实际走的下一个点</p>
+<p>正确性：<br>考虑到终点有一个必经之地p， 现在如果把p的“估计距离”取为无穷，那我们永远到不了终点；<br>也就是说，A*算法的正确性对“估计距离”的选取有一定的要求</p>
+<blockquote>
+<p>The takeaway here is that heuristics need to be good. There are two definitions required for goodness.</p>
+</blockquote>
+<blockquote>
+<ol>
+<li>Admissibility. heuristic(v, target) ≤≤ trueDistance(v, target). (Think about the problem above. The true distance from the neighbor of</li>
+</ol>
+</blockquote>
+<blockquote>
+<p>C to C wasn’t infinity, it was much, much smaller. But our heuristic</p>
+</blockquote>
+<blockquote>
+<p>said it was ∞ , so we broke this rule.)<br>2.  Consistency. For each neighbor v of w:<br>    -   heuristic(v, target) ≤ dist(v, w) + heuristic(w, target)</p>
+</blockquote>
+<blockquote>
+<pre><code>-   where dist(v, w) is the weight of the edge from v to w.
+</code></pre>
+</blockquote>
+<h2 id="6-最小生成树，割性质"><a href="#6-最小生成树，割性质" class="headerlink" title="6. 最小生成树，割性质"></a>6. 最小生成树，割性质</h2><p>最小生成树（Minimun spanning tree, MST）：<br>定义：连接一张图所有节点的树叫生成树，最小生成树就是生成树之中各个边的权值加起来最小的树。与一般的树不同的是，最小生成树没有“根”或者“叶”的结构，因为最小生成树是图的一个固有性质，和选择的生成起点无关（这就和dijkstra算法所得到的树不同）</p>
+<p>最小生成树常常和以某个点作为起点的dijkstra算法产生的最短路径树相同，但<strong>不是始终存在令两者相同的点</strong></p>
+<p>割性质：<br>为了高效的得到最小生成树，需要引入割性质<br><img lazyload src="/images/loading.svg" data-src="https://s2.loli.net/2023/10/20/BnDpctQATe3byME.png"><br>如图，把一张图分成两个点集AB（AB随意指定），连接A集之中一个点和B集之中一个点的边叫做“割（cut)”</p>
+<p>比如图中的（2，7），（1，2），（1，3）</p>
+<p><strong>性质：最短的一条割必然是最小生成树的一部分</strong><br>证明：<br>反证法：假设不是，存在一棵不经过割w（i,j）的最小生成树，由其经过所有节点的特性知，书中必然存在另一条割连接A，B点集，记为w(p, q)</p>
+<p>由于w(i,j)是最短的割，那么w(i,j)&lt;w(p,q)</p>
+<p>将w(p,q)+w(i,p)+w(q,j)三段替换成w(p,i)+w(i,j)+w(j,q)依然满足生成树的性质，且更小，矛盾！</p>
+<p>证毕</p>
+<p>特例：w(i,j)&#x3D;w(p,q)<br>同理，w(p,q)+w(i,p)+w(q,j) &#x3D; w(p,i)+w(i,j)+w(j,q)<br>若其中一条边在最小生成树之中，必有另一棵最小生成树（按照上式替换），使另一条边在该树之中</p>
+<p>而同上，两条边至少有一条在最小生成树之中<br>所以两条边都在最小生成树之中，可以任取一个（最小生成树可能是同一棵，可能是不同）</p>
+<p>垫脚石：单纯运用割性质，我们也能得到一个不好的算法，不断的随机取点集划分，再找到最小割，直到找到了V-1条边</p>
+<p><u><strong>Prims算法:</strong></u></p>
+<ol>
+<li>取离已经走过的点形成的树最近的一条边</li>
+<li>由割性质（两个点集为走过的和未走的），1取出的边一定是最小生成树的部分</li>
+<li>重复V-1次</li>
+</ol>
+<p>算法复杂度：<br>3是O（V），问题在步骤1时间复杂度是多少<br>算法1：暴搜，那O（E）不好<br>算法2：维护一个包含割的优先队列，每次从里面remove一条最短边是O（logE）的，新增边是常数的，因而维护堆也是O（logE）的，</p>
+<p>所以总时间复杂度是O（ElogE）&#x3D; O（ElogV）(E&lt;V*V)的</p>
+<p><strong><u>Kruskal算法：</u></strong><br>思想更直观：</p>
+<ol>
+<li>建一个包含所有边的优先队列</li>
+<li>不断的移除最小边，如果形成环，则跳过，否则移除的最小边加入最小生成树（割性质），直至有V-1条边</li>
+</ol>
+<p>时间复杂度：<br>判断是否成环，并查集WQUPC, 稀疏图新节点产生的新边是常数条，对于第一条新边相连的节点，找祖先节点，对于第二条新边相连的节点，找祖先节点，如果两祖先相同则成环，….. 常数两两组合还是常数</p>
+<p>建立队列，O（ElogE）&#x3D; O（ElogV）<br>判断成环O（Elg*V）(最多E次，每次lg*V)<br>总共O（Elg*V+ElogE）<br>如果图API提供了排好序的边，就是O（Elg*V）<br>在任意有现实意义大小的图的情况下<br>O（Elg*V）&#x3D;<strong>O（E）</strong>！！！</p>
+<h2 id="7-网络流算法"><a href="#7-网络流算法" class="headerlink" title="7. 网络流算法"></a>7. 网络流算法</h2><p>未完待续……</p>
+<p>参考 南京大学 蒋炎岩 网络流</p>
 
-  +redefine-tablet()
-    .toc-content-container
-      display none !important
+        </div>
 
-    .article-content-container
-      width 100% !important
+        
+            <div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li><strong>标题:</strong> 图</li>
+        <li><strong>作者:</strong> Ayanami</li>
+        <li><strong>创建于
+                :</strong> 2023-10-16 00:00:00</li>
+        
+            <li>
+                <strong>更新于
+                    :</strong> 2023-12-30 20:37:36
+            </li>
+        
+        <li>
+            <strong>链接:</strong> https://ayanami1314.github.io/2023/10/16/图/
+        </li>
+        <li>
+            <strong>
+                版权声明:
+            </strong>
+            
 
-    &.show-toc
-      .toc-content-container
-        display none
+            
+                本文章采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY-NC-SA 4.0</a> 进行许可。
+            
+        </li>
+    </ul>
+</div>
 
-      .article-content-container
-        width 100% !important
+            </div>
+        
 
-  .article-content-container
-    width 100%
-    transition width 0.2s ease
-    redefine-container(
-      false,
-      0,
-      0,
-      0,
-      30px
-    )
+        
+            <ul class="post-tags-box text-lg mt-1.5 flex-wrap justify-center flex md:hidden">
+                
+                    <li class="tag-item mx-0.5">
+                        <a href="/tags/%E5%85%A5%E9%97%A8/">#入门</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item mx-0.5">
+                        <a href="/tags/%E7%AE%97%E6%B3%95/">#算法</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
 
-    +redefine-mobile()
-      padding 1.2rem 0.2rem
-      box-shadow none !important
-      max-width 100vw
+        
 
-    .article-header .avatar img
-          border-radius: $redefine-border-radius-medium * 0.87
-          width 100%
-          height 100%
-          // background var(--avatar-background-color)
+        
+            <div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
+                
+                    <div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+                        <a class="prev"
+                        rel="prev"
+                        href="/2023/10/16/%E5%8E%8B%E7%BC%A9%E5%92%8C%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E5%93%B2%E5%AD%A6/"
+                        >
+                            <span class="left arrow-icon flex justify-center items-center">
+                                <i class="fa-solid fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex justify-center items-center">
+                                <span class="post-nav-title-item">压缩和软件设计哲学</span>
+                                <span class="post-nav-item">上一篇</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+                        <a class="next"
+                        rel="next"
+                        href="/2023/10/16/%E6%9D%82%E9%A1%B9/"
+                        >
+                            <span class="title flex justify-center items-center">
+                                <span class="post-nav-title-item">杂项</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                            <span class="right arrow-icon flex justify-center items-center">
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
 
-    .article-header, .article-header-meta-info
-      margin-top 16px
 
-      +redefine-tablet()
-        transform scale(0.9)
-        transform-origin left top
+        
+            <div class="comment-container px-2 sm:px-6 md:px-8 pb-8">
+                <div class="comments-container mt-10 w-full ">
+    <div id="comment-anchor" class="w-full h-2.5"></div>
+    <div class="comment-area-title w-full my-1.5 md:my-2.5 text-xl md:text-3xl font-bold">
+        评论
+    </div>
+    
 
-    .article-content
-      margin-top $spacing-unit
-      padding-bottom 10px
-      word-wrap break-word
-      border-bottom 1px solid var(--border-color)
-      color var(--default-text-color)
+        
+            
+    <div id="waline"></div>
+    <script type="module" data-swup-reload-script>
+      import { init } from '/js/libs/waline.mjs';
 
-      &>:first-child
-        margin-top 0 !important
+      function loadWaline() {
+        init({
+          el: '#waline',
+          serverURL: 'https://example.example.com',
+          lang: 'zh-CN',
+          dark: 'body[class~="dark-mode"]',
+          requiredMeta: ['nick', 'mail'],
+          emoji: [],
+          recaptchaV3Key: "wasd",
+          
+        });
+      }
 
-    .article-prev, .article-next
+      if (typeof swup !== 'undefined') {
+        loadWaline();
+      } else {
+        window.addEventListener('DOMContentLoaded', loadWaline);
+      }
+    </script>
 
-        a
-          position relative
-          display block
-          width 100%
-          height 100%
-          box-sizing border-box
 
-          &.prev
-            padding-left $arrow-icon-width
 
-          &.next
-            padding-right $arrow-icon-width
+        
+    
+</div>
 
-          .arrow-icon
-            position absolute
-            top 0
-            height 100%
-            width $arrow-icon-width
+            </div>
+        
+    </div>
 
-            &.left
-              left 0
+    
+        <div class="toc-content-container">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <div class="toc-title">此页目录</div>
+        <div class="page-title">图</div>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E6%8B%93%E6%89%91%E6%8E%92%E5%BA%8F"><span class="nav-text">1. 拓扑排序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E5%9B%BEAPI%E4%B8%8E%E8%AE%BE%E8%AE%A1"><span class="nav-text">2. 图API与设计</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E9%82%BB%E6%8E%A5%E7%9F%A9%E9%98%B5%E3%80%81%E9%82%BB%E6%8E%A5%E8%A1%A8"><span class="nav-text">3.  邻接矩阵、邻接表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-dfs-bfs"><span class="nav-text">4. dfs, bfs</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-dijkstra-A"><span class="nav-text">5. dijkstra, A*</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#dijkstra"><span class="nav-text">dijkstra:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#A-%EF%BC%9A"><span class="nav-text">A*：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91%EF%BC%8C%E5%89%B2%E6%80%A7%E8%B4%A8"><span class="nav-text">6. 最小生成树，割性质</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-%E7%BD%91%E7%BB%9C%E6%B5%81%E7%AE%97%E6%B3%95"><span class="nav-text">7. 网络流算法</span></a></li></ol>
 
-            &.right
-              right 0
+    </div>
+</div>
+        </div>
+    
+</div>
 
-          .title
-            width 100%
-            height 100%
 
-      .post-nav-item
-        display none
-
-        +redefine-tablet()
-          display inline-block
-
-      .post-nav-title-item
-        overflow hidden
-        text-overflow ellipsis
-        white-space nowrap
-
-        +redefine-tablet()
-          display none
-
-    .recommended-article
-      overflow visible !important
-
-      .recommended-mobile
-        display none
-        +redefine-tablet()
-          display block
-
-      .recommended-desktop
-        display block
-        +redefine-tablet()
-          display none
-
-      .recommended-article-group
-        padding 10px 0
-        display flex
-        justify-content space-between
-        flex-wrap wrap
-        overflow visible !important
-
-        @media screen and (max-width $device-tablet)
-          height 190px
-          overflow scroll
-
-          &::-webkit-scrollbar
-            width 0 !important
-
-          -ms-overflow-style none
-
-        .recommended-article-item
-          redefine-container(
-            false,
-            0,
-            0,
-            10px,
-            0
-          )
-          box-shadow var(--redefine-box-shadow-flat)
-          padding 12px !important
-          display flex
-          flex-wrap wrap
-          align-content center
-          justify-content center
-          align-items center
-          overflow hidden
-          width 32%
-          max-height 200px
-          margin-top: $gap * 0.5
-          margin-right 0
-
-          +redefine-tablet()
-            width 49%
-
-          img
-            display flex
-            width calc(100% + 24px)
-            height 150px
-            object-fit cover
-            border-radius $redefine-border-radius-medium-top
-            margin -12px -12px 0 -12px !important
-
-          span
-            margin-top 0.5rem
-            display block
-            display -webkit-box
-            -webkit-box-orient vertical
-            -webkit-line-clamp 1
-            overflow hidden
-
-  .toc-content-container
-    white-space nowrap
-    opacity 0
-    position sticky
-    top: $navbar-height + $spacing-unit
-    // border-radius $redefine-border-radius-large
-    border-radius $redefine-border-radius-none
-    // display none
-    // visibility hidden
-    // width $toc-container-width
-    width 0
-    height auto
-    max-height calc(100vh - 210px)
-    //margin-left 30px
-    // z-index $z-index-6
-    overflow-y auto
-    overflow-x hidden
-    float right
-    padding 10px
-    box-sizing border-box
-    box-shadow none !important
-    transition opacity 0.3s ease-out 0.3s
-    hover-style(
-      false,
-      0,
-      0
-    )
-    transition-t('display', '0', '0.3', 'ease-out')
-
-    +redefine-tablet()
-      left 0 !important
-      display none !important
-
-  figure.image-caption
-    img
-      margin-bottom 0
-
-    figcaption
-      margin-top 5px
-      margin-bottom 10px
-      text-align center
-      font-size 0.9rem
-      color var(--third-text-color)
 
                 
 

@@ -392,263 +392,373 @@
             <div class="main-content">
 
                 
-                    @import '../common/variables'
+                    <div class="post-page-container flex relative justify-between box-border w-full h-full">
+    <div class="article-content-container">
 
-$arrow-icon-width = 16px
-$post-nav-max-width = 220px
-$article-title-font-size = 3.2rem
-$temp-toc-width = hexo-config('global.sidebar_width')
-$toc-container-width = $temp-toc-width ? convert($temp-toc-width) : 210px
-$without-toc-container-width = calc(100% - $temp-toc-width)
-$gap = 30px
+        <div class="article-title relative w-full">
+            
+                <div class="w-full flex items-center pt-6 justify-start">
+                    <h1 class="article-title-regular text-second-text-color text-4xl md:text-6xl font-bold px-2 sm:px-6 md:px-8 py-3">浅入理解断点和调试器</h1>
+                </div>
+            
+            </div>
 
-.post-page-container
-  gap 0px
+        
+            <div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
+                <div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
+                    <img src="/images/head.jpg">
+                </div>
+                <div class="info flex flex-col justify-between">
+                    <div class="author flex items-center">
+                        <span class="name text-default-text-color text-lg font-semibold">Ayanami</span>
+                        
+                            <span class="author-label ml-1.5 text-xs px-2 py-0.5 rounded-small text-third-text-color border border-shadow-color-1">Lv4</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2023-12-21</span>
+        <span class="mobile">2023-12-21</span>
+        <span class="hover-info">创建</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2023-12-21 00:13:38</span>
+            <span class="mobile">2023-12-21 00:13:38</span>
+            <span class="hover-info">更新</span>
+        </span>
+    
 
-  +redefine-mobile()
-    overflow-x hidden
+    
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        
 
 
-  &.show-toc
-    gap 30px
+        <div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
+            <h4 id="浅入理解断点和调试器"><a href="#浅入理解断点和调试器" class="headerlink" title="浅入理解断点和调试器"></a>浅入理解断点和调试器</h4><p>主要参考</p>
+<p><a class="link" target="_blank" rel="noopener" href="https://events.static.linuxfound.org/sites/events/files/slides/slides_16.pdf">https://events.static.linuxfound.org/sites/events/files/slides/slides_16.pdf <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p><a class="link" target="_blank" rel="noopener" href="https://eli.thegreenplace.net/2011/02/07/how-debuggers-work-part-3-debugging-information">https://eli.thegreenplace.net/2011/02/07/how-debuggers-work-part-3-debugging-information <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a><br>在写知识之前，不如先问自己几个问题：</p>
+<span id="more"></span>
+<ul>
+<li>debugger 的实现原理是什么？</li>
+<li>断点(breakpoint)和监视点(watchpoint)的区别？</li>
+<li>断点有哪些实现方法？具体到 gdb 之中，它是怎么实现的？</li>
+</ul>
+<p><span style="color:red"><strong>debugger 的最基本原理，就是这样的代码</strong></span></p>
+<pre><code class="c++">int main(int argc, char** argv)
+&#123;
+    pid_t child_pid;
 
-    .toc-content-container
-      display block
-      opacity 1
-      transition opacity 0.2s ease-in 0.2s
-      width $toc-container-width
+    if (argc &lt; 2) &#123;
+        fprintf(stderr, &quot;Expected a program name as argument\n&quot;);
+        return -1;
+    &#125;
 
-      &:hover::-webkit-scrollbar-thumb
-        border 3px solid rgba(183, 183, 183, 0.3)
+    child_pid = fork();
+    if (child_pid == 0)
+        run_target(argv[1]);
+    else if (child_pid &gt; 0)
+        run_debugger(child_pid);
+    else &#123;
+        perror(&quot;fork&quot;);
+        return -1;
+    &#125;
 
-      &::-webkit-scrollbar
-        width 6px
-        height 6px
-        transition all 0.2s ease
-        display block
+    return 0;
+&#125;
+</code></pre>
+<p>debugger 作为父进程，使用 fork 调出了需要 debug 的子进程，然后通过某种方法和子进程交互（操控子进程）</p>
+<p>那么就引出了这样的问题：</p>
+<ol>
+<li>怎么操控的（允许操控的机制）</li>
+<li>操控之后的控制流</li>
+<li>已经控制了，debug 信息从哪来（如果不做处理，高级语言编译之后是没有原来的代码行数、变量符号等信息的）</li>
+</ol>
+<p>又可以进一步总结出以下几点，</p>
+<p><strong>debug 需要信息：</strong></p>
+<ol>
+<li><p>在高级代码—&gt;汇编的过程之中，我们需要代码的一一对应关系，比如第几行的高级代码对应第几行（到第几行）的汇编代码</p>
+</li>
+<li><p>在汇编代码—&gt;可执行文件的过程之中，我们需要将有用的信息保存在可执行文件内</p>
+</li>
+</ol>
+<p><strong>debug 需要断点：</strong></p>
+<ol start="3">
+<li>需要有一种方法在 gdb 或者在可执行文件之中达成中断</li>
+<li>进一步地，需要让 gdb（父进程）能够控制、监视、改变子进程（被调试的进程）</li>
+</ol>
+<p>解决了这几个问题，理论上就能产生 debugger</p>
+<p>问题 1，很遗憾，由于现代编译器的优化和现代编程语言的复杂性，源程序语言和编译完成的汇编，又或者说最后执行的机器指令很难完美对应，编译器开启对应的编译指令之后也只能做到近似（**不能完全相信 back trace!**）但大体上还是对的。（也可以强制让编译器不优化）</p>
+<p>下图转载： <code>gdb br</code>的失败例子</p>
+<p><img lazyload src="/images/loading.svg" data-src="https://s2.loli.net/2023/11/24/LlfdwUEMvmtT3S2.png" alt="image-20231123221703870"></p>
+<p><img lazyload src="/images/loading.svg" data-src="https://s2.loli.net/2023/11/24/nxWOHEMZNSKTa9G.png" alt="image-20231123221731588"></p>
+<p>问题 2，这就是为什么需要 gcc <strong>-g</strong> 的理由，<strong>也是为什么可以不止于对内存地址设断点，还能对一个函数，一行源代码设断点的原因</strong></p>
+<blockquote>
+<p>现代编译器在将高级代码转换为高级代码方面做得很好，其缩进和嵌套的控制结构以及任意类型的变量可以很好地转换为一大堆称为机器代码的位，其唯一目的是在目标 CPU 上尽可能快地运行。大多数 C 行被转换为多个机器代码指令。变量被推到各处 - 进入堆栈、寄存器或完全优化。<strong>结构和对象甚至不存在于生成的代码中 - 它们只是一个抽象</strong>，被转换为硬编码的偏移量到内存缓冲区中。</p>
+<p>那么，当您要求调试器在某个函数的入口处中断时，调试器如何知道在哪里停止呢？当你向它询问变量的值时，它是如何找到要显示的内容的？<strong>答案是 - 调试信息</strong>。</p>
+<p><strong>调试信息由编译器与机器代码一起生成。它是可执行程序和原始源代码之间关系的表示。这些信息被编码为预定义的格式，并与机器代码一起存储</strong>。多年来，为不同的平台和可执行文件发明了许多这样的格式。由于本文的目的不是调查这些格式的历史，而是展示它们的工作原理，因此我们必须确定一些事情。这将是 DWARF，它今天几乎无处不在地用作 Linux 和其他 Unix-y 平台上 ELF 可执行文件的调试信息格式。</p>
+</blockquote>
+<p>对应 elf 文件中的.debug_**段</p>
+<p><img lazyload src="/images/loading.svg" data-src="https://s2.loli.net/2023/11/24/gCWjndKMXcq4Gyi.png" alt="image-20231123223152372"></p>
+<p>如何进一步阅读?</p>
+<p><code>objdump --dwarf=info</code></p>
+<p>info 可以换成别的</p>
+<p><img lazyload src="/images/loading.svg" data-src="https://s2.loli.net/2023/11/24/DQtJcnh7CyRp9mK.png" alt="image-20231123223310051"></p>
+<p><img lazyload src="/images/loading.svg" data-src="https://s2.loli.net/2023/11/24/lypIGeNi9BZJ8Mc.png" alt="image-20231123223328905"></p>
+<p>问题 3、4</p>
+<p>debug 需要断点，需要某种可恢复的中断，怎么做？</p>
+<ul>
+<li>软件支持</li>
+<li>硬件支持</li>
+</ul>
+<p>先讲硬件支持是怎么实现的。如果设备有实现硬件 debug，<span style="color:red"><strong>它会在内存之中占据一段特殊的位置，使得这个硬件支持对 cpu 是可见的</strong></span></p>
+<p>（cpu 也实现了 debug 的控制寄存器和控制单元）。<strong>而 gdb 在 debug 时，会先确定本机的架构和硬件信息，之后根据硬件信息去寻找相关的 debug 是否有硬件支持。</strong></p>
+<p>而这个硬件支持表现在能够硬件上单步执行，通过比较器设置断点，etc</p>
+<blockquote>
+<p>Gateway between re-purposed JTAG bit protocol and debug logic</p>
+<p>Debug hardware often visible in a special memory address space</p>
+<p>E.g. (gdb) stop requires writing 0x1 (Halt Request) to address 0x090 (Debugger Run Control Register) of the CPU debug unit.</p>
+<ul>
+<li><p>Shift 4 bits into IR</p>
+</li>
+<li><p>Shift 34 bits into DR</p>
+</li>
+<li><p>Shift 4 bits into IR</p>
+</li>
+<li><p>Shift 34 bits into DR</p>
+</li>
+<li><p>Shift 34 bits into DR</p>
+</li>
+</ul>
+</blockquote>
+<p>另一种就是软件支持，</p>
+<p>首先是中断，当程序运行到断点的时候，它应该向 gdb 发出一个中断信号（比如 SIGTRAP），之后 gdb 程序（父进程）接收到中断信号后，辨别出这个是断点产生的中断还是程序正常运行的中断，并加以处理</p>
+<p><img lazyload src="/images/loading.svg" data-src="https://s2.loli.net/2023/11/27/a1AtXh7PgYDwsCW.png" alt="image-20231127222802586"></p>
+<p>然后是 ptrace 系统调用，这个系统调用允许一个进程去得到另一个进程的控制权，包括监视、改变、发送命令等</p>
+<pre><code class="c++">void run_target(const char* programname)
+&#123;
+    procmsg(&quot;target started. will run &#39;%s&#39;\n&quot;, programname);
 
-      &::-webkit-scrollbar-track
-        background transparent
-        border none
+    /* Allow tracing of this process */
+    if (ptrace(PTRACE_TRACEME, 0, 0, 0) &lt; 0) &#123;
+        perror(&quot;ptrace&quot;);
+        return;
+    &#125;
 
-      &::-webkit-scrollbar-thumb
-        border-radius 20px
-        border 3px solid rgba(183, 183, 183, 0)
-        transition all 0.2s ease
+    /* Replace this process&#39;s image with the given program */
+    execl(programname, programname, 0);
+&#125;
+</code></pre>
+<p>而有了中断之后，一种简单的实现方法可能是这样的：</p>
+<p>在指定的地址上设一个监视点 w</p>
+<p>首先，每次运行一条指令之后我都切换到 debugger，比对一下 pc 和监视地址是否相同，如果相同，那么我就停止</p>
+<p>这种切换的机制来源于：</p>
+<ol>
+<li>wait() 不止在子进程 exit 时才会退出，在子进程触发中断时也会返回，并保存一些中断信息</li>
+<li>ptrace 调用定义了一个特殊的 request PTRACE_SINGLESTEP，会告诉 OS 启动被监控进程，但是一条指令后停止（pc+4），并产生中断通知父进程</li>
+</ol>
+<pre><code class="c++">void run_debugger(pid_t child_pid)
+&#123;
+    int wait_status;
+    unsigned icounter = 0;
+    procmsg(&quot;debugger started\n&quot;);
 
-    .article-content-container
-      width calc(100% - 210px) !important
+    /* Wait for child to stop on its first instruction */
+    wait(&amp;wait_status);
 
-  +redefine-tablet()
-    .toc-content-container
-      display none !important
+    while (WIFSTOPPED(wait_status)) &#123;
+        icounter++;
+        /* Make the child execute another instruction */
+        if (ptrace(PTRACE_SINGLESTEP, child_pid, 0, 0) &lt; 0) &#123;
+            perror(&quot;ptrace&quot;);
+            return;
+        &#125;
 
-    .article-content-container
-      width 100% !important
+        /* Wait for child to stop on its next instruction */
+        wait(&amp;wait_status);
+    &#125;
 
-    &.show-toc
-      .toc-content-container
-        display none
+    procmsg(&quot;the child executed %u instructions\n&quot;, icounter);
+&#125;
+</code></pre>
+<p>我们当然可以用这种单步执行比对 pc 的“监视点”方法实现断点，但这个方法的问题是，每执行一条指令都要不断切换进程，效率太低了</p>
+<p>jyy 介绍， gdb 用了一种很神奇的方法： int 3（注意这个 int 不是 integer 的 int）偷龙转凤</p>
+<p>int 3 是一个单字节 x86 指令，作用就是简单地发出一个中断 SIGTRAP</p>
+<p>单字节使得它能够替换到任何一条指令的开头，并且不会覆盖两条及以上的指令</p>
+<p>在设置断点的时候，<strong>gdb 可以将断点处的指令保存起来，之后替换它的首个字节为 int 3</strong></p>
+<blockquote>
+<p><span style="color:red"><strong>Instruction at the given address is read, saved and replaced with a breakpoint:</strong> </span></p>
+<p>​ <strong>- either a special instruction, &#x2F;&#x2F; SIGTRAP, int 3</strong></p>
+<p>​ <strong>- or an undefined encoding. &#x2F;&#x2F; SIGILL</strong></p>
+</blockquote>
+<p>之后程序正常运行，执行到 int 3 时产生中断（SIGTRAP，int 3 就是第三号 TRAP，x86 的调试器中断），而 gdb 程序作为父进程收到这个信号，达成中断（通过 ptrace 设置了中断的 handler），之后也可以将原来的指令替换回来继续执行。</p>
+<p>继续执行的细节：</p>
+<p>实际上在有了 ptrace 的调用之后，每当被监控程序执行 exec 的时候，就会发出一个中断</p>
+<blockquote>
+<p>Indicates that this process is to be traced by its parent. Any signal (except SIGKILL) delivered to this process will cause it to stop and its parent to be notified via wait(). <strong>Also, all subsequent calls to exec() by this process will cause a SIGTRAP to be sent to it, giving the parent a chance to gain control before the new program begins execution</strong>. A process probably shouldn’t make this request if its parent isn’t expecting to trace it. (pid, addr, and data are ignored.)<br>指示此过程将由其父级跟踪。传递给此进程的任何信号（SIGKILL 除外）都会导致它停止，并通过 wait（） 通知其父级。此外，此进程对 exec（） 的所有后续调用都将导致向它发送 SIGTRAP，从而使父级有机会在新程序开始执行之前获得控制权。如果进程的父进程不希望跟踪它，则进程可能不应发出此请求。（PID、ADDR 和 DATA 将被忽略。</p>
+</blockquote>
+<p>小的自问自答环节：</p>
+<p>Q：为什么 gdb 不是特权指令？它读寄存器值、内存值等是怎么实现的？</p>
+<p>A：<strong>但 install 是特权指令（笑）</strong>，Linux 之中，二进制文件是自动具备可执行的默认权限的（<strong>file mode</strong>），而不是像 bash 脚本那样需要 sudo chmod +x 给予权限。</p>
+<p>并且咨询 gpt 还得到一个有趣的事情：ptrace 调用确实可以修改其他的进程，<strong>所以 ptrace 调用是需要 root 权限</strong>，但是，<strong>用户权限下，可以使用 setuid 或者 setcap 机制，是 gdb 能对特定的文件，具有特定系统调用的权限</strong></p>
+<p>读寄存器值是使用了特定的中断，读内存是读的虚拟内存。</p>
 
-      .article-content-container
-        width 100% !important
+        </div>
 
-  .article-content-container
-    width 100%
-    transition width 0.2s ease
-    redefine-container(
-      false,
-      0,
-      0,
-      0,
-      30px
-    )
+        
+            <div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li><strong>标题:</strong> 浅入理解断点和调试器</li>
+        <li><strong>作者:</strong> Ayanami</li>
+        <li><strong>创建于
+                :</strong> 2023-12-21 00:00:00</li>
+        
+            <li>
+                <strong>更新于
+                    :</strong> 2023-12-21 00:13:38
+            </li>
+        
+        <li>
+            <strong>链接:</strong> https://ayanami1314.github.io/2023/12/21/浅入理解断点和调试器/
+        </li>
+        <li>
+            <strong>
+                版权声明:
+            </strong>
+            
 
-    +redefine-mobile()
-      padding 1.2rem 0.2rem
-      box-shadow none !important
-      max-width 100vw
+            
+                本文章采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY-NC-SA 4.0</a> 进行许可。
+            
+        </li>
+    </ul>
+</div>
 
-    .article-header .avatar img
-          border-radius: $redefine-border-radius-medium * 0.87
-          width 100%
-          height 100%
-          // background var(--avatar-background-color)
+            </div>
+        
 
-    .article-header, .article-header-meta-info
-      margin-top 16px
+        
 
-      +redefine-tablet()
-        transform scale(0.9)
-        transform-origin left top
+        
 
-    .article-content
-      margin-top $spacing-unit
-      padding-bottom 10px
-      word-wrap break-word
-      border-bottom 1px solid var(--border-color)
-      color var(--default-text-color)
+        
+            <div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
+                
+                    <div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+                        <a class="prev"
+                        rel="prev"
+                        href="/2023/12/21/%E5%8D%97%E5%A4%A7PA%E5%8E%86%E9%99%A9%E8%AE%B0-%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%E4%B8%AD/"
+                        >
+                            <span class="left arrow-icon flex justify-center items-center">
+                                <i class="fa-solid fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex justify-center items-center">
+                                <span class="post-nav-title-item">南大PA历险记-持续更新中-</span>
+                                <span class="post-nav-item">上一篇</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+                        <a class="next"
+                        rel="next"
+                        href="/2023/11/15/2023-11-6-11-13%E5%AD%A6%E4%B9%A0%E5%91%A8%E8%AE%B0/"
+                        >
+                            <span class="title flex justify-center items-center">
+                                <span class="post-nav-title-item">2023-11-6-11-13学习周记</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                            <span class="right arrow-icon flex justify-center items-center">
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
 
-      &>:first-child
-        margin-top 0 !important
 
-    .article-prev, .article-next
+        
+            <div class="comment-container px-2 sm:px-6 md:px-8 pb-8">
+                <div class="comments-container mt-10 w-full ">
+    <div id="comment-anchor" class="w-full h-2.5"></div>
+    <div class="comment-area-title w-full my-1.5 md:my-2.5 text-xl md:text-3xl font-bold">
+        评论
+    </div>
+    
 
-        a
-          position relative
-          display block
-          width 100%
-          height 100%
-          box-sizing border-box
+        
+            
+    <div id="waline"></div>
+    <script type="module" data-swup-reload-script>
+      import { init } from '/js/libs/waline.mjs';
 
-          &.prev
-            padding-left $arrow-icon-width
+      function loadWaline() {
+        init({
+          el: '#waline',
+          serverURL: 'https://example.example.com',
+          lang: 'zh-CN',
+          dark: 'body[class~="dark-mode"]',
+          requiredMeta: ['nick', 'mail'],
+          emoji: [],
+          recaptchaV3Key: "wasd",
+          
+        });
+      }
 
-          &.next
-            padding-right $arrow-icon-width
+      if (typeof swup !== 'undefined') {
+        loadWaline();
+      } else {
+        window.addEventListener('DOMContentLoaded', loadWaline);
+      }
+    </script>
 
-          .arrow-icon
-            position absolute
-            top 0
-            height 100%
-            width $arrow-icon-width
 
-            &.left
-              left 0
 
-            &.right
-              right 0
+        
+    
+</div>
 
-          .title
-            width 100%
-            height 100%
+            </div>
+        
+    </div>
 
-      .post-nav-item
-        display none
+    
+        <div class="toc-content-container">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <div class="toc-title">此页目录</div>
+        <div class="page-title">浅入理解断点和调试器</div>
+        
 
-        +redefine-tablet()
-          display inline-block
+    </div>
+</div>
+        </div>
+    
+</div>
 
-      .post-nav-title-item
-        overflow hidden
-        text-overflow ellipsis
-        white-space nowrap
 
-        +redefine-tablet()
-          display none
-
-    .recommended-article
-      overflow visible !important
-
-      .recommended-mobile
-        display none
-        +redefine-tablet()
-          display block
-
-      .recommended-desktop
-        display block
-        +redefine-tablet()
-          display none
-
-      .recommended-article-group
-        padding 10px 0
-        display flex
-        justify-content space-between
-        flex-wrap wrap
-        overflow visible !important
-
-        @media screen and (max-width $device-tablet)
-          height 190px
-          overflow scroll
-
-          &::-webkit-scrollbar
-            width 0 !important
-
-          -ms-overflow-style none
-
-        .recommended-article-item
-          redefine-container(
-            false,
-            0,
-            0,
-            10px,
-            0
-          )
-          box-shadow var(--redefine-box-shadow-flat)
-          padding 12px !important
-          display flex
-          flex-wrap wrap
-          align-content center
-          justify-content center
-          align-items center
-          overflow hidden
-          width 32%
-          max-height 200px
-          margin-top: $gap * 0.5
-          margin-right 0
-
-          +redefine-tablet()
-            width 49%
-
-          img
-            display flex
-            width calc(100% + 24px)
-            height 150px
-            object-fit cover
-            border-radius $redefine-border-radius-medium-top
-            margin -12px -12px 0 -12px !important
-
-          span
-            margin-top 0.5rem
-            display block
-            display -webkit-box
-            -webkit-box-orient vertical
-            -webkit-line-clamp 1
-            overflow hidden
-
-  .toc-content-container
-    white-space nowrap
-    opacity 0
-    position sticky
-    top: $navbar-height + $spacing-unit
-    // border-radius $redefine-border-radius-large
-    border-radius $redefine-border-radius-none
-    // display none
-    // visibility hidden
-    // width $toc-container-width
-    width 0
-    height auto
-    max-height calc(100vh - 210px)
-    //margin-left 30px
-    // z-index $z-index-6
-    overflow-y auto
-    overflow-x hidden
-    float right
-    padding 10px
-    box-sizing border-box
-    box-shadow none !important
-    transition opacity 0.3s ease-out 0.3s
-    hover-style(
-      false,
-      0,
-      0
-    )
-    transition-t('display', '0', '0.3', 'ease-out')
-
-    +redefine-tablet()
-      left 0 !important
-      display none !important
-
-  figure.image-caption
-    img
-      margin-bottom 0
-
-    figcaption
-      margin-top 5px
-      margin-bottom 10px
-      text-align center
-      font-size 0.9rem
-      color var(--third-text-color)
 
                 
 

@@ -390,263 +390,360 @@
             <div class="main-content">
 
                 
-                    @import '../common/variables'
+                    <div class="post-page-container flex relative justify-between box-border w-full h-full">
+    <div class="article-content-container">
 
-$arrow-icon-width = 16px
-$post-nav-max-width = 220px
-$article-title-font-size = 3.2rem
-$temp-toc-width = hexo-config('global.sidebar_width')
-$toc-container-width = $temp-toc-width ? convert($temp-toc-width) : 210px
-$without-toc-container-width = calc(100% - $temp-toc-width)
-$gap = 30px
+        <div class="article-title relative w-full">
+            
+                <div class="w-full flex items-center pt-6 justify-start">
+                    <h1 class="article-title-regular text-second-text-color text-4xl md:text-6xl font-bold px-2 sm:px-6 md:px-8 py-3">cache</h1>
+                </div>
+            
+            </div>
 
-.post-page-container
-  gap 0px
+        
+            <div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
+                <div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
+                    <img src="/images/head.jpg">
+                </div>
+                <div class="info flex flex-col justify-between">
+                    <div class="author flex items-center">
+                        <span class="name text-default-text-color text-lg font-semibold">Ayanami</span>
+                        
+                            <span class="author-label ml-1.5 text-xs px-2 py-0.5 rounded-small text-third-text-color border border-shadow-color-1">Lv4</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2023-10-16</span>
+        <span class="mobile">2023-10-16</span>
+        <span class="hover-info">创建</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2023-10-20 20:09:34</span>
+            <span class="mobile">2023-10-20 20:09:34</span>
+            <span class="hover-info">更新</span>
+        </span>
+    
 
-  +redefine-mobile()
-    overflow-x hidden
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/%E5%85%A5%E9%97%A8/">入门</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/%E7%BB%84%E6%88%90%E7%BB%93%E6%9E%84/">组成结构</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        
 
 
-  &.show-toc
-    gap 30px
+        <div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
+            <h2 id="2-cache"><a href="#2-cache" class="headerlink" title="2.cache"></a>2.cache</h2><h3 id="2-1）SRAM-DRAM，闪存和磁盘"><a href="#2-1）SRAM-DRAM，闪存和磁盘" class="headerlink" title="2.1）SRAM, DRAM，闪存和磁盘"></a>2.1）SRAM, DRAM，闪存和磁盘</h3><p>速度逐渐减慢，成本逐渐降低<br>原理：</p>
+<p>SRAM：一组<strong>直接接外接电源</strong>的触发器电路（这意味着功耗和对电源的极高稳定性要求，断电立即丢失数据），因而不需要刷新操作，速度快</p>
+<span id="more"></span>
 
-    .toc-content-container
-      display block
-      opacity 1
-      transition opacity 0.2s ease-in 0.2s
-      width $toc-container-width
+<p>DRAM：每个存储单元不直接接外接电源，采用电容的方式存储，但电容会以漏电等方式损失电荷，所以需要定期接电源刷新（只在刷新时接电源，降低功耗；总线接电源而不是每个电容接，降低复杂度）</p>
+<p>DRAM之中的存储单元还有bank这种较小的集合，这方便了在DRAM之中的并行操作（不同bank可以同时操作）</p>
+<p>闪存:<br>为了读取和写入数据，闪存芯片中的控制逻辑电路负责管理电荷的注入和释放。当需要读取存储的数据时，控制逻辑电路会检测浮栅中的电荷状态，并将其转换为可读取的信号。当需要写入新的数据时，控制逻辑电路会控制电荷的注入或释放，以改变浮栅的电荷状态。</p>
+<p>闪存存储单元中的每个存储单元通常是基于一种称为浮栅（Floating Gate）的结构。浮栅是一个与主要电路隔离的电荷储存区域。当存储单元被要求存储数据时，电荷可以被注入到浮栅中，表示存储的信息。这些电荷在浮栅中被困住并保持不变，即使断开外部电源，电荷也不会自行流失。</p>
+<p>但电学存储自带热耗损等，故寿命比磁盘低；但整体结构比较稳定，比磁盘抗摔（）</p>
+<p>磁盘：机械结构+磁头，由于有“移动磁头”这样的机械操作，因而速度最慢</p>
+<h3 id="2-2）cache的思想"><a href="#2-2）cache的思想" class="headerlink" title="2.2）cache的思想:"></a>2.2）cache的思想:</h3><p>对任意存储器，存储的容量越大，其访问速度必然越慢（或者说，做到访问速度和小容量的存储器相同，成本变高）</p>
+<p>如果CPU直接和内存交换信息，从内存里面读写的典型时间是250个时钟周期，在250个时钟周期内，现代计算机可以执行上千条甚至上万条指令</p>
+<p>也就是说，一次 *p &#x3D; value，相当于上万条 p +&#x3D; 4的执行时间，这是不可忍受的。因而我们需要一种能够更快速的读取内存中数据的方法，cache就诞生了</p>
+<p>现代计算机的存储结构是多层的，从上到下是类似SRAM到DRAM到闪存或者磁盘。而所谓cache，即高速缓存技术，就是把常用的数据存放到更小、更快的存储器（称之为缓存cache）之中，CPU读数据的时候先在cache之中找，找到了就不访问内存了，直接取cache之中的值</p>
+<p>由于快的前提是小，所以不可能存所有的值；而如果找不到，相当于没有cache，所以关键在于cache里面存什么值、如何更新之，使得使用之中尽可能多的值能够找到</p>
+<p>引入理论基础:</p>
+<ul>
+<li><p><strong>时间局部性（temporal locality）</strong>：如果某个数据被访问，那么它很有可能会再被访问。e.g. loop</p>
+</li>
+<li><p><strong>空间局部性（spatial locality）</strong>：如果某个数据被访问，临近的数据很有可能会被访问。 e.g. array</p>
+</li>
+</ul>
+<p>因而，考虑时间局部性，被访问的数据可以放进cache（访问到该数据时，更新cache以加入该数据）</p>
+<p>考虑空间局部性，在cache之中设计了block的结构。一条cache的数据段未必只能对应一个数据， 可以是一个更大的block, 比如16个单字（对应4条int），也可以结合预取机制（取决于对应软硬件设计），可以做到取a[0]的时候，取下a[0],a[1],a[2],a[3]，再取a[1]的时候就能cache hit</p>
+<p>（<strong>具体表现看怎么设计的</strong>， 比如一个32位的cache在取一个char[] 数组的时候可能会只取一个char, 其他的补0， 也可能会取多个char,看设计（硬件的预取机制））</p>
+<p>需要注意的是, block也<strong>不是越大越好</strong>，block（一条cache）是数据在存储层次之中传输的基本单位，更大的block必然会使数据在存储层次间传输消耗更多的时间，同时大的block使得同样大小的cache的block数量减小，更容易出现抖动（thrashing）</p>
+<h3 id="2-3）实际cache示例"><a href="#2-3）实际cache示例" class="headerlink" title="2.3）实际cache示例"></a>2.3）实际cache示例</h3><h4 id="2-3-1-直接映射-direct-mapped-cache"><a href="#2-3-1-直接映射-direct-mapped-cache" class="headerlink" title="2.3.1 直接映射(direct mapped) cache:"></a>2.3.1 直接映射(direct mapped) cache:</h4><p>怎么存cache呢？<br>最简单的方法是就按内存的地址，有一条加一条</p>
+<p>如：<br>0xabcdef00  …(第一条cache)<br>0x0012546   …(第二条cache)<br>…</p>
+<p><del>但这样存，如果要找某一条数据，就必须逐条比对，很是铸币</del></p>
+<p><del>联想到现实之中的图书馆，我们需要对每一条cache重新编号，并且按编号进行二分之类查找，这样找的才会快</del></p>
+<p><del>并且，由于数据本身就是2进制的，“2分查找”的实现都可以直接交给硬件，十分简单</del><br>上面不是最主要的原因，为cache重新编号的目的是使不同地址上的数据尽可能均匀分布（映射）到cache之中，以尽可能提高cache利用率和命中率</p>
+<p>（这也是为什么index要选地址的小位而不是大位的原因）</p>
+<p>一种做法是，假设我的cache 最大条数是8，那么我的地址mod 8, 就是我的cache编号index（这样的cache最大容量很自然应该是二的幂，对地址取模只需要取末几位即可）<br>0xfffffff 这条地址映射到cache编号为 111  （f: 1111）<br>0x12345678 这条地址映射到cache编号为000       (8: 1000)<br>…</p>
+<p>这样会把多条地址上的值映射到一个cache上，所以我们需要比较地址的其他值来确定要求的数据是否就是cache之中的数据。对应的，一条cache之中有一个lag标签，存了0xffffffff除了111（index）之外的其他部分。比对lag即可判别是否相同。</p>
+<p>还有一些细节，比如：程序开始的时候，cache里面的值并没有清空，这些乱七八糟的值应该有一个“是否有效”的标识符valid，占一位</p>
+<p>又比如：内存之中一定要按字节对齐，并且很多时候更进一步，按字对齐（4Byte，此时一个单独的char占了1Byte 和3个空Byte），这可以不存在lag之中；如果block不止一个字，比如4个字，那么地址之中还需要分离2位出来，指示某个特定的字在block之中的位置</p>
+<p><img lazyload src="/images/loading.svg" data-src="https://s2.loli.net/2023/10/20/tqA3a2VLgYsOSIN.png"><br>示例：64位存储地址，直接映射cache，cache最大容纳数据大小16KiB，cache一个block 4字，cache所占的实际空间是多少？</p>
+<p>解析：<br>16KiB&#x2F;4字 &#x3D; 1024 条cache &#x3D; 2^10<br>因而64位地址末10位是cache index<br>64位存储地址 -10- 2（内存对齐）-2(指示一个block之中单字位置,2*2&#x3D;4) &#x3D; 50位 lag </p>
+<p>[50 + 1(valid位) + 4*32（block）]*1024 &#x3D;179 Kib &#x3D; 179&#x2F;8 KiB &#x3D; 22.4KiB</p>
+<h4 id="2-3-2-N-way-set-associative-cache"><a href="#2-3-2-N-way-set-associative-cache" class="headerlink" title="2.3.2 N-way set-associative cache"></a>2.3.2 N-way set-associative cache</h4><p>上面的直接映射cache也有铸币的一点</p>
+<p>如果来回访问不同地址，但是相同index的内存块，就会全miss, 0 hit</p>
+<p>例如<br>4 lines cache， 数据段32位(意味着 地址扣去对齐后末两位是index)</p>
+<p>如果有这样的long long int array (4 word &#x2F; unit)<br>0 4 0 4 0 4 0 4…</p>
+<p>起始位置不妨设为0x12345678</p>
+<p>1：存0， index &#x3D; 00（8：1000）<br>2：存4， index &#x3D; 00  (8+4: 1100), cache miss, 用1 替换 00 line的cache存的0</p>
+<p>3:  用0替换4……<br>etc, 称为ping-pong effect， all miss</p>
+<p>更常见的实例代码如下</p>
+<pre><code>int x[12]=&#123;...&#125;;  // 12可换成任意4的倍数
+int y[12]=&#123;...&#125;;
+for(int i=0;i&lt;12; i++)&#123;
+    z[i] = x[i]*y[i];
+&#125;
+// 这个程序看起来很有空间相关性，理应得到很高的cache hit rate，但是，如果cache是direct-mapped cache,以4个block为例，由于x，y都是放在堆上且相邻定义，xy地址差的是32*4位的整数倍，两个数组的index相同，存入cache时会存入x，然后y cache miss,存入y，然后x cache miss，......
+</code></pre>
+<p>为了弥补这种铸币的错误，出现了N way set-associative cache<br>其思想为，将1个index对应1个cache block变为1个index 对应N个cache block</p>
+<p><img lazyload src="/images/loading.svg" data-src="https://s2.loli.net/2023/10/20/YD1N943hErwypgP.png"></p>
+<p>因而我们需要N个比较器，现在存0，放到index 00 block 1之中，存4， 放到index 00 block 2之中，…，能够解决周期&lt;N+1的ping-pong 问题</p>
+<p>读的时候，对N个block都比较一遍lag<br>由于比较器很贵，所以不是N越大越好<br>现代处理器N一般为8， 16，32等</p>
+<h3 id="2-4-写cache"><a href="#2-4-写cache" class="headerlink" title="2.4 写cache"></a>2.4 写cache</h3><p>先前的都是读，写主要有两种<br>write-through 和 write-back</p>
+<p>write-through: 每次写都同步更新cache和实际内存<br> 优点：数据可恢复（即使断电，内存里面也有）<br> 缺点：多次中断流水线，大大降低性能</p>
+<p>write-back：每次写，分为多种情况<br>核心思想是，将不必要立即改变的更新都先“存”到缓冲区，缓冲区满或者cache的该set满了，又或者要读一个已经被修改过的cache位时，才将缓冲区的数据写到内存，尽可能减少对流水线的打断</p>
+<p>优点：快<br>缺点：硬件实现复杂，成本高</p>
+<p>(write-back变种：如果读写共用一套cache, 那么前面说的读时就不需要从cache写回内存 ，那就是unified cache了，这样的好处是写性能是提高了，但也出现了很多新问题，比如优化策略、cache存储管理等)</p>
+<p>引入一个dirty bit来表示这个数据有没有被写过，如果一个数据是dirty的，读到它时先将写缓冲区的数据写回内存，再读内存、存入读cache（也就是说读之前需要在写那边检测一遍dirty）</p>
+<p>写时，写缓冲区满或者该cache block将要被替换之前一直写就行（还有设置dirty），如果写缓冲区满了或者该cache block将要被替换，写回内存；</p>
+<p>实际上的CPU基本都是write-back的</p>
+<p>几种cache (set)满了替换cache的策略：</p>
+<ul>
+<li><strong>LRU (Least Recently Used)</strong> — When we decide to evict a cache block to make space, we select the block that has been used the furthest back in time of all the blocks.</li>
+<li><strong>Random -</strong> When we decide to evict a cache block to make space, we randomly select one of the blocks in the cache to evict.</li>
+<li><strong>MRU (Most Recently Used)</strong> — When we decide to evict a cache block to make space, we select the block that has been used the most recently of all the blocks.</li>
+</ul>
+<h3 id="2-5-对实际code的启示"><a href="#2-5-对实际code的启示" class="headerlink" title="2.5 对实际code的启示"></a>2.5 对实际code的启示</h3><p>1.如果要高性能，少写list和tree, 指针式的寻址模式不符合cache，即使同样都是O（N），遍历一个链表比遍历一个数组慢几十上百倍也很正常（事实上，一般标准库的给的接口都是array式的tree, map, list， 如ArrayList而不是LinkList,又比如做hash的时候，各个桶实际上是数组方式排列的）。尽量多使用连续的内存，连续的读写</p>
+<p>2.能用临时变量保存中间结果，不要开数组之类</p>
+<p>3.数组尽量做步长为1的遍历，少做函数调用（sp指针读写）——为什么快排比堆排、归并快：和归并比，更好利用cache（归并需要新数组，2倍空间相当于减半cache），并且多次函数调用；和堆排比，大长度情况下堆排几乎没有cache</p>
+<p>4.矩阵相乘的重新排序：列寻址的数组没有利用cache，同时，使用临时变量而不是一直改变数组的值会明显快</p>
+<pre><code class="c++">// 最一般的实现
+for(int i=0;i&lt;n;i++)&#123;
+    for(int j=0;j&lt;n;j++)&#123;
+        int sum = 0;  // 用临时变量sum避免不断读写C[i][j], 提升性能
+        for(int k=0;k&lt;n;k++)&#123;
+            sum += A[i][k] * B[k][j];// 这里不好，B的列寻址不符合二维数组在内存之中的存储法，n大时，会全是cache miss
 
-      &:hover::-webkit-scrollbar-thumb
-        border 3px solid rgba(183, 183, 183, 0.3)
+        &#125;
+        C[i][j] = sum;
+    &#125;
+&#125;
 
-      &::-webkit-scrollbar
-        width 6px
-        height 6px
-        transition all 0.2s ease
-        display block
 
-      &::-webkit-scrollbar-track
-        background transparent
-        border none
+// 改进的实现
+for(int i=0;i&lt;n;i++)&#123;
+    for(int k=0;k&lt;n;j++)&#123;
+        for(int j=0;j&lt;n;k++)&#123;
+            C[i][j] += A[i][k] * B[k][j]; //利用了cache
+        &#125;
+    &#125;
+&#125;
+// 这里利用了Cache 但是增加了读写C[i][j]的时间开销，事实证明这是完全tradeoff的，并且，由于预存的硬件机制，C[i][j]的读写实际上也能cache
+</code></pre>
+<p>5.条件传送与条件控制：尽可能使用条件传送，尤其是当条件实质上不可预测时</p>
+<pre><code class="c++">// 如果a[i]&lt;b[i]，a[i]=min, b[i]= max，一个性能上不好的实现
+if(a[i]&lt;b[i])&#123;
+   // do nothing
+&#125;
+else&#123;
+    int t = a[i];
+    a[i] = b[i];
+    b[i] = t;
+&#125;
 
-      &::-webkit-scrollbar-thumb
-        border-radius 20px
-        border 3px solid rgba(183, 183, 183, 0)
-        transition all 0.2s ease
+//良好的实现 
+int min = a[i]&lt;b[i] ? a[i]:b[i];
+int max = a[i]&lt;b[i] ? b[i]:a[i];
+a[i] = min;
+b[i] = max;
 
-    .article-content-container
-      width calc(100% - 210px) !important
+// 原因：回想流水线的知识，当执行分支跳转的时候，如果分支预测错误，有严厉的惩罚时间。
+//本质上， 第一种写法相当于a[i]&lt;b[i]的结果，进入一个multiplexer，multiplexer的两个输入是PC+4和PC+offset，决定的是PC跳转。而a[i]和b[i]的大小很多情况下不可预测。
+//第二种写法相当于进入multiplexer 的不是PC+4 和 PC+ offset， 而是a[i]和b[i]，没有跳转，自然没有罚时
+</code></pre>
+<p> 6.能用临时变量保存的结果，不要有额外的开销<br> 例：</p>
+<pre><code class="c++"> for(int i=0;i&lt;strlen(s);++i) &#123;
+ //很烂的写法，每次都会算一遍strlen(s),如果s长不可接受
+ // P.S.为什么编译器不会优化这个，因为循环体之中的func可能有额外的作用，比如 i &lt; f(s)，而假设f(s)改变条件的同时也更新j,编译器如果把它移到函数外面，那么j的值就会出问题。
+ &#125;
+</code></pre>
+<h3 id="2-6-拓展链接"><a href="#2-6-拓展链接" class="headerlink" title="2.6 拓展链接"></a>2.6 拓展链接</h3><p><strong>现代CPU是怎么解决cache冲突的？</strong> <a class="link" target="_blank" rel="noopener" href="https://www.zhihu.com/collection/913723833">https://www.zhihu.com/collection/913723833 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 
-  +redefine-tablet()
-    .toc-content-container
-      display none !important
+        </div>
 
-    .article-content-container
-      width 100% !important
+        
+            <div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li><strong>标题:</strong> cache</li>
+        <li><strong>作者:</strong> Ayanami</li>
+        <li><strong>创建于
+                :</strong> 2023-10-16 00:00:00</li>
+        
+            <li>
+                <strong>更新于
+                    :</strong> 2023-10-20 20:09:34
+            </li>
+        
+        <li>
+            <strong>链接:</strong> https://ayanami1314.github.io/2023/10/16/cache/
+        </li>
+        <li>
+            <strong>
+                版权声明:
+            </strong>
+            
 
-    &.show-toc
-      .toc-content-container
-        display none
+            
+                本文章采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY-NC-SA 4.0</a> 进行许可。
+            
+        </li>
+    </ul>
+</div>
 
-      .article-content-container
-        width 100% !important
+            </div>
+        
 
-  .article-content-container
-    width 100%
-    transition width 0.2s ease
-    redefine-container(
-      false,
-      0,
-      0,
-      0,
-      30px
-    )
+        
+            <ul class="post-tags-box text-lg mt-1.5 flex-wrap justify-center flex md:hidden">
+                
+                    <li class="tag-item mx-0.5">
+                        <a href="/tags/%E5%85%A5%E9%97%A8/">#入门</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item mx-0.5">
+                        <a href="/tags/%E7%BB%84%E6%88%90%E7%BB%93%E6%9E%84/">#组成结构</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
 
-    +redefine-mobile()
-      padding 1.2rem 0.2rem
-      box-shadow none !important
-      max-width 100vw
+        
 
-    .article-header .avatar img
-          border-radius: $redefine-border-radius-medium * 0.87
-          width 100%
-          height 100%
-          // background var(--avatar-background-color)
+        
+            <div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
+                
+                    <div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+                        <a class="prev"
+                        rel="prev"
+                        href="/2023/10/16/c-memory-management%E3%80%81gdb%E3%80%81IEEE754/"
+                        >
+                            <span class="left arrow-icon flex justify-center items-center">
+                                <i class="fa-solid fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex justify-center items-center">
+                                <span class="post-nav-title-item">c-memory-management、gdb、IEEE754</span>
+                                <span class="post-nav-item">上一篇</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+                        <a class="next"
+                        rel="next"
+                        href="/2023/10/16/cs61a%E8%B8%A9%E8%BF%87%E7%9A%84%E5%9D%91/"
+                        >
+                            <span class="title flex justify-center items-center">
+                                <span class="post-nav-title-item">cs61a踩过的坑</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                            <span class="right arrow-icon flex justify-center items-center">
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
 
-    .article-header, .article-header-meta-info
-      margin-top 16px
 
-      +redefine-tablet()
-        transform scale(0.9)
-        transform-origin left top
+        
+            <div class="comment-container px-2 sm:px-6 md:px-8 pb-8">
+                <div class="comments-container mt-10 w-full ">
+    <div id="comment-anchor" class="w-full h-2.5"></div>
+    <div class="comment-area-title w-full my-1.5 md:my-2.5 text-xl md:text-3xl font-bold">
+        评论
+    </div>
+    
 
-    .article-content
-      margin-top $spacing-unit
-      padding-bottom 10px
-      word-wrap break-word
-      border-bottom 1px solid var(--border-color)
-      color var(--default-text-color)
+        
+            
+    <div id="waline"></div>
+    <script type="module" data-swup-reload-script>
+      import { init } from '/js/libs/waline.mjs';
 
-      &>:first-child
-        margin-top 0 !important
+      function loadWaline() {
+        init({
+          el: '#waline',
+          serverURL: 'https://example.example.com',
+          lang: 'zh-CN',
+          dark: 'body[class~="dark-mode"]',
+          requiredMeta: ['nick', 'mail'],
+          emoji: [],
+          recaptchaV3Key: "wasd",
+          
+        });
+      }
 
-    .article-prev, .article-next
+      if (typeof swup !== 'undefined') {
+        loadWaline();
+      } else {
+        window.addEventListener('DOMContentLoaded', loadWaline);
+      }
+    </script>
 
-        a
-          position relative
-          display block
-          width 100%
-          height 100%
-          box-sizing border-box
 
-          &.prev
-            padding-left $arrow-icon-width
 
-          &.next
-            padding-right $arrow-icon-width
+        
+    
+</div>
 
-          .arrow-icon
-            position absolute
-            top 0
-            height 100%
-            width $arrow-icon-width
+            </div>
+        
+    </div>
 
-            &.left
-              left 0
+    
+        <div class="toc-content-container">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <div class="toc-title">此页目录</div>
+        <div class="page-title">cache</div>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-cache"><span class="nav-text">2.cache</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1%EF%BC%89SRAM-DRAM%EF%BC%8C%E9%97%AA%E5%AD%98%E5%92%8C%E7%A3%81%E7%9B%98"><span class="nav-text">2.1）SRAM, DRAM，闪存和磁盘</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2%EF%BC%89cache%E7%9A%84%E6%80%9D%E6%83%B3"><span class="nav-text">2.2）cache的思想:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3%EF%BC%89%E5%AE%9E%E9%99%85cache%E7%A4%BA%E4%BE%8B"><span class="nav-text">2.3）实际cache示例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-%E5%86%99cache"><span class="nav-text">2.4 写cache</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-5-%E5%AF%B9%E5%AE%9E%E9%99%85code%E7%9A%84%E5%90%AF%E7%A4%BA"><span class="nav-text">2.5 对实际code的启示</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-6-%E6%8B%93%E5%B1%95%E9%93%BE%E6%8E%A5"><span class="nav-text">2.6 拓展链接</span></a></li></ol></li></ol>
 
-            &.right
-              right 0
+    </div>
+</div>
+        </div>
+    
+</div>
 
-          .title
-            width 100%
-            height 100%
 
-      .post-nav-item
-        display none
-
-        +redefine-tablet()
-          display inline-block
-
-      .post-nav-title-item
-        overflow hidden
-        text-overflow ellipsis
-        white-space nowrap
-
-        +redefine-tablet()
-          display none
-
-    .recommended-article
-      overflow visible !important
-
-      .recommended-mobile
-        display none
-        +redefine-tablet()
-          display block
-
-      .recommended-desktop
-        display block
-        +redefine-tablet()
-          display none
-
-      .recommended-article-group
-        padding 10px 0
-        display flex
-        justify-content space-between
-        flex-wrap wrap
-        overflow visible !important
-
-        @media screen and (max-width $device-tablet)
-          height 190px
-          overflow scroll
-
-          &::-webkit-scrollbar
-            width 0 !important
-
-          -ms-overflow-style none
-
-        .recommended-article-item
-          redefine-container(
-            false,
-            0,
-            0,
-            10px,
-            0
-          )
-          box-shadow var(--redefine-box-shadow-flat)
-          padding 12px !important
-          display flex
-          flex-wrap wrap
-          align-content center
-          justify-content center
-          align-items center
-          overflow hidden
-          width 32%
-          max-height 200px
-          margin-top: $gap * 0.5
-          margin-right 0
-
-          +redefine-tablet()
-            width 49%
-
-          img
-            display flex
-            width calc(100% + 24px)
-            height 150px
-            object-fit cover
-            border-radius $redefine-border-radius-medium-top
-            margin -12px -12px 0 -12px !important
-
-          span
-            margin-top 0.5rem
-            display block
-            display -webkit-box
-            -webkit-box-orient vertical
-            -webkit-line-clamp 1
-            overflow hidden
-
-  .toc-content-container
-    white-space nowrap
-    opacity 0
-    position sticky
-    top: $navbar-height + $spacing-unit
-    // border-radius $redefine-border-radius-large
-    border-radius $redefine-border-radius-none
-    // display none
-    // visibility hidden
-    // width $toc-container-width
-    width 0
-    height auto
-    max-height calc(100vh - 210px)
-    //margin-left 30px
-    // z-index $z-index-6
-    overflow-y auto
-    overflow-x hidden
-    float right
-    padding 10px
-    box-sizing border-box
-    box-shadow none !important
-    transition opacity 0.3s ease-out 0.3s
-    hover-style(
-      false,
-      0,
-      0
-    )
-    transition-t('display', '0', '0.3', 'ease-out')
-
-    +redefine-tablet()
-      left 0 !important
-      display none !important
-
-  figure.image-caption
-    img
-      margin-bottom 0
-
-    figcaption
-      margin-top 5px
-      margin-bottom 10px
-      text-align center
-      font-size 0.9rem
-      color var(--third-text-color)
 
                 
 
