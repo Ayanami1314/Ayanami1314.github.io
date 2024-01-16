@@ -1,1495 +1,971 @@
-
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="utf-8" />
-    <title>Archives | Ayanami&#39;s cave</title>
-    <meta name="author" content="Ayanami" />
-    <meta name="description" content="very good web, love from ayanami(x)" />
-    <meta name="keywords" content="" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
-    <link rel="icon" href="/images/head.jpg" />
-    <link rel="preconnect" href="https://cdn.staticfile.org" />
-<script src="https://cdn.staticfile.org/vue/3.3.4/vue.global.prod.min.js"></script>
-<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.4.0/css/all.min.css" />
-<link rel="preconnect" href="https://fonts.loli.net" />
-<link rel="preconnect" href="https://gstatic.loli.net" crossorigin />
-<link rel="stylesheet" href="https://fonts.loli.net/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap" />
-<script> const mixins = {}; </script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Hexo Theme Redefine">
+    
+    <meta name="author" content="Ayanami">
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="http://example.com/archives/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+        <meta name="description" content="very good web, love from ayanami(x)">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Ayanami&#39;s cave">
+<meta property="og:url" content="http://example.com/archives/index.html">
+<meta property="og:site_name" content="Ayanami&#39;s cave">
+<meta property="og:description" content="very good web, love from ayanami(x)">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="Ayanami">
+<meta name="twitter:card" content="summary">
+    
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/images/redefine-favicon.svg" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/redefine-favicon.svg">
+    <meta name="theme-color" content="#A31F34">
+    <link rel="shortcut icon" href="/images/redefine-favicon.svg">
+    <!--- Page Info-->
+    
+    <title>
+        
+            归档 -
+        
+        Ayanami&#39;s Cave
+    </title>
+
+    
+<link rel="stylesheet" href="/fonts/Chillax/chillax.css">
 
 
-<script src="https://cdn.staticfile.org/highlight.js/11.8.0/highlight.min.js"></script>
-<script src="https://cdn.staticfile.org/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
-<link
-    rel="stylesheet"
-    href="https://cdn.staticfile.org/highlight.js/11.8.0/styles/github.min.css"
-/>
-<script src="/js/lib/highlight.js"></script>
+    
+        <style>
+    :root {
+        --preloader-background-color: #fff;
+        --preloader-text-color: #000;
+    }
+
+    @media (prefers-color-scheme: dark) {
+        :root {
+            --preloader-background-color: #202124;
+            --preloader-text-color: #fff;
+        }
+    }
+
+    @media (prefers-color-scheme: light) {
+        :root {
+            --preloader-background-color: #fff;
+            --preloader-text-color: #000;
+        }
+    }
+
+    @media (max-width: 600px) {
+        .ml13 {
+            font-size: 2.6rem !important; /* Adjust this value as needed */
+        }
+    }
+
+    .preloader {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem; /* Tailwind 'gap-4' is 1rem */
+        align-items: center;
+        justify-content: center;
+        position: fixed;
+        padding: 12px;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh; /* 'h-screen' is 100% of the viewport height */
+        background-color: var(--preloader-background-color);
+        z-index: 1100; /* 'z-[1100]' sets the z-index */
+        transition: opacity 0.2s ease-in-out;
+    }
+
+    .ml13 {
+        font-size: 3.2rem;
+        /* text-transform: uppercase; */
+        color: var(--preloader-text-color);
+        letter-spacing: -1px;
+        font-weight: 500;
+        font-family: 'Chillax-Variable', sans-serif;
+        text-align: center;
+    }
+
+    .ml13 .word {
+        display: inline-flex;
+        flex-wrap: wrap;
+        white-space: nowrap;
+    }
+
+    .ml13 .letter {
+        display: inline-block;
+        line-height: 1em;
+    }
+</style>
+
+<div class="preloader">
+    
+<script src="/js/libs/anime.min.js"></script>
+
+    <h1 class="ml13">
+        Ayanami&#39;s Cave
+    </h1>
+    <script>
+        var textWrapper = document.querySelector('.ml13');
+        // Split text into words
+        var words = textWrapper.textContent.trim().split(' ');
+
+        // Clear the existing content
+        textWrapper.innerHTML = '';
+
+        // Wrap each word and its letters in spans
+        words.forEach(function(word) {
+            var wordSpan = document.createElement('span');
+            wordSpan.classList.add('word');
+            wordSpan.innerHTML = word.replace(/\S/g, "<span class='letter'>$&</span>");
+            textWrapper.appendChild(wordSpan);
+            textWrapper.appendChild(document.createTextNode(' ')); // Add space between words
+        });
 
 
-<script src="https://cdn.staticfile.org/KaTeX/0.16.8/katex.min.js"></script>
-<script src="https://cdn.staticfile.org/KaTeX/0.16.8/contrib/auto-render.min.js"></script>
-<link rel="stylesheet" href="https://cdn.staticfile.org/KaTeX/0.16.8/katex.min.css" />
-<script src="/js/lib/math.js"></script>
+        anime.timeline({loop: true})
+            .add({
+                targets: '.ml13 .letter',
+                translateY: [100,0],
+                translateZ: 0,
+                opacity: [0,1],
+                easing: "easeOutExpo",
+                duration: 1400,
+                delay: (el, i) => 300 + 30 * i
+            }).add({
+            targets: '.ml13 .letter',
+            translateY: [0,-100],
+            opacity: [1,0],
+            easing: "easeInExpo",
+            duration: 1200,
+            delay: (el, i) => 100 + 30 * i
+        });
+
+        let themeStatus = JSON.parse(localStorage.getItem('REDEFINE-THEME-STATUS'))?.isDark;
+
+        // If the theme status is not found in local storage, check the preferred color scheme
+        if (themeStatus === undefined || themeStatus === null) {
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                themeStatus = 'dark';
+            } else {
+                themeStatus = 'light';
+            }
+        }
+
+        // Now you can use the themeStatus variable in your code
+        if (themeStatus) {
+            document.documentElement.style.setProperty('--preloader-background-color', '#202124');
+            document.documentElement.style.setProperty('--preloader-text-color', '#fff');
+        } else {
+            document.documentElement.style.setProperty('--preloader-background-color', '#fff');
+            document.documentElement.style.setProperty('--preloader-text-color', '#000');
+        }
+
+        window.addEventListener('load', function () {
+            hidePreloaderAfterTimeout(1000); // Hide after 1000 milliseconds once the window has loaded
+        });
+
+        // Backup failsafe: Hide preloader after a maximum of 5000 milliseconds, regardless of the window load event
+        hidePreloaderAfterTimeout(5000);
+
+        function hidePreloaderAfterTimeout(delay) {
+            setTimeout(function () {
+                var preloader = document.querySelector('.preloader');
+                preloader.style.opacity = '0';
+                setTimeout(function () {
+                    preloader.style.display = 'none';
+                }, 200);
+            }, delay);
+        }
+    </script>
+</div>
+    
+
+    
+<link rel="stylesheet" href="/css/style.css">
 
 
-<script src="/js/lib/preview.js"></script>
+    
+        
+<link rel="stylesheet" href="/assets/build/styles.css">
 
+    
 
+    
+<link rel="stylesheet" href="/fonts/fonts.css">
 
-<script src="/js/lib/search.js"></script>
+    
+<link rel="stylesheet" href="/fonts/Satoshi/satoshi.css">
 
+    <!--- Font Part-->
+    
+    
+    
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap# Font URL to CSS file" rel="stylesheet">
+    
+    
+        <link href="https://github.com/ryanoasis/nerd-fonts/blob/master/css/nerd-fonts-generated.css" rel="stylesheet">
+    
 
+    <!--- Inject Part-->
+    
+    <script id="hexo-configurations">
+    window.config = {"hostname":"example.com","root":"/","language":"zh-CN"};
+    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true,"title_alignment":"left"},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":{"enable":true,"default":"cc_by_nc_sa"},"lazyload":true,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null},"global":{"fonts":{"chinese":{"enable":true,"family":"Noto Sans SC","url":"https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap# Font URL to CSS file"},"english":{"enable":true,"family":"Nerd Fonts","url":"https://github.com/ryanoasis/nerd-fonts/blob/master/css/nerd-fonts-generated.css"}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":true,"percentage":true},"website_counter":{"url":"https://cn.vercount.one/js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"preloader":true,"open_graph":true,"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/wallhaven-wqery6-light.webp","dark":"/images/wallhaven-wqery6-dark.webp"},"title":"Ayanami's Cave","subtitle":{"text":["Can code make the world better?"],"hitokoto":{"enable":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":false,"links":{"github":null,"instagram":null,"zhihu":null,"twitter":null,"email":null},"qrs":{"weixin":null}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null}]},"mermaid":{"enable":false,"version":"9.3.0"}},"version":"2.6.0","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"}},"search":{"enable":false,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":null,"links":null},"article_date_format":"auto","categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footerStart":"2022/8/17 11:45:14"};
+    window.lang_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
+    window.data = {"masonry":false};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
 
-<link rel="stylesheet" href="/css/main.css" />
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
 
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+    
+        
+<link rel="stylesheet" href="/fontawesome/sharp-solid.min.css">
+
+    
 <meta name="generator" content="Hexo 6.3.0"></head>
+
+
 <body>
-    <div id="layout">
-        <transition name="fade">
-            <div id="loading" v-show="loading">
-                <div id="loading-circle">
-                    <h2>LOADING</h2>
-                    <p>加载过慢请开启缓存 浏览器默认开启</p>
-                    <img src="/images/mika_loading.gif" />
-                </div>
-            </div>
-        </transition>
-        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
-    <nav id="desktop-menu">
-        <a class="title" href="/">
-            <span>AYANAMI&#39;S CAVE</span>
-        </a>
-        
-        <a href="/">
-            <i class="fa-solid fa-house fa-fw"></i>
-            <span>&ensp;Home</span>
-        </a>
-        
-        <a href="/about">
-            <i class="fa-solid fa-id-card fa-fw"></i>
-            <span>&ensp;About</span>
-        </a>
-        
-        <a href="/archives">
-            <i class="fa-solid fa-box-archive fa-fw"></i>
-            <span>&ensp;Archives</span>
-        </a>
-        
-        <a href="/categories">
-            <i class="fa-solid fa-bookmark fa-fw"></i>
-            <span>&ensp;Categories</span>
-        </a>
-        
-        <a href="/tags">
-            <i class="fa-solid fa-tags fa-fw"></i>
-            <span>&ensp;Tags</span>
-        </a>
-        
-    </nav>
-    <nav id="mobile-menu">
-        <div class="title" @click="showMenuItems = !showMenuItems">
-            <i class="fa-solid fa-bars fa-fw"></i>
-            <span>&emsp;AYANAMI&#39;S CAVE</span>
-        </div>
-        <transition name="slide">
-            <div class="items" v-show="showMenuItems">
-                
-                <a href="/">
-                    <div class="item">
-                        <div style="min-width: 20px; max-width: 50px; width: 10%">
-                            <i class="fa-solid fa-house fa-fw"></i>
-                        </div>
-                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
-                    </div>
-                </a>
-                
-                <a href="/about">
-                    <div class="item">
-                        <div style="min-width: 20px; max-width: 50px; width: 10%">
-                            <i class="fa-solid fa-id-card fa-fw"></i>
-                        </div>
-                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
-                    </div>
-                </a>
-                
-                <a href="/archives">
-                    <div class="item">
-                        <div style="min-width: 20px; max-width: 50px; width: 10%">
-                            <i class="fa-solid fa-box-archive fa-fw"></i>
-                        </div>
-                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
-                    </div>
-                </a>
-                
-                <a href="/categories">
-                    <div class="item">
-                        <div style="min-width: 20px; max-width: 50px; width: 10%">
-                            <i class="fa-solid fa-bookmark fa-fw"></i>
-                        </div>
-                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
-                    </div>
-                </a>
-                
-                <a href="/tags">
-                    <div class="item">
-                        <div style="min-width: 20px; max-width: 50px; width: 10%">
-                            <i class="fa-solid fa-tags fa-fw"></i>
-                        </div>
-                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
-                    </div>
-                </a>
-                
-            </div>
-        </transition>
-    </nav>
-</div>
-<transition name="fade">
-    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
-</transition>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
 
-        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+    
+        <span class="pjax-progress-bar"></span>
+<!--        <span class="swup-progress-icon">-->
+<!--            <i class="fa-solid fa-circle-notch fa-spin"></i>-->
+<!--        </span>-->
+    
+</div>
+
+
+<main class="page-container" id="swup">
+
+    
+
+    <div class="main-content-container">
+
+
+        <div class="main-content-header">
+            <header class="navbar-container">
+
+    <div class="navbar-content">
+        <div class="left">
             
-<div id="archives">
-    
-    <input id="search-bar" class="input" placeholder="搜索" v-model="rawSearch" />
-    
-    <div id="timeline-wrap" ref="timeline">
-        
-        <div class="timeline" data-title="进阶算法">
-            <div class="timeline-tail"></div>
-            <div class="timeline-content">
-                <div class="item-time">2023/10/16</div>
-                <a href="/2023/10/16/%E8%BF%9B%E9%98%B6%E7%AE%97%E6%B3%95/">
-                    <h3>进阶算法</h3>
-                </a>
-                <div class="info">
+            <a class="logo-title" href="/">
+                
+                Ayanami&#39;s Cave
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
                     
-                    
-                    <span class="tags">
-                        <span class="icon">
-                            <i class="fa-solid fa-tags fa-fw"></i>
-                        </span>
                         
-                        
-                        <span class="tag">
                             
-                            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #03a9f4">入门</a>
-                        </span>
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/%E7%AE%97%E6%B3%95/" style="color: #00a596">算法</a>
-                        </span>
-                        
-                    </span>
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/"
+                                        >
+                                    <i class="fa-regular fa-house fa-fw"></i>
+                                    首页
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
                     
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
                 </div>
             </div>
         </div>
-        
-        <div class="timeline" data-title="程序员的自我修养note1">
-            <div class="timeline-tail"></div>
-            <div class="timeline-content">
-                <div class="item-time">2023/10/16</div>
-                <a href="/2023/10/16/%E7%A8%8B%E5%BA%8F%E5%91%98%E7%9A%84%E8%87%AA%E6%88%91%E4%BF%AE%E5%85%BBnote1/">
-                    <h3>程序员的自我修养note1</h3>
-                </a>
-                <div class="info">
-                    
-                    
-                    <span class="tags">
-                        <span class="icon">
-                            <i class="fa-solid fa-tags fa-fw"></i>
-                        </span>
-                        
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #00a596">入门</a>
-                        </span>
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="color: #ffa2c4">操作系统</a>
-                        </span>
-                        
-                    </span>
-                    
-                </div>
-            </div>
-        </div>
-        
-        <div class="timeline" data-title="杂项">
-            <div class="timeline-tail"></div>
-            <div class="timeline-content">
-                <div class="item-time">2023/10/16</div>
-                <a href="/2023/10/16/%E6%9D%82%E9%A1%B9/">
-                    <h3>杂项</h3>
-                </a>
-                <div class="info">
-                    
-                    
-                    <span class="tags">
-                        <span class="icon">
-                            <i class="fa-solid fa-tags fa-fw"></i>
-                        </span>
-                        
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #03a9f4">入门</a>
-                        </span>
-                        
-                    </span>
-                    
-                </div>
-            </div>
-        </div>
-        
-        <div class="timeline" data-title="再探shell、makefile与cmake">
-            <div class="timeline-tail"></div>
-            <div class="timeline-content">
-                <div class="item-time">2023/10/16</div>
-                <a href="/2023/10/16/%E5%86%8D%E6%8E%A2shell%E3%80%81makefile%E4%B8%8Ecmake/">
-                    <h3>再探shell、makefile与cmake</h3>
-                </a>
-                <div class="info">
-                    
-                    
-                    <span class="tags">
-                        <span class="icon">
-                            <i class="fa-solid fa-tags fa-fw"></i>
-                        </span>
-                        
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #00bcd4">入门</a>
-                        </span>
-                        
-                    </span>
-                    
-                </div>
-            </div>
-        </div>
-        
-        <div class="timeline" data-title="一个小细节">
-            <div class="timeline-tail"></div>
-            <div class="timeline-content">
-                <div class="item-time">2023/10/16</div>
-                <a href="/2023/10/16/%E4%B8%80%E4%B8%AA%E5%B0%8F%E7%BB%86%E8%8A%82/">
-                    <h3>一个小细节</h3>
-                </a>
-                <div class="info">
-                    
-                    
-                    <span class="tags">
-                        <span class="icon">
-                            <i class="fa-solid fa-tags fa-fw"></i>
-                        </span>
-                        
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #00a596">入门</a>
-                        </span>
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/c/" style="color: #ffa2c4">c++</a>
-                        </span>
-                        
-                    </span>
-                    
-                </div>
-            </div>
-        </div>
-        
-        <div class="timeline" data-title="windows命令拓展">
-            <div class="timeline-tail"></div>
-            <div class="timeline-content">
-                <div class="item-time">2023/10/16</div>
-                <a href="/2023/10/16/windows%E5%91%BD%E4%BB%A4%E6%8B%93%E5%B1%95/">
-                    <h3>windows命令拓展</h3>
-                </a>
-                <div class="info">
-                    
-                    
-                    <span class="tags">
-                        <span class="icon">
-                            <i class="fa-solid fa-tags fa-fw"></i>
-                        </span>
-                        
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #ffa2c4">入门</a>
-                        </span>
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/%E5%91%BD%E4%BB%A4%E8%A1%8C/" style="color: #00bcd4">命令行</a>
-                        </span>
-                        
-                    </span>
-                    
-                </div>
-            </div>
-        </div>
-        
-        <div class="timeline" data-title="risc-v-intro">
-            <div class="timeline-tail"></div>
-            <div class="timeline-content">
-                <div class="item-time">2023/10/16</div>
-                <a href="/2023/10/16/risc-v-intro/">
-                    <h3>risc-v-intro</h3>
-                </a>
-                <div class="info">
-                    
-                    
-                    <span class="tags">
-                        <span class="icon">
-                            <i class="fa-solid fa-tags fa-fw"></i>
-                        </span>
-                        
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #ffa2c4">入门</a>
-                        </span>
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84/" style="color: #03a9f4">体系结构</a>
-                        </span>
-                        
-                    </span>
-                    
-                </div>
-            </div>
-        </div>
-        
-        <div class="timeline" data-title="maze">
-            <div class="timeline-tail"></div>
-            <div class="timeline-content">
-                <div class="item-time">2023/10/16</div>
-                <a href="/2023/10/16/maze/">
-                    <h3>maze</h3>
-                </a>
-                <div class="info">
-                    
-                    
-                    <span class="tags">
-                        <span class="icon">
-                            <i class="fa-solid fa-tags fa-fw"></i>
-                        </span>
-                        
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #ffa2c4">入门</a>
-                        </span>
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/%E6%B8%B8%E6%88%8F/" style="color: #ff7d73">游戏</a>
-                        </span>
-                        
-                    </span>
-                    
-                </div>
-            </div>
-        </div>
-        
-        <div class="timeline" data-title="java文件读写">
-            <div class="timeline-tail"></div>
-            <div class="timeline-content">
-                <div class="item-time">2023/10/16</div>
-                <a href="/2023/10/16/java%E6%96%87%E4%BB%B6%E8%AF%BB%E5%86%99/">
-                    <h3>java文件读写</h3>
-                </a>
-                <div class="info">
-                    
-                    
-                    <span class="tags">
-                        <span class="icon">
-                            <i class="fa-solid fa-tags fa-fw"></i>
-                        </span>
-                        
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #ffa2c4">入门</a>
-                        </span>
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/java/" style="color: #00a596">java</a>
-                        </span>
-                        
-                    </span>
-                    
-                </div>
-            </div>
-        </div>
-        
-        <div class="timeline" data-title="linux命令拓展">
-            <div class="timeline-tail"></div>
-            <div class="timeline-content">
-                <div class="item-time">2023/10/16</div>
-                <a href="/2023/10/16/linux%E5%91%BD%E4%BB%A4%E6%8B%93%E5%B1%95/">
-                    <h3>linux命令拓展</h3>
-                </a>
-                <div class="info">
-                    
-                    
-                    <span class="tags">
-                        <span class="icon">
-                            <i class="fa-solid fa-tags fa-fw"></i>
-                        </span>
-                        
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #00bcd4">入门</a>
-                        </span>
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/%E5%91%BD%E4%BB%A4%E8%A1%8C/" style="color: #ffa2c4">命令行</a>
-                        </span>
-                        
-                    </span>
-                    
-                </div>
-            </div>
-        </div>
-        
-        <div class="timeline" data-title="linker">
-            <div class="timeline-tail"></div>
-            <div class="timeline-content">
-                <div class="item-time">2023/10/16</div>
-                <a href="/2023/10/16/linker/">
-                    <h3>linker</h3>
-                </a>
-                <div class="info">
-                    
-                    
-                    <span class="tags">
-                        <span class="icon">
-                            <i class="fa-solid fa-tags fa-fw"></i>
-                        </span>
-                        
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #00a596">入门</a>
-                        </span>
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84/" style="color: #ff7d73">体系结构</a>
-                        </span>
-                        
-                    </span>
-                    
-                </div>
-            </div>
-        </div>
-        
-        <div class="timeline" data-title="git初步">
-            <div class="timeline-tail"></div>
-            <div class="timeline-content">
-                <div class="item-time">2023/10/16</div>
-                <a href="/2023/10/16/git%E5%88%9D%E6%AD%A5/">
-                    <h3>git初步</h3>
-                </a>
-                <div class="info">
-                    
-                    
-                    <span class="tags">
-                        <span class="icon">
-                            <i class="fa-solid fa-tags fa-fw"></i>
-                        </span>
-                        
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #ff7d73">入门</a>
-                        </span>
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/%E5%91%BD%E4%BB%A4%E8%A1%8C/" style="color: #ffa2c4">命令行</a>
-                        </span>
-                        
-                    </span>
-                    
-                </div>
-            </div>
-        </div>
-        
-        <div class="timeline" data-title="cs61a踩过的坑">
-            <div class="timeline-tail"></div>
-            <div class="timeline-content">
-                <div class="item-time">2023/10/16</div>
-                <a href="/2023/10/16/cs61a%E8%B8%A9%E8%BF%87%E7%9A%84%E5%9D%91/">
-                    <h3>cs61a踩过的坑</h3>
-                </a>
-                <div class="info">
-                    
-                    
-                    <span class="tags">
-                        <span class="icon">
-                            <i class="fa-solid fa-tags fa-fw"></i>
-                        </span>
-                        
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #00bcd4">入门</a>
-                        </span>
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/%E7%BB%8F%E9%AA%8C/" style="color: #ffa2c4">经验</a>
-                        </span>
-                        
-                    </span>
-                    
-                </div>
-            </div>
-        </div>
-        
-        <div class="timeline" data-title="c-memory-management、gdb、ieee754">
-            <div class="timeline-tail"></div>
-            <div class="timeline-content">
-                <div class="item-time">2023/10/16</div>
-                <a href="/2023/10/16/c-memory-management%E3%80%81gdb%E3%80%81IEEE754/">
-                    <h3>c-memory-management、gdb、IEEE754</h3>
-                </a>
-                <div class="info">
-                    
-                    
-                    <span class="tags">
-                        <span class="icon">
-                            <i class="fa-solid fa-tags fa-fw"></i>
-                        </span>
-                        
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #00bcd4">入门</a>
-                        </span>
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/%E7%BB%84%E6%88%90%E7%BB%93%E6%9E%84/" style="color: #ffa2c4">组成结构</a>
-                        </span>
-                        
-                    </span>
-                    
-                </div>
-            </div>
-        </div>
-        
-        <div class="timeline" data-title="ball-programming">
-            <div class="timeline-tail"></div>
-            <div class="timeline-content">
-                <div class="item-time">2023/10/16</div>
-                <a href="/2023/10/16/ball-programming/">
-                    <h3>ball-programming</h3>
-                </a>
-                <div class="info">
-                    
-                    
-                    <span class="tags">
-                        <span class="icon">
-                            <i class="fa-solid fa-tags fa-fw"></i>
-                        </span>
-                        
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #00a596">入门</a>
-                        </span>
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/%E6%B8%B8%E6%88%8F/" style="color: #ff7d73">游戏</a>
-                        </span>
-                        
-                    </span>
-                    
-                </div>
-            </div>
-        </div>
-        
-        <div class="timeline" data-title="stl-algorithm&gdb">
-            <div class="timeline-tail"></div>
-            <div class="timeline-content">
-                <div class="item-time">2023/10/16</div>
-                <a href="/2023/10/16/STL-algorithm&gdb/">
-                    <h3>STL-algorithm&amp;gdb</h3>
-                </a>
-                <div class="info">
-                    
-                    
-                    <span class="tags">
-                        <span class="icon">
-                            <i class="fa-solid fa-tags fa-fw"></i>
-                        </span>
-                        
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #00a596">入门</a>
-                        </span>
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/%E7%AE%97%E6%B3%95/" style="color: #00bcd4">算法</a>
-                        </span>
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/%E5%91%BD%E4%BB%A4%E8%A1%8C/" style="color: #03a9f4">命令行</a>
-                        </span>
-                        
-                    </span>
-                    
-                </div>
-            </div>
-        </div>
-        
-        <div class="timeline" data-title="sec-ded纠错算法">
-            <div class="timeline-tail"></div>
-            <div class="timeline-content">
-                <div class="item-time">2023/10/16</div>
-                <a href="/2023/10/16/SEC-DED%E7%BA%A0%E9%94%99%E7%AE%97%E6%B3%95/">
-                    <h3>SEC-DED纠错算法</h3>
-                </a>
-                <div class="info">
-                    
-                    
-                    <span class="tags">
-                        <span class="icon">
-                            <i class="fa-solid fa-tags fa-fw"></i>
-                        </span>
-                        
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #ff7d73">入门</a>
-                        </span>
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84/" style="color: #ffa2c4">体系结构</a>
-                        </span>
-                        
-                    </span>
-                    
-                </div>
-            </div>
-        </div>
-        
-        <div class="timeline" data-title="gitlet设计文档v2">
-            <div class="timeline-tail"></div>
-            <div class="timeline-content">
-                <div class="item-time">2023/10/16</div>
-                <a href="/2023/10/16/Gitlet%E8%AE%BE%E8%AE%A1%E6%96%87%E6%A1%A3v2/">
-                    <h3>Gitlet设计文档v2</h3>
-                </a>
-                <div class="info">
-                    
-                    
-                    <span class="tags">
-                        <span class="icon">
-                            <i class="fa-solid fa-tags fa-fw"></i>
-                        </span>
-                        
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #00a596">入门</a>
-                        </span>
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/%E7%BB%8F%E9%AA%8C/" style="color: #03a9f4">经验</a>
-                        </span>
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%96%87%E6%A1%A3/" style="color: #ffa2c4">设计文档</a>
-                        </span>
-                        
-                    </span>
-                    
-                </div>
-            </div>
-        </div>
-        
-        <div class="timeline" data-title="games101四五讲">
-            <div class="timeline-tail"></div>
-            <div class="timeline-content">
-                <div class="item-time">2023/10/16</div>
-                <a href="/2023/10/16/GAMES101%E5%9B%9B%E4%BA%94%E8%AE%B2/">
-                    <h3>GAMES101四五讲</h3>
-                </a>
-                <div class="info">
-                    
-                    
-                    <span class="tags">
-                        <span class="icon">
-                            <i class="fa-solid fa-tags fa-fw"></i>
-                        </span>
-                        
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #ffa2c4">入门</a>
-                        </span>
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6/" style="color: #00a596">图形学</a>
-                        </span>
-                        
-                    </span>
-                    
-                </div>
-            </div>
-        </div>
-        
-        <div class="timeline" data-title="games101踩过的坑">
-            <div class="timeline-tail"></div>
-            <div class="timeline-content">
-                <div class="item-time">2023/10/16</div>
-                <a href="/2023/10/16/GAMES101%E8%B8%A9%E8%BF%87%E7%9A%84%E5%9D%91/">
-                    <h3>GAMES101踩过的坑</h3>
-                </a>
-                <div class="info">
-                    
-                    
-                    <span class="tags">
-                        <span class="icon">
-                            <i class="fa-solid fa-tags fa-fw"></i>
-                        </span>
-                        
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #ffa2c4">入门</a>
-                        </span>
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/%E7%BB%8F%E9%AA%8C/" style="color: #03a9f4">经验</a>
-                        </span>
-                        
-                    </span>
-                    
-                </div>
-            </div>
-        </div>
-        
-        <div class="timeline" data-title="61c踩过的坑">
-            <div class="timeline-tail"></div>
-            <div class="timeline-content">
-                <div class="item-time">2023/10/16</div>
-                <a href="/2023/10/16/61c%E8%B8%A9%E8%BF%87%E7%9A%84%E5%9D%91/">
-                    <h3>61c踩过的坑</h3>
-                </a>
-                <div class="info">
-                    
-                    
-                    <span class="tags">
-                        <span class="icon">
-                            <i class="fa-solid fa-tags fa-fw"></i>
-                        </span>
-                        
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #00bcd4">入门</a>
-                        </span>
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/%E7%BB%8F%E9%AA%8C/" style="color: #00a596">经验</a>
-                        </span>
-                        
-                    </span>
-                    
-                </div>
-            </div>
-        </div>
-        
-        <div class="timeline" data-title="游戏代码设计哲学">
-            <div class="timeline-tail"></div>
-            <div class="timeline-content">
-                <div class="item-time">2023/10/16</div>
-                <a href="/2023/10/16/%E6%B8%B8%E6%88%8F%E4%BB%A3%E7%A0%81%E8%AE%BE%E8%AE%A1%E5%93%B2%E5%AD%A6/">
-                    <h3>游戏代码设计哲学</h3>
-                </a>
-                <div class="info">
-                    
-                    
-                    <span class="tags">
-                        <span class="icon">
-                            <i class="fa-solid fa-tags fa-fw"></i>
-                        </span>
-                        
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #ffa2c4">入门</a>
-                        </span>
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/%E6%B8%B8%E6%88%8F/" style="color: #03a9f4">游戏</a>
-                        </span>
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="color: #ffa2c4">设计模式</a>
-                        </span>
-                        
-                    </span>
-                    
-                </div>
-            </div>
-        </div>
-        
-        <div class="timeline" data-title="并查集">
-            <div class="timeline-tail"></div>
-            <div class="timeline-content">
-                <div class="item-time">2023/10/16</div>
-                <a href="/2023/10/16/%E5%B9%B6%E6%9F%A5%E9%9B%86/">
-                    <h3>并查集</h3>
-                </a>
-                <div class="info">
-                    
-                    
-                    <span class="tags">
-                        <span class="icon">
-                            <i class="fa-solid fa-tags fa-fw"></i>
-                        </span>
-                        
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #00bcd4">入门</a>
-                        </span>
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/%E7%AE%97%E6%B3%95/" style="color: #ff7d73">算法</a>
-                        </span>
-                        
-                    </span>
-                    
-                </div>
-            </div>
-        </div>
-        
-        <div class="timeline" data-title="python并发">
-            <div class="timeline-tail"></div>
-            <div class="timeline-content">
-                <div class="item-time">2023/10/16</div>
-                <a href="/2023/10/16/python%E5%B9%B6%E5%8F%91/">
-                    <h3>python并发</h3>
-                </a>
-                <div class="info">
-                    
-                    
-                    <span class="tags">
-                        <span class="icon">
-                            <i class="fa-solid fa-tags fa-fw"></i>
-                        </span>
-                        
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #03a9f4">入门</a>
-                        </span>
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/python/" style="color: #ffa2c4">python</a>
-                        </span>
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/%E5%B9%B6%E5%8F%91/" style="color: #ff7d73">并发</a>
-                        </span>
-                        
-                    </span>
-                    
-                </div>
-            </div>
-        </div>
-        
-        <div class="timeline" data-title="python并发">
-            <div class="timeline-tail"></div>
-            <div class="timeline-content">
-                <div class="item-time">2023/10/16</div>
-                <a href="/2023/10/16/2023-10-16-python%E5%B9%B6%E5%8F%91/">
-                    <h3>python并发</h3>
-                </a>
-                <div class="info">
-                    
-                    
-                    <span class="tags">
-                        <span class="icon">
-                            <i class="fa-solid fa-tags fa-fw"></i>
-                        </span>
-                        
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #00bcd4">入门</a>
-                        </span>
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/python/" style="color: #00a596">python</a>
-                        </span>
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/%E5%B9%B6%E5%8F%91/" style="color: #00bcd4">并发</a>
-                        </span>
-                        
-                    </span>
-                    
-                </div>
-            </div>
-        </div>
-        
-        <div class="timeline" data-title="树">
-            <div class="timeline-tail"></div>
-            <div class="timeline-content">
-                <div class="item-time">2023/10/16</div>
-                <a href="/2023/10/16/%E6%A0%91/">
-                    <h3>树</h3>
-                </a>
-                <div class="info">
-                    
-                    
-                    <span class="tags">
-                        <span class="icon">
-                            <i class="fa-solid fa-tags fa-fw"></i>
-                        </span>
-                        
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #ff7d73">入门</a>
-                        </span>
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/%E7%AE%97%E6%B3%95/" style="color: #03a9f4">算法</a>
-                        </span>
-                        
-                    </span>
-                    
-                </div>
-            </div>
-        </div>
-        
-        <div class="timeline" data-title="java进阶语法">
-            <div class="timeline-tail"></div>
-            <div class="timeline-content">
-                <div class="item-time">2023/10/16</div>
-                <a href="/2023/10/16/java%E8%BF%9B%E9%98%B6%E8%AF%AD%E6%B3%95/">
-                    <h3>java进阶语法</h3>
-                </a>
-                <div class="info">
-                    
-                    
-                    <span class="tags">
-                        <span class="icon">
-                            <i class="fa-solid fa-tags fa-fw"></i>
-                        </span>
-                        
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #00a596">入门</a>
-                        </span>
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/java/" style="color: #ffa2c4">java</a>
-                        </span>
-                        
-                    </span>
-                    
-                </div>
-            </div>
-        </div>
-        
-        <div class="timeline" data-title="call（compiler,assembler,linker&loader）">
-            <div class="timeline-tail"></div>
-            <div class="timeline-content">
-                <div class="item-time">2023/10/16</div>
-                <a href="/2023/10/16/CALL%EF%BC%88compiler,%20assembler,%20linker&loader%EF%BC%89/">
-                    <h3>CALL（compiler, assembler, linker&amp;loader）</h3>
-                </a>
-                <div class="info">
-                    
-                    
-                    <span class="tags">
-                        <span class="icon">
-                            <i class="fa-solid fa-tags fa-fw"></i>
-                        </span>
-                        
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #00a596">入门</a>
-                        </span>
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/%E7%BB%84%E6%88%90%E7%BB%93%E6%9E%84/" style="color: #00bcd4">组成结构</a>
-                        </span>
-                        
-                    </span>
-                    
-                </div>
-            </div>
-        </div>
-        
-        <div class="timeline" data-title="压缩和软件设计哲学">
-            <div class="timeline-tail"></div>
-            <div class="timeline-content">
-                <div class="item-time">2023/10/16</div>
-                <a href="/2023/10/16/%E5%8E%8B%E7%BC%A9%E5%92%8C%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E5%93%B2%E5%AD%A6/">
-                    <h3>压缩和软件设计哲学</h3>
-                </a>
-                <div class="info">
-                    
-                    
-                    <span class="tags">
-                        <span class="icon">
-                            <i class="fa-solid fa-tags fa-fw"></i>
-                        </span>
-                        
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #ff7d73">入门</a>
-                        </span>
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/%E7%AE%97%E6%B3%95/" style="color: #00a596">算法</a>
-                        </span>
-                        
-                    </span>
-                    
-                </div>
-            </div>
-        </div>
-        
-        <div class="timeline" data-title="图">
-            <div class="timeline-tail"></div>
-            <div class="timeline-content">
-                <div class="item-time">2023/10/16</div>
-                <a href="/2023/10/16/%E5%9B%BE/">
-                    <h3>图</h3>
-                </a>
-                <div class="info">
-                    
-                    
-                    <span class="tags">
-                        <span class="icon">
-                            <i class="fa-solid fa-tags fa-fw"></i>
-                        </span>
-                        
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #00bcd4">入门</a>
-                        </span>
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/%E7%AE%97%E6%B3%95/" style="color: #03a9f4">算法</a>
-                        </span>
-                        
-                    </span>
-                    
-                </div>
-            </div>
-        </div>
-        
-        <div class="timeline" data-title="pipeline">
-            <div class="timeline-tail"></div>
-            <div class="timeline-content">
-                <div class="item-time">2023/10/16</div>
-                <a href="/2023/10/16/pipeline/">
-                    <h3>pipeline</h3>
-                </a>
-                <div class="info">
-                    
-                    
-                    <span class="tags">
-                        <span class="icon">
-                            <i class="fa-solid fa-tags fa-fw"></i>
-                        </span>
-                        
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #ff7d73">入门</a>
-                        </span>
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84/" style="color: #ffa2c4">体系结构</a>
-                        </span>
-                        
-                    </span>
-                    
-                </div>
-            </div>
-        </div>
-        
-        <div class="timeline" data-title="cache">
-            <div class="timeline-tail"></div>
-            <div class="timeline-content">
-                <div class="item-time">2023/10/16</div>
-                <a href="/2023/10/16/cache/">
-                    <h3>cache</h3>
-                </a>
-                <div class="info">
-                    
-                    
-                    <span class="tags">
-                        <span class="icon">
-                            <i class="fa-solid fa-tags fa-fw"></i>
-                        </span>
-                        
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #03a9f4">入门</a>
-                        </span>
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/%E7%BB%84%E6%88%90%E7%BB%93%E6%9E%84/" style="color: #ffa2c4">组成结构</a>
-                        </span>
-                        
-                    </span>
-                    
-                </div>
-            </div>
-        </div>
-        
-        <div class="timeline" data-title="helloworld!">
-            <div class="timeline-tail"></div>
-            <div class="timeline-content">
-                <div class="item-time">2023/10/16</div>
-                <a href="/2023/10/16/Hello-World/">
-                    <h3>Hello World!</h3>
-                </a>
-                <div class="info">
-                    
-                    <span class="category">
-                        <a href="/categories/README/">
-                            <span class="icon">
-                                <i class="fa-solid fa-bookmark fa-fw"></i>
-                            </span>
-                            README
-                        </a>
-                    </span>
-                    
-                    
-                    <span class="tags">
-                        <span class="icon">
-                            <i class="fa-solid fa-tags fa-fw"></i>
-                        </span>
-                        
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/%E8%87%AA%E6%88%91%E4%BB%8B%E7%BB%8D/" style="color: #03a9f4">自我介绍</a>
-                        </span>
-                        
-                    </span>
-                    
-                </div>
-            </div>
-        </div>
-        
-        <div class="timeline" data-title="10.22随笔-argparse,bash通配符">
-            <div class="timeline-tail"></div>
-            <div class="timeline-content">
-                <div class="item-time">2023/10/21</div>
-                <a href="/2023/10/21/10-22%E9%9A%8F%E7%AC%94-argparse-bash%E9%80%9A%E9%85%8D%E7%AC%A6/">
-                    <h3>10.22随笔-argparse,bash通配符</h3>
-                </a>
-                <div class="info">
-                    
-                    
-                    <span class="tags">
-                        <span class="icon">
-                            <i class="fa-solid fa-tags fa-fw"></i>
-                        </span>
-                        
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/%E6%8A%80%E6%9C%AF%E9%9A%8F%E7%AC%94/" style="color: #ffa2c4">技术随笔</a>
-                        </span>
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%9F%BA%E7%A1%80/" style="color: #03a9f4">命令行基础</a>
-                        </span>
-                        
-                    </span>
-                    
-                </div>
-            </div>
-        </div>
-        
-        <div class="timeline" data-title="2023-11-6-正则表达式">
-            <div class="timeline-tail"></div>
-            <div class="timeline-content">
-                <div class="item-time">2023/11/15</div>
-                <a href="/2023/11/15/2023-11-6-%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">
-                    <h3>2023-11-6-正则表达式</h3>
-                </a>
-                <div class="info">
-                    
-                    
-                    <span class="tags">
-                        <span class="icon">
-                            <i class="fa-solid fa-tags fa-fw"></i>
-                        </span>
-                        
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%9F%BA%E7%A1%80/" style="color: #00a596">命令行基础</a>
-                        </span>
-                        
-                    </span>
-                    
-                </div>
-            </div>
-        </div>
-        
-        <div class="timeline" data-title="2023-11-6-11-13学习周记">
-            <div class="timeline-tail"></div>
-            <div class="timeline-content">
-                <div class="item-time">2023/11/15</div>
-                <a href="/2023/11/15/2023-11-6-11-13%E5%AD%A6%E4%B9%A0%E5%91%A8%E8%AE%B0/">
-                    <h3>2023-11-6-11-13学习周记</h3>
-                </a>
-                <div class="info">
-                    
-                    
-                    <span class="tags">
-                        <span class="icon">
-                            <i class="fa-solid fa-tags fa-fw"></i>
-                        </span>
-                        
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/%E5%AD%A6%E4%B9%A0%E5%91%A8%E8%AE%B0/" style="color: #00a596">学习周记</a>
-                        </span>
-                        
-                    </span>
-                    
-                </div>
-            </div>
-        </div>
-        
-        <div class="timeline" data-title="浅入理解断点和调试器">
-            <div class="timeline-tail"></div>
-            <div class="timeline-content">
-                <div class="item-time">2023/12/21</div>
-                <a href="/2023/12/21/%E6%B5%85%E5%85%A5%E7%90%86%E8%A7%A3%E6%96%AD%E7%82%B9%E5%92%8C%E8%B0%83%E8%AF%95%E5%99%A8/">
-                    <h3>浅入理解断点和调试器</h3>
-                </a>
-                <div class="info">
-                    
-                    
-                </div>
-            </div>
-        </div>
-        
-        <div class="timeline" data-title="南大pa历险记-持续更新中-">
-            <div class="timeline-tail"></div>
-            <div class="timeline-content">
-                <div class="item-time">2023/12/21</div>
-                <a href="/2023/12/21/%E5%8D%97%E5%A4%A7PA%E5%8E%86%E9%99%A9%E8%AE%B0-%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%E4%B8%AD/">
-                    <h3>南大PA历险记-持续更新中-</h3>
-                </a>
-                <div class="info">
-                    
-                    
-                </div>
-            </div>
-        </div>
-        
-        <div class="timeline" data-title="使用pycron库编写hexo自动部署脚本">
-            <div class="timeline-tail"></div>
-            <div class="timeline-content">
-                <div class="item-time">2023/12/21</div>
-                <a href="/2023/12/21/%E4%BD%BF%E7%94%A8pycron%E5%BA%93%E7%BC%96%E5%86%99hexo%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2%E8%84%9A%E6%9C%AC/">
-                    <h3>使用pycron库编写hexo自动部署脚本</h3>
-                </a>
-                <div class="info">
-                    
-                    
-                </div>
-            </div>
-        </div>
-        
-        <div class="timeline" data-title="sage(sagemath)试用">
-            <div class="timeline-tail"></div>
-            <div class="timeline-content">
-                <div class="item-time">2023/12/21</div>
-                <a href="/2023/12/21/sage-sagemath-%E8%AF%95%E7%94%A8/">
-                    <h3>sage(sagemath)试用</h3>
-                </a>
-                <div class="info">
-                    
-                    
-                </div>
-            </div>
-        </div>
-        
-        <div class="timeline" data-title="modern-cpp-学习-1-2023-12-8">
-            <div class="timeline-tail"></div>
-            <div class="timeline-content">
-                <div class="item-time">2023/12/21</div>
-                <a href="/2023/12/21/modern-cpp-%E5%AD%A6%E4%B9%A0-1-2023-12-8/">
-                    <h3>modern-cpp-学习-1-2023-12-8</h3>
-                </a>
-                <div class="info">
-                    
-                    
-                </div>
-            </div>
-        </div>
-        
-        <div class="timeline" data-title="mit-6-s081踩过的坑-持续更新中-">
-            <div class="timeline-tail"></div>
-            <div class="timeline-content">
-                <div class="item-time">2023/12/21</div>
-                <a href="/2023/12/21/mit-6-s081%E8%B8%A9%E8%BF%87%E7%9A%84%E5%9D%91-%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%E4%B8%AD/">
-                    <h3>mit-6-s081踩过的坑-持续更新中-</h3>
-                </a>
-                <div class="info">
-                    
-                    
-                </div>
-            </div>
-        </div>
-        
-        <div class="timeline" data-title="10.21随笔">
-            <div class="timeline-tail"></div>
-            <div class="timeline-content">
-                <div class="item-time">2023/12/21</div>
-                <a href="/2023/12/21/10-21-%E9%9A%8F%E7%AC%94/">
-                    <h3>10.21 随笔</h3>
-                </a>
-                <div class="info">
-                    
-                    
-                </div>
-            </div>
-        </div>
-        
-        <div class="timeline" data-title="11-14-11-26学习双周记">
-            <div class="timeline-tail"></div>
-            <div class="timeline-content">
-                <div class="item-time">2023/12/21</div>
-                <a href="/2023/12/21/11-14-11-26%E5%AD%A6%E4%B9%A0%E5%8F%8C%E5%91%A8%E8%AE%B0/">
-                    <h3>11-14-11-26学习双周记</h3>
-                </a>
-                <div class="info">
-                    
-                    
-                </div>
-            </div>
-        </div>
-        
-        <div class="timeline" data-title="10-27技术随笔">
-            <div class="timeline-tail"></div>
-            <div class="timeline-content">
-                <div class="item-time">2023/12/21</div>
-                <a href="/2023/12/21/10-27%E6%8A%80%E6%9C%AF%E9%9A%8F%E7%AC%94/">
-                    <h3>10-27技术随笔</h3>
-                </a>
-                <div class="info">
-                    
-                    
-                </div>
-            </div>
-        </div>
-        
-        <div class="timeline" data-title="10.26技术随笔">
-            <div class="timeline-tail"></div>
-            <div class="timeline-content">
-                <div class="item-time">2023/12/21</div>
-                <a href="/2023/12/21/10-26-%E6%8A%80%E6%9C%AF%E9%9A%8F%E7%AC%94/">
-                    <h3>10.26 技术随笔</h3>
-                </a>
-                <div class="info">
-                    
-                    
-                </div>
-            </div>
-        </div>
-        
     </div>
+
+    <!-- Mobile drawer -->
+    <div class="navbar-drawer h-screen w-full absolute top-0 left-0 bg-background-color flex flex-col justify-between">
+        <ul class="drawer-navbar-list flex flex-col px-4 justify-center items-start">
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/"
+                        >
+                            <span>
+                                首页
+                            </span>
+                            
+                                <i class="fa-regular fa-house fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+        </ul>
+
+        <div class="statistics flex justify-around my-2.5">
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">19</div>
+        <div class="label text-third-text-color text-sm">标签</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">1</div>
+        <div class="label text-third-text-color text-sm">分类</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">46</div>
+        <div class="label text-third-text-color text-sm">文章</div>
+    </a>
+</div>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="main-content-body">
+
+            
+
+            <div class="main-content">
+
+                
+                    <div class="archive-container shadow-none hover:shadow-none sm:shadow-redefine sm:hover:shadow-redefine-hover">
+    
+
+<div class="archive-list-container">
+    
+        <section class="archive-item">
+            <div class="archive-item-header flex flex-row items-center mb-2">
+                <span class="archive-year font-semibold text-3xl mr-2">2023</span>
+                <span class="archive-year-post-count text-xs md:text-sm font-bold rounded-small bg-third-background-color py-[2px] px-[10px] border border-border-color">46</span>
+            </div>
+            <ul class="article-list pl-8 text-lg leading-[1.5]">
+              
+                
+                    
+                    <li class="article-item" date-is='12-21'>
+                
+                
+                    <a href="/2023/12/21/10-21-%E9%9A%8F%E7%AC%94/" class="block overflow-hidden">
+                        <span class="article-title mb-0.5 text-2xl">10.21 随笔</span>
+                    </a>
+                
+              
+                
+                
+                    <a href="/2023/12/21/10-27%E6%8A%80%E6%9C%AF%E9%9A%8F%E7%AC%94/" class="block overflow-hidden">
+                        <span class="article-title mb-0.5 text-2xl">10-27技术随笔</span>
+                    </a>
+                
+              
+                
+                
+                    <a href="/2023/12/21/11-14-11-26%E5%AD%A6%E4%B9%A0%E5%8F%8C%E5%91%A8%E8%AE%B0/" class="block overflow-hidden">
+                        <span class="article-title mb-0.5 text-2xl">11-14-11-26学习双周记</span>
+                    </a>
+                
+              
+                
+                
+                    <a href="/2023/12/21/10-26-%E6%8A%80%E6%9C%AF%E9%9A%8F%E7%AC%94/" class="block overflow-hidden">
+                        <span class="article-title mb-0.5 text-2xl">10.26 技术随笔</span>
+                    </a>
+                
+              
+                
+                
+                    <a href="/2023/12/21/modern-cpp-%E5%AD%A6%E4%B9%A0-1-2023-12-8/" class="block overflow-hidden">
+                        <span class="article-title mb-0.5 text-2xl">modern-cpp-学习-1-2023-12-8</span>
+                    </a>
+                
+              
+                
+                
+                    <a href="/2023/12/21/mit-6-s081%E8%B8%A9%E8%BF%87%E7%9A%84%E5%9D%91-%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%E4%B8%AD/" class="block overflow-hidden">
+                        <span class="article-title mb-0.5 text-2xl">mit-6-s081踩过的坑-持续更新中-</span>
+                    </a>
+                
+              
+                
+                
+                    <a href="/2023/12/21/sage-sagemath-%E8%AF%95%E7%94%A8/" class="block overflow-hidden">
+                        <span class="article-title mb-0.5 text-2xl">sage(sagemath)试用</span>
+                    </a>
+                
+              
+                
+                
+                    <a href="/2023/12/21/%E4%BD%BF%E7%94%A8pycron%E5%BA%93%E7%BC%96%E5%86%99hexo%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2%E8%84%9A%E6%9C%AC/" class="block overflow-hidden">
+                        <span class="article-title mb-0.5 text-2xl">使用pycron库编写hexo自动部署脚本</span>
+                    </a>
+                
+              
+                
+                
+                    <a href="/2023/12/21/%E5%8D%97%E5%A4%A7PA%E5%8E%86%E9%99%A9%E8%AE%B0-%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%E4%B8%AD/" class="block overflow-hidden">
+                        <span class="article-title mb-0.5 text-2xl">南大PA历险记-持续更新中-</span>
+                    </a>
+                
+              
+                
+                
+                    <a href="/2023/12/21/%E6%B5%85%E5%85%A5%E7%90%86%E8%A7%A3%E6%96%AD%E7%82%B9%E5%92%8C%E8%B0%83%E8%AF%95%E5%99%A8/" class="block overflow-hidden">
+                        <span class="article-title mb-0.5 text-2xl">浅入理解断点和调试器</span>
+                    </a>
+                
+              
+                
+                    
+                    <li class="article-item" date-is='11-15'>
+                
+                
+                    <a href="/2023/11/15/2023-11-6-11-13%E5%AD%A6%E4%B9%A0%E5%91%A8%E8%AE%B0/" class="block overflow-hidden">
+                        <span class="article-title mb-0.5 text-2xl">2023-11-6-11-13学习周记</span>
+                    </a>
+                
+              
+                
+                
+                    <a href="/2023/11/15/2023-11-6-%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" class="block overflow-hidden">
+                        <span class="article-title mb-0.5 text-2xl">2023-11-6-正则表达式</span>
+                    </a>
+                
+              
+                
+                    
+                    <li class="article-item" date-is='10-21'>
+                
+                
+                    <a href="/2023/10/21/10-22%E9%9A%8F%E7%AC%94-argparse-bash%E9%80%9A%E9%85%8D%E7%AC%A6/" class="block overflow-hidden">
+                        <span class="article-title mb-0.5 text-2xl">10.22随笔-argparse,bash通配符</span>
+                    </a>
+                
+              
+                
+                    
+                    <li class="article-item" date-is='10-16'>
+                
+                
+                    <a href="/2023/10/16/Hello-World/" class="block overflow-hidden">
+                        <span class="article-title mb-0.5 text-2xl">Hello World!</span>
+                    </a>
+                
+              
+                
+                
+                    <a href="/2023/10/16/2023-10-16-python%E5%B9%B6%E5%8F%91/" class="block overflow-hidden">
+                        <span class="article-title mb-0.5 text-2xl">python并发</span>
+                    </a>
+                
+              
+                
+                
+                    <a href="/2023/10/16/61c%E8%B8%A9%E8%BF%87%E7%9A%84%E5%9D%91/" class="block overflow-hidden">
+                        <span class="article-title mb-0.5 text-2xl">61c踩过的坑</span>
+                    </a>
+                
+              
+                
+                
+                    <a href="/2023/10/16/CALL%EF%BC%88compiler,%20assembler,%20linker&loader%EF%BC%89/" class="block overflow-hidden">
+                        <span class="article-title mb-0.5 text-2xl">CALL（compiler, assembler, linker&amp;loader）</span>
+                    </a>
+                
+              
+                
+                
+                    <a href="/2023/10/16/GAMES101%E5%9B%9B%E4%BA%94%E8%AE%B2/" class="block overflow-hidden">
+                        <span class="article-title mb-0.5 text-2xl">GAMES101四五讲</span>
+                    </a>
+                
+              
+                
+                
+                    <a href="/2023/10/16/GAMES101%E8%B8%A9%E8%BF%87%E7%9A%84%E5%9D%91/" class="block overflow-hidden">
+                        <span class="article-title mb-0.5 text-2xl">GAMES101踩过的坑</span>
+                    </a>
+                
+              
+                
+                
+                    <a href="/2023/10/16/Gitlet%E8%AE%BE%E8%AE%A1%E6%96%87%E6%A1%A3v2/" class="block overflow-hidden">
+                        <span class="article-title mb-0.5 text-2xl">Gitlet设计文档v2</span>
+                    </a>
+                
+              
+                
+                
+                    <a href="/2023/10/16/SEC-DED%E7%BA%A0%E9%94%99%E7%AE%97%E6%B3%95/" class="block overflow-hidden">
+                        <span class="article-title mb-0.5 text-2xl">SEC-DED纠错算法</span>
+                    </a>
+                
+              
+                
+                
+                    <a href="/2023/10/16/ball-programming/" class="block overflow-hidden">
+                        <span class="article-title mb-0.5 text-2xl">ball-programming</span>
+                    </a>
+                
+              
+                
+                
+                    <a href="/2023/10/16/c-memory-management%E3%80%81gdb%E3%80%81IEEE754/" class="block overflow-hidden">
+                        <span class="article-title mb-0.5 text-2xl">c-memory-management、gdb、IEEE754</span>
+                    </a>
+                
+              
+                
+                
+                    <a href="/2023/10/16/cache/" class="block overflow-hidden">
+                        <span class="article-title mb-0.5 text-2xl">cache</span>
+                    </a>
+                
+              
+                
+                
+                    <a href="/2023/10/16/cs61a%E8%B8%A9%E8%BF%87%E7%9A%84%E5%9D%91/" class="block overflow-hidden">
+                        <span class="article-title mb-0.5 text-2xl">cs61a踩过的坑</span>
+                    </a>
+                
+              
+                
+                
+                    <a href="/2023/10/16/git%E5%88%9D%E6%AD%A5/" class="block overflow-hidden">
+                        <span class="article-title mb-0.5 text-2xl">git初步</span>
+                    </a>
+                
+              
+                
+                
+                    <a href="/2023/10/16/java%E6%96%87%E4%BB%B6%E8%AF%BB%E5%86%99/" class="block overflow-hidden">
+                        <span class="article-title mb-0.5 text-2xl">java文件读写</span>
+                    </a>
+                
+              
+                
+                
+                    <a href="/2023/10/16/STL-algorithm&gdb/" class="block overflow-hidden">
+                        <span class="article-title mb-0.5 text-2xl">STL-algorithm&amp;gdb</span>
+                    </a>
+                
+              
+                
+                
+                    <a href="/2023/10/16/java%E8%BF%9B%E9%98%B6%E8%AF%AD%E6%B3%95/" class="block overflow-hidden">
+                        <span class="article-title mb-0.5 text-2xl">java进阶语法</span>
+                    </a>
+                
+              
+                
+                
+                    <a href="/2023/10/16/linux%E5%91%BD%E4%BB%A4%E6%8B%93%E5%B1%95/" class="block overflow-hidden">
+                        <span class="article-title mb-0.5 text-2xl">linux命令拓展</span>
+                    </a>
+                
+              
+                
+                
+                    <a href="/2023/10/16/linker/" class="block overflow-hidden">
+                        <span class="article-title mb-0.5 text-2xl">linker</span>
+                    </a>
+                
+              
+                
+                
+                    <a href="/2023/10/16/maze/" class="block overflow-hidden">
+                        <span class="article-title mb-0.5 text-2xl">maze</span>
+                    </a>
+                
+              
+                
+                
+                    <a href="/2023/10/16/pipeline/" class="block overflow-hidden">
+                        <span class="article-title mb-0.5 text-2xl">pipeline</span>
+                    </a>
+                
+              
+                
+                
+                    <a href="/2023/10/16/python%E5%B9%B6%E5%8F%91/" class="block overflow-hidden">
+                        <span class="article-title mb-0.5 text-2xl">python并发</span>
+                    </a>
+                
+              
+                
+                
+                    <a href="/2023/10/16/risc-v-intro/" class="block overflow-hidden">
+                        <span class="article-title mb-0.5 text-2xl">risc-v-intro</span>
+                    </a>
+                
+              
+                
+                
+                    <a href="/2023/10/16/windows%E5%91%BD%E4%BB%A4%E6%8B%93%E5%B1%95/" class="block overflow-hidden">
+                        <span class="article-title mb-0.5 text-2xl">windows命令拓展</span>
+                    </a>
+                
+              
+                
+                
+                    <a href="/2023/10/16/%E5%86%8D%E6%8E%A2shell%E3%80%81makefile%E4%B8%8Ecmake/" class="block overflow-hidden">
+                        <span class="article-title mb-0.5 text-2xl">再探shell、makefile与cmake</span>
+                    </a>
+                
+              
+                
+                
+                    <a href="/2023/10/16/%E5%8E%8B%E7%BC%A9%E5%92%8C%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E5%93%B2%E5%AD%A6/" class="block overflow-hidden">
+                        <span class="article-title mb-0.5 text-2xl">压缩和软件设计哲学</span>
+                    </a>
+                
+              
+                
+                
+                    <a href="/2023/10/16/%E5%9B%BE/" class="block overflow-hidden">
+                        <span class="article-title mb-0.5 text-2xl">图</span>
+                    </a>
+                
+              
+                
+                
+                    <a href="/2023/10/16/%E6%9D%82%E9%A1%B9/" class="block overflow-hidden">
+                        <span class="article-title mb-0.5 text-2xl">杂项</span>
+                    </a>
+                
+              
+                
+                
+                    <a href="/2023/10/16/%E5%B9%B6%E6%9F%A5%E9%9B%86/" class="block overflow-hidden">
+                        <span class="article-title mb-0.5 text-2xl">并查集</span>
+                    </a>
+                
+              
+                
+                
+                    <a href="/2023/10/16/%E6%A0%91/" class="block overflow-hidden">
+                        <span class="article-title mb-0.5 text-2xl">树</span>
+                    </a>
+                
+              
+                
+                
+                    <a href="/2023/10/16/%E6%B8%B8%E6%88%8F%E4%BB%A3%E7%A0%81%E8%AE%BE%E8%AE%A1%E5%93%B2%E5%AD%A6/" class="block overflow-hidden">
+                        <span class="article-title mb-0.5 text-2xl">游戏代码设计哲学</span>
+                    </a>
+                
+              
+                
+                
+                    <a href="/2023/10/16/%E7%A8%8B%E5%BA%8F%E5%91%98%E7%9A%84%E8%87%AA%E6%88%91%E4%BF%AE%E5%85%BBnote1/" class="block overflow-hidden">
+                        <span class="article-title mb-0.5 text-2xl">程序员的自我修养note1</span>
+                    </a>
+                
+              
+                
+                
+                    <a href="/2023/10/16/%E8%BF%9B%E9%98%B6%E7%AE%97%E6%B3%95/" class="block overflow-hidden">
+                        <span class="article-title mb-0.5 text-2xl">进阶算法</span>
+                    </a>
+                
+              
+                
+                
+                    <a href="/2023/10/16/%E4%B8%80%E4%B8%AA%E5%B0%8F%E7%BB%86%E8%8A%82/" class="block overflow-hidden">
+                        <span class="article-title mb-0.5 text-2xl">一个小细节</span>
+                    </a>
+                
+              
+            </ul>
+        </section>
+    
 </div>
 
-            <footer id="footer">
-    <div id="footer-wrap">
-        <div>
-            &copy;
-            2023 - 2023 Ayanami&#39;s cave
-            <span id="footer-icon">
-                <i class="fa-solid fa-font-awesome fa-fw"></i>
-            </span>
-            &commat;Ayanami
-        </div>
-        <div>
-            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
-            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
-        </div>
-        
-    </div>
-</footer>
+</div>
+
+                
+
+            </div>
+
+            
 
         </div>
+
+        <div class="main-content-footer">
+            <footer class="footer mt-5 py-5 h-auto text-base text-third-text-color relative border-t-2 border-t-border-color">
+    <div class="info-container py-3 text-center">
         
-        <transition name="fade">
-            <div id="preview" ref="preview" v-show="previewShow">
-                <img id="preview-content" ref="previewContent" />
+        <div class="text-center">
+            &copy;
+            
+              <span>2022</span>
+              -
+            
+            2024&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">Ayanami</a>
+        </div>
+        
+            <script data-swup-reload-script src="https://cn.vercount.one/js"></script>
+            <div class="relative text-center lg:absolute lg:right-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-right">
+                
+                    <span id="busuanzi_container_site_uv" class="lg:!block">
+                        <span class="text-sm">访问人数</span>
+                        <span id="busuanzi_value_site_uv"></span>
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv" class="lg:!block">
+                        <span class="text-sm">总访问量</span>
+                        <span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
             </div>
-        </transition>
         
+        <div class="relative text-center lg:absolute lg:left-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-left">
+            <span class="lg:block text-sm">由 <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg class="relative top-[2px] inline-block align-baseline" version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" class="text-base" href="https://hexo.io">Hexo</a> 驱动</span>
+            <span class="text-sm lg:block">主题&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.6.0</a></span>
+        </div>
+        
+        
+            <div>
+                博客已运行 <span class="odometer" id="runtime_days" ></span> 天 <span class="odometer" id="runtime_hours"></span> 小时 <span class="odometer" id="runtime_minutes"></span> 分钟 <span class="odometer" id="runtime_seconds"></span> 秒
+            </div>
+        
+        
+            <script data-swup-reload-script>
+                try {
+                    function odometer_init() {
+                    const elements = document.querySelectorAll('.odometer');
+                    elements.forEach(el => {
+                        new Odometer({
+                            el,
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
+                    });
+                    }
+                    odometer_init();
+                } catch (error) {}
+            </script>
+        
+        
+        
+    </div>  
+</footer>
+        </div>
     </div>
-    <script src="/js/main.js"></script>
+
     
+
+    <div class="right-side-tools-container">
+        <div class="side-tools-container">
+    <ul class="hidden-tools-list">
+        <li class="right-bottom-tools tool-font-adjust-plus flex justify-center items-center">
+            <i class="fa-regular fa-magnifying-glass-plus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-font-adjust-minus flex justify-center items-center">
+            <i class="fa-regular fa-magnifying-glass-minus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-dark-light-toggle flex justify-center items-center">
+            <i class="fa-regular fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="right-bottom-tools tool-scroll-to-bottom flex justify-center items-center">
+            <i class="fa-regular fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="visible-tools-list">
+        <li class="right-bottom-tools toggle-tools-list flex justify-center items-center">
+            <i class="fa-regular fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="right-bottom-tools tool-scroll-to-top flex justify-center items-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+
+</main>
+
+
+    
+<script src="/js/libs/Swup.min.js"></script>
+
+<script src="/js/libs/SwupSlideTheme.min.js"></script>
+
+<script src="/js/libs/SwupScriptsPlugin.min.js"></script>
+
+<script src="/js/libs/SwupProgressPlugin.min.js"></script>
+
+<script src="/js/libs/SwupScrollPlugin.min.js"></script>
+
+<script src="/js/libs/SwupPreloadPlugin.min.js"></script>
+
+<script>
+    const swup = new Swup({
+        plugins: [
+            new SwupScriptsPlugin({
+                optin: true,
+            }),
+            new SwupProgressPlugin(),
+            new SwupScrollPlugin({
+                offset: 80,
+            }),
+            new SwupSlideTheme({
+                mainElement: ".main-content-body",
+            }),
+            new SwupPreloadPlugin(),
+        ],
+        containers: ["#swup"],
+    });
+</script>
+
+
+
+
+
+
+
+<script src="/js/tools/imageViewer.js" type="module"></script>
+
+<script src="/js/utils.js" type="module"></script>
+
+<script src="/js/main.js" type="module"></script>
+
+<script src="/js/layouts/navbarShrink.js" type="module"></script>
+
+<script src="/js/tools/scrollTopBottom.js" type="module"></script>
+
+<script src="/js/tools/lightDarkSwitch.js" type="module"></script>
+
+<script src="/js/layouts/categoryList.js" type="module"></script>
+
+
+
+
+
+    
+<script src="/js/tools/codeBlock.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/layouts/lazyload.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/tools/runtime.js"></script>
+
+    
+<script src="/js/libs/odometer.min.js"></script>
+
+    
+<link rel="stylesheet" href="/assets/odometer-theme-minimal.css">
+
+
+
+
+  
+<script src="/js/libs/Typed.min.js"></script>
+
+  
+<script src="/js/plugins/typed.js" type="module"></script>
+
+
+
+
+
+
+
+
+
+<div class="post-scripts" data-swup-reload-script>
+    
+        
+<script src="/js/tools/tocToggle.js" type="module"></script>
+
+<script src="/js/layouts/toc.js" type="module"></script>
+
+<script src="/js/plugins/tabs.js" type="module"></script>
+
+    
+</div>
+
+
 </body>
 </html>
