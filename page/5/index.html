@@ -13,14 +13,14 @@
     
     <!--- Seo Part-->
     
-    <link rel="canonical" href="http://example.com/404.html"/>
+    <link rel="canonical" href="http://example.com/page/5/"/>
     <meta name="robots" content="index,follow">
     <meta name="googlebot" content="index,follow">
     <meta name="revisit-after" content="1 days">
     
         <meta property="og:type" content="website">
-<meta property="og:title" content="Page Not Found">
-<meta property="og:url" content="http://example.com/404.html">
+<meta property="og:title" content="Ayanami&#39;s cave">
+<meta property="og:url" content="http://example.com/page/5/index.html">
 <meta property="og:site_name" content="Ayanami&#39;s cave">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:author" content="Ayanami">
@@ -35,8 +35,6 @@
     <!--- Page Info-->
     
     <title>
-        
-            Page Not Found -
         
         Ayanami&#39;s Cave
     </title>
@@ -271,6 +269,39 @@
 <main class="page-container" id="swup">
 
     
+        <style>
+    .home-article-item,
+    .sidebar-links,
+    .sidebar-content,
+    a.page-number,
+    a.extend,
+    .sidebar-links .links:hover,
+    .right-bottom-tools,
+    footer.footer {
+        background-color: var(--background-color-transparent-80) !important;
+    }
+    .right-bottom-tools:hover,
+    a.page-number:hover,
+    a.extend:hover {
+        background-color: var(--primary-color) !important;
+    }
+    .site-info,
+    .home-article-sticky-label {
+        background-color: var(--background-color-transparent-15) !important;
+    }
+    .home-article-sticky-label {
+        backdrop-filter: none !important;
+    }
+    .home-banner-background {
+        filter: blur(15px);
+    }
+</style>
+
+<div class="home-banner-background">
+</div>
+
+
+    
 
     <div class="main-content-container">
 
@@ -286,9 +317,9 @@
                 </a>
             
             <a class="logo-title" href="/">
-                
+                <h1>
                 Ayanami&#39;s Cave
-                
+                </h1>
             </a>
         </div>
 
@@ -302,7 +333,7 @@
 
                             <li class="navbar-item">
                                 <!-- Menu -->
-                                <a class=""
+                                <a class="active"
                                    href="/"
                                         >
                                     <i class="fa-regular fa-house fa-fw"></i>
@@ -460,7 +491,7 @@
 
                     <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
                         
-                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full active"
                            href="/"
                         >
                             <span>
@@ -642,19 +673,541 @@
         <div class="main-content-body">
 
             
+                <div class="home-sidebar-container">
+    <div class="sticky-container sticky">
+        
+        
+            
+            <div class="sidebar-content" >
+                <div class="avatar flex justify-center">
+    <img src="/images/head.jpg">
+</div>
+                <div class="author flex flex-col justify-center my-2.5 mx-0">
+    <div class="name">Ayanami</div>
+    
+        <div class="label">Lv4</div>
+    
+</div>
+                <div class="statistics flex justify-around my-2.5">
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">19</div>
+        <div class="label text-third-text-color text-sm">标签</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">1</div>
+        <div class="label text-third-text-color text-sm">分类</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">48</div>
+        <div class="label text-third-text-color text-sm">文章</div>
+    </a>
+</div>
+            </div>
+        
+
+    </div>
+</div>
+
+            
 
             <div class="main-content">
 
                 
-                    <div class="nf-container">
-    <div class="nf-text">
-        <h1>404 Page Not Found</h1>
+                    <div class="home-content-container">
+    <ul class="home-article-list">
+        
+            <li class="home-article-item">
+
+                
+
+                
+
+                
+                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
+                    <h3 class="home-article-title">
+                        <a href="/2023/10/16/%E5%8E%8B%E7%BC%A9%E5%92%8C%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E5%93%B2%E5%AD%A6/">
+                            压缩和软件设计哲学
+                        </a>
+                    </h3>
+
+                    <div class="home-article-content markdown-body">
+                        
+                            <h2 id="软件设计哲学："><a href="#软件设计哲学：" class="headerlink" title="软件设计哲学："></a>软件设计哲学：</h2><p>让代码变得复杂的有两个主要因素：</p>
+<h4 id="Obscurity-and-dependency"><a href="#Obscurity-and-dependency" class="headerlink" title="Obscurity and dependency"></a>Obscurity and dependency</h4><p>为了避免Obscurity, 我们需要命名有意义的变量和抽象，比如用枚举代替奇怪的条件常数<br>为了避免dependency，我们需要避免重复，要做到“对一个bug，只修正一个方法”</p>
+<p>管理复杂度：</p>
+<ol>
+<li><p>编程时要更多地在“战略上”而不是“战术上”思考</p>
+</li>
+<li><p>我们无法一次处理完所有复杂度，所以我们需要隐藏复杂度</p>
+</li>
+<li><p>build things deep: 最好的模块是使用起来简单易懂，但能够执行复杂操作的模块（不要让接口直接和底层绑定，尽可能少让一个模块的内部信息“泄露”到另一个模块）</p>
+</li>
+<li><p>警惕“时间分解”，事物发生的顺序并不是一个编程的好顺序，从整体上俯瞰是一个更好的做法</p>
+</li>
+</ol>
+                        
+                    </div>
+
+                    <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fa-solid fa-calendars"></i>&nbsp;
+            <span class="home-article-date" data-date="Mon Oct 16 2023 00:00:00 GMT+0800">
+                
+                    2023-10-16
+                
+            </span>
+        </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fa-solid fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/%E5%85%A5%E9%97%A8/">入门</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/%E7%AE%97%E6%B3%95/">算法</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
     </div>
-    <div class="nf-button">
-        <a href="/" class="button large center"><i class="fa-regular fa-house"></i> Go Back Home</a>
+
+    <a href="/2023/10/16/%E5%8E%8B%E7%BC%A9%E5%92%8C%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E5%93%B2%E5%AD%A6/">阅读全文<span class="seo-reader-text">压缩和软件设计哲学</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+</div>
+
+                </div>
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                
+
+                
+                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
+                    <h3 class="home-article-title">
+                        <a href="/2023/10/16/%E5%B9%B6%E6%9F%A5%E9%9B%86/">
+                            并查集
+                        </a>
+                    </h3>
+
+                    <div class="home-article-content markdown-body">
+                        
+                            <p>﻿61b数据结构部分正式开始</p>
+<h2 id="1-并查集（Disjoint-Set-Union）："><a href="#1-并查集（Disjoint-Set-Union）：" class="headerlink" title="1. 并查集（Disjoint Set Union）："></a>1. 并查集（Disjoint Set Union）：</h2><p>先从一个问题引入，我们现在有N个数据，某些数据之间有相连的关系（已知，比如AB相连，BD相连）；现在我们想要判断数据A和数据D是否相连，或者数据C属于哪个集合，怎么做？</p>
+                        
+                    </div>
+
+                    <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fa-solid fa-calendars"></i>&nbsp;
+            <span class="home-article-date" data-date="Mon Oct 16 2023 00:00:00 GMT+0800">
+                
+                    2023-10-16
+                
+            </span>
+        </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fa-solid fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/%E5%85%A5%E9%97%A8/">入门</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/%E7%AE%97%E6%B3%95/">算法</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/2023/10/16/%E5%B9%B6%E6%9F%A5%E9%9B%86/">阅读全文<span class="seo-reader-text">并查集</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+</div>
+
+                </div>
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                
+
+                
+                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
+                    <h3 class="home-article-title">
+                        <a href="/2023/10/16/%E5%9B%BE/">
+                            图
+                        </a>
+                    </h3>
+
+                    <div class="home-article-content markdown-body">
+                        
+                            <h2 id="1-拓扑排序"><a href="#1-拓扑排序" class="headerlink" title="1. 拓扑排序"></a>1. 拓扑排序</h2><p>对于任意的节点i,j 如果存在从i到j的一条边，则j应该排序在i的后面<br>满足这样性质的排序叫拓扑排序</p>
+<p>存在拓扑排序的条件：图是无环的</p>
+<p>构建拓扑排序的方法：<br>对节点引入两个量，入度和出度，代表进入节点和从节点发出的边条数</p>
+<p>首先，由于图是无环的，必然可以找到一个入度为0的点（“起点”）<br>抛去起点和与起点相连的边之后，子图必然有一个新“起点”</p>
+<p>不断找这样的“起点”就得到了拓扑排序</p>
+<p>算法是O（V+E）的</p>
+<ol>
+<li>计算所有点的入度 O（V+E）</li>
+<li>维护一个队列，包含所有入度为0的点，每次除去一个点和其邻边，并将相邻节点的入度减一（无向图）O（V+E）
+                        
+                    </div>
+
+                    <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fa-solid fa-calendars"></i>&nbsp;
+            <span class="home-article-date" data-date="Mon Oct 16 2023 00:00:00 GMT+0800">
+                
+                    2023-10-16
+                
+            </span>
+        </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fa-solid fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/%E5%85%A5%E9%97%A8/">入门</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/%E7%AE%97%E6%B3%95/">算法</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/2023/10/16/%E5%9B%BE/">阅读全文<span class="seo-reader-text">图</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+</div>
+
+                </div>
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                
+
+                
+                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
+                    <h3 class="home-article-title">
+                        <a href="/2023/10/16/%E6%9D%82%E9%A1%B9/">
+                            杂项
+                        </a>
+                    </h3>
+
+                    <div class="home-article-content markdown-body">
+                        
+                            <p>﻿</p>
+<ol>
+<li>OneLoneCoder&#x2F;PixelGameEngine&#x2F;TUTORIAL</li>
+</ol>
+<ul>
+<li><p>Sprite (中文翻译：子图形？图形元素？) 调用外部的图形元素（pixelgameengine之中支持.png）, 可以放大，不可以缩小，是一种最小层次的，由<strong>CPU</strong>绘制的纹理。</p>
+                        
+                    </div>
+
+                    <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fa-solid fa-calendars"></i>&nbsp;
+            <span class="home-article-date" data-date="Mon Oct 16 2023 00:00:00 GMT+0800">
+                
+                    2023-10-16
+                
+            </span>
+        </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fa-solid fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/%E5%85%A5%E9%97%A8/">入门</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/2023/10/16/%E6%9D%82%E9%A1%B9/">阅读全文<span class="seo-reader-text">杂项</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+</div>
+
+                </div>
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                
+
+                
+                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
+                    <h3 class="home-article-title">
+                        <a href="/2023/10/16/%E6%A0%91/">
+                            树
+                        </a>
+                    </h3>
+
+                    <div class="home-article-content markdown-body">
+                        
+                            <h2 id="从BST说起"><a href="#从BST说起" class="headerlink" title="从BST说起"></a>从BST说起</h2><p>BST（Binary Search Tree, 二叉搜索树）的平均深度是Θ（logN）（一棵随机生成的BST（不管有没有随机插入和删除）的深度和期望高度都是 Θ（logN）的）</p>
+<p>但现实之中的树不一定都是随机的，有很多情况（比如带有时间顺序的数据，就不是随机的），我们需要避免Θ（N）的最坏情况，要把树的深度压到O（logN）</p>
+                        
+                    </div>
+
+                    <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fa-solid fa-calendars"></i>&nbsp;
+            <span class="home-article-date" data-date="Mon Oct 16 2023 00:00:00 GMT+0800">
+                
+                    2023-10-16
+                
+            </span>
+        </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fa-solid fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/%E5%85%A5%E9%97%A8/">入门</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/%E7%AE%97%E6%B3%95/">算法</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/2023/10/16/%E6%A0%91/">阅读全文<span class="seo-reader-text">树</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+</div>
+
+                </div>
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                
+
+                
+                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
+                    <h3 class="home-article-title">
+                        <a href="/2023/10/16/%E6%B8%B8%E6%88%8F%E4%BB%A3%E7%A0%81%E8%AE%BE%E8%AE%A1%E5%93%B2%E5%AD%A6/">
+                            游戏代码设计哲学
+                        </a>
+                    </h3>
+
+                    <div class="home-article-content markdown-body">
+                        
+                            9.14 游戏代码设计哲学：本质需求：解耦合、降低复杂度设计模式：观察者模式：如果要设计一个“落水”的完整效果，包含声音、特效、物理等，如何解耦模块？
+
+    答
+    将物理模块本身抽出，防止物理模型和UI效果耦合
+        物理模块处理...
+                        
+                    </div>
+
+                    <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fa-solid fa-calendars"></i>&nbsp;
+            <span class="home-article-date" data-date="Mon Oct 16 2023 00:00:00 GMT+0800">
+                
+                    2023-10-16
+                
+            </span>
+        </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fa-solid fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/%E5%85%A5%E9%97%A8/">入门</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/%E6%B8%B8%E6%88%8F/">游戏</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/2023/10/16/%E6%B8%B8%E6%88%8F%E4%BB%A3%E7%A0%81%E8%AE%BE%E8%AE%A1%E5%93%B2%E5%AD%A6/">阅读全文<span class="seo-reader-text">游戏代码设计哲学</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+</div>
+
+                </div>
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                
+
+                
+                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
+                    <h3 class="home-article-title">
+                        <a href="/2023/10/16/%E7%A8%8B%E5%BA%8F%E5%91%98%E7%9A%84%E8%87%AA%E6%88%91%E4%BF%AE%E5%85%BBnote1/">
+                            程序员的自我修养note1
+                        </a>
+                    </h3>
+
+                    <div class="home-article-content markdown-body">
+                        
+                            <h3 id="一、线程安全："><a href="#一、线程安全：" class="headerlink" title="一、线程安全："></a>一、线程安全：</h3><p>类似i++这样的非原子操作（编译成汇编代码后不止一条指令）是多线程不安全的（因为可能被操作系统强制打断而破坏指令顺序）</p>
+<p>不能让两个程序同时读写一个共享数据</p>
+                        
+                    </div>
+
+                    <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fa-solid fa-calendars"></i>&nbsp;
+            <span class="home-article-date" data-date="Mon Oct 16 2023 00:00:00 GMT+0800">
+                
+                    2023-10-16
+                
+            </span>
+        </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fa-solid fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/%E5%85%A5%E9%97%A8/">入门</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/2023/10/16/%E7%A8%8B%E5%BA%8F%E5%91%98%E7%9A%84%E8%87%AA%E6%88%91%E4%BF%AE%E5%85%BBnote1/">阅读全文<span class="seo-reader-text">程序员的自我修养note1</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+</div>
+
+                </div>
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                
+
+                
+                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
+                    <h3 class="home-article-title">
+                        <a href="/2023/10/16/%E8%BF%9B%E9%98%B6%E7%AE%97%E6%B3%95/">
+                            进阶算法
+                        </a>
+                    </h3>
+
+                    <div class="home-article-content markdown-body">
+                        
+                            <h3 id="文本相似度分析："><a href="#文本相似度分析：" class="headerlink" title="文本相似度分析："></a>文本相似度分析：</h3><ul>
+<li><p>方法一：先统计出一篇文章内的词频，<strong>得到词频向量</strong><br><strong>余弦相似度&#x2F;欧式&#x2F;曼哈顿距离&#x2F;Jacard距离</strong><br>缺点：算得慢，分辨度不算高</p>
+                        
+                    </div>
+
+                    <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fa-solid fa-calendars"></i>&nbsp;
+            <span class="home-article-date" data-date="Mon Oct 16 2023 00:00:00 GMT+0800">
+                
+                    2023-10-16
+                
+            </span>
+        </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fa-solid fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/%E5%85%A5%E9%97%A8/">入门</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/%E7%AE%97%E6%B3%95/">算法</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/2023/10/16/%E8%BF%9B%E9%98%B6%E7%AE%97%E6%B3%95/">阅读全文<span class="seo-reader-text">进阶算法</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+</div>
+
+                </div>
+            </li>
+        
+    </ul>
+
+    <div class="home-paginator px-7 py-5">
+        <div class="paginator">
+    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa-regular fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span>
+</div>
+
     </div>
 </div>
 
+                    <div class="comment-container pjax"></div>
                 
 
             </div>
@@ -810,6 +1363,7 @@
         containers: ["#swup"],
     });
 </script>
+
 
 
 

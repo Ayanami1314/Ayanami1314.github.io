@@ -13,18 +13,29 @@
     
     <!--- Seo Part-->
     
-    <link rel="canonical" href="http://example.com/404.html"/>
+    <link rel="canonical" href="http://example.com/2023/10/16/pipeline/"/>
     <meta name="robots" content="index,follow">
     <meta name="googlebot" content="index,follow">
     <meta name="revisit-after" content="1 days">
     
-        <meta property="og:type" content="website">
-<meta property="og:title" content="Page Not Found">
-<meta property="og:url" content="http://example.com/404.html">
+        <meta name="description" content="一、为什么要引入流水线pipeline: 同时执行多条指令每一条指令的执行可以分解成多个阶段，在5级流水RISC-V之中为IF, ID, EXE, MEM和WB，即  instruction fetch instruction decode(regfile op &amp; imm-gen) execution(alu and branch-compare) memory operation wr">
+<meta property="og:type" content="article">
+<meta property="og:title" content="pipeline">
+<meta property="og:url" content="http://example.com/2023/10/16/pipeline/index.html">
 <meta property="og:site_name" content="Ayanami&#39;s cave">
+<meta property="og:description" content="一、为什么要引入流水线pipeline: 同时执行多条指令每一条指令的执行可以分解成多个阶段，在5级流水RISC-V之中为IF, ID, EXE, MEM和WB，即  instruction fetch instruction decode(regfile op &amp; imm-gen) execution(alu and branch-compare) memory operation wr">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2023/10/20/rlCgITQ1PHYtomB.png">
+<meta property="og:image" content="http://example.com/imgs/2-kind-cache.png">
+<meta property="og:image" content="https://s2.loli.net/2023/10/20/x6Zijaq2LETQUcH.png">
+<meta property="og:image" content="https://s2.loli.net/2023/10/20/i3OUPd59nzZEDwA.png">
+<meta property="article:published_time" content="2023-10-15T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-10-20T12:37:15.029Z">
 <meta property="article:author" content="Ayanami">
+<meta property="article:tag" content="入门">
+<meta property="article:tag" content="体系结构">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2023/10/20/rlCgITQ1PHYtomB.png">
     
     
     <!--- Icon Part-->
@@ -36,7 +47,7 @@
     
     <title>
         
-            Page Not Found -
+            pipeline -
         
         Ayanami&#39;s Cave
     </title>
@@ -646,14 +657,327 @@
             <div class="main-content">
 
                 
-                    <div class="nf-container">
-    <div class="nf-text">
-        <h1>404 Page Not Found</h1>
+                    <div class="post-page-container flex relative justify-between box-border w-full h-full">
+    <div class="article-content-container">
+
+        <div class="article-title relative w-full">
+            
+                <div class="w-full flex items-center pt-6 justify-start">
+                    <h1 class="article-title-regular text-second-text-color text-4xl md:text-6xl font-bold px-2 sm:px-6 md:px-8 py-3">pipeline</h1>
+                </div>
+            
+            </div>
+
+        
+            <div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
+                <div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
+                    <img src="/images/head.jpg">
+                </div>
+                <div class="info flex flex-col justify-between">
+                    <div class="author flex items-center">
+                        <span class="name text-default-text-color text-lg font-semibold">Ayanami</span>
+                        
+                            <span class="author-label ml-1.5 text-xs px-2 py-0.5 rounded-small text-third-text-color border border-shadow-color-1">Lv4</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2023-10-16</span>
+        <span class="mobile">2023-10-16</span>
+        <span class="hover-info">创建</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2023-10-20 20:37:15</span>
+            <span class="mobile">2023-10-20 20:37:15</span>
+            <span class="hover-info">更新</span>
+        </span>
+    
+
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/%E5%85%A5%E9%97%A8/">入门</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84/">体系结构</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>1.9k 字</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fa-regular fa-clock"></i>&nbsp;<span>6 分钟</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        
+
+
+        <div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
+            <h2 id="一、为什么要引入流水线"><a href="#一、为什么要引入流水线" class="headerlink" title="一、为什么要引入流水线"></a>一、为什么要引入流水线</h2><p>pipeline: 同时执行多条指令<br>每一条指令的执行可以分解成多个阶段，<strong>在5级流水RISC-V之中为IF, ID, EXE, MEM和WB</strong>，即</p>
+<ul>
+<li>instruction fetch</li>
+<li>instruction decode(regfile op &amp; imm-gen)</li>
+<li>execution(alu and branch-compare)</li>
+<li>memory operation</li>
+<li>write back(to regfile)<br>下图是一个单周期的数据路径<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s2.loli.net/2023/10/20/rlCgITQ1PHYtomB.png"
+                     
+                ></li>
+</ul>
+<span id="more"></span>
+
+<p>有一种提高效率的思想叫流水线pipeline, 在上图之中，一条指令执行的过程中alu只在EXE阶段工作，其他阶段不工作；regfile只在ID阶段工作，其他阶段也不工作。既然要提升效率，自然想到，如何让alu、regfile等所有原件一直工作？类似工厂流水线的模式，alu计算完这一条指令之后立刻计算下一条，而不是等待这一条指令执行完再算。</p>
+<p>先不管实现细节，假设5个阶段需要的时间为100ns，200ns，100ns, 200ns, 200ns, 不使用流水线和超标量技术的情况下，一个时钟周期最多对应一条指令，那么一条指令至少需要800ns</p>
+<p>如果使用流水线技术，将5个阶段统一为200ns，那么我们的时钟周期可以压缩至200ns（我们通过寄存器保存了中间结果，相当于把一条指令“拆”成多条更小的单元，一个时钟周期只需要计算一个单元即可）</p>
+<p>这样之后，我们执行“完”一条指令需要200*5&#x3D;1000ns，但是，我们同时在执行5条指令，平均每条指令只需要200ns</p>
+<p>这是极大的加速</p>
+<h2 id="二、为什么流水线在硬件上是可行的"><a href="#二、为什么流水线在硬件上是可行的" class="headerlink" title="二、为什么流水线在硬件上是可行的"></a>二、为什么流水线在硬件上是可行的</h2><p>多亏了<strong>寄存器（在一个时钟周期内）保存了中间数据</strong>（一般是在时钟上升沿读入，保留到时钟下降沿输出），可以通过加几个寄存器来控制某个数据保留到之后的某个周期，让“一条指令”可以横跨多个时钟周期，进而提高时钟频率和吞吐量，快说谢谢寄存器！</p>
+<p>（寄存器的硬件原理，通过门电路搭建锁存器）</p>
+<h2 id="三、实现的各种细节"><a href="#三、实现的各种细节" class="headerlink" title="三、实现的各种细节"></a>三、实现的各种细节</h2><p>以上的流水线描述看起来很美好，实际上实现的过程中有种种问题，而为了解决这些问题诞生了现代cpu的架构</p>
+<p>现在一条指令被拆成多个更小的单元了，但是从逻辑上，我们的运算还是以指令为单位的。最大的问题就在于，如何解决<strong>后一条指令依赖前一条指令的结果</strong>的情况？</p>
+<p>例如， </p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">addi t0, x0, 5</span><br><span class="line">sw t0, 0(sp)</span><br></pre></td></tr></table></figure></div>
+<p>在addi指令还没有写回t0的值时，由于流水线缘故，sw已经需要将t0的值存回内存了，怎么办？</p>
+<p>接下来逐渐分类解决这个问题<br>这种流水线带来的问题可以分成3类</p>
+<ul>
+<li><strong>structual hazard</strong></li>
+<li><strong>data hazard</strong></li>
+<li><strong>control hazard</strong></li>
+</ul>
+<h3 id="structural-hazard"><a href="#structural-hazard" class="headerlink" title="structural hazard"></a>structural hazard</h3><p>主要是多个部分竞争一个物理元件</p>
+<p>在流水线之中，会出现多条指令的执行竞争一个部件的使用权的情况，比如regfile，可以出现时间上早的指令想要在Write Back阶段向寄存器读取值，同时时间上晚的指令也想要在ID阶段从寄存器读取值</p>
+<p>解决方法：</p>
+<ul>
+<li><p>对于regfile的读写冲突，在regfile上开出多个读端口和一个写端口，读端口可以一起执行。</p>
+</li>
+<li><p>对于广义的内存数据（注意IF阶段取指令也是从IMEM(一个特殊的指令内存)之中取的），IF阶段的取指令可能会和MEM阶段的内存操作冲突，我们知道<strong>内存之中，数据和指令是存储在一起的（当前的计算机架构，早期架构也有分开的）</strong>，但是我们可以通过<strong>分开数据的cache和指令的cache</strong>来避免这个冲突（实际上一般只有L1 cache是分开的）。这样，指令在IMEM之中读，数据在DMEM之中读写</p>
+</li>
+</ul>
+<p><figure class="image-caption"><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/../imgs/2-kind-cache.png"
+                      alt="输入图片说明"
+                ><figcaption>输入图片说明</figcaption></figure></p>
+<h3 id="data-hazard："><a href="#data-hazard：" class="headerlink" title="data hazard："></a>data hazard：</h3><p>主要是指令之间的因果依赖被破坏</p>
+<p><strong>第一种是regfile的依赖</strong>，可以出现时间上早的指令想要在Write Back阶段向寄存器写值，同时时间上晚的指令也想要在ID阶段从寄存器读值</p>
+<p>解决方法：<strong>规定ID段前半段时间写，后半段时间读（先写再读）</strong>（这样做还有一个基础是ID阶段一般是几个阶段里面较短的一个阶段，因而再多耗点时间也不影响性能）</p>
+<p><strong>第二种是ALU的依赖</strong>，例如</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">addi s0, x0, 5</span><br><span class="line">sw s0, 0(sp)</span><br><span class="line">sub s0, s0, 3</span><br><span class="line">...</span><br></pre></td></tr></table></figure></div>
+<p>在前面的指令回写之前，后面的指令就需要用到更新的值。</p>
+<p>解决方法是添加所谓的前递（forwarding）或者旁路（bypassing）机制，如下两图。<br>拿到进行EXE阶段的指令和进行ID阶段的指令，比较两条指令，看ID指令是否依赖于EXE指令的结果，如果是，将EXE指令的结果传递到ID指令的EXE阶段覆盖原来的输入</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s2.loli.net/2023/10/20/x6Zijaq2LETQUcH.png"
+                     
+                ><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s2.loli.net/2023/10/20/i3OUPd59nzZEDwA.png"
+                     
+                ><br>只需要比较本条指令和前一条指令，因为相隔两条指令的指令的话，前面指令执行write back的时候，后一条指令刚好在ID阶段，由前面所说的先写后读，不会出现问题<br>（然而如果流水线进一步加深，还是会有问题，需要更多的硬件机制)</p>
+<p><strong>第三种是MEM的依赖</strong><br>例如</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">lw s0,0(sp)</span><br><span class="line">addi s0, s0, 4 </span><br></pre></td></tr></table></figure></div>
+<p>由于MEM和ID差两个阶段，所以bypassing失效</p>
+<ul>
+<li><p>解决方法一：<br>硬件检测到这样的依赖的时候，让addi和后面的指令停顿一个时间周期</p>
+</li>
+<li><p>解决方法二（不总是能成功）：<br>由编译器&#x2F;程序员重排代码顺序，错开依赖<br>如</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">lw s0, 0(sp)</span><br><span class="line">lw s1, 4(sp)</span><br><span class="line">addi s0, s0, 4</span><br><span class="line">addi s1, s1, 4</span><br></pre></td></tr></table></figure></div>
+<p>这样lw和addi隔了两条指令，可以使用bypassing</p>
+</li>
+</ul>
+<p>control hazard:<br>主要是不能确定分支指令是否被实行</p>
+<p>如</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">bne s0, t1, end </span><br><span class="line">addi s0, s0, 4</span><br></pre></td></tr></table></figure></div>
+<p>addi指令不能知道bne指令是否被实施</p>
+<p>解决方法：<br>由于这种指令结构在实际编程之中非常常见（比如循环），并且会被执行非常多次，一般不采用等待策略，而是预测分支的结果，即先假定分支会实行或者不会实行，如果假定不成立，再将流水线的错误进行全部无效（如果有load&amp;save还需要更改cache），重新执行</p>
+<p>怎么预测？需要设计对应的硬件机制，比如，永远预测不跳转（对应loop，跳出去的是少数情况）、预测这一次的branch会采用和上一次一样的值、<strong>branch出现两次预测错误时改变branch预测</strong>（两位预测位，现代最常见的做法，<strong>参见<a class="link"   target="_blank" rel="noopener" href="https://www.zhihu.com/question/486239354/answer/3245281606%EF%BC%89%E7%AD%89%E7%AD%89" >https://www.zhihu.com/question/486239354/answer/3245281606）等等 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></strong></p>
+<h2 id="四、超标量处理器"><a href="#四、超标量处理器" class="headerlink" title="四、超标量处理器"></a>四、超标量处理器</h2><p>上面的流水线能够提高性能的底层逻辑是提高了时钟频率，但是由于功率的影响（太大会发热严重损坏器件）和流水线变深之后各种hazard的增加，硬件设计更难，现代处理器的时钟频率提高较难。</p>
+<p>还想提高性能，一个方向就是试图在一个时钟周期内执行多条指令，这样的多条指令将会是完全“同时”的，没有办法分辨前后</p>
+<p>然而依赖关系不可避免，因而超标量处理器会尽可能打乱指令的顺序关系，加以一系列纠错机制，达成并行的效果</p>
+
+        </div>
+
+        
+            <div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li><strong>标题:</strong> pipeline</li>
+        <li><strong>作者:</strong> Ayanami</li>
+        <li><strong>创建于
+                :</strong> 2023-10-16 00:00:00</li>
+        
+            <li>
+                <strong>更新于
+                    :</strong> 2023-10-20 20:37:15
+            </li>
+        
+        <li>
+            <strong>链接:</strong> https://github.com/Ayanami1314/2023/10/16/pipeline/
+        </li>
+        <li>
+            <strong>
+                版权声明:
+            </strong>
+            
+
+            
+                本文章采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY-NC-SA 4.0</a> 进行许可。
+            
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <ul class="post-tags-box text-lg mt-1.5 flex-wrap justify-center flex md:hidden">
+                
+                    <li class="tag-item mx-0.5">
+                        <a href="/tags/%E5%85%A5%E9%97%A8/">#入门</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item mx-0.5">
+                        <a href="/tags/%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84/">#体系结构</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+
+        
+            <div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
+                
+                    <div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+                        <a class="prev"
+                        rel="prev"
+                        href="/2023/10/16/maze/"
+                        >
+                            <span class="left arrow-icon flex justify-center items-center">
+                                <i class="fa-solid fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex justify-center items-center">
+                                <span class="post-nav-title-item">maze</span>
+                                <span class="post-nav-item">上一篇</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+                        <a class="next"
+                        rel="next"
+                        href="/2023/10/16/python%E5%B9%B6%E5%8F%91/"
+                        >
+                            <span class="title flex justify-center items-center">
+                                <span class="post-nav-title-item">python并发</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                            <span class="right arrow-icon flex justify-center items-center">
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+
+        
+            <div class="comment-container px-2 sm:px-6 md:px-8 pb-8">
+                <div class="comments-container mt-10 w-full ">
+    <div id="comment-anchor" class="w-full h-2.5"></div>
+    <div class="comment-area-title w-full my-1.5 md:my-2.5 text-xl md:text-3xl font-bold">
+        评论
     </div>
-    <div class="nf-button">
-        <a href="/" class="button large center"><i class="fa-regular fa-house"></i> Go Back Home</a>
+    
+
+        
+            
+    <div id="waline"></div>
+    <script type="module" data-swup-reload-script>
+      import { init } from '/js/libs/waline.mjs';
+
+      function loadWaline() {
+        init({
+          el: '#waline',
+          serverURL: 'https://example.example.com',
+          lang: 'zh-CN',
+          dark: 'body[class~="dark-mode"]',
+          requiredMeta: ['nick', 'mail'],
+          emoji: [],
+          recaptchaV3Key: "wasd",
+          
+        });
+      }
+
+      if (typeof swup !== 'undefined') {
+        loadWaline();
+      } else {
+        window.addEventListener('DOMContentLoaded', loadWaline);
+      }
+    </script>
+
+
+
+        
+    
+</div>
+
+            </div>
+        
+    </div>
+
+    
+        <div class="toc-content-container">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <div class="toc-title">此页目录</div>
+        <div class="page-title">pipeline</div>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%BC%95%E5%85%A5%E6%B5%81%E6%B0%B4%E7%BA%BF"><span class="nav-text">一、为什么要引入流水线</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E4%B8%BA%E4%BB%80%E4%B9%88%E6%B5%81%E6%B0%B4%E7%BA%BF%E5%9C%A8%E7%A1%AC%E4%BB%B6%E4%B8%8A%E6%98%AF%E5%8F%AF%E8%A1%8C%E7%9A%84"><span class="nav-text">二、为什么流水线在硬件上是可行的</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E5%AE%9E%E7%8E%B0%E7%9A%84%E5%90%84%E7%A7%8D%E7%BB%86%E8%8A%82"><span class="nav-text">三、实现的各种细节</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#structural-hazard"><span class="nav-text">structural hazard</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#data-hazard%EF%BC%9A"><span class="nav-text">data hazard：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E8%B6%85%E6%A0%87%E9%87%8F%E5%A4%84%E7%90%86%E5%99%A8"><span class="nav-text">四、超标量处理器</span></a></li></ol>
+
     </div>
 </div>
+        </div>
+    
+</div>
+
+
 
                 
 
@@ -726,6 +1050,27 @@
         </div>
     </div>
 
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="article-tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="right-bottom-tools page-aside-toggle">
+                <i class="fa-regular fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fa-regular fa-comments"></i>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
     
 
     <div class="right-side-tools-container">
