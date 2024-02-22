@@ -962,70 +962,6 @@ int a&#x3D;10, b&#x3D;10, c&#x3D;10; int *p &#x3D;  &b; ++p; &#x2F;&#x2F;此时p
                 
                 <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
                     <h3 class="home-article-title">
-                        <a href="/2023/10/16/%E5%9B%BE/">
-                            图
-                        </a>
-                    </h3>
-
-                    <div class="home-article-content markdown-body">
-                        
-                            <h2 id="1-拓扑排序"><a href="#1-拓扑排序" class="headerlink" title="1. 拓扑排序"></a>1. 拓扑排序</h2><p>对于任意的节点i,j 如果存在从i到j的一条边，则j应该排序在i的后面<br>满足这样性质的排序叫拓扑排序</p>
-<p>存在拓扑排序的条件：图是无环的</p>
-<p>构建拓扑排序的方法：<br>对节点引入两个量，入度和出度，代表进入节点和从节点发出的边条数</p>
-<p>首先，由于图是无环的，必然可以找到一个入度为0的点（“起点”）<br>抛去起点和与起点相连的边之后，子图必然有一个新“起点”</p>
-<p>不断找这样的“起点”就得到了拓扑排序</p>
-<p>算法是O（V+E）的</p>
-<ol>
-<li>计算所有点的入度 O（V+E）</li>
-<li>维护一个队列，包含所有入度为0的点，每次除去一个点和其邻边，并将相邻节点的入度减一（无向图）O（V+E）
-                        
-                    </div>
-
-                    <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fa-solid fa-calendars"></i>&nbsp;
-            <span class="home-article-date" data-date="Mon Oct 16 2023 00:00:00 GMT+0800">
-                
-                    2023-10-16
-                
-            </span>
-        </span>
-        
-        
-            <span class="home-article-tag">
-                <i class="fa-solid fa-tags"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/tags/%E5%85%A5%E9%97%A8/">入门</a>&nbsp;
-                        </li>
-                    
-                        <li>
-                            | 
-                            <a href="/tags/%E7%AE%97%E6%B3%95/">算法</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            </span>
-        
-    </div>
-
-    <a href="/2023/10/16/%E5%9B%BE/">阅读全文<span class="seo-reader-text">图</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
-</div>
-
-                </div>
-            </li>
-        
-            <li class="home-article-item">
-
-                
-
-                
-
-                
-                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
-                    <h3 class="home-article-title">
                         <a href="/2023/10/16/%E5%8E%8B%E7%BC%A9%E5%92%8C%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E5%93%B2%E5%AD%A6/">
                             压缩和软件设计哲学
                         </a>
@@ -1080,6 +1016,70 @@ int a&#x3D;10, b&#x3D;10, c&#x3D;10; int *p &#x3D;  &b; ++p; &#x2F;&#x2F;此时p
     </div>
 
     <a href="/2023/10/16/%E5%8E%8B%E7%BC%A9%E5%92%8C%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E5%93%B2%E5%AD%A6/">阅读全文<span class="seo-reader-text">压缩和软件设计哲学</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+</div>
+
+                </div>
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                
+
+                
+                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
+                    <h3 class="home-article-title">
+                        <a href="/2023/10/16/%E5%9B%BE/">
+                            图
+                        </a>
+                    </h3>
+
+                    <div class="home-article-content markdown-body">
+                        
+                            <h2 id="1-拓扑排序"><a href="#1-拓扑排序" class="headerlink" title="1. 拓扑排序"></a>1. 拓扑排序</h2><p>对于任意的节点i,j 如果存在从i到j的一条边，则j应该排序在i的后面<br>满足这样性质的排序叫拓扑排序</p>
+<p>存在拓扑排序的条件：图是无环的</p>
+<p>构建拓扑排序的方法：<br>对节点引入两个量，入度和出度，代表进入节点和从节点发出的边条数</p>
+<p>首先，由于图是无环的，必然可以找到一个入度为0的点（“起点”）<br>抛去起点和与起点相连的边之后，子图必然有一个新“起点”</p>
+<p>不断找这样的“起点”就得到了拓扑排序</p>
+<p>算法是O（V+E）的</p>
+<ol>
+<li>计算所有点的入度 O（V+E）</li>
+<li>维护一个队列，包含所有入度为0的点，每次除去一个点和其邻边，并将相邻节点的入度减一（无向图）O（V+E）
+                        
+                    </div>
+
+                    <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fa-solid fa-calendars"></i>&nbsp;
+            <span class="home-article-date" data-date="Mon Oct 16 2023 00:00:00 GMT+0800">
+                
+                    2023-10-16
+                
+            </span>
+        </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fa-solid fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/%E5%85%A5%E9%97%A8/">入门</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/%E7%AE%97%E6%B3%95/">算法</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/2023/10/16/%E5%9B%BE/">阅读全文<span class="seo-reader-text">图</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
 </div>
 
                 </div>
