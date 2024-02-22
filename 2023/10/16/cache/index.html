@@ -635,7 +635,7 @@
         <div class="label text-third-text-color text-sm">分类</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">54</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">52</div>
         <div class="label text-third-text-color text-sm">文章</div>
     </a>
 </div>
@@ -889,13 +889,13 @@
                     <div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
                         <a class="prev"
                         rel="prev"
-                        href="/2023/10/16/STL-algorithm&amp;gdb/"
+                        href="/2023/10/16/c-memory-management%E3%80%81gdb%E3%80%81IEEE754/"
                         >
                             <span class="left arrow-icon flex justify-center items-center">
                                 <i class="fa-solid fa-chevron-left"></i>
                             </span>
                             <span class="title flex justify-center items-center">
-                                <span class="post-nav-title-item">STL-algorithm&amp;gdb</span>
+                                <span class="post-nav-title-item">c-memory-management、gdb、IEEE754</span>
                                 <span class="post-nav-item">上一篇</span>
                             </span>
                         </a>
@@ -905,10 +905,10 @@
                     <div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
                         <a class="next"
                         rel="next"
-                        href="/2023/10/16/c-memory-management%E3%80%81gdb%E3%80%81IEEE754/"
+                        href="/2023/10/16/git%E5%88%9D%E6%AD%A5/"
                         >
                             <span class="title flex justify-center items-center">
-                                <span class="post-nav-title-item">c-memory-management、gdb、IEEE754</span>
+                                <span class="post-nav-title-item">git初步</span>
                                 <span class="post-nav-item">下一篇</span>
                             </span>
                             <span class="right arrow-icon flex justify-center items-center">
@@ -923,17 +923,45 @@
 
         
             <div class="comment-container px-2 sm:px-6 md:px-8 pb-8">
-                if (hexo-config('comment.enable') == true && hexo-config('comment.system') != "") {
-  if (hexo-config('comment.system') == "waline") {
-    @require "./waline.styl"
+                <div class="comments-container mt-10 w-full ">
+    <div id="comment-anchor" class="w-full h-2.5"></div>
+    <div class="comment-area-title w-full my-1.5 md:my-2.5 text-xl md:text-3xl font-bold">
+        评论
+    </div>
+    
 
-  } else if (hexo-config('comment.system') == "gitalk") {
-    @require "./gitalk.styl"
+        
+            
+    <div id="waline"></div>
+    <script type="module" data-swup-reload-script>
+      import { init } from '/js/libs/waline.mjs';
 
-  } else if (hexo-config('comment.system') == "twikoo") {
-    @require "./twikoo.styl"
-  }
-}
+      function loadWaline() {
+        init({
+          el: '#waline',
+          serverURL: 'https://example.example.com',
+          lang: 'zh-CN',
+          dark: 'body[class~="dark-mode"]',
+          requiredMeta: ['nick', 'mail'],
+          emoji: [],
+          recaptchaV3Key: "wasd",
+          
+        });
+      }
+
+      if (typeof swup !== 'undefined') {
+        loadWaline();
+      } else {
+        window.addEventListener('DOMContentLoaded', loadWaline);
+      }
+    </script>
+
+
+
+        
+    
+</div>
+
             </div>
         
     </div>
