@@ -13,22 +13,27 @@
     
     <!--- Seo Part-->
     
-    <link rel="canonical" href="http://example.com/2023/12/21/sage-sagemath-试用/"/>
+    <link rel="canonical" href="http://example.com/2024/03/18/splay-tree/"/>
     <meta name="robots" content="index,follow">
     <meta name="googlebot" content="index,follow">
     <meta name="revisit-after" content="1 days">
     
-        <meta name="description" content="sage(sagemath)试用 最好用的几个功能： 帮助sqrt?， 加一个?就行 tab 自动补全转 latex 表达式，在表达式的外面套一层latex()即可">
+        <meta name="description" content="splay tree Counting Binary Tree  ref: 卡特兰数（Catalan number）（二） - 知乎 (zhihu.com) , https:&#x2F;&#x2F;cs.stackexchange.com&#x2F;questions&#x2F;368&#x2F;counting-binary-trees">
 <meta property="og:type" content="article">
-<meta property="og:title" content="sage(sagemath)试用">
-<meta property="og:url" content="http://example.com/2023/12/21/sage-sagemath-%E8%AF%95%E7%94%A8/index.html">
+<meta property="og:title" content="splay tree">
+<meta property="og:url" content="http://example.com/2024/03/18/splay-tree/index.html">
 <meta property="og:site_name" content="Ayanami&#39;s cave">
-<meta property="og:description" content="sage(sagemath)试用 最好用的几个功能： 帮助sqrt?， 加一个?就行 tab 自动补全转 latex 表达式，在表达式的外面套一层latex()即可">
+<meta property="og:description" content="splay tree Counting Binary Tree  ref: 卡特兰数（Catalan number）（二） - 知乎 (zhihu.com) , https:&#x2F;&#x2F;cs.stackexchange.com&#x2F;questions&#x2F;368&#x2F;counting-binary-trees">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-12-20T16:00:00.000Z">
-<meta property="article:modified_time" content="2023-12-20T16:13:37.499Z">
+<meta property="og:image" content="https://pic3.zhimg.com/80/v2-d711ef3c30ffe63c5809cb3bce5d48b6_1440w.webp">
+<meta property="og:image" content="https://s2.loli.net/2024/03/18/vIcwOBkoYSeNhZ7.png">
+<meta property="og:image" content="https://pic4.zhimg.com/80/v2-82ea60b09a3e7a193e2193b048ccb83b_1440w.webp">
+<meta property="og:image" content="https://pic2.zhimg.com/v2-8678f17acea5761de581060c858943c1_r.jpg">
+<meta property="article:published_time" content="2024-03-17T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-03-18T08:55:17.380Z">
 <meta property="article:author" content="Ayanami">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pic3.zhimg.com/80/v2-d711ef3c30ffe63c5809cb3bce5d48b6_1440w.webp">
     
     
     <!--- Icon Part-->
@@ -40,7 +45,7 @@
     
     <title>
         
-            sage(sagemath)试用 -
+            splay tree -
         
         Ayanami&#39;s Cave
     </title>
@@ -656,7 +661,7 @@
         <div class="article-title relative w-full">
             
                 <div class="w-full flex items-center pt-6 justify-start">
-                    <h1 class="article-title-regular text-second-text-color text-4xl md:text-6xl font-bold px-2 sm:px-6 md:px-8 py-3">sage(sagemath)试用</h1>
+                    <h1 class="article-title-regular text-second-text-color text-4xl md:text-6xl font-bold px-2 sm:px-6 md:px-8 py-3">splay tree</h1>
                 </div>
             
             </div>
@@ -677,15 +682,15 @@
                         <div class="article-meta-info">
     <span class="article-date article-meta-item">
         <i class="fa-regular fa-pen-fancy"></i>&nbsp;
-        <span class="desktop">2023-12-21</span>
-        <span class="mobile">2023-12-21</span>
+        <span class="desktop">2024-03-18</span>
+        <span class="mobile">2024-03-18</span>
         <span class="hover-info">创建</span>
     </span>
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2023-12-21 00:13:37</span>
-            <span class="mobile">2023-12-21 00:13:37</span>
+            <span class="desktop">2024-03-18 16:55:17</span>
+            <span class="mobile">2024-03-18 16:55:17</span>
             <span class="hover-info">更新</span>
         </span>
     
@@ -696,12 +701,12 @@
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>408 字</span>
+            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>987 字</span>
         </span>
     
     
         <span class="article-min2read article-meta-item">
-            <i class="fa-regular fa-clock"></i>&nbsp;<span>2 分钟</span>
+            <i class="fa-regular fa-clock"></i>&nbsp;<span>3 分钟</span>
         </span>
     
     
@@ -720,60 +725,102 @@
 
 
         <div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
-            <p>sage(sagemath)试用</p>
-<p>最好用的几个功能：</p>
-<p>帮助<strong>sqrt?， 加一个<code>?</code>就行</strong></p>
-<p><strong>tab 自动补全</strong><br><strong>转 latex 表达式，在表达式的外面套一层<code>latex()</code>即可</strong></p>
+            <h3 id="splay-tree"><a href="#splay-tree" class="headerlink" title="splay tree"></a>splay tree</h3><ol>
+<li>Counting Binary Tree</li>
+</ol>
+<p>ref: <a class="link"   target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/31526354" >卡特兰数（Catalan number）（二） - 知乎 (zhihu.com) <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>, <a class="link"   target="_blank" rel="noopener" href="https://cs.stackexchange.com/questions/368/counting-binary-trees" >https://cs.stackexchange.com/questions/368/counting-binary-trees <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 <span id="more"></span>
-<p>近似值：</p>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">x=sqrt(3)</span><br><span class="line">n(x)  # 加上n()就是近似值</span><br></pre></td></tr></table></figure></div>
 
-<p>微分：</p>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var(&#x27;x&#x27;)</span><br><span class="line">diff(sin(x), x)</span><br><span class="line"># 也可以偏导</span><br></pre></td></tr></table></figure></div>
+<p>给定节点数n，二叉树的种类数？ 卡塔兰数C(n).  $C(n) &#x3D; \frac{1}{n+1} * C_{2n}^{n}  $</p>
+<p>直观理解？换个角度，自底向上</p>
+<p>总共n个节点每次链接两个形成一个新节点，有多少种连法</p>
+<p>等效于对序列$A_1A_2A_3A_4…A_n$加括号，有几种不同的加法</p>
+<p><figure class="image-caption"><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://pic3.zhimg.com/80/v2-d711ef3c30ffe63c5809cb3bce5d48b6_1440w.webp"
+                      alt="img"
+                ><figcaption>img</figcaption></figure></p>
+<p>等效于括号问题（定义卡特兰数的原始问题）：</p>
+<p>一个合法的括号序列定义（非递归）为：</p>
+<ul>
+<li>闭合（左括号数&#x3D;右括号数）</li>
+<li>从左到右，任意时刻左括号数&gt;&#x3D;右括号数</li>
+</ul>
+<p>递归为：</p>
+<ul>
+<li>（a）是括号序列</li>
+<li>A，B是括号序列，（AB）也是括号序列</li>
+</ul>
+<p>由非递归定义可以得到一些等价问题：</p>
+<ul>
+<li><p>一个n*n方格，不能过对角线，从左下出发，只能向右或者上走，终点在右上角（把n格子的n+1条线看成n元素序列的n+1个可以插入括号的点，向右走看成是左括号，向上走看成右括号）</p>
+</li>
+<li><p>一个二进制序列，任意时刻累计0的数目小于等于1的数目，最后0数要等于1数</p>
+</li>
+<li><p>一个允许{push,pop}的队列，n次操作之后队列为空</p>
+</li>
+</ul>
+<p>设这样的数目为C(n)</p>
+<p>递推式子：$$C(n) &#x3D; C(0)C(n) + C(1)C(n-1)+…+C(n)C(0)$$  （直观理解: $C(0)C(n)$是左子树0个，右子树n个，以此类推）</p>
+<p><figure class="image-caption"><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s2.loli.net/2024/03/18/vIcwOBkoYSeNhZ7.png"
+                      alt="image-20240318144154773"
+                ><figcaption>image-20240318144154773</figcaption></figure></p>
+<ol start="2">
+<li>splay tree</li>
+</ol>
+<p>ref: <a class="link"   target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/348797577" >深入理解伸展树(splay tree) - 知乎 (zhihu.com) <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>， <a class="link"   target="_blank" rel="noopener" href="https://www.cs.usfca.edu/~galles/visualization/SplayTree.html" >Splay Tree Visualzation (usfca.edu) <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p>试图对AVL树进行优化</p>
+<p>由局部性原理，想到能否将最近访问的元素（容易再次被访问）旋转到根上去方便下次访问</p>
+<p>朴素想法: 一直向上，和父节点旋转！zig-zag</p>
+<p><figure class="image-caption"><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://pic4.zhimg.com/80/v2-82ea60b09a3e7a193e2193b048ccb83b_1440w.webp"
+                      alt="img"
+                ><figcaption>img</figcaption></figure></p>
+<p>问题：如果是“一”字形，在将最底层的节点旋转到顶部的同时，路径上的节点也被旋转下来了，树的整体形态没变，最坏的时候每一次调整都是O(n)</p>
+<p>伸展树改进：如果是“之”字形，和朴素想法一样；如果是“一字形”，先旋转父节点和祖先节点（如果有，没有就算了），再将查询节点向上旋转</p>
+<p><figure class="image-caption"><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://pic2.zhimg.com/v2-8678f17acea5761de581060c858943c1_r.jpg"
+                      alt="img"
+                ><figcaption>img</figcaption></figure></p>
+<p>可以证明这样的优化会让最坏情况的平均时间复杂度降到log(n)</p>
+<p>这是自底向上的方法，要求从根开始查询时维护O(n)的查询栈，还有不直观的自顶向下方法，优化了空间效率</p>
+<p>伸展树的应用：</p>
+<ul>
+<li>优化对AVL树的连续查询</li>
+<li>区间操作：由于伸展（zig-zag等）不影响树的性质（在这里重要的是中序遍历的序列不变（要是旋转改变了二叉查找树的结构那不就寄了）），所以当我们用一棵二叉查找树代表一个comparable的元素序列时，可以利用伸展变换执行一些操作：<ul>
+<li>插入区间：在第p个元素和第p+1个元素之间插入区间：将p向上伸展到根，再将p+1向上伸展到根的右子树，插入区间的根就是p+1的左子树</li>
+<li>删除区间：删除[m,n]区间只需要将第m-1个元素伸展到根，再将n+1个元素伸展到根的右子树，之后删掉它的左子树就行</li>
+<li>翻转区间：反转区间[m,n]内的元素，注意到逆序的递归表述： $$R(AmB) &#x3D; R(B)mR(A)$$, 操作为：1.将元素m-1伸展到根2.将元素n+1伸展到根的右子树，此时[m,n]就是它的左子树 3.维护一个reverse标记，标记为1则交换左右子树，并将该标记下放给左右子树的根，将[m,n]的根的reverse标记置1</li>
+</ul>
+</li>
+</ul>
 
-<p>积分：</p>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#不定积分</span><br><span class="line">var(&#x27;x&#x27;)</span><br><span class="line">integral(x^2*cos(x), x)</span><br><span class="line">#定积分</span><br><span class="line">integral(x^2*cos(x), x, 0, 1)</span><br></pre></td></tr></table></figure></div>
-
-<p>解方程:</p>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#精确解</span><br><span class="line">var(&#x27;x&#x27;)</span><br><span class="line">solve([x^3+x+6==5], x)</span><br><span class="line">#近似解</span><br><span class="line">f = x^3+8 == 10x</span><br><span class="line">find_root(f,-1,2)</span><br></pre></td></tr></table></figure></div>
-
-<p>积分变换</p>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">s = var(&quot;s&quot;)</span><br><span class="line">t = var(&quot;t&quot;)</span><br><span class="line">f = t^2*exp(t) - sin(t)</span><br><span class="line">f.laplace(t,s)</span><br><span class="line"></span><br><span class="line">f2=1/(s^3+s)</span><br><span class="line">inverse_laplace(f2,s,t)</span><br></pre></td></tr></table></figure></div>
-
-<p>微分方程</p>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">t = var(&#x27;t&#x27;)    # define a variable t</span><br><span class="line">x = function(&#x27;x&#x27;)(t)   # define x to be a function of that variable</span><br><span class="line">DE = diff(x, t) + x - 1</span><br><span class="line">desolve(DE, [x,t])</span><br><span class="line">(_C + e^t)*e^(-t)</span><br></pre></td></tr></table></figure></div>
-
-<p>画图</p>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">t = var(&#x27;t&#x27;)</span><br><span class="line">sage: p1 = plot(cos(2*t) + 2*cos(t), (t,0, 2*pi), rgbcolor=hue(0.3))</span><br><span class="line">sage: p2 = plot(4*cos(t) - cos(2*t), (t,0, 2*pi), rgbcolor=hue(0.6))</span><br><span class="line">sage: show(p1 + p2)</span><br></pre></td></tr></table></figure></div>
-
-<p>特殊函数</p>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">x = polygen(QQ, &#x27;x&#x27;)</span><br><span class="line">sage: chebyshev_U(2,x)</span><br><span class="line">4*x^2 - 1</span><br><span class="line">sage: bessel_I(1,1).n(250)</span><br><span class="line">0.56515910399248502720769602760986330732889962162109200948029448947925564096</span><br><span class="line">sage: bessel_I(1,1).n()</span><br><span class="line">0.565159103992485</span><br><span class="line">sage: bessel_I(2,1.1).n()</span><br><span class="line">0.167089499251049</span><br></pre></td></tr></table></figure></div>
-
-<p>环、多项式、群、数论：</p>
-<p>我没用过</p>
-<p>线性代数：</p>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">A = Matrix([[1,2,3],[3,2,1],[1,1,1]])</span><br><span class="line">sage: w = vector([1,1,-4])</span><br><span class="line">sage: w*A</span><br><span class="line">(0, 0, 0)</span><br><span class="line">sage: A*w</span><br><span class="line">(-9, 1, -2)</span><br><span class="line">sage: kernel(A)</span><br><span class="line">Free module of degree 3 and rank 1 over Integer Ring</span><br><span class="line">Echelon basis matrix:</span><br><span class="line">[ 1  1 -4]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Y = vector([0, -4, -1])</span><br><span class="line">X = A.solve_right(Y)</span><br><span class="line">X</span><br><span class="line">(-2, 1, 0)</span><br><span class="line">A * X   # checking our answer...</span><br><span class="line">(0, -4, -1)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">A \ Y</span><br><span class="line">(-2, 1, 0)</span><br></pre></td></tr></table></figure></div>
-
-<p>特征值：</p>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">A = matrix([[0, 4], [-1, 0]])</span><br><span class="line">A.eigenvalues ()</span><br><span class="line">[-2*I, 2*I]</span><br><span class="line">B = matrix([[1, 3], [3, 1]])</span><br><span class="line">B.eigenvectors_left()</span><br><span class="line">[(4, [</span><br><span class="line">(1, 1)</span><br><span class="line">], 1), (-2, [</span><br><span class="line">(1, -1)</span><br><span class="line">], 1)]</span><br></pre></td></tr></table></figure></div>
         </div>
 
         
             <div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
                 <div class="article-copyright-info-container">
     <ul>
-        <li><strong>标题:</strong> sage(sagemath)试用</li>
+        <li><strong>标题:</strong> splay tree</li>
         <li><strong>作者:</strong> Ayanami</li>
         <li><strong>创建于
-                :</strong> 2023-12-21 00:00:00</li>
+                :</strong> 2024-03-18 00:00:00</li>
         
             <li>
                 <strong>更新于
-                    :</strong> 2023-12-21 00:13:37
+                    :</strong> 2024-03-18 16:55:17
             </li>
         
         <li>
-            <strong>链接:</strong> https://github.com/Ayanami1314/2023/12/21/sage-sagemath-试用/
+            <strong>链接:</strong> https://github.com/Ayanami1314/2024/03/18/splay-tree/
         </li>
         <li>
             <strong>
@@ -798,29 +845,14 @@
         
             <div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
                 
-                    <div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
-                        <a class="prev"
-                        rel="prev"
-                        href="/2023/12/21/modern-cpp-%E5%AD%A6%E4%B9%A0-1-2023-12-8/"
-                        >
-                            <span class="left arrow-icon flex justify-center items-center">
-                                <i class="fa-solid fa-chevron-left"></i>
-                            </span>
-                            <span class="title flex justify-center items-center">
-                                <span class="post-nav-title-item">modern-cpp-学习-1-2023-12-8</span>
-                                <span class="post-nav-item">上一篇</span>
-                            </span>
-                        </a>
-                    </div>
-                
                 
                     <div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
                         <a class="next"
                         rel="next"
-                        href="/2023/12/21/%E4%BD%BF%E7%94%A8pycron%E5%BA%93%E7%BC%96%E5%86%99hexo%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2%E8%84%9A%E6%9C%AC/"
+                        href="/2024/03/18/%E4%B8%80%E6%AC%A1%E4%BD%BF%E7%94%A8python%E8%84%9A%E6%9C%AC%E8%B7%91cpp%E6%B5%8B%E8%AF%95%E7%9A%84%E7%8A%AF%E8%A0%A2%E8%AE%B0%E5%BD%95/"
                         >
                             <span class="title flex justify-center items-center">
-                                <span class="post-nav-title-item">使用pycron库编写hexo自动部署脚本</span>
+                                <span class="post-nav-title-item">一次使用python脚本跑cpp测试的犯蠢记录</span>
                                 <span class="post-nav-item">下一篇</span>
                             </span>
                             <span class="right arrow-icon flex justify-center items-center">
@@ -883,8 +915,8 @@
             <div class="post-toc-wrap">
     <div class="post-toc">
         <div class="toc-title">此页目录</div>
-        <div class="page-title">sage(sagemath)试用</div>
-        
+        <div class="page-title">splay tree</div>
+        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#splay-tree"><span class="nav-text">splay tree</span></a></li></ol>
 
     </div>
 </div>
