@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Hexo Theme Redefine">
+    
+    <meta name="author" content="Ayanami">
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="https://ayanami1314.github.io/2024/07/11/一次使用python脚本跑cpp测试的犯蠢记录/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+        <meta name="description" content="一次使用python脚本跑cpp测试的犯蠢记录 这件事的起因是这样的，笔者在写一个实现mini editor的cpp lab作业。这个lab要实现一个命令行交互的Editor(类似vim)，然后会读取一行或多行输入（读取多行的情况类似vim输入i然后切换到input mode，以一个.单行作为结束input的标志） 鉴于TA给了一个最基础的测试用例，笔者依然延续一贯的思路使用subprocess库">
+<meta property="og:type" content="article">
+<meta property="og:title" content="一次使用python脚本跑cpp测试的犯蠢记录">
+<meta property="og:url" content="https://ayanami1314.github.io/2024/07/11/%E4%B8%80%E6%AC%A1%E4%BD%BF%E7%94%A8python%E8%84%9A%E6%9C%AC%E8%B7%91cpp%E6%B5%8B%E8%AF%95%E7%9A%84%E7%8A%AF%E8%A0%A2%E8%AE%B0%E5%BD%95/index.html">
+<meta property="og:site_name" content="Ayanami&#39;s Cave">
+<meta property="og:description" content="一次使用python脚本跑cpp测试的犯蠢记录 这件事的起因是这样的，笔者在写一个实现mini editor的cpp lab作业。这个lab要实现一个命令行交互的Editor(类似vim)，然后会读取一行或多行输入（读取多行的情况类似vim输入i然后切换到input mode，以一个.单行作为结束input的标志） 鉴于TA给了一个最基础的测试用例，笔者依然延续一贯的思路使用subprocess库">
+<meta property="og:locale">
+<meta property="article:published_time" content="2024-07-10T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-07-11T15:35:20.081Z">
+<meta property="article:author" content="Ayanami">
+<meta name="twitter:card" content="summary">
+    
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/images/ayanami.jpg" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/ayanami.jpg">
+    <meta name="theme-color" content="#A31F34">
+    <link rel="shortcut icon" href="/images/ayanami.jpg">
+    <!--- Page Info-->
+    
+    <title>
+        
+            一次使用python脚本跑cpp测试的犯蠢记录 -
+        
+        Ayanami&#39;s Cave
+    </title>
+
+    
+<link rel="stylesheet" href="/fonts/Chillax/chillax.css">
+
+
+    <!--- Inject Part-->
+    
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    
+        
+<link rel="stylesheet" href="/assets/build/styles.css">
+
+    
+
+    
+<link rel="stylesheet" href="/fonts/GeistMono/geist-mono.css">
+
+    
+<link rel="stylesheet" href="/fonts/Geist/geist.css">
+
+    <!--- Font Part-->
+    
+    
+    
+    
+
+    
+        
+<script src="/js/libs/anime.min.js"></script>
+
+    
+
+    <script id="hexo-configurations">
+    window.config = {"hostname":"ayanami1314.github.io","root":"/","language":"zh","path":"search.xml"};
+    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true,"title_alignment":"left","headings_top_spacing":{"h1":"3.2rem","h2":"2.4rem","h3":"1.9rem","h4":"1.6rem","h5":"1.4rem","h6":"1.3rem"}},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":{"enable":true,"default":"cc_by_nc_sa"},"lazyload":true,"recommendation":{"enable":true,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null,"default_mode":"light"},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"website_counter":{"url":"https://cn.vercount.one/js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"preloader":true,"open_graph":true,"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/wallhaven-wqery6-light.webp","dark":"/images/wallhaven-wqery6-dark.webp"},"title":"make code matter, make life better","subtitle":{"text":[],"hitokoto":{"enable":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":false,"style":"default","links":{"github":"https://github.com/Ayanami1314","instagram":null,"zhihu":"https://www.zhihu.com/people/85-36-64-12","twitter":null,"email":"lingbo_2022@sjtu.edu.cn"},"qrs":{"weixin":null}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null,"lrc":null}]},"mermaid":{"enable":false,"version":"9.3.0"}},"version":"2.6.4","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"width":{"home":"1200px","pages":"1000px"},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"},"Archives":{"path":"/archives","icon":"fa-regular fa-archive"}},"search":{"enable":true,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":null,"show_on_mobile":true,"links":{"Archives":{"path":"/archives","icon":"fa-regular fa-archive"},"Tags":{"path":"/tags","icon":"fa-regular fa-tags"}}},"article_date_format":"auto","categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footerStart":"2022/8/17 11:45:14"};
+    window.lang_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+    window.data = {"masonry":false};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+    
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+<!--        <span class="swup-progress-icon">-->
+<!--            <i class="fa-solid fa-circle-notch fa-spin"></i>-->
+<!--        </span>-->
+    
+</div>
+
+
+
+    <style>
+    :root {
+        --preloader-background-color: #fff;
+        --preloader-text-color: #000;
+    }
+
+    @media (prefers-color-scheme: dark) {
+        :root {
+            --preloader-background-color: #202124;
+            --preloader-text-color: #fff;
+        }
+    }
+
+    @media (prefers-color-scheme: light) {
+        :root {
+            --preloader-background-color: #fff;
+            --preloader-text-color: #000;
+        }
+    }
+
+    @media (max-width: 600px) {
+        .ml13 {
+            font-size: 2.6rem !important; /* Adjust this value as needed */
+        }
+    }
+
+    .preloader {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem; /* Tailwind 'gap-4' is 1rem */
+        align-items: center;
+        justify-content: center;
+        position: fixed;
+        padding: 12px;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh; /* 'h-screen' is 100% of the viewport height */
+        background-color: var(--preloader-background-color);
+        z-index: 1100; /* 'z-[1100]' sets the z-index */
+        transition: opacity 0.2s ease-in-out;
+    }
+
+    .ml13 {
+        font-size: 3.2rem;
+        /* text-transform: uppercase; */
+        color: var(--preloader-text-color);
+        letter-spacing: -1px;
+        font-weight: 500;
+        font-family: 'Chillax-Variable', sans-serif;
+        text-align: center;
+    }
+
+    .ml13 .word {
+        display: inline-flex;
+        flex-wrap: wrap;
+        white-space: nowrap;
+    }
+
+    .ml13 .letter {
+        display: inline-block;
+        line-height: 1em;
+    }
+</style>
+
+<div class="preloader">
+    <h2 class="ml13">
+        Ayanami&#39;s Cave
+    </h2>
+    <script>
+        var textWrapper = document.querySelector('.ml13');
+        // Split text into words
+        var words = textWrapper.textContent.trim().split(' ');
+
+        // Clear the existing content
+        textWrapper.innerHTML = '';
+
+        // Wrap each word and its letters in spans
+        words.forEach(function(word) {
+            var wordSpan = document.createElement('span');
+            wordSpan.classList.add('word');
+            wordSpan.innerHTML = word.replace(/\S/g, "<span class='letter'>$&</span>");
+            textWrapper.appendChild(wordSpan);
+            textWrapper.appendChild(document.createTextNode(' ')); // Add space between words
+        });
+
+        var animation = anime.timeline({loop: true})
+            .add({
+                targets: '.ml13 .letter',
+                translateY: [40,0],
+                translateZ: 0,
+                opacity: [0,1],
+                filter: ['blur(5px)', 'blur(0px)'], // Starting from blurred to unblurred
+                easing: "easeOutExpo",
+                duration: 1400,
+                delay: (el, i) => 300 + 30 * i,
+            }).add({
+                targets: '.ml13 .letter',
+                translateY: [0,-40],
+                opacity: [1,0],
+                filter: ['blur(0px)', 'blur(5px)'], // Ending from unblurred to blurred
+                easing: "easeInExpo",
+                duration: 1200,
+                delay: (el, i) => 100 + 30 * i,
+                complete: function() {
+                    hidePreloader(); // Call hidePreloader after the animation completes
+                }
+            });
+
+        let themeStatus = JSON.parse(localStorage.getItem('REDEFINE-THEME-STATUS'))?.isDark;
+
+        // If the theme status is not found in local storage, check the preferred color scheme
+        if (themeStatus === undefined || themeStatus === null) {
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                themeStatus = 'dark';
+            } else {
+                themeStatus = 'light';
+            }
+        }
+
+        // Now you can use the themeStatus variable in your code
+        if (themeStatus) {
+            document.documentElement.style.setProperty('--preloader-background-color', '#202124');
+            document.documentElement.style.setProperty('--preloader-text-color', '#fff');
+        } else {
+            document.documentElement.style.setProperty('--preloader-background-color', '#fff');
+            document.documentElement.style.setProperty('--preloader-text-color', '#000');
+        }
+
+        window.addEventListener('load', function () {
+            setTimeout(hidePreloader, 5000); // Call hidePreloader after 5000 milliseconds if not already called by animation
+        });
+
+        function hidePreloader() {
+            var preloader = document.querySelector('.preloader');
+            preloader.style.opacity = '0';
+            setTimeout(function () {
+                preloader.style.display = 'none';
+            }, 200);
+        }
+    </script>
+</div>
+
+<main class="page-container" id="swup">
+
+    
+
+    <div class="main-content-container">
+
+
+        <div class="main-content-header">
+            <header class="navbar-container px-6 md:px-12">
+
+    <div class="navbar-content ">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                
+                Ayanami&#39;s Cave
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/"
+                                        >
+                                    <i class="fa-regular fa-house fa-fw"></i>
+                                    HOME
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/archives"
+                                        >
+                                    <i class="fa-regular fa-archive fa-fw"></i>
+                                    ARCHIVES
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                    
+                        <li class="navbar-item search search-popup-trigger">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fa-solid fa-magnifying-glass"></i>
+                    </div>
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile sheet -->
+    <div class="navbar-drawer h-screen w-full absolute top-0 left-0 bg-background-color flex flex-col justify-between">
+        <ul class="drawer-navbar-list flex flex-col px-4 justify-center items-start">
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/"
+                        >
+                            <span>
+                                HOME
+                            </span>
+                            
+                                <i class="fa-regular fa-house fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/archives"
+                        >
+                            <span>
+                                ARCHIVES
+                            </span>
+                            
+                                <i class="fa-regular fa-archive fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+
+            
+            
+                
+                    
+                    
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full active"
+                           href="/tags"
+                        >
+                            <span>Tags</span>
+                            <i class="fa-regular fa-tags fa-sm fa-fw"></i>
+                        </a>
+                    </li>
+                
+            
+        </ul>
+
+        <div class="statistics flex justify-around my-2.5">
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">0</div>
+        <div class="label text-third-text-color text-sm">Tags</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">0</div>
+        <div class="label text-third-text-color text-sm">Categories</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">21</div>
+        <div class="label text-third-text-color text-sm">Posts</div>
+    </a>
+</div>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="main-content-body">
+
+            
+
+            <div class="main-content">
+
+                
+                    <div class="post-page-container flex relative justify-between box-border w-full h-full">
+    <div class="article-content-container">
+
+        <div class="article-title relative w-full">
+            
+                <div class="w-full flex items-center pt-6 justify-start">
+                    <h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">一次使用python脚本跑cpp测试的犯蠢记录</h1>
+                </div>
+            
+            </div>
+
+        
+            <div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
+                <div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
+                    <img src="/images/ayanami.jpg">
+                </div>
+                <div class="info flex flex-col justify-between">
+                    <div class="author flex items-center">
+                        <span class="name text-default-text-color text-lg font-semibold">Ayanami</span>
+                        
+                            <span class="author-label ml-1.5 text-xs px-2 py-0.5 rounded-small text-third-text-color border border-shadow-color-1">Lv3</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2024-07-11</span>
+        <span class="mobile">2024-07-11</span>
+        <span class="hover-info">Created</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2024-07-11 23:35:20</span>
+            <span class="mobile">2024-07-11 23:35:20</span>
+            <span class="hover-info">Updated</span>
+        </span>
+    
+
+    
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        
+
+
+        <div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
+            <p>一次使用python脚本跑cpp测试的犯蠢记录</p>
+<p>这件事的起因是这样的，笔者在写一个实现mini editor的cpp lab作业。这个lab要实现一个命令行交互的Editor(类似vim)，然后会读取一行或多行输入（读取多行的情况类似vim输入<code>i</code>然后切换到input mode，以一个<code>.</code>单行作为结束input的标志）</p>
+<p>鉴于TA给了一个最基础的测试用例，笔者依然延续一贯的思路使用<code>subprocess</code>库的<code>Popen</code>API，让编译好的cpp程序读取python产生的字节流作为输入，输出重定向到某个log文件之中，以此来实现自动化测试。</p>
+<p>最开始的代码大概这样</p>
+<span id="more"></span>
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> subprocess <span class="keyword">as</span> sh</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line">test_input = <span class="string">&#x27;&#x27;&#x27;a</span></span><br><span class="line"><span class="string">#include&lt;iostream&gt;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">int main()</span></span><br><span class="line"><span class="string">&#123;</span></span><br><span class="line"><span class="string">&#125;</span></span><br><span class="line"><span class="string">.</span></span><br><span class="line"><span class="string">1,$n</span></span><br><span class="line"><span class="string">3</span></span><br><span class="line"><span class="string">i</span></span><br><span class="line"><span class="string">using namespace std;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">#includ</span></span><br><span class="line"><span class="string">.</span></span><br><span class="line"><span class="string">1,$n</span></span><br><span class="line"><span class="string">4,5d</span></span><br><span class="line"><span class="string">1,$n</span></span><br><span class="line"><span class="string">1,3c</span></span><br><span class="line"><span class="string">1,5n</span></span><br><span class="line"><span class="string">a</span></span><br><span class="line"><span class="string">    cout &lt;&lt; &quot;Hello my editor&quot; &lt;&lt; endl;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    return 0;</span></span><br><span class="line"><span class="string">.</span></span><br><span class="line"><span class="string">1,4l</span></span><br><span class="line"><span class="string">1,4s</span></span><br><span class="line"><span class="string">1,4t</span></span><br><span class="line"><span class="string">1,$n</span></span><br><span class="line"><span class="string">write</span></span><br><span class="line"><span class="string">1,999n</span></span><br><span class="line"><span class="string">9,1n</span></span><br><span class="line"><span class="string">4,2d</span></span><br><span class="line"><span class="string">2019</span></span><br><span class="line"><span class="string">w hello.cc</span></span><br><span class="line"><span class="string">Q</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    <span class="comment"># pretask</span></span><br><span class="line">    input_file = <span class="string">&quot;./test_input.txt&quot;</span></span><br><span class="line">    result_file = <span class="string">&quot;./result.txt&quot;</span></span><br><span class="line">    <span class="keyword">if</span> os.path.exists(<span class="string">&quot;./build&quot;</span>):</span><br><span class="line">        sh.run([<span class="string">&quot;rm&quot;</span>, <span class="string">&quot;-rf&quot;</span>, <span class="string">&quot;./build&quot;</span>], shell=<span class="literal">True</span>)</span><br><span class="line">    sh.run([<span class="string">&quot;cmake&quot;</span>, <span class="string">&quot;-B&quot;</span>, <span class="string">&quot;./build&quot;</span>, <span class="string">&quot;-G&quot;</span>, <span class="string">&quot;Unix Makefiles&quot;</span>], shell=<span class="literal">True</span>)</span><br><span class="line">    os.chdir(<span class="string">&quot;./build&quot;</span>)</span><br><span class="line">    sh.run([<span class="string">&quot;make&quot;</span>], shell=<span class="literal">True</span>)</span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(input_file, <span class="string">&quot;w&quot;</span>) <span class="keyword">as</span> f:</span><br><span class="line">        f.write(test_input)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># begin test</span></span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(result_file, <span class="string">&quot;w&quot;</span>) <span class="keyword">as</span> fo, <span class="built_in">open</span>(input_file, <span class="string">&quot;r&quot;</span>) <span class="keyword">as</span> fi:</span><br><span class="line">        p = sh.Popen([<span class="string">&quot;lab2.exe&quot;</span>], stdin=sh.PIPE, stdout=fo, shell=<span class="literal">True</span>)</span><br><span class="line">        <span class="keyword">for</span> line <span class="keyword">in</span> fi:</span><br><span class="line">            p.stdin.write(line)</span><br><span class="line">        p.stdin.close()</span><br><span class="line">    sh.run([<span class="string">&quot;make&quot;</span>, <span class="string">&quot;clean&quot;</span>], shell=<span class="literal">True</span>)</span><br><span class="line">    os.chdir(<span class="string">&quot;..&quot;</span>)</span><br><span class="line"></span><br><span class="line">main()</span><br></pre></td></tr></table></figure></div>
+
+
+
+<p>结果报错</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">File <span class="string">&quot;D:\Desktop\2024sp\sep\lab2\test.py&quot;</span>, line 56, <span class="keyword">in</span> main</span><br><span class="line">    p.stdin.write(line)</span><br><span class="line">TypeError: a bytes-like object is required, not <span class="string">&#x27;str&#x27;</span></span><br></pre></td></tr></table></figure></div>
+
+<p>这是因为PIPE读取的是字节流，给<code>Popen</code>加上<code> universal_newlines=True</code>将输入视为纯文本即可</p>
+<p>这个错误并不大，但致命的下一个错误：</p>
+<p>我在修改程序时，不小心调整了<code>p.stdin.close</code>的位置</p>
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(result_file, <span class="string">&quot;w&quot;</span>) <span class="keyword">as</span> fo, <span class="built_in">open</span>(input_file, <span class="string">&quot;r&quot;</span>) <span class="keyword">as</span> fi:</span><br><span class="line">    p = sh.Popen([<span class="string">&quot;lab2.exe&quot;</span>], stdin=sh.PIPE, stdout=fo, shell=<span class="literal">True</span>)</span><br><span class="line">    <span class="keyword">for</span> line <span class="keyword">in</span> fi:</span><br><span class="line">        p.stdin.write(line)</span><br><span class="line">p.stdin.close() <span class="comment"># 不小心把这里改了！！！</span></span><br></pre></td></tr></table></figure></div>
+
+<p>当然，理论上这会抛出一个错误而终止，但问题就在这里出现……</p>
+<p><strong>现象：电脑显著变卡，尝试打开输出文件无法打开，尝试删除输出文件失败<code>rm: cannot remove &#39;build/result.txt&#39;: Device or resource busy</code>，关闭IDE之后再删除，发现输出文件已经增长到几百mb甚至一个G</strong></p>
+<p>显然是发生了什么不好的无限循环一直在输出，那么这个循环是怎么产生的呢？</p>
+<blockquote>
+<p>当python程序结束的时候，它会尝试回收所有从python程序产生的子进程，理论上不需要关心子线程的清理问题</p>
+</blockquote>
+<p>但这里我们使用了<code>shell=True</code>!!</p>
+<p>这个参数本身是让我们可以方便地使用外部shell执行命令，但它带来的直接问题是，执行的的命令不再是由python管理了，变成了shell自己管理</p>
+<p>而此时，python退出时回收了shell，但可能内部实现是简单粗暴的发了个信号直接kill了，导致shell进程开启的子进程lab2.exe没有正常退出，还在继续执行……</p>
+<p>然后</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">Editor::run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  string cmd;</span><br><span class="line">  <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;cmd&gt; &quot;</span>;</span><br><span class="line">    cout.<span class="built_in">flush</span>();</span><br><span class="line">    <span class="built_in">getline</span>(cin, cmd);</span><br><span class="line">    <span class="keyword">if</span> (cmd == <span class="string">&quot;Q&quot;</span>)</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">      <span class="built_in">dispatchCmd</span>(cmd);</span><br><span class="line">    &#125; <span class="built_in">catch</span> (<span class="type">const</span> <span class="type">char</span> *e) &#123;</span><br><span class="line">      cout &lt;&lt; <span class="string">&quot;? &quot;</span> &lt;&lt; e &lt;&lt; endl;</span><br><span class="line">    &#125; <span class="built_in">catch</span> (<span class="type">const</span> out_of_range &amp;oor) &#123;</span><br><span class="line">      cout &lt;&lt; <span class="string">&quot;? &quot;</span> &lt;&lt; oor.<span class="built_in">what</span>() &lt;&lt; endl;</span><br><span class="line">    &#125; <span class="built_in">catch</span> (<span class="type">const</span> range_error &amp;re) &#123;</span><br><span class="line">      cout &lt;&lt; <span class="string">&quot;? &quot;</span> &lt;&lt; re.<span class="built_in">what</span>() &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>这一段核心代码的逻辑是，一直尝试读取输入流，如果输入流是什么无法解析的东西，那就抛出错误，<strong>并且自己接住了</strong>， <strong>并且只是简单的打印，而不退出</strong></p>
+<p>而更恐怖的是我们使用了管道这一个实质上的syscall……</p>
+<p>所以python主进程结束了之后<strong>，<code>Popen</code>打开的管道（系统临时文件）并没有被立刻直接回收</strong>……而它也<strong>没有接收到结束信号</strong></p>
+<p>于是就发生了奇妙的化学反应：</p>
+<p>python -&gt; shell -&gt; lab2.exe 的前两个进程被回收了，但是管道还在，于是<code>getline</code>总是读到空行和一堆不知道什么的东西，就总是抛出错误，就总是被接住，然后打印，输出到<code>result</code>文件之中……这样就出现了系统卡顿和一个G的result文件的奇观</p>
+<p>这个bug的教训是什么呢？</p>
+<ul>
+<li>慎用Popen和shell&#x3D;True</li>
+<li>如果一定要用，包裹上try except结构,并且使用<code>terminate</code>这个API以处理清理工作</li>
+</ul>
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(result_file, <span class="string">&quot;w&quot;</span>) <span class="keyword">as</span> fo, <span class="built_in">open</span>(input_file, <span class="string">&quot;r&quot;</span>) <span class="keyword">as</span> fi:</span><br><span class="line">    p = sh.Popen([<span class="string">&quot;lab2.exe&quot;</span>], stdin=sh.PIPE, stdout=fo, shell=<span class="literal">True</span>)</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        <span class="keyword">for</span> line <span class="keyword">in</span> fi:</span><br><span class="line">            p.stdin.write(line)</span><br><span class="line">    <span class="keyword">except</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;Error!&quot;</span>)</span><br><span class="line">        p.stdin.close()</span><br><span class="line">        fo.close()</span><br><span class="line">        p.terminate()  <span class="comment"># 这是最重要的！！！</span></span><br></pre></td></tr></table></figure></div>
+
+
+
+<p>还有一个有意思的事情：</p>
+<p>当我发现输出1G的文件根本删不掉（rm 或者 直接右键删除 都会显示这个文件正在被忙碌占用，操作失败）的时候，我关闭了vscode，发现电脑不卡了（这个文件不再增长了）</p>
+<p>这是为什么呢？实际上也是操作系统的知识，vscode本身作为父进程运行了包装terminal的进程，terminal运行python，python运行lab2.exe，而python不正常退出之后，lab2.exe的被转移给了python的父进程，也就是vsc管理的进程</p>
+<p>所以退出vsc的时候，vsc向所有的子进程发信号终止，这个不再受python管理的lab2.exe也就被kill了。</p>
+<p>再一次体会到了这样父进程提前退出的情况下转移子进程的所有权的设计之巧妙，如果出现一个“悬垂进程”，那可真是只能重启电脑了</p>
+<hr>
+<p>如果说上面的问题是OS三大模块之中的虚拟化和文件系统</p>
+<p>下面出现的问题就是剩下的大模块并发</p>
+<p>（小小的一个脚本居然能涉及到整个OS）</p>
+<p>修改后的程序还有一个问题，就是输出的程序前后顺序依然很奇怪，经常会出现一个命令的输入输出顺序颠倒或者混杂的问题</p>
+<p>一想，这不是显然的并行出错嘛</p>
+<p>我输出的代码大概这样</p>
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> line <span class="keyword">in</span> fi:</span><br><span class="line">    fo.write(line)</span><br><span class="line">    p.stdin.write(line)</span><br><span class="line">    p.stdin.flush()  <span class="comment"># 立刻将刷新输入缓冲区</span></span><br><span class="line">    fo.flush()  <span class="comment"># 立刻将输出刷新到文件</span></span><br></pre></td></tr></table></figure></div>
+
+<p>咋一看没问题啊？先输入（并同步将输入输入到result上以保证最后的log文件有输入信息），再输出，每一行输入都尝试刷新缓冲区以保证lab2.exe能够正常读取到输入流的结束标志（而不是全部都塞进管道一直不结束最后无法解析命令）</p>
+<p>它的问题是，python脚本执行和子进程lab2.exe执行实际上是并行的，<strong>python需要等待子进程完成执行，由于在输入流里面读不到东西回到阻塞状态（这也是这个lab在状态跳转了之后还有另外的从输入流读的行为决定的，如果这个lab没有多行输入这样的命令，而每次只读一行，执行过程之中不读的话，完全可以直接写，反正执行之中也不读）</strong>。而一个很难搞的点在于，lab2.exe实质上一直在运行，只不过内部状态不断跳转，而外部的python无法知道它的内部状态<strong>，无法使用os.wait()等同步原语</strong>（因为子进程根本没有结束！）</p>
+<p>那又要如何保证顺序呢？笔者最后是采取了一个最蠢的方法，<strong>直接开睡</strong>！每一次输入、开始子进程之后，python主进程都睡眠一段时间等待子进程。而在写文件的函数上采用异步的方法来提供wait</p>
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> subprocess <span class="keyword">as</span> sh</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> asyncio</span><br><span class="line">test_input = <span class="string">&#x27;&#x27;&#x27;a</span></span><br><span class="line"><span class="string">#include&lt;iostream&gt;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">int main()</span></span><br><span class="line"><span class="string">&#123;</span></span><br><span class="line"><span class="string">&#125;</span></span><br><span class="line"><span class="string">.</span></span><br><span class="line"><span class="string">1,$n</span></span><br><span class="line"><span class="string">3</span></span><br><span class="line"><span class="string">i</span></span><br><span class="line"><span class="string">using namespace std;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">#includ</span></span><br><span class="line"><span class="string">.</span></span><br><span class="line"><span class="string">1,$n</span></span><br><span class="line"><span class="string">4,5d</span></span><br><span class="line"><span class="string">1,$n</span></span><br><span class="line"><span class="string">1,3c</span></span><br><span class="line"><span class="string">1,5n</span></span><br><span class="line"><span class="string">a</span></span><br><span class="line"><span class="string">    cout &lt;&lt; &quot;Hello my editor&quot; &lt;&lt; endl;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    return 0;</span></span><br><span class="line"><span class="string">.</span></span><br><span class="line"><span class="string">1,4l</span></span><br><span class="line"><span class="string">1,4s</span></span><br><span class="line"><span class="string">1,4t</span></span><br><span class="line"><span class="string">1,$n</span></span><br><span class="line"><span class="string">write</span></span><br><span class="line"><span class="string">1,999n</span></span><br><span class="line"><span class="string">9,1n</span></span><br><span class="line"><span class="string">4,2d</span></span><br><span class="line"><span class="string">2019</span></span><br><span class="line"><span class="string">w hello.cc</span></span><br><span class="line"><span class="string">Q</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">input2file</span>():</span><br><span class="line">    input_file = <span class="string">&quot;./test_input.txt&quot;</span></span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(input_file, <span class="string">&quot;w&quot;</span>) <span class="keyword">as</span> f:</span><br><span class="line">        f.write(test_input)</span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    input_file = <span class="string">&quot;./test_input.txt&quot;</span></span><br><span class="line">    result_file = <span class="string">&quot;./result.txt&quot;</span></span><br><span class="line">    sh.run([<span class="string">&quot;cmake&quot;</span>, <span class="string">&quot;-B&quot;</span>, <span class="string">&quot;./build&quot;</span>, <span class="string">&quot;-G&quot;</span>, <span class="string">&quot;Unix Makefiles&quot;</span>], shell=<span class="literal">True</span>)</span><br><span class="line">    os.chdir(<span class="string">&quot;./build&quot;</span>)</span><br><span class="line">    sh.run([<span class="string">&quot;make&quot;</span>], shell=<span class="literal">True</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;start input2file......&quot;</span>)</span><br><span class="line">    <span class="keyword">await</span> input2file()</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;start testing......&quot;</span>)</span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(result_file, <span class="string">&quot;w&quot;</span>) <span class="keyword">as</span> fo, <span class="built_in">open</span>(input_file, <span class="string">&quot;r&quot;</span>) <span class="keyword">as</span> fi:</span><br><span class="line">        p = sh.Popen([<span class="string">&quot;lab2.exe&quot;</span>], stdin=sh.PIPE, stdout=fo, shell=<span class="literal">True</span>, universal_newlines=<span class="literal">True</span>)</span><br><span class="line">        time.sleep(<span class="number">1</span>)  <span class="comment"># 脚本休眠，等待第一个 &gt; cmd 先输出</span></span><br><span class="line">        fo.flush()</span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            <span class="keyword">for</span> line <span class="keyword">in</span> fi:</span><br><span class="line">                fo.write(line)</span><br><span class="line">                fo.flush()</span><br><span class="line">                p.stdin.write(line)</span><br><span class="line">                p.stdin.flush()  <span class="comment"># 立刻将刷新输入缓冲区</span></span><br><span class="line">                time.sleep(<span class="number">0.05</span>) <span class="comment"># 脚本休眠等待程序处理</span></span><br><span class="line">                </span><br><span class="line">                fo.flush()  <span class="comment"># 立刻将输出刷新到文件</span></span><br><span class="line">            p.stdin.close()</span><br><span class="line">        <span class="keyword">except</span>:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;error&quot;</span>)</span><br><span class="line">            p.stdin.close()</span><br><span class="line">            fo.close()</span><br><span class="line">            p.terminate()   </span><br><span class="line">            <span class="comment"># print(line)</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># sh.run([&quot;make&quot;, &quot;clean&quot;], shell=True)</span></span><br><span class="line">    os.chdir(<span class="string">&quot;..&quot;</span>)</span><br><span class="line"></span><br><span class="line">asyncio.run(main())</span><br></pre></td></tr></table></figure></div>
+
+<p>最后解决了这个异步问题</p>
+<p>整个bug流程涉及到了好多知识，也很有意思，并且bug非常具有破坏性（指1G文件，如果运维之中有这种bug估计不当处理要服务器爆炸），所以记录了整个流程</p>
+
+        </div>
+
+        
+            <div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li><strong>Title:</strong> 一次使用python脚本跑cpp测试的犯蠢记录</li>
+        <li><strong>Author:</strong> Ayanami</li>
+        <li><strong>Created at
+                :</strong> 2024-07-11 00:00:00</li>
+        
+            <li>
+                <strong>Updated at
+                    :</strong> 2024-07-11 23:35:20
+            </li>
+        
+        <li>
+            <strong>Link:</strong> https://ayanami1314.github.io/2024/07/11/一次使用python脚本跑cpp测试的犯蠢记录/
+        </li>
+        <li>
+            <strong>
+                License:
+            </strong>
+            
+
+            
+                This work is licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY-NC-SA 4.0</a>.
+            
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+
+        
+  <div class="recommended-article px-2 sm:px-6 md:px-8">
+   <div class="recommended-desktop">
+    <div class="recommended-article-header text-xl md:text-3xl font-bold mt-10">
+     <i aria-hidden="true"></i><span>推荐阅读</span>
+    </div>
+    <div class="recommended-article-group"><a class="recommended-article-item" href="/2024/07/11/11-14-11-26学习双周记：/" title="11.14-11.26学习双周记" rel="bookmark">
+  <img src="/images/wallhaven-wqery6-light.webp" alt="11.14-11.26学习双周记" class="!max-w-none">
+  <span class="title">11.14-11.26学习双周记</span>
+</a><a class="recommended-article-item" href="/2024/07/11/浅入理解断点和调试器/" title="浅入理解断点和调试器" rel="bookmark">
+  <img src="/images/wallhaven-wqery6-light.webp" alt="浅入理解断点和调试器" class="!max-w-none">
+  <span class="title">浅入理解断点和调试器</span>
+</a><a class="recommended-article-item" href="/2024/07/11/南大PA历险记-持续更新中-/" title="南大PA历险记（持续更新中）" rel="bookmark">
+  <img src="/images/wallhaven-wqery6-light.webp" alt="南大PA历险记（持续更新中）" class="!max-w-none">
+  <span class="title">南大PA历险记（持续更新中）</span>
+</a></div>
+   </div>
+   <div class="recommended-mobile">
+   <div class="recommended-article-header text-xl md:text-3xl font-bold mt-10">
+     <i aria-hidden="true"></i><span>推荐阅读</span>
+   </div>
+   <div class="recommended-article-group"><a class="recommended-article-item" href="/2024/07/11/11-14-11-26学习双周记：/" title="11.14-11.26学习双周记" rel="bookmark">
+  <img src="/images/wallhaven-wqery6-light.webp" alt="11.14-11.26学习双周记" class="!max-w-none">
+  <span class="title">11.14-11.26学习双周记</span>
+</a><a class="recommended-article-item" href="/2024/07/11/浅入理解断点和调试器/" title="浅入理解断点和调试器" rel="bookmark">
+  <img src="/images/wallhaven-wqery6-light.webp" alt="浅入理解断点和调试器" class="!max-w-none">
+  <span class="title">浅入理解断点和调试器</span>
+</a></div>
+   </div>
+  </div>
+
+        
+            <div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
+                
+                    <div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+                        <a class="prev"
+                        rel="prev"
+                        href="/2024/07/11/splay-tree/"
+                        >
+                            <span class="left arrow-icon flex justify-center items-center">
+                                <i class="fa-solid fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex justify-center items-center">
+                                <span class="post-nav-title-item">splay tree</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+                        <a class="next"
+                        rel="next"
+                        href="/2024/07/11/%E4%BD%BF%E7%94%A8pycron%E5%BA%93%E7%BC%96%E5%86%99hexo%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2%E8%84%9A%E6%9C%AC/"
+                        >
+                            <span class="title flex justify-center items-center">
+                                <span class="post-nav-title-item">使用pycron库编写hexo自动部署脚本</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex justify-center items-center">
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+
+        
+    </div>
+
+    
+        <div class="toc-content-container">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <div class="toc-title">On this page</div>
+        <div class="page-title">一次使用python脚本跑cpp测试的犯蠢记录</div>
+        
+
+    </div>
+</div>
+        </div>
+    
+</div>
+
+
+
+                
+
+            </div>
+
+            
+
+        </div>
+
+        <div class="main-content-footer">
+            <footer class="footer mt-5 py-5 h-auto text-base text-third-text-color relative border-t-2 border-t-border-color">
+    <div class="info-container py-3 text-center">
+        
+        <div class="text-center">
+            &copy;
+            
+              <span>2022</span>
+              -
+            
+            2024&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">Ayanami</a>
+            
+                
+                <p class="post-count space-x-0.5">
+                    <span>
+                        21 posts in total
+                    </span>
+                    
+                </p>
+            
+        </div>
+        
+            <script data-swup-reload-script src="https://cn.vercount.one/js"></script>
+            <div class="relative text-center lg:absolute lg:right-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-right">
+                
+                    <span id="busuanzi_container_site_uv" class="lg:!block">
+                        <span class="text-sm">VISITOR COUNT</span>
+                        <span id="busuanzi_value_site_uv"></span>
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv" class="lg:!block">
+                        <span class="text-sm">TOTAL PAGE VIEWS</span>
+                        <span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="relative text-center lg:absolute lg:left-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-left">
+            <span class="lg:block text-sm">POWERED BY <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg class="relative top-[2px] inline-block align-baseline" version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" class="text-base" href="https://hexo.io">Hexo</a></span>
+            <span class="text-sm lg:block">THEME&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.6.4</a></span>
+        </div>
+        
+        
+            <div>
+                Blog up for <span class="odometer" id="runtime_days" ></span> days <span class="odometer" id="runtime_hours"></span> hrs <span class="odometer" id="runtime_minutes"></span> Min <span class="odometer" id="runtime_seconds"></span> Sec
+            </div>
+        
+        
+            <script data-swup-reload-script>
+                try {
+                    function odometer_init() {
+                    const elements = document.querySelectorAll('.odometer');
+                    elements.forEach(el => {
+                        new Odometer({
+                            el,
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
+                    });
+                    }
+                    odometer_init();
+                } catch (error) {}
+            </script>
+        
+        
+        
+    </div>  
+</footer>
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="article-tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="right-bottom-tools page-aside-toggle">
+                <i class="fa-regular fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-side-tools-container">
+        <div class="side-tools-container">
+    <ul class="hidden-tools-list">
+        <li class="right-bottom-tools tool-font-adjust-plus flex justify-center items-center">
+            <i class="fa-regular fa-magnifying-glass-plus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-font-adjust-minus flex justify-center items-center">
+            <i class="fa-regular fa-magnifying-glass-minus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-dark-light-toggle flex justify-center items-center">
+            <i class="fa-regular fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="right-bottom-tools tool-scroll-to-bottom flex justify-center items-center">
+            <i class="fa-regular fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="visible-tools-list">
+        <li class="right-bottom-tools toggle-tools-list flex justify-center items-center">
+            <i class="fa-regular fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="right-bottom-tools tool-scroll-to-top flex justify-center items-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fa-solid fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fa-solid fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fa-solid fa-spinner fa-spin-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+    
+<script src="/js/libs/Swup.min.js"></script>
+
+<script src="/js/libs/SwupSlideTheme.min.js"></script>
+
+<script src="/js/libs/SwupScriptsPlugin.min.js"></script>
+
+<script src="/js/libs/SwupProgressPlugin.min.js"></script>
+
+<script src="/js/libs/SwupScrollPlugin.min.js"></script>
+
+<script src="/js/libs/SwupPreloadPlugin.min.js"></script>
+
+<script>
+    const swup = new Swup({
+        plugins: [
+            new SwupScriptsPlugin({
+                optin: true,
+            }),
+            new SwupProgressPlugin(),
+            new SwupScrollPlugin({
+                offset: 80,
+            }),
+            new SwupSlideTheme({
+                mainElement: ".main-content-body",
+            }),
+            new SwupPreloadPlugin(),
+        ],
+        containers: ["#swup"],
+    });
+</script>
+
+
+
+
+
+
+
+<script src="/js/tools/imageViewer.js" type="module"></script>
+
+<script src="/js/utils.js" type="module"></script>
+
+<script src="/js/main.js" type="module"></script>
+
+<script src="/js/layouts/navbarShrink.js" type="module"></script>
+
+<script src="/js/tools/scrollTopBottom.js" type="module"></script>
+
+<script src="/js/tools/lightDarkSwitch.js" type="module"></script>
+
+<script src="/js/layouts/categoryList.js" type="module"></script>
+
+
+
+    
+<script src="/js/tools/localSearch.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/tools/codeBlock.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/layouts/lazyload.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/tools/runtime.js"></script>
+
+    
+<script src="/js/libs/odometer.min.js"></script>
+
+    
+<link rel="stylesheet" href="/assets/odometer-theme-minimal.css">
+
+
+
+
+  
+<script src="/js/libs/Typed.min.js"></script>
+
+  
+<script src="/js/plugins/typed.js" type="module"></script>
+
+
+
+
+
+
+
+
+
+<div class="post-scripts" data-swup-reload-script>
+    
+        
+<script src="/js/tools/tocToggle.js" type="module"></script>
+
+<script src="/js/layouts/toc.js" type="module"></script>
+
+<script src="/js/plugins/tabs.js" type="module"></script>
+
+    
+</div>
+
+
+</body>
+</html>

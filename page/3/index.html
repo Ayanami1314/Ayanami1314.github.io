@@ -13,20 +13,16 @@
     
     <!--- Seo Part-->
     
-    <link rel="canonical" href="https://ayanami1314.github.io/2024/07/11/hello-world/"/>
+    <link rel="canonical" href="https://ayanami1314.github.io/page/3/"/>
     <meta name="robots" content="index,follow">
     <meta name="googlebot" content="index,follow">
     <meta name="revisit-after" content="1 days">
     
-        <meta name="description" content="Welcome to Hexo ! This is your very first post. Check documentation  for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting  or you can ask me on GitHub . Q">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="https://ayanami1314.github.io/2024/07/11/hello-world/index.html">
+        <meta property="og:type" content="website">
+<meta property="og:title" content="Ayanami&#39;s Cave">
+<meta property="og:url" content="https://ayanami1314.github.io/page/3/index.html">
 <meta property="og:site_name" content="Ayanami&#39;s Cave">
-<meta property="og:description" content="Welcome to Hexo ! This is your very first post. Check documentation  for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting  or you can ask me on GitHub . Q">
 <meta property="og:locale">
-<meta property="article:published_time" content="2024-07-11T14:11:22.855Z">
-<meta property="article:modified_time" content="2024-07-11T14:11:22.855Z">
 <meta property="article:author" content="Ayanami">
 <meta name="twitter:card" content="summary">
     
@@ -39,8 +35,6 @@
     <!--- Page Info-->
     
     <title>
-        
-            Hello World -
         
         Ayanami&#39;s Cave
     </title>
@@ -269,6 +263,41 @@
 <main class="page-container" id="swup">
 
     
+        <style>
+    .home-article-item,
+    .sidebar-links,
+    .sidebar-content,
+    a.page-number,
+    a.extend,
+    .sidebar-links .links:hover,
+    .right-bottom-tools,
+    footer.footer {
+        background-color: var(--background-color-transparent-80) !important;
+    }
+    .right-bottom-tools:hover,
+    a.page-number:hover,
+    a.extend:hover {
+        background-color: var(--primary-color) !important;
+    }
+    .site-info,
+    .home-article-sticky-label {
+        background-color: var(--background-color-transparent-15) !important;
+    }
+    .home-article-sticky-label {
+        backdrop-filter: none !important;
+    }
+    .home-banner-background {
+        filter: blur(15px);
+    }
+</style>
+
+<div class="home-banner-background transition-fade fixed top-0 left-0 w-screen h-screen scale-125 sm:scale-110 box-border will-change-transform bg-cover">
+    <img src="/images/wallhaven-wqery6-light.webp" alt="home-banner-background" class="w-full h-full object-cover dark:hidden">
+    <img src="/images/wallhaven-wqery6-dark.webp" alt="home-banner-background" class="w-full h-full object-cover hidden dark:block">
+</div>
+
+
+    
 
     <div class="main-content-container">
 
@@ -280,9 +309,9 @@
         <div class="left">
             
             <a class="logo-title" href="/">
-                
+                <h1>
                 Ayanami&#39;s Cave
-                
+                </h1>
             </a>
         </div>
 
@@ -296,7 +325,7 @@
 
                             <li class="navbar-item">
                                 <!-- Menu -->
-                                <a class=""
+                                <a class="active"
                                    href="/"
                                         >
                                     <i class="fa-regular fa-house fa-fw"></i>
@@ -354,7 +383,7 @@
 
                     <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
                         
-                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full active"
                            href="/"
                         >
                             <span>
@@ -433,211 +462,131 @@
         <div class="main-content-body">
 
             
+                <div class="home-sidebar-container">
+    <div class="sticky-container sticky">
+        
+        
+            
+                <div class="sidebar-links">
+                    <div class="site-info">
+                        <div class="site-name">Ayanami&#39;s Cave</div>
+                        
+                    </div>
+                    
+                        
+                            
+                                <a class="links" href="/archives">
+                                    
+                                        <i class="fa-regular fa-archive icon-space"></i>
+                                    
+                                    <span class="link-name">Archives</span>
+                                </a>
+                            
+                        
+                            
+                                <a class="links" href="/tags">
+                                    
+                                        <i class="fa-regular fa-tags icon-space"></i>
+                                    
+                                    <span class="link-name">Tags</span>
+                                </a>
+                            
+                        
+                    
+                </div>
+            
+            <div class="sidebar-content"  marginTop >
+                <div class="avatar flex justify-center">
+    <img src="/images/ayanami.jpg">
+</div>
+                <div class="author flex flex-col justify-center my-2.5 mx-0">
+    <div class="name">Ayanami</div>
+    
+        <div class="label">Lv3</div>
+    
+</div>
+                <div class="statistics flex justify-around my-2.5">
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">0</div>
+        <div class="label text-third-text-color text-sm">Tags</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">0</div>
+        <div class="label text-third-text-color text-sm">Categories</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">21</div>
+        <div class="label text-third-text-color text-sm">Posts</div>
+    </a>
+</div>
+            </div>
+        
+
+    </div>
+</div>
+
+            
 
             <div class="main-content">
 
                 
-                    <div class="post-page-container flex relative justify-between box-border w-full h-full">
-    <div class="article-content-container">
-
-        <div class="article-title relative w-full">
-            
-                <div class="w-full flex items-center pt-6 justify-start">
-                    <h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">Hello World</h1>
-                </div>
-            
-            </div>
-
+                    <div class="home-content-container">
+    <ul class="home-article-list">
         
-            <div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
-                <div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
-                    <img src="/images/ayanami.jpg">
-                </div>
-                <div class="info flex flex-col justify-between">
-                    <div class="author flex items-center">
-                        <span class="name text-default-text-color text-lg font-semibold">Ayanami</span>
+            <li class="home-article-item">
+
+                
+
+                
+
+                
+                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
+                    <h3 class="home-article-title">
+                        <a href="/2024/07/11/%E7%BC%96%E7%A8%8B%E9%9A%8F%E6%83%B3blog%E7%AC%94%E8%AE%B0%EF%BC%9A/">
+                            编程随想blog笔记
+                        </a>
+                    </h3>
+
+                    <div class="home-article-content markdown-body">
                         
-                            <span class="author-label ml-1.5 text-xs px-2 py-0.5 rounded-small text-third-text-color border border-shadow-color-1">Lv3</span>
+                            <h3 id="编程随想blog笔记："><a href="#编程随想blog笔记：" class="headerlink" title="编程随想blog笔记："></a>编程随想blog笔记：</h3><blockquote>
+<p><strong>如何用十年掌握编程？</strong></p>
+<p>　　研究人员（Bloom (1985), Bryan &amp; Harter (1899), Hayes (1989), Simmon &amp; Chase (1973)）得出结论：想要在诸多领域达到职业水平需要十年，比如国际象棋，作曲，电报操作，绘画，弹钢琴，游泳，网球以及神经心理学和拓扑学的研究。<strong>关键是精心练习，只是一遍一遍地重复是不够的，必须挑战恰好超越你能力限度的事情，尝试并思考你的表现，并自我矫正。周而复始。</strong></p>
+</blockquote>
+<hr>
                         
                     </div>
-                    <div class="meta-info">
-                        <div class="article-meta-info">
-    <span class="article-date article-meta-item">
-        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
-        <span class="desktop">2024-07-11 22:11:22</span>
-        <span class="mobile">2024-07-11 22:11:22</span>
-        <span class="hover-info">Created</span>
-    </span>
-    
-        <span class="article-date article-meta-item">
-            <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2024-07-11 22:11:22</span>
-            <span class="mobile">2024-07-11 22:11:22</span>
-            <span class="hover-info">Updated</span>
-        </span>
-    
 
-    
-    
-
-    
-    
-    
-    
-        <span class="article-pv article-meta-item">
-            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+                    <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fa-solid fa-calendars"></i>&nbsp;
+            <span class="home-article-date" data-date="Thu Jul 11 2024 00:00:00 GMT+0800">
+                
+                    2024-07-11
+                
+            </span>
         </span>
-    
+        
+        
+    </div>
+
+    <a href="/2024/07/11/%E7%BC%96%E7%A8%8B%E9%9A%8F%E6%83%B3blog%E7%AC%94%E8%AE%B0%EF%BC%9A/">Read more<span class="seo-reader-text">编程随想blog笔记</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
 </div>
 
-                    </div>
                 </div>
-            </div>
-        
-
-        
-
-
-        <div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
-            <p>Welcome to <a class="link"   target="_blank" rel="noopener" href="https://hexo.io/" >Hexo <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>! This is your very first post. Check <a class="link"   target="_blank" rel="noopener" href="https://hexo.io/docs/" >documentation <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> for more info. If you get any problems when using Hexo, you can find the answer in <a class="link"   target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html" >troubleshooting <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> or you can ask me on <a class="link"   target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues" >GitHub <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure></div>
-
-<p>More info: <a class="link"   target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html" >Writing <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure></div>
-
-<p>More info: <a class="link"   target="_blank" rel="noopener" href="https://hexo.io/docs/server.html" >Server <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure></div>
-
-<p>More info: <a class="link"   target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html" >Generating <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure></div>
-
-<p>More info: <a class="link"   target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html" >Deployment <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-
-        </div>
-
-        
-            <div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
-                <div class="article-copyright-info-container">
-    <ul>
-        <li><strong>Title:</strong> Hello World</li>
-        <li><strong>Author:</strong> Ayanami</li>
-        <li><strong>Created at
-                :</strong> 2024-07-11 22:11:22</li>
-        
-            <li>
-                <strong>Updated at
-                    :</strong> 2024-07-11 22:11:22
             </li>
         
-        <li>
-            <strong>Link:</strong> https://ayanami1314.github.io/2024/07/11/hello-world/
-        </li>
-        <li>
-            <strong>
-                License:
-            </strong>
-            
-
-            
-                This work is licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY-NC-SA 4.0</a>.
-            
-        </li>
     </ul>
+
+    <div class="home-paginator px-7 py-5">
+        <div class="paginator">
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa-regular fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
 </div>
-
-            </div>
-        
-
-        
-
-        
-  <div class="recommended-article px-2 sm:px-6 md:px-8">
-   <div class="recommended-desktop">
-    <div class="recommended-article-header text-xl md:text-3xl font-bold mt-10">
-     <i aria-hidden="true"></i><span>推荐阅读</span>
-    </div>
-    <div class="recommended-article-group"><a class="recommended-article-item" href="/2024/07/11/使用pycron库编写hexo自动部署脚本/" title="使用pycron库编写hexo自动部署脚本" rel="bookmark">
-  <img src="/images/wallhaven-wqery6-light.webp" alt="使用pycron库编写hexo自动部署脚本" class="!max-w-none">
-  <span class="title">使用pycron库编写hexo自动部署脚本</span>
-</a><a class="recommended-article-item" href="/2024/07/11/linking-复习/" title="linking 复习" rel="bookmark">
-  <img src="/images/wallhaven-wqery6-light.webp" alt="linking 复习" class="!max-w-none">
-  <span class="title">linking 复习</span>
-</a><a class="recommended-article-item" href="/2024/07/11/南大PA历险记-持续更新中-/" title="南大PA历险记（持续更新中）" rel="bookmark">
-  <img src="/images/wallhaven-wqery6-light.webp" alt="南大PA历险记（持续更新中）" class="!max-w-none">
-  <span class="title">南大PA历险记（持续更新中）</span>
-</a></div>
-   </div>
-   <div class="recommended-mobile">
-   <div class="recommended-article-header text-xl md:text-3xl font-bold mt-10">
-     <i aria-hidden="true"></i><span>推荐阅读</span>
-   </div>
-   <div class="recommended-article-group"><a class="recommended-article-item" href="/2024/07/11/使用pycron库编写hexo自动部署脚本/" title="使用pycron库编写hexo自动部署脚本" rel="bookmark">
-  <img src="/images/wallhaven-wqery6-light.webp" alt="使用pycron库编写hexo自动部署脚本" class="!max-w-none">
-  <span class="title">使用pycron库编写hexo自动部署脚本</span>
-</a><a class="recommended-article-item" href="/2024/07/11/linking-复习/" title="linking 复习" rel="bookmark">
-  <img src="/images/wallhaven-wqery6-light.webp" alt="linking 复习" class="!max-w-none">
-  <span class="title">linking 复习</span>
-</a></div>
-   </div>
-  </div>
-
-        
-            <div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
-                
-                    <div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
-                        <a class="prev"
-                        rel="prev"
-                        href="/2024/07/11/mit-6-s081%E8%B8%A9%E8%BF%87%E7%9A%84%E5%9D%91-%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%E4%B8%AD/"
-                        >
-                            <span class="left arrow-icon flex justify-center items-center">
-                                <i class="fa-solid fa-chevron-left"></i>
-                            </span>
-                            <span class="title flex justify-center items-center">
-                                <span class="post-nav-title-item">mit-6-s081踩过的坑-持续更新中-</span>
-                                <span class="post-nav-item">Prev posts</span>
-                            </span>
-                        </a>
-                    </div>
-                
-                
-                    <div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
-                        <a class="next"
-                        rel="next"
-                        href="/2024/07/11/11-14-11-26%E5%AD%A6%E4%B9%A0%E5%8F%8C%E5%91%A8%E8%AE%B0%EF%BC%9A/"
-                        >
-                            <span class="title flex justify-center items-center">
-                                <span class="post-nav-title-item">11.14-11.26学习双周记</span>
-                                <span class="post-nav-item">Next posts</span>
-                            </span>
-                            <span class="right arrow-icon flex justify-center items-center">
-                                <i class="fa-solid fa-chevron-right"></i>
-                            </span>
-                        </a>
-                    </div>
-                
-            </div>
-        
-
-
-        
-    </div>
-
-    
-        <div class="toc-content-container">
-            <div class="post-toc-wrap">
-    <div class="post-toc">
-        <div class="toc-title">On this page</div>
-        <div class="page-title">Hello World</div>
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Quick-Start"><span class="nav-text">Quick Start</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Create-a-new-post"><span class="nav-text">Create a new post</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Run-server"><span class="nav-text">Run server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generate-static-files"><span class="nav-text">Generate static files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deploy-to-remote-sites"><span class="nav-text">Deploy to remote sites</span></a></li></ol></li></ol>
 
     </div>
 </div>
-        </div>
-    
-</div>
 
-
-
+                    <div class="comment-container pjax"></div>
                 
 
             </div>
@@ -718,23 +667,6 @@
         </div>
     </div>
 
-    
-        <div class="post-tools">
-            <div class="post-tools-container">
-    <ul class="article-tools-list">
-        <!-- TOC aside toggle -->
-        
-            <li class="right-bottom-tools page-aside-toggle">
-                <i class="fa-regular fa-outdent"></i>
-            </li>
-        
-
-        <!-- go comment -->
-        
-    </ul>
-</div>
-
-        </div>
     
 
     <div class="right-side-tools-container">
@@ -848,6 +780,7 @@
         containers: ["#swup"],
     });
 </script>
+
 
 
 

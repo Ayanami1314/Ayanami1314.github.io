@@ -1,0 +1,1278 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Hexo Theme Redefine">
+    
+    <meta name="author" content="Ayanami">
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="https://ayanami1314.github.io/2024/07/11/数据结构期末复习/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+        <meta name="description" content="数据结构期末复习 叠甲 ATTENTION：  为了简化代码我都没有写模板 有些是伪代码，看函数看明白意思就成 未必和书上的实现一样（大部分该过一些逻辑和函数名称） 尽量不写错，错了是我菜，轻喷 一般不引入自定义数据结构，除了LinkedList表示单链表，其他的stack,deque之类都是std::stack， std::deque">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据结构期末复习">
+<meta property="og:url" content="https://ayanami1314.github.io/2024/07/11/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/index.html">
+<meta property="og:site_name" content="Ayanami&#39;s Cave">
+<meta property="og:description" content="数据结构期末复习 叠甲 ATTENTION：  为了简化代码我都没有写模板 有些是伪代码，看函数看明白意思就成 未必和书上的实现一样（大部分该过一些逻辑和函数名称） 尽量不写错，错了是我菜，轻喷 一般不引入自定义数据结构，除了LinkedList表示单链表，其他的stack,deque之类都是std::stack， std::deque">
+<meta property="og:locale">
+<meta property="og:image" content="https://s2.loli.net/2023/12/30/4FvrSfIWtEiKXRa.png">
+<meta property="article:published_time" content="2024-07-10T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-07-11T15:35:51.944Z">
+<meta property="article:author" content="Ayanami">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2023/12/30/4FvrSfIWtEiKXRa.png">
+    
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/images/ayanami.jpg" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/ayanami.jpg">
+    <meta name="theme-color" content="#A31F34">
+    <link rel="shortcut icon" href="/images/ayanami.jpg">
+    <!--- Page Info-->
+    
+    <title>
+        
+            数据结构期末复习 -
+        
+        Ayanami&#39;s Cave
+    </title>
+
+    
+<link rel="stylesheet" href="/fonts/Chillax/chillax.css">
+
+
+    <!--- Inject Part-->
+    
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    
+        
+<link rel="stylesheet" href="/assets/build/styles.css">
+
+    
+
+    
+<link rel="stylesheet" href="/fonts/GeistMono/geist-mono.css">
+
+    
+<link rel="stylesheet" href="/fonts/Geist/geist.css">
+
+    <!--- Font Part-->
+    
+    
+    
+    
+
+    
+        
+<script src="/js/libs/anime.min.js"></script>
+
+    
+
+    <script id="hexo-configurations">
+    window.config = {"hostname":"ayanami1314.github.io","root":"/","language":"zh","path":"search.xml"};
+    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true,"title_alignment":"left","headings_top_spacing":{"h1":"3.2rem","h2":"2.4rem","h3":"1.9rem","h4":"1.6rem","h5":"1.4rem","h6":"1.3rem"}},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":{"enable":true,"default":"cc_by_nc_sa"},"lazyload":true,"recommendation":{"enable":true,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null,"default_mode":"light"},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"website_counter":{"url":"https://cn.vercount.one/js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"preloader":true,"open_graph":true,"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/wallhaven-wqery6-light.webp","dark":"/images/wallhaven-wqery6-dark.webp"},"title":"make code matter, make life better","subtitle":{"text":[],"hitokoto":{"enable":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":false,"style":"default","links":{"github":"https://github.com/Ayanami1314","instagram":null,"zhihu":"https://www.zhihu.com/people/85-36-64-12","twitter":null,"email":"lingbo_2022@sjtu.edu.cn"},"qrs":{"weixin":null}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null,"lrc":null}]},"mermaid":{"enable":false,"version":"9.3.0"}},"version":"2.6.4","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"width":{"home":"1200px","pages":"1000px"},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"},"Archives":{"path":"/archives","icon":"fa-regular fa-archive"}},"search":{"enable":true,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":null,"show_on_mobile":true,"links":{"Archives":{"path":"/archives","icon":"fa-regular fa-archive"},"Tags":{"path":"/tags","icon":"fa-regular fa-tags"}}},"article_date_format":"auto","categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footerStart":"2022/8/17 11:45:14"};
+    window.lang_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+    window.data = {"masonry":false};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+    
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+<!--        <span class="swup-progress-icon">-->
+<!--            <i class="fa-solid fa-circle-notch fa-spin"></i>-->
+<!--        </span>-->
+    
+</div>
+
+
+
+    <style>
+    :root {
+        --preloader-background-color: #fff;
+        --preloader-text-color: #000;
+    }
+
+    @media (prefers-color-scheme: dark) {
+        :root {
+            --preloader-background-color: #202124;
+            --preloader-text-color: #fff;
+        }
+    }
+
+    @media (prefers-color-scheme: light) {
+        :root {
+            --preloader-background-color: #fff;
+            --preloader-text-color: #000;
+        }
+    }
+
+    @media (max-width: 600px) {
+        .ml13 {
+            font-size: 2.6rem !important; /* Adjust this value as needed */
+        }
+    }
+
+    .preloader {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem; /* Tailwind 'gap-4' is 1rem */
+        align-items: center;
+        justify-content: center;
+        position: fixed;
+        padding: 12px;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh; /* 'h-screen' is 100% of the viewport height */
+        background-color: var(--preloader-background-color);
+        z-index: 1100; /* 'z-[1100]' sets the z-index */
+        transition: opacity 0.2s ease-in-out;
+    }
+
+    .ml13 {
+        font-size: 3.2rem;
+        /* text-transform: uppercase; */
+        color: var(--preloader-text-color);
+        letter-spacing: -1px;
+        font-weight: 500;
+        font-family: 'Chillax-Variable', sans-serif;
+        text-align: center;
+    }
+
+    .ml13 .word {
+        display: inline-flex;
+        flex-wrap: wrap;
+        white-space: nowrap;
+    }
+
+    .ml13 .letter {
+        display: inline-block;
+        line-height: 1em;
+    }
+</style>
+
+<div class="preloader">
+    <h2 class="ml13">
+        Ayanami&#39;s Cave
+    </h2>
+    <script>
+        var textWrapper = document.querySelector('.ml13');
+        // Split text into words
+        var words = textWrapper.textContent.trim().split(' ');
+
+        // Clear the existing content
+        textWrapper.innerHTML = '';
+
+        // Wrap each word and its letters in spans
+        words.forEach(function(word) {
+            var wordSpan = document.createElement('span');
+            wordSpan.classList.add('word');
+            wordSpan.innerHTML = word.replace(/\S/g, "<span class='letter'>$&</span>");
+            textWrapper.appendChild(wordSpan);
+            textWrapper.appendChild(document.createTextNode(' ')); // Add space between words
+        });
+
+        var animation = anime.timeline({loop: true})
+            .add({
+                targets: '.ml13 .letter',
+                translateY: [40,0],
+                translateZ: 0,
+                opacity: [0,1],
+                filter: ['blur(5px)', 'blur(0px)'], // Starting from blurred to unblurred
+                easing: "easeOutExpo",
+                duration: 1400,
+                delay: (el, i) => 300 + 30 * i,
+            }).add({
+                targets: '.ml13 .letter',
+                translateY: [0,-40],
+                opacity: [1,0],
+                filter: ['blur(0px)', 'blur(5px)'], // Ending from unblurred to blurred
+                easing: "easeInExpo",
+                duration: 1200,
+                delay: (el, i) => 100 + 30 * i,
+                complete: function() {
+                    hidePreloader(); // Call hidePreloader after the animation completes
+                }
+            });
+
+        let themeStatus = JSON.parse(localStorage.getItem('REDEFINE-THEME-STATUS'))?.isDark;
+
+        // If the theme status is not found in local storage, check the preferred color scheme
+        if (themeStatus === undefined || themeStatus === null) {
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                themeStatus = 'dark';
+            } else {
+                themeStatus = 'light';
+            }
+        }
+
+        // Now you can use the themeStatus variable in your code
+        if (themeStatus) {
+            document.documentElement.style.setProperty('--preloader-background-color', '#202124');
+            document.documentElement.style.setProperty('--preloader-text-color', '#fff');
+        } else {
+            document.documentElement.style.setProperty('--preloader-background-color', '#fff');
+            document.documentElement.style.setProperty('--preloader-text-color', '#000');
+        }
+
+        window.addEventListener('load', function () {
+            setTimeout(hidePreloader, 5000); // Call hidePreloader after 5000 milliseconds if not already called by animation
+        });
+
+        function hidePreloader() {
+            var preloader = document.querySelector('.preloader');
+            preloader.style.opacity = '0';
+            setTimeout(function () {
+                preloader.style.display = 'none';
+            }, 200);
+        }
+    </script>
+</div>
+
+<main class="page-container" id="swup">
+
+    
+
+    <div class="main-content-container">
+
+
+        <div class="main-content-header">
+            <header class="navbar-container px-6 md:px-12">
+
+    <div class="navbar-content ">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                
+                Ayanami&#39;s Cave
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/"
+                                        >
+                                    <i class="fa-regular fa-house fa-fw"></i>
+                                    HOME
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/archives"
+                                        >
+                                    <i class="fa-regular fa-archive fa-fw"></i>
+                                    ARCHIVES
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                    
+                        <li class="navbar-item search search-popup-trigger">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fa-solid fa-magnifying-glass"></i>
+                    </div>
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile sheet -->
+    <div class="navbar-drawer h-screen w-full absolute top-0 left-0 bg-background-color flex flex-col justify-between">
+        <ul class="drawer-navbar-list flex flex-col px-4 justify-center items-start">
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/"
+                        >
+                            <span>
+                                HOME
+                            </span>
+                            
+                                <i class="fa-regular fa-house fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/archives"
+                        >
+                            <span>
+                                ARCHIVES
+                            </span>
+                            
+                                <i class="fa-regular fa-archive fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+
+            
+            
+                
+                    
+                    
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full active"
+                           href="/tags"
+                        >
+                            <span>Tags</span>
+                            <i class="fa-regular fa-tags fa-sm fa-fw"></i>
+                        </a>
+                    </li>
+                
+            
+        </ul>
+
+        <div class="statistics flex justify-around my-2.5">
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">0</div>
+        <div class="label text-third-text-color text-sm">Tags</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">0</div>
+        <div class="label text-third-text-color text-sm">Categories</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">21</div>
+        <div class="label text-third-text-color text-sm">Posts</div>
+    </a>
+</div>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="main-content-body">
+
+            
+
+            <div class="main-content">
+
+                
+                    <div class="post-page-container flex relative justify-between box-border w-full h-full">
+    <div class="article-content-container">
+
+        <div class="article-title relative w-full">
+            
+                <div class="w-full flex items-center pt-6 justify-start">
+                    <h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">数据结构期末复习</h1>
+                </div>
+            
+            </div>
+
+        
+            <div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
+                <div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
+                    <img src="/images/ayanami.jpg">
+                </div>
+                <div class="info flex flex-col justify-between">
+                    <div class="author flex items-center">
+                        <span class="name text-default-text-color text-lg font-semibold">Ayanami</span>
+                        
+                            <span class="author-label ml-1.5 text-xs px-2 py-0.5 rounded-small text-third-text-color border border-shadow-color-1">Lv3</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2024-07-11</span>
+        <span class="mobile">2024-07-11</span>
+        <span class="hover-info">Created</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2024-07-11 23:35:51</span>
+            <span class="mobile">2024-07-11 23:35:51</span>
+            <span class="hover-info">Updated</span>
+        </span>
+    
+
+    
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        
+
+
+        <div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
+            <p>数据结构期末复习</p>
+<p>叠甲</p>
+<p>ATTENTION：</p>
+<ol>
+<li>为了简化代码我都没有写模板</li>
+<li>有些是伪代码，看函数看明白意思就成</li>
+<li>未必和书上的实现一样（大部分该过一些逻辑和函数名称）</li>
+<li>尽量不写错，错了是我菜，轻喷</li>
+<li>一般不引入自定义数据结构，除了LinkedList表示单链表，其他的stack,deque之类都是std::stack， std::deque</li>
+</ol>
+<span id="more"></span>
+<hr>
+<h5 id="线性表"><a href="#线性表" class="headerlink" title="线性表"></a><strong>线性表</strong></h5><hr>
+<h6 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h6><blockquote>
+<p>例题：入栈序列1，2，…, n,第二个出栈的是3，第三个可能是？</p>
+<p>解析：理解“入栈序列”，意思是入栈的是这样的顺序，但中间可以有任意出栈</p>
+<p>如：入1，出1，入2，入3，出3,…</p>
+<p>第一种可能：第一个出栈的是1&#x2F;2，第三个可以是1，2，4~n的任何值，共 n-4+1+2 &#x3D; n-1种</p>
+<p>第二种可能：第一个出栈的是4，这样连续出两个，第二个出栈的就是3，第三个可以是 2，5~n</p>
+<p>综上，取并集，n-1种</p>
+</blockquote>
+<p>应用：解递归</p>
+<p><strong>递归本质上就是栈</strong>，所以一定能把递归写成栈的形式</p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 斐波那契数列</span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">foo</span><span class="params">(<span class="type">int</span> n)</span></span>&#123;</span><br><span class="line">    <span class="built_in">assert</span>(n &gt; <span class="number">0</span>);</span><br><span class="line">    <span class="keyword">if</span>(n==<span class="number">1</span> || n==<span class="number">2</span>) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">foo</span>(n<span class="number">-1</span>) + <span class="built_in">foo</span>(n<span class="number">-2</span>); </span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 等效于</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">foo</span><span class="params">(<span class="type">int</span> n)</span></span>&#123;</span><br><span class="line">    stack&lt;<span class="type">int</span>&gt; s;</span><br><span class="line">    s.<span class="built_in">push</span>(n);</span><br><span class="line">    <span class="type">int</span> sum = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(!s.<span class="built_in">empty</span>())&#123;</span><br><span class="line">        <span class="type">int</span> x = s.<span class="built_in">top</span>();</span><br><span class="line">        s.<span class="built_in">pop</span>();</span><br><span class="line">        <span class="keyword">if</span>(x == <span class="number">1</span> || x == <span class="number">2</span>) &#123;</span><br><span class="line">            sum += <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">continue</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        s.<span class="built_in">push</span>(x - <span class="number">1</span>);</span><br><span class="line">        s.<span class="built_in">push</span>(x - <span class="number">2</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> sum;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+
+
+<p>中缀转后缀</p>
+<p>符号栈+操作数栈</p>
+<p>读到优先级高（先算）的符号，继续</p>
+<p>读到优先级低的符号（即前面的符号优先级更高），前面的符号出栈</p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 伪代码</span></span><br><span class="line">stack&lt;string&gt; symbol;</span><br><span class="line"> </span><br><span class="line"><span class="function">string <span class="title">midfix_to_subfix</span><span class="params">(string input)</span></span>&#123;</span><br><span class="line">    <span class="type">int</span> maxPriority = <span class="number">0</span>;</span><br><span class="line">    <span class="type">int</span> maxPriority_idx = <span class="number">-1</span>;</span><br><span class="line">    string output;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;input.<span class="built_in">length</span>();++i)&#123;</span><br><span class="line">        <span class="keyword">if</span>(<span class="built_in">isOperand</span>(s[i]))&#123;</span><br><span class="line">            output += s[i];</span><br><span class="line">            output += <span class="string">&quot; &quot;</span>;</span><br><span class="line">            <span class="keyword">continue</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        symbol.<span class="built_in">push</span>(s[i]);</span><br><span class="line">        <span class="keyword">while</span>(<span class="built_in">getPrority</span>(s[i]) &lt;= maxPriority)&#123;</span><br><span class="line">            <span class="comment">// 将优先级最高的操作符输出</span></span><br><span class="line">            output += s[maxPriority_idx];</span><br><span class="line">            output += <span class="string">&quot; &quot;</span>;</span><br><span class="line">            <span class="type">int</span> maxPriority = <span class="number">0</span>;</span><br><span class="line">            <span class="type">int</span> maxPriority_idx = <span class="number">-1</span>;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">0</span>;j&lt;i;++j)&#123;</span><br><span class="line">                <span class="keyword">if</span>(<span class="built_in">getPrority</span>(s[j]) &gt; maxPriority)&#123;</span><br><span class="line">                    maxPrority = <span class="built_in">getPrority</span>(s[j]);</span><br><span class="line">                    maxPrority_idx = j; </span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 更新max</span></span><br><span class="line">        <span class="keyword">if</span>(<span class="built_in">getPrority</span>(s[i]) &gt; maxPriority)&#123;</span><br><span class="line">            maxPrority = <span class="built_in">getPrority</span>(s[i]);</span><br><span class="line">        	maxPrority_idx = i; </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> output;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<hr>
+<h5 id="队列"><a href="#队列" class="headerlink" title="队列"></a>队列</h5><p>空表front &#x3D;&#x3D; -1 &amp;&amp; rear &#x3D;&#x3D; -1</p>
+<p>插入 data[++rear] &#x3D; v</p>
+<p>删除 ++front</p>
+<p>循环队列</p>
+<p>空表 front &#x3D;&#x3D; rear</p>
+<p>插入 data[rear &#x3D; (rear+1)%M] &#x3D; v</p>
+<p>删除 front &#x3D; (front+1) % M</p>
+<p>链表队列：额外保存尾指针</p>
+<p>hint: 似乎<strong>尾指针</strong>rear一般指最后一个合法元素，指队列&#x2F;表外的null之类的是<strong>尾后指针</strong></p>
+<hr>
+<h5 id="树"><a href="#树" class="headerlink" title="树"></a>树</h5><blockquote>
+<p>树即递归    ——沃兹基硕德</p>
+</blockquote>
+<p>概念：</p>
+<p>森林：若干棵不相交树的集合</p>
+<p>根：没有直接前驱</p>
+<p>叶：没有直接后驱</p>
+<p><strong>内部结点：除了根和叶</strong></p>
+<p>子结点：直接后继</p>
+<p>父结点：直接前驱</p>
+<p>祖先结点：父节点一路向上</p>
+<p>子孙结点：所有子节点一路向下</p>
+<p><strong>度：和图的度定义不同，结点的度 def Node’s degree &#x3D;&#x3D; number of children</strong></p>
+<p><strong>树的度 def Tree’s degree &#x3D;&#x3D; max {all Node’s degree}</strong></p>
+<p>高度&#x2F;深度，算上根，只有一个根节点高度1</p>
+<p>表示法：孩子链（链表的数组），孩子兄弟链表，左孩子右兄弟</p>
+<ul>
+<li>左孩子右兄弟: 左子树是孩子结点，右子树画兄弟结点</li>
+</ul>
+<p>二叉树：每个非叶结点都只有两个子结点，且是<strong>有序树</strong>（即使只有一颗子树也必须区分左子树还是右子树）</p>
+<p>满二叉树：每一层的结点数量都达到最大值</p>
+<p>完全二叉树：满二叉树最底层从右到左删去若干个结点</p>
+<p>二叉树性质：</p>
+<ul>
+<li><p>第i层，最多2^i-1^个结点（根节点层数1）</p>
+</li>
+<li><p>高度k的二叉树最多2^k^-1个结点</p>
+</li>
+<li><p>n结点完全二叉树高度为[log<del>2</del>n]+1</p>
+</li>
+<li><p><strong>非空二叉树n<del>0</del>叶结点，n<del>2</del>度为2结点，有n<del>0</del>&#x3D;n<del>2</del>+1</strong>(推导：用边数，3n<del>2</del>+2（N-n<del>2</del>-n<del>0</del>)+ n<del>0</del>&#x3D;2(N-1) +1(根) ，化简即可）</p>
+</li>
+</ul>
+<p>二叉树实现：顺序表、链表</p>
+<p>顺序实现：根节点下标1，下标k的结点左孩子2k,右孩子2k+1，父节点[k&#x2F;2]</p>
+<p><strong>非完全二叉树的顺序实现：在空的地方补上虚结点，用特殊值标志</strong></p>
+<p>链表实现：左子树、右子树 (可选：父结点)（有父节点是三叉链表（广义标准存储），否则二叉链表（标准存储））</p>
+<p>遍历：层序遍历，前序遍历（根左右），中序遍历（左根右），后序遍历（左右根）</p>
+<p><strong>唯一确定一棵二叉树：前序+中序✔，后序+中序✔，前序+后序❌（AB BA，无法确定B是左子树还是右子树）</strong></p>
+<p>例题：前序 ALBECDWX 中序BLEACWXD，求树</p>
+<p>解析: 前是根左右，中是左右根，先找对应</p>
+<p>中序中找根A， 则左边BLE是左子树，右边CWXD是右子树</p>
+<p>L是左子树根，在中序之中找L，B是L的左子树，E是L的右子树</p>
+<p>CWDX回前序找，C是右子树根，那么DWX都是C右子树，D是右子树根，WX都是D左子树，W是根，X是W右子树</p>
+<p>总结：两边对应，从根突破，先大后小，分块解决</p>
+<p>中前后：DFS</p>
+<p>层序：BFS</p>
+<p>前序递归：</p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">preOrder</span><span class="params">(binaryTree* t)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(!t) <span class="keyword">return</span>;</span><br><span class="line">    <span class="comment">// dosomething(t—&gt;root);</span></span><br><span class="line">    <span class="built_in">prefix</span>(t-&gt;left);</span><br><span class="line">    <span class="built_in">prefix</span>(t-&gt;right);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>前序非递归：</p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">preOrder</span><span class="params">(binaryTree* t)</span></span>&#123;</span><br><span class="line">    deque&lt;TreeNode*&gt; d; <span class="comment">// 实际上不需要deque，只需要支持头插和头出就行, 完全可以换成自定义链表</span></span><br><span class="line">    d.<span class="built_in">push_front</span>(t-&gt;root);</span><br><span class="line">    <span class="keyword">if</span>(!d.<span class="built_in">empty</span>())&#123; </span><br><span class="line">        TreeNode* t = d.<span class="built_in">front</span>();</span><br><span class="line">   		<span class="comment">// dosomething(t)</span></span><br><span class="line">        d.<span class="built_in">pop_front</span>();</span><br><span class="line">        d.<span class="built_in">push_front</span>(t-&gt;right);</span><br><span class="line">        d.<span class="built_in">push_front</span>(t-&gt;left);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+
+
+<p>中序非递归：</p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">midOrder</span><span class="params">(binaryTree* t)</span> </span>&#123;</span><br><span class="line">    deque&lt;TreeNode*&gt; d; <span class="comment">// 实际上不需要deque，只需要支持头插和头出就行, 完全可以换成自定义链表</span></span><br><span class="line">    d.<span class="built_in">push_front</span>(t-&gt;root);</span><br><span class="line">    <span class="comment">// 因为此时需要让root在中间访问，所以需要记录root是第一次还是第二次访问，否则就死循环了</span></span><br><span class="line">    <span class="comment">//（pop 了 root 又加入root）</span></span><br><span class="line">    <span class="keyword">if</span>(!d.<span class="built_in">empty</span>())&#123; </span><br><span class="line">        TreeNode* t = d.<span class="built_in">front</span>();</span><br><span class="line">   		<span class="comment">// dosomething(t)</span></span><br><span class="line">        t-&gt;<span class="built_in">addCount</span>(); <span class="comment">// 增加计数</span></span><br><span class="line">        </span><br><span class="line">        d.<span class="built_in">pop_front</span>();</span><br><span class="line">        d.<span class="built_in">push_front</span>(t-&gt;right);</span><br><span class="line">        <span class="keyword">if</span>(t-&gt;<span class="built_in">getCount</span>() == <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="comment">// 已经遍历过，只不过还没访问</span></span><br><span class="line">            d.<span class="built_in">push_front</span>(t);</span><br><span class="line">            <span class="comment">// 访问了之后由于count增加，不会再次访问</span></span><br><span class="line">        &#125;</span><br><span class="line">        d.<span class="built_in">push_front</span>(t-&gt;left);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+
+
+<p>层序代码</p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">levelOrder</span><span class="params">(binaryTree* t)</span></span>&#123;</span><br><span class="line">    stack&lt;TreeNode*&gt; s;</span><br><span class="line">    s.<span class="built_in">push</span>(t-&gt;root);</span><br><span class="line">    <span class="keyword">while</span>(!s.<span class="built_in">empty</span>())&#123;</span><br><span class="line">        TreeNode* x = s.<span class="built_in">front</span>();</span><br><span class="line">        <span class="comment">//dosomething(x)</span></span><br><span class="line">        s.<span class="built_in">pop</span>();</span><br><span class="line">        <span class="keyword">if</span>(x-&gt;left)</span><br><span class="line">        	s.<span class="built_in">push</span>(x-&gt;left);</span><br><span class="line">        <span class="keyword">if</span>(x-&gt;right)</span><br><span class="line">        	s.<span class="built_in">push</span>(x-&gt;right);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+
+
+<p>其他遍历同理</p>
+<p>查找：类似遍历</p>
+<p>插入：类似查找</p>
+<p>删除：对于二叉查找树，删非叶结点取左子树最右边的或者右子树最左边的替换</p>
+<p>统计结点数量</p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">count</span><span class="params">(binaryTree* t)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(!t)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span> + <span class="built_in">count</span>(t-&gt;left) + <span class="built_in">count</span>(t-&gt;right);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>树高度</p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">height</span><span class="params">(binaryTree* t)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(!t)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span> + <span class="built_in">max</span>(<span class="built_in">height</span>(t-&gt;left), <span class="built_in">height</span>(t-&gt;right));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>判断T2是不是T1子树：先T1查找T2的root, 找到为t<br>法一：非递归：遍历T2 元素为ele, search(t, ele)<br>法二：递归：T1 &#x3D;&#x3D; T2  equals to T1-&gt;root &#x3D;&#x3D; T2-&gt;root &amp;&amp; T1-&gt;left &#x3D;&#x3D; T2-&gt;left &amp;&amp; T1-&gt;right &#x3D;&#x3D; t2-&gt;right， 这样递归判断t和t2是否相等即可 </p>
+<p>两结点AB最近公共祖先：</p>
+<p>算法1：<br>git merge就是用了这个算法（的多路版）</p>
+<p>首先假设二叉树是记录了parent的，如果没有记录遍历一遍补上parent信息<br>然后从A结点开始，反向（不断往parent找）做一个BFS（广度优先遍历,在有多个parent的情况下需要, 此处退化成一直沿着唯一的parent向上即可），记录祖辈节点的离A距离dis1</p>
+<p>B也做一次，得到dis2</p>
+<p>然后找出 dis1和dis2均存在 &amp;&amp; dis1+dis2最小 的结点即为所求，复杂度是O(N)，N为节点数<br>（这个记录信息可以这样做，不一定要树结点有额外元素，可以新定义一个array&lt;pair&lt;TreeNode*, T infomation&gt; 然后填array ）</p>
+<p>算法2：<br>另一种效率慢一点但实现简单的方法：A的祖辈成为一个栈，在栈顶元素search(B), 如果找不到，出栈一个元素，继续</p>
+<p>计算表达式：</p>
+<p>书上讲得乱七八糟的（暴论）：</p>
+<p>表达式记作&lt;expr&gt;</p>
+<blockquote>
+<p>&lt;expr&gt; ::&#x3D; operand </p>
+<p>​	| (&lt;expr&gt;)</p>
+<p>​	| &lt;expr&gt; op &lt;expr&gt;<br>​	| …</p>
+</blockquote>
+<p>也就是说， 表达式 是：操作数 或 括号套着的表达式 或 两个表达式中间一个运算符<br>（当然你可以继续拓展定义以支持单目和三目运算符之类）</p>
+<p>我们先把操作数和不同操作符分开，变成不同的Token<br>输入的表达式做一个处理，变成Token流（Token数组）<br>比如 （3+5）* 8<br>变成 TK_NUM (3), TK_ADD (+), TK_NUM(5), TK_MUL(*), TK_NUM(8)</p>
+<p>那么计算表达式的流程是：</p>
+<ol>
+<li>判断两边是不是有括号，如果有，去掉</li>
+<li>找出主运算符：运算优先级最低的一个（最后算的那个）</li>
+<li>把主运算符左边看成一个新表达式，右边看成一个新表达式，递归计算</li>
+<li>那么什么时候递归停止呢？当表达式没有运算符的时候，如果此时有超过一个运算数，就是错误；如果只有一个运算数，那么值就是这个值</li>
+</ol>
+<p>建立表达式树就是一样的，<br>让主运算符为根，两边的表达式作为子树递归就行</p>
+<p>具体代码可以参考我的blog<br><a href="https://ayanami1314.github.io/2023/11/15/2023-11-6-11-13%E5%AD%A6%E4%B9%A0%E5%91%A8%E8%AE%B0/">https://ayanami1314.github.io/2023/11/15/2023-11-6-11-13%E5%AD%A6%E4%B9%A0%E5%91%A8%E8%AE%B0/</a><br>的part 2部分</p>
+<p>哈夫曼树（最优二叉树）：</p>
+<p>比较复杂，考吗？可以参考我之前的blog：<a href="https://ayanami1314.github.io/2023/10/16/%E5%8E%8B%E7%BC%A9%E5%92%8C%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E5%93%B2%E5%AD%A6/%E7%9A%84%E5%89%8D%E5%8D%8A%E9%83%A8%E5%88%86">https://ayanami1314.github.io/2023/10/16/%E5%8E%8B%E7%BC%A9%E5%92%8C%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E5%93%B2%E5%AD%A6/的前半部分</a></p>
+<p>是Huffman算法（一种压缩算法）使用的数据结构</p>
+<p>avl和红黑, b树的理解</p>
+<p>参见我的blog: <a href="https://ayanami1314.github.io/2023/10/16/%E6%A0%91/">https://ayanami1314.github.io/2023/10/16/%E6%A0%91/</a></p>
+<p>avl、红黑，b和b+树的应试：</p>
+<p>平衡度：左子树高-右子树高</p>
+<p>AVL（二叉平衡树）：平衡度 0 1 -1</p>
+<p>四种情况：</p>
+<p>LL 左子树高，插入左左： 右单旋转</p>
+<p>LR 左子树高，插入左右： 左右双旋转</p>
+<p>RR 右子树高，插入右右： 右左双旋转</p>
+<p>RL 右子树高，插入左左： 左单旋转</p>
+<p>画图！画图！画图就懂了</p>
+<p>b树&#x2F;b+树：</p>
+<p>看书吧，书这里讲得还蛮清楚的</p>
+<hr>
+<p>哈希：</p>
+<p>线性探测，平方探测，再散列法（不同的哈希方法H1(x)， (H1（x）+H2(x)) % M, (H1（x）+ 2H2(x)) % M, …），开散列表（拉链法）</p>
+<p>闭散列表一般迟删除（lazy delete）</p>
+<p>二次探测：有助于消除初始聚集</p>
+<p><del>碎碎念：我从来没用过闭散列，都是直接开散列的（</del></p>
+<hr>
+<p>静态查找表：</p>
+<p>分块查找（索引顺序查找）：把整个有序表分成几块，块内无所谓，块间需要有序</p>
+<p>静态动态区分：是否有插入删除（改变结构）</p>
+<p>内部外部区分：纯内存还是有内外存交互</p>
+<hr>
+<p>二叉堆：</p>
+<p>以小根堆为例：</p>
+<p>插入：在完全二叉树的最后加入一个元素，然后向上过滤，如果比父节点小就交换</p>
+<p>删除：删除根结点，将完全二叉树的最后一个元素放到堆顶处，然后向下过滤</p>
+<p>构造：逐个插入O(Nlog(N)),直接构造O（N）</p>
+<p>逐个插入很好理解，直接构造的想法是：</p>
+<p>逐个插入每插入一次都要维护堆的有序性，这部分工作是不必要的，只需要插入N个之后有序就行了</p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">buildHeap</span><span class="params">(<span class="type">int</span> &amp;arr, <span class="type">int</span> size)</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=size/<span class="number">2</span>;i&gt;<span class="number">0</span>;--i)&#123;</span><br><span class="line">        <span class="built_in">percolateDown</span>(i); <span class="comment">// 向下过滤</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>即：堆是完全二叉树，叶子不需要排序，所以从size&#x2F;2开始</p>
+<p>当下一层全部有序的时候（左子树和右子树有序），对根排序就是一次向下过滤</p>
+<p>为什么这个是O(N)</p>
+<p>size&#x2F;4 到 size&#x2F;2: 最坏向下一层</p>
+<p>size&#x2F;8 到 size&#x2F;4: 最坏向下2层</p>
+<p>……</p>
+<p>总共是sum(N*i&#x2F;2^i^, 0, log<del>2</del>(N))</p>
+<p>要证 sum(N*i&#x2F;2^i^, 0, log<del>2</del>(N)) &#x3D; O(N) 即 sum(N*i&#x2F;2^i^, 0, log<del>2</del>(N)) &lt; C * N</p>
+<p>令N&#x3D;2^p^代入化简，得即证 sum(i&#x2F;2^i^, 0, p) &lt; C 即可</p>
+<p>i&#x2F;2^i^ 由比值审敛法，容易判定收敛，故上式成立，buildHeap是O(N)的</p>
+<p>可能会考两种方法（逐个和线性复杂度）的画图</p>
+<hr>
+<p>排序和选择：</p>
+<p>快排，堆排，希尔，计数，基数，冒泡，插入，选择，归并</p>
+<p>这章没啥好讲的</p>
+<hr>
+<p>图论算法：</p>
+<p>拓扑排序topSort：</p>
+<ol>
+<li>计算每个结点的入度indegree，将（所有）入度为0的点入队</li>
+<li>找一个入度为0的点，出队，更新其他结点的入度（每条从此节点出发，到其他结点的边减少一个入度）</li>
+<li>重复2，直至队空</li>
+</ol>
+<p>O(V+E)</p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> adjListGraph&lt;V, E&gt;::<span class="built_in">topSort</span>() &#123;</span><br><span class="line">    <span class="comment">// 伪代码</span></span><br><span class="line">    queue&lt;<span class="type">int</span>&gt; q;</span><br><span class="line">    vector&lt;<span class="type">int</span>&gt; indegree;</span><br><span class="line">    <span class="comment">// 计算入度</span></span><br><span class="line">    indegree.<span class="built_in">assign</span>(numOfVex, <span class="number">0</span>);</span><br><span class="line">    <span class="keyword">for</span>(E&amp; edge : <span class="keyword">this</span>-&gt;Edges)&#123;</span><br><span class="line">        indegree[edge-&gt;end]++;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">do</span>&#123;</span><br><span class="line">        <span class="comment">// 入队</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span>&amp; i: indegree)&#123;</span><br><span class="line">            <span class="keyword">if</span>(i == <span class="number">0</span>)&#123;</span><br><span class="line">                q.<span class="built_in">push</span>(i);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">int</span> nextVer = q.<span class="built_in">front</span>();</span><br><span class="line">        <span class="comment">// dosomething(nextVer);</span></span><br><span class="line">        q.<span class="built_in">pop</span>();</span><br><span class="line">        <span class="comment">// 更新入度</span></span><br><span class="line">        <span class="keyword">for</span>(E* p=(verList+nextVar)-&gt;<span class="built_in">getEdgeList</span>();p!=<span class="literal">nullptr</span>;p=p-&gt;next)&#123;</span><br><span class="line">            indegree[p-&gt;end]--;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;<span class="keyword">while</span>(!q.<span class="built_in">empty</span>());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+
+
+
+
+<p>dfs, bfs：</p>
+<p>dfs: 如果相邻的结点还有没走的，走过去，如果死路就回溯（递归）</p>
+<p>bfs: 队列，不断入队相邻结点，出队当前结点</p>
+<p>Euler回路（欧拉回路）：</p>
+<p>def： 起点和终点是同一点，且恰经过每一条边一次</p>
+<p>存在性判断： 如果每个点的度都是偶数，则存在；否则不存在</p>
+<p>寻找算法思路： </p>
+<p>算法1：dfs暴搜</p>
+<p>当回到原点 &amp;&amp; 还有边没走过 时回溯</p>
+<p>算法2（Fleury算法）：改进, 路径为ve<del>1</del>v<del>1</del>e<del>2</del>…e<del>n</del>v， 在走过e<del>1</del>v<del>1</del>e<del>2</del>…e<del>k</del>v<del>k</del>时，找下一条边e<del>k+1</del>，除非没有其他边，否则不找割边（“桥”）</p>
+<p>每走过一条边之后，“删去”（可以直接删掉（最开始留下边的拷贝）或者标记已经走过）</p>
+<p>怎么判断桥？边u-v割断之后，u-v不连通的就是桥</p>
+<p>怎么判断u-v连通性？DFS&#x2F;BFS</p>
+<p>O（（V+E）^2^）</p>
+<p>算法3：书本算法</p>
+<ol>
+<li>无回溯dfs，随便地找到一条回路</li>
+<li>遍历该回路上的每个点，如果这个点还有没被走过的边，则以该边作为起点再找一个欧拉回路</li>
+<li>将新的欧拉回路拼接到原来的欧拉回路上（原：A——B——…——A， 新： A——B——C——D——B——…——A）</li>
+<li>重复23</li>
+</ol>
+<p>代码实现又臭又长，估计不会考代码（雾）</p>
+<hr>
+<p>刷试卷：</p>
+<p>2020-2021</p>
+<p>注意点：</p>
+<p>哈夫曼树的在书上的定义（<strong>左子树编码0，右子树编码1，取最小的元素放左子树，次小的放右子树</strong>）</p>
+<p>哈夫曼树在内存的存储， 2*size的内存表现表，会画</p>
+<p>2018-2019</p>
+<p>注意点：</p>
+<p>哈希的探测似乎不算第一次，只有哈希的位置已经被占据了继续往下找才叫“探测”</p>
+<p>哈希取模：小于数组长度的最大素数</p>
+<p>看复习资料，重点算法和注意点</p>
+<ol>
+<li><p>假设单链表的实现中不维护当前元素数量（即没有current_length），设计尽可能高效的算法分别获取中间元素（或中间靠左元素）、第k个元素和倒数第k个元素。使用两个指针。</p>
+<p>快慢指针法：fast_ptr走2， slow_ptr走1。 快指针走到链表尾部时，慢指针走到中间元素；倒数第k的的求法是先让一个指针走k，然后一个指针走到末尾时另一个就是倒数k</p>
+</li>
+<li><p>逆转单链表：某道例题。不断交换相邻的两个指针p,q</p>
+</li>
+<li><p>一般循环链表不设置头节点，单链表默认不带尾指针，一般带头节点</p>
+</li>
+<li><p>全排列的非递归算法：</p>
+<ul>
+<li>首先，所有元素按字典升序入栈</li>
+<li>然后，从右到左找到第一个升序的相邻元素对（i,i+1），即v[i] &lt; v[i+1]，这样，v[i+1]到v[length-1]是降序的</li>
+<li>在i+1到length-1这个子数组中从右向左找到第一个大于v[i]的元素，记为v[j]（由于已经是降序，v[j]此时肯定是最小的），swap(v[i], v[j]) , then reverse v[j] to v[length-1] ，（因为v[j]&gt;v[i]&gt;v[j+1]&gt;… 所以换完还是逆序的，反转之后变成顺序）就得到了下一个序列</li>
+</ul>
+</li>
+</ol>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">print_permutations</span><span class="params">(std::vector&lt;<span class="type">int</span>&gt; nums)</span> </span>&#123;</span><br><span class="line">    std::<span class="built_in">sort</span>(nums.<span class="built_in">begin</span>(), nums.<span class="built_in">end</span>());</span><br><span class="line">    std::stack&lt;std::vector&lt;<span class="type">int</span>&gt;&gt; s;</span><br><span class="line">    s.<span class="built_in">push</span>(nums);</span><br><span class="line">    <span class="keyword">while</span> (!s.<span class="built_in">empty</span>()) &#123;</span><br><span class="line">        std::vector&lt;<span class="type">int</span>&gt; v = s.<span class="built_in">top</span>();</span><br><span class="line">        s.<span class="built_in">pop</span>();</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> num : v) &#123;</span><br><span class="line">            std::cout &lt;&lt; num &lt;&lt; <span class="string">&#x27; &#x27;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&#x27;\n&#x27;</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = v.<span class="built_in">size</span>() - <span class="number">2</span>; i &gt;= <span class="number">0</span>; --i) &#123;</span><br><span class="line">            <span class="keyword">if</span> (v[i] &lt; v[i + <span class="number">1</span>]) &#123;</span><br><span class="line">                std::<span class="built_in">reverse</span>(v.<span class="built_in">begin</span>() + i + <span class="number">1</span>, v.<span class="built_in">end</span>());</span><br><span class="line">                <span class="keyword">for</span> (<span class="type">int</span> j = i + <span class="number">1</span>; j &lt; v.<span class="built_in">size</span>(); ++j) &#123;</span><br><span class="line">                    <span class="keyword">if</span> (v[j] &gt; v[i]) &#123;</span><br><span class="line">                        std::<span class="built_in">swap</span>(v[i], v[j]);</span><br><span class="line">                        s.<span class="built_in">push</span>(v);</span><br><span class="line">                        <span class="keyword">break</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+
+
+<p>算法的基本思想是，一个n个元素的排列可以用123…n这样一个数来表征，<strong>而如果能找到一种方法迭代这个数的所有可能，就可以输出全排列</strong>，这里选择了最自然的增序迭代</p>
+<blockquote>
+<p>在i+1到length-1这个子数组中找到第一个大于v[i]的元素（由于已经是降序，v[j]此时肯定是最小的），记为v[j]，swap(v[i], v[j]) , then reverse v[j] to v[length-1] ，就得到了下一个序列</p>
+</blockquote>
+<p>这一段就是找比现在的数大，但又在剩下的数之间最小的下一个数，即迭代下一项。让最低的位（对应找第一个升序的相邻对）增加最小的值（对应找右向左第一个比v[i]大的交换（同时也是最小的），然后让再右边的…321这样的子序列变成最小的123…）</p>
+<p>递归全排列：回溯法</p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">permute</span><span class="params">(std::vector&lt;<span class="type">int</span>&gt;&amp; nums, <span class="type">int</span> l, <span class="type">int</span> r)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (l == r) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">const</span> <span class="keyword">auto</span>&amp; num : nums) &#123;</span><br><span class="line">            std::cout &lt;&lt; num &lt;&lt; <span class="string">&#x27; &#x27;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&#x27;\n&#x27;</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = l; i &lt;= r; i++) &#123;</span><br><span class="line">            std::<span class="built_in">swap</span>(nums[l], nums[i]);</span><br><span class="line">            <span class="built_in">permute</span>(nums, l<span class="number">+1</span>, r);</span><br><span class="line">            std::<span class="built_in">swap</span>(nums[l], nums[i]); <span class="comment">// backtrack</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+
+
+<p>时间复杂度O（n!)</p>
+<ol start="5">
+<li><p>循环队列：<strong>规定front指向的单元不能存储队列元素，只起到标志作用</strong>，表示后面一个是队头元素。即 当尚余一个空单元时，队列就算满了。 <strong>队列满的条件是：(rear + 1) % MaxSize &#x3D;&#x3D; front 队列空的条件是：front &#x3D;&#x3D; rear。</strong></p>
+</li>
+<li><p>n个叶子节点的完全二叉树最多有<strong>2n</strong>个节点</p>
+</li>
+<li><p>孩子兄弟链表示法的树求深度非递归：双栈，结点栈和深度栈</p>
+<p>核心代码</p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> (!nodeStack.<span class="built_in">empty</span>()) &#123;</span><br><span class="line">    node *current = nodeStack.<span class="built_in">top</span>();</span><br><span class="line">    nodeStack.<span class="built_in">pop</span>();</span><br><span class="line">    <span class="type">int</span> currentDepth = depthStack.<span class="built_in">top</span>();</span><br><span class="line">    depthStack.<span class="built_in">pop</span>();</span><br><span class="line">    height = std::<span class="built_in">max</span>(height, currentDepth);</span><br><span class="line">    <span class="keyword">if</span> (current-&gt;right) &#123;</span><br><span class="line">        nodeStack.<span class="built_in">push</span>(current-&gt;right);</span><br><span class="line">        depthStack.<span class="built_in">push</span>(currentDepth);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (current-&gt;left) &#123;</span><br><span class="line">        nodeStack.<span class="built_in">push</span>(current-&gt;left);</span><br><span class="line">        depthStack.<span class="built_in">push</span>(currentDepth + <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
+
+
+</li>
+<li><p>堆找第k大元素：两种，大根堆出队k次O（n+klogn），小根堆O（nlogk）</p>
+</li>
+<li><p>分块查找：<strong>块之间必须有序</strong>，块外部可以无序，<strong>每块内最大（或最小）的元素构成索引块</strong></p>
+</li>
+<li><p>哈希探测：至少0次探测操作（没有冲突不被计算），至少做了1次比较操作（没有冲突也计算）。闭散列表是迟删除，开散列是直接删除</p>
+</li>
+<li><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s2.loli.net/2023/12/30/4FvrSfIWtEiKXRa.png"
+                      alt="image-20231230014839352"
+                ></p>
+</li>
+<li><p>希尔排序 &#x3D; 希尔增量序列 + 直接插入排序（），二分插入排序可以提升查找的速度，不能解决元素移动的次数。</p>
+</li>
+<li><p>选择、希尔排序不是稳定排序，即使固定了选择最前面的也不稳定 例： 5 5 2 -&gt; 2 5 5, 有序的是冒泡，插入，归并，桶，计数和基数（选排：找出最小的，与第一个元素交换，而不是插入）</p>
+</li>
+<li><p>基数排序：时间复杂度O（N*M），M为最大数的位数。按个位数倒入10个口袋，倒出来；再按10位数倒入10个口袋, ……；</p>
+<p>关键字必须是整数。链表实现，数据和分配口袋都是链表。</p>
+</li>
+<li><p>磁带的各种操作：看起来只考概念和选择和序列生成</p>
+</li>
+</ol>
+<p>2013-2014卷子</p>
+<p>给定树的前序和中序，重建树</p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">TreeNode</span> &#123;</span><br><span class="line">    <span class="type">int</span> val;</span><br><span class="line">    TreeNode *left;</span><br><span class="line">    TreeNode *right;</span><br><span class="line">    <span class="built_in">TreeNode</span>(<span class="type">int</span> x) : <span class="built_in">val</span>(x), <span class="built_in">left</span>(<span class="literal">NULL</span>), <span class="built_in">right</span>(<span class="literal">NULL</span>) &#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">TreeNode* <span class="title">buildTree</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; preorder, vector&lt;<span class="type">int</span>&gt;&amp; inorder)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">build</span>(preorder, <span class="number">0</span>, preorder.<span class="built_in">size</span>() - <span class="number">1</span>, inorder, <span class="number">0</span>, inorder.<span class="built_in">size</span>() - <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function">TreeNode* <span class="title">build</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; preorder, <span class="type">int</span> preStart, <span class="type">int</span> preEnd, vector&lt;<span class="type">int</span>&gt;&amp; inorder, <span class="type">int</span> inStart, <span class="type">int</span> inEnd)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (preStart &gt; preEnd) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">nullptr</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="type">int</span> rootVal = preorder[preStart];</span><br><span class="line">        <span class="type">int</span> index = <span class="number">0</span>; </span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = inStart; i &lt;= inEnd; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (inorder[i] == rootVal) &#123;</span><br><span class="line">                index = i;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        TreeNode* root = <span class="keyword">new</span> <span class="built_in">TreeNode</span>(rootVal);</span><br><span class="line">        <span class="type">int</span> leftSize = index - inStart;</span><br><span class="line">        root-&gt;left = <span class="built_in">build</span>(preorder, preStart + <span class="number">1</span>, preStart + leftSize, inorder, inStart, index - <span class="number">1</span>);</span><br><span class="line">        root-&gt;right = <span class="built_in">build</span>(preorder, preStart + leftSize + <span class="number">1</span>, preEnd, inorder, index + <span class="number">1</span>, inEnd);</span><br><span class="line">        <span class="keyword">return</span> root;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></div>
+
+
+<p><strong>核心代码</strong>：非常重要！</p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">root-&gt;left = <span class="built_in">build</span>(preorder, preStart + <span class="number">1</span>, preStart + leftSize, inorder, inStart, index - <span class="number">1</span>);</span><br><span class="line">root-&gt;right = <span class="built_in">build</span>(preorder, preStart + leftSize + <span class="number">1</span>, preEnd, inorder, index + <span class="number">1</span>, inEnd);</span><br></pre></td></tr></table></figure></div>
+
+
+
+<p>这个同样可以拿来做题</p>
+<p>做题还有一个点是，递归的过程被一个要填的空打断了。</p>
+<p>这种情况需要再去看后序遍历的结果，得到leftSize和rightSize之后对后续遍历做大致划分，可以找到对应的某个子树根突破口</p>
+<p>牛魔的数据结构程序阅读理解，变量怎么不知道啥意思怎么命名，必须要先了解过算法才能写得出来</p>
+<p>图的强连通分量：</p>
+<p>在有向图中，强连通分量（Strongly Connected Component，简称SCC）是最大的子图，使得这个子图中的任意两个顶点v和w，都存在v到w和w到v的路径。</p>
+<p>什么叫<strong>“极大”子图</strong>？注意不是“最大”子图，极大的意思是不能往里面加结点而保持其强连通性</p>
+<p><strong>当我们说”一个有向图里面强连通分量有几个”时，我们是在询问这个有向图可以被分解成多少个这样的强连通分量。换句话说，我们可以将这个有向图划分成多少个区域，使得每个区域内部的任意两个顶点都是强连通的</strong>，而不同区域之间的顶点则不一定强连通。</p>
+<p>简单路径：除了起始点可能也是终止点之外，没有中间点被走两遍以上</p>
+<p>简单回路：起始点是终点的简单路径</p>
+<p>无队列拓扑排序：</p>
+<p>思路：使用栈和bfs，在bfs从v回溯到u时，将结点v入栈，此时由于有u-&gt;v的边，所以出栈顺序即为拓扑排序</p>
+<p>代码实现：</p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;list&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stack&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Graph</span> &#123;</span><br><span class="line">    <span class="type">int</span> V;    <span class="comment">// No. of vertices</span></span><br><span class="line">    list&lt;<span class="type">int</span>&gt; *adj;    <span class="comment">// Pointer to an array containing adjacency lists</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">topologicalSortUtil</span><span class="params">(<span class="type">int</span> v, <span class="type">bool</span> visited[], stack&lt;<span class="type">int</span>&gt; &amp;Stack)</span></span>;  <span class="comment">// A recursive function used by topologicalSort</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">Graph</span>(<span class="type">int</span> V);   <span class="comment">// Constructor</span></span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">addEdge</span><span class="params">(<span class="type">int</span> v, <span class="type">int</span> w)</span></span>;   <span class="comment">// function to add an edge to graph</span></span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">topologicalSort</span><span class="params">()</span></span>;    <span class="comment">// prints a Topological Sort of the complete graph</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">Graph::<span class="built_in">Graph</span>(<span class="type">int</span> V) &#123;</span><br><span class="line">    <span class="keyword">this</span>-&gt;V = V;</span><br><span class="line">    adj = <span class="keyword">new</span> list&lt;<span class="type">int</span>&gt;[V];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Graph::addEdge</span><span class="params">(<span class="type">int</span> v, <span class="type">int</span> w)</span> </span>&#123;</span><br><span class="line">    adj[v].<span class="built_in">push_back</span>(w); <span class="comment">// Add w to v’s list.</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Graph::topologicalSortUtil</span><span class="params">(<span class="type">int</span> v, <span class="type">bool</span> visited[], stack&lt;<span class="type">int</span>&gt; &amp;Stack)</span> </span>&#123;</span><br><span class="line">    visited[v] = <span class="literal">true</span>;  <span class="comment">// Mark the current node as visited.</span></span><br><span class="line">    list&lt;<span class="type">int</span>&gt;::iterator i;</span><br><span class="line">    <span class="keyword">for</span> (i = adj[v].<span class="built_in">begin</span>(); i != adj[v].<span class="built_in">end</span>(); ++i)</span><br><span class="line">        <span class="keyword">if</span> (!visited[*i])</span><br><span class="line">            <span class="built_in">topologicalSortUtil</span>(*i, visited, Stack);</span><br><span class="line"></span><br><span class="line">    Stack.<span class="built_in">push</span>(v);</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Graph::topologicalSort</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    stack&lt;<span class="type">int</span>&gt; Stack;</span><br><span class="line">    <span class="type">bool</span> *visited = <span class="keyword">new</span> <span class="type">bool</span>[V];</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; V; i++)</span><br><span class="line">        visited[i] = <span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; V; i++)</span><br><span class="line">      <span class="keyword">if</span> (visited[i] == <span class="literal">false</span>)</span><br><span class="line">        <span class="built_in">topologicalSortUtil</span>(i, visited, Stack);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span> (Stack.<span class="built_in">empty</span>() == <span class="literal">false</span>) &#123;</span><br><span class="line">        cout &lt;&lt; Stack.<span class="built_in">top</span>() &lt;&lt; <span class="string">&quot; &quot;</span>;</span><br><span class="line">        Stack.<span class="built_in">pop</span>();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+
+
+<p>拓扑排序判断有向无环图：找不到入度为0的点即可</p>
+<p>dfs判断有向无环图：思路，存在有向无环图时，dfs会无法正常回溯</p>
+<p>将结点的状态分成三种:VISITED, VISITING, UNVISITED，结点在第一次访问时变为VISITING，在回溯之后变成VISITED</p>
+<p>如果回溯异常，即回溯到了VISITING的结点，对应有向无环图DAG</p>
+<p>代码实现</p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stack&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">enum</span> <span class="title class_">Status</span> &#123;</span><br><span class="line">    UNVISITED,</span><br><span class="line">    VISITING,</span><br><span class="line">    VISITED</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">dfs</span><span class="params">(<span class="type">int</span> node, vector&lt;vector&lt;<span class="type">int</span>&gt;&gt;&amp; graph, vector&lt;Status&gt;&amp; status, stack&lt;<span class="type">int</span>&gt;&amp; result)</span> </span>&#123;</span><br><span class="line">    status[node] = VISITING;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> neighbor : graph[node]) &#123;</span><br><span class="line">        <span class="keyword">if</span> (status[neighbor] == UNVISITED) &#123;</span><br><span class="line">            <span class="keyword">if</span> (!<span class="built_in">dfs</span>(neighbor, graph, status, result)) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (status[neighbor] == VISITING) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    status[node] = VISITED;</span><br><span class="line">    result.<span class="built_in">push</span>(node);</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">isDAG</span><span class="params">(vector&lt;vector&lt;<span class="type">int</span>&gt;&gt;&amp; graph)</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> n = graph.<span class="built_in">size</span>();</span><br><span class="line">    <span class="function">vector&lt;Status&gt; <span class="title">status</span><span class="params">(n, UNVISITED)</span></span>;</span><br><span class="line">    stack&lt;<span class="type">int</span>&gt; result;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; ++i) &#123;</span><br><span class="line">        <span class="keyword">if</span> (status[i] == UNVISITED) &#123;</span><br><span class="line">            <span class="keyword">if</span> (!<span class="built_in">dfs</span>(i, graph, status, result)) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+
+
+<p>邻接矩阵的压缩存储：</p>
+<p>无向图邻接矩阵是对称的，所以只需要保存上三角矩阵即可,主对角线是0，还可以把主对角线也省略掉</p>
+<p>关键路径：源点到收点最长路径，关键活动：关键路径上的活动（边）</p>
+<p>关键路径算法：</p>
+<ol>
+<li>拓扑排序</li>
+<li>按照排序后序列的顺序遍历，用类似dijkstra的方法松弛，for edge [p,q] of vertex p : if w[p,q] + ee[p] &lt; ee[q], ee[q] &#x3D; w[p,q] + ee[p], 因为已经拓扑排序了，所以这样的松弛能够保证pq顺序。遍历完成后就得到了每个结点的最早发生时间ee[i]（从源点到该节点的最长路径）</li>
+<li>求最迟发生时间，先让每个结点的最迟发生时间为汇点的最早发生时间，然后再（拓扑排序的）反向（i 从 Ver-1 到 0）遍历一次，for edge [p,q] of vertex p : if w[p,q] + le[p] &gt; le[q], le[p] &#x3D; le[q] - w[p,q]</li>
+<li>再遍历一次，path &#x3D; [i for i if ee[i] &#x3D;&#x3D; le[i]]，求出关键路径</li>
+</ol>
+<p>B树删除和合并的左右子树取法在书上是有规定的<br>删除非根结点时，取<strong>右子树的最左结点</strong>删除<br>如果删除后不满足最低结点数据个数，先借左还是右没说，但是合并优先<strong>合并左兄弟</strong></p>
+
+        </div>
+
+        
+            <div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li><strong>Title:</strong> 数据结构期末复习</li>
+        <li><strong>Author:</strong> Ayanami</li>
+        <li><strong>Created at
+                :</strong> 2024-07-11 00:00:00</li>
+        
+            <li>
+                <strong>Updated at
+                    :</strong> 2024-07-11 23:35:51
+            </li>
+        
+        <li>
+            <strong>Link:</strong> https://ayanami1314.github.io/2024/07/11/数据结构期末复习/
+        </li>
+        <li>
+            <strong>
+                License:
+            </strong>
+            
+
+            
+                This work is licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY-NC-SA 4.0</a>.
+            
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+
+        
+  <div class="recommended-article px-2 sm:px-6 md:px-8">
+   <div class="recommended-desktop">
+    <div class="recommended-article-header text-xl md:text-3xl font-bold mt-10">
+     <i aria-hidden="true"></i><span>推荐阅读</span>
+    </div>
+    <div class="recommended-article-group"><a class="recommended-article-item" href="/2024/07/11/splay-tree/" title="splay tree" rel="bookmark">
+  <img src="/images/wallhaven-wqery6-light.webp" alt="splay tree" class="!max-w-none">
+  <span class="title">splay tree</span>
+</a><a class="recommended-article-item" href="/2024/07/11/ics备考/" title="ics备考" rel="bookmark">
+  <img src="/images/wallhaven-wqery6-light.webp" alt="ics备考" class="!max-w-none">
+  <span class="title">ics备考</span>
+</a><a class="recommended-article-item" href="/2024/07/11/Go-Gin学习/" title="Go,Gin学习" rel="bookmark">
+  <img src="/images/wallhaven-wqery6-light.webp" alt="Go,Gin学习" class="!max-w-none">
+  <span class="title">Go,Gin学习</span>
+</a></div>
+   </div>
+   <div class="recommended-mobile">
+   <div class="recommended-article-header text-xl md:text-3xl font-bold mt-10">
+     <i aria-hidden="true"></i><span>推荐阅读</span>
+   </div>
+   <div class="recommended-article-group"><a class="recommended-article-item" href="/2024/07/11/splay-tree/" title="splay tree" rel="bookmark">
+  <img src="/images/wallhaven-wqery6-light.webp" alt="splay tree" class="!max-w-none">
+  <span class="title">splay tree</span>
+</a><a class="recommended-article-item" href="/2024/07/11/ics备考/" title="ics备考" rel="bookmark">
+  <img src="/images/wallhaven-wqery6-light.webp" alt="ics备考" class="!max-w-none">
+  <span class="title">ics备考</span>
+</a></div>
+   </div>
+  </div>
+
+        
+            <div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
+                
+                    <div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+                        <a class="prev"
+                        rel="prev"
+                        href="/2024/07/11/%E5%8D%97%E5%A4%A7PA%E5%8E%86%E9%99%A9%E8%AE%B0-%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%E4%B8%AD-/"
+                        >
+                            <span class="left arrow-icon flex justify-center items-center">
+                                <i class="fa-solid fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex justify-center items-center">
+                                <span class="post-nav-title-item">南大PA历险记（持续更新中）</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+                        <a class="next"
+                        rel="next"
+                        href="/2024/07/11/%E6%95%B0%E7%90%86%E6%96%B9%E6%B3%95%E8%AF%BE%E6%9C%AC%E5%9B%9E%E9%A1%BE/"
+                        >
+                            <span class="title flex justify-center items-center">
+                                <span class="post-nav-title-item">数理方法课本回顾</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex justify-center items-center">
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+
+        
+    </div>
+
+    
+        <div class="toc-content-container">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <div class="toc-title">On this page</div>
+        <div class="page-title">数据结构期末复习</div>
+        
+
+    </div>
+</div>
+        </div>
+    
+</div>
+
+
+
+                
+
+            </div>
+
+            
+
+        </div>
+
+        <div class="main-content-footer">
+            <footer class="footer mt-5 py-5 h-auto text-base text-third-text-color relative border-t-2 border-t-border-color">
+    <div class="info-container py-3 text-center">
+        
+        <div class="text-center">
+            &copy;
+            
+              <span>2022</span>
+              -
+            
+            2024&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">Ayanami</a>
+            
+                
+                <p class="post-count space-x-0.5">
+                    <span>
+                        21 posts in total
+                    </span>
+                    
+                </p>
+            
+        </div>
+        
+            <script data-swup-reload-script src="https://cn.vercount.one/js"></script>
+            <div class="relative text-center lg:absolute lg:right-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-right">
+                
+                    <span id="busuanzi_container_site_uv" class="lg:!block">
+                        <span class="text-sm">VISITOR COUNT</span>
+                        <span id="busuanzi_value_site_uv"></span>
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv" class="lg:!block">
+                        <span class="text-sm">TOTAL PAGE VIEWS</span>
+                        <span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="relative text-center lg:absolute lg:left-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-left">
+            <span class="lg:block text-sm">POWERED BY <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg class="relative top-[2px] inline-block align-baseline" version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" class="text-base" href="https://hexo.io">Hexo</a></span>
+            <span class="text-sm lg:block">THEME&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.6.4</a></span>
+        </div>
+        
+        
+            <div>
+                Blog up for <span class="odometer" id="runtime_days" ></span> days <span class="odometer" id="runtime_hours"></span> hrs <span class="odometer" id="runtime_minutes"></span> Min <span class="odometer" id="runtime_seconds"></span> Sec
+            </div>
+        
+        
+            <script data-swup-reload-script>
+                try {
+                    function odometer_init() {
+                    const elements = document.querySelectorAll('.odometer');
+                    elements.forEach(el => {
+                        new Odometer({
+                            el,
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
+                    });
+                    }
+                    odometer_init();
+                } catch (error) {}
+            </script>
+        
+        
+        
+    </div>  
+</footer>
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="article-tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="right-bottom-tools page-aside-toggle">
+                <i class="fa-regular fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-side-tools-container">
+        <div class="side-tools-container">
+    <ul class="hidden-tools-list">
+        <li class="right-bottom-tools tool-font-adjust-plus flex justify-center items-center">
+            <i class="fa-regular fa-magnifying-glass-plus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-font-adjust-minus flex justify-center items-center">
+            <i class="fa-regular fa-magnifying-glass-minus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-dark-light-toggle flex justify-center items-center">
+            <i class="fa-regular fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="right-bottom-tools tool-scroll-to-bottom flex justify-center items-center">
+            <i class="fa-regular fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="visible-tools-list">
+        <li class="right-bottom-tools toggle-tools-list flex justify-center items-center">
+            <i class="fa-regular fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="right-bottom-tools tool-scroll-to-top flex justify-center items-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fa-solid fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fa-solid fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fa-solid fa-spinner fa-spin-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+    
+<script src="/js/libs/Swup.min.js"></script>
+
+<script src="/js/libs/SwupSlideTheme.min.js"></script>
+
+<script src="/js/libs/SwupScriptsPlugin.min.js"></script>
+
+<script src="/js/libs/SwupProgressPlugin.min.js"></script>
+
+<script src="/js/libs/SwupScrollPlugin.min.js"></script>
+
+<script src="/js/libs/SwupPreloadPlugin.min.js"></script>
+
+<script>
+    const swup = new Swup({
+        plugins: [
+            new SwupScriptsPlugin({
+                optin: true,
+            }),
+            new SwupProgressPlugin(),
+            new SwupScrollPlugin({
+                offset: 80,
+            }),
+            new SwupSlideTheme({
+                mainElement: ".main-content-body",
+            }),
+            new SwupPreloadPlugin(),
+        ],
+        containers: ["#swup"],
+    });
+</script>
+
+
+
+
+
+
+
+<script src="/js/tools/imageViewer.js" type="module"></script>
+
+<script src="/js/utils.js" type="module"></script>
+
+<script src="/js/main.js" type="module"></script>
+
+<script src="/js/layouts/navbarShrink.js" type="module"></script>
+
+<script src="/js/tools/scrollTopBottom.js" type="module"></script>
+
+<script src="/js/tools/lightDarkSwitch.js" type="module"></script>
+
+<script src="/js/layouts/categoryList.js" type="module"></script>
+
+
+
+    
+<script src="/js/tools/localSearch.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/tools/codeBlock.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/layouts/lazyload.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/tools/runtime.js"></script>
+
+    
+<script src="/js/libs/odometer.min.js"></script>
+
+    
+<link rel="stylesheet" href="/assets/odometer-theme-minimal.css">
+
+
+
+
+  
+<script src="/js/libs/Typed.min.js"></script>
+
+  
+<script src="/js/plugins/typed.js" type="module"></script>
+
+
+
+
+
+
+
+
+
+<div class="post-scripts" data-swup-reload-script>
+    
+        
+<script src="/js/tools/tocToggle.js" type="module"></script>
+
+<script src="/js/layouts/toc.js" type="module"></script>
+
+<script src="/js/plugins/tabs.js" type="module"></script>
+
+    
+</div>
+
+
+</body>
+</html>
