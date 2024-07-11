@@ -13,20 +13,20 @@
     
     <!--- Seo Part-->
     
-    <link rel="canonical" href="https://ayanami1314.github.io/2024/07/11/浅入理解断点和调试器/"/>
+    <link rel="canonical" href="https://ayanami1314.github.io/2024/07/11/后端技术简述/"/>
     <meta name="robots" content="index,follow">
     <meta name="googlebot" content="index,follow">
     <meta name="revisit-after" content="1 days">
     
-        <meta name="description" content="浅入理解断点和调试器主要参考 https:&#x2F;&#x2F;events.static.linuxfound.org&#x2F;sites&#x2F;events&#x2F;files&#x2F;slides&#x2F;slides_16.pdf  https:&#x2F;&#x2F;eli.thegreenplace.net&#x2F;2011&#x2F;02&#x2F;07&#x2F;how-debuggers-work-part-3-debugging-information">
+        <meta name="description" content="后端： 最简形式 server（允许其他计算机通过网络向该机器发送消息的计算机） +  db 前端 --------- 网络----------Server--------db">
 <meta property="og:type" content="article">
-<meta property="og:title" content="浅入理解断点和调试器">
-<meta property="og:url" content="https://ayanami1314.github.io/2024/07/11/%E6%B5%85%E5%85%A5%E7%90%86%E8%A7%A3%E6%96%AD%E7%82%B9%E5%92%8C%E8%B0%83%E8%AF%95%E5%99%A8/index.html">
+<meta property="og:title" content="后端技术简述">
+<meta property="og:url" content="https://ayanami1314.github.io/2024/07/11/%E5%90%8E%E7%AB%AF%E6%8A%80%E6%9C%AF%E7%AE%80%E8%BF%B0/index.html">
 <meta property="og:site_name" content="Ayanami&#39;s Cave">
-<meta property="og:description" content="浅入理解断点和调试器主要参考 https:&#x2F;&#x2F;events.static.linuxfound.org&#x2F;sites&#x2F;events&#x2F;files&#x2F;slides&#x2F;slides_16.pdf  https:&#x2F;&#x2F;eli.thegreenplace.net&#x2F;2011&#x2F;02&#x2F;07&#x2F;how-debuggers-work-part-3-debugging-information">
+<meta property="og:description" content="后端： 最简形式 server（允许其他计算机通过网络向该机器发送消息的计算机） +  db 前端 --------- 网络----------Server--------db">
 <meta property="og:locale">
 <meta property="article:published_time" content="2024-07-10T16:00:00.000Z">
-<meta property="article:modified_time" content="2024-07-11T15:35:33.909Z">
+<meta property="article:modified_time" content="2024-07-11T15:54:43.893Z">
 <meta property="article:author" content="Ayanami">
 <meta name="twitter:card" content="summary">
     
@@ -40,7 +40,7 @@
     
     <title>
         
-            浅入理解断点和调试器 -
+            后端技术简述 -
         
         Ayanami&#39;s Cave
     </title>
@@ -443,7 +443,7 @@
         <div class="article-title relative w-full">
             
                 <div class="w-full flex items-center pt-6 justify-start">
-                    <h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">浅入理解断点和调试器</h1>
+                    <h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">后端技术简述</h1>
                 </div>
             
             </div>
@@ -471,8 +471,8 @@
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2024-07-11 23:35:33</span>
-            <span class="mobile">2024-07-11 23:35:33</span>
+            <span class="desktop">2024-07-11 23:54:43</span>
+            <span class="mobile">2024-07-11 23:54:43</span>
             <span class="hover-info">Updated</span>
         </span>
     
@@ -499,113 +499,33 @@
 
 
         <div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
-            <h4 id="浅入理解断点和调试器"><a href="#浅入理解断点和调试器" class="headerlink" title="浅入理解断点和调试器"></a>浅入理解断点和调试器</h4><p>主要参考</p>
-<p><a class="link"   target="_blank" rel="noopener" href="https://events.static.linuxfound.org/sites/events/files/slides/slides_16.pdf" >https://events.static.linuxfound.org/sites/events/files/slides/slides_16.pdf <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<p><a class="link"   target="_blank" rel="noopener" href="https://eli.thegreenplace.net/2011/02/07/how-debuggers-work-part-3-debugging-information" >https://eli.thegreenplace.net/2011/02/07/how-debuggers-work-part-3-debugging-information <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+            <p>后端：</p>
+<p>最简形式</p>
+<p>server（允许其他计算机通过网络向该机器发送消息的计算机） +  db</p>
+<p><code>前端 --------- 网络----------Server--------db </code> </p>
 <span id="more"></span>
-<p>在写知识之前，不如先问自己几个问题：</p>
-<ul>
-<li>debugger的实现原理是什么？</li>
-<li>断点(breakpoint)和监视点(watchpoint)的区别？</li>
-<li>断点有哪些实现方法？具体到gdb之中，它是怎么实现的？</li>
-</ul>
-<p><strong>debugger的最基本原理，就是这样的代码</strong></p>
-<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span>** argv)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">pid_t</span> child_pid;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (argc &lt; <span class="number">2</span>) &#123;</span><br><span class="line">        <span class="built_in">fprintf</span>(stderr, <span class="string">&quot;Expected a program name as argument\n&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    child_pid = fork();</span><br><span class="line">    <span class="keyword">if</span> (child_pid == <span class="number">0</span>)</span><br><span class="line">        <span class="built_in">run_target</span>(argv[<span class="number">1</span>]);</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (child_pid &gt; <span class="number">0</span>)</span><br><span class="line">        <span class="built_in">run_debugger</span>(child_pid);</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="built_in">perror</span>(<span class="string">&quot;fork&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
 
-<p>debugger作为父进程，使用fork调出了需要debug的子进程，然后通过某种方法和子进程交互（操控子进程）</p>
-<p>那么就引出了这样的问题：</p>
-<ol>
-<li>怎么操控的（允许操控的机制）</li>
-<li>操控之后的控制流</li>
-<li>已经控制了，debug信息从哪来（如果不做处理，高级语言编译之后是没有原来的代码行数、变量符号等信息的）</li>
-</ol>
-<p>又可以进一步总结出以下几点，</p>
-<p><strong>debug需要信息：</strong></p>
-<ol>
-<li><p>在高级代码—&gt;汇编的过程之中，我们需要代码的一一对应关系，比如第几行的高级代码对应第几行（到第几行）的汇编代码</p>
-</li>
-<li><p>在汇编代码—&gt;可执行文件的过程之中，我们需要将有用的信息保存在可执行文件内</p>
-</li>
-</ol>
-<p><strong>debug需要断点：</strong></p>
-<ol start="3">
-<li>需要有一种方法在gdb或者在可执行文件之中达成中断</li>
-<li>进一步地，需要让gdb（父进程）能够控制、监视、改变子进程（被调试的进程）</li>
-</ol>
-<p>解决了这几个问题，理论上就能产生debugger</p>
-<p>问题1，很遗憾，由于现代编译器的优化和现代编程语言的复杂性，源程序语言和编译完成的汇编，又或者说最后执行的机器指令很难完美对应，编译器开启对应的编译指令之后也只能做到近似（**不能完全相信back trace!**）但大体上还是对的。（也可以强制让编译器不优化）</p>
-<p>下图转载： <code>gdb br</code>的失败例子</p>
-<p>问题2，这就是为什么需要gcc <strong>-g</strong> 的理由，<strong>也是为什么可以不止于对内存地址设断点，还能对一个函数，一行源代码设断点的原因</strong></p>
-<blockquote>
-<p>现代编译器在将高级代码转换为高级代码方面做得很好，其缩进和嵌套的控制结构以及任意类型的变量可以很好地转换为一大堆称为机器代码的位，其唯一目的是在目标 CPU 上尽可能快地运行。大多数 C 行被转换为多个机器代码指令。变量被推到各处 - 进入堆栈、寄存器或完全优化。<strong>结构和对象甚至不存在于生成的代码中 - 它们只是一个抽象</strong>，被转换为硬编码的偏移量到内存缓冲区中。</p>
-<p>那么，当您要求调试器在某个函数的入口处中断时，调试器如何知道在哪里停止呢？当你向它询问变量的值时，它是如何找到要显示的内容的？<strong>答案是 - 调试信息</strong>。<br>**<strong>调试信息由编译器与机器代码一起生成。它是可执行程序和原始源代码之间关系的表示。这些信息被编码为预定义的格式，并与机器代码一起存储</strong>。多年来，为不同的平台和可执行文件发明了许多这样的格式。由于本文的目的不是调查这些格式的历史，而是展示它们的工作原理，因此我们必须确定一些事情。这将是 DWARF，它今天几乎无处不在地用作 Linux 和其他 Unix-y 平台上 ELF 可执行文件的调试信息格式。</p>
-</blockquote>
-<p>对应elf文件中的.debug_**段</p>
-<p>如何进一步阅读?</p>
-<p><code>objdump --dwarf=info</code></p>
-<p>info可以换成别的</p>
-<p>问题3、4</p>
-<p>debug需要断点，需要某种可恢复的中断，怎么做？</p>
-<ul>
-<li>软件支持</li>
-<li>硬件支持</li>
-</ul>
-<p>先讲硬件支持是怎么实现的。如果设备有实现硬件debug，<strong>它会在内存之中占据一段特殊的位置，使得这个硬件支持对cpu是可见的</strong></p>
-<p>（cpu也实现了debug的控制寄存器和控制单元）。<strong>而gdb在debug时，会先确定本机的架构和硬件信息，之后根据硬件信息去寻找相关的debug是否有硬件支持。</strong></p>
-<p>而这个硬件支持表现在能够硬件上单步执行，通过比较器设置断点，etc</p>
-<blockquote>
-<p>Gateway between re-purposed JTAG bit protocol and debug logic</p>
-<p>Debug hardware often visible in a special memory address space</p>
-<p>E.g. (gdb) stop requires writing 0x1 (Halt Request) to address 0x090 (Debugger Run Control Register) of the CPU debug unit.</p>
-<ul>
-<li><p>Shift 4 bits into IR</p>
-</li>
-<li><p>Shift 34 bits into DR</p>
-</li>
-<li><p>Shift 4 bits into IR</p>
-</li>
-<li><p>Shift 34 bits into DR</p>
-</li>
-<li><p>Shift 34 bits into DR</p>
-</li>
-</ul>
-</blockquote>
-<p>另一种就是软件支持，</p>
-<p>首先是中断，当程序运行到断点的时候，它应该向gdb发出一个中断信号（比如SIGTRAP），之后gdb程序（父进程）接收到中断信号后，辨别出这个是断点产生的中断还是程序正常运行的中断，并加以处理</p>
-<p>然后是ptrace系统调用，这个系统调用允许一个进程去得到另一个进程的控制权，包括监视、改变、发送命令等</p>
-<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">run_target</span><span class="params">(<span class="type">const</span> <span class="type">char</span>* programname)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">procmsg</span>(<span class="string">&quot;target started. will run &#x27;%s&#x27;\n&quot;</span>, programname);</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* Allow tracing of this process */</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">ptrace</span>(PTRACE_TRACEME, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>) &lt; <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="built_in">perror</span>(<span class="string">&quot;ptrace&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* Replace this process&#x27;s image with the given program */</span></span><br><span class="line">    <span class="built_in">execl</span>(programname, programname, <span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
 
-<p>而有了中断之后，一种简单的实现方法可能是这样的：</p>
-<p>在指定的地址上设一个监视点w</p>
-<p>首先，每次运行一条指令之后我都切换到debugger，比对一下pc和监视地址是否相同，如果相同，那么我就停止</p>
-<p>这种切换的机制来源于：</p>
-<ol>
-<li>wait() 不止在子进程exit时才会退出，在子进程触发中断时也会返回，并保存一些中断信息</li>
-<li>ptrace调用定义了一个特殊的request PTRACE_SINGLESTEP，会告诉OS启动被监控进程，但是一条指令后停止（pc+4），并产生中断通知父进程</li>
-</ol>
-<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">run_debugger</span><span class="params">(<span class="type">pid_t</span> child_pid)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">int</span> wait_status;</span><br><span class="line">    <span class="type">unsigned</span> icounter = <span class="number">0</span>;</span><br><span class="line">    <span class="built_in">procmsg</span>(<span class="string">&quot;debugger started\n&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* Wait for child to stop on its first instruction */</span></span><br><span class="line">    <span class="built_in">wait</span>(&amp;wait_status);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (<span class="built_in">WIFSTOPPED</span>(wait_status)) &#123;</span><br><span class="line">        icounter++;</span><br><span class="line">        <span class="comment">/* Make the child execute another instruction */</span></span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">ptrace</span>(PTRACE_SINGLESTEP, child_pid, <span class="number">0</span>, <span class="number">0</span>) &lt; <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="built_in">perror</span>(<span class="string">&quot;ptrace&quot;</span>);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">/* Wait for child to stop on its next instruction */</span></span><br><span class="line">        <span class="built_in">wait</span>(&amp;wait_status);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">procmsg</span>(<span class="string">&quot;the child executed %u instructions\n&quot;</span>, icounter);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
-
-<p>我们当然可以用这种单步执行比对pc的“监视点”方法实现断点，但这个方法的问题是，每执行一条指令都要不断切换进程，效率太低了</p>
-<p>jyy介绍， gdb用了一种很神奇的方法： int 3（注意这个int不是integer 的int）偷龙转凤</p>
-<p>int 3 是一个单字节x86指令，作用就是简单地发出一个中断SIGTRAP</p>
-<p>单字节使得它能够替换到任何一条指令的开头，并且不会覆盖两条及以上的指令</p>
-<p>在设置断点的时候，<strong>gdb可以将断点处的指令保存起来，之后替换它的首个字节为int 3</strong></p>
+<p>后端处理消息（http GET, etc），和数据库交互，之后向前端发送响应，前端得到后端发送过来的json等数据，渲染</p>
+<p>名词解析：</p>
+<ul>
+<li>IaaS: Instructure as a Service, 架构即服务，云服务器商把算力（虚拟机）资源出租给我们的后端&#x2F;数据库跑</li>
+<li>PaaS: Platform as a Service，平台即服务，当请求数量增多的时候，一台机器（作为Server）不够用，需要多台机器协同，然后又进而需要一些管理的机器，来均衡每个机器上收到的请求（负载）……整个管理平台搭建复杂，云服务器商就把整个平台出租为服务</li>
+<li>SaaS: Software as a Service, 软件即服务，这是和微服务MicroServices联系起来的。微服务就是，后端可能有复杂的逻辑链条，比如收到下单信息之后，扣钱，更新数据库，给用户发邮件。然后扣钱、更新数据库、给用户发邮件三项可以独立出来作为三个后端，后端各自有不同的代码架构和数据库，然后后端模块可以交互，而对于一些广泛使用的基础模块，比如发邮件，厂商就把整个后端的API作为服务售卖，让其他开发者不需要写自己的邮件后端，这就是SaaS</li>
+</ul>
+<p>也就是说，后端主要处理的是数据相关的业务，核心架构是server和数据库</p>
+<p>一般而言，后端有一个主数据库，比如MySQL或者mongoDB</p>
+<p>但，如果后端想要对某些特化功能进行支持，主数据库的性能常常不如人意，并且还需要考虑复杂性问题，就一般引入了副数据库</p>
+<p>比如说，如果想要缓存，就引入Redis</p>
+<p>如果想要图像的存储，就引入s3, aws等Blob Storage和CDN技术</p>
 <blockquote>
-<p><strong>Instruction at the given address is read, saved and replaced with a breakpoint:</strong></p>
-<p>​ <strong>- either a special instruction, &#x2F;&#x2F; SIGTRAP, int 3</strong></p>
-<p>​ <strong>- or an undefined encoding. &#x2F;&#x2F; SIGILL</strong></p>
+<p>From copilot: Blob Storage是一种用于存储大量非结构化数据的云服务，如文本或二进制数据。这种数据可以包括图像、视频、音频、日志文件等。Blob Storage通常用于服务如流媒体、数据备份、数据恢复、数据分析和IoT数据等场景。Blob Storage是Microsoft Azure、Amazon S3等云服务平台提供的一种服务。</p>
+<p>CDN，全称为Content Delivery Network，即内容分发网络。它是一种网络技术，通过在网络各处放置节点服务器，使用户可以就近获取所需内容，避免网络拥堵，提高用户访问响应速度和命中率。CDN广泛应用于网页内容、下载文件、视频流媒体等大数据量的分发</p>
 </blockquote>
-<p>之后程序正常运行，执行到int 3时产生中断（SIGTRAP，int 3就是第三号TRAP，x86的调试器中断），而gdb程序作为父进程收到这个信号，达成中断（通过ptrace设置了中断的handler），之后也可以将原来的指令替换回来继续执行。</p>
-<p>继续执行的细节：</p>
-<p>实际上在有了ptrace的调用之后，每当被监控程序执行exec的时候，就会发出一个中断</p>
-<blockquote>
-<p>Indicates that this process is to be traced by its parent. Any signal (except SIGKILL) delivered to this process will cause it to stop and its parent to be notified via wait(). <strong>Also, all subsequent calls to exec() by this process will cause a SIGTRAP to be sent to it, giving the parent a chance to gain control before the new program begins execution</strong>. A process probably shouldn’t make this request if its parent isn’t expecting to trace it. (pid, addr, and data are ignored.)<br>指示此过程将由其父级跟踪。传递给此进程的任何信号（SIGKILL 除外）都会导致它停止，并通过 wait（） 通知其父级。此外，此进程对 exec（） 的所有后续调用都将导致向它发送 SIGTRAP，从而使父级有机会在新程序开始执行之前获得控制权。如果进程的父进程不希望跟踪它，则进程可能不应发出此请求。（PID、ADDR 和 DATA 将被忽略。</p>
-</blockquote>
-<p>小的自问自答环节：</p>
-<p>Q：为什么gdb不是特权指令？它读寄存器值、内存值等是怎么实现的？</p>
-<p>A：<strong>但install是特权指令（笑）</strong>，Linux之中，二进制文件是自动具备可执行的默认权限的（<strong>file mode</strong>），而不是像bash脚本那样需要sudo chmod +x 给予权限。</p>
-<p>并且咨询gpt还得到一个有趣的事情：ptrace调用确实可以修改其他的进程，<strong>所以ptrace调用是需要root权限</strong>，但是，<strong>用户权限下，可以使用setuid或者setcap机制，是gdb能对特定的文件，具有特定系统调用的权限</strong></p>
-<p>读寄存器值是使用了特定的中断，读内存是读的虚拟内存。</p>
+<p>如果想要文本检索，主数据库在这方面相当慢，引入ElaticSearch这样的特化检索数据库</p>
+<p>如果想要Data Science，主数据库应该做网站相关的本职工作，会引入Analytical DB like Snowflake，copy 主数据库的某些数据去做数据分析</p>
+<p>如果想要任务调度，RabbitMQ…..</p>
+<p>……</p>
 
         </div>
 
@@ -613,18 +533,18 @@
             <div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
                 <div class="article-copyright-info-container">
     <ul>
-        <li><strong>Title:</strong> 浅入理解断点和调试器</li>
+        <li><strong>Title:</strong> 后端技术简述</li>
         <li><strong>Author:</strong> Ayanami</li>
         <li><strong>Created at
                 :</strong> 2024-07-11 00:00:00</li>
         
             <li>
                 <strong>Updated at
-                    :</strong> 2024-07-11 23:35:33
+                    :</strong> 2024-07-11 23:54:43
             </li>
         
         <li>
-            <strong>Link:</strong> https://ayanami1314.github.io/2024/07/11/浅入理解断点和调试器/
+            <strong>Link:</strong> https://ayanami1314.github.io/2024/07/11/后端技术简述/
         </li>
         <li>
             <strong>
@@ -650,27 +570,27 @@
     <div class="recommended-article-header text-xl md:text-3xl font-bold mt-10">
      <i aria-hidden="true"></i><span>推荐阅读</span>
     </div>
-    <div class="recommended-article-group"><a class="recommended-article-item" href="/2024/07/11/11-14-11-26学习双周记：/" title="11.14-11.26学习双周记" rel="bookmark">
-  <img src="/images/wallhaven-wqery6-light.webp" alt="11.14-11.26学习双周记" class="!max-w-none">
-  <span class="title">11.14-11.26学习双周记</span>
-</a><a class="recommended-article-item" href="/2024/07/11/xv6-book/" title="xv6 book" rel="bookmark">
-  <img src="/images/wallhaven-wqery6-light.webp" alt="xv6 book" class="!max-w-none">
-  <span class="title">xv6 book</span>
+    <div class="recommended-article-group"><a class="recommended-article-item" href="/2024/07/11/hibernate-jpa/" title="hibernate&jpa" rel="bookmark">
+  <img src="/images/wallhaven-wqery6-light.webp" alt="hibernate&jpa" class="!max-w-none">
+  <span class="title">hibernate&jpa</span>
 </a><a class="recommended-article-item" href="/2024/07/11/ics备考/" title="ics备考" rel="bookmark">
   <img src="/images/wallhaven-wqery6-light.webp" alt="ics备考" class="!max-w-none">
   <span class="title">ics备考</span>
+</a><a class="recommended-article-item" href="/2024/07/11/11-14-11-26学习双周记：/" title="11.14-11.26学习双周记" rel="bookmark">
+  <img src="/images/wallhaven-wqery6-light.webp" alt="11.14-11.26学习双周记" class="!max-w-none">
+  <span class="title">11.14-11.26学习双周记</span>
 </a></div>
    </div>
    <div class="recommended-mobile">
    <div class="recommended-article-header text-xl md:text-3xl font-bold mt-10">
      <i aria-hidden="true"></i><span>推荐阅读</span>
    </div>
-   <div class="recommended-article-group"><a class="recommended-article-item" href="/2024/07/11/11-14-11-26学习双周记：/" title="11.14-11.26学习双周记" rel="bookmark">
-  <img src="/images/wallhaven-wqery6-light.webp" alt="11.14-11.26学习双周记" class="!max-w-none">
-  <span class="title">11.14-11.26学习双周记</span>
-</a><a class="recommended-article-item" href="/2024/07/11/xv6-book/" title="xv6 book" rel="bookmark">
-  <img src="/images/wallhaven-wqery6-light.webp" alt="xv6 book" class="!max-w-none">
-  <span class="title">xv6 book</span>
+   <div class="recommended-article-group"><a class="recommended-article-item" href="/2024/07/11/hibernate-jpa/" title="hibernate&jpa" rel="bookmark">
+  <img src="/images/wallhaven-wqery6-light.webp" alt="hibernate&jpa" class="!max-w-none">
+  <span class="title">hibernate&jpa</span>
+</a><a class="recommended-article-item" href="/2024/07/11/ics备考/" title="ics备考" rel="bookmark">
+  <img src="/images/wallhaven-wqery6-light.webp" alt="ics备考" class="!max-w-none">
+  <span class="title">ics备考</span>
 </a></div>
    </div>
   </div>
@@ -681,13 +601,13 @@
                     <div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
                         <a class="prev"
                         rel="prev"
-                        href="/2024/07/11/%E6%9D%82%E8%B0%88-%E5%85%B3%E4%BA%8E%E4%BA%8C%E6%B8%B8%E4%B9%8B%E8%BE%A9/"
+                        href="/2024/07/11/%E5%8D%97%E5%A4%A7PA%E5%8E%86%E9%99%A9%E8%AE%B0-%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%E4%B8%AD-/"
                         >
                             <span class="left arrow-icon flex justify-center items-center">
                                 <i class="fa-solid fa-chevron-left"></i>
                             </span>
                             <span class="title flex justify-center items-center">
-                                <span class="post-nav-title-item">杂谈——关于二游之辩</span>
+                                <span class="post-nav-title-item">南大PA历险记（持续更新中）</span>
                                 <span class="post-nav-item">Prev posts</span>
                             </span>
                         </a>
@@ -697,10 +617,10 @@
                     <div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
                         <a class="next"
                         rel="next"
-                        href="/2024/07/11/%E7%BC%96%E7%A8%8B%E9%9A%8F%E6%83%B3blog%E7%AC%94%E8%AE%B0%EF%BC%9A/"
+                        href="/2024/07/11/%E5%AE%9E%E6%88%982-mosh-gamehub/"
                         >
                             <span class="title flex justify-center items-center">
-                                <span class="post-nav-title-item">编程随想blog笔记</span>
+                                <span class="post-nav-title-item">实战2 mosh gamehub</span>
                                 <span class="post-nav-item">Next posts</span>
                             </span>
                             <span class="right arrow-icon flex justify-center items-center">
@@ -721,7 +641,7 @@
             <div class="post-toc-wrap">
     <div class="post-toc">
         <div class="toc-title">On this page</div>
-        <div class="page-title">浅入理解断点和调试器</div>
+        <div class="page-title">后端技术简述</div>
         
 
     </div>
