@@ -4,15 +4,426 @@
         <title>Ayanami's Cave Blog</title>
         <link>https://ayanami1314.github.io/personal-essays</link>
         <description>Ayanami's Cave Blog</description>
-        <lastBuildDate>Fri, 01 Nov 2024 16:31:53 GMT</lastBuildDate>
+        <lastBuildDate>Fri, 01 Nov 2024 18:57:09 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
         <item>
+            <title><![CDATA[2023冬季学期总结]]></title>
+            <link>https://ayanami1314.github.io/personal-essays/2023-winter</link>
+            <guid>https://ayanami1314.github.io/personal-essays/2023-winter</guid>
+            <pubDate>Fri, 01 Nov 2024 18:57:09 GMT</pubDate>
+            <description><![CDATA[学期末总结（2023/12/16）]]></description>
+            <content:encoded><![CDATA[<h3 class="anchor anchorWithStickyNavbar_LWe7" id="学期末总结20231216">学期末总结（2023/12/16）<a class="hash-link" aria-label="Direct link to 学期末总结（2023/12/16）" title="Direct link to 学期末总结（2023/12/16）" href="https://ayanami1314.github.io/personal-essays/2023-winter#%E5%AD%A6%E6%9C%9F%E6%9C%AB%E6%80%BB%E7%BB%9320231216">​</a></h3>
+<hr>
+<p>这学期也没做什么事情。</p>
+<h5 class="anchor anchorWithStickyNavbar_LWe7" id="看过的书">看过的书：<a class="hash-link" aria-label="Direct link to 看过的书：" title="Direct link to 看过的书：" href="https://ayanami1314.github.io/personal-essays/2023-winter#%E7%9C%8B%E8%BF%87%E7%9A%84%E4%B9%A6">​</a></h5>
+<ul>
+<li>OSTEP大致看了一半，并行相对看得最少，持久化复杂一点的也没看，只能寒假再说了</li>
+</ul>
+<p>别的就真没啥好说的了，看书太少了，都是浅尝辄止看了一两章这样</p>
+<hr>
+<h5 class="anchor anchorWithStickyNavbar_LWe7" id="做过的事">做过的事：<a class="hash-link" aria-label="Direct link to 做过的事：" title="Direct link to 做过的事：" href="https://ayanami1314.github.io/personal-essays/2023-winter#%E5%81%9A%E8%BF%87%E7%9A%84%E4%BA%8B">​</a></h5>
+<ul>
+<li>转专业：学期前半段的重头戏，鬼知道我在复习、整简历、和学长交流面试经验、背稿子上花了多少时间，不过好歹最后是成功转入软院了，算是达成了一个阶段性的大目标</li>
+<li>奖学金：也是很烦人的东西，各种材料的不断重复+流程的冗长，一直打断我的工作流，为了申到国奖还是废了不少力气</li>
+</ul>
+<p>prp结题答辩+大创结题报告、答辩+暑期科研结题报告：你交怎么这么喜欢报告，浪费了好多时间</p>
+<p>这些一堆事+大二上有点恶心的课表（前八周的大物实验2，电路理论和数理方法）基本导致了我转专业结束之前（前半学期）啥事也没干</p>
+<ul>
+<li>转专业结束了写了很长的感想帖子，自觉写得还行吧</li>
+<li>后面10-14周写了4，5篇技术博客</li>
+<li>和jwc battle了好几场</li>
+</ul>
+<hr>
+<h5 class="anchor anchorWithStickyNavbar_LWe7" id="刷了的课">刷了的课：<a class="hash-link" aria-label="Direct link to 刷了的课：" title="Direct link to 刷了的课：" href="https://ayanami1314.github.io/personal-essays/2023-winter#%E5%88%B7%E4%BA%86%E7%9A%84%E8%AF%BE">​</a></h5>
+<p>刷课最失败的一集</p>
+<ul>
+<li>nju pa:写了pa0,pa1，把jyy的习题课看了70%</li>
+<li>mit 6.s081:写了lab1-3</li>
+<li>前后端：基本没怎么推进，只能算是保持了之前的基本认识</li>
+<li>其他课程：USTC 计网，nju 软件分析：都就开了个头</li>
+</ul>
+<p>反正寒假一个写完081，另一个写前后端，然后写写0300的kvstore, build a simple db，csapp的lab之类</p>
+<hr>
+<h5 class="anchor anchorWithStickyNavbar_LWe7" id="其他">其他：<a class="hash-link" aria-label="Direct link to 其他：" title="Direct link to 其他：" href="https://ayanami1314.github.io/personal-essays/2023-winter#%E5%85%B6%E4%BB%96">​</a></h5>
+<p>倒是玩了不少工具</p>
+<ul>
+<li>复健了python，开始看modern cpp</li>
+<li>玩了matplot++, sage, graphviz, argparse之类库和工具</li>
+<li>学了不少正则，并且在实际之中用到了不少，算是内化了一些，包括了解了正则的有限自动机实现</li>
+<li>对debugger的原理有了更深的了解，对os和程序本身也是</li>
+<li>听完jyy的调试理论，调完了081的lab3之后，对调试程序有了更强的信心</li>
+<li>整了个hexo自动推送的脚本</li>
+<li>大大扩充了todolist（x）,现在各种收藏夹里面全是项目、工具和资料</li>
+</ul>
+<hr>
+<h5 class="anchor anchorWithStickyNavbar_LWe7" id="展望">展望：<a class="hash-link" aria-label="Direct link to 展望：" title="Direct link to 展望：" href="https://ayanami1314.github.io/personal-essays/2023-winter#%E5%B1%95%E6%9C%9B">​</a></h5>
+<hr>
+<p>寒假</p>
+<blockquote>
+<p>反正寒假一个写完081，另一个写前后端，然后写写0300的kvstore, build a simple db，csapp的lab之类，还有就是看完OSTEP，然后整点笔记</p>
+</blockquote>
+<p>希望能完成</p>
+<hr>
+<p>下学期课内：</p>
+<p>下学期会是非常难顶的一个学期，aigc class &amp;&amp; openHarmony 的实验室项目 + 原来要补的大一下的课+SE大二下的wkld</p>
+<p>对高级数据结构：寒假和开学早期尽量写完kvstore，顺带早点开始写跳表和LSM tree</p>
+<p>对ics2: 相对来说应该压力没那么大，把csapp的lab写一下应该没多大问题</p>
+<p>对计算机科学的数学原理：概率论与凸优化（前期），自动机（中期），科学计算（后期）
+据说凸优化是答辩，自动机讲得不错，科学计算也是答辩
+寒假多用用py别手生就行</p>
+<p>对软件工程原理：啊这课和数电冲了（</p>
+<p>对互联网应用开发：react+spring+mysql
+一是寒假可以看黑马尚硅谷mosh之类迅速掌握spring+react，写个小的proj之后速度转入大作业模式, 顺带学学ts
+二是mysql:刚好和openHarmony的项目一起，都先把基础的数据库做一个了解（build a simple db+mosh的sql入门）似乎还用了mongodb，也可以入个门先</p>
+<hr>
+<p>下学期课外：
+aigc class：反正玩嘛，如果能学点思想和工具最好了，算法知道大概就行
+openHarmony：之前tmp说TEE数据库挺有意思，看来多少还得抽点时间了解db
+刷课：......感觉完全刷不了啊，可以结合cs170的note做高级数据结构；软工原 mit 6.031倒也不算急？db方面 cmu15445或者ucb cs186倒是可以。继续做pa应该也有帮助。
+就先定170+部分的186+部分的pa(pa2-3？)</p>
+<hr>
+<p>感想：
+下学期就又回到大一下了啊......
+降转是一个很重要的选择呢
+下学期这样选课之后，大二会轻松很多，大二上少了概统、体育、红课、大物、实验，只有sep、ics1和离散
+大二下更是只有一个软工原</p>
+<p>希望在大二上结束，我能在system方向有基础的积累吧，然后大二下实习
+暑假+大二上应该能刷不少课
+一定要刷完的: db（445/186）+ 分布式（6.824）+ 软工原（6.031）+ 计网（cmpt379）+ jyy os
+最好能刷完的：编译，程序分析，并行与高性能
+然后大二下实习/实验室，大二暑假实习</p>
+<p>百废待兴啊，加油干吧</p>]]></content:encoded>
+            <category>总结</category>
+        </item>
+        <item>
+            <title><![CDATA[2024春季学期总结]]></title>
+            <link>https://ayanami1314.github.io/personal-essays/2024-spring</link>
+            <guid>https://ayanami1314.github.io/personal-essays/2024-spring</guid>
+            <pubDate>Fri, 01 Nov 2024 18:57:09 GMT</pubDate>
+            <description><![CDATA[上学期是转入软件工程专业的第一个学期，也是我的新大一下。]]></description>
+            <content:encoded><![CDATA[<p>上学期是转入软件工程专业的第一个学期，也是我的新大一下。</p>
+<p>在转入之前，我有很多美妙的幻想，无论是声名远扬的实验室和校内最好的本科教学，还是软件学院向来高标准严要求，被学长们交相赞誉“XX为数不多的值得读的专业”，而JYY的课程让我更是早早地期待起了这学期的讲课水平。虽然本人也有很多类似的失望经验了，但人总归对新环境有一种期许的。</p>
+<p>与此同时，老师整了个全新的项目——挺新奇、也挺有挑战的一个课题，同时水源的开发也算是委派了第一个新人试水级别的任务，看似前途一片光明——在开学的前三周，我就在一种喜悦的充实感之中度过，总感觉真是大有可为，会是飞速成长的一个学期。</p>
+<p>然而事实却给了我两个大嘴巴子——贪心不足蛇吞象，这也要那也要的结果就是都干不好——另一个原因也是我依然高估了自己的能力，低估了软院课程的工作量, 一学期2w行代码真不是说着玩的。同时课程质量各个课之间的差距也特别大，距离赶上国外尚任重道远乎......</p>
+<p>上学期上了哪些课呢？</p>
+<ul>
+<li>
+<p>ICS2，计算机系统基础2，csapp剩下的全本+ostep的部分+许多Linux拓展，在原本的CSAPP Lab上也加了新的手写assembler和simulator。体系结构讲得很难，后面的系统讲得很广，总体上除了后几个lab文档确实不怎么样之外体验还是好的，能体验到许多新奇的东西——slab, vma, elf和动态链接的各种细节，等等等，但也就是这学期唯一的希望之光了。唯一一门有国外公开课水平的课，体感优于15213，和61c差不多（广度倒是远大于），差于NJU ICS。</p>
+</li>
+<li>
+<p>ADS，高级数据结构，粪课。内容为radix tree，rbtree,splay tree等各种树+kmp+快选+skiplist+bloomfilter+cuckoo hash+高阶图算法、并行图算法（三种并行最小生成树+pagerank。有12个hw，不少带实验报告，4个lab和一个proj。他的讲课真的很烂，一度有让我产生“什么？这不是华五正统科班，这是带专，课程吸水变高变大”之感，又是签到狂魔和作业狂魔，给分还差，导致体验非常不好。lab和proj还算是这门课最后的良心——虽然是助教的功劳。一个Huffman压缩，一个基数树，一个HNSW+并行优化（这个我是真喜欢），还有一个重量级LSM Tree。LSM tree真是一个好项目——虽然我写了很久（算上沟槽的实验报告在80个小时以上），但写完还是收获非常大，从c++17到db设计中的各种技巧和权衡乃至debug、写测试、管理项目的能力——从0开始手写一个支持键值分离、GC、持久化（还有选做的并行）等feature的LSM真是很磨练人。这门课最大的问题在于耗时间太多，且有些东西太过琐碎，虽然学了不少东西，但浪费的时间也是很多。几位助教真是辛苦了，硬生生把这门课程从依托变成了还算能看的东西。</p>
+</li>
+<li>
+<p>Web, 互联网应用开发。前端React+后端Spring Boot+JPA的手搓全栈开发课——很有培训班的风格。老师前半学期讲前端的时候挺无聊的，毕竟寒假自学过，后半学期对着《Database System Design》来讲的时候倒是很有意思，从JPA的底层讲到数据库范式、同步等机制，还是挺有意思，加上给分也好，算是一门还行的课。下学期还有他的Web2, 讲讲各种Redis，MQ，Cloud, 全局搜索之类的东西，还是可以期待一下。</p>
+</li>
+<li>
+<p>math4cs：垃圾课，完全不知道在教什么。今年这门课发生了改革，把自动机的部分去掉了，导致整体更没法看。前半是信息论和凸优化的最基础的东西，后半又开倒车回到了线代——SVD,QR,LU,...,结果大作业又是train两个AI model，不知所云的课。</p>
+</li>
+<li>
+<p>量子力学：沟槽的工科平台，软件工程的学生学牛魔量子力学。</p>
+</li>
+</ul>
+<ul>
+<li>
+<p>电路实验：喜欢我大化实验+大物实验*2+电路实验吗</p>
+</li>
+<li>
+<p>数电：学了吗？如学。在学期快结束的时候倒是感觉串起来还是比较新奇的，但和CS交界的部分也不超过之前学的计组，电路部分也不是很有意思。 私以为软院需要自己的数电，例如讲纠错码的时候带上纠错码在物理层传输的作用，把前面没什么用的布尔表达式化简、卡诺图，后面的555计数器之类删了，后面寄存器什么的需要讲，自动机什么也多讲一点，最好再讲讲目前新型的存储装置，比如3d的存储之类。</p>
+</li>
+<li>
+<p>红课：没啥好说的。</p>
+</li>
+<li>
+<p>软件基础实践：也是补大一的课，现在再去写小朋友的lab还是简单的。另外，个人觉得大部分lab不是很有意思，比如qlink,除了体验GUI编程和看文档全都是体力活。个人觉得把这些课题做成鼓励探索的会更好一点，例如qlink把带来很多麻烦的rpg机制换掉，转而鼓励实现网络对战，等等。</p>
+</li>
+</ul>
+<p>实验室项目是一个在OpenHarmony上做基础设施移植的工作——可惜一个是自己时间太少，另一个是自己水平不够，导致项目的进度几乎和我没什么关系。新奇的事也有，例如玩开发板、完整的Linux环境、亲手装机、一些图形和库移植的知识......但总感觉迷迷糊糊的，挺细碎，其实也不知道后续有什么地方能用到。</p>
+<p>上学期很可惜的就是几乎没怎么课外自学，就是在ddl之中疲于奔命了。暑假也算是在一个比较迷茫的状态下过去的，考了个驾照，学了学计网，开发选课社区v2.0，看看新的小说和玩玩黑神话悟空，也有看看分布式、DDIA、玩玩游戏引擎、写写compiler、ai或者mlsys这种尝试性的试探自己兴趣点，但最后也还是不知道自己热爱哪个方向，反倒是说找到了不少看起来很美好，但我实际不喜欢的方向（比如mlsys）。 看看这学期的CSE和云网融合吧，继续探索一下分布式。</p>
+<p>感觉本学期还是对我造成了一点创伤——以至于对于代码的兴趣都消退了些许，当兴趣变成“工作”或许就是如此，期中也常常深夜破防，得到的感想就是人还是不能把自己绷得太紧，或许有人喜欢这样，但我这样效率反而低下。我本学期博客更新频率也变低了好多——有时候连总结的时间都没有，无尽的ddl让人对生活本身也处于一个钝感的状态。</p>
+<p>至于新学期的规划，初步是纯纯的简历导向，为下学期申日常实习服务：在外部大环境这么差的当下，总想尽早刷一段大厂实习经历，才有一种能上桌的安心感。
+学习方面的话，大概是这样：</p>
+<ul>
+<li>第一个月学一下数据库，同时把rookieDB的lab写一写，刷个简历项目; 再看看leveldb和rocksdb的源码。</li>
+<li>第二个月继续深入后端开发，各种架构上的东西比如mq等等多写多看，继续写数据库。同时时间投入云网融合的小组项目。</li>
+<li>后面分布式，八股，力扣。</li>
+</ul>
+<p>生活方面的话，大概就是打算这学期坚持去健身，约了几个同学，希望能坚持下来。</p>]]></content:encoded>
+            <category>总结</category>
+        </item>
+        <item>
+            <title><![CDATA[二游定义与从玩家视角看最近的节奏]]></title>
+            <link>https://ayanami1314.github.io/personal-essays/什么是二游</link>
+            <guid>https://ayanami1314.github.io/personal-essays/什么是二游</guid>
+            <pubDate>Fri, 01 Nov 2024 18:57:09 GMT</pubDate>
+            <description><![CDATA[好吧我也不记得“最近”是什么时候了]]></description>
+            <content:encoded><![CDATA[<p>好吧我也不记得“最近”是什么时候了
+以下的文字是大概写于2024年初？
+由于是回复xxx的评论，看起来可能不太像是完整的文章（趴）。</p>
+<ol>
+<li>什么是二游</li>
+</ol>
+<p>作为一个从来没有被正式化过的概念，“二游”究竟是什么是很依赖于玩家共识的，或许有人会觉得有二次元日式萌系画风的就算二游，但我认为这样定义的话会有很多解释不清的东西，例如《rabi-ribi》《终焉的莉莉丝》这种显然不能算二游，乃至像《超次元游戏：海王星》这种JRPG也不能算二游，而你又很难说乙游这种偏韩漫画风的不算二游，甚至这样定义农都能算二游。</p>
+<p>所以我暂且给他一个狭义的，我自己认为能够有比较多的人认可的定义，二游应该具备以下几种特性：</p>
+<ul>
+<li>非现实性漫画性画风的</li>
+<li>角色为其一个卖点的（不一定是主要卖点，例如明日方舟很难讲是卖玩法还是角色）</li>
+<li>非买断制</li>
+<li>多端适配，且移动端手游（即侵占碎片时间）为主要运营方向</li>
+</ul>
+<ol start="2">
+<li>二游的特点</li>
+</ol>
+<p>相信诸位看官也能发掘，二游，<strong>其核心在于挤占移动端的空闲时间</strong>，非重度游戏玩家，才是它的目标对象和盈利根本点；又或者说，二游的设计理念就是“副游”。而这个逻辑继续向下挖，<strong>就能发现二游的本质始终是手游</strong>，非买断制造成了：</p>
+<ul>
+<li>
+<p>二游必须存活</p>
+</li>
+<li>
+<p>二游的存活来源于流水</p>
+</li>
+<li>
+<p>二游必须有不断的内容更新以吸引新老玩家氪金</p>
+</li>
+<li>
+<p>人的垃圾时间是有限的，二游的更新是频繁的，强度环境乃至玩法机制是变化极快的，<strong>一旦一个二游被挤占到了不是第一的位置，对于大部分玩家来说退坑就不远了</strong></p>
+</li>
+</ul>
+<p>这样的逻辑链条</p>
+<p>所以之前白姐姐问“二游不能是独游吗”,我的答案非常肯定，独游和我们说的这种狭义二游，整个盈利机制，和盈利机制带来的运营环境、厂商姿态都是完全不同的，例如：</p>
+<p>独立游戏开发者和玩家是平等甚至高一等的关系，一方面因为买断制是一锤定音的，且生产独游的技术水平具备稀缺性，你就算今天被2077宣传诈骗坑了，大部分人对此的记忆也不会深刻波及到厂商，另一方面，独立游戏开发者与玩家交互较少，在游戏成型的后续更新后才会继续响应玩家的呼声而优化/推出dlc，但独立游戏开发者始终具备主动权，也有着对内容表达的某种默许“独裁权”。但是二游的技术（米系除外）<strong>可替代性非常高</strong>，也由于长线运营的缘故，<strong>厂商一般是对玩家低姿态的（高姿态的参见精灵再临和少前2）</strong>，<strong>玩家对厂商是不信任、不允许独裁的</strong></p>
+<p>进一步，二游的核心<strong>从来不在于玩法</strong>，只要还要想吃二游这碗饭，<strong>稳住不爆雷才是核心玩家的第一诉求</strong>。这与其他的内容创作，例如小说、漫画、或者VTB这种“不怕你幽默，就怕你没活”的逻辑截然不同。<strong>二游的内容创作</strong>，是由百度贴吧、b站、nga泥潭、各类小说网站乃至pixiv等合力完成的，而<strong>不是由厂商、或者游戏本体完成的</strong>，所以你能看到诸如碧蓝航线这种完全没有剧情、玩法也很单调的游戏坚挺了七年，而技术力和玩法复杂程度远超的崩坏三却由于运营事故天天流水跳楼，还有少前二的暴死这些在其他游戏类型上很难理解的现象。</p>
+<p>那二游的核心是什么呢？<strong>情感诉求</strong>。接下来我慢慢讲。</p>
+<ol start="3">
+<li>论二游的核心：何为情感诉求盈利</li>
+</ol>
+<p>我认为，目前国内二游核心渲染的情感诉求主要有二：</p>
+<ul>
+<li>喜爱、受尊重、恋爱感等，即占据异性位置的：代表如碧蓝航线、偶像大师、碧蓝档案、尘白禁区</li>
+<li>竞争、社交、共同语言：代表如原神、赛马娘</li>
+</ul>
+<p>或许有人会认为存在相当多的第三类，例如有人会认为明日方舟和少女前线的核心是塔防和战棋玩法，有人会认为崩坏三、重返未来1999的核心是剧情和故事，等等。但我是不认同的，我觉得其核心盈利逻辑还是上述两种的组合，就像说到明日方舟，多数人的第一反应是方舟的脚臭文化和血狼破军之类出圈的强度讨论，而不是诸如《孤星》《登临意》这种优质剧情或是其非常棒的音乐。本质在于，当你脱下了二游的皮，拿《孤星》和真正的文字冒险去比，拿音乐和专门的音乐企划去比，<strong>不仅是没比头的，更关键是不能吸引到付费的，这些圈层的人为这样水平、这样占比的东西付费是较少的</strong></p>
+<p>二游，甚至手游受限于游戏硬件载体和所占据时间定位条件，必然不是以“深度”盈利的。</p>
+<p>所以二游核心的付费逻辑是情感诉求：</p>
+<ul>
+<li>“原神，启动！原来你也玩原神” 是社交情感诉求</li>
+<li>“我是神里绫华的狗”是爱恋情感诉求</li>
+<li>赛马娘卷大赛（PVP玩法）是竞争情感诉求+变相的爱恋情感诉求（抽卡资源）</li>
+<li>......</li>
+</ul>
+<p>所以二游的其他一切，玩法、操作、IP、人设、圈子塑造等等等，都是为了满足玩家的情感诉求，更进一步让他们为游戏付费——所构造的，就像几乎没有人会因为在空洞骑士里面战胜了一个设计非常好的boss而向制作组打钱，而像BangDream这种音乐企划，在网易云上最热的歌都是MyGo,并且有断层差距。</p>
+<p>所以国内的二游困境其实是，<strong>情感联系断裂容易建立难，而越是断裂，建立越是难</strong>。一方面，游戏题材、政治审查、硬件条件、行业平均水平、乃至二游企划在现实的注资问题，都不允许策划和厂商有过多发挥空间；另一方面，玩家因为被“缅北二游”伤了太多、现实周边人的压力与不理解、大环境的下行，已经出现了难以建立情感联系，乃至于有些过分激动、PTSD的状态。<strong>玩家为二游付费，是知道自己的付出与回报不成正比的，要么是情绪之下的一掷千金（典型如抽卡上头），要么是类似“支持手办”这样的朴素情感投射</strong>（典型如“我二弟才是我大哥”）</p>
+<p>基于游戏内容的付费在当下中国的二游市场是极少的，萌芽中的萌芽。</p>
+<ol start="4">
+<li>情感断裂的衍生物：抽象与乐子人文化、“有男不玩”与ML仙人、缅北二游</li>
+</ol>
+<p>什么是抽象? 或许这个词的本义就是对抽象最好的概括：对现有释义的解构与小圈子狂欢，就是要让外面的人完全看不懂，里面的人“不是哥们，这么虾头”才叫抽象。如前面所说，<strong>由于二游的内容创作核心是玩家二次创作，所以二游不存在剧情、人物等的“官方定调”</strong>。在叛逆的玩家群体和吃瓜的非玩家群体之中，<strong>经常能发生对话语权的争抢</strong>，典型的有“东海帝王唱的哈吉米是猫”（短视频对赛马娘的入侵）、“狂暴雷普狼”（碧蓝档案的砂狼白子二创覆盖原始角色形象）等。在艾尔登法环之中，你可以对月之公主菈妮发癫，其他人只会“沃日，这么虾头.jpg”而不会跳出来与你争辩是否OOC，就是因为大家在心里有官方背书已经形成上了“什么才是不OOC”的共识。但在二游，那真是“你所热爱的，便是你的生活”，大多数玩家群体认为那是什么，TA就真是什么，<strong>官方甚至会积极入场完善民间私设</strong>，当一个角色被恶意曲解的时候，很多角色厨就只有两个选择：要么一起加入这个抽象狂欢，变成乐子人；要么要退出对话语权的争夺，<strong>与角色和官方、社群的情感联系断裂，不再有付费意愿</strong>，最常见的是就此退游。</p>
+<p>与之还有联系的是另一个历史证明的游戏理论：<strong>少数的深度游戏玩家才是（显式或者隐式）营收的贡献主体，而玩家数量的泡沫一戳即破</strong>——不少玩家只是什么游戏玩的人多、什么游戏出圈、什么游戏社交属性强，才会去玩什么。而当核心的内容创作者离开的时候，几乎也就是长线运营的游戏死亡的时候——这个循环甚至是雪崩式的，人越少，创作激励越少，离开的人越多。</p>
+<p>这就又能解释一些现象，例如某二字游戏的策划天天暴雷，退坑的老玩家越来越多，但是还没死，甚至一时不见明显衰退之象。但人家就是有足够的游玩人数，也有虽然不算深，但在同类对比里面鹤立鸡群的内容产能，庞大的圈层使得整个内容和情感体系没有崩塌——并且米家的运营策略向来是把角色的话语权掌握在自己手里的（这也需要充足的内容产能支持）。</p>
+<p>又例如某种意义上同类的少前二，都是制造“独立女性”人设、“玩家摄像头”、“角色有自己的生活”，卖百合和其他cp，暴死的却比谁都快——无它，内容产出不够，除了情感联系之外没有留下玩家的手段是尔。</p>
+<p>所以市场上的二游一般有两种运营策略：</p>
+<p>一是如碧蓝航线、赛马娘这种，极致强化玩家的情感联系。碧蓝航线卖爱情卖安全感，就要“你就是角色的生活，角色也是你的生活”，就要用“我同意=我接受=我爱你”的金伯利恒等式（nga评价为：2024年最伟大的等式（doge），重点还是和唐妞不等式的对比）<strong>来强化、巩固玩家的情感联系，进而衍生出以皮肤而不是抽卡盈利的独特二游体系</strong>（有人会觉得LOL这种也是，但是不同点在于比起全程可见的LOL英雄皮肤，碧蓝航线其实没什么时间能看到皮肤，大家的心态也更倾向于“给心爱的TA卖新衣服”）<img decoding="async" loading="lazy" src="https://img.nga.178.com/attachments/mon_202402/04/foQ2t-dqk8K21T3cSsg-cl.jpg" alt="img" class="img_ev3q"></p>
+<p>而赛马娘走的是极致强化机制的竞争策略（很有日式的风格）：PVP玩法是日活的核心中的核心，无论是疯狂的新卡爆老卡金币，还是抽卡资源的比例限制（不少部分只能PVP获取），又或是游戏复杂充满随机数和高血压的策略选择体系，都在鼓励玩家养马内卷。</p>
+<p>二是尝试跳出这个体系，借独游或是其他游戏探索不同的玩法，做更多的内容创作以降低对玩家情感付费的依赖，例如米家游戏之中，崩坏三的动作机制和3D渲染、星穹铁道的梗和文案设计、原神的开放世界工作量和技术，明日方舟做出特色的rougelike模式、对于传统塔防的探索......但就我的所见所闻而言，这些部分单独拿出算是精巧，但正要放在世界游戏之中竞争, 还是难有竞争力。只能说厂商也难以all in探索。目前的成功很大程度上依赖于国内大学之前很多人没有电脑，又或者主机文化的不流行（笑</p>
+<blockquote>
+<p>“游戏是一个必须要做到100分的行业”</p>
+</blockquote>
+<p>说回“缅北二游”，实际上就是国内新培养的一批游戏相关毕业生，觉得自己要“在游戏里面寄托高深精神追求”，但又没这个能力，俗称文青病犯了，想做“艺术类”而不是“服务类”二游，结果伤害了玩家感情，又没有对应玩法导致的一地鸡毛。</p>
+<p>注意我没有说过有玩法、内容就可以肆意伤害玩家感情，这个前车之鉴太多了，各种黑深残等等，只是说当游戏有过人之处的时候，<strong>玩家会给游戏创作者一个表达的机会，而基础玩法都做不好的是没资格表达的</strong>。VTB和偶像也是这样，不火的偶像是没资格学樋口圆香的，而VTB爆雷过一次，就会对事业造成永久性创伤（例如七海nanami打拳事件），而二游的容忍度由于玩家已经是碎片时间+满心疲惫+二次元滤镜的程度，会更加低</p>
+<blockquote>
+<p>“游戏是一个必须要做到100分的行业”</p>
+</blockquote>
+<p>理解了这个之后，对于“有男不玩”这种现象，就也可以理解了，玩家不信任厂商的一碗水端平能力，拒绝让厂商有伤害自己感情的机会，本质上是一种应激自保行为。</p>
+<ol start="5">
+<li>玩家圈层的资源竞争与“借鸡生蛋”</li>
+</ol>
+<p>还有许多大佬有着这样的观点</p>
+<ul>
+<li>二游的资源（现有厂商的产能）是极其有限的，但是玩家的诉求是多种多样的，这是其一</li>
+<li>不同的玩家都想玩到最合自己心意的二游，这是其二</li>
+<li><strong>一旦一个二游被挤占到了不是第一的位置，对于大部分玩家来说退坑就不远了</strong>，因而尽管大家知道什么才能带来流水（也可能不知道），但是对核心情感/玩法塑造不自信的情况下，厂商的第一要务不是“保住锅里的”，而是“去抢碗里的”</li>
+<li>也正由于此，才会有越来越多的厂商盯上了较少被开发的女性玩家的地盘，才会有原神的黑丝小男孩、散兵路人缘极差的人设等现象</li>
+<li>而这种女性玩家对原先男性玩家生态位的挤压，<strong>或者本质上是少数需求玩家对多数需求玩家的挤压，本质上是一种“借鸡生蛋”</strong>。比如，假设我是一个福瑞控，但福瑞控在玩家群体的数量不足，不足以让厂商专门出一款全是福瑞的游戏，那我就只能在其他已有游戏之中发声，利用老玩家音量小的特性——来向厂商传递错误需求，让他更多地出福瑞角色——这本质上是资源不够。在广得多得多的买断制游戏市场就少有这个现象。</li>
+<li>也由于上面，你不玩某开放世界二游，你又想玩开放世界二游，那你还能玩什么呢？等两年蓝色星原吗？最后的归宿就是，要么在一个二游定居，要么最后不玩二游。</li>
+</ul>
+<ol start="6">
+<li>其他观点</li>
+</ol>
+<p>还有很多观点，例如扯到性焦虑的、结合社会环境分析的，巴拉巴拉，这东西知乎b站上一堆，我就不多讲了，主要以一个<strong>游戏玩家</strong>——并非游戏制作者、UP主、或是冷眼点评的评论家的的观点，粗鄙之言，还望大家嘴下留情。</p>]]></content:encoded>
+            <category>游戏</category>
+        </item>
+        <item>
+            <title><![CDATA[一个普通人的cs学习道路]]></title>
+            <link>https://ayanami1314.github.io/personal-essays/校外cs群见闻之——普通人的学习道路</link>
+            <guid>https://ayanami1314.github.io/personal-essays/校外cs群见闻之——普通人的学习道路</guid>
+            <pubDate>Fri, 01 Nov 2024 18:57:09 GMT</pubDate>
+            <description><![CDATA[2024年或许是回旋镖元年。]]></description>
+            <content:encoded><![CDATA[<p>2024年或许是回旋镖元年。</p>
+<p>再重新整理出这篇文章的时候, 我也是过了一年多的时间了。这篇文章是刚上大二的时候写的, 现在回过头来看, 无疑充满了回旋镖, 那个曾经觉得cs就是奇绝瑰伟、基础架构就是开天辟地、cs道路留有千万条待有兴趣者探究的我也不复当年的心境。说实话, 我也不知道我将来会去做什么, 一年多的时间让我对很多的方向都逐渐“祛魅”, 迫近的实习科研压力也让我对cs的热情逐渐消退。我还是喜欢着计算机的，只不过那些年少的放言已经如同奔走的风，再也不会回来了。</p>
+<p>而再看我当年的文字, 另一个狠狠的回旋镖是我发现我当时确实有点在我一个学期后和一些其他人所警惕的“技术崇拜”的风气, 神化名词, 神化个人的努力与学业上的某种天赋, 小朋友过早的看了这些未必是一件好事。我希望下面的内容里面传递的是一些“经验性”东西和“立志”的精神, 而不是内卷和焦虑的风气, 当时也有人指出过这一点, 可惜意气风发?(或许是金课上多的义愤填膺, 笑)的我没听进去。何况现在在看, 当年认为的“神”并没有我想象的那么超凡脱俗, 生活中除了技术之外的东西也有太多, 或许从来没有天才, 只有永远在和生活搏斗的普通人。</p>
+<p>现在的大环境是否还允许满腔热血的底层少年入伙呢？我不知道。我当年提到的星爷已经转了后端, 我自己也看起来不做基架的样子, 一起刷课的朋友做基架的也承认国内前景确实一般（但也很好笑，所有非AI方向都是一副难评的样子）, 打算到国外去做DB。</p>
+<p>当年的心境宛如 “拿起笔, 想写点东西, 以为是武器能伸张正义”
+现在的心境却是 “我想要说的, 前人们都说过了; 我想要做的, 有钱人的做过了”</p>
+<p>总之, 我觉得这篇文章应该发出来,我再也写不出差不多的东西了, 但也必须要注意它写于2023年, 来自一位刚刚转专业面试结束, 心血澎湃的大二少年</p>
+<p>由于涉及到了一些隐私，有一些删改。以下ABC等均为化名。</p>
+<p>Last updated: 2024-11-2</p>
+<hr>
+<p>文：</p>
+<p>先前看到A说我之前的帖子有些热血漫的味道，我其实还挺开心的，因为我始终觉得我们现在缺乏那一种热血。大环境的低落让很多人丧失了锐气，我完全理解，甚至自己就是这样，但是<strong>我总是更崇敬和憧憬那种“直面生活淋漓的鲜血”的人</strong>。</p>
+<p>扯远了，我想说的一件事情是，<strong>其实大家都是普通人</strong>。</p>
+<p>不普通的人是怎么样的呢？我举个例子</p>
+<p>莎莎（工业学术两开花，学术上去年OOPSLA，千年ICLR，工业上代码被amazon accept，github 1w+ star; 自传之中初中开始拿上课时间学cs还能考到成外前几，美本大一和phd谈笑风生）：</p>
+<ul>
+<li>
+<p>github: <a href="https://github.com/MarisaKirisame" target="_blank" rel="noopener noreferrer">https://github.com/MarisaKirisame</a></p>
+</li>
+<li>
+<p>知乎：<a href="https://www.zhihu.com/people/marisa.moe" target="_blank" rel="noopener noreferrer">https://www.zhihu.com/people/marisa.moe</a></p>
+</li>
+</ul>
+<p><strong>这种天赋是看得见的</strong>，我记得之前知乎还看到了高一数学发顶级paper的，反正看不懂一点的水平；还有某位我的高中同学，小学四年级竞赛省队（年龄小取消成绩），初三准高一时，丘赛全国第一，被丘成桐亲自见面，然后好像也是去年的数竞世界第一。</p>
+<p><strong>但“普通人”就只能仰望了吗？生为普通人的我们能做点什么呢？</strong></p>
+<p><strong>我不太想学着高中老师的腔调，给自己或者是源u灌着努力的鸡汤</strong>，因为我自己就远称不上足够努力，但我想说的是，相信自己所走的道路</p>
+<p><strong>或许，我们的生活有除了在课内的分数之中苦耗的另一种方向。</strong></p>
+<p>（当然不是说可以完全不管课内成绩，或许生存手册作者有这种能力）</p>
+<p>引用生存手册所言</p>
+<blockquote>
+<p>挖空心思研究解题技巧的学生们，与同样挖空心思研究出题技巧的老师们，构成了一个完美的圆环。</p>
+<p>....</p>
+<p>学习最需要的，不是悲壮的毅力，而是对无限未知的渴求</p>
+<p>​												——From 生存手册：悲壮的学习方式</p>
+</blockquote>
+<blockquote>
+<p>在打着各种华丽口号的诱惑面前，我们要保持清醒，并且时刻告诫自己</p>
+<p>总有更值得做的事。</p>
+<p>​											——From 生存手册：总有更值得做的事情</p>
+</blockquote>
+<blockquote>
+<p>安排时间道理真的很浅显：成功人士往往会津津乐道于他们在校期间锻炼出的专业素养，但几乎没有成熟（甚至不需要成功）的人，喜欢炫耀自己当年高数考了年级第一。</p>
+<p>​										    ——From 生存手册：正确地浪费剩下的时间</p>
+</blockquote>
+<p>再来列举<strong>和我同届的</strong>，在某校外cs群聊之中见到的几个“普通人”：</p>
+<p>星爷（b站 降星驰， 专栏有详细的学习经历）：</p>
+<p><strong>哈工大22级</strong></p>
+<p>2022年8月17日，完结cs61A(程序的构造与解释)</p>
+<p>2022年10月8日，完结cs61B(数据结构与算法)</p>
+<p>2023年1月1日，完结cs61C(计算机体系结构)</p>
+<p>2023年3月28日，完结cs70(离散和诸多计算机进阶数学)</p>
+<p>2023年8月23日，完结6.S081，OSTEP, jyy os(操作系统：国外+国内，jyy os更是以难度著称)</p>
+<p>2023年9月26日，完结6.031，csc151,cmpt379(软件工程和编译原理)</p>
+<p>至今(2023年11月？)，又学完了计网, 别的细碎的我就不写了</p>
+<p><strong>其中，lab,proj, homework甚至考试全写，一年时间，几乎走完了科班的前三年</strong></p>
+<p>川流（知乎<a href="https://www.zhihu.com/people/riemann-32-30%EF%BC%89" target="_blank" rel="noopener noreferrer">https://www.zhihu.com/people/riemann-32-30）</a></p>
+<p><strong>深圳大学22级</strong></p>
+<p>以下节选自知乎文章</p>
+<p>6.s081已完结，CMU15-445已完结，MIT6.5840 Lab4 未完成（过于复杂加没时间写）</p>
+<p>CS<!-- -->:APP<!-- -->已完结，OSTEP已完结，Data Structure And Algorithm Analysis：已完结</p>
+<p>Computer Organazation and Design : The Hardware Software Interface ： 已完结</p>
+<p>Unix Network Programming：看了两百多页， DDIA：开了个头</p>
+<p>Understanding The Linux Kernel：当字典翻</p>
+<p>Database System Concepts ：把15-445要求的那些看完了</p>
+<p>xv6 book：已完结</p>
+<p>C++ Primer：看了八百多页，半途而废</p>
+<p>C++ Template 2th：看了一百多页，当字典翻</p>
+<p>Effective Modern C++：看了一半，还在翻</p>
+<p>论文：MapReduce, GFS, BigTable, Raft, Percolator, Spanner, Zookeeper, FaRM, Dynamo DB已完结</p>
+<p>LSM Survey</p>
+<p>WiscKey: Separating Keys from Values in SSD-conscious Storage</p>
+<p>半途而废的：</p>
+<p>Zanzibar，Spark, SUNDAR</p>
+<p>开源代码</p>
+<p>Leveldb(大致能理解整体框架，大部分代码已看完)</p>
+<p>Rocksdb(太tmd复杂了)</p>
+<p>Apache Doris(只会点冷热分层的东西，有做过相关issue)</p>
+<p>力扣：</p>
+<p>116道</p>
+<hr>
+<p>看到有没有觉得一些震撼？</p>
+<p>反正我是被震撼到了，这两位大学之前也都不算有很多基础，星爷每天学大概6小时，川流说TA能每天学13个小时cs（群里show过一个月平均每日20分钟左右的手机使用时间）</p>
+<p><strong>在cs这样一个对时间相对公平的环境之中，谁又能说努力不是一种天赋呢？</strong></p>
+<p><strong>一年下来的蜕变，可能远超过自己的想象。</strong></p>
+<hr>
+<p>我又想起了先前B在骂交大连个python都不教</p>
+<p><strong>可深大会教如何让人一年变成川流吗？哈工会教如何让人一年变成星爷吗？</strong></p>
+<p><strong>打着交大的牌子，我又会什么呢？</strong></p>
+<p><strong>如果说得难听一点，真是：感觉不如双非</strong>，都不用继续举这两个例子，群里不少双非老哥水平真不差。</p>
+<p><strong>人与人的差距远大于人与学校，而交大的同学并不是没有这个天赋，而是被各种宣传的活动、无聊的金课、无用的内卷所裹挟，而忽视了这条少有人走的路</strong></p>
+<p>我承认这一条路上只有自己，没有助教，没有老师，甚至没有同学和成绩，<strong>但这条路有着非同一般的价值</strong>。</p>
+<hr>
+<p>说回我自己</p>
+<p><strong>在夜深人静的时候，其实我emo了很多次</strong></p>
+<p><strong>为什么我们交大对普通班的学生没有成熟的助教体系？为什么我们上了一年课还不知道自己专业在学些什么？为什么有些开的课程能让一个大一的学生从直觉上都感觉是答辩？为什么没有自己选择的自由？</strong></p>
+<p><strong>我看了不下20次21级转专业经验，不下10次生存手册，不下10次SJTU微电子指北，我想从这些前人的经验里面去寻找答案</strong></p>
+<p><strong>在夜深人静的时候，我想着自己的水平和学积分，想着那似乎遥不可及的专业和恢弘的学科，在水源上不记得多少次从0点搜索【转专业】【软件工程】【SE】的tag直到4点；不记得多少次深夜无法入眠，趴在床上看知乎的cs技术帖、前景帖、科普帖、牢骚帖；</strong></p>
+<p>我自知绝对是普通人的水平，而普通人的学习<strong>takes time</strong></p>
+<p><strong>It takes time</strong></p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="it-takes-time">It takes time<a class="hash-link" aria-label="Direct link to It takes time" title="Direct link to It takes time" href="https://ayanami1314.github.io/personal-essays/%E6%A0%A1%E5%A4%96cs%E7%BE%A4%E8%A7%81%E9%97%BB%E4%B9%8B%E2%80%94%E2%80%94%E6%99%AE%E9%80%9A%E4%BA%BA%E7%9A%84%E5%AD%A6%E4%B9%A0%E9%81%93%E8%B7%AF#it-takes-time">​</a></h4>
+<p><strong>然而交大没有给同学们留足时间，于是只能自己挤出时间，比如我进步最快的时间就在于那个暑假</strong></p>
+<p><strong>而付出了时间+正确的道路，它会改变的</strong></p>
+<hr>
+<p>最后讲讲可能的自学道路，对于cs一脉的转专业学术，我认为早日自学国外课程早日超生</p>
+<p><strong>暴论：国内的大多数网课的质量（除去少数课程外）连给国外对应神课提鞋的资格都没有</strong></p>
+<p>最王道的版本：程序设计、数据结构、体系结构——操作系统，编译原理，计网，数据库——自行再进阶</p>
+<p>cmu15112/cs50 ——cs61A（如果基础还行，可以跳过前一个）——cs61b——cs61c——6.s081——compiler（如，cmpt379）——stanford144——cmu15445——.......</p>
+<p>我的经历已经证明了，只要刷完abc，起码码力上不会吃太多亏，要是一年像星爷那样刷，我相信SE的老师会对你复现21级的经典</p>
+<blockquote>
+<p>"你是怎么做到大一一年学习这么多东西的？"   ——From tmp的面试</p>
+</blockquote>
+<p>自学的时候多用google、stackoverflow等, 多搜多问，积累优质网站资源，有空看看蒋炎岩的一些cs鸡汤（搜索：nju PA, 开始几篇就是）。知乎+google+qq群+学长+......</p>
+<p>最后，贴上我很喜欢的几篇知乎文章，或许xpy们可以看看（我强力推荐）：</p>
+<p><a href="https://zhuanlan.zhihu.com/p/84927997" target="_blank" rel="noopener noreferrer">https://zhuanlan.zhihu.com/p/84927997</a> 魔理沙《半条命》</p>
+<p><a href="https://www.zhihu.com/question/471105298/answer/1995471916" target="_blank" rel="noopener noreferrer">https://www.zhihu.com/question/471105298/answer/1995471916</a> 魔理沙：如何看待2022年秋招Java后端开发岗一片红海？</p>
+<p><a href="https://www.zhihu.com/question/21326179/answer/2532074457" target="_blank" rel="noopener noreferrer">https://www.zhihu.com/question/21326179/answer/2532074457</a> invalids 夹生饭</p>
+<p>至于网课资源，csdiy，请</p>
+<p>附上一个群佬们的对csdiy的补充</p>
+<p>除了csdiy之外的一些其他课程</p>
+<p>计网：<a href="https://rrc-uiuc.notion.site/Communication-Networks-51d2dd4fd9c44fcdbcf6a67a86237e0c" target="_blank" rel="noopener noreferrer">https://rrc-uiuc.notion.site/Communication-Networks-51d2dd4fd9c44fcdbcf6a67a86237e0c</a> cs438</p>
+<p><a href="https://cs.brown.edu/courses/csci1680/f22/assignments/" target="_blank" rel="noopener noreferrer">https://cs.brown.edu/courses/csci1680/f22/assignments/</a> cscs1680,据说非常难</p>
+<p>rust并发：<a href="https://github.com/kaist-cp/cs431" target="_blank" rel="noopener noreferrer">https://github.com/kaist-cp/cs431</a></p>
+<p><a href="https://www.bilibili.com/video/BV1Xp4y1w7xG/?spm_id_from=333.337.search-card.all.click&amp;vd_source=85acf0a59ded02e4c75ae1158baca207" target="_blank" rel="noopener noreferrer">https://www.bilibili.com/video/BV1Xp4y1w7xG/?spm_id_from=333.337.search-card.all.click&amp;vd_source=85acf0a59ded02e4c75ae1158baca207</a></p>
+<p>PL&amp;compiler: nju软件分析 b站</p>
+<p>nju编译原理<a href="http://docs.compilers.cpl.icu/%EF%BC%8C%E6%9F%90%E4%BD%AC%E5%BC%BA%E6%8E%A8" target="_blank" rel="noopener noreferrer">http://docs.compilers.cpl.icu/，某佬强推</a></p>
+<p>cmpt379：据说最友善的编译原理，某佬强推</p>
+<p>交大的IEEE的课，不知道哪里有资源<a href="https://jhc.sjtu.edu.cn/public/courses/CS2612/%EF%BC%8C%E6%9F%90%E5%A4%A7%E4%BD%AC%E5%BC%BA%E6%8E%A8" target="_blank" rel="noopener noreferrer">https://jhc.sjtu.edu.cn/public/courses/CS2612/，某大佬强推</a></p>
+<p>计组：csci0300，某佬强推，非常软件的计组，据说proj设计得很好</p>
+<p><a href="https://cs.brown.edu/courses/csci0300/2023/schedule.html" target="_blank" rel="noopener noreferrer">https://cs.brown.edu/courses/csci0300/2023/schedule.html</a></p>
+<p>cs4414 康奈尔的csapp，也是某佬强推，教授是云计算超级大牛</p>
+<p><a href="http://www.cs.cornell.edu/courses/cs4414/2023sp/" target="_blank" rel="noopener noreferrer">http://www.cs.cornell.edu/courses/cs4414/2023sp/</a></p>
+<p>storage sys <a href="https://animeshtrivedi.github.io/course-stosys/" target="_blank" rel="noopener noreferrer">https://animeshtrivedi.github.io/course-stosys/</a></p>
+<p>哈深os， 好像仿照的6.s081 <a href="https://hitsz-cslab.gitee.io/os-labs/" target="_blank" rel="noopener noreferrer">https://hitsz-cslab.gitee.io/os-labs/</a></p>
+<p>游戏开发：cs248, mit6.837,cmu15462, 15869</p>
+<p>物理和数学：<a href="https://www.diegovera.org/resources-1" target="_blank" rel="noopener noreferrer">https://www.diegovera.org/resources-1</a></p>
+<p>数据库：mit 6.830</p>
+<p>c++导论：据说萌新引导做得很好，cs103 <a href="https://bytes.usc.edu/cs103" target="_blank" rel="noopener noreferrer">https://bytes.usc.edu/cs103</a></p>
+<p>ucb latex(逆天，这课都有)：<a href="http://persson.berkeley.edu/math124" target="_blank" rel="noopener noreferrer">http://persson.berkeley.edu/math124</a></p>
+<p>算法：<a href="http://web.stanford.edu/class/cs97si/" target="_blank" rel="noopener noreferrer">http://web.stanford.edu/class/cs97si/</a> 古老的算法课，但据说不错</p>
+<p><a href="https://cseweb.ucsd.edu/~dakane/CSE101" target="_blank" rel="noopener noreferrer">https://cseweb.ucsd.edu/~dakane/CSE101</a></p>
+<p>前端：<a href="https://fullstackopen.com/zh/" target="_blank" rel="noopener noreferrer">https://fullstackopen.com/zh/</a></p>
+<p>blockchain:<a href="https://cs251.stanford.edu/" target="_blank" rel="noopener noreferrer">https://cs251.stanford.edu/</a></p>
+<p>shell: <a href="https://decal.ocf.berkeley.edu/" target="_blank" rel="noopener noreferrer">https://decal.ocf.berkeley.edu/</a></p>
+<p>附录：</p>
+<p>技术文章摘抄：</p>
+<p><a href="http://learn.lianglianglee.com/" target="_blank" rel="noopener noreferrer">http://learn.lianglianglee.com/</a> 大佬推荐</p>
+<p><strong>什么，你问我这么多资源哪里来的？</strong></p>
+<p><strong>我是真的0基础欸，我相信从csdiy起，github，知乎一些sjtu学长的关注列表，关注列表的关注列表......各种地方多看看，大家都能找到一些的，</strong></p>
+<p>最后贴一个魔理沙的回答的全文</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="知乎cs大佬魔理沙的编程之路是什么样的"><a href="https://www.zhihu.com/question/304752391/answer/699930080" target="_blank" rel="noopener noreferrer">知乎cs大佬<em>魔理沙</em>的编程之路是什么样的？</a><a class="hash-link" aria-label="Direct link to 知乎cs大佬魔理沙的编程之路是什么样的" title="Direct link to 知乎cs大佬魔理沙的编程之路是什么样的" href="https://ayanami1314.github.io/personal-essays/%E6%A0%A1%E5%A4%96cs%E7%BE%A4%E8%A7%81%E9%97%BB%E4%B9%8B%E2%80%94%E2%80%94%E6%99%AE%E9%80%9A%E4%BA%BA%E7%9A%84%E5%AD%A6%E4%B9%A0%E9%81%93%E8%B7%AF#%E7%9F%A5%E4%B9%8Ecs%E5%A4%A7%E4%BD%AC%E9%AD%94%E7%90%86%E6%B2%99%E7%9A%84%E7%BC%96%E7%A8%8B%E4%B9%8B%E8%B7%AF%E6%98%AF%E4%BB%80%E4%B9%88%E6%A0%B7%E7%9A%84">​</a></h2>
+<p><a href="https://www.zhihu.com/people/marisa.moe" target="_blank" rel="noopener noreferrer">圆角骑士魔理沙</a></p>
+<p><a href="https://www.zhihu.com/search?q=%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6&amp;search_source=Entity&amp;hybrid_search_source=Entity&amp;hybrid_search_extra=%7B%22sourceType%22%3A%22answer%22%2C%22sourceId%22%3A%22699930080%22%7D" target="_blank" rel="noopener noreferrer">计算机科学</a>已经有六七十年历史了，这段时间内书写历史的人不在小数：<a href="https://www.zhihu.com/search?q=%E5%9B%BE%E7%81%B5&amp;search_source=Entity&amp;hybrid_search_source=Entity&amp;hybrid_search_extra=%7B%22sourceType%22%3A%22answer%22%2C%22sourceId%22%3A%22699930080%22%7D" target="_blank" rel="noopener noreferrer">图灵</a>，冯洛伊曼，Dijkstra，John Reynold，Tony Hoare，John McCarthy，Alan Kay。。。有的人生怕你不知道谁做出了杰出<a href="https://www.zhihu.com/search?q=%E5%A5%89%E7%8C%AE&amp;search_source=Entity&amp;hybrid_search_source=Entity&amp;hybrid_search_extra=%7B%22sourceType%22%3A%22answer%22%2C%22sourceId%22%3A%22699930080%22%7D" target="_blank" rel="noopener noreferrer">奉献</a>，专门弄了个奖出来呢:)！</p>
+<p>你如果真想向更强的人学习，图灵老冯<a href="https://www.zhihu.com/search?q=%E5%93%A5%E5%BE%B7%E5%B0%94&amp;search_source=Entity&amp;hybrid_search_source=Entity&amp;hybrid_search_extra=%7B%22sourceType%22%3A%22answer%22%2C%22sourceId%22%3A%22699930080%22%7D" target="_blank" rel="noopener noreferrer">哥德尔</a>都有传记，尽管我没看过，也不知道年代久远的天才有什么借鉴之处；ACM每年都会请图灵奖得主来做<a href="https://www.zhihu.com/search?q=freestyle&amp;search_source=Entity&amp;hybrid_search_source=Entity&amp;hybrid_search_extra=%7B%22sourceType%22%3A%22answer%22%2C%22sourceId%22%3A%22699930080%22%7D" target="_blank" rel="noopener noreferrer">freestyle</a>演讲，有展示自己领域的一个漂亮的idea的（<a href="https://link.zhihu.com/?target=https%3A//www.archive.ece.cmu.edu/~ganger/712.fall02/papers/p761-thompson.pdf" target="_blank" rel="noopener noreferrer">Reflections on Trusting Trust</a>），有总结自己所在领域的（<a href="https://link.zhihu.com/?target=http%3A//www.bwlampson.site/Slides/TuringLectureAbstract.htm" target="_blank" rel="noopener noreferrer">Principles for Computer System Design</a>），有当场开创新领域的（<a href="https://link.zhihu.com/?target=https%3A//www.thocp.net/biographies/papers/backus_turingaward_lecture.pdf" target="_blank" rel="noopener noreferrer">Can programming be liberated from the von Neumann style?</a>），有对编程跟设计做出foundational comment的（<a href="https://link.zhihu.com/?target=https%3A//www.cs.utexas.edu/users/EWD/ewd03xx/EWD340.PDF" target="_blank" rel="noopener noreferrer">The humble programmer</a>, <a href="https://link.zhihu.com/?target=http%3A//zoo.cs.yale.edu/classes/cs422/2014/bib/hoare81emperor.pdf" target="_blank" rel="noopener noreferrer">The Emperor’s Old Clothes</a>），还有让我们rethink computer的（<a href="https://link.zhihu.com/?target=https%3A//www.youtube.com/watch%3Fv%3DoKg1hTOQXoY" target="_blank" rel="noopener noreferrer">The Computer Revolution Hasnt Happened Yet</a>）。</p>
+<p>如果嫌一年一次的演讲太短，学不到太多，上面所述的很多人都把自己的<a href="https://www.zhihu.com/search?q=%E4%BA%BA%E7%94%9F%E7%BB%8F%E9%AA%8C&amp;search_source=Entity&amp;hybrid_search_source=Entity&amp;hybrid_search_extra=%7B%22sourceType%22%3A%22answer%22%2C%22sourceId%22%3A%22699930080%22%7D" target="_blank" rel="noopener noreferrer">人生经验</a>整理下来了：Richard Hamming写了本教你如何规划学术生涯的书（The Art of doing science and engineering），Dijkstra的一生所著被整理进了EWD Archive，里面的精品除了The Humble Programmer，还有<a href="https://link.zhihu.com/?target=https%3A//www.cs.utexas.edu/users/EWD/ewd02xx/EWD215.PDF" target="_blank" rel="noopener noreferrer">A case against the GO TO statement</a>，<a href="https://link.zhihu.com/?target=https%3A//www.cs.utexas.edu/users/EWD/ewd01xx/EWD117.PDF" target="_blank" rel="noopener noreferrer">Programming considered as a human activity</a>，<a href="https://link.zhihu.com/?target=https%3A//www.cs.utexas.edu/~EWD/transcriptions/EWD10xx/EWD1036.html" target="_blank" rel="noopener noreferrer">On the cruelty of really teaching computing science</a>。Alan Kay则每过一段时间发个视频上youtube（<a href="https://link.zhihu.com/?target=https%3A//www.youtube.com/watch%3Fv%3DNdSD07U5uBs" target="_blank" rel="noopener noreferrer">Power of Simplicity</a>）</p>
+<p>领域相关的也有很多：在<a href="https://www.zhihu.com/search?q=%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80&amp;search_source=Entity&amp;hybrid_search_source=Entity&amp;hybrid_search_extra=%7B%22sourceType%22%3A%22answer%22%2C%22sourceId%22%3A%22699930080%22%7D" target="_blank" rel="noopener noreferrer">编程语言</a>领域，<a href="https://link.zhihu.com/?target=http%3A//research.ihost.com/hopl/HOPL.html" target="_blank" rel="noopener noreferrer">History of Programming Languages</a> 把这半世纪的杰出的编程语言设计者的见解汇集在一起， <a href="https://link.zhihu.com/?target=https%3A//www.amazon.com/Dealers-Lightning-Xerox-PARC-Computer/dp/0887309895" target="_blank" rel="noopener noreferrer">Dealers of Lightning</a> 跟<a href="https://link.zhihu.com/?target=https%3A//www.amazon.com/Dream-Machine-Licklider-Revolution-Computing/dp/014200135X" target="_blank" rel="noopener noreferrer">The Dream Machine</a> 则描述了改变了世界的Xerox Parc的文化。如果你看的paper足够多，你可以从里面倒推出一个researcher的taste：比如John Reynold就很软，能把多种风格混合在一起（<a href="https://zhuanlan.zhihu.com/p/42907876%EF%BC%89%EF%BC%8C%E5%90%8C%E6%97%B6%E8%83%BD%E5%9C%A8%E5%BE%88%E8%84%8F%E7%9A%84%E9%A2%86%E5%9F%9F%E5%81%9A%E5%87%BA%E4%B8%A5%E8%B0%A8%E7%9A%84%E5%B7%A5%E4%BD%9C%EF%BC%88Seprational" target="_blank" rel="noopener noreferrer">https://zhuanlan.zhihu.com/p/42907876），同时能在很脏的领域做出严谨的工作（Seprational</a> Logic），我就很喜欢。</p>
+<p>如果嫌这些人都是上世纪的，很多<a href="https://www.zhihu.com/search?q=%E6%88%90%E5%8A%9F%E4%BA%BA%E5%A3%AB&amp;search_source=Entity&amp;hybrid_search_source=Entity&amp;hybrid_search_extra=%7B%22sourceType%22%3A%22answer%22%2C%22sourceId%22%3A%22699930080%22%7D" target="_blank" rel="noopener noreferrer">成功人士</a>也有blog，教你如何做research，如何申请大学，如何规划career，还有自己领域的见解：<a href="https://link.zhihu.com/?target=http%3A//www.pgbovine.net/" target="_blank" rel="noopener noreferrer">http://www.pgbovine.net/</a>，<a href="https://link.zhihu.com/?target=https%3A//programanalysis.blogspot.com/" target="_blank" rel="noopener noreferrer">https://programanalysis.blogspot.com/</a>，<a href="https://link.zhihu.com/?target=https%3A//existentialtype.wordpress.com/" target="_blank" rel="noopener noreferrer">https://existentialtype.wordpress.com/</a>，<a href="https://link.zhihu.com/?target=http%3A//worrydream.com/" target="_blank" rel="noopener noreferrer">http://worrydream.com/</a>，<a href="https://link.zhihu.com/?target=http%3A//matt.might.net/" target="_blank" rel="noopener noreferrer">http://matt.might.net/</a></p>
+<p><strong>我一个小本科生，拿啥跟上面的人比，也就比普通人更努力点更早学<a href="https://www.zhihu.com/search?q=%E7%BC%96%E7%A8%8B&amp;search_source=Entity&amp;hybrid_search_source=Entity&amp;hybrid_search_extra=%7B%22sourceType%22%3A%22answer%22%2C%22sourceId%22%3A%22699930080%22%7D" target="_blank" rel="noopener noreferrer">编程</a>而已，没什么好讨教的</strong>。</p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="我相信我们更努力点学编程也能触及另一片天空">我相信，我们更努力点学编程，也能触及另一片天空<a class="hash-link" aria-label="Direct link to 我相信，我们更努力点学编程，也能触及另一片天空" title="Direct link to 我相信，我们更努力点学编程，也能触及另一片天空" href="https://ayanami1314.github.io/personal-essays/%E6%A0%A1%E5%A4%96cs%E7%BE%A4%E8%A7%81%E9%97%BB%E4%B9%8B%E2%80%94%E2%80%94%E6%99%AE%E9%80%9A%E4%BA%BA%E7%9A%84%E5%AD%A6%E4%B9%A0%E9%81%93%E8%B7%AF#%E6%88%91%E7%9B%B8%E4%BF%A1%E6%88%91%E4%BB%AC%E6%9B%B4%E5%8A%AA%E5%8A%9B%E7%82%B9%E5%AD%A6%E7%BC%96%E7%A8%8B%E4%B9%9F%E8%83%BD%E8%A7%A6%E5%8F%8A%E5%8F%A6%E4%B8%80%E7%89%87%E5%A4%A9%E7%A9%BA">​</a></h4>]]></content:encoded>
+            <category>随想</category>
+        </item>
+        <item>
             <title><![CDATA[《蛊真人》：当代网文的一部奇书]]></title>
             <link>https://ayanami1314.github.io/personal-essays/蛊真人书评</link>
             <guid>https://ayanami1314.github.io/personal-essays/蛊真人书评</guid>
-            <pubDate>Fri, 01 Nov 2024 16:31:53 GMT</pubDate>
+            <pubDate>Fri, 01 Nov 2024 18:57:09 GMT</pubDate>
             <description><![CDATA[网文15年老读者，请求出列！(bushi)]]></description>
             <content:encoded><![CDATA[<p>网文15年老读者，请求出列！(bushi)</p>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="关于初印象">关于初印象<a class="hash-link" aria-label="Direct link to 关于初印象" title="Direct link to 关于初印象" href="https://ayanami1314.github.io/personal-essays/%E8%9B%8A%E7%9C%9F%E4%BA%BA%E4%B9%A6%E8%AF%84#%E5%85%B3%E4%BA%8E%E5%88%9D%E5%8D%B0%E8%B1%A1">​</a></h3>
@@ -333,7 +744,7 @@
 </blockquote>
 <p>更不提长凡不凡，武庸不庸，还有一个纯粹的好人太白云生被方源所杀死得如此简单 【【猫meme蛊】老白！你还记得王庭福地吗？！】 <a href="https://www.bilibili.com/video/BV1UH4y1H7Ht" target="_blank" rel="noopener noreferrer">https://www.bilibili.com/video/BV1UH4y1H7Ht</a></p>
 <p>而单论人物塑造，不谈思想内核的话，薄青、白凝冰等也是其他传统玄幻小说中的风流人物，帅是真帅。</p>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="关于剧情和博弈">关于剧情和博弈<a class="hash-link" aria-label="Direct link to 关于剧情和博弈" title="Direct link to 关于剧情和博弈" href="https://ayanami1314.github.io/personal-essays/%E8%9B%8A%E7%9C%9F%E4%BA%BA%E4%B9%A6%E8%AF%84#%E5%85%B3%E4%BA%8E%E5%89%A7%E6%83%85%E5%92%8C%E5%8D%9A%E5%BC%88">​</a></h3>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="关于剧情和博弈">关于剧情和博弈<a class="hash-link" aria-label="Direct link to 关于剧情和博弈" title="Direct link to 关�于剧情和博弈" href="https://ayanami1314.github.io/personal-essays/%E8%9B%8A%E7%9C%9F%E4%BA%BA%E4%B9%A6%E8%AF%84#%E5%85%B3%E4%BA%8E%E5%89%A7%E6%83%85%E5%92%8C%E5%8D%9A%E5%BC%88">​</a></h3>
 <p>即使有部分上帝视角的设计，蛊真人的高潮剧情也是足够精彩的，但正常的剧情就比较典了，传统玄幻小说的级别。</p>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="附录和杂谈">附录和杂谈<a class="hash-link" aria-label="Direct link to 附录和杂谈" title="Direct link to 附录和杂谈" href="https://ayanami1314.github.io/personal-essays/%E8%9B%8A%E7%9C%9F%E4%BA%BA%E4%B9%A6%E8%AF%84#%E9%99%84%E5%BD%95%E5%92%8C%E6%9D%82%E8%B0%88">​</a></h3>
 <p>蛊真人之奇，在于他有些地方写得不像个网文，却又将网文的故事性把握得很好，而不在于什么“黑暗风”“zz隐喻（石人）”，这本书是作者内心的呐喊，辅以在网文之中算是出色的文笔，构成了情感上的强烈冲击力。</p>
@@ -347,7 +758,7 @@
             <title><![CDATA[魂系新人的黑猴简评]]></title>
             <link>https://ayanami1314.github.io/personal-essays/黑猴简评</link>
             <guid>https://ayanami1314.github.io/personal-essays/黑猴简评</guid>
-            <pubDate>Fri, 01 Nov 2024 16:28:55 GMT</pubDate>
+            <pubDate>Fri, 01 Nov 2024 18:57:09 GMT</pubDate>
             <description><![CDATA[个人背景：法环只狼加起来没有5小时的，3a没弃游不云玩的只有2077，空洞100小时仍打不过四门的手残]]></description>
             <content:encoded><![CDATA[<p>个人背景：法环只狼加起来没有5小时的，3a没弃游不云玩的只有2077，空洞100小时仍打不过四门的手残</p>
 <p>简评黑猴：</p>
@@ -456,417 +867,6 @@ BYD百眼魔君什么狗屎boss，打破防了 你以为在玩战神，百眼让
 <p>总体而言，黑神话值得一玩，即使是对”动作苦手“们，他的难度真没有那么高，而他能收获的也绝对是新奇的体验</p>
 <p>ps: 杨戬还没打，所以不要问（）</p>]]></content:encoded>
             <category>游戏</category>
-        </item>
-        <item>
-            <title><![CDATA[二游定义与从玩家视角看最近的节奏]]></title>
-            <link>https://ayanami1314.github.io/personal-essays/什么是二游</link>
-            <guid>https://ayanami1314.github.io/personal-essays/什么是二游</guid>
-            <pubDate>Fri, 01 Nov 2024 16:22:50 GMT</pubDate>
-            <description><![CDATA[好吧我也不记得“最近”是什么时候了]]></description>
-            <content:encoded><![CDATA[<p>好吧我也不记得“最近”是什么时候了
-以下的文字是大概写于2024年初？
-由于是回复xxx的评论，看起来可能不太像是完整的文章（趴）。</p>
-<ol>
-<li>什么是二游</li>
-</ol>
-<p>作为一个从来没有被正式化过的概念，“二游”究竟是什么是很依赖于玩家共识的，或许有人会觉得有二次元日式萌系画风的就算二游，但我认为这样定义的话会有很多解释不清的东西，例如《rabi-ribi》《终焉的莉莉丝》这种显然不能算二游，乃至像《超次元游戏：海王星》这种JRPG也不能算二游，而你又很难说乙游这种偏韩漫画风的不算二游，甚至这样定义农都能算二游。</p>
-<p>所以我暂且给他一个狭义的，我自己认为能够有比较多的人认可的定义，二游应该具备以下几种特性：</p>
-<ul>
-<li>非现实性漫画性画风的</li>
-<li>角色为其一个卖点的（不一定是主要卖点，例如明日方舟很难讲是卖玩法还是角色）</li>
-<li>非买断制</li>
-<li>多端适配，且移动端手游（即侵占碎片时间）为主要运营方向</li>
-</ul>
-<ol start="2">
-<li>二游的特点</li>
-</ol>
-<p>相信诸位看官也能发掘，二游，<strong>其核心在于挤占移动端的空闲时间</strong>，非重度游戏玩家，才是它的目标对象和盈利根本点；又或者说，二游的设计理念就是“副游”。而这个逻辑继续向下挖，<strong>就能发现二游的本质始终是手游</strong>，非买断制造成了：</p>
-<ul>
-<li>
-<p>二游必须存活</p>
-</li>
-<li>
-<p>二游的存活来源于流水</p>
-</li>
-<li>
-<p>二游必须有不断的内容更新以吸引新老玩家氪金</p>
-</li>
-<li>
-<p>人的垃圾时间是有限的，二游的更新是频繁的，强度环境乃至玩法机制是变化极快的，<strong>一旦一个二游被挤占到了不是第一的位置，对于大部分玩家来说退坑就不远了</strong></p>
-</li>
-</ul>
-<p>这样的逻辑链条</p>
-<p>所以之前白姐姐问“二游不能是独游吗”,我的答案非常肯定，独游和我们说的这种狭义二游，整个盈利机制，和盈利机制带来的运营环境、厂商姿态都是完全不同的，例如：</p>
-<p>独立游戏开发者和玩家是平等甚至高一等的关系，一方面因为买断制是一锤定音的，且生产独游的技术水平具备稀缺性，你就算今天被2077宣传诈骗坑了，大部分人对此的记忆也不会深刻波及到厂商，另一方面，独立游戏开发者与玩家交互较少，在游戏成型的后续更新后才会继续响应玩家的呼声而优化/推出dlc，但独立游戏开发者始终具备主动权，也有着对内容表达的某种默许“独裁权”。但是二游的技术（米系除外）<strong>可替代性非常高</strong>，也由于长线运营的缘故，<strong>厂商一般是对玩家低姿态的（高姿态的参见精灵再临和少前2）</strong>，<strong>玩家对厂商是不信任、不允许独裁的</strong></p>
-<p>进一步，二游的核心<strong>从来不在于玩法</strong>，只要还要想吃二游这碗饭，<strong>稳住不爆雷才是核心玩家的第一诉求</strong>。这与其他的内容创作，例如小说、漫画、或者VTB这种“不怕你幽默，就怕你没活”的逻辑截然不同。<strong>二游的内容创作</strong>，是由百度贴吧、b站、nga泥潭、各类小说网站乃至pixiv等合力完成的，而<strong>不是由厂商、或者游戏本体完成的</strong>，所以你能看到诸如碧蓝航线这种完全没有剧情、玩法也很单调的游戏坚挺了七年，而技术力和玩法复杂程度远超的崩坏三却由于运营事故天天流水跳楼，还有少前二的暴死这些在其他游戏类型上很难理解的现象。</p>
-<p>那二游的核心是什么呢？<strong>情感诉求</strong>。接下来我慢慢讲。</p>
-<ol start="3">
-<li>论二游的核心：何为情感诉求盈利</li>
-</ol>
-<p>我认为，目前国内二游核心渲染的情感诉求主要有二：</p>
-<ul>
-<li>喜爱、受尊重、恋爱感等，即占据异性位置的：代表如碧蓝航线、偶像大师、碧蓝档案、尘白禁区</li>
-<li>竞争、社交、共同语言：代表如原神、赛马娘</li>
-</ul>
-<p>或许有人会认为存在相当多的第三类，例如有人会认为明日方舟和少女前线的核心是塔防和战棋玩法，有人会认为崩坏三、重返未来1999的核心是剧情和故事，等等。但我是不认同的，我觉得其核心盈利逻辑还是上述两种的组合，就像说到明日方舟，多数人的第一反应是方舟的脚臭文化和血狼破军之类出圈的强度讨论，而不是诸如《孤星》《登临意》这种优质剧情或是其非常棒的音乐。本质在于，当你脱下了二游的皮，拿《孤星》和真正的文字冒险去比，拿音乐和专门的音乐企划去比，<strong>不仅是没比头的，更关键是不能吸引到付费的，这些圈层的人为这样水平、这样占比的东西付费是较少的</strong></p>
-<p>二游，甚至手游受限于游戏硬件载体和所占据时间定位条件，必然不是以“深度”盈利的。</p>
-<p>所以二游核心的付费逻辑是情感诉求：</p>
-<ul>
-<li>“原神，启动！原来你也玩原神” 是社交情感诉求</li>
-<li>“我是神里绫华的狗”是爱恋情感诉求</li>
-<li>赛马娘卷大赛（PVP玩法）是竞争情感诉求+变相的爱恋情感诉求（抽卡资源）</li>
-<li>......</li>
-</ul>
-<p>所以二游的其他一切，玩法、操作、IP、人设、圈子塑造等等等，都是为了满足玩家的情感诉求，更进一步让他们为游戏付费——所构造的，就像几乎没有人会因为在空洞骑士里面战胜了一个设计非常好的boss而向制作组打钱，而像BangDream这种音乐企划，在网易云上最热的歌都是MyGo,并且有断层差距。</p>
-<p>所以国内的二游困境其实是，<strong>情感联系断裂容易建立难，而越是断裂，建立越是难</strong>。一方面，游戏题材、政治审查、硬件条件、行业平均水平、乃至二游企划在现实的注资问题，都不允许策划和厂商有过多发挥空间；另一方面，玩家因为被“缅北二游”伤了太多、现实周边人的压力与不理解、大环境的下行，已经出现了难以建立情感联系，乃至于有些过分激动、PTSD的状态。<strong>玩家为二游付费，是知道自己的付出与回报不成正比的，要么是情绪之下的一掷千金（典型如抽卡上头），要么是类似“支持手办”这样的朴素情感投射</strong>（典型如“我二弟才是我大哥”）</p>
-<p>基于游戏内容的付费在当下中国的二游市场是极少的，萌芽中的萌芽。</p>
-<ol start="4">
-<li>情感断裂的衍生物：抽象与乐子人文化、“有男不玩”与ML仙人、缅北二游</li>
-</ol>
-<p>什么是抽象? 或许这个词的本义就是对抽象最好的概括：对现有释义的解构与小圈子狂欢，就是要让外面的人完全看不懂，里面的人“不是哥们，这么虾头”才叫抽象。如前面所说，<strong>由于二游的内容创作核心是玩家二次创作，所以二游不存在剧情、人物等的“官方定调”</strong>。在叛逆的玩家群体和吃瓜的非玩家群体之中，<strong>经常能发生对话语权的争抢</strong>，典型的有“东海帝王唱的哈吉米是猫”（短视频对赛马娘的入侵）、“狂暴雷普狼”（碧蓝档案的砂狼白子二创覆盖原始角色形象）等。在艾尔登法环之中，你可以对月之公主菈妮发癫，其他人只会“沃日，这么虾头.jpg”而不会跳出来与你争辩是否OOC，就是因为大家在心里有官方背书已经形成上了“什么才是不OOC”的共识。但在二游，那真是“你所热爱的，便是你的生活”，大多数玩家群体认为那是什么，TA就真是什么，<strong>官方甚至会积极入场完善民间私设</strong>，当一个角色被恶意曲解的时候，很多角色厨就只有两个选择：要么一起加入这个抽象狂欢，变成乐子人；要么要退出对话语权的争夺，<strong>与角色和官方、社群的情感联系断裂，不再有付费意愿</strong>，最常见的是就此退游。</p>
-<p>与之还有联系的是另一个历史证明的游戏理论：<strong>少数的深度游戏玩家才是（显式或者隐式）营收的贡献主体，而玩家数量的泡沫一戳即破</strong>——不少玩家只是什么游戏玩的人多、什么游戏出圈、什么游戏社交属性强，才会去玩什么。而当核心的内容创作者离开的时候，几乎也就是长线运营的游戏死亡的时候——这个循环甚至是雪崩式的，人越少，创作激励越少，离开的人越多。</p>
-<p>这就又能解释一些现象，例如某二字游戏的策划天天暴雷，退坑的老玩家越来越多，但是还没死，甚至一时不见明显衰退之象。但人家就是有足够的游玩人数，也有虽然不算深，但在同类对比里面鹤立鸡群的内容产能，庞大的圈层使得整个内容和情感体系没有崩塌——并且米家的运营策略向来是把角色的话语权掌握在自己手里的（这也需要充足的内容产能支持）。</p>
-<p>又例如某种意义上同类的少前二，都是制造“独立女性”人设、“玩家摄像头”、“角色有自己的生活”，卖百合和其他cp，暴死的却比谁都快——无它，内容产出不够，除了情感联系之外没有留下玩家的手段是尔。</p>
-<p>所以市场上的二游一般有两种运营策略：</p>
-<p>一是如碧蓝航线、赛马娘这种，极致强化玩家的情感联系。碧蓝航线卖爱情卖安全感，就要“你就是角色的生活，角色也是你的生活”，就要用“我同意=我接受=我爱你”的金伯利恒等式（nga评价为：2024年最伟大的等式（doge），重点还是和唐妞不等式的对比）<strong>来强化、巩固玩家的情感联系，进而衍生出以皮肤而不是抽卡盈利的独特二游体系</strong>（有人会觉得LOL这种也是，但是不同点在于比起全程可见的LOL英雄皮肤，碧蓝航线其实没什么时间能看到皮肤，大家的心态也更倾向于“给心爱的TA卖新衣服”）<img decoding="async" loading="lazy" src="https://img.nga.178.com/attachments/mon_202402/04/foQ2t-dqk8K21T3cSsg-cl.jpg" alt="img" class="img_ev3q"></p>
-<p>而赛马娘走的是极致强化机制的竞争策略（很有日式的风格）：PVP玩法是日活的核心中的核心，无论是疯狂的新卡爆老卡金币，还是抽卡资源的比例限制（不少部分只能PVP获取），又或是游戏复杂充满随机数和高血压的策略选择体系，都在鼓励玩家养马内卷。</p>
-<p>二是尝试跳出这个体系，借独游或是其他游戏探索不同的玩法，做更多的内容创作以降低对玩家情感付费的依赖，例如米家游戏之中，崩坏三的动作机制和3D渲染、星穹铁道的梗和文案设计、原神的开放世界工作量和技术，明日方舟做出特色的rougelike模式、对于传统塔防的探索......但就我的所见所闻而言，这些部分单独拿出算是精巧，但正要放在世界游戏之中竞争, 还是难有竞争力。只能说厂商也难以all in探索。目前的成功很大程度上依赖于国内大学之前很多人没有电脑，又或者主机文化的不流行（笑</p>
-<blockquote>
-<p>“游戏是一个必须要做到100分的行业”</p>
-</blockquote>
-<p>说回“缅北二游”，实际上就是国内新培养的一批游戏相关毕业生，觉得自己要“在游戏里面寄托高深精神追求”，但又没这个能力，俗称文青病犯了，想做“艺术类”而不是“服务类”二游，结果伤害了玩家感情，又没有对应玩法导致的一地鸡毛。</p>
-<p>注意我没有说过有玩法、内容就可以肆意伤害玩家感情，这个前车之鉴太多了，各种黑深残等等，只是说当游戏有过人之处的时候，<strong>玩家会给游戏创作者一个表达的机会，而基础玩法都做不好的是没资格表达的</strong>。VTB和偶像也是这样，不火的偶像是没资格学樋口圆香的，而VTB爆雷过一次，就会对事业造成永久性创伤（例如七海nanami打拳事件），而二游的容忍度由于玩家已经是碎片时间+满心疲惫+二次元滤镜的程度，会更加低</p>
-<blockquote>
-<p>“游戏是一个必须要做到100分的行业”</p>
-</blockquote>
-<p>理解了这个之后，对于“有男不玩”这种现象，就也可以理解了，玩家不信任厂商的一碗水端平能力，拒绝让厂商有伤害自己感情的机会，本质上是一种应激自保行为。</p>
-<ol start="5">
-<li>玩家圈层的资源竞争与“借鸡生蛋”</li>
-</ol>
-<p>还有许多大佬有着这样的观点</p>
-<ul>
-<li>二游的资源（现有厂商的产能）是极其有限的，但是玩家的诉求是多种多样的，这是其一</li>
-<li>不同的玩家都想玩到最合自己心意的二游，这是其二</li>
-<li><strong>一旦一个二游被挤占到了不是第一的位置，对于大部分玩家来说退坑就不远了</strong>，因而尽管大家知道什么才能带来流水（也可能不知道），但是对核心情感/玩法塑造不自信的情况下，厂商的第一要务不是“保住锅里的”，而是“去抢碗里的”</li>
-<li>也正由于此，才会有越来越多的厂商盯上了较少被开发的女性玩家的地盘，才会有原神的黑丝小男孩、散兵路人缘极差的人设等现象</li>
-<li>而这种女性玩家对原先男性玩家生态位的挤压，<strong>或者本质上是少数需求玩家对多数需求玩家的挤压，本质上是一种“借鸡生蛋”</strong>。比如，假设我是一个福瑞控，但福瑞控在玩家群体的数量不足，不足以让厂商专门出一款全是福瑞的游戏，那我就只能在其他已有游戏之中发声，利用老玩家音量小的特性——来向厂商传递错误需求，让他更多地出福瑞角色——这本质上是资源不够。在广得多得多的买断制游戏市场就少有这个现象。</li>
-<li>也由于上面，你不玩某开放世界二游，你又想玩开放世界二游，那你还能玩什么呢？等两年蓝色星原吗？最后的归宿就是，要么在一个二游定居，要么最后不玩二游。</li>
-</ul>
-<ol start="6">
-<li>其他观点</li>
-</ol>
-<p>还有很多观点，例如扯到性焦虑的、结合社会环境分析的，巴拉巴拉，这东西知乎b站上一堆，我就不多讲了，主要以一个<strong>游戏玩家</strong>——并非游戏制作者、UP主、或是冷眼点评的评论家的的观点，粗鄙之言，还望大家嘴下留情。</p>]]></content:encoded>
-            <category>游戏</category>
-        </item>
-        <item>
-            <title><![CDATA[2023冬季学期总结]]></title>
-            <link>https://ayanami1314.github.io/personal-essays/2023-winter</link>
-            <guid>https://ayanami1314.github.io/personal-essays/2023-winter</guid>
-            <pubDate>Fri, 01 Nov 2024 16:22:38 GMT</pubDate>
-            <description><![CDATA[学期末总结（2023/12/16）]]></description>
-            <content:encoded><![CDATA[<h3 class="anchor anchorWithStickyNavbar_LWe7" id="学期末总结20231216">学期末总结（2023/12/16）<a class="hash-link" aria-label="Direct link to 学期末总结（2023/12/16）" title="Direct link to 学期末总结（2023/12/16）" href="https://ayanami1314.github.io/personal-essays/2023-winter#%E5%AD%A6%E6%9C%9F%E6%9C%AB%E6%80%BB%E7%BB%9320231216">​</a></h3>
-<hr>
-<p>这学期也没做什么事情。</p>
-<h5 class="anchor anchorWithStickyNavbar_LWe7" id="看过的书">看过的书：<a class="hash-link" aria-label="Direct link to 看过的书：" title="Direct link to 看过的书：" href="https://ayanami1314.github.io/personal-essays/2023-winter#%E7%9C%8B%E8%BF%87%E7%9A%84%E4%B9%A6">​</a></h5>
-<ul>
-<li>OSTEP大致看了一半，并行相对看得最少，持久化复杂一点的也没看，只能寒假再说了</li>
-</ul>
-<p>别的就真没啥好说的了，看书太少了，都是浅尝辄止看了一两章这样</p>
-<hr>
-<h5 class="anchor anchorWithStickyNavbar_LWe7" id="做过的事">做过的事：<a class="hash-link" aria-label="Direct link to 做过的事：" title="Direct link to 做过的事：" href="https://ayanami1314.github.io/personal-essays/2023-winter#%E5%81%9A%E8%BF%87%E7%9A%84%E4%BA%8B">​</a></h5>
-<ul>
-<li>转专业：学期前半段的重头戏，鬼知道我在复习、整简历、和学长交流面试经验、背稿子上花了多少时间，不过好歹最后是成功转入软院了，算是达成了一个阶段性的大目标</li>
-<li>奖学金：也是很烦人的东西，各种材料的不断重复+流程的冗长，一直打断我的工作流，为了申到国奖还是废了不少力气</li>
-</ul>
-<p>prp结题答辩+大创结题报告、答辩+暑期科研结题报告：你交怎么这么喜欢报告，浪费了好多时间</p>
-<p>这些一堆事+大二上有点恶心的课表（前八周的大物实验2，电路理论和数理方法）基本导致了我转专业结束之前（前半学期）啥事也没干</p>
-<ul>
-<li>转专业结束了写了很长的感想帖子，自觉写得还行吧</li>
-<li>后面10-14周写了4，5篇技术博客</li>
-<li>和jwc battle了好几场</li>
-</ul>
-<hr>
-<h5 class="anchor anchorWithStickyNavbar_LWe7" id="刷了的课">刷了的课：<a class="hash-link" aria-label="Direct link to 刷了的课：" title="Direct link to 刷了的课：" href="https://ayanami1314.github.io/personal-essays/2023-winter#%E5%88%B7%E4%BA%86%E7%9A%84%E8%AF%BE">​</a></h5>
-<p>刷课最失败的一集</p>
-<ul>
-<li>nju pa:写了pa0,pa1，把jyy的习题课看了70%</li>
-<li>mit 6.s081:写了lab1-3</li>
-<li>前后端：基本没怎么推进，只能算是保持了之前的基本认识</li>
-<li>其他课程：USTC 计网，nju 软件分析：都就开了个头</li>
-</ul>
-<p>反正寒假一个写完081，另一个写前后端，然后写写0300的kvstore, build a simple db，csapp的lab之类</p>
-<hr>
-<h5 class="anchor anchorWithStickyNavbar_LWe7" id="其他">其他：<a class="hash-link" aria-label="Direct link to 其他：" title="Direct link to 其他：" href="https://ayanami1314.github.io/personal-essays/2023-winter#%E5%85%B6%E4%BB%96">​</a></h5>
-<p>倒是玩了不少工具</p>
-<ul>
-<li>复健了python，开始看modern cpp</li>
-<li>玩了matplot++, sage, graphviz, argparse之类库和工具</li>
-<li>学了不少正则，并且在实际之中用到了不少，算是内化了一些，包括了解了正则的有限自动机实现</li>
-<li>对debugger的原理有了更深的了解，对os和程序本身也是</li>
-<li>听完jyy的调试理论，调完了081的lab3之后，对调试程序有了更强的信心</li>
-<li>整了个hexo自动推送的脚本</li>
-<li>大大扩充了todolist（x）,现在各种收藏夹里面全是项目、工具和资料</li>
-</ul>
-<hr>
-<h5 class="anchor anchorWithStickyNavbar_LWe7" id="展望">展望：<a class="hash-link" aria-label="Direct link to 展望：" title="Direct link to �展望：" href="https://ayanami1314.github.io/personal-essays/2023-winter#%E5%B1%95%E6%9C%9B">​</a></h5>
-<hr>
-<p>寒假</p>
-<blockquote>
-<p>反正寒假一个写完081，另一个写前后端，然后写写0300的kvstore, build a simple db，csapp的lab之类，还有就是看完OSTEP，然后整点笔记</p>
-</blockquote>
-<p>希望能完成</p>
-<hr>
-<p>下学期课内：</p>
-<p>下学期会是非常难顶的一个学期，aigc class &amp;&amp; openHarmony 的实验室项目 + 原来要补的大一下的课+SE大二下的wkld</p>
-<p>对高级数据结构：寒假和开学早期尽量写完kvstore，顺带早点开始写跳表和LSM tree</p>
-<p>对ics2: 相对来说应该压力没那么大，把csapp的lab写一下应该没多大问题</p>
-<p>对计算机科学的数学原理：概率论与凸优化（前期），自动机（中期），科学计算（后期）
-据说凸优化是答辩，自动机讲得不错，科学计算也是答辩
-寒假多用用py别手生就行</p>
-<p>对软件工程原理：啊这课和数电冲了（</p>
-<p>对互联网应用开发：react+spring+mysql
-一是寒假可以看黑马尚硅谷mosh之类迅速掌握spring+react，写个小的proj之后速度转入大作业模式, 顺带学学ts
-二是mysql:刚好和openHarmony的项目一起，都先把基础的数据库做一个了解（build a simple db+mosh的sql入门）似乎还用了mongodb，也可以入个门先</p>
-<hr>
-<p>下学期课外：
-aigc class：反正玩嘛，如果能学点思想和工具最好了，算法知道大概就行
-openHarmony：之前tmp说TEE数据库挺有意思，看来多少还得抽点时间了解db
-刷课：......感觉完全刷不了啊，可以结合cs170的note做高级数据结构；软工原 mit 6.031倒也不算急？db方面 cmu15445或者ucb cs186倒是可以。继续做pa应该也有帮助。
-就先定170+部分的186+部分的pa(pa2-3？)</p>
-<hr>
-<p>感想：
-下学期就又回到大一下了啊......
-降转是一个很重要的选择呢
-下学期这样选课之后，大二会轻松很多，大二上少了概统、体育、红课、大物、实验，只有sep、ics1和离散
-大二下更是只有一个软工原</p>
-<p>希望在大二上结束，我能在system方向有基础的积累吧，然后大二下实习
-暑假+大二上应该能刷不少课
-一定要刷完的: db（445/186）+ 分布式（6.824）+ 软工原（6.031）+ 计网（cmpt379）+ jyy os
-最好能刷完的：编译，程序分析，并行与高性能
-然后大二下实习/实验室，大二暑假实习</p>
-<p>百废待兴啊，加油干吧</p>]]></content:encoded>
-            <category>总结</category>
-        </item>
-        <item>
-            <title><![CDATA[一个普通人的cs学习道路]]></title>
-            <link>https://ayanami1314.github.io/personal-essays/校外cs群见闻之——普通人的学习道路</link>
-            <guid>https://ayanami1314.github.io/personal-essays/校外cs群见闻之——普通人的学习道路</guid>
-            <pubDate>Fri, 01 Nov 2024 15:49:01 GMT</pubDate>
-            <description><![CDATA[2024年或许是回旋镖元年。]]></description>
-            <content:encoded><![CDATA[<p>2024年或许是回旋镖元年。</p>
-<p>再重新整理出这篇文章的时候, 我也是过了一年多的时间了。这篇文章是刚上大二的时候写的, 现在回过头来看, 无疑充满了回旋镖, 那个曾经觉得cs就是奇绝瑰伟、基础架构就是开天辟地、cs道路留有千万条待有兴趣者探究的我也不复当年的心境。说实话, 我也不知道我将来会去做什么, 一年多的时间让我对很多的方向都逐渐“祛魅”, 迫近的实习科研压力也让我对cs的热情逐渐消退。我还是喜欢着计算机的，只不过那些年少的放言已经如同奔走的风，再也不会回来了。</p>
-<p>而再看我当年的文字, 另一个狠狠的回旋镖是我发现我当时确实有点在我一个学期后和一些其他人所警惕的“技术崇拜”的风气, 神化名词, 神化个人的努力与学业上的某种天赋, 小朋友过早的看了这些未必是一件好事。我希望下面的内容里面传递的是一些“经验性”东西和“立志”的精神, 而不是内卷和焦虑的风气, 当时也有人指出过这一点, 可惜意气风发?(或许是金课上多的义愤填膺, 笑)的我没听进去。何况现在在看, 当年认为的“神”并没有我想象的那么超凡脱俗, 生活中除了技术之外的东西也有太多, 或许从来没有天才, 只有永远在和生活搏斗的普通人。</p>
-<p>现在的大环境是否还允许满腔热血的底层少年入伙呢？我不知道。我当年提到的星爷已经转了后端, 我自己也看起来不做基架的样子, 一起刷课的朋友做基架的也承认国内前景确实一般（但也很好笑，所有非AI方向都是一副难评的样子）, 打算到国外去做DB。</p>
-<p>当年的心境宛如 “拿起笔, 想写点东西, 以为是武器能伸张正义”
-现在的心境却是 “我想要说的, 前人们都说过了; 我想要做的, 有钱人的做过了”</p>
-<p>总之, 我觉得这篇文章应该发出来,我再也写不出差不多的东西了, 但也必须要注意它写于2023年, 来自一位刚刚转专业面试结束, 心血澎湃的大二少年</p>
-<p>由于涉及到了一些隐私，有一些删改。以下ABC等均为化名。</p>
-<p>Last updated: 2024-11-2</p>
-<hr>
-<p>文：</p>
-<p>先前看到A说我之前的帖子有些热血漫的味道，我其实还挺开心的，因为我始终觉得我们现在缺乏那一种热血。大环境的低落让很多人丧失了锐气，我完全理解，甚至自己就是这样，但是<strong>我总是更崇敬和憧憬那种“直面生活淋漓的鲜血”的人</strong>。</p>
-<p>扯远了，我想说的一件事情是，<strong>其实大家都是普通人</strong>。</p>
-<p>不普通的人是怎么样的呢？我举个例子</p>
-<p>莎莎（工业学术两开花，学术上去年OOPSLA，千年ICLR，工业上代码被amazon accept，github 1w+ star; 自传之中初中开始拿上课时间学cs还能考到成外前几，美本大一和phd谈笑风生）：</p>
-<ul>
-<li>
-<p>github: <a href="https://github.com/MarisaKirisame" target="_blank" rel="noopener noreferrer">https://github.com/MarisaKirisame</a></p>
-</li>
-<li>
-<p>知乎：<a href="https://www.zhihu.com/people/marisa.moe" target="_blank" rel="noopener noreferrer">https://www.zhihu.com/people/marisa.moe</a></p>
-</li>
-</ul>
-<p><strong>这种天赋是看得见的</strong>，我记得之前知乎还看到了高一数学发顶级paper的，反正看不懂一点的水平；还有某位我的高中同学，小学四年级竞赛省队（年龄小取消成绩），初三准高一时，丘赛全国第一，被丘成桐亲自见面，然后好像也是去年的数竞世界第一。</p>
-<p><strong>但“普通人”就只能仰望了吗？生为普通人的我们能做点什么呢？</strong></p>
-<p><strong>我不太想学着高中老师的腔调，给自己或者是源u灌着努力的鸡汤</strong>，因为我自己就远称不上足够努力，但我想说的是，相信自己所走的道路</p>
-<p><strong>或许，我们的生活有除了在课内的分数之中苦耗的另一种方向。</strong></p>
-<p>（当然不是说可以完全不管课内成绩，或许生存手册作者有这种能力）</p>
-<p>引用生存手册所言</p>
-<blockquote>
-<p>挖空心思研究解题技巧的学生们，与同样挖空心思研究出题技巧的老师们，构成了一个完美的圆环。</p>
-<p>....</p>
-<p>学习最需要的，不是悲壮的毅力，而是对无限未知的渴求</p>
-<p>​												——From 生存手册：悲壮的学习方式</p>
-</blockquote>
-<blockquote>
-<p>在打着各种华丽口号的诱惑面前，我们要保持清醒，并且时刻告诫自己</p>
-<p>总有更值得做的事。</p>
-<p>​											——From 生存手册：总有更值得做的事情</p>
-</blockquote>
-<blockquote>
-<p>安排时间道理真的很浅显：成功人士往往会津津乐道于他们在校期间锻炼出的专业素养，但几乎没有成熟（甚至不需要成功）的人，喜欢炫耀自己当年高数考了年级第一。</p>
-<p>​										    ——From 生存手册：正确地浪费剩下的时间</p>
-</blockquote>
-<p>再来列举<strong>和我同届的</strong>，在某校外cs群聊之中见到的几个“普通人”：</p>
-<p>星爷（b站 降星驰， 专栏有详细的学习经历）：</p>
-<p><strong>哈工大22级</strong></p>
-<p>2022年8月17日，完结cs61A(程序的构造与解释)</p>
-<p>2022年10月8日，完结cs61B(数据结构与算法)</p>
-<p>2023年1月1日，完结cs61C(计算机体系结构)</p>
-<p>2023年3月28日，完结cs70(离散和诸多计算机进阶数学)</p>
-<p>2023年8月23日，完结6.S081，OSTEP, jyy os(操作系统：国外+国内，jyy os更是以难度著称)</p>
-<p>2023年9月26日，完结6.031，csc151,cmpt379(软件工程和编译原理)</p>
-<p>至今(2023年11月？)，又学完了计网, 别的细碎的我就不写了</p>
-<p><strong>其中，lab,proj, homework甚至考试全写，一年时间，几乎走完了科班的前三年</strong></p>
-<p>川流（知乎<a href="https://www.zhihu.com/people/riemann-32-30%EF%BC%89" target="_blank" rel="noopener noreferrer">https://www.zhihu.com/people/riemann-32-30）</a></p>
-<p><strong>深圳大学22级</strong></p>
-<p>以下节选自知乎文章</p>
-<p>6.s081已完结，CMU15-445已完结，MIT6.5840 Lab4 未完成（过于复杂加没时间写）</p>
-<p>CS<!-- -->:APP<!-- -->已完结，OSTEP已完结，Data Structure And Algorithm Analysis：已完结</p>
-<p>Computer Organazation and Design : The Hardware Software Interface ： 已完结</p>
-<p>Unix Network Programming：看了两百多页， DDIA：开了个头</p>
-<p>Understanding The Linux Kernel：当字典翻</p>
-<p>Database System Concepts ：把15-445要求的那些看完了</p>
-<p>xv6 book：已完结</p>
-<p>C++ Primer：看了八百多页，半途而废</p>
-<p>C++ Template 2th：看了一百多页，当字典翻</p>
-<p>Effective Modern C++：看了一半，还在翻</p>
-<p>论文：MapReduce, GFS, BigTable, Raft, Percolator, Spanner, Zookeeper, FaRM, Dynamo DB已完结</p>
-<p>LSM Survey</p>
-<p>WiscKey: Separating Keys from Values in SSD-conscious Storage</p>
-<p>半途而废的：</p>
-<p>Zanzibar，Spark, SUNDAR</p>
-<p>开源代码</p>
-<p>Leveldb(大致能理解整体框架，大部分代码已看完)</p>
-<p>Rocksdb(太tmd复杂了)</p>
-<p>Apache Doris(只会点冷热分层的东西，有做过相关issue)</p>
-<p>力扣：</p>
-<p>116道</p>
-<hr>
-<p>看到有没有觉得一些震撼？</p>
-<p>反正我是被震撼到了，这两位大学之前也都不算有很多基础，星爷每天学大概6小时，川流说TA能每天学13个小时cs（群里show过一个月平均每日20分钟左右的手机使用时间）</p>
-<p><strong>在cs这样一个对时间相对公平的环境之中，谁又能说努力不是一种天赋呢？</strong></p>
-<p><strong>一年下来的蜕变，可能远超过自己的想象。</strong></p>
-<hr>
-<p>我又想起了先前B在骂交大连个python都不教</p>
-<p><strong>可深大会教如何让人一年变成川流吗？哈工会教如何让人一年变成星爷吗？</strong></p>
-<p><strong>打着交大的牌子，我又会什么呢？</strong></p>
-<p><strong>如果说得难听一点，真是：感觉不如双非</strong>，都不用继续举这两个例子，群里不少双非老哥水平真不差。</p>
-<p><strong>人与人的差距远大于人与学校，而交大的同学并不是没有这个天赋，而是被各种宣传的活动、无聊的金课、无用的内卷所裹挟，而忽视了这条少有人走的路</strong></p>
-<p>我承认这一条路上只有自己，没有助教，没有老师，甚至没有同学和成绩，<strong>但这条路有着非同一般的价值</strong>。</p>
-<hr>
-<p>说回我自己</p>
-<p><strong>在夜深人静的时候，其实我emo了很多次</strong></p>
-<p><strong>为什么我们交大对普通班的学生没有成熟的助教体系？为什么我们上了一年课还不知道自己专业在学些什么？为什么有些开的课程能让一个大一的学生从直觉上都感觉是答辩？为什么没有自己选择的自由？</strong></p>
-<p><strong>我看了不下20次21级转专业经验，不下10次生存手册，不下10次SJTU微电子指北，我想从这些前人的经验里面去寻找答案</strong></p>
-<p><strong>在夜深人静的时候，我想着自己的水平和学积分，想着那似乎遥不可及的专业和恢弘的学科，在水源上不记得多少次从0点搜索【转专业】【软件工程】【SE】的tag直到4点；不记得多少次深夜无法入眠，趴在床上看知乎的cs技术帖、前景帖、科普帖、牢骚帖；</strong></p>
-<p>我自知绝对是普通人的水平，而普通人的学习<strong>takes time</strong></p>
-<p><strong>It takes time</strong></p>
-<h4 class="anchor anchorWithStickyNavbar_LWe7" id="it-takes-time">It takes time<a class="hash-link" aria-label="Direct link to It takes time" title="Direct link to It takes time" href="https://ayanami1314.github.io/personal-essays/%E6%A0%A1%E5%A4%96cs%E7%BE%A4%E8%A7%81%E9%97%BB%E4%B9%8B%E2%80%94%E2%80%94%E6%99%AE%E9%80%9A%E4%BA%BA%E7%9A%84%E5%AD%A6%E4%B9%A0%E9%81%93%E8%B7%AF#it-takes-time">​</a></h4>
-<p><strong>然而交大没有给同学们留足时间，于是只能自己挤出时间，比如我进步最快的时间就在于那个暑假</strong></p>
-<p><strong>而付出了时间+正确的道路，它会改变的</strong></p>
-<hr>
-<p>最后讲讲可能的自学道路，对于cs一脉的转专业学术，我认为早日自学国外课程早日超生</p>
-<p><strong>暴论：国内的大多数网课的质量（除去少数课程外）连给国外对应神课提鞋的资格都没有</strong></p>
-<p>最王道的版本：程序设计、数据结构、体系结构——操作系统，编译原理，计网，数据库——自行再进阶</p>
-<p>cmu15112/cs50 ——cs61A（如果基础还行，可以跳过前一个）——cs61b——cs61c——6.s081——compiler（如，cmpt379）——stanford144——cmu15445——.......</p>
-<p>我的经历已经证明了，只要刷完abc，起码码力上不会吃太多亏，要是一年像星爷那样刷，我相信SE的老师会对你复现21级的经典</p>
-<blockquote>
-<p>"你是怎么做到大一一年学习这么多东西的？"   ——From tmp的面试</p>
-</blockquote>
-<p>自学的时候多用google、stackoverflow等, 多搜多问，积累优质网站资源，有空看看蒋炎岩的一些cs鸡汤（搜索：nju PA, 开始几篇就是）。知乎+google+qq群+学长+......</p>
-<p>最后，贴上我很喜欢的几篇知乎文章，或许xpy们可以看看（我强力推荐）：</p>
-<p><a href="https://zhuanlan.zhihu.com/p/84927997" target="_blank" rel="noopener noreferrer">https://zhuanlan.zhihu.com/p/84927997</a> 魔理沙《半条命》</p>
-<p><a href="https://www.zhihu.com/question/471105298/answer/1995471916" target="_blank" rel="noopener noreferrer">https://www.zhihu.com/question/471105298/answer/1995471916</a> 魔理沙：如何看待2022年秋招Java后端开发岗一片红海？</p>
-<p><a href="https://www.zhihu.com/question/21326179/answer/2532074457" target="_blank" rel="noopener noreferrer">https://www.zhihu.com/question/21326179/answer/2532074457</a> invalids 夹生饭</p>
-<p>至于网课资源，csdiy，请</p>
-<p>附上一个群佬们的对csdiy的补充</p>
-<p>除了csdiy之外的一些其他课程</p>
-<p>计网：<a href="https://rrc-uiuc.notion.site/Communication-Networks-51d2dd4fd9c44fcdbcf6a67a86237e0c" target="_blank" rel="noopener noreferrer">https://rrc-uiuc.notion.site/Communication-Networks-51d2dd4fd9c44fcdbcf6a67a86237e0c</a> cs438</p>
-<p><a href="https://cs.brown.edu/courses/csci1680/f22/assignments/" target="_blank" rel="noopener noreferrer">https://cs.brown.edu/courses/csci1680/f22/assignments/</a> cscs1680,据说非常难</p>
-<p>rust并发：<a href="https://github.com/kaist-cp/cs431" target="_blank" rel="noopener noreferrer">https://github.com/kaist-cp/cs431</a></p>
-<p><a href="https://www.bilibili.com/video/BV1Xp4y1w7xG/?spm_id_from=333.337.search-card.all.click&amp;vd_source=85acf0a59ded02e4c75ae1158baca207" target="_blank" rel="noopener noreferrer">https://www.bilibili.com/video/BV1Xp4y1w7xG/?spm_id_from=333.337.search-card.all.click&amp;vd_source=85acf0a59ded02e4c75ae1158baca207</a></p>
-<p>PL&amp;compiler: nju软件分析 b站</p>
-<p>nju编译原理<a href="http://docs.compilers.cpl.icu/%EF%BC%8C%E6%9F%90%E4%BD%AC%E5%BC%BA%E6%8E%A8" target="_blank" rel="noopener noreferrer">http://docs.compilers.cpl.icu/，某佬强推</a></p>
-<p>cmpt379：据说最友善的编译原理，某佬强推</p>
-<p>交大的IEEE的课，不知道哪里有资源<a href="https://jhc.sjtu.edu.cn/public/courses/CS2612/%EF%BC%8C%E6%9F%90%E5%A4%A7%E4%BD%AC%E5%BC%BA%E6%8E%A8" target="_blank" rel="noopener noreferrer">https://jhc.sjtu.edu.cn/public/courses/CS2612/，某大佬强推</a></p>
-<p>计组：csci0300，某佬强推，非常软件的计组，据说proj设计得很好</p>
-<p><a href="https://cs.brown.edu/courses/csci0300/2023/schedule.html" target="_blank" rel="noopener noreferrer">https://cs.brown.edu/courses/csci0300/2023/schedule.html</a></p>
-<p>cs4414 康奈尔的csapp，也是某佬强推，教授是云计算超级大牛</p>
-<p><a href="http://www.cs.cornell.edu/courses/cs4414/2023sp/" target="_blank" rel="noopener noreferrer">http://www.cs.cornell.edu/courses/cs4414/2023sp/</a></p>
-<p>storage sys <a href="https://animeshtrivedi.github.io/course-stosys/" target="_blank" rel="noopener noreferrer">https://animeshtrivedi.github.io/course-stosys/</a></p>
-<p>哈深os， 好像仿照的6.s081 <a href="https://hitsz-cslab.gitee.io/os-labs/" target="_blank" rel="noopener noreferrer">https://hitsz-cslab.gitee.io/os-labs/</a></p>
-<p>游戏开发：cs248, mit6.837,cmu15462, 15869</p>
-<p>物理和数学：<a href="https://www.diegovera.org/resources-1" target="_blank" rel="noopener noreferrer">https://www.diegovera.org/resources-1</a></p>
-<p>数据库：mit 6.830</p>
-<p>c++导论：据说萌新引导做得很好，cs103 <a href="https://bytes.usc.edu/cs103" target="_blank" rel="noopener noreferrer">https://bytes.usc.edu/cs103</a></p>
-<p>ucb latex(逆天，这课都有)：<a href="http://persson.berkeley.edu/math124" target="_blank" rel="noopener noreferrer">http://persson.berkeley.edu/math124</a></p>
-<p>算法：<a href="http://web.stanford.edu/class/cs97si/" target="_blank" rel="noopener noreferrer">http://web.stanford.edu/class/cs97si/</a> 古老的算法课，但据说不错</p>
-<p><a href="https://cseweb.ucsd.edu/~dakane/CSE101" target="_blank" rel="noopener noreferrer">https://cseweb.ucsd.edu/~dakane/CSE101</a></p>
-<p>前端：<a href="https://fullstackopen.com/zh/" target="_blank" rel="noopener noreferrer">https://fullstackopen.com/zh/</a></p>
-<p>blockchain:<a href="https://cs251.stanford.edu/" target="_blank" rel="noopener noreferrer">https://cs251.stanford.edu/</a></p>
-<p>shell: <a href="https://decal.ocf.berkeley.edu/" target="_blank" rel="noopener noreferrer">https://decal.ocf.berkeley.edu/</a></p>
-<p>附录：</p>
-<p>技术文章摘抄：</p>
-<p><a href="http://learn.lianglianglee.com/" target="_blank" rel="noopener noreferrer">http://learn.lianglianglee.com/</a> 大佬推荐</p>
-<p><strong>什么，你问我这么多资源哪里来的？</strong></p>
-<p><strong>我是真的0基础欸，我相信从csdiy起，github，知乎一些sjtu学长的关注列表，关注列表的关注列表......各种地方多看看，大家都能找到一些的，</strong></p>
-<p>最后贴一个魔理沙的回答的全文</p>
-<h2 class="anchor anchorWithStickyNavbar_LWe7" id="知乎cs大佬魔理沙的编程之路是什么样的"><a href="https://www.zhihu.com/question/304752391/answer/699930080" target="_blank" rel="noopener noreferrer">知乎cs大佬<em>魔理沙</em>的编程之路是什么样的？</a><a class="hash-link" aria-label="Direct link to 知乎cs大佬魔理沙的编程之路是什么样的" title="Direct link to 知乎cs大佬魔理沙的编程之路是什么样的" href="https://ayanami1314.github.io/personal-essays/%E6%A0%A1%E5%A4%96cs%E7%BE%A4%E8%A7%81%E9%97%BB%E4%B9%8B%E2%80%94%E2%80%94%E6%99%AE%E9%80%9A%E4%BA%BA%E7%9A%84%E5%AD%A6%E4%B9%A0%E9%81%93%E8%B7%AF#%E7%9F%A5%E4%B9%8Ecs%E5%A4%A7%E4%BD%AC%E9%AD%94%E7%90%86%E6%B2%99%E7%9A%84%E7%BC%96%E7%A8%8B%E4%B9%8B%E8%B7%AF%E6%98%AF%E4%BB%80%E4%B9%88%E6%A0%B7%E7%9A%84">​</a></h2>
-<p><a href="https://www.zhihu.com/people/marisa.moe" target="_blank" rel="noopener noreferrer">圆角骑士魔理沙</a></p>
-<p><a href="https://www.zhihu.com/search?q=%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6&amp;search_source=Entity&amp;hybrid_search_source=Entity&amp;hybrid_search_extra=%7B%22sourceType%22%3A%22answer%22%2C%22sourceId%22%3A%22699930080%22%7D" target="_blank" rel="noopener noreferrer">计算机科学</a>已经有六七十年历史了，这段时间内书写历史的人不在小数：<a href="https://www.zhihu.com/search?q=%E5%9B%BE%E7%81%B5&amp;search_source=Entity&amp;hybrid_search_source=Entity&amp;hybrid_search_extra=%7B%22sourceType%22%3A%22answer%22%2C%22sourceId%22%3A%22699930080%22%7D" target="_blank" rel="noopener noreferrer">图灵</a>，冯洛伊曼，Dijkstra，John Reynold，Tony Hoare，John McCarthy，Alan Kay。。。有的人生怕你不知道谁做出了杰出<a href="https://www.zhihu.com/search?q=%E5%A5%89%E7%8C%AE&amp;search_source=Entity&amp;hybrid_search_source=Entity&amp;hybrid_search_extra=%7B%22sourceType%22%3A%22answer%22%2C%22sourceId%22%3A%22699930080%22%7D" target="_blank" rel="noopener noreferrer">奉献</a>，专门弄了个奖出来呢:)！</p>
-<p>你如果真想向更强的人学习，图灵老冯<a href="https://www.zhihu.com/search?q=%E5%93%A5%E5%BE%B7%E5%B0%94&amp;search_source=Entity&amp;hybrid_search_source=Entity&amp;hybrid_search_extra=%7B%22sourceType%22%3A%22answer%22%2C%22sourceId%22%3A%22699930080%22%7D" target="_blank" rel="noopener noreferrer">哥德尔</a>都有传记，尽管我没看过，也不知道年代久远的天才有什么借鉴之处；ACM每年都会请图灵奖得主来做<a href="https://www.zhihu.com/search?q=freestyle&amp;search_source=Entity&amp;hybrid_search_source=Entity&amp;hybrid_search_extra=%7B%22sourceType%22%3A%22answer%22%2C%22sourceId%22%3A%22699930080%22%7D" target="_blank" rel="noopener noreferrer">freestyle</a>演讲，有展示自己领域的一个漂亮的idea的（<a href="https://link.zhihu.com/?target=https%3A//www.archive.ece.cmu.edu/~ganger/712.fall02/papers/p761-thompson.pdf" target="_blank" rel="noopener noreferrer">Reflections on Trusting Trust</a>），有总结自己所在领域的（<a href="https://link.zhihu.com/?target=http%3A//www.bwlampson.site/Slides/TuringLectureAbstract.htm" target="_blank" rel="noopener noreferrer">Principles for Computer System Design</a>），有当场开创新领域的（<a href="https://link.zhihu.com/?target=https%3A//www.thocp.net/biographies/papers/backus_turingaward_lecture.pdf" target="_blank" rel="noopener noreferrer">Can programming be liberated from the von Neumann style?</a>），有对编程跟设计做出foundational comment的（<a href="https://link.zhihu.com/?target=https%3A//www.cs.utexas.edu/users/EWD/ewd03xx/EWD340.PDF" target="_blank" rel="noopener noreferrer">The humble programmer</a>, <a href="https://link.zhihu.com/?target=http%3A//zoo.cs.yale.edu/classes/cs422/2014/bib/hoare81emperor.pdf" target="_blank" rel="noopener noreferrer">The Emperor’s Old Clothes</a>），还有让我们rethink computer的（<a href="https://link.zhihu.com/?target=https%3A//www.youtube.com/watch%3Fv%3DoKg1hTOQXoY" target="_blank" rel="noopener noreferrer">The Computer Revolution Hasnt Happened Yet</a>）。</p>
-<p>如果嫌一年一次的演讲太短，学不到太多，上面所述的很多人都把自己的<a href="https://www.zhihu.com/search?q=%E4%BA%BA%E7%94%9F%E7%BB%8F%E9%AA%8C&amp;search_source=Entity&amp;hybrid_search_source=Entity&amp;hybrid_search_extra=%7B%22sourceType%22%3A%22answer%22%2C%22sourceId%22%3A%22699930080%22%7D" target="_blank" rel="noopener noreferrer">人生经验</a>整理下来了：Richard Hamming写了本教你如何规划学术生涯的书（The Art of doing science and engineering），Dijkstra的一生所著被整理进了EWD Archive，里面的精品除了The Humble Programmer，还有<a href="https://link.zhihu.com/?target=https%3A//www.cs.utexas.edu/users/EWD/ewd02xx/EWD215.PDF" target="_blank" rel="noopener noreferrer">A case against the GO TO statement</a>，<a href="https://link.zhihu.com/?target=https%3A//www.cs.utexas.edu/users/EWD/ewd01xx/EWD117.PDF" target="_blank" rel="noopener noreferrer">Programming considered as a human activity</a>，<a href="https://link.zhihu.com/?target=https%3A//www.cs.utexas.edu/~EWD/transcriptions/EWD10xx/EWD1036.html" target="_blank" rel="noopener noreferrer">On the cruelty of really teaching computing science</a>。Alan Kay则每过一段时间发个视频上youtube（<a href="https://link.zhihu.com/?target=https%3A//www.youtube.com/watch%3Fv%3DNdSD07U5uBs" target="_blank" rel="noopener noreferrer">Power of Simplicity</a>）</p>
-<p>领域相关的也有很多：在<a href="https://www.zhihu.com/search?q=%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80&amp;search_source=Entity&amp;hybrid_search_source=Entity&amp;hybrid_search_extra=%7B%22sourceType%22%3A%22answer%22%2C%22sourceId%22%3A%22699930080%22%7D" target="_blank" rel="noopener noreferrer">编程语言</a>领域，<a href="https://link.zhihu.com/?target=http%3A//research.ihost.com/hopl/HOPL.html" target="_blank" rel="noopener noreferrer">History of Programming Languages</a> 把这半世纪的杰出的编程语言设计者的见解汇集在一起， <a href="https://link.zhihu.com/?target=https%3A//www.amazon.com/Dealers-Lightning-Xerox-PARC-Computer/dp/0887309895" target="_blank" rel="noopener noreferrer">Dealers of Lightning</a> 跟<a href="https://link.zhihu.com/?target=https%3A//www.amazon.com/Dream-Machine-Licklider-Revolution-Computing/dp/014200135X" target="_blank" rel="noopener noreferrer">The Dream Machine</a> 则描述了改变了世界的Xerox Parc的文化。如果你看的paper足够多，你可以从里面倒推出一个researcher的taste：比如John Reynold就很软，能把多种风格混合在一起（<a href="https://zhuanlan.zhihu.com/p/42907876%EF%BC%89%EF%BC%8C%E5%90%8C%E6%97%B6%E8%83%BD%E5%9C%A8%E5%BE%88%E8%84%8F%E7%9A%84%E9%A2%86%E5%9F%9F%E5%81%9A%E5%87%BA%E4%B8%A5%E8%B0%A8%E7%9A%84%E5%B7%A5%E4%BD%9C%EF%BC%88Seprational" target="_blank" rel="noopener noreferrer">https://zhuanlan.zhihu.com/p/42907876），同时能在很脏的领域做出严谨的工作（Seprational</a> Logic），我就很喜欢。</p>
-<p>如果嫌这些人都是上世纪的，很多<a href="https://www.zhihu.com/search?q=%E6%88%90%E5%8A%9F%E4%BA%BA%E5%A3%AB&amp;search_source=Entity&amp;hybrid_search_source=Entity&amp;hybrid_search_extra=%7B%22sourceType%22%3A%22answer%22%2C%22sourceId%22%3A%22699930080%22%7D" target="_blank" rel="noopener noreferrer">成功人士</a>也有blog，教你如何做research，如何申请大学，如何规划career，还有自己领域的见解：<a href="https://link.zhihu.com/?target=http%3A//www.pgbovine.net/" target="_blank" rel="noopener noreferrer">http://www.pgbovine.net/</a>，<a href="https://link.zhihu.com/?target=https%3A//programanalysis.blogspot.com/" target="_blank" rel="noopener noreferrer">https://programanalysis.blogspot.com/</a>，<a href="https://link.zhihu.com/?target=https%3A//existentialtype.wordpress.com/" target="_blank" rel="noopener noreferrer">https://existentialtype.wordpress.com/</a>，<a href="https://link.zhihu.com/?target=http%3A//worrydream.com/" target="_blank" rel="noopener noreferrer">http://worrydream.com/</a>，<a href="https://link.zhihu.com/?target=http%3A//matt.might.net/" target="_blank" rel="noopener noreferrer">http://matt.might.net/</a></p>
-<p><strong>我一个小本科生，拿啥跟上面的人比，也就比普通人更努力点更早学<a href="https://www.zhihu.com/search?q=%E7%BC%96%E7%A8%8B&amp;search_source=Entity&amp;hybrid_search_source=Entity&amp;hybrid_search_extra=%7B%22sourceType%22%3A%22answer%22%2C%22sourceId%22%3A%22699930080%22%7D" target="_blank" rel="noopener noreferrer">编程</a>而已，没什么好讨教的</strong>。</p>
-<h4 class="anchor anchorWithStickyNavbar_LWe7" id="我相信我们更努力点学编程也能触及另一片天空">我相信，我们更努力点学编程，也能触及另一片天空<a class="hash-link" aria-label="Direct link to 我相信，我们更努力点学编程，也能触及另一片天空" title="Direct link to 我相信，我们更努力点学编程，也能触及另一片天空" href="https://ayanami1314.github.io/personal-essays/%E6%A0%A1%E5%A4%96cs%E7%BE%A4%E8%A7%81%E9%97%BB%E4%B9%8B%E2%80%94%E2%80%94%E6%99%AE%E9%80%9A%E4%BA%BA%E7%9A%84%E5%AD%A6%E4%B9%A0%E9%81%93%E8%B7%AF#%E6%88%91%E7%9B%B8%E4%BF%A1%E6%88%91%E4%BB%AC%E6%9B%B4%E5%8A%AA%E5%8A%9B%E7%82%B9%E5%AD%A6%E7%BC%96%E7%A8%8B%E4%B9%9F%E8%83%BD%E8%A7%A6%E5%8F%8A%E5%8F%A6%E4%B8%80%E7%89%87%E5%A4%A9%E7%A9%BA">​</a></h4>]]></content:encoded>
-            <category>随想</category>
-        </item>
-        <item>
-            <title><![CDATA[2024春季学期总结]]></title>
-            <link>https://ayanami1314.github.io/personal-essays/2024-spring</link>
-            <guid>https://ayanami1314.github.io/personal-essays/2024-spring</guid>
-            <pubDate>Fri, 01 Nov 2024 15:47:01 GMT</pubDate>
-            <description><![CDATA[上学期是转入软件工程专业的第一个学期，也是我的新大一下。]]></description>
-            <content:encoded><![CDATA[<p>上学期是转入软件工程专业的第一个学期，也是我的新大一下。</p>
-<p>在转入之前，我有很多美妙的幻想，无论是声名远扬的实验室和校内最好的本科教学，还是软件学院向来高标准严要求，被学长们交相赞誉“XX为数不多的值得读的专业”，而JYY的课程让我更是早早地期待起了这学期的讲课水平。虽然本人也有很多类似的失望经验了，但人总归对新环境有一种期许的。</p>
-<p>与此同时，老师整了个全新的项目——挺新奇、也挺有挑战的一个课题，同时水源的开发也算是委派了第一个新人试水级别的任务，看似前途一片光明——在开学的前三周，我就在一种喜悦的充实感之中度过，总感觉真是大有可为，会是飞速成长的一个学期。</p>
-<p>然而事实却给了我两个大嘴巴子——贪心不足蛇吞象，这也要那也要的结果就是都干不好——另一个原因也是我依然高估了自己的能力，低估了软院课程的工作量, 一学期2w行代码真不是说着玩的。同时课程质量各个课之间的差距也特别大，距离赶上国外尚任重道远乎......</p>
-<p>上学期上了哪些课呢？</p>
-<ul>
-<li>
-<p>ICS2，计算机系统基础2，csapp剩下的全本+ostep的部分+许多Linux拓展，在原本的CSAPP Lab上也加了新的手写assembler和simulator。体系结构讲得很难，后面的系统讲得很广，总体上除了后几个lab文档确实不怎么样之外体验还是好的，能体验到许多新奇的东西——slab, vma, elf和动态链接的各种细节，等等等，但也就是这学期唯一的希望之光了。唯一一门有国外公开课水平的课，体感优于15213，和61c差不多（广度倒是远大于），差于NJU ICS。</p>
-</li>
-<li>
-<p>ADS，高级数据结构，粪课。内容为radix tree，rbtree,splay tree等各种树+kmp+快选+skiplist+bloomfilter+cuckoo hash+高阶图算法、并行图算法（三种并行最小生成树+pagerank。有12个hw，不少带实验报告，4个lab和一个proj。他的讲课真的很烂，一度有让我产生“什么？这不是华五正统科班，这是带专，课程吸水变高变大”之感，又是签到狂魔和作业狂魔，给分还差，导致体验非常不好。lab和proj还算是这门课最后的良心——虽然是助教的功劳。一个Huffman压缩，一个基数树，一个HNSW+并行优化（这个我是真喜欢），还有一个重量级LSM Tree。LSM tree真是一个好项目——虽然我写了很久（算上沟槽的实验报告在80个小时以上），但写完还是收获非常大，从c++17到db设计中的各种技巧和权衡乃至debug、写测试、管理项目的能力——从0开始手写一个支持键值分离、GC、持久化（还有选做的并行）等feature的LSM真是很磨练人。这门课最大的问题在于耗时间太多，且有些东西太过琐碎，虽然学了不少东西，但浪费的时间也是很多。几位助教真是辛苦了，硬生生把这门课程从依托变成了还算能看的东西。</p>
-</li>
-<li>
-<p>Web, 互联网应用开发。前端React+后端Spring Boot+JPA的手搓全栈开发课——很有培训班的风格。老师前半学期讲前端的时候挺无聊的，毕竟寒假自学过，后半学期对着《Database System Design》来讲的时候倒是很有意思，从JPA的底层讲到数据库范式、同步等机制，还是挺有意思，加上给分也好，算是一门还行的课。下学期还有他的Web2, 讲讲各种Redis，MQ，Cloud, 全局搜索之类的东西，还是可以期待一下。</p>
-</li>
-<li>
-<p>math4cs：垃圾课，完全不知道在教什么。今年这门课发生了改革，把自动机的部分去掉了，导致整体更没法看。前半是信息论和凸优化的最基础的东西，后半又开倒车回到了线代——SVD,QR,LU,...,结果大作业又是train两个AI model，不知所云的课。</p>
-</li>
-<li>
-<p>量子力学：沟槽的工科平台，软件工程的学生学牛魔量子力学。</p>
-</li>
-</ul>
-<ul>
-<li>
-<p>电路实验：喜欢我大化实验+大物实验*2+电路实验吗</p>
-</li>
-<li>
-<p>数电：学了吗？如学。在学期快结束的时候倒是感觉串起来还是比较新奇的，但和CS交界的部分也不超过之前学的计组，电路部分也不是很有意思。 私以为软院需要自己的数电，例如讲纠错码的时候带上纠错码在物理层传输的作用，把前面没什么用的布尔表达式化简、卡诺图，后面的555计数器之类删了，后面寄存器什么的需要讲，自动机什么也多讲一点，最好再讲讲目前新型的存储装置，比如3d的存储之类。</p>
-</li>
-<li>
-<p>红课：没啥好说的。</p>
-</li>
-<li>
-<p>软件基础实践：也是补大一的课，现在再去写小朋友的lab还是简单的。另外，个人觉得大部分lab不是很有意思，比如qlink,除了体验GUI编程和看文档全都是体力活。个人觉得把这些课题做成鼓励探索的会更好一点，例如qlink把带来很多麻烦的rpg机制换掉，转而鼓励实现网络对战，等等。</p>
-</li>
-</ul>
-<p>实验室项目是一个在OpenHarmony上做基础设施移植的工作——可惜一个是自己时间太少，另一个是自己水平不够，导致项目的进度几乎和我没什么关系。新奇的事也有，例如玩开发板、完整的Linux环境、亲手装机、一些图形和库移植的知识......但总感觉迷迷糊糊的，挺细碎，其实也不知道后续有什么地方能用到。</p>
-<p>上学期很可惜的就是几乎没怎么课外自学，就是在ddl之中疲于奔命了。暑假也算是在一个比较迷茫的状态下过去的，考了个驾照，学了学计网，开发选课社区v2.0，看看新的小说和玩玩黑神话悟空，也有看看分布式、DDIA、玩玩游戏引擎、写写compiler、ai或者mlsys这种尝试性的试探自己兴趣点，但最后也还是不知道自己热爱哪个方向，反倒是说找到了不少看起来很美好，但我实际不喜欢的方向（比如mlsys）。 看看这学期的CSE和云网融合吧，继续探索一下分布式。</p>
-<p>感觉本学期还是对我造成了一点创伤——以至于对于代码的兴趣都消退了些许，当兴趣变成“工作”或许就是如此，期中也常常深夜破防，得到的感想就是人还是不能把自己绷得太紧，或许有人喜欢这样，但我这样效率反而低下。我本学期博客更新频率也变低了好多——有时候连总结的时间都没有，无尽的ddl让人对生活本身也处于一个钝感的状态。</p>
-<p>至于新学期的规划，初步是纯纯的简历导向，为下学期申日常实习服务：在外部大环境这么差的当下，总想尽早刷一段大厂实习经历，才有一种能上桌的安心感。
-学习方面的话，大概是这样：</p>
-<ul>
-<li>第一个月学一下数据库，同时把rookieDB的lab写一写，刷个简历项目; 再看看leveldb和rocksdb的源码。</li>
-<li>第二个月继续深入后端开发，各种架构上的东西比如mq等等多写多看，继续写数据库。同时时间投入云网融合的小组项目。</li>
-<li>后面分布式，八股，力扣。</li>
-</ul>
-<p>生活方面的话，大概就是打算这学期坚持去健身，约了几个同学，希望能坚持下来。</p>]]></content:encoded>
-            <category>总结</category>
         </item>
     </channel>
 </rss>
