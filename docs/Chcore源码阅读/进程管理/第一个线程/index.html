@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-Chcore源码阅读/进程管理/第一个线程" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.4.0">
+<title data-rh="true">第一个线程 | Ayanami&#x27;s Cave</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://ayanami1314.github.io/img/docusaurus-social-card.jpg"><meta data-rh="true" name="twitter:image" content="https://ayanami1314.github.io/img/docusaurus-social-card.jpg"><meta data-rh="true" property="og:url" content="https://ayanami1314.github.io/docs/Chcore源码阅读/进程管理/第一个线程"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="第一个线程 | Ayanami&#x27;s Cave"><meta data-rh="true" name="description" content="前置知识"><meta data-rh="true" property="og:description" content="前置知识"><link data-rh="true" rel="icon" href="/img/ayanami.jpg"><link data-rh="true" rel="canonical" href="https://ayanami1314.github.io/docs/Chcore源码阅读/进程管理/第一个线程"><link data-rh="true" rel="alternate" href="https://ayanami1314.github.io/docs/Chcore源码阅读/进程管理/第一个线程" hreflang="en"><link data-rh="true" rel="alternate" href="https://ayanami1314.github.io/docs/Chcore源码阅读/进程管理/第一个线程" hreflang="x-default"><link rel="alternate" type="application/rss+xml" href="/blog/rss.xml" title="Ayanami&#39;s Cave RSS Feed">
+<link rel="alternate" type="application/atom+xml" href="/blog/atom.xml" title="Ayanami&#39;s Cave Atom Feed">
+
+
+
+<link rel="alternate" type="application/rss+xml" href="/personal-essays/rss.xml" title="Ayanami&#39;s Cave RSS Feed">
+<link rel="alternate" type="application/atom+xml" href="/personal-essays/atom.xml" title="Ayanami&#39;s Cave Atom Feed">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.24/dist/katex.min.css" integrity="sha384-odtC+0UGzzFL/6PNoE8rX/SPcQDXBJ+uRepguP4QkPCm2LBxH3FA3y+fKSiJ+AmM" crossorigin="anonymous"><link rel="stylesheet" href="/assets/css/styles.00dd3480.css">
+<script src="/assets/js/runtime~main.0fb531b3.js" defer="defer"></script>
+<script src="/assets/js/main.044b537f.js" defer="defer"></script>
+</head>
+<body class="navigation-with-keyboard">
+<script>!function(){function t(t){document.documentElement.setAttribute("data-theme",t)}var e=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();t(null!==e?e:"light")}(),function(){try{const n=new URLSearchParams(window.location.search).entries();for(var[t,e]of n)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><div role="region" aria-label="Skip to main content"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="navbar navbar--fixed-top"><div class="navbar__inner"><div class="navbar__items"><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/"><div class="navbar__logo"><img src="/img/logo.svg" alt="My Site Logo" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/img/logo.svg" alt="My Site Logo" class="themedComponent_mlkZ themedComponent--dark_xIcU"></div><b class="navbar__title text--truncate">Ayanami&#x27;s Cave</b></a><a aria-current="page" class="navbar__item navbar__link navbar__link--active" href="/docs/Chcore源码阅读/">课程笔记</a><a class="navbar__item navbar__link" href="/blog">技术博客</a><a class="navbar__item navbar__link" href="/personal-essays">个人随笔</a></div><div class="navbar__items navbar__items--right"><a href="https://github.com/facebook/docusaurus" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link">GitHub<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="Switch between dark and light mode (currently light mode)" aria-label="Switch between dark and light mode (currently light mode)" aria-live="polite"><svg viewBox="0 0 24 24" width="24" height="24" class="lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" class="darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg></button></div><div class="navbarSearchContainer_Bca1"><div class="navbar__search searchBarContainer_NW3z" dir="ltr"><input placeholder="Search" aria-label="Search" class="navbar__search-input"><div class="loadingRing_RJI3 searchBarLoadingRing_YnHq"><div></div><div></div><div></div><div></div></div></div></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="main-wrapper mainWrapper_z2l0"><div class="docsWrapper_hBAB"><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type="button"></button><div class="docRoot_UBD9"><aside class="theme-doc-sidebar-container docSidebarContainer_YfHR"><div class="sidebarViewport_aRkj"><div class="sidebar_njMd"><nav aria-label="Docs sidebar" class="menu thin-scrollbar menu_SIkG"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--active" href="/docs/Chcore源码阅读/">Chcore源码阅读</a><button aria-label="Collapse sidebar category &#x27;Chcore源码阅读&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul style="display:block;overflow:visible;height:auto" class="menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/docs/Chcore源码阅读/rpc/rpc基础">rpc</a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/docs/Chcore源码阅读/内存分配器/buddy-sys">内存分配器</a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/docs/Chcore源码阅读/多核支持与调度/多核支持">多核支持与调度</a></div></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/docs/Chcore源码阅读/异常管理/">异常管理</a></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/docs/Chcore源码阅读/文件系统/POSIX">文件系统</a></div></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/docs/Chcore源码阅读/用户态程序编写/">用户态程序编写</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/docs/Chcore源码阅读/系统调用/">系统调用</a></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--sublist-caret menu__link--active" role="button" aria-expanded="true" tabindex="0" href="/docs/Chcore源码阅读/进程管理/能力组管理">进程管理</a></div><ul style="display:block;overflow:visible;height:auto" class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/docs/Chcore源码阅读/进程管理/能力组管理">能力组管理</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link menu__link--active" aria-current="page" tabindex="0" href="/docs/Chcore源码阅读/进程管理/第一个线程">第一个线程</a></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/docs/Chcore源码阅读/页表分配/缺页管理">页表分配</a></div></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" href="/docs/应用系统体系架构/作业/hw1-impl">应用系统体系架构</a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist" href="/docs/离散数学/">离散数学</a><button aria-label="Expand sidebar category &#x27;离散数学&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li></ul></nav></div></div></aside><main class="docMainContainer_TBSr"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_VOVn"><div class="docItemContainer_Djhp"><article><nav class="theme-doc-breadcrumbs breadcrumbsContainer_Z_bl" aria-label="Breadcrumbs"><ul class="breadcrumbs" itemscope="" itemtype="https://schema.org/BreadcrumbList"><li class="breadcrumbs__item"><a aria-label="Home page" class="breadcrumbs__link" href="/"><svg viewBox="0 0 24 24" class="breadcrumbHomeIcon_YNFT"><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill="currentColor"></path></svg></a></li><li itemscope="" itemprop="itemListElement" itemtype="https://schema.org/ListItem" class="breadcrumbs__item"><a class="breadcrumbs__link" itemprop="item" href="/docs/Chcore源码阅读/"><span itemprop="name">Chcore源码阅读</span></a><meta itemprop="position" content="1"></li><li class="breadcrumbs__item"><span class="breadcrumbs__link">进程管理</span><meta itemprop="position" content="2"></li><li itemscope="" itemprop="itemListElement" itemtype="https://schema.org/ListItem" class="breadcrumbs__item breadcrumbs__item--active"><span class="breadcrumbs__link" itemprop="name">第一个线程</span><meta itemprop="position" content="3"></li></ul></nav><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_ITEo"><button type="button" class="clean-btn tocCollapsibleButton_TO0P">On this page</button></div><div class="theme-doc-markdown markdown"><header><h1>第一个线程</h1></header><h3 class="anchor anchorWithStickyNavbar_LWe7" id="前置知识">前置知识<a class="hash-link" aria-label="Direct link to 前置知识" title="Direct link to 前置知识" href="/docs/Chcore源码阅读/进程管理/第一个线程#前置知识">​</a></h3>
+<ol>
+<li>elf 文件，不知道的同学需要复习一下ics了</li>
+</ol>
+<p>正如文档所说</p>
+<blockquote>
+<p>然而，完成 <code>cap_group</code> 的分配之后，用户程序并没有办法直接运行，因为<code>cap_group</code>只是一个资源集合的概念。线程才是内核中的调度执行单位，因此还需要进行线程的创建，将用户程序 ELF 的各程序段加载到内存中。(此为内核中 ELF 程序加载过程，用户态进行 ELF 程序解析可参考<code>user/system-services/system-servers/procmgr/libs/libchcoreelf/libchcoreelf.c</code>，如何加载程序可以对<code>user/system-services/system-servers/procmgr/srvmgr.c</code>中的<code>procmgr_launch_process</code>函数进行详细分析)</p>
+</blockquote>
+<p>详细看一下几个函数就能分析出来，elf的文件解析，加载elf指定的env和segment，其RWX的权限是由解析的flags得到的，而起始地址也是elf之中指定的vaddr转换而成的</p>
+<p>然后可能有问题的是<code>binary_procmgr_bin_start</code>，它指向程序中嵌入的二进制代码的起始地址。这个变量是通过链接器脚本或者编译器的特殊指令（如GCC的<code>incbin</code>）嵌入到二进制文件中的</p>
+<p>需要注意的是，segment在加载的时候是一个DATA类型的pmo</p>
+<p>anyway, 我觉得没有自己实现的必要（</p>
+<p>chcore是对齐glibc 的thread abi的，所以有thread env之类的</p>
+<p>一个有趣的讨论兼容性的帖子: <a href="https://news.ycombinator.com/item?id=35271498" target="_blank" rel="noopener noreferrer">https://news.ycombinator.com/item?id=35271498</a></p>
+<p>create_root_thread这个函数是真的长……</p>
+<p>最后的大致的流程</p>
+<ol>
+<li><strong>读取初始化进程的元数据</strong>：<!-- -->
+<ul>
+<li>从内核二进制文件中读取初始化进程（procmgr）的入口点、标志、程序头表项大小、程序头表项数量和程序头表地址。</li>
+</ul>
+</li>
+<li><strong>创建根能力组</strong>：<!-- -->
+<ul>
+<li>创建一个根能力组（<code>root_cap_group</code>），这是管理线程和进程的能力组。</li>
+</ul>
+</li>
+<li><strong>获取初始化虚拟地址空间</strong>：<!-- -->
+<ul>
+<li>从根能力组中获取 初始化虚拟地址空间（<code>init_vmspace</code>）。</li>
+</ul>
+</li>
+<li><strong>为根线程分配用户栈</strong>：<!-- -->
+<ul>
+<li>分配一个物理内存对象（PMO）作为根线程的用户栈，并将其映射到初始化虚拟地址空间。</li>
+</ul>
+</li>
+<li><strong>分配根线程</strong>：<!-- -->
+<ul>
+<li>分配一个线程对象（<code>thread</code>）。</li>
+</ul>
+</li>
+<li><strong>映射程序头表项</strong>：<!-- -->
+<ul>
+<li>遍历程序头表项，为每个段分配PMO，并将其映射到初始化虚拟地址空间。</li>
+</ul>
+</li>
+<li><strong>释放初始化虚拟地址空间的引用</strong>：<!-- -->
+<ul>
+<li>释放对初始化虚拟地址空间的引用。</li>
+</ul>
+</li>
+<li><strong>准备环境</strong>：<!-- -->
+<ul>
+<li>为根线程准备环境，包括栈和程序入口点。</li>
+</ul>
+</li>
+<li><strong>初始化根线程</strong>：<!-- -->
+<ul>
+<li>使用根能力组、栈地址、入口点和优先级初始化根线程。</li>
+</ul>
+</li>
+<li><strong>将根线程添加到能力组的线程列表</strong>：<!-- -->
+<ul>
+<li>将根线程添加到根能力组的线程列表中，并增加线程计数。</li>
+</ul>
+</li>
+<li><strong>为根线程分配能力</strong>：<!-- -->
+<ul>
+<li>为根线程分配一个能力（<code>thread_cap</code>）。</li>
+</ul>
+</li>
+<li><strong>刷新缓存</strong>：<!-- -->
+<ul>
+<li>刷新指令缓存和数据缓存，以确保新线程的指令和数据是最新的。</li>
+</ul>
+</li>
+<li><strong>将根线程放入就绪队列</strong>：<!-- -->
+<ul>
+<li>将根线程放入调度器的就绪队列，准备执行。</li>
+</ul>
+</li>
+</ol>
+<p>不过对于要求填写lab的部分，实际上只是ELF的一些信息处理，比较复杂的缓存、线程栈分配等都已经在lab之中给出了，总之这几个文件都其实是在做一些ABI的对齐工作</p>
+<p>然后是 <code>init_thread_ctx</code> 函数</p>
+<p>要填写的也很少，只有thread结构体之中 <code>*arch_exec_ctx_t* ec</code></p>
+<p>就是  体系结构特定的寄存器</p>
+<blockquote>
+<p>至此，我们完成了第一个用户进程与第一个用户线程的创建。接下来就可以从内核态向用户态进行跳转了。 回到<code>kernel/arch/aarch64/main.c</code>，在<code>create_root_thread()</code>完成后，分别调用了<code>sched()</code>与<code>eret_to_thread(switch_context())</code>。 <code>sched()</code>的作用是进行一次调度，在此场景下我们创建的第一个线程将被选择。</p>
+<p><code>switch_context()</code>函数的作用则是进行线程上下文的切换，包括vmspace、fpu、tls等。并且将<code>cpu_info</code>中记录的当前CPU线程上下文记录为被选择线程的上下文（完成后续实验后对此可以有更深的理解）。<code>switch_context()</code> 最终返回被选择线程的<code>thread_ctx</code>地址，即<code>target_thread-&gt;thread_ctx</code>。</p>
+<p><code>eret_to_thread</code>最终调用了<code>kernel/arch/aarch64/irq/irq_entry.S</code>中的 <code>__eret_to_thread</code> 函数。其接收参数为<code>target_thread-&gt;thread_ctx</code>，将 <code>target_thread-&gt;thread_ctx</code> 写入<code>sp</code>寄存器后调用了 <code>exception_exit</code> 函数，<code>exception_exit</code> 最终调用 eret 返回用户态，从而完成了从内核态向用户态的第一次切换。</p>
+<p>注意此处因为尚未完成<code>exception_exit</code>函数，因此无法正确切换到用户态程序，在后续完成<code>exception_exit</code>后，可以通过 gdb 追踪 pc 寄存器的方式查看是否正确完成内核态向用户态的切换。</p>
+</blockquote></div></article><nav class="pagination-nav docusaurus-mt-lg" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/docs/Chcore源码阅读/进程管理/能力组管理"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">能力组管理</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/docs/Chcore源码阅读/页表分配/缺页管理"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">缺页管理</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a class="table-of-contents__link toc-highlight" href="/docs/Chcore源码阅读/进程管理/第一个线程#前置知识">前置知识</a></li></ul></div></div></div></div></main></div></div></div><footer class="footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="col footer__col"><div class="footer__title">notes</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/docs">课程笔记</a></li></ul></div><div class="col footer__col"><div class="footer__title">Community</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://stackoverflow.com/questions/tagged/docusaurus" target="_blank" rel="noopener noreferrer" class="footer__link-item">Stack Overflow<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li><li class="footer__item"><a href="https://discordapp.com/invite/docusaurus" target="_blank" rel="noopener noreferrer" class="footer__link-item">Discord<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li><li class="footer__item"><a href="https://twitter.com/docusaurus" target="_blank" rel="noopener noreferrer" class="footer__link-item">Twitter<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li></ul></div><div class="col footer__col"><div class="footer__title">More</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/blog">Blog</a></li><li class="footer__item"><a class="footer__link-item" href="/personal-essays">Personal Essays</a></li><li class="footer__item"><a href="https://github.com/facebook/docusaurus" target="_blank" rel="noopener noreferrer" class="footer__link-item">GitHub<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2025 Ayanami, Inc. Built with Docusaurus.</div></div></div></footer></div>
+</body>
+</html>
