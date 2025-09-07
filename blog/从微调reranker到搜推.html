@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="blog-wrapper blog-post-page plugin-blog plugin-id-default" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.4.0">
+<title data-rh="true">从微调reranker到搜推工程实践 | Ayanami&#x27;s Cave</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://ayanami1314.github.io/img/docusaurus-social-card.jpg"><meta data-rh="true" name="twitter:image" content="https://ayanami1314.github.io/img/docusaurus-social-card.jpg"><meta data-rh="true" property="og:url" content="https://ayanami1314.github.io/blog/从微调reranker到搜推"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docusaurus_tag" content="default"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docsearch:docusaurus_tag" content="default"><meta data-rh="true" property="og:title" content="从微调reranker到搜推工程实践 | Ayanami&#x27;s Cave"><meta data-rh="true" name="description" content="如何进行reranker微调？"><meta data-rh="true" property="og:description" content="如何进行reranker微调？"><meta data-rh="true" property="og:type" content="article"><meta data-rh="true" property="article:published_time" content="2025-07-13T00:00:00.000Z"><meta data-rh="true" property="article:tag" content="rag,搜广推"><link data-rh="true" rel="icon" href="/img/ayanami.jpg"><link data-rh="true" rel="canonical" href="https://ayanami1314.github.io/blog/从微调reranker到搜推"><link data-rh="true" rel="alternate" href="https://ayanami1314.github.io/blog/从微调reranker到搜推" hreflang="en"><link data-rh="true" rel="alternate" href="https://ayanami1314.github.io/blog/从微调reranker到搜推" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://ayanami1314.github.io/blog/从微调reranker到搜推","mainEntityOfPage":"https://ayanami1314.github.io/blog/从微调reranker到搜推","url":"https://ayanami1314.github.io/blog/从微调reranker到搜推","headline":"从微调reranker到搜推工程实践","name":"从微调reranker到搜推工程实践","description":"如何进行reranker微调？","datePublished":"2025-07-13T00:00:00.000Z","author":{"@type":"Person","name":"ayanami"},"keywords":[],"isPartOf":{"@type":"Blog","@id":"https://ayanami1314.github.io/blog","name":"Blog"}}</script><link rel="alternate" type="application/rss+xml" href="/blog/rss.xml" title="Ayanami&#39;s Cave RSS Feed">
+<link rel="alternate" type="application/atom+xml" href="/blog/atom.xml" title="Ayanami&#39;s Cave Atom Feed">
+
+
+
+<link rel="alternate" type="application/rss+xml" href="/personal-essays/rss.xml" title="Ayanami&#39;s Cave RSS Feed">
+<link rel="alternate" type="application/atom+xml" href="/personal-essays/atom.xml" title="Ayanami&#39;s Cave Atom Feed">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.24/dist/katex.min.css" integrity="sha384-odtC+0UGzzFL/6PNoE8rX/SPcQDXBJ+uRepguP4QkPCm2LBxH3FA3y+fKSiJ+AmM" crossorigin="anonymous"><link rel="stylesheet" href="/assets/css/styles.00dd3480.css">
+<script src="/assets/js/runtime~main.aa217668.js" defer="defer"></script>
+<script src="/assets/js/main.0da58ad9.js" defer="defer"></script>
+</head>
+<body class="navigation-with-keyboard">
+<script>!function(){function t(t){document.documentElement.setAttribute("data-theme",t)}var e=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();t(null!==e?e:"light")}(),function(){try{const n=new URLSearchParams(window.location.search).entries();for(var[t,e]of n)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><div role="region" aria-label="Skip to main content"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="navbar navbar--fixed-top"><div class="navbar__inner"><div class="navbar__items"><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/"><div class="navbar__logo"><img src="/img/logo.svg" alt="My Site Logo" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/img/logo.svg" alt="My Site Logo" class="themedComponent_mlkZ themedComponent--dark_xIcU"></div><b class="navbar__title text--truncate">Ayanami&#x27;s Cave</b></a><a class="navbar__item navbar__link" href="/docs/Chcore源码阅读">课程笔记</a><a aria-current="page" class="navbar__item navbar__link navbar__link--active" href="/blog">技术博客</a><a class="navbar__item navbar__link" href="/personal-essays">个人随笔</a></div><div class="navbar__items navbar__items--right"><a href="https://github.com/facebook/docusaurus" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link">GitHub<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="Switch between dark and light mode (currently light mode)" aria-label="Switch between dark and light mode (currently light mode)" aria-live="polite"><svg viewBox="0 0 24 24" width="24" height="24" class="lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" class="darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg></button></div><div class="navbarSearchContainer_Bca1"><div class="navbar__search searchBarContainer_NW3z" dir="ltr"><input placeholder="Search" aria-label="Search" class="navbar__search-input"><div class="loadingRing_RJI3 searchBarLoadingRing_YnHq"><div></div><div></div><div></div><div></div></div></div></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="main-wrapper mainWrapper_z2l0"><div class="container margin-vert--lg"><div class="row"><aside class="col col--3"><nav class="sidebar_re4s thin-scrollbar" aria-label="Blog recent posts navigation"><div class="sidebarItemTitle_pO2u margin-bottom--md">All our posts</div><ul class="sidebarItemList_Yudw clean-list"><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/llm for code paper notes">paper-reading, code&amp;rl方向</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/speculative-decode-overview">投机解码简述</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/Paper reading Context Pruning and beyond hard pruning">Paper reading - Context Pruning and beyond hard pruning</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/结构化输出">结构化输出与AI工具与Agent</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/context-engineering">context-engineering</a></li><li class="sidebarItem__DBe"><a aria-current="page" class="sidebarItemLink_mo7H sidebarItemLinkActive_I1ZP" href="/blog/从微调reranker到搜推">从微调reranker到搜推工程实践</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/llm-tech-report">部分llm技术报告的阅读</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/Ask in Any Modality A Comprehensive Survey on Multimodal Retrieval-Augmented Generation">Paper reading-Ask in Any Modality A Comprehensive Survey on Multimodal Retrieval-Augmented Generation</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/精读 AAAI 2025 Fit and Prune Fast and Training-free Visual Token Pruning for Multi-modal Large Language Models">Paper reading - Fit and Prune Fast and Training-free Visual Token Pruning for Multi-modal Large Language Models</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/精读：Eagle Exploring The Design Space for Multi- modal LLMs with Mixture of Encoders">Paper reading-Eagle Exploring The Design Space for Multi- modal LLMs with Mixture of Encoders</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/RAG的一些思考和细节">RAG的一些思考与细节</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/精读  Interleaved Scene Graph for Interleaved Text-and-Image Generation Assessment">Paper reading - Interleaved Scene Graph for Interleaved Text-and-Image Generation Assessment</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/ColBERT">ColBERT-后期交互方法</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/2025/05/26/技术博客阅读">美团技术博客阅读</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/Milvus">稀疏神经嵌入</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/RocketMQ">RocketMQ学习</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/AI limu">李沐dl笔记</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/cs186-database-WIP">ucb cs186 课程笔记(更新中)</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/jyy-os-虚拟化">NJU操作系统(jyy OS)课程笔记-虚拟化部分</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/local-llm">来本地部署大模型!</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/ostep-chapter42-44">ostep阅读笔记：单机fs的崩溃一致性(chapter42-44)</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/系统架构设计笔记">system-design-interview笔记</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/JUC">JUC</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/cs144 labs">cs144 labs(Winter 2024)</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/jyy-os：并发">NJU操作系统(jyy OS)课程笔记-并发部分</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/nginx">nginx基础</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/cs144/cs144 lec notes">CS144 Lecture Notes</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/django-mosh">Django_mosh</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/splay-tree">splay tree</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/xv6book-notes">xv6book Notes(C1-4)</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/Go-Gin学习">Go,Gin学习</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/godis源码阅读">godis源码阅读</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/hibernate-jpa">hibernate&amp;jpa</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/linking-复习">linking 复习</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/ts基础">ts基础</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/实战2-mosh-gamehub">react practice:mosh gamehub</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/浅入理解断点和调试器">浅入理解断点和调试器</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/黑马点评">黑马点评(速通版)</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/js基础">js基础</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/11-14-11-26学习双周记">11-14-11-26学习双周记</a></li></ul></nav></aside><main class="col col--7"><article><header><h1 class="title_f1Hy">从微调reranker到搜推工程实践</h1><div class="container_mt6G margin-vert--md"><time datetime="2025-07-13T00:00:00.000Z">July 13, 2025</time> · <!-- -->21 min read</div><div class="margin-top--md margin-bottom--sm row"><div class="col col--6 authorCol_Hf19"><div class="avatar margin-bottom--sm"><div class="avatar__intro"><div class="avatar__name"><span>ayanami</span></div></div></div></div></div></header><div id="__blog-post-container" class="markdown"><p>如何进行reranker微调？</p>
+<p>之前我曾经花了一定时间找这个问题的经验，结果发现大部分reranker模型对于这个问题是一个回避状态，不愿意开源自己的训练集，更不提像OpenAI/Cohere的rerank/embed服务本身就在卖钱，而兜售rag解决方案的公司，更不肯将如何做领域适配这一赚钱核心逻辑公之于众</p>
+<p>也就BAAI以一个非常开放的态度，公开了自己的微调方法和相关脚本和训练数据，但他们也更侧重与如何训练一个通用的模型，对于怎么微调，只知道构造正负样本，query，pos，neg，然后InfoNCE，至于为什么能work，pos/neg怎么选，可能觉得大家都知道，也没有多说</p>
+<p>而兜兜转转的楼主最后在传统搜推里面找到了一整套硬负例挖掘方面的方案，rag整套方案其实都是抄搜推的一个劣化版本罢了 <!-- -->🤣</p>
+<p>为什么采用的是正负对而不是交叉熵或者其他有label的损失？核心在于，搜推本身就是一个弱label的场景</p>
+<p>乍一想，在有正负对的情况下的时候，交叉熵似乎也很自然，以01为例，两种损失项就是 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>&lt;</mo><mi>u</mi><mi>s</mi><mi>e</mi><mi>r</mi><mo separator="true">,</mo><mi>i</mi><mi>t</mi><mi>e</mi><msub><mi>m</mi><mo>+</mo></msub><mo separator="true">,</mo><mn>1</mn><mo>&gt;</mo><mtext>，</mtext><mo>&lt;</mo><mi>u</mi><mi>s</mi><mi>e</mi><mi>r</mi><mo separator="true">,</mo><mi>i</mi><mi>t</mi><mi>e</mi><msub><mi>m</mi><mo>−</mo></msub><mo separator="true">,</mo><mn>0</mn><mo>&gt;</mo></mrow><annotation encoding="application/x-tex">&lt;user, item_+, 1&gt;， &lt;user, item_-, 0&gt;</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5782em;vertical-align:-0.0391em"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2778em"></span></span><span class="base"><span class="strut" style="height:0.8679em;vertical-align:-0.2083em"></span><span class="mord mathnormal">u</span><span class="mord mathnormal" style="margin-right:0.02778em">ser</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em"></span><span class="mord mathnormal">i</span><span class="mord mathnormal">t</span><span class="mord mathnormal">e</span><span class="mord"><span class="mord mathnormal">m</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2583em"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em"><span class="pstrut" style="height:2.7em"></span><span class="sizing reset-size6 size3 mtight"><span class="mbin mtight">+</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2083em"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2778em"></span><span class="mrel">&gt;</span><span class="mspace" style="margin-right:0.2778em"></span></span><span class="base"><span class="strut" style="height:0.7224em;vertical-align:-0.0391em"></span><span class="mord cjk_fallback">，</span><span class="mspace" style="margin-right:0.2778em"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2778em"></span></span><span class="base"><span class="strut" style="height:0.8679em;vertical-align:-0.2083em"></span><span class="mord mathnormal">u</span><span class="mord mathnormal" style="margin-right:0.02778em">ser</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em"></span><span class="mord mathnormal">i</span><span class="mord mathnormal">t</span><span class="mord mathnormal">e</span><span class="mord"><span class="mord mathnormal">m</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2583em"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em"><span class="pstrut" style="height:2.7em"></span><span class="sizing reset-size6 size3 mtight"><span class="mbin mtight">−</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2083em"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em"></span><span class="mord">0</span><span class="mspace" style="margin-right:0.2778em"></span><span class="mrel">&gt;</span></span></span></span> ? 但一个随之而来的问题是哪来的01 label?</p>
+<p>也就是说， 这样做的前提是label的准确性，而在搜推场景中，负样本 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>&lt;</mo><mi>u</mi><mi>s</mi><mi>e</mi><mi>r</mi><mo separator="true">,</mo><mi>i</mi><mi>t</mi><mi>e</mi><msub><mi>m</mi><mo>−</mo></msub><mo separator="true">,</mo><mn>0</mn><mo>&gt;</mo></mrow><annotation encoding="application/x-tex">&lt;user, item_-, 0&gt;</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5782em;vertical-align:-0.0391em"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2778em"></span></span><span class="base"><span class="strut" style="height:0.8679em;vertical-align:-0.2083em"></span><span class="mord mathnormal">u</span><span class="mord mathnormal" style="margin-right:0.02778em">ser</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em"></span><span class="mord mathnormal">i</span><span class="mord mathnormal">t</span><span class="mord mathnormal">e</span><span class="mord"><span class="mord mathnormal">m</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2583em"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em"><span class="pstrut" style="height:2.7em"></span><span class="sizing reset-size6 size3 mtight"><span class="mbin mtight">−</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2083em"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em"></span><span class="mord">0</span><span class="mspace" style="margin-right:0.2778em"></span><span class="mrel">&gt;</span></span></span></span> 的一个设置是<strong>曝光过</strong>但没被user选择的真负样本</p>
+<p><strong>但召回层的大部分样本根本没被曝光过，label噪声很大</strong>（召回层是一个<code>几亿-&gt;几千-&gt;几十条</code>的过程，只有最后的几十被曝光了），如果只依赖这样的负样本的话，根本无法支撑模型训练。所以正负样本的设计某种意义上是无奈之举，我无法知道这个样本和用户的真实关系，但我可以从用户的行为中得到一些偏好信号，召回算法往往采用Pairwise LearningToRank （LTR），建模排序的相对准确性，模型的优化目标变成正样本匹配度高于负样本匹配度</p>
+<hr>
+<p>现在我们知道了为什么采用正负样本，但真正上手就会发现，正负样本这一件事并没有想象中的简单。</p>
+<p>如果你采用随机的语料作为负样本，带来的一个问题是这个负样本对模型太easy了，模型只能区分猫和狗，但无法区分哈士奇和狼狗，即忽视了细节信息，也即是我们所说的rag的领域细节的缺失</p>
+<p>而解决的方法，也在搜推里面早就提出了，硬负样本挖掘，即设置一部分的硬负样本，这部分是有难度的，来迫使模型学会根据细节进行区分</p>
+<p>而在rag里面大家常常是拍脑门的硬负样本设计，让reranker带上一些业务目标，在搜推里面也早是被玩烂的东西了。</p>
+<p>先说业务目标：
+比起rag中，大部分的应用还局限在文本相似度，搜推早就进入到多个因素的融合和全链路目标指向的优化，例如，很多搜推业务需要考虑地域性（如外卖，酒店等），于是其正负样本会这样设计:
+有基于业务逻辑的，核心是增强某个指标的相似性，让模型考虑其他指标做出区分，以房屋销售为例</p>
+<ul>
+<li>增加与正样本同城的房间作为负样本，增强了正负样本在地域上的相似性，加大了模型的学习难度</li>
+<li>增加“被房主拒绝”作为负样本，增强了正负样本在“匹配用户兴趣爱好”上的相似性，加大了模型的学习难度</li>
+</ul>
+<p> 针对模型只学地域特征信息就可以进行打分的easy neg，设计了同城的hard neg强迫考虑其他特征</p>
+<blockquote>
+<p>绝大部分负样本还是随机采样生成的。但是，Airbnb发现，用户点击序列中的listing多是同城的，导致正样本多是同城listing组成，而随机采样的负样本多是异地的，这其中存在的bias容易让模型只关注“地域”这个粗粒度特征。</p>
+</blockquote>
+<p>为此，Airbnb在全局随机采样生成的负样本之外，还在与中心listing同城的listing中随机采样一部分listing作为hard negative，以促使模型能够关注除“地域”外的更多其他细节。</p>
+<p>在电商场景下，负样本的业务构造也有很多：</p>
+<ul>
+<li>正样本：<strong>充足曝光</strong>下<strong>高点击ctr</strong>样本(如：ctr大于同query下商品点击率平均值)</li>
+<li>负样本：<!-- -->
+<ul>
+<li>同父类目的<strong>邻居子类目</strong>负采样。</li>
+<li><strong>高曝光低点击</strong>类目样本：同一个query搜索下，根据全局点击商品的类目分布，取相对超低频类目样本作为负样本。</li>
+<li>充足曝光情况下，低于相应query平均曝光点击率一定百分比的样本做负样本。</li>
+<li><strong>基于query核心term替换构造负样本</strong>：如，对于“品牌A+品类”结构的Query，使用“品牌B+品类”结构的query做其负样本。（这个lz当时在propilot构造领域词替换负样本的时候还觉得自己想到了个好方法，后来发现是早有之事）</li>
+<li>随机构造负样本：为增加随机性，该部分实现可在训练时使用同batch中其他样本做负样本，同时也可以引入经典的Hard Sample机制。（这部分涉及到很有趣的一个问题，后面讲）</li>
+</ul>
+</li>
+</ul>
+<p>不局限于业务，搜推还对RAG很少涉及的“如何选择hard neg”上面有非常久远的研究，如</p>
+<ul>
+<li>
+<p><strong>高置信样本挖掘</strong>，避免搜索点击行为日志“点击但不相关”的问题。</p>
+</li>
+<li>
+<p>**定制化的负样本构造，避免模型收敛过快，**只能判断简单语义相关性，对难样本无法很好的区分。</p>
+</li>
+<li>
+<p>关于短文本的定制化需求， 如美团提到的他们实践的一些难Case，“大提琴”→“小提琴”以及“葡萄酒”→“葡萄”这类字面编辑距离小的case，会根据搜索结果做分析，以搜索无结果作为bad case进行负样本生成
+<img decoding="async" loading="lazy" alt="alt text" src="/assets/images/image-3-1080a39cbad8a7c3ac098ea6b66b06ea.png" width="1035" height="472" class="img_ev3q"></p>
+</li>
+<li>
+<p>知识图谱也是被玩烂的东西
+<img decoding="async" loading="lazy" alt="alt text" src="/assets/images/image-4-f1570be63e9ddb8c41317a41f2d6178d.png" width="1035" height="513" class="img_ev3q"></p>
+</li>
+<li>
+<p>图结构也是被玩烂的东西，如在Pinterest中，基于GCN的PinSAGE</p>
+</li>
+</ul>
+<blockquote>
+<p>和Airbnb一样，我们可以认为被同一个user消费过的两个item是相似的，但是这样的<strong>排列组合太多了</strong>。</p>
+<p>为此，PinSAGE采用<strong>随机游走的方式进行采样</strong>：在原始的user-item二部图上，以某个item作为起点，进行一次二步游走（<strong>item→user→item</strong>），首尾两端的item构成一条边。将以上二步游走反复进行多次，就构成了item-item同构图。</p>
+<p><strong>在这个新构建出来的item-item同构图上，每条边连接的两个item，因为被同一个user消费过，所以是相似的，构成了训练中的正样本。</strong></p>
+</blockquote>
+<blockquote>
+<ul>
+<li>在训练开始前，<!-- -->
+<ul>
+<li>从item-item图上的某个节点u，随机游走若干次。</li>
+<li>游走过程中遍历到的每个节点v，都被赋予一个分数L1-normalized visit count=该节点被访问到的次数 / 随机游走的总步数。</li>
+<li>这个分数，被视为节点v针对节点u的重要性  ，即所谓的Personal PageRank（PPR）。</li>
+</ul>
+</li>
+<li>训练过程中<!-- -->
+<ul>
+<li>针对item-item同构图上的某一条边u→v，u和v就构成了一条正样本，它们的embedding应该相近</li>
+<li>在图上所有节点中随机采样一部分ne，u和每个ne就构成了一条负样本，它们的embedding应该比较远。因为是随机采样得到的，所以ne是easy negative。</li>
+<li>除此之外，还将u所有的邻居，按照它们对u的重要性（PPR）从大到小排序，筛选出排名居中（e.g.论文中是2000~5000名）的那些item。<strong>这些item与u有几分相似，但是相似性又没那么强</strong>，从中再抽样一批item，作为&quot;u&quot;的hard negative。</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<p>....</p>
+<ul>
+<li>利用传统nlp思路的</li>
+</ul>
+<p>在airbnb中，用户的点击序列，如果用类似word2vec+窗口的想法看成是一个“共现”问题的话，<strong>用户点击序列中的项的不像语言那样有一个很明显的长程衰减，embedding都应该是相近的</strong>。
+但这样的组合太多，所以回退到窗口的方式，拿中心项和邻居项组成正样本对。<strong>但因为最后一次下单的点击有最强的业务信号，所以拿它和整个序列的每一项组成正样本对</strong>，“增加final booked listing作为global context加入每个滑窗”</p>
+<hr>
+<p>解决了如何构造硬负样本的问题，那应该选择多少硬负样本呢？如果自己跑过reranker的微调就会知道，<strong>过高的硬负样本比例甚至会让模型崩掉</strong>。而<strong>更是有拿调reranker的数据集拿来调embedder的神人</strong>（<strong>没错，就是我自己）</strong>，BAAI官方的脚本中，这俩也没啥区别 <!-- -->🤣</p>
+<p>然而，早在N年前Facebook的文章中，就给出了他们的经验教训</p>
+<ol>
+<li><strong>将比例维持在easy<!-- -->:hard<!-- -->=100:1</strong></li>
+<li><strong>将rerank的数据拿来训embed</strong>(在搜推场景中是拿曝光未点击数据（rerank前列但未收到信号）来当召回（embed）的负样本)是<strong>完全错误的实践</strong>，离线数据可能不错但一上线就是一坨</li>
+</ol>
+<p>这是为什么呢？因为<strong>召回不同于排序</strong>，在rag层要处理的文档没有那么多可能无感知，很多rag甚至没有排序层拿召回当排序，先下结论</p>
+<blockquote>
+<p><strong>如果说排序是特征的艺术，那么召回就是样本的艺术，特别是负样本的艺术</strong>。样本选择错了，那么上述的模型设计、特征工程，只能是南辕北辙，做得越卖力，错得越离谱。</p>
+</blockquote>
+<p><img decoding="async" loading="lazy" alt="alt text" src="/assets/images/image-5-f3c6027317adb48531c852e8957f15df.png" width="1035" height="639" class="img_ev3q">
+<img decoding="async" loading="lazy" alt="alt text" src="/assets/images/image-6-e3a69dcc67eccd69df285e7afbd85b32.png" width="1035" height="679" class="img_ev3q"></p>
+<p>明白了这个数据分布的区别之后，就会对前面硬负样本和简单样本的比例在不同阶段是不同的这一个特点有更深的理解，对于召回而言</p>
+<blockquote>
+<p><strong>hard negative并非要替代easy negative，而是easy negative的补充。在数量上，负样本还是以easy negative为主，文章中经验是将比例维持在easy<!-- -->:hard<!-- -->=100:1。毕竟线上召回时，库里绝大多数的物料是与用户八杆子打不着的easy negative，保证easy negative的数量优势，才能hold住模型的及格线。</strong></p>
+</blockquote>
+<p>所以，全样本随机采样的负例才会很重要</p>
+<p>而推荐甚至走的更远好几步，例如，随机采样不等于等概率采样，推荐系统中会出现放大的效应，即热门的样本会更容易被点击，进而各种指标特征表现更高，变得更热门，为了不然模型退化到只推荐一类样本，<strong>在实践之中会对热门正样本降采样，对热门负 样本升采样</strong></p>
+<p>还有对硬负样本带来的<strong>左脚踩右脚</strong></p>
+<blockquote>
+<p>当业务逻辑没有那么明显的信号的时候，就需要依赖模型自己挖掘, <strong>都是用上一版本的召回模型筛选出没那么相似的对，作为额外负样本，训练下一版本召回模型。怎么定义“没那么相似”？文章中是拿召回位置在101~500上的物料</strong></p>
+</blockquote>
+<blockquote>
+<p>Q: 这样选择出来的hard negative已经被当前模型判断为“没那么相似”了，那拿它们作为负样本训练模型，还能提供额外信息吗
+A: 上一版本中，这批样本只是相似度靠后，现在直接划为负样本，能更迫使模型进行区分</p>
+</blockquote>
+<p>而rag在玩的全链路RL优化，是推荐系统几年前玩了一波后来又扔到垃圾桶的东西 <!-- -->🤣<!-- -->性能不稳定，模拟和实测差距大，等等问题</p>
+<p>包括现在在rag系统的reranker中还未广泛见到的刷点技巧，对不同难度级别的负例单独训小模型，然后做embedding融合</p>
+<hr>
+<p>在工程性上，RAG的路也更像是把所有搜推的路再走一遍，</p>
+<ul>
+<li>
+<p>如何解决冷启动问题？搜推已经证明了LR,FM这种一二阶特征就能得到一个不错的基线，并且可以将实数特征离散化，排0存储，排0计算进行O(N^2)到O(N)再二值化化乘为加得到在线级别的性能（用户每一次交互都是一次特征计算）</p>
+</li>
+<li>
+<p>如何解决系统效率问题？网络上参数服务器+只传递特征id，实数特征的分桶离散化，特征的Field级别合并减少NN的维度，log的一套大数据系统+redis冷热缓存+bloomfilter+......</p>
+</li>
+<li>
+<p>如何解决模型性能问题？在召回层禁止特征交叉，在排序层卷一系列现代架构，根据短文本特点进行深度语义层的裁剪，量化和蒸馏</p>
+</li>
+<li>
+<p>如何解决可解释性问题？用加权的ML模型做基线，bad case定位和  迭代，先把神经网络丢一边......</p>
+</li>
+<li>
+<p>意图识别？训练NER任务，对查询做成分识别，丢掉不重要的词，在少无结果的时候做多级检索，甚至能把时延卷到10ms量级。BERT结合KG做领域词级别的mask而不是字符级别的mask，来达到对整个实体级别语义的理解效果
+<img decoding="async" loading="lazy" alt="alt text" src="/assets/images/image-7-f390a8b5f5a101e61e0033fdff5b2103.png" width="1035" height="445" class="img_ev3q"></p>
+</li>
+<li>
+<p>多样性？召回通道的消重系统
+<img decoding="async" loading="lazy" alt="alt text" src="/assets/images/image-8-c365ab97b0f1b9dafc9bff82dc4c8058.png" width="1035" height="510" class="img_ev3q"></p>
+</li>
+<li>
+<p>商业化？精排的广告插入......</p>
+</li>
+<li>
+<p>规模化? 一键训推平台，业务算法提交数据后集群分卡自动运行和效果验证</p>
+</li>
+<li>
+<p>稀疏样本？酒店这种看重订单率而不是相关性的就是最好的参考实践
+<img decoding="async" loading="lazy" alt="alt text" src="/assets/images/image-9-18d5c0f90233ec3b9291ca350e43aec7.png" width="1035" height="433" class="img_ev3q"></p>
+</li>
+</ul>
+<p>现在传统RAG发现一个问题就是半结构化数据很难被embedding模型处理，但如果从这个角度反向想回去的话，搜推一直就是在处理结构化数据啊，还是走同一套特征离散化的逻辑，后面做Pooling和特征融合又可以复用各种实践，</p>
+<blockquote>
+<ul>
+<li>普通的Mean/Max Pooling，代表算法YoutubeNet，先embedding再pooling</li>
+<li>Neural FM中，让属于同一field的feature embedding两两交叉，完成所谓的Bi-Interaction Pooling</li>
+<li>加权平均 - Attention, 阿里Deep Intereset Network (DIN)，计算candidate item和用户各历史item的attention score，再根据这个score加权历史item的embedding，表示用户的历史偏好，<strong>使得用户的向量表达随着不同的candidate变化</strong></li>
+<li>加权+时序，DIEN</li>
+</ul>
+</blockquote>
+<hr>
+<p><strong>所以，我们真的需要一个劣化的RAG系统吗？很多时候只是我们维护不起一套完整的搜推系统罢了，没有人力和体系力量去维护一个结构化的数据组，AB test和实时的线上反馈，又不在意系统的时延，吹嘘着LLM神话，消耗着大量的token，最后效果也就那样，还得根据线上信号进行优化，做来做去发现前人早就做过了（笑）</strong>。</p>
+<p>但是anyway，如果你需要做点rag的话，搜推这边的方法可能需要大规模人力物力不一定能用得上，但这边踩过的坑，再踩一次就是猪头了,也算是理解了为啥网上有做搜推的转RAG讲说从LLM转过来的完全不理解上线难点在哪里，会踩很多坑，或者永远停留在离线的状态</p></div><footer class="docusaurus-mt-lg"><div class="row margin-top--sm theme-blog-footer-edit-meta-row"><div class="col"><b>Tags:</b><ul class="tags_jXut padding--none margin-left--sm"><li class="tag_QGVx"><a class="tag_zVej tagRegular_sFm0" href="/blog/tags/rag">rag</a></li><li class="tag_QGVx"><a class="tag_zVej tagRegular_sFm0" href="/blog/tags/搜广推">搜广推</a></li></ul></div></div></footer></article><nav class="pagination-nav docusaurus-mt-lg" aria-label="Blog post page navigation"><a class="pagination-nav__link pagination-nav__link--prev" href="/blog/context-engineering"><div class="pagination-nav__sublabel">Newer Post</div><div class="pagination-nav__label">context-engineering</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/blog/llm-tech-report"><div class="pagination-nav__sublabel">Older Post</div><div class="pagination-nav__label">部分llm技术报告的阅读</div></a></nav><div>Loading Comments...</div></main></div></div></div><footer class="footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="col footer__col"><div class="footer__title">notes</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/docs/RL">课程笔记</a></li></ul></div><div class="col footer__col"><div class="footer__title">Community</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://stackoverflow.com/questions/tagged/docusaurus" target="_blank" rel="noopener noreferrer" class="footer__link-item">Stack Overflow<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li><li class="footer__item"><a href="https://discordapp.com/invite/docusaurus" target="_blank" rel="noopener noreferrer" class="footer__link-item">Discord<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li><li class="footer__item"><a href="https://twitter.com/docusaurus" target="_blank" rel="noopener noreferrer" class="footer__link-item">Twitter<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li></ul></div><div class="col footer__col"><div class="footer__title">More</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/blog">Blog</a></li><li class="footer__item"><a class="footer__link-item" href="/personal-essays">Personal Essays</a></li><li class="footer__item"><a href="https://github.com/facebook/docusaurus" target="_blank" rel="noopener noreferrer" class="footer__link-item">GitHub<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2025 Ayanami, Inc. Built with Docusaurus.</div></div></div></footer></div>
+</body>
+</html>

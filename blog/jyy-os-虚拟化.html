@@ -1,0 +1,323 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="blog-wrapper blog-post-page plugin-blog plugin-id-default" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.4.0">
+<title data-rh="true">NJU操作系统(jyy OS)课程笔记-虚拟化部分 | Ayanami&#x27;s Cave</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://ayanami1314.github.io/img/docusaurus-social-card.jpg"><meta data-rh="true" name="twitter:image" content="https://ayanami1314.github.io/img/docusaurus-social-card.jpg"><meta data-rh="true" property="og:url" content="https://ayanami1314.github.io/blog/jyy-os-虚拟化"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docusaurus_tag" content="default"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docsearch:docusaurus_tag" content="default"><meta data-rh="true" property="og:title" content="NJU操作系统(jyy OS)课程笔记-虚拟化部分 | Ayanami&#x27;s Cave"><meta data-rh="true" name="description" content="lec14 操作系统上的进程"><meta data-rh="true" property="og:description" content="lec14 操作系统上的进程"><meta data-rh="true" name="keywords" content="os,jyy"><meta data-rh="true" property="og:type" content="article"><meta data-rh="true" property="article:published_time" content="2025-02-12T13:56:21.000Z"><meta data-rh="true" property="article:tag" content="os,system,virtualize"><link data-rh="true" rel="icon" href="/img/ayanami.jpg"><link data-rh="true" rel="canonical" href="https://ayanami1314.github.io/blog/jyy-os-虚拟化"><link data-rh="true" rel="alternate" href="https://ayanami1314.github.io/blog/jyy-os-虚拟化" hreflang="en"><link data-rh="true" rel="alternate" href="https://ayanami1314.github.io/blog/jyy-os-虚拟化" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://ayanami1314.github.io/blog/jyy-os-虚拟化","mainEntityOfPage":"https://ayanami1314.github.io/blog/jyy-os-虚拟化","url":"https://ayanami1314.github.io/blog/jyy-os-虚拟化","headline":"NJU操作系统(jyy OS)课程笔记-虚拟化部分","name":"NJU操作系统(jyy OS)课程笔记-虚拟化部分","description":"lec14 操作系统上的进程","datePublished":"2025-02-12T13:56:21.000Z","author":{"@type":"Person","name":"ayanami"},"keywords":["os","jyy"],"isPartOf":{"@type":"Blog","@id":"https://ayanami1314.github.io/blog","name":"Blog"}}</script><link rel="alternate" type="application/rss+xml" href="/blog/rss.xml" title="Ayanami&#39;s Cave RSS Feed">
+<link rel="alternate" type="application/atom+xml" href="/blog/atom.xml" title="Ayanami&#39;s Cave Atom Feed">
+
+
+
+<link rel="alternate" type="application/rss+xml" href="/personal-essays/rss.xml" title="Ayanami&#39;s Cave RSS Feed">
+<link rel="alternate" type="application/atom+xml" href="/personal-essays/atom.xml" title="Ayanami&#39;s Cave Atom Feed">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.24/dist/katex.min.css" integrity="sha384-odtC+0UGzzFL/6PNoE8rX/SPcQDXBJ+uRepguP4QkPCm2LBxH3FA3y+fKSiJ+AmM" crossorigin="anonymous"><link rel="stylesheet" href="/assets/css/styles.00dd3480.css">
+<script src="/assets/js/runtime~main.aa217668.js" defer="defer"></script>
+<script src="/assets/js/main.0da58ad9.js" defer="defer"></script>
+</head>
+<body class="navigation-with-keyboard">
+<script>!function(){function t(t){document.documentElement.setAttribute("data-theme",t)}var e=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();t(null!==e?e:"light")}(),function(){try{const n=new URLSearchParams(window.location.search).entries();for(var[t,e]of n)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><div role="region" aria-label="Skip to main content"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="navbar navbar--fixed-top"><div class="navbar__inner"><div class="navbar__items"><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/"><div class="navbar__logo"><img src="/img/logo.svg" alt="My Site Logo" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/img/logo.svg" alt="My Site Logo" class="themedComponent_mlkZ themedComponent--dark_xIcU"></div><b class="navbar__title text--truncate">Ayanami&#x27;s Cave</b></a><a class="navbar__item navbar__link" href="/docs/Chcore源码阅读">课程笔记</a><a aria-current="page" class="navbar__item navbar__link navbar__link--active" href="/blog">技术博客</a><a class="navbar__item navbar__link" href="/personal-essays">个人随笔</a></div><div class="navbar__items navbar__items--right"><a href="https://github.com/facebook/docusaurus" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link">GitHub<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="Switch between dark and light mode (currently light mode)" aria-label="Switch between dark and light mode (currently light mode)" aria-live="polite"><svg viewBox="0 0 24 24" width="24" height="24" class="lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" class="darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg></button></div><div class="navbarSearchContainer_Bca1"><div class="navbar__search searchBarContainer_NW3z" dir="ltr"><input placeholder="Search" aria-label="Search" class="navbar__search-input"><div class="loadingRing_RJI3 searchBarLoadingRing_YnHq"><div></div><div></div><div></div><div></div></div></div></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="main-wrapper mainWrapper_z2l0"><div class="container margin-vert--lg"><div class="row"><aside class="col col--3"><nav class="sidebar_re4s thin-scrollbar" aria-label="Blog recent posts navigation"><div class="sidebarItemTitle_pO2u margin-bottom--md">All our posts</div><ul class="sidebarItemList_Yudw clean-list"><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/llm for code paper notes">paper-reading, code&amp;rl方向</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/speculative-decode-overview">投机解码简述</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/Paper reading Context Pruning and beyond hard pruning">Paper reading - Context Pruning and beyond hard pruning</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/结构化输出">结构化输出与AI工具与Agent</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/context-engineering">context-engineering</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/从微 调reranker到搜推">从微调reranker到搜推工程实践</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/llm-tech-report">部分llm技术报告的阅读</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/Ask in Any Modality A Comprehensive Survey on Multimodal Retrieval-Augmented Generation">Paper reading-Ask in Any Modality A Comprehensive Survey on Multimodal Retrieval-Augmented Generation</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/精读 AAAI 2025 Fit and Prune Fast and Training-free Visual Token Pruning for Multi-modal Large Language Models">Paper reading - Fit and Prune Fast and Training-free Visual Token Pruning for Multi-modal Large Language Models</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/精读：Eagle Exploring The Design Space for Multi- modal LLMs with Mixture of Encoders">Paper reading-Eagle Exploring The Design Space for Multi- modal LLMs with Mixture of Encoders</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/RAG的一些思考和细节">RAG的一些思考与细节</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/精读  Interleaved Scene Graph for Interleaved Text-and-Image Generation Assessment">Paper reading - Interleaved Scene Graph for Interleaved Text-and-Image Generation Assessment</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/ColBERT">ColBERT-后期交互方法</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/2025/05/26/技术博客阅读">美团技术博客阅读</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/Milvus">稀疏神经嵌入</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/RocketMQ">RocketMQ学习</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/AI limu">李沐dl笔记</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/cs186-database-WIP">ucb cs186 课程笔记(更新中)</a></li><li class="sidebarItem__DBe"><a aria-current="page" class="sidebarItemLink_mo7H sidebarItemLinkActive_I1ZP" href="/blog/jyy-os-虚拟化">NJU操作系统(jyy OS)课程笔记-虚拟化部分</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/local-llm">来本地部署大模型!</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/ostep-chapter42-44">ostep阅读笔记：单机fs的崩溃一致性(chapter42-44)</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/系统架构设计笔记">system-design-interview笔记</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/JUC">JUC</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/cs144 labs">cs144 labs(Winter 2024)</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/jyy-os：并发">NJU操作系统(jyy OS)课程笔记-并发部分</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/nginx">nginx基础</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/cs144/cs144 lec notes">CS144 Lecture Notes</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/django-mosh">Django_mosh</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/splay-tree">splay tree</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/xv6book-notes">xv6book Notes(C1-4)</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/Go-Gin学习">Go,Gin学习</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/godis源码阅读">godis源码阅读</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/hibernate-jpa">hibernate&amp;jpa</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/linking-复习">linking 复习</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/ts基础">ts基础</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/实战2-mosh-gamehub">react practice:mosh gamehub</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/浅入理解断点和调试器">浅入理解断点和调试器</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/黑马点评">黑马点评(速通版)</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/js基础">js基础</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/11-14-11-26学习双周记">11-14-11-26学习双周记</a></li></ul></nav></aside><main class="col col--7"><article><header><h1 class="title_f1Hy">NJU操作系统(jyy OS)课程笔记-虚拟化部分</h1><div class="container_mt6G margin-vert--md"><time datetime="2025-02-12T13:56:21.000Z">February 12, 2025</time> · <!-- -->18 min read</div><div class="margin-top--md margin-bottom--sm row"><div class="col col--6 authorCol_Hf19"><div class="avatar margin-bottom--sm"><div class="avatar__intro"><div class="avatar__name"><span>ayanami</span></div></div></div></div></div></header><div id="__blog-post-container" class="markdown"><h3 class="anchor anchorWithStickyNavbar_LWe7" id="lec14-操作系统上的进程">lec14 操作系统上的进程<a class="hash-link" aria-label="Direct link to lec14 操作系统上的进程" title="Direct link to lec14 操作系统上的进程" href="/blog/jyy-os-虚拟化#lec14-操作系统上的进程">​</a></h3>
+<p>cpu有初始pc地址<code>-&gt;</code>放置固件上的初始程序(固件状态机)<code>-&gt;</code>启动OS(os状态机)<code>-&gt;</code>load init程序(程序状态机), 之后OS完全把行为转交给init(进程树的root)</p>
+<p>llm <code>知道存在</code>与<code>知道</code>的界限正在模糊: 知道存在且合理 逐渐趋同于 能做</p>
+<p>例如 qemu 相关的一些东西</p>
+<p>问llm发散出的概念<code>-&gt;</code>知识体系的快速建立</p>
+<p>fork? 以状态机的视角理解</p>
+<p>经典的for fork + printf</p>
+<p>写了个示例</p>
+<div class="language-cpp codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-cpp codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token macro property directive-hash" style="color:#36acaa">#</span><span class="token macro property directive keyword" style="color:#00009f">include</span><span class="token macro property" style="color:#36acaa"> </span><span class="token macro property string" style="color:#e3116c">&lt;cstddef&gt;</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token macro property directive-hash" style="color:#36acaa">#</span><span class="token macro property directive keyword" style="color:#00009f">include</span><span class="token macro property" style="color:#36acaa"> </span><span class="token macro property string" style="color:#e3116c">&lt;cstdio&gt;</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token macro property directive-hash" style="color:#36acaa">#</span><span class="token macro property directive keyword" style="color:#00009f">include</span><span class="token macro property" style="color:#36acaa"> </span><span class="token macro property string" style="color:#e3116c">&lt;cstdlib&gt;</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token macro property directive-hash" style="color:#36acaa">#</span><span class="token macro property directive keyword" style="color:#00009f">include</span><span class="token macro property" style="color:#36acaa"> </span><span class="token macro property string" style="color:#e3116c">&lt;stdio.h&gt;</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token macro property directive-hash" style="color:#36acaa">#</span><span class="token macro property directive keyword" style="color:#00009f">include</span><span class="token macro property" style="color:#36acaa"> </span><span class="token macro property string" style="color:#e3116c">&lt;unistd.h&gt;</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token macro property directive-hash" style="color:#36acaa">#</span><span class="token macro property directive keyword" style="color:#00009f">include</span><span class="token macro property" style="color:#36acaa"> </span><span class="token macro property string" style="color:#e3116c">&lt;vector&gt;</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token macro property directive-hash" style="color:#36acaa">#</span><span class="token macro property directive keyword" style="color:#00009f">include</span><span class="token macro property" style="color:#36acaa"> </span><span class="token macro property string" style="color:#e3116c">&lt;mutex&gt;</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token macro property directive-hash" style="color:#36acaa">#</span><span class="token macro property directive keyword" style="color:#00009f">include</span><span class="token macro property" style="color:#36acaa"> </span><span class="token macro property string" style="color:#e3116c">&lt;sys/wait.h&gt;</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token macro property directive-hash" style="color:#36acaa">#</span><span class="token macro property directive keyword" style="color:#00009f">include</span><span class="token macro property" style="color:#36acaa"> </span><span class="token macro property string" style="color:#e3116c">&lt;map&gt;</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token macro property directive-hash" style="color:#36acaa">#</span><span class="token macro property directive keyword" style="color:#00009f">include</span><span class="token macro property" style="color:#36acaa"> </span><span class="token macro property string" style="color:#e3116c">&lt;string&gt;</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">using</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">namespace</span><span class="token plain"> std</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">const</span><span class="token plain"> size_t buf_size </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">1024</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">const</span><span class="token plain"> std</span><span class="token double-colon punctuation" style="color:#393A34">::</span><span class="token plain">map</span><span class="token operator" style="color:#393A34">&lt;</span><span class="token keyword" style="color:#00009f">int</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> std</span><span class="token double-colon punctuation" style="color:#393A34">::</span><span class="token plain">string</span><span class="token operator" style="color:#393A34">&gt;</span><span class="token plain"> mode_map </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token punctuation" style="color:#393A34">{</span><span class="token plain">_IONBF</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;no buffer&quot;</span><span class="token punctuation" style="color:#393A34">}</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token punctuation" style="color:#393A34">{</span><span class="token plain">_IOLBF</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;line buffer&quot;</span><span class="token punctuation" style="color:#393A34">}</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token punctuation" style="color:#393A34">{</span><span class="token plain">_IOFBF</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;full buffer&quot;</span><span class="token punctuation" style="color:#393A34">}</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">}</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">void</span><span class="token plain"> </span><span class="token function" style="color:#d73a49">test</span><span class="token punctuation" style="color:#393A34">(</span><span class="token keyword" style="color:#00009f">int</span><span class="token plain"> __modes</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token function" style="color:#d73a49">printf</span><span class="token punctuation" style="color:#393A34">(</span><span class="token string" style="color:#e3116c">&quot;test in mode %s\n&quot;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> mode_map</span><span class="token punctuation" style="color:#393A34">.</span><span class="token function" style="color:#d73a49">at</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">__modes</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">.</span><span class="token function" style="color:#d73a49">c_str</span><span class="token punctuation" style="color:#393A34">(</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token function" style="color:#d73a49">fflush</span><span class="token punctuation" style="color:#393A34">(</span><span class="token constant" style="color:#36acaa">stdout</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    vector</span><span class="token operator" style="color:#393A34">&lt;</span><span class="token keyword" style="color:#00009f">int</span><span class="token operator" style="color:#393A34">&gt;</span><span class="token plain"> childs</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    std</span><span class="token double-colon punctuation" style="color:#393A34">::</span><span class="token plain">mutex mtx</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token function" style="color:#d73a49">setvbuf</span><span class="token punctuation" style="color:#393A34">(</span><span class="token constant" style="color:#36acaa">stdout</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">nullptr</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> __modes</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">0</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token keyword" style="color:#00009f">for</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">(</span><span class="token keyword" style="color:#00009f">int</span><span class="token plain"> i </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">0</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"> i </span><span class="token operator" style="color:#393A34">&lt;</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">2</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">++</span><span class="token plain">i</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">        </span><span class="token keyword" style="color:#00009f">int</span><span class="token plain"> pid </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> </span><span class="token function" style="color:#d73a49">fork</span><span class="token punctuation" style="color:#393A34">(</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">        </span><span class="token function" style="color:#d73a49">printf</span><span class="token punctuation" style="color:#393A34">(</span><span class="token string" style="color:#e3116c">&quot;hello from pid %d\n&quot;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> pid</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">        </span><span class="token keyword" style="color:#00009f">if</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">pid </span><span class="token operator" style="color:#393A34">&gt;</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">0</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">            std</span><span class="token double-colon punctuation" style="color:#393A34">::</span><span class="token plain">lock_guard</span><span class="token operator" style="color:#393A34">&lt;</span><span class="token plain">mutex</span><span class="token operator" style="color:#393A34">&gt;</span><span class="token plain"> </span><span class="token function" style="color:#d73a49">lock</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">mtx</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">            childs</span><span class="token punctuation" style="color:#393A34">.</span><span class="token function" style="color:#d73a49">push_back</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">pid</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">        </span><span class="token punctuation" style="color:#393A34">}</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token punctuation" style="color:#393A34">}</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">}</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">int</span><span class="token plain"> </span><span class="token function" style="color:#d73a49">main</span><span class="token punctuation" style="color:#393A34">(</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token comment" style="color:#999988;font-style:italic">// _IOLBF, _IOFBF, _IONBF</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token function" style="color:#d73a49">test</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">_IOFBF</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token function" style="color:#d73a49">printf</span><span class="token punctuation" style="color:#393A34">(</span><span class="token string" style="color:#e3116c">&quot;\n&quot;</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token function" style="color:#d73a49">fflush</span><span class="token punctuation" style="color:#393A34">(</span><span class="token constant" style="color:#36acaa">stdout</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token keyword" style="color:#00009f">return</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">0</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">}</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<p>在<code>_IOLBF</code>和<code>_IONBF</code>的情况下会出来6个hello</p>
+<p>每次printf都直接刷新/检测到换行符刷新缓冲, fork的时候没有IO状态
+而<code>_IOFBF</code>会有8个hello, 在fork第二次的时候会带着缓冲区(就是一段内存空间)进行fork,所以最后的4个进程每个都带着2个hello</p>
+<p><strong>系统里面没有魔法</strong></p>
+<p>fork: 把所有的知道的不知道的都复制了</p>
+<p>“是不是这样?” <code>-&gt;</code> 不知道的底层状态被复制了</p>
+<p><code>execve</code>: <strong>重置状态机</strong> <code>argc, argv, envp -&gt; main()</code></p>
+<p>execve是唯一一个可以新建一个状态机的系统调用</p>
+<p><code>exit</code>?</p>
+<ul>
+<li>main return</li>
+<li><code>exit</code> libc提供的</li>
+<li><code>_exit</code> 系统调用退出（<code>== asm volatile(&quot;mov ..., %rax; syscall&quot;)</code>）</li>
+<li>直接<code>SYSCALL</code></li>
+</ul>
+<p>前两个在c语言的空间, 是“normal exit”</p>
+<p>后两个不是normal的, <code>_exit</code> <code>exit_group</code> , <code>__exit</code> exit self</p>
+<p>行为区别? <code>strace</code></p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="lec15-进程的地址空间">lec15 进程的地址空间<a class="hash-link" aria-label="Direct link to lec15 进程的地址空间" title="Direct link to lec15 进程的地址空间" href="/blog/jyy-os-虚拟化#lec15-进程的地址空间">​</a></h3>
+<p>pmap</p>
+<p><code>/proc/[pid]/maps</code></p>
+<p>vvar(r), vdso(rx), vsyscall</p>
+<p>os内只读的syscall <code>-&gt;</code> 可以以内存的形式共享</p>
+<p>其实只需要进程能和OS交互一些数据就行 —— why not进程写page, OS轮询?</p>
+<ul>
+<li>在极端的时候能提高一些高优先级的进程的性能, 某篇OSDI</li>
+</ul>
+<p>地址空间应该是在运行时可变的</p>
+<p>所以我们需要一个不存在于c世界的操作(syscall)去操作地址空间 <code>-&gt;</code> mmap, munmap</p>
+<p>入侵进程的地址空间: gdb, perf</p>
+<p>Game Genie 物理入侵地址空间</p>
+<ul>
+<li>外接电路: 当cpu读地址a的时候读到x, 则替换为y</li>
+</ul>
+<p>jyy现场演示mini CE(雾)</p>
+<p>gdb attach到虚拟机,查找满足某个模式的内存值, 修改之</p>
+<p><code>/proc/[pid]/mem</code> 修改器 = 调试器</p>
+<p>xdotool: cmd X11 automation tool</p>
+<p>ydotool: better xdotool <code>-&gt;</code> 按键精灵</p>
+<p>evdev 按键显示脚本</p>
+<p>xdotool测试vsc插件, crazy</p>
+<p>或许不需要那么多的“魔法工具”</p>
+<p>OS: 解放编程能力, 什么事情在OS上可以做</p>
+<p>变速齿轮: syscall是感知时间的唯一方法</p>
+<p>gdb 脚本之中, 在gettimeofday打断点, 然后修改寄存器, amazing!!!</p>
+<p>hook</p>
+<p>patching: 整活, kpatch, 不停机更新(软件动态链接)</p>
+<p><code>old func, rx -&gt; 修改为rwx -&gt; 修改old func为, jmp到new func</code></p>
+<p>在chcore里面看看? 或许有必要研究一下gdb(attach with qemu)</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="lec16-syscall--unix-shell">lec16 syscall &amp; unix shell<a class="hash-link" aria-label="Direct link to lec16 syscall &amp; unix shell" title="Direct link to lec16 syscall &amp; unix shell" href="/blog/jyy-os-虚拟化#lec16-syscall--unix-shell">​</a></h3>
+<p>everything is a file</p>
+<p>thing: 操作系统里面的对象</p>
+<p>gpt时代的“编程”——自然语言?</p>
+<div class="language-c codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-c codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token comment" style="color:#999988;font-style:italic">//OS: API:</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token comment" style="color:#999988;font-style:italic">//	get_object_by_name(</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token comment" style="color:#999988;font-style:italic">//		&quot;the address space file of pid=1234&quot;</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token comment" style="color:#999988;font-style:italic">//	)</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<p><strong>文件描述符: 指向OS对象的“指针”</strong></p>
+<p>windows: handle(句柄)</p>
+<p>IPC endpoints: 例子, 管道</p>
+<p>管道是同步的</p>
+<p>fork + pipe? 本质是&quot;指针&quot;的拷贝</p>
+<p>现在两个进程都有读口和写口啦</p>
+<p>shell, kernel 的外壳</p>
+<p>cli: 高效简洁的编程语言</p>
+<p>算力的提升: <code>cli -&gt; gui -&gt; 自然语言</code></p>
+<p>shell as pl: <strong>基于文本替换的快速工作流搭建</strong></p>
+<p>job control: 类比窗口管理器的&quot;x&quot;, 最小化</p>
+<p>或许不需要tmux, shell就是最简单的tmux</p>
+<p>手册: complete ref</p>
+<p>AI是“被动的”, 读一读shell manual</p>
+<p>复刻unix shell</p>
+<p>“抛开系统库”</p>
+<p><code>-ffreestanding -nostdlib -static</code></p>
+<p>gdb init已经很常见了, 但gdb init到python再在python里面转回<code>/proc/[pid]/fd</code>打印, 最后结合gdb的内置hook,在stop时候打印, fancy!</p>
+<p>这打印的不是我们go的channel语法吗, 更有趣了</p>
+<p>sh manual</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="lec-17-syscall的封装-libc">lec 17 syscall的封装: libc<a class="hash-link" aria-label="Direct link to lec 17 syscall的封装: libc" title="Direct link to lec 17 syscall的封装: libc" href="/blog/jyy-os-虚拟化#lec-17-syscall的封装-libc">​</a></h3>
+<p>pipe write如果小于PIPE_BUF, 是原子的</p>
+<p>pipe 7</p>
+<p>读者关闭: Broken pipe</p>
+<p>libc 标准化, 稳定可靠, 移植性极好</p>
+<p>C runtime library: -Wl, --verbose看到链接列表</p>
+<p>调试glibc? 历史包袱重, 大量内联汇编, musl</p>
+<p>只要实现了C ABI指定的堆栈排布的系统调用, 就可以轻松移植musl等到自己的OS上, 底层的计算由硬件指令集给出</p>
+<p>System V ABI</p>
+<p>脱开workload 做优化就是耍流氓</p>
+<ul>
+<li>在开始考虑性能之前, 理解需要考虑什么样的性能</li>
+</ul>
+<p><strong>workload哪里找? 当然是paper了(顺便白得方案)</strong></p>
+<ul>
+<li>看wkld调性能</li>
+</ul>
+<p>mm alloctor: 根基</p>
+<ul>
+<li>大对象应该有长生存期, 否则是performance bug</li>
+<li>越小的对象创建/分配越频繁</li>
+<li>小对象, 中对象, 大对象</li>
+</ul>
+<p>瓶颈几乎是小对象</p>
+<p>链表/区间树不是一个好想法: 上锁, 不能很好的并行化</p>
+<p>设置两套系统：</p>
+<ul>
+<li>Fast path 性能极好，并行度极高，覆盖大部分情况</li>
+<li>Slow path 不在乎速度，但把困难的事情做好</li>
+<li>例如cache</li>
+</ul>
+<p>init ram fs</p>
+<p>ISA -&gt; OS 对象/syscall -&gt; libc -&gt; 系统工具 coreutils, busybox -&gt; 应用程序</p>
+<p>initramfs</p>
+<ul>
+<li>
+<p>加载剩余必要的驱动程序, 例如磁盘/网卡</p>
+</li>
+<li>
+<p>挂载必要的fs</p>
+</li>
+<li>
+<p><strong>将根文件系统和控制权移交给另一个程序, 例如systemd</strong></p>
+</li>
+</ul>
+<p>initramfs作为一个非常小的启动fs, 再把磁盘这个OS Object mount进来, 最后switch root把控制权给到磁盘的的根系统</p>
+<p>启动的第二级阶段 /sbin/init</p>
+<p>疯狂的事情不断有人在做, 但疯狂的事情的起点其实经常很小</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="lec-19-可执行文件">lec 19 可执行文件<a class="hash-link" aria-label="Direct link to lec 19 可执行文件" title="Direct link to lec 19 可执行文件" href="/blog/jyy-os-虚拟化#lec-19-可执行文件">​</a></h3>
+<p>elf不是一个人类友好的“状态机数据结构描述”</p>
+<p>为了性能, 彻底违背了可读(“信息局部性”)原则</p>
+<p>可执行文件=OS的<strong>数据结构</strong>(core.dump), 描述了程序应该的初始状态</p>
+<p>支持的特性越多, 人类越不能理解</p>
+<p>人类友好: <strong>平坦的</strong></p>
+<p>回归连接和加载的核心概念: 代码、符号、重定位</p>
+<p>my_execve</p>
+<p>elf file -&gt; parse as struct</p>
+<p>-&gt; 将各个section load到指定的地址(mmap)-&gt;asm volatile布置好ABI调用栈(根据手册)-&gt;jmp!</p>
+<p>如何释放旧进程的内存资源？proc里面需要有记录</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="lec-21-syscall--ctx-switch">lec 21 syscall &amp; ctx switch<a class="hash-link" aria-label="Direct link to lec 21 syscall &amp; ctx switch" title="Direct link to lec 21 syscall &amp; ctx switch" href="/blog/jyy-os-虚拟化#lec-21-syscall--ctx-switch">​</a></h3>
+<p>dynamic linker</p>
+<p>se给的os基础还是很扎实的
+很难想象ics2里面讲了GOT和PLT</p>
+<p>SEE ALSO是一个宝藏 man ld.so</p>
+<p>hacking: <code>LD_PRELOAD</code>不需要修改libc, 动态加载的全局符号, <strong>先到先得</strong></p>
+<p><strong>劫持大法</strong>！</p>
+<p>kernel memory mapping</p>
+<p>低配版Linux 1.X 分段, 内核在低位, 只是分个段</p>
+<p>低配版Linux 2.X 内核还是在物理低位, 但程序看到虚拟地址已经是高位了</p>
+<p>today: complete memory map</p>
+<p>qemu is a state machine simulator: 调试syscall(gdb并不能si从用户态进kernel)</p>
+<p>另一种理解中断的方式：&quot;被&quot;插入一条syscall</p>
+<p>中断, 把状态机的整个寄存器状态存到内存里面</p>
+<p>在汇编之中小  心排布内存和搬运寄存器, 返回到c之中就是结构体的context</p>
+<p>schedule的核心: 调用一个“不会返回的函数”</p>
+<p>这个(汇编)函数以context为参数, 并且根据context, 返回到另一处控制流...</p>
+<p><code>-&gt;</code> coroutine 也是如此! OS作为一个“状态机管理器”就在做一个&quot;coroutine event handler&quot;的作用</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="lec-22-process">lec 22 process<a class="hash-link" aria-label="Direct link to lec 22 process" title="Direct link to lec 22 process" href="/blog/jyy-os-虚拟化#lec-22-process">​</a></h3>
+<p>进程: “戴上VR”的thread</p>
+<p>有自己的地址转换, 对一切的load/store会应用一个f，作用在addr上</p>
+<p>硬件提供了“戴上VR”的指令</p>
+<p>这个f从ds的视角来说就是<code>int-&gt;int</code>的映射</p>
+<p>查页表(<code>int-&gt;int</code>的映射)这件事, 如何加速? --自然想到radix tree</p>
+<p>普通实现是radix tree(x86, riscv, ...收敛到的最终方案)</p>
+<p>每一次访存都要查这么几次的话不可接受</p>
+<p>因此有了TLB, 但立刻带来的一个设计问题是, 谁来管TLB(以及对应的miss处理？)</p>
+<p>x86选择放到硬件, 但丧失灵活性的后果是即使有些进程只想要f(x)=x, 也必须要老实查表, TLB在和cpu cache抢带宽</p>
+<p>MIPS选择放到软件, miss了直接丢出来异常, 让软件来决定怎么处理TLB</p>
+<p>疯狂的想法: inverted page table</p>
+<p>把key从VPN换成 (VPN, pid), 然后从一一映射改成hashtable, 支持每个进程有自己的页表</p>
+<p>缺点在例如hashtable带来的冲突时(TLB miss, etc)时间不可控(O(1) ~ O(n))</p>
+<p>每个进程都有自己的“VR眼镜”这件事情还带来了更多的优化空间, 例如多个进程, 不同的虚拟地址块映射到同一个物理地址, 以及cow</p>
+<p>KSM(kernel samepage merging/mermory deduplication), demand paging</p>
+<p>fork: 进程快照, redis</p>
+<p>cow fork的缺点: 让系统实  现变复杂</p>
+<p>改革: 砍掉所有的内核部分, 剩下的全部交给xv6</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="lec-23-处理器调度">lec 23 处理器调度<a class="hash-link" aria-label="Direct link to lec 23 处理器调度" title="Direct link to lec 23 处理器调度" href="/blog/jyy-os-虚拟化#lec-23-处理器调度">​</a></h3>
+<p>trampoline code</p>
+<p>跳板代码, 例子</p>
+<ul>
+<li>call printf -&gt; call *GOT(printf)</li>
+<li>JIT编译器</li>
+<li>软件热更新(patch 函数头)</li>
+</ul>
+<p>资源调度(分配)是一个非常复杂的问题</p>
+<p>建模, 预测, 决策 <code>-&gt;</code> 调度策略的设计空间</p>
+<p>调度策略</p>
+<p>再加一层机制 &quot;niceness&quot;, 管理员控制nice, 越nice越能得到cpu</p>
+<p>10 nice ~ 10倍性能差异</p>
+<p>taskset 绑定一个process到一个cpu上</p>
+<p>round-robin时代: MLFQ, 动态优先级</p>
+<ul>
+<li>
+<p>让出CPU(I/O) -&gt; “好”</p>
+</li>
+<li>
+<p>用完时间片 -&gt; “坏”!</p>
+</li>
+</ul>
+<p>1960s: breakthrough!</p>
+<p>2020s: 对很多负载都欠考虑</p>
+<p>今天的调度: CFS(complete fair scheduling)</p>
+<p>但有vruntime, &quot;好人&quot;的钟快一些</p>
+<p>真实的处理器调度: 不要高兴得太早...</p>
+<ul>
+<li><strong>低优先级的在持有mutex的时候被中间优先级的赶下处理器</strong>, 可以<strong>导致高优先级的任务等待mutex退化到低优先级</strong> <code>-&gt;</code> 火星车</li>
+</ul>
+<p><strong>Linux: 没法解决, CFS凑合用</strong></p>
+<p>实时系统: 火星车在CPU Reset, 不能摆烂</p>
+<ul>
+<li>
+<p>优先级继承, 条件变量唤醒?</p>
+</li>
+<li>
+<p>lockdep预警</p>
+</li>
+<li>
+<p>...</p>
+</li>
+</ul>
+<p><strong>然而不止有锁, 还有多处理器...</strong></p>
+<p><strong>今天的计算机系统: SMP</strong></p>
+<p><strong>多处理器的矛盾困境</strong></p>
+<ul>
+<li><strong>绑定一个线程:&quot;一核有难, 八方围观&quot;</strong></li>
+<li><strong>谁空丢给谁: cache, TLB白干</strong></li>
+</ul>
+<p><strong>更多的实际情况: NUMA, 异构, 多用户</strong></p>
+<ul>
+<li>
+<p><strong>numa: 远近cpu性能差达到数倍</strong></p>
+</li>
+<li>
+<p><strong>多用户的cpu共享? namespaces, cgroups, 例如一个程序开并行, 另一个程序是串行的, 是否需要给串行的保留一个核, 而不是开得越多抢得越多</strong></p>
+</li>
+<li>
+<p><strong>异构, 大小核超小核, GPUNPU, 每个核的独有缓存和共享缓存...</strong></p>
+</li>
+<li>
+<p><strong>更少的处理器可能更快...(反直觉, 同步cacheline带来的开销)</strong></p>
+</li>
+</ul>
+<p>复杂的系统无人掌控</p>
+<p>ghOSt: Fast &amp; Flexible User-Space Delegation of Linux</p>
+<p>开始下放给应用程序做调度</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="others">Others<a class="hash-link" aria-label="Direct link to Others" title="Direct link to Others" href="/blog/jyy-os-虚拟化#others">​</a></h3>
+<p>早期优雅的设计可能会成为后续发展的包袱: fork+exec带来的膨胀, <strong>所有涉及到OS内部状态的api都需要考虑fork行为</strong>, 例如文件偏移量...</p>
+<p>总线, 中断控制器, DMA</p>
+<p>总线: 提供设备的“虚拟化”, 注册和转发, 把收到的地址(总线地址)和数据转发到对应的设备上</p>
+<p><strong>这样cpu只需要直连一根总线就行了!</strong></p>
+<p>PCI总线</p>
+<ul>
+<li>总线可以桥接其他总线, 例如<code>pci -&gt; usb</code></li>
+</ul>
+<p><code>lspci -tv</code>可视化</p>
+<p>&quot;即插即用&quot;的实现——非常复杂!</p>
+<p>cpu: 只有一根中断线</p>
+<p>启动多个cpu: cpu给其他cpu发中断!</p>
+<p>中断仲裁: 收集各个设备中断, 选一个发给cpu</p>
+<p>APIC(Advanced PIC):</p>
+<ul>
+<li>local APIC: 中断向量表, IPI, 时钟, ...</li>
+<li>IO APIC: IO设备</li>
+</ul>
+<p>DMA: 很早期就有了, 解放cpu, 设计专用的电路只做memcpy</p>
+<p>今天: PCI总线直接支持</p>
+<p><strong>文件 = 实现了文件操作的“Anything”</strong></p>
+<p><strong>设备驱动程序: 一个 struct file_operations的实现, 就是一段普通的内核, “翻译”read/write等系统调用</strong></p>
+<p><code>/dev/null</code>的驱动: read永远什么都不做返回0, write永远什么都不做返回count</p>
+<p>一种&quot;duck type&quot;</p>
+<p>设备不仅仅是数据, 还有配置</p>
+<p>配置设备:</p>
+<ul>
+<li>控制作为数据流的一部分(自定义一套write的指令编码)</li>
+<li>提供一个新的接口</li>
+</ul>
+<p>ioctl: 非数据的设备功能几乎完全依赖ioctl, 完全由驱动决定</p>
+<p>数量最庞大,质量最低的shit</p>
+<p>unix的负担: 复杂的hidden spec</p>
+<p>/dev/kvm 硬件虚拟化, 支撑了几乎所有的云产商虚拟化方案</p>
+<p>unix的设计: 目录树的拼接</p>
+<p>将一棵目录树拼到另一棵上</p>
+<p>回想最小linux系统, 只有/dev/console和几个文件</p>
+<p>/proc, /sys, /tmp都是mount系统调用创建的</p>
+<p>&quot;看到的fs!=磁盘的fs&quot;, is just a <strong>view</strong></p>
+<p>像是procfs这种并非实际的fs更是, 可以挂载到任意的地方, 以任意的数量(因为他只是fake了read/write的“file Object”)</p>
+<p>根本设计哲学: 灵活</p>
+<p>灵活性带来的</p>
+<ul>
+<li><code>/</code>, <code>/home</code>, <code>/var</code>都可以是独立的设备, 把有些快的放在一个目录存可执行文件, 另一些存数据...</li>
+</ul>
+<p>mount一个文件? loopback device</p>
+<p>设备驱动把设备的read/write翻译成文件的rw</p>
+<p>FHS: Filesystem Hierarchy Standard</p>
+<p>ln -s 图结构 as 状态机</p>
+<p>fs: 一个”数据结构题“, 但读写的单元是一个block</p>
+<p>FAT: 集中保存所有&quot;next&quot;指针, 可靠性? 存n份!</p>
+<p>fat manual</p>
+<p>fat 小文件ok, 大文件不行</p></div><footer class="docusaurus-mt-lg"><div class="row margin-top--sm theme-blog-footer-edit-meta-row"><div class="col"><b>Tags:</b><ul class="tags_jXut padding--none margin-left--sm"><li class="tag_QGVx"><a class="tag_zVej tagRegular_sFm0" href="/blog/tags/os">os</a></li><li class="tag_QGVx"><a class="tag_zVej tagRegular_sFm0" href="/blog/tags/system">system</a></li><li class="tag_QGVx"><a class="tag_zVej tagRegular_sFm0" href="/blog/tags/virtualize">virtualize</a></li></ul></div></div></footer></article><nav class="pagination-nav docusaurus-mt-lg" aria-label="Blog post page navigation"><a class="pagination-nav__link pagination-nav__link--prev" href="/blog/cs186-database-WIP"><div class="pagination-nav__sublabel">Newer Post</div><div class="pagination-nav__label">ucb cs186 课程笔记(更新中)</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/blog/local-llm"><div class="pagination-nav__sublabel">Older Post</div><div class="pagination-nav__label">来本地部署大模型!</div></a></nav><div>Loading Comments...</div></main><div class="col col--2"><div class="tableOfContents_bqdL thin-scrollbar"><ul class="table-of-contents table-of-contents__left-border"><li><a class="table-of-contents__link toc-highlight" href="/blog/jyy-os-虚拟化#lec14-操作系统上的进程">lec14 操作系统上的进程</a></li><li><a class="table-of-contents__link toc-highlight" href="/blog/jyy-os-虚拟化#lec15-进程的地址空间">lec15 进程的地址空间</a></li><li><a class="table-of-contents__link toc-highlight" href="/blog/jyy-os-虚拟化#lec16-syscall--unix-shell">lec16 syscall &amp; unix shell</a></li><li><a class="table-of-contents__link toc-highlight" href="/blog/jyy-os-虚拟化#lec-17-syscall的封装-libc">lec 17 syscall的封装: libc</a></li><li><a class="table-of-contents__link toc-highlight" href="/blog/jyy-os-虚拟化#lec-19-可执行文件">lec 19 可执行文件</a></li><li><a class="table-of-contents__link toc-highlight" href="/blog/jyy-os-虚拟化#lec-21-syscall--ctx-switch">lec 21 syscall &amp; ctx switch</a></li><li><a class="table-of-contents__link toc-highlight" href="/blog/jyy-os-虚拟化#lec-22-process">lec 22 process</a></li><li><a class="table-of-contents__link toc-highlight" href="/blog/jyy-os-虚拟化#lec-23-处  理器调度">lec 23 处理器调度</a></li><li><a class="table-of-contents__link toc-highlight" href="/blog/jyy-os-虚拟化#others">Others</a></li></ul></div></div></div></div></div><footer class="footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="col footer__col"><div class="footer__title">notes</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/docs/RL">课程笔记</a></li></ul></div><div class="col footer__col"><div class="footer__title">Community</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://stackoverflow.com/questions/tagged/docusaurus" target="_blank" rel="noopener noreferrer" class="footer__link-item">Stack Overflow<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li><li class="footer__item"><a href="https://discordapp.com/invite/docusaurus" target="_blank" rel="noopener noreferrer" class="footer__link-item">Discord<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li><li class="footer__item"><a href="https://twitter.com/docusaurus" target="_blank" rel="noopener noreferrer" class="footer__link-item">Twitter<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li></ul></div><div class="col footer__col"><div class="footer__title">More</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/blog">Blog</a></li><li class="footer__item"><a class="footer__link-item" href="/personal-essays">Personal Essays</a></li><li class="footer__item"><a href="https://github.com/facebook/docusaurus" target="_blank" rel="noopener noreferrer" class="footer__link-item">GitHub<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2025 Ayanami, Inc. Built with Docusaurus.</div></div></div></footer></div>
+</body>
+</html>

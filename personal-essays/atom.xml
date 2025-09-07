@@ -2,11 +2,184 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://ayanami1314.github.io/personal-essays</id>
     <title>Ayanami's Cave Blog</title>
-    <updated>2025-02-12T13:56:21.000Z</updated>
+    <updated>2025-09-07T16:32:20.787Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://ayanami1314.github.io/personal-essays"/>
     <subtitle>Ayanami's Cave Blog</subtitle>
     <icon>https://ayanami1314.github.io/img/ayanami.jpg</icon>
+    <entry>
+        <title type="html"><![CDATA[2025春季学期总结]]></title>
+        <id>https://ayanami1314.github.io/personal-essays/2025-spring</id>
+        <link href="https://ayanami1314.github.io/personal-essays/2025-spring"/>
+        <updated>2025-09-07T16:32:20.787Z</updated>
+        <summary type="html"><![CDATA[这学期的生活模式还是和前几个学期完全不同的，所以有必要讲一讲。]]></summary>
+        <content type="html"><![CDATA[<p>这学期的生活模式还是和前几个学期完全不同的，所以有必要讲一讲。</p>
+<p>在上学期，迎来了第一个面试（虽然以字节一面挂告终www），也尝试在一些稍微大一点的学校里面的开源项目上进行贡献，但整体技术性的成长感觉并不是非常多，例如后端涉及的那些东西墨迹了一个学期也没学多少，还在和微内核缠斗（虽然这些OS的知识到现在也再没有用到过......）</p>
+<p>而在这个学期，迎来了第一段实习，在某家quant做AI workflow，整体体验比较难绷，就感觉公司里面其实没有懂这个的人，很多数据和文档防实习生又和防贼一样，要不是有其他实习生的互帮互助，估计真中间就跑路了。但整体来说，也算是在这个领域自己学习了很多东西，基本上市面上的怎么做的都有了一定了解和实操，除了直接调LLM因为资源限制没太做过之外，下游的那些任务都基本接触过了。而在五月底结束实习的时候，其实就一直在想后面往哪里去走，本科就业还是本校保研，以及这个后端要不要继续往AI方向靠（AI应用有持久性吗）</p>
+<p>而在实习的同时，在学校这边来到了新实验室做一些新的研究，学长学姐和老师都非常nice，大家一起摸鱼（笑），虽然不是什么非常成功、非常热门的实验室和研究方向，但胜在氛围舒服轻松，暑假也可能会迎来第一篇paper的发表。在实验室主要做的是强化学习的空地一体化，学期中间看paper的时候，有时候到也会感觉有点好笑，看的paper怎么这么多自动化和OR的，还是cs科班的学生吗（bushi）。</p>
+<p>这个学期感觉也是MLsys再上一筹的学期，虽然我自己没有接触过，但周围做这个的同学可谓是捷报频传，收割offer和业界的认可就像是割草一样，感觉也是很好的吃到新兴期的红利了，还是有点羡慕的，之前几个要好的同学说可以来他们实验室做相关的研究，但到现在也没有去尝试，有点不太想做系统了。</p>
+<p>说到系统就想起来几件事，一是ATC（系统顶会）在之后停办，二是某系统网红实验室的博士老大哥之一跑AI学院当AP了，还有就是之前校内论坛有AI方向的学长经验分析的时候的无心之言“当然还有计算机系统、安全、理论计算机、图形学之类奇奇怪怪的方向”，系统已经沦为“奇奇怪怪的方向”了，感觉心情有点难以表述，咱们软件学院的也算是图形系统TCS安全牢九门兼备了，很难评。</p>
+<p>然后就是暑假，暑假这边有一个小学期非常恶心，专业特有的必修一个月在学校组队上课开发玩具项目，可以说非常逆天了，只能是苦衷作乐，自选了一个感觉有一点意思和挑战的题目，打算做个类似copilot的东西，不过等做出来再说了。非要在小学期里面塞一周五天的必修课，学生想去实验室和实习都非常恶心，做的又是shit，形式主义的事情又贼多（上班的时候都没有填过这种难绷的开发表，画UML图，每天开会......），只能说这课确实是一坨答辩。</p>
+<p>最近也在投下一段实习，打算是大三上的时候再去实习一下，希望做的能更solid一些，也能获取到不管是算法还是工程上的一些指导。在约面试的过程中，也逐渐感觉云原生和AI infra还是现在后端机架方向的招工大头，缺少相关知识确实挺吃亏的，和马上过期的算法知识不通，底层的知识相对还是稳定一些，有空的话确实想要做一些cloud相关的工作。</p>
+<p>还有就是实习的一些随感？例如，即使实习做的再toy，接触的也是工业的需求，要求的完成成熟度不是校内项目能比的；例如，实习出去一个人租房真的很爽，经济独立的感觉也非常好。</p>
+<p>以及逐渐有一个暴论是：基础课真的应该早点刷完，因为上课（不管是校内的还是公开课）真的没有行业竞争力，这个竞争力都不是技术方向的，而是资源性的东西。例如算法的有没有跑过集群训练，工程的项目有没有上线经验之类，整个学校在本科生课程上真的没有投入任何资源，所有的资源都在实验室里面，所以从这个角度看，现在的小朋友确实应该早点进入实验室，早点确认自己的方向。</p>
+<p>话是这么说，但其实我自己也没有确认方向，这个学期本身就是一个盛大转型和跑路，谁知道后面会怎么样呢，早些日子我一心本科就业，最近被硕士和paper卡麻了也在重新考虑要不要还是读个硕士，既是积累技术也是留自己一段几年的“gap”时间，好好观察和探索自己想要做的事情。</p>
+<p>还是看看投递结果如何吧，约到了好多面，如果能在下学期去大厂实习的话，再走一步看一步，如果找不到心仪的实习对象的话可能就再补补知识继续沉淀一个学期，总归有路可走的，如果算本科就业也还有两年呢。少焦虑，多做事，多休息，否则身体真的会出问题，已经不想再去医院力。</p>]]></content>
+        <author>
+            <name>ayanami</name>
+        </author>
+        <category label="总结" term="总结"/>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[mygo文学类二创盘点——被大多数go友忽略的同人角落]]></title>
+        <id>https://ayanami1314.github.io/personal-essays/mygo文学类二创盘点——被大多数冰友忽略的同人角落</id>
+        <link href="https://ayanami1314.github.io/personal-essays/mygo文学类二创盘点——被大多数冰友忽略的同人角落"/>
+        <updated>2025-04-06T06:18:26.698Z</updated>
+        <summary type="html"><![CDATA[[安利]mygo文学类二创盘点——被大多数go友忽略的同人角落]]></summary>
+        <content type="html"><![CDATA[<h2 class="anchor anchorWithStickyNavbar_LWe7" id="安利mygo文学类二创盘点被大多数go友忽略的同人角落">[安利]mygo文学类二创盘点——被大多数go友忽略的同人角落<a class="hash-link" aria-label="Direct link to [安利]mygo文学类二创盘点——被大多数go友忽略的同人角落" title="Direct link to [安利]mygo文学类二创盘点——被大多数go友忽略的同人角落" href="https://ayanami1314.github.io/personal-essays/mygo%E6%96%87%E5%AD%A6%E7%B1%BB%E4%BA%8C%E5%88%9B%E7%9B%98%E7%82%B9%E2%80%94%E2%80%94%E8%A2%AB%E5%A4%A7%E5%A4%9A%E6%95%B0%E5%86%B0%E5%8F%8B%E5%BF%BD%E7%95%A5%E7%9A%84%E5%90%8C%E4%BA%BA%E8%A7%92%E8%90%BD#%E5%AE%89%E5%88%A9mygo%E6%96%87%E5%AD%A6%E7%B1%BB%E4%BA%8C%E5%88%9B%E7%9B%98%E7%82%B9%E8%A2%AB%E5%A4%A7%E5%A4%9A%E6%95%B0go%E5%8F%8B%E5%BF%BD%E7%95%A5%E7%9A%84%E5%90%8C%E4%BA%BA%E8%A7%92%E8%90%BD">​</a></h2>
+<p>说起mygo的二创冰, 源u简直可以说三天三夜, 从始皇帝马小花儿老师的《素颜》《AnO_od》《祥distance》到后来的班青马老师的《我还年轻》，从睦头角色曲《暗恋是一个人的事情》到大祥主题曲《假如有一天我变得很有钱》，言力华老师的mygo二头身小人，大水母的go棍结合之《罗密欧内该与朱比叶》，均是溜冰的上品。除却B站之外, 贴吧也是go友的主战场, 从古老的睦祥姐妹说到最新的初华失忆假药, 各种清奇的脑洞简直令人欲罢不能。还有诸如瓶皇和泛团两个直播间定时产出高质量切片，33989也干了.jpg，各种表情包、梗图和小漫画等等。但除去以上这些流传甚广（在MyGo &amp; Mujica楼之中已有记载）的二创冰之外，还有一个大部分go友还未探索的地带——同人小说，也正是下文之中楼主溜了一年多想要开个帖子系统分享的体裁。</p>
+<p>mygo同人小说从连载平台上可以分成几个主战场, Lofter, 刺猬猫&amp;起点, 贴吧&amp;nga以及极少的b站原创小视频。而从写作形式上又分短中长三种篇幅，短篇主要还是贴吧生产的假药居多，在本文主要探讨中长篇的同人（&gt;20w字），凭借楼主在刺猬猫基本大部分go文都尝试读过的经历为大伙神农尝一波百草，顺带给平时不看小说的go友推荐几个可以入坑的佳作。</p>
+<p>叠甲:</p>
+<ul>
+<li>楼主品味有限, 如有观点不合的情况, 欢迎讨论，但不要人身攻击和价值观汴京</li>
+<li>不对平台本身批判，纯讨论作品</li>
+<li>楼主是爱音厨兼祥厨/睦厨，所以会有一定的作品偏向（跑，例如一堆爱all）</li>
+<li>楼主口味很杂并且接受度很高，所以会有一定的嗜血程度和恐怖偏向标注(典中典之爱音怎么又死了)</li>
+</ul>
+<p>接下来从连载平台和写作背景的角度来分类当前的mygo同人小说和尝试选出几篇楼主认为的佳作，楼主将会从个人角度和嗜血程度打分（评估观众接受能力），并附上简介和评价，希望能有安利到大伙:</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="lofter">Lofter<a class="hash-link" aria-label="Direct link to Lofter" title="Direct link to Lofter" href="https://ayanami1314.github.io/personal-essays/mygo%E6%96%87%E5%AD%A6%E7%B1%BB%E4%BA%8C%E5%88%9B%E7%9B%98%E7%82%B9%E2%80%94%E2%80%94%E8%A2%AB%E5%A4%A7%E5%A4%9A%E6%95%B0%E5%86%B0%E5%8F%8B%E5%BF%BD%E7%95%A5%E7%9A%84%E5%90%8C%E4%BA%BA%E8%A7%92%E8%90%BD#lofter">​</a></h3>
+<p>lofter的go同人特点是偏短, 且更偏向于传统假药与主推的少数几个角色的cp文等。你能在里面看到go团鸡团的所有人的排列组合......</p>
+<p>由于楼主看过的lofter长篇并不多, 所以只推荐一部确实好的:</p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="少女们的逆行">少女们的逆行<a class="hash-link" aria-label="Direct link to 少女们的逆行" title="Direct link to 少女们的逆行" href="https://ayanami1314.github.io/personal-essays/mygo%E6%96%87%E5%AD%A6%E7%B1%BB%E4%BA%8C%E5%88%9B%E7%9B%98%E7%82%B9%E2%80%94%E2%80%94%E8%A2%AB%E5%A4%A7%E5%A4%9A%E6%95%B0%E5%86%B0%E5%8F%8B%E5%BF%BD%E7%95%A5%E7%9A%84%E5%90%8C%E4%BA%BA%E8%A7%92%E8%90%BD#%E5%B0%91%E5%A5%B3%E4%BB%AC%E7%9A%84%E9%80%86%E8%A1%8C">​</a></h4>
+<p>参考阅读链接:</p>
+<p><a href="https://hoshinoyoni.lofter.com/post/7935788d_2ba4f2032" target="_blank" rel="noopener noreferrer">https://hoshinoyoni.lofter.com/post/7935788d_2ba4f2032</a></p>
+<p><a href="https://nga.178.com/read.php?tid=37913013" target="_blank" rel="noopener noreferrer">https://nga.178.com/read.php?tid=37913013</a></p>
+<p>楼主简介: 灯没有拉回爱音，c团重组，猫猫和爱音被踢出，mygo并未成立的IF线, 燃尽的太阳化为灰烬之后，会如何继续发展呢? 主线纯(甜甜圈女士)爱，IF线爱祥</p>
+<p>楼主点评: 开创传奇形象“灰爱音”的传世之作，文笔在某些地方虽然还算比较稚嫩，但本篇的情感描写和由爱音，初华，真奈，猫猫和海铃组成的新概念乐队IF（末日废土风）的出色，anon真作为吉他主唱的大纲设计，都是非常出色的。更是后续超大量三创四创N创的发源地(致敬传奇三创爱音灰爱音灵魂互换)的基石，很好的契合了少女们的逆行这一个大主题。你甚至能看到味觉丧失爱音和死都要唱死在live上（并非），嗜血机车人之魂必然是按耐不住的呀！此外，这篇对于楼主来说还是爱祥和纯爱这种小cp的开源地，老go团的纠结和懊悔, IF团的团魂太美味了呀！</p>
+<p>楼主评分: 9.5/10</p>
+<p>嗜血程度: 2.5星</p>
+<p>字数: 约20w, 已完结</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="刺猬猫起点">刺猬猫&amp;起点<a class="hash-link" aria-label="Direct link to 刺猬猫&amp;起点" title="Direct link to 刺猬猫&amp;起点" href="https://ayanami1314.github.io/personal-essays/mygo%E6%96%87%E5%AD%A6%E7%B1%BB%E4%BA%8C%E5%88%9B%E7%9B%98%E7%82%B9%E2%80%94%E2%80%94%E8%A2%AB%E5%A4%A7%E5%A4%9A%E6%95%B0%E5%86%B0%E5%8F%8B%E5%BF%BD%E7%95%A5%E7%9A%84%E5%90%8C%E4%BA%BA%E8%A7%92%E8%90%BD#%E5%88%BA%E7%8C%AC%E7%8C%AB%E8%B5%B7%E7%82%B9">​</a></h3>
+<p>这将是一个大篇章, 大伙可能不知道的是, 小祥已经成为继路明非之后又一个诸天万界遨游的角色了（笑，指X可为任意值的《从X归来的路明非/丰川祥子》）。我们更是有首相小祥，赛博小祥，魔女小祥，如龙小祥，春物小祥，火影小祥，超能力者小祥，传奇罪犯小祥，女仆小祥，白色相簿小祥，...</p>
+<p>anyway, 由于这部分的实在太多，我会进一步将其切分：</p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="不换世界观-无原创角色">不换世界观, 无原创角色<a class="hash-link" aria-label="Direct link to 不换世界观, 无原创角色" title="Direct link to 不换世界观, 无原创角色" href="https://ayanami1314.github.io/personal-essays/mygo%E6%96%87%E5%AD%A6%E7%B1%BB%E4%BA%8C%E5%88%9B%E7%9B%98%E7%82%B9%E2%80%94%E2%80%94%E8%A2%AB%E5%A4%A7%E5%A4%9A%E6%95%B0%E5%86%B0%E5%8F%8B%E5%BF%BD%E7%95%A5%E7%9A%84%E5%90%8C%E4%BA%BA%E8%A7%92%E8%90%BD#%E4%B8%8D%E6%8D%A2%E4%B8%96%E7%95%8C%E8%A7%82-%E6%97%A0%E5%8E%9F%E5%88%9B%E8%A7%92%E8%89%B2">​</a></h4>
+<p>推荐两本：</p>
+<h5 class="anchor anchorWithStickyNavbar_LWe7" id="二周目的mygo重女化了">二周目的MyGo重女化了！<a class="hash-link" aria-label="Direct link to 二周目的MyGo重女化了！" title="Direct link to 二周目的MyGo重女化了！" href="https://ayanami1314.github.io/personal-essays/mygo%E6%96%87%E5%AD%A6%E7%B1%BB%E4%BA%8C%E5%88%9B%E7%9B%98%E7%82%B9%E2%80%94%E2%80%94%E8%A2%AB%E5%A4%A7%E5%A4%9A%E6%95%B0%E5%86%B0%E5%8F%8B%E5%BF%BD%E7%95%A5%E7%9A%84%E5%90%8C%E4%BA%BA%E8%A7%92%E8%90%BD#%E4%BA%8C%E5%91%A8%E7%9B%AE%E7%9A%84mygo%E9%87%8D%E5%A5%B3%E5%8C%96%E4%BA%86">​</a></h5>
+<p>参考阅读链接: <a href="https://wap.ciweimao.com/book/100421322" target="_blank" rel="noopener noreferrer">https://wap.ciweimao.com/book/100421322</a></p>
+<p>楼主简介: 成立了mygo之后的爱音发现自己又回到了刚入学的时候，再度重组mygo!!!!!的故事。爱all(素希灯猫)。</p>
+<p>楼主点评: 作者这个b取的名字和简介是真的烂，但书写的又是真的好。前期聚焦于具有一周目全记忆的爱音和各自拿到了部分一周目记忆的go团四人全新的胃药和创建mygo的过程, 中期之后开始发糖和情感纠结，最近的爱希真是要给我甜晕过去了。这本书最好的地方在于对原作人设的把握，跳出了公公又式式的对白和剧情复读，rikki更是写得薄纱那不知所谓的手游编剧啊！还有最近猫猫的描写和成长，作为mygo的猫猫守护神，每一章都是再看一集。鉴于楼主向来对最近看的东西有滤镜，所以没打10分，但整本书看下来除了舒服还是舒服</p>
+<p>楼主评分: 9.7/10</p>
+<p>嗜血程度: 1星</p>
+<p>字数: 40w, 连载中</p>
+<h5 class="anchor anchorWithStickyNavbar_LWe7" id="若叶睦的冬日炉火和柑橘">若叶睦的冬日，炉火和柑橘<a class="hash-link" aria-label="Direct link to 若叶睦的冬日，炉火和柑橘" title="Direct link to 若叶睦的冬日，炉火和柑橘" href="https://ayanami1314.github.io/personal-essays/mygo%E6%96%87%E5%AD%A6%E7%B1%BB%E4%BA%8C%E5%88%9B%E7%9B%98%E7%82%B9%E2%80%94%E2%80%94%E8%A2%AB%E5%A4%A7%E5%A4%9A%E6%95%B0%E5%86%B0%E5%8F%8B%E5%BF%BD%E7%95%A5%E7%9A%84%E5%90%8C%E4%BA%BA%E8%A7%92%E8%90%BD#%E8%8B%A5%E5%8F%B6%E7%9D%A6%E7%9A%84%E5%86%AC%E6%97%A5%E7%82%89%E7%81%AB%E5%92%8C%E6%9F%91%E6%A9%98">​</a></h5>
+<p>参考阅读链接: <a href="https://wap.ciweimao.com/book/100416953" target="_blank" rel="noopener noreferrer">https://wap.ciweimao.com/book/100416953</a></p>
+<p>楼主简介: 没有那么沉重的木头的世界线。同人文之中最清雅的之一。睦祥，睦初，素睦</p>
+<p>楼主点评: 母鸡卡播了四集之后心疼睦头？那这本书就是完美的幻想童话, 更好的睦头，更好的大祥老师，更好的初华，三人在海岛上的童年，作为姐姐的喵梦.....这本书没有太多的“爆点”，但正如其标题的“冬日，炉火和柑橘”，在过年这种时候，窝在被窝里面去看这清雅如黄瓜的同人文，我相信你一定会露出“真是太好了”的笑容。人物刻画满分的同时剧情上也可以打到接近满分，完全抛离了原作的另一条前传世界线</p>
+<p>楼主评分: 9.8/10</p>
+<p>嗜血程度: 0星</p>
+<p>字数: 50w, 连载中</p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="不换世界观有原创女主">不换世界观,有原创女主<a class="hash-link" aria-label="Direct link to 不换世界观,有原创女主" title="Direct link to 不换世界观,有原创女主" href="https://ayanami1314.github.io/personal-essays/mygo%E6%96%87%E5%AD%A6%E7%B1%BB%E4%BA%8C%E5%88%9B%E7%9B%98%E7%82%B9%E2%80%94%E2%80%94%E8%A2%AB%E5%A4%A7%E5%A4%9A%E6%95%B0%E5%86%B0%E5%8F%8B%E5%BF%BD%E7%95%A5%E7%9A%84%E5%90%8C%E4%BA%BA%E8%A7%92%E8%90%BD#%E4%B8%8D%E6%8D%A2%E4%B8%96%E7%95%8C%E8%A7%82%E6%9C%89%E5%8E%9F%E5%88%9B%E5%A5%B3%E4%B8%BB">​</a></h4>
+<p>这种用腚想都知道是百合文()</p>
+<p>实在是太多了，我起码看过20本，但写得好的并不多</p>
+<p>推荐两本</p>
+<h5 class="anchor anchorWithStickyNavbar_LWe7" id="大祥老师请教我弹春日影">大祥老师，请教我弹春日影！<a class="hash-link" aria-label="Direct link to 大祥老师，请教我弹春日影！" title="Direct link to 大祥老师，请教我弹春日影！" href="https://ayanami1314.github.io/personal-essays/mygo%E6%96%87%E5%AD%A6%E7%B1%BB%E4%BA%8C%E5%88%9B%E7%9B%98%E7%82%B9%E2%80%94%E2%80%94%E8%A2%AB%E5%A4%A7%E5%A4%9A%E6%95%B0%E5%86%B0%E5%8F%8B%E5%BF%BD%E7%95%A5%E7%9A%84%E5%90%8C%E4%BA%BA%E8%A7%92%E8%90%BD#%E5%A4%A7%E7%A5%A5%E8%80%81%E5%B8%88%E8%AF%B7%E6%95%99%E6%88%91%E5%BC%B9%E6%98%A5%E6%97%A5%E5%BD%B1">​</a></h5>
+<p>参考阅读链接: <a href="https://wap.ciweimao.com/book/100403860" target="_blank" rel="noopener noreferrer">https://wap.ciweimao.com/book/100403860</a></p>
+<p>楼主简介: 主攻一对多，原创女主水岛绫乃，整活向为主。主cp 爱音和小祥</p>
+<p>楼主点评: 这书曾经便已经评过，现引用如下:</p>
+<blockquote>
+<p>经过几十本mygo书的吃鸡竞赛，最终在本人书架里面大获全胜的是——水岛绫乃小姐！
+mygo唯一真主攻一对多的含金量，她段位实在太高了呀！
+认真评的话，这本高开高高走，越写越有活，目前已经在本人心中和某著名mygo书架上得到了“神中神”的评价。从绫乃锐评“感觉主唱太拼命了”，到套皮北极星将rikki狠狠玩弄，从几下拿下软糯小祥，到soyo名场面“放送给世人欣赏呀”和客服小素，从退go组鸡，到诱骗爱音说出“脚踏两只船也可以”和最新章“水岛绫乃的消失”促大祥老师成长——作者，我们敬爱你呀</p>
+</blockquote>
+<p>事实证明确实是极少数的后期不乏力的小说, 有善终！看这本书有时候能笑到肚子疼，永远想不到作者会用这么样的方式去展开剧情和人物，娱乐是极好的，在乐飞了的情况下人物也基本没有OOC。</p>
+<p>楼主评分: 9.6/10</p>
+<p>嗜血程度: 0星</p>
+<p>字数: 78w, 已完结</p>
+<h5 class="anchor anchorWithStickyNavbar_LWe7" id="mygo-邦多利-动物园-ottogo">Mygo? 邦多利? 动物园? OTTOGO!<a class="hash-link" aria-label="Direct link to Mygo? 邦多利? 动物园? OTTOGO!" title="Direct link to Mygo? 邦多利? 动物园? OTTOGO!" href="https://ayanami1314.github.io/personal-essays/mygo%E6%96%87%E5%AD%A6%E7%B1%BB%E4%BA%8C%E5%88%9B%E7%9B%98%E7%82%B9%E2%80%94%E2%80%94%E8%A2%AB%E5%A4%A7%E5%A4%9A%E6%95%B0%E5%86%B0%E5%8F%8B%E5%BF%BD%E7%95%A5%E7%9A%84%E5%90%8C%E4%BA%BA%E8%A7%92%E8%90%BD#mygo-%E9%82%A6%E5%A4%9A%E5%88%A9-%E5%8A%A8%E7%89%A9%E5%9B%AD-ottogo">​</a></h5>
+<p>参考阅读链接: <a href="https://wap.ciweimao.com/book/100414152" target="_blank" rel="noopener noreferrer">https://wap.ciweimao.com/book/100414152</a></p>
+<p>楼主简介: 棍哥(电棍)成了棍姐之后作为老C团第六人的神人故事。主cp 真纪(棍姐)和真白</p>
+<p>楼主点评: 神人才看的小说，但意外有活，但作者江郎才尽憋不出来了断更中。搞得我现在脑补电棍都是明星日鞠那个皮+纪白TV。在本书你能看到 海绵宝宝祥字儿 的神人小祥，发表《真纪的战争》的神人爱音，黑刀之夜的分锅“这把是不是你打得有问题！”, 等等。如果你完全没看懂上面的一段话，你应该不是这本书的受众，不推荐; 如果看懂了，那你也是神人，为什么不来品鉴一下。</p>
+<p>楼主评分: 9.2/10</p>
+<p>嗜血程度: 0星</p>
+<p>字数: 50w, 断更中</p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="不换世界观有原创男主">不换世界观,有原创男主<a class="hash-link" aria-label="Direct link to 不换世界观,有原创男主" title="Direct link to 不换世界观,有原创男主" href="https://ayanami1314.github.io/personal-essays/mygo%E6%96%87%E5%AD%A6%E7%B1%BB%E4%BA%8C%E5%88%9B%E7%9B%98%E7%82%B9%E2%80%94%E2%80%94%E8%A2%AB%E5%A4%A7%E5%A4%9A%E6%95%B0%E5%86%B0%E5%8F%8B%E5%BF%BD%E7%95%A5%E7%9A%84%E5%90%8C%E4%BA%BA%E8%A7%92%E8%90%BD#%E4%B8%8D%E6%8D%A2%E4%B8%96%E7%95%8C%E8%A7%82%E6%9C%89%E5%8E%9F%E5%88%9B%E7%94%B7%E4%B8%BB">​</a></h4>
+<p>实在是太多了，我起码看过20本，但写得好的并不多</p>
+<p>换皮桃子文必然是不会端出脏源u的眼睛的，至于其他几个有名的男主文(牢陆啊牢空啊之类)感觉都有点太典了，不够雅（bushi）</p>
+<p>这种文最好玩的一部分是炒股（暴论</p>
+<p>推一本吧</p>
+<h5 class="anchor anchorWithStickyNavbar_LWe7" id="你是丰川祥子那我是谁">你是丰川祥子，那我是谁？<a class="hash-link" aria-label="Direct link to 你是丰川祥子，那我是谁？" title="Direct link to 你是丰川祥子，那我是谁？" href="https://ayanami1314.github.io/personal-essays/mygo%E6%96%87%E5%AD%A6%E7%B1%BB%E4%BA%8C%E5%88%9B%E7%9B%98%E7%82%B9%E2%80%94%E2%80%94%E8%A2%AB%E5%A4%A7%E5%A4%9A%E6%95%B0%E5%86%B0%E5%8F%8B%E5%BF%BD%E7%95%A5%E7%9A%84%E5%90%8C%E4%BA%BA%E8%A7%92%E8%90%BD#%E4%BD%A0%E6%98%AF%E4%B8%B0%E5%B7%9D%E7%A5%A5%E5%AD%90%E9%82%A3%E6%88%91%E6%98%AF%E8%B0%81">​</a></h5>
+<p>参考阅读链接: <a href="https://www.ciweimao.com/book/100418756" target="_blank" rel="noopener noreferrer">https://www.ciweimao.com/book/100418756</a></p>
+<p>楼主简介: 另一个世界线的丰川翔(男)掉入mygo正史的故事。目前赛道上是 初华，小祥，睦头，立希</p>
+<p>楼主点评: 男主文里面最扭的之一，这男翔包着一层一周目奋斗完毕成年成功人士的皮，骨子里还是saki的别扭，实在美味。本书感情线非常不错，剧情方面可能稍逊一筹，点名表扬上大分的立希。还有上周目钦定冠军木头和水仙优势的saki以及传奇金毛地下室重女初华，能看到初华对睦头说“其实我们不需要祥子这个冒牌货吧”这种传世名画，爆点是真的挺足，但日常部分感觉略平淡。</p>
+<p>楼主评分: 9.3/10</p>
+<p>嗜血程度: 0星</p>
+<p>字数: 50w, 断更中</p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="换世界观">换世界观<a class="hash-link" aria-label="Direct link to 换世界观" title="Direct link to 换世界观" href="https://ayanami1314.github.io/personal-essays/mygo%E6%96%87%E5%AD%A6%E7%B1%BB%E4%BA%8C%E5%88%9B%E7%9B%98%E7%82%B9%E2%80%94%E2%80%94%E8%A2%AB%E5%A4%A7%E5%A4%9A%E6%95%B0%E5%86%B0%E5%8F%8B%E5%BF%BD%E7%95%A5%E7%9A%84%E5%90%8C%E4%BA%BA%E8%A7%92%E8%90%BD#%E6%8D%A2%E4%B8%96%E7%95%8C%E8%A7%82">​</a></h4>
+<h5 class="anchor anchorWithStickyNavbar_LWe7" id="千早爱音有九只翅膀">千早爱音有九只翅膀<a class="hash-link" aria-label="Direct link to 千早爱音有九只翅膀" title="Direct link to 千早爱音有九只翅膀" href="https://ayanami1314.github.io/personal-essays/mygo%E6%96%87%E5%AD%A6%E7%B1%BB%E4%BA%8C%E5%88%9B%E7%9B%98%E7%82%B9%E2%80%94%E2%80%94%E8%A2%AB%E5%A4%A7%E5%A4%9A%E6%95%B0%E5%86%B0%E5%8F%8B%E5%BF%BD%E7%95%A5%E7%9A%84%E5%90%8C%E4%BA%BA%E8%A7%92%E8%90%BD#%E5%8D%83%E6%97%A9%E7%88%B1%E9%9F%B3%E6%9C%89%E4%B9%9D%E5%8F%AA%E7%BF%85%E8%86%80">​</a></h5>
+<p>参考阅读链接: <a href="https://wap.ciweimao.com/book/100405878" target="_blank" rel="noopener noreferrer">https://wap.ciweimao.com/book/100405878</a></p>
+<p>楼主简介: 异能智斗，鸡狗对邦，各种奇怪的糖。爱all</p>
+<p>楼主点评: 给我干哪来了？超规格异能战斗世界观，全员超能力，类英雄反英雄世界观。例如灯是时停，爱音赋予无机物生命，soyo是操控重力，rikki是细胞活性和肉体强化。英雄团体C团解散之后，新建的英雄团体MyGo和超级罪犯团Ave Mujica的故事。</p>
+<p>像这种纯点子王的世界观其实纯看作者笔力，万幸的是作者除了战力之外别的都处理的挺好，不幸的是对于战力党这本书类似JOJO风格，战力波动上下限还挺大（）</p>
+<p>楼主评分: 9.3/10</p>
+<p>嗜血程度: 1星</p>
+<p>字数: 137w, 连载中</p>
+<h5 class="anchor anchorWithStickyNavbar_LWe7" id="赛博朋克之丰川祥子的涅槃">赛博朋克之丰川祥子的涅槃<a class="hash-link" aria-label="Direct link to 赛博朋克之丰川祥子的涅槃" title="Direct link to 赛博朋克之丰川祥子的涅槃" href="https://ayanami1314.github.io/personal-essays/mygo%E6%96%87%E5%AD%A6%E7%B1%BB%E4%BA%8C%E5%88%9B%E7%9B%98%E7%82%B9%E2%80%94%E2%80%94%E8%A2%AB%E5%A4%A7%E5%A4%9A%E6%95%B0%E5%86%B0%E5%8F%8B%E5%BF%BD%E7%95%A5%E7%9A%84%E5%90%8C%E4%BA%BA%E8%A7%92%E8%90%BD#%E8%B5%9B%E5%8D%9A%E6%9C%8B%E5%85%8B%E4%B9%8B%E4%B8%B0%E5%B7%9D%E7%A5%A5%E5%AD%90%E7%9A%84%E6%B6%85%E6%A7%83">​</a></h5>
+<p>参考阅读链接: <a href="https://www.ciweimao.com/book/100384716" target="_blank" rel="noopener noreferrer">https://www.ciweimao.com/book/100384716</a></p>
+<p>楼主简介: 接下来站在你面前的是，刺猬猫2023年度最佳，马小花儿老师评论区钦点真正的冰，言力华老师专属三创视频，mygo同人永垂不朽的巅峰——赛博小祥！赛博朋克2077世界观下，被逐出丰川家的大小姐丰川祥子，挣扎着爬上夜之城顶端的故事</p>
+<blockquote>
+<p>一夜之间，丰川祥子从华族大小姐沦落为了棚户区身无分文的失学少女。
+这件事发生在2023年。
+只不过，不是bangdream世界观下的2023年。
+而是赛博朋克世界观下的2023年。
+……
+账号被销户，身份被清空。祥子如同一块待宰的鱼肉，被丢进城市的最底层。</p>
+</blockquote>
+<p>楼主点评: 伟大，无需多言！与其说它是一本mygo同人，不如说它是一本赛博朋克2077同人，和边缘行者一起让我入坑了2077。前几卷的剧情质量和人物刻画无出其右，但后几卷世界观太大收不住了实在可惜。哎哎哎，高开低走，晚年不详！</p>
+<p>但即使是冲着他的前几卷，这部作品也值得所有人阅读。我至今还记得读到小祥在削肾客处亲手挖出了自己的一只眼睛时的震撼。黑客睦头，黑超梦制作师喵梦，雇佣兵海铃，肉体强化者初华...后续剧情如狂风怒涛，鸡团的组建，填海新地二期的博弈，熄灯...我想我永远也忘不掉这本小说了</p>
+<p>楼主评分: 熄灯(大概100w字)前10/10, 熄灯后7/10</p>
+<p>嗜血程度: 3星(注意对go团并不友好, 有祥子错杀高松灯, 杀爱音, 疯立希这种情节。鸡团也挺惨的)</p>
+<p>字数: 288w, 已完结</p>
+<h5 class="anchor anchorWithStickyNavbar_LWe7" id="火影-千手睦小姐想要以理服人">火影, 千手睦小姐想要以理服人<a class="hash-link" aria-label="Direct link to 火影, 千手睦小姐想要以理服人" title="Direct link to 火影, 千手睦小姐想要以理服人" href="https://ayanami1314.github.io/personal-essays/mygo%E6%96%87%E5%AD%A6%E7%B1%BB%E4%BA%8C%E5%88%9B%E7%9B%98%E7%82%B9%E2%80%94%E2%80%94%E8%A2%AB%E5%A4%A7%E5%A4%9A%E6%95%B0%E5%86%B0%E5%8F%8B%E5%BF%BD%E7%95%A5%E7%9A%84%E5%90%8C%E4%BA%BA%E8%A7%92%E8%90%BD#%E7%81%AB%E5%BD%B1-%E5%8D%83%E6%89%8B%E7%9D%A6%E5%B0%8F%E5%A7%90%E6%83%B3%E8%A6%81%E4%BB%A5%E7%90%86%E6%9C%8D%E4%BA%BA">​</a></h5>
+<p>参考阅读链接: <a href="https://wap.ciweimao.com/book/100417615" target="_blank" rel="noopener noreferrer">https://wap.ciweimao.com/book/100417615</a></p>
+<p>楼主简介: 千手睦和宇智波祥子，熟悉火影的已经能想到是怎么样的一个对位了</p>
+<p>楼主点评: 这本书倒是没什么很有深意或者非常出色的剧情或者人设刻画或者胃药，单纯读着有趣，对于熟悉火影的更有很大加分</p>
+<p>楼主评分: 9.1/10</p>
+<p>嗜血程度: 0星</p>
+<p>字数: 83w, 连载中</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="b站原创">b站原创<a class="hash-link" aria-label="Direct link to b站原创" title="Direct link to b站原创" href="https://ayanami1314.github.io/personal-essays/mygo%E6%96%87%E5%AD%A6%E7%B1%BB%E4%BA%8C%E5%88%9B%E7%9B%98%E7%82%B9%E2%80%94%E2%80%94%E8%A2%AB%E5%A4%A7%E5%A4%9A%E6%95%B0%E5%86%B0%E5%8F%8B%E5%BF%BD%E7%95%A5%E7%9A%84%E5%90%8C%E4%BA%BA%E8%A7%92%E8%90%BD#b%E7%AB%99%E5%8E%9F%E5%88%9B">​</a></h3>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="伪人mygo">伪人mygo<a class="hash-link" aria-label="Direct link to 伪人mygo" title="Direct link to 伪人mygo" href="https://ayanami1314.github.io/personal-essays/mygo%E6%96%87%E5%AD%A6%E7%B1%BB%E4%BA%8C%E5%88%9B%E7%9B%98%E7%82%B9%E2%80%94%E2%80%94%E8%A2%AB%E5%A4%A7%E5%A4%9A%E6%95%B0%E5%86%B0%E5%8F%8B%E5%BF%BD%E7%95%A5%E7%9A%84%E5%90%8C%E4%BA%BA%E8%A7%92%E8%90%BD#%E4%BC%AA%E4%BA%BAmygo">​</a></h4>
+<p>参考阅读链接: <a href="https://www.bilibili.com/video/BV1Yvxfe5EwX" target="_blank" rel="noopener noreferrer">https://www.bilibili.com/video/BV1Yvxfe5EwX</a></p>
+<p>楼主简介: 伪人世界观的mygo, 请问有几个是伪人呢？MyGo!!!!!和MyGo?????的故事</p>
+<p>楼主点评: 真r18g的，但脑洞真逆天大，追的时候就是纯纯的冰, 已经有几个源u评鉴了(@kurumi 表示是吓晕了的程度), 有一些jump scare, 如果能接受这个重口程度/恐怖程度的话就是纯纯的冰。单纯放个前三集的标题就能体会到了:</p>
+<ol>
+<li>
+<p>分不清是口水还是泪水</p>
+</li>
+<li>
+<p>伪人的调教课堂</p>
+</li>
+<li>
+<p>羽丘屠杀事件</p>
+</li>
+</ol>
+<p>楼主评分: 9.3/10</p>
+<p>嗜血程度: 5星</p>
+<p>字数: 10集, 已完结</p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="羽丘封校">羽丘封校<a class="hash-link" aria-label="Direct link to 羽丘封校" title="Direct link to 羽丘封校" href="https://ayanami1314.github.io/personal-essays/mygo%E6%96%87%E5%AD%A6%E7%B1%BB%E4%BA%8C%E5%88%9B%E7%9B%98%E7%82%B9%E2%80%94%E2%80%94%E8%A2%AB%E5%A4%A7%E5%A4%9A%E6%95%B0%E5%86%B0%E5%8F%8B%E5%BF%BD%E7%95%A5%E7%9A%84%E5%90%8C%E4%BA%BA%E8%A7%92%E8%90%BD#%E7%BE%BD%E4%B8%98%E5%B0%81%E6%A0%A1">​</a></h4>
+<p>参考阅读链接: <a href="https://www.bilibili.com/video/BV1p9vjeeEoL" target="_blank" rel="noopener noreferrer">https://www.bilibili.com/video/BV1p9vjeeEoL</a></p>
+<p>楼主简介: 规则怪谈mygo, 团灭?之后全员存活的结局</p>
+<p>楼主点评: 单纯从怪谈的角度上看也是不错的规则怪谈，但楼主自己不太喜欢规则怪谈一定要带一个击败怪谈本身/怪谈存在幕后黑手的设定，这让我感觉拉低了可以遐想的空间, 削弱了恐怖感。但对于规则怪谈萌新来说，绝对是带劲的。这个没有jump scare, 纯氛围恐怖好评。</p>
+<p>楼主评分: 8.5/10</p>
+<p>嗜血程度: 3星</p>
+<p>字数: 4集, 已完结</p>
+<p>以上只是冰山一角，mygo的高山太多力！如果新老go友愿意尝试的话，楼主也可以继续分享一些小众一些的冰</p>
+<p>泛氏曾言，创作者最爽的时候就是将创作的东西发表然后焦急地等待回复的时候，所以，欧内该，看在我纯手码了4000多字的情况下，来点人看吧，这些宝藏不被go友看到的话，瓦塔西——</p>]]></content>
+        <author>
+            <name>ayanami</name>
+        </author>
+        <category label="安利" term="安利"/>
+        <category label="小说" term="小说"/>
+    </entry>
     <entry>
         <title type="html"><![CDATA[2024秋季学期总结]]></title>
         <id>https://ayanami1314.github.io/personal-essays/2024-fall</id>
@@ -462,7 +635,7 @@ openHarmony：之前tmp说TEE数据库挺有意思，看来多少还得抽点时
 <p>领域相关的也有很多：在<a href="https://www.zhihu.com/search?q=%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80&amp;search_source=Entity&amp;hybrid_search_source=Entity&amp;hybrid_search_extra=%7B%22sourceType%22%3A%22answer%22%2C%22sourceId%22%3A%22699930080%22%7D" target="_blank" rel="noopener noreferrer">编程语言</a>领域，<a href="https://link.zhihu.com/?target=http%3A//research.ihost.com/hopl/HOPL.html" target="_blank" rel="noopener noreferrer">History of Programming Languages</a> 把这半世纪的杰出的编程语言设计者的见解汇集在一起， <a href="https://link.zhihu.com/?target=https%3A//www.amazon.com/Dealers-Lightning-Xerox-PARC-Computer/dp/0887309895" target="_blank" rel="noopener noreferrer">Dealers of Lightning</a> 跟<a href="https://link.zhihu.com/?target=https%3A//www.amazon.com/Dream-Machine-Licklider-Revolution-Computing/dp/014200135X" target="_blank" rel="noopener noreferrer">The Dream Machine</a> 则描述了改变了世界的Xerox Parc的文化。如果你看的paper足够多，你可以从里面倒推出一个researcher的taste：比如John Reynold就很软，能把多种风格混合在一起（<a href="https://zhuanlan.zhihu.com/p/42907876%EF%BC%89%EF%BC%8C%E5%90%8C%E6%97%B6%E8%83%BD%E5%9C%A8%E5%BE%88%E8%84%8F%E7%9A%84%E9%A2%86%E5%9F%9F%E5%81%9A%E5%87%BA%E4%B8%A5%E8%B0%A8%E7%9A%84%E5%B7%A5%E4%BD%9C%EF%BC%88Seprational" target="_blank" rel="noopener noreferrer">https://zhuanlan.zhihu.com/p/42907876），同时能在很脏的领域做出严谨的工作（Seprational</a> Logic），我就很喜欢。</p>
 <p>如果嫌这些人都是上世纪的，很多<a href="https://www.zhihu.com/search?q=%E6%88%90%E5%8A%9F%E4%BA%BA%E5%A3%AB&amp;search_source=Entity&amp;hybrid_search_source=Entity&amp;hybrid_search_extra=%7B%22sourceType%22%3A%22answer%22%2C%22sourceId%22%3A%22699930080%22%7D" target="_blank" rel="noopener noreferrer">成功人士</a>也有blog，教你如何做research，如何申请大学，如何规划career，还有自己领域的见解：<a href="https://link.zhihu.com/?target=http%3A//www.pgbovine.net/" target="_blank" rel="noopener noreferrer">http://www.pgbovine.net/</a>，<a href="https://link.zhihu.com/?target=https%3A//programanalysis.blogspot.com/" target="_blank" rel="noopener noreferrer">https://programanalysis.blogspot.com/</a>，<a href="https://link.zhihu.com/?target=https%3A//existentialtype.wordpress.com/" target="_blank" rel="noopener noreferrer">https://existentialtype.wordpress.com/</a>，<a href="https://link.zhihu.com/?target=http%3A//worrydream.com/" target="_blank" rel="noopener noreferrer">http://worrydream.com/</a>，<a href="https://link.zhihu.com/?target=http%3A//matt.might.net/" target="_blank" rel="noopener noreferrer">http://matt.might.net/</a></p>
 <p><strong>我一个小本科生，拿啥跟上面的人比，也就比普通人更努力点更早学<a href="https://www.zhihu.com/search?q=%E7%BC%96%E7%A8%8B&amp;search_source=Entity&amp;hybrid_search_source=Entity&amp;hybrid_search_extra=%7B%22sourceType%22%3A%22answer%22%2C%22sourceId%22%3A%22699930080%22%7D" target="_blank" rel="noopener noreferrer">编程</a>而已，没什么好讨教的</strong>。</p>
-<h4 class="anchor anchorWithStickyNavbar_LWe7" id="我相信我们更努力点学编程也能触及另一片天空">我相信，我们更努力点学编程，也能触及另一片天空<a class="hash-link" aria-label="Direct link to 我相信，我们更努力点学编程，也能触及另一片天空" title="Direct link to 我相信，我们更努力点学编程，也能触及另一片天空" href="https://ayanami1314.github.io/personal-essays/%E6%A0%A1%E5%A4%96cs%E7%BE%A4%E8%A7%81%E9%97%BB%E4%B9%8B%E2%80%94%E2%80%94%E6%99%AE%E9%80%9A%E4%BA%BA%E7%9A%84%E5%AD%A6%E4%B9%A0%E9%81%93%E8%B7%AF#%E6%88%91%E7%9B%B8%E4%BF%A1%E6%88%91%E4%BB%AC%E6%9B%B4%E5%8A%AA%E5%8A%9B%E7%82%B9%E5%AD%A6%E7%BC%96%E7%A8%8B%E4%B9%9F%E8%83%BD%E8%A7%A6%E5%8F%8A%E5%8F%A6%E4%B8%80%E7%89%87%E5%A4%A9%E7%A9%BA">​</a></h4>]]></content>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="我相信我们更努力点学编程也能触及另一片天空">我相信，我们更努力点学编程，也能触及另一片天空<a class="hash-link" aria-label="Direct link to 我相信，我们更努力点学编程，也能触及另一片天空" title="Direct link to 我相信，我们更努力点��学编程，也能触及另一片天空" href="https://ayanami1314.github.io/personal-essays/%E6%A0%A1%E5%A4%96cs%E7%BE%A4%E8%A7%81%E9%97%BB%E4%B9%8B%E2%80%94%E2%80%94%E6%99%AE%E9%80%9A%E4%BA%BA%E7%9A%84%E5%AD%A6%E4%B9%A0%E9%81%93%E8%B7%AF#%E6%88%91%E7%9B%B8%E4%BF%A1%E6%88%91%E4%BB%AC%E6%9B%B4%E5%8A%AA%E5%8A%9B%E7%82%B9%E5%AD%A6%E7%BC%96%E7%A8%8B%E4%B9%9F%E8%83%BD%E8%A7%A6%E5%8F%8A%E5%8F%A6%E4%B8%80%E7%89%87%E5%A4%A9%E7%A9%BA">​</a></h4>]]></content>
         <author>
             <name>ayanami</name>
         </author>
@@ -793,7 +966,7 @@ openHarmony：之前tmp说TEE数据库挺有意思，看来多少还得抽点时
 </blockquote>
 <p>更不提长凡不凡，武庸不庸，还有一个纯粹的好人太白云生被方源所杀死得如此简单 【【猫meme蛊】老白！你还记得王庭福地吗？！】 <a href="https://www.bilibili.com/video/BV1UH4y1H7Ht" target="_blank" rel="noopener noreferrer">https://www.bilibili.com/video/BV1UH4y1H7Ht</a></p>
 <p>而单论人物塑造，不谈思想内核的话，薄青、白凝冰等也是其他传统玄幻小说中的风流人物，帅是真帅。</p>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="关于剧情和�博弈">关于剧情和博弈<a class="hash-link" aria-label="Direct link to 关于剧情和博弈" title="Direct link to 关于剧情和博弈" href="https://ayanami1314.github.io/personal-essays/%E8%9B%8A%E7%9C%9F%E4%BA%BA%E4%B9%A6%E8%AF%84#%E5%85%B3%E4%BA%8E%E5%89%A7%E6%83%85%E5%92%8C%E5%8D%9A%E5%BC%88">​</a></h3>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="关于剧情和博弈">关于剧情和博弈<a class="hash-link" aria-label="Direct link to 关于剧情和博弈" title="Direct link to 关于剧情和博弈" href="https://ayanami1314.github.io/personal-essays/%E8%9B%8A%E7%9C%9F%E4%BA%BA%E4%B9%A6%E8%AF%84#%E5%85%B3%E4%BA%8E%E5%89%A7%E6%83%85%E5%92%8C%E5%8D%9A%E5%BC%88">​</a></h3>
 <p>即使有部分上帝视角的设计，蛊真人的高潮剧情也是足够精彩的，但正常的剧情就比较典了，传统玄幻小说的级别。</p>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="附录和杂谈">附录和杂谈<a class="hash-link" aria-label="Direct link to 附录和杂谈" title="Direct link to 附录和杂谈" href="https://ayanami1314.github.io/personal-essays/%E8%9B%8A%E7%9C%9F%E4%BA%BA%E4%B9%A6%E8%AF%84#%E9%99%84%E5%BD%95%E5%92%8C%E6%9D%82%E8%B0%88">​</a></h3>
 <p>蛊真人之奇，在于他有些地方写得不像个网文，却又将网文的故事性把握得很好，而不在于什么“黑暗风”“zz隐喻（石人）”，这本书是作者内心的呐喊，辅以在网文之中算是出色的文笔，构成了情感上的强烈冲击力。</p>

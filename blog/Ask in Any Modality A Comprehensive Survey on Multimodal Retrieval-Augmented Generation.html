@@ -1,0 +1,418 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="blog-wrapper blog-post-page plugin-blog plugin-id-default" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.4.0">
+<title data-rh="true">Paper reading-Ask in Any Modality A Comprehensive Survey on Multimodal Retrieval-Augmented Generation | Ayanami&#x27;s Cave</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://ayanami1314.github.io/img/docusaurus-social-card.jpg"><meta data-rh="true" name="twitter:image" content="https://ayanami1314.github.io/img/docusaurus-social-card.jpg"><meta data-rh="true" property="og:url" content="https://ayanami1314.github.io/blog/Ask in Any Modality A Comprehensive Survey on Multimodal Retrieval-Augmented Generation"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docusaurus_tag" content="default"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docsearch:docusaurus_tag" content="default"><meta data-rh="true" property="og:title" content="Paper reading-Ask in Any Modality A Comprehensive Survey on Multimodal Retrieval-Augmented Generation | Ayanami&#x27;s Cave"><meta data-rh="true" name="description" content="RAG 抽象来说就是，embed - opitional[rerank] - generate管道"><meta data-rh="true" property="og:description" content="RAG 抽象来说就是，embed - opitional[rerank] - generate管道"><meta data-rh="true" property="og:type" content="article"><meta data-rh="true" property="article:published_time" content="2025-06-02T00:00:00.000Z"><meta data-rh="true" property="article:tag" content="mllm,ai,llm"><link data-rh="true" rel="icon" href="/img/ayanami.jpg"><link data-rh="true" rel="canonical" href="https://ayanami1314.github.io/blog/Ask in Any Modality A Comprehensive Survey on Multimodal Retrieval-Augmented Generation"><link data-rh="true" rel="alternate" href="https://ayanami1314.github.io/blog/Ask in Any Modality A Comprehensive Survey on Multimodal Retrieval-Augmented Generation" hreflang="en"><link data-rh="true" rel="alternate" href="https://ayanami1314.github.io/blog/Ask in Any Modality A Comprehensive Survey on Multimodal Retrieval-Augmented Generation" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://ayanami1314.github.io/blog/Ask in Any Modality A Comprehensive Survey on Multimodal Retrieval-Augmented Generation","mainEntityOfPage":"https://ayanami1314.github.io/blog/Ask in Any Modality A Comprehensive Survey on Multimodal Retrieval-Augmented Generation","url":"https://ayanami1314.github.io/blog/Ask in Any Modality A Comprehensive Survey on Multimodal Retrieval-Augmented Generation","headline":"Paper reading-Ask in Any Modality A Comprehensive Survey on Multimodal Retrieval-Augmented Generation","name":"Paper reading-Ask in Any Modality A Comprehensive Survey on Multimodal Retrieval-Augmented Generation","description":"RAG 抽象来说就是，embed - opitional[rerank] - generate管道","datePublished":"2025-06-02T00:00:00.000Z","author":{"@type":"Person","name":"ayanami"},"keywords":[],"isPartOf":{"@type":"Blog","@id":"https://ayanami1314.github.io/blog","name":"Blog"}}</script><link rel="alternate" type="application/rss+xml" href="/blog/rss.xml" title="Ayanami&#39;s Cave RSS Feed">
+<link rel="alternate" type="application/atom+xml" href="/blog/atom.xml" title="Ayanami&#39;s Cave Atom Feed">
+
+
+
+<link rel="alternate" type="application/rss+xml" href="/personal-essays/rss.xml" title="Ayanami&#39;s Cave RSS Feed">
+<link rel="alternate" type="application/atom+xml" href="/personal-essays/atom.xml" title="Ayanami&#39;s Cave Atom Feed">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.24/dist/katex.min.css" integrity="sha384-odtC+0UGzzFL/6PNoE8rX/SPcQDXBJ+uRepguP4QkPCm2LBxH3FA3y+fKSiJ+AmM" crossorigin="anonymous"><link rel="stylesheet" href="/assets/css/styles.00dd3480.css">
+<script src="/assets/js/runtime~main.aa217668.js" defer="defer"></script>
+<script src="/assets/js/main.0da58ad9.js" defer="defer"></script>
+</head>
+<body class="navigation-with-keyboard">
+<script>!function(){function t(t){document.documentElement.setAttribute("data-theme",t)}var e=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();t(null!==e?e:"light")}(),function(){try{const n=new URLSearchParams(window.location.search).entries();for(var[t,e]of n)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><div role="region" aria-label="Skip to main content"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="navbar navbar--fixed-top"><div class="navbar__inner"><div class="navbar__items"><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/"><div class="navbar__logo"><img src="/img/logo.svg" alt="My Site Logo" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/img/logo.svg" alt="My Site Logo" class="themedComponent_mlkZ themedComponent--dark_xIcU"></div><b class="navbar__title text--truncate">Ayanami&#x27;s Cave</b></a><a class="navbar__item navbar__link" href="/docs/Chcore源码阅读">课程笔记</a><a aria-current="page" class="navbar__item navbar__link navbar__link--active" href="/blog">技术博客</a><a class="navbar__item navbar__link" href="/personal-essays">个人随笔</a></div><div class="navbar__items navbar__items--right"><a href="https://github.com/facebook/docusaurus" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link">GitHub<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="Switch between dark and light mode (currently light mode)" aria-label="Switch between dark and light mode (currently light mode)" aria-live="polite"><svg viewBox="0 0 24 24" width="24" height="24" class="lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" class="darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg></button></div><div class="navbarSearchContainer_Bca1"><div class="navbar__search searchBarContainer_NW3z" dir="ltr"><input placeholder="Search" aria-label="Search" class="navbar__search-input"><div class="loadingRing_RJI3 searchBarLoadingRing_YnHq"><div></div><div></div><div></div><div></div></div></div></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="main-wrapper mainWrapper_z2l0"><div class="container margin-vert--lg"><div class="row"><aside class="col col--3"><nav class="sidebar_re4s thin-scrollbar" aria-label="Blog recent posts navigation"><div class="sidebarItemTitle_pO2u margin-bottom--md">All our posts</div><ul class="sidebarItemList_Yudw clean-list"><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/llm for code paper notes">paper-reading, code&amp;rl方向</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/speculative-decode-overview">投机解码简述</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/Paper reading Context Pruning and beyond hard pruning">Paper reading - Context Pruning and beyond hard pruning</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/结构化输出">结构化输出与AI工具与Agent</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/context-engineering">context-engineering</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/从微 调reranker到搜推">从微调reranker到搜推工程实践</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/llm-tech-report">部分llm技术报告的阅读</a></li><li class="sidebarItem__DBe"><a aria-current="page" class="sidebarItemLink_mo7H sidebarItemLinkActive_I1ZP" href="/blog/Ask in Any Modality A Comprehensive Survey on Multimodal Retrieval-Augmented Generation">Paper reading-Ask in Any Modality A Comprehensive Survey on Multimodal Retrieval-Augmented Generation</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/精读 AAAI 2025 Fit and Prune Fast and Training-free Visual Token Pruning for Multi-modal Large Language Models">Paper reading - Fit and Prune Fast and Training-free Visual Token Pruning for Multi-modal Large Language Models</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/精读：Eagle Exploring The Design Space for Multi- modal LLMs with Mixture of Encoders">Paper reading-Eagle Exploring The Design Space for Multi- modal LLMs with Mixture of Encoders</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/RAG的一些思考和细节">RAG的一些思考与细节</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/精读  Interleaved Scene Graph for Interleaved Text-and-Image Generation Assessment">Paper reading - Interleaved Scene Graph for Interleaved Text-and-Image Generation Assessment</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/ColBERT">ColBERT-后期交互方法</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/2025/05/26/技术博客阅读">美团技术博客阅读</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/Milvus">稀疏神经嵌入</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/RocketMQ">RocketMQ学习</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/AI limu">李沐dl  笔记</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/cs186-database-WIP">ucb cs186 课程笔记(更新中)</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/jyy-os-虚拟化">NJU操作系统(jyy OS)课程笔记-虚拟化部分</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/local-llm">来本地部署大模型!</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/ostep-chapter42-44">ostep阅读笔记：单机fs的崩溃一致性(chapter42-44)</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/系统架构设计笔记">system-design-interview笔记</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/JUC">JUC</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/cs144 labs">cs144 labs(Winter 2024)</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/jyy-os：并发">NJU操作系统(jyy OS)课程笔记-并发部分</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/nginx">nginx基础</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/cs144/cs144 lec notes">CS144 Lecture Notes</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/django-mosh">Django_mosh</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/splay-tree">splay tree</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/xv6book-notes">xv6book Notes(C1-4)</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/Go-Gin学习">Go,Gin学习</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/godis源码阅读">godis源码阅读</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/hibernate-jpa">hibernate&amp;jpa</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/linking-复  习">linking 复习</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/ts基础">ts基础</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/实战2-mosh-gamehub">react practice:mosh gamehub</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/浅入理解断点和调试器">浅入理解断点和调试器</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/黑马点评">黑马点评(速通版)</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/js基础">js基础</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/11-14-11-26学习双周记">11-14-11-26学习双周记</a></li></ul></nav></aside><main class="col col--7"><article><header><h1 class="title_f1Hy">Paper reading-Ask in Any Modality A Comprehensive Survey on Multimodal Retrieval-Augmented Generation</h1><div class="container_mt6G margin-vert--md"><time datetime="2025-06-02T00:00:00.000Z">June 2, 2025</time> · <!-- -->16 min read</div><div class="margin-top--md margin-bottom--sm row"><div class="col col--6 authorCol_Hf19"><div class="avatar margin-bottom--sm"><div class="avatar__intro"><div class="avatar__name"><span>ayanami</span></div></div></div></div></div></header><div id="__blog-post-container" class="markdown"><p>RAG 抽象来说就是，<code>embed - opitional[rerank] - generate</code>管道</p>
+<p>有许多的增强方案，例如 Plan X RAG（将问题分解为子问题的DAG，然后设计一些critic LLM判断流的状态正常与否，一个执行LLM按照拓扑序执行DAG），Agentic RAG,  feedback-driven iterative refinement</p>
+<p>局限是：传统RAG主要针对文本，多模态集成还是挑战</p>
+<p>流程概述如下图</p>
+<hr>
+<p><img decoding="async" loading="lazy" src="https://arxiv.org/html/2502.08826v2/extracted/6211743/MM-RAG-500.png" alt="Refer to caption" class="img_ev3q"></p>
+<hr>
+<h1>Multimodel RAG</h1>
+<p>LLM拓展为MLLM带来了多模态RAG的挑战</p>
+<ul>
+<li><strong>检索哪些模态</strong></li>
+<li><strong>数据类型的有效融合</strong></li>
+<li><strong>跨模态相关性</strong></li>
+</ul>
+<p><strong>特定模态的编码器将不同的模态映射到共享语义空间，实现跨模态对齐</strong></p>
+<hr>
+<h1>现有数据集和基准</h1>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="数据集">数据集<a class="hash-link" aria-label="Direct link to 数据集" title="Direct link to 数据集" href="/blog/Ask in Any Modality A Comprehensive Survey on Multimodal Retrieval-Augmented Generation#数据集">​</a></h2>
+<ul>
+<li>
+<p>图文任务（字幕、检索）：MS-COCO, Flickr30K, LAION-400M</p>
+</li>
+<li>
+<p>利用外部知识的视觉问答: OK-VQA</p>
+</li>
+<li>
+<p>多模态推理：MultimodalQA</p>
+</li>
+<li>
+<p>视频文本任务：ActivityNet，YouCook2</p>
+</li>
+<li>
+<p>医学：MIMIC-CXR</p>
+</li>
+</ul>
+<p>许多数据集都是单模态的，随后与其他模态的互补数据集集成。</p>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="benchmark">Benchmark<a class="hash-link" aria-label="Direct link to Benchmark" title="Direct link to Benchmark" href="/blog/Ask in Any Modality A Comprehensive Survey on Multimodal Retrieval-Augmented Generation#benchmark">​</a></h2>
+<p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>M</mi><mn>2</mn></msup><mtext>⁢</mtext><mi>R</mi><mtext>⁢</mtext><mi>A</mi><mtext>⁢</mtext><mi>G</mi></mrow><annotation encoding="application/x-tex">M^2⁢R⁢A⁢G</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10903em">M</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em"><span style="top:-3.063em;margin-right:0.05em"><span class="pstrut" style="height:2.7em"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mord">⁢</span><span class="mord mathnormal" style="margin-right:0.00773em">R</span><span class="mord">⁢</span><span class="mord mathnormal">A</span><span class="mord">⁢</span><span class="mord mathnormal">G</span></span></span></span>:
+我们执行以下步骤来处理图像，以确保它们具有高质量并且与用户查询相关：
+（1）<strong>缓存和转换</strong>：使用 URL 下载所有图像，并将其转换为广泛接受的格式，例如 JPG、PNG、GIF 或 WEBP。无法成功下载或转换的图像将被丢弃；
+（2）<strong>过滤</strong>：小于某个阈值或与查询文本的基于 CLIP 相似度得分较低的图像将被删除。此类图像通常包含非代表性的视觉内容，例如图标、横幅等。
+（3）<strong>重复数据删除</strong>：使用 PHash Zauner 算法删除重复或高度相似的图像。</p>
+<p>指标设计：<strong>主要靠prompt gpt-4o做评估</strong></p>
+<ul>
+<li>文本模态指标：流畅性，相关性，忠实度，上下文准确率</li>
+<li>多模态指标：图像连贯性（图像和周围文本逻辑的连贯性，图像有用性， 图像引用（验证图像和文本引用的适当性），图像召回率（高度相关图像的召回比例）</li>
+<li>取所有指标的平均值用于计算总分</li>
+</ul>
+<hr>
+<h1>两种联合建模策略</h1>
+<ul>
+<li>single-stage：直接生成多模态输出</li>
+<li>multi-stage: <strong>文本生成 - 图像插入 - 文本重润色</strong> 三个阶段</li>
+</ul>
+<p><img decoding="async" loading="lazy" src="https://arxiv.org/html/2411.16365v3/x1.png" alt="" class="img_ev3q"></p>
+<hr>
+<p><img decoding="async" loading="lazy" src="https://arxiv.org/html/2411.16365v3/x2.png" alt="Refer to caption" class="img_ev3q"></p>
+<hr>
+<h1>视觉为中心的评估</h1>
+<p>MRAG-Bench, VQAv2, VisDoMBench, Dyn-VQA, ScienceQA</p>
+<p><img decoding="async" loading="lazy" src="https://mragbench.github.io/static/images/teaser.png" alt="img" class="img_ev3q"></p>
+<hr>
+<h1>知识密集型评估</h1>
+<p>TriviaQA, RAG Check, Natural Questions</p>
+<hr>
+<p><img decoding="async" loading="lazy" alt="image-20250528162131659" src="/assets/images/image-20250528162131659-62018707c1a0f00cfba6a516a14268bc.png" width="1590" height="831" class="img_ev3q"></p>
+<hr>
+<p><img decoding="async" loading="lazy" alt="image-20250528162212109" src="/assets/images/image-20250528162212109-27a90337735939c22a158260b068557b.png" width="1639" height="793" class="img_ev3q"></p>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="创新和方法">创新和方法<a class="hash-link" aria-label="Direct link to 创新和方法" title="Direct link to 创新和方法" href="/blog/Ask in Any Modality A Comprehensive Survey on Multimodal Retrieval-Augmented Generation#创新和方法">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="检索策略">检索策略<a class="hash-link" aria-label="Direct link to 检索策略" title="Direct link to 检索策略" href="/blog/Ask in Any Modality A Comprehensive Survey on Multimodal Retrieval-Augmented Generation#检索策略">​</a></h3>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="高效和精度">高效和精度<a class="hash-link" aria-label="Direct link to 高效和精度" title="Direct link to 高效和精度" href="/blog/Ask in Any Modality A Comprehensive Survey on Multimodal Retrieval-Augmented Generation#高效和精度">​</a></h4>
+<p>现代MRAG<strong>将不同输入模态编码到统一的embedding空间实现直接跨模态检索</strong></p>
+<p>方法上，主要为Maximum inner product search (<strong>MIPS</strong>) 变体：近似MIPS，分布式MIPS，KNN变体，近似KNN，ScaNN</p>
+<ul>
+<li>ScaNN主要结合了一些数学方法 和 量化方法构建了足够快的向量检索索引，这类方法都是用于海量数据的（如1M）</li>
+<li>专注于CPU，例如做了很多量化优化让它能尽量利用现代CPU的simd指令 <a href="https://zilliz.com/blog/faiss-vs-scann-choosing-the-right-tool-for-vector-search" target="_blank" rel="noopener noreferrer">https://zilliz.com/blog/faiss-vs-scann-choosing-the-right-tool-for-vector-search</a></li>
+</ul>
+<hr>
+<p>创新主要在效率提升和精度降低：</p>
+<ul>
+<li>混合搜索</li>
+<li>自适应量化</li>
+<li>learned index: 神经网络驱动的索引建立，主要是数据库那边的工作</li>
+</ul>
+<hr>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="以模态为中心的检索">以模态为中心的检索<a class="hash-link" aria-label="Direct link to 以模态为中心的检索" title="Direct link to 以模态为中心的检索" href="/blog/Ask in Any Modality A Comprehensive Survey on Multimodal Retrieval-Augmented Generation#以模态为中心的检索">​</a></h4>
+<p>文本中心</p>
+<ul>
+<li>BM25</li>
+<li>bge-m3</li>
+<li>ColBERT</li>
+<li>RAFT(混合干扰和ground truth文档微调模型增强抗干扰能力)</li>
+<li>...</li>
+</ul>
+<hr>
+<p>视觉中心</p>
+<ul>
+<li>直接用图像表示进行知识提取</li>
+<li>基于参考图像的检索，如EchoSight和ImgRet<!-- -->
+<ul>
+<li>EchoSight 引入了多模态重排</li>
+<li><img decoding="async" loading="lazy" src="https://go2heart.github.io/echosight/static/images/teaser.png" alt="Teaser" class="img_ev3q"></li>
+</ul>
+</li>
+</ul>
+<hr>
+<p>具体来说，对于一个图文问题query, 先用image视觉相似度找到对应的wiki条目，再将wiki的section与图+文的完整query（经过Q-Former之后）进行文本rerank，最后综合视觉分数和文本rerank分数，选取topk后输入LLM。<strong>专注于问题和知识库都是图+文的情况</strong>，也只是finding, 感觉确实创新度不够
+<img decoding="async" loading="lazy" src="https://go2heart.github.io/echosight/static/images/overall.png" alt="Overall Structure h:500" class="img_ev3q"></p>
+<hr>
+<ul>
+<li>组合多张图像特征形成综合查询表示</li>
+<li>图文映射：Pic2word 如下图，将视觉映射到文本描述</li>
+</ul>
+<p><img decoding="async" loading="lazy" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjkH5SDYcnCCNSbv4tyJ7lEaZp4W0SsMVP2rBTx8-AnXGM2eYaY04UX9sczYL07-z9TPvcbKP5wF6huVyWe6SOQqqz_iE9Ove-RupgS0e50E5StD1A_yKF2KQtrVgy01J6WaLUZ4rYatFQqgBEnoltPBRXAqTgcGmuD8hVJ3BBkEi55ASVhMy35-_j1yCjs/s16000/image3.png" alt="img" class="img_ev3q"></p>
+<hr>
+<p>视频中心</p>
+<ul>
+<li>iRAG，增量检索</li>
+<li>MV-Adapter</li>
+<li>Video RAG</li>
+<li>RTime: 时间因果关系</li>
+<li>OmAgent：分治处理复杂视频理解</li>
+<li>DRVideo：基于文档检索处理长视频理解</li>
+<li>...</li>
+</ul>
+<hr>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="文档检索和布局理解">文档检索和布局理解<a class="hash-link" aria-label="Direct link to 文档检索和布局理解" title="Direct link to 文档检索和布局理解" href="/blog/Ask in Any Modality A Comprehensive Survey on Multimodal Retrieval-Augmented Generation#文档检索和布局理解">​</a></h4>
+<p>ColPali， ColQwen2: 端到端文档图像检索，动态分辨率处理，整体多页推理，绕过OCR技术，1.9k star</p>
+<p>它的想法是这样的</p>
+<ul>
+<li><strong>OCR的多个组件和分块带来误差传播</strong>，且预处理流程耗时也长，能不能直接端到端一次使用文档截图解决</li>
+<li>但是如果将整页的文档编码成一个向量，肯定精度不够</li>
+<li>多向量方案最经典的ColBERT, 并且在这样一个视觉的情况下，<strong>视觉patch做多向量比文本token还合理</strong></li>
+</ul>
+<hr>
+<ul>
+<li>贡献<!-- -->
+<ul>
+<li>benchmark ViDoRe</li>
+<li>将ColBERT和视觉语言模型结合，利用多向量不仅启发了<strong>文搜文，文搜图，还启发了“给一个文档，查找相似的文档”这样的任务</strong></li>
+<li>提供了一个良好的视觉文本融合的范式（例如，解决了CLIP这样的模型缺乏文本细粒度的问题），允许最先进的VLM如Qwen-VL-2B，以相同的训练策略微调后作  为嵌入器，+5.3 nDCG@5</li>
+</ul>
+</li>
+</ul>
+<hr>
+<p><img decoding="async" loading="lazy" src="https://arxiv.org/html/2407.01449v6/extracted/6240861/images/final_architecture.png" alt="Refer to caption" class="img_ev3q"></p>
+<hr>
+<p><strong>可不可以将这个范式沿用到引用溯源？</strong></p>
+<p>已经有一些了，ColPali自己就做了每个词条最显著的图像块</p>
+<p><img decoding="async" loading="lazy" src="https://arxiv.org/html/2407.01449v6/extracted/6240861/images/similarity_map_energy.png" alt="Refer to caption h:500" class="img_ev3q"></p>
+<p>一些布局理解的新框架：ViTLP, DocLLM, CREAM, mPLUG-DocOwl</p>
+<hr>
+<blockquote>
+<p><em>To our knowledge, no benchmark evaluates document retrieval systems in practical settings; in an end-to-end manner, across several document types and topics, and by evaluating the use of both textual and visual document features.</em></p>
+</blockquote>
+<blockquote>
+<p><a href="https://huggingface.co/blog/fsommers/document-similarity-colpali" target="_blank" rel="noopener noreferrer">https://huggingface.co/blog/fsommers/document-similarity-colpali</a>
+基于 OCR 的文本提取，以及随后的布局和边界框分析，仍然是重要文档 AI 模型（例如 LayoutLM）的核心。例如， <a href="https://huggingface.co/microsoft/layoutlmv3-base" target="_blank" rel="noopener noreferrer">LayoutLMv3</a> 对文档文本进行编码，包括文本标记序列的顺序、标记或线段的 OCR 边界框坐标以及文档本身。这在关键的文档 AI 任务中取得了最佳成果，但前提是第一步——OCR 文本提取——能够顺利完成。</p>
+<p><strong>但通常情况并非如此。</strong></p>
+<p>根据我最近的经验，<strong>OCR 瓶颈导致现实世界生产文档档案中的命名实体识别 (NER) 任务的性能下降近 50%。</strong></p>
+</blockquote>
+<hr>
+<p><img decoding="async" loading="lazy" src="https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/blog/paligemma/paligemma_arch.png" alt="Architecture h:600" class="img_ev3q"></p>
+<hr>
+<p>为下游任务提供了一系列微调版本</p>
+<ul>
+<li>Image Caption 加字幕</li>
+<li>VQA</li>
+<li>Detection (Detect [entity])</li>
+<li>图像实体分割</li>
+<li>文档理解</li>
+</ul>
+<hr>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="重排序和选择">重排序和选择<a class="hash-link" aria-label="Direct link to 重排序和选择" title="Direct link to 重排序和选择" href="/blog/Ask in Any Modality A Comprehensive Survey on Multimodal Retrieval-Augmented Generation#重排序和选择">​</a></h3>
+<p>多用多步骤检索，整合监督和非监督策略</p>
+<ul>
+<li>probabilistic control keywords to improve credibility<!-- -->
+<ul>
+<li>对示例的关键信息进行关键词提取，为关键词赋予概率权重，使用概率进行控制信号，<strong>让模型倾向于选择高概率关键词的示例</strong></li>
+</ul>
+</li>
+<li>RULE 利用<strong>统计方法</strong>(Bonferroni校正)校准相关上下文<!-- -->
+<ul>
+<li>利用统计方法，将“5%概率<strong>存在</strong>错误上下文”这样的朴素要求通过统计运算转换成单个上下文相关度的硬阈值</li>
+</ul>
+</li>
+<li>视频检索中<strong>基于聚类的关键帧选择</strong>来提高多样性</li>
+</ul>
+<hr>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="相关性评估">相关性评估<a class="hash-link" aria-label="Direct link to 相关性评估" title="Direct link to 相关性评估" href="/blog/Ask in Any Modality A Comprehensive Survey on Multimodal Retrieval-Augmented Generation#相关性评估">​</a></h3>
+<ul>
+<li><strong>SSIM (Structural Similarity Index Measure)</strong>
+最早用于图像领域，衡量两幅图像间的结构、亮度、对比度相似度。现在常用于多模态信息检索，例如图片和文本联合时的相似性计算。<!-- -->
+<ul>
+<li>比起传统的均方差等简单像素差，更符合人类对视觉感知的一致性判断，综合考虑亮度对比度等</li>
+</ul>
+</li>
+<li><strong>NCC (Normalized Cross-Correlation)</strong>
+标准化互相关，常见于信号处理，也可以衡量不同模态数据间的相关强度。<!-- -->
+<ul>
+<li>衡量两个向量或数组的<strong>线性相关性</strong></li>
+</ul>
+</li>
+<li><strong>BERTScore</strong>
+利用BERT这样的深度语义模型计算文本间的语义相似度，比传统关键词对齐更关注上下文语义一致性</li>
+<li>分层后处理：重排、相似度筛选、上下文窗口、合并、...</li>
+</ul>
+<hr>
+<ul>
+<li>
+<p><strong>LDRE</strong></p>
+<p>结合多种特征（如caption描述、上下文语义、实体识别等），通过权重自适应集成，提高不同表示方式下的检索相关性适应能力</p>
+</li>
+<li>
+<p>BM25等传统排名的集成</p>
+</li>
+</ul>
+<hr>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="过滤机制">过滤机制<a class="hash-link" aria-label="Direct link to 过滤机制" title="Direct link to 过滤机制" href="/blog/Ask in Any Modality A Comprehensive Survey on Multimodal Retrieval-Augmented Generation#过滤机制">​</a></h3>
+<ul>
+<li>
+<p>硬负样本挖掘：比起文本的硬负样本挖掘需要多处理跨模态的问题，如不同模态的bias等</p>
+<ul>
+<li>GME</li>
+<li>MM Embed</li>
+</ul>
+</li>
+<li>
+<p>共识过滤、多向量过滤</p>
+<ul>
+<li>MuRAR</li>
+<li>ColPali</li>
+</ul>
+</li>
+<li>
+<p>动态模态过滤</p>
+<ul>
+<li>训练retriever判断哪部分是噪声</li>
+<li>RAFT, Img2Loc, MAIN-RAG</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="融合机制">融合机制<a class="hash-link" aria-label="Direct link to 融合机制" title="Direct link to 融合机制" href="/blog/Ask in Any Modality A Comprehensive Survey on Multimodal Retrieval-Augmented Generation#融合机制">​</a></h3>
+<p>分数融合和对齐</p>
+<ul>
+<li>
+<p>训练交叉编码器将多模态转换为文本格式</p>
+</li>
+<li>
+<p>引入交错文本对，合并垂直多张few shot images（?）</p>
+</li>
+<li>
+<p>CLIP分数融合，BLIP特征融合  ，嵌入到相同的空间</p>
+</li>
+<li>
+<p>VISA 使用文档截图嵌入(DSE)模型，对齐文本查询和视觉文档表示</p>
+</li>
+<li>
+<p>MA-LMM视频文本嵌入</p>
+</li>
+<li>
+<p>LLM-RA 将文本和视觉嵌入连接成联合查询</p>
+</li>
+<li>
+<p>...</p>
+</li>
+</ul>
+<p>注意力机制：</p>
+<p>注意力方法动态加权跨模态交互，支持特定任务推理</p>
+<p>EMERGE, MORE, Alzheimer RAG,RAMM,RAGTrans, MV-Adapter, M2-RAAP</p>
+<hr>
+<p>统一的框架和预测</p>
+<p>M3DocRAG : 多页文档展平为单个嵌入张量</p>
+<p>PDF-MVQA 融合了基于感兴趣区域 (RoI) 和基于块 (CLIP) 的视觉语言模型</p>
+<p>DQU-CIR 图像转换为复杂查询的文本标题以及将文本叠加到图像上来统一原始数据，然后通过 MLP 学习的权重融合嵌入</p>
+<p>SAM-RAG生成图像的标题来对齐图像-文本模态</p>
+<p>UFineBench 利用共享粒度解码器进行超精细文本人物检索</p>
+<p>Dense2Sparse 投影，将来自 BLIP/ALBEF Li 等人 ( <a href="https://arxiv.org/html/2502.08826v2#bib.bib111" target="_blank" rel="noopener noreferrer">2022a</a> ) 等模型的密集嵌入转换为稀疏词汇向量，使用层归一化和概率扩展控制来优化存储和可解释性</p>
+<hr>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="增强技术">增强技术<a class="hash-link" aria-label="Direct link to 增强技术" title="Direct link to 增强技术" href="/blog/Ask in Any Modality A Comprehensive Survey on Multimodal Retrieval-Augmented Generation#增强技术">​</a></h3>
+<p>Context Enrichment</p>
+<p>查询 重构为结构化检索请求， Video-RAG,EMERGE 整合实体关系和语义描述</p>
+<p>Img2Loc 提示中包含数据库中最相似的和最不相似的点来让模型排除预测中不可信的位置</p>
+<p>虽然说只是prompt工作，但想法似乎挺有趣，只是这样的作法能否比简单的几层MLP强呢？</p>
+<p><img decoding="async" loading="lazy" src="https://arxiv.org/html/2403.19584v1/extracted/2403.19584v1/figure3.jpg" alt="Refer to caption h:400" class="img_ev3q"></p>
+<hr>
+<p>动态检索</p>
+<ul>
+<li>
+<p>SKURG 查询复杂度决定跳数</p>
+</li>
+<li>
+<p>MR2AG 动态评估和过滤</p>
+</li>
+<li>
+<p>OmniSearch 分解问题</p>
+</li>
+</ul>
+<hr>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="生成技术">生成技术<a class="hash-link" aria-label="Direct link to 生成技术" title="Direct link to 生成技术" href="/blog/Ask in Any Modality A Comprehensive Survey on Multimodal Retrieval-Augmented Generation#生成技术">​</a></h3>
+<ul>
+<li>
+<p>In context learning</p>
+<ul>
+<li>
+<p>记忆数据 RAG-Driver（可解释的自动驾驶）</p>
+<ul>
+<li><strong>检索引擎</strong>
+接收到当前驾驶场景（如视频帧和对应的车辆控制信号）后，先在专家示范的记忆库中检索出与当前最相似的历史驾驶样本。</li>
+<li><strong>多模态大语言模型处理</strong>
+将检索到的样本与当前场景一同输入多模态大语言模型（MLLM），利用指令微调（Instruction Tuning），实现三项任务：<!-- -->
+<ul>
+<li><strong>动作解释</strong>（Driving Action Explanation）：输出当前行为的自然语言解释；</li>
+<li><strong>行为理由</strong>（Action Justification）：对决策作出合理性说明；</li>
+<li><strong>控制信号预测</strong>（Control Signal Prediction）：给出下一个动作的具体数值（如速度和转角）</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<p><img decoding="async" loading="lazy" src="https://yuanjianhao508.github.io/RAG-Driver/static/images/RAGDriver_main.png" alt="MY ALT TEXT h:600" class="img_ev3q"></p>
+<hr>
+<ul>
+<li>
+<p>融合上下文Fusion-in-Context Learning (没太看懂RAVEN这篇论文和融合上下文这一个比较早期的encoder-decoder模型的机制有什么关系)</p>
+</li>
+<li>
+<p>Reasoning</p>
+<ul>
+<li>CoT RAGAR RAG链和RAG树，迭代方式优化事实核查</li>
+<li>VisDoM CoT和证据整理</li>
+<li>SAM-RAG 推理链和多阶段验证</li>
+</ul>
+</li>
+</ul>
+<p>指令调优：如mR2AG  用 mR2AG-IT的数据调优MLLM</p>
+<hr>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="来源归属">来源归属<a class="hash-link" aria-label="Direct link to 来源归属" title="Direct link to 来源归属" href="/blog/Ask in Any Modality A Comprehensive Survey on Multimodal Retrieval-Augmented Generation#来源归属">​</a></h3>
+<p>VISA 视觉来源归属</p>
+<ul>
+<li>看了看他的论文，VLM<strong>直接输出</strong>边界框(也就是，输入为文档图片，输出为答案 + Box)的，再<strong>LoRA微调</strong>......</li>
+</ul>
+<p><img decoding="async" loading="lazy" alt="image-20250528205321419 h:400" src="/assets/images/image-20250528205321419-2f1eec60f2c657b45d90932b2e0c898a.png" width="956" height="538" class="img_ev3q"></p>
+<hr>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="对齐">对齐<a class="hash-link" aria-label="Direct link to 对齐" title="Direct link to 对齐" href="/blog/Ask in Any Modality A Comprehensive Survey on Multimodal Retrieval-Augmented Generation#对齐">​</a></h3>
+<p>主要是对比学习：文档/图片/字幕...</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="噪声管理">噪声管理<a class="hash-link" aria-label="Direct link to 噪声管理" title="Direct link to 噪声管理" href="/blog/Ask in Any Modality A Comprehensive Survey on Multimodal Retrieval-Augmented Generation#噪声管理">​</a></h3>
+<p>RagVL 噪声注入训练，数据级别加负样本，token级别加Gauss噪声</p>
+<p>RA-CM3  随机删除查询token做query dropout</p>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="mrag解决的任务">MRAG解决的任务<a class="hash-link" aria-label="Direct link to MRAG解决的任务" title="Direct link to MRAG解决的任务" href="/blog/Ask in Any Modality A Comprehensive Survey on Multimodal Retrieval-Augmented Generation#mrag解决的任务">​</a></h2>
+<ul>
+<li>图像字幕</li>
+<li>QA</li>
+<li>事实验证</li>
+<li>视觉叙事连贯性</li>
+<li>图文检索</li>
+<li>.....</li>
+</ul>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="未来方向">未来方向<a class="hash-link" aria-label="Direct link to 未来方向" title="Direct link to 未来方向" href="/blog/Ask in Any Modality A Comprehensive Survey on Multimodal Retrieval-Augmented Generation#未来方向">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="泛化">泛化<a class="hash-link" aria-label="Direct link to 泛化" title="Direct link to 泛化" href="/blog/Ask in Any Modality A Comprehensive Survey on Multimodal Retrieval-Augmented Generation#泛化">​</a></h3>
+<ul>
+<li>
+<p>领域自适应</p>
+</li>
+<li>
+<p>模态偏差，过度依赖文本</p>
+</li>
+<li>
+<p>可解释性</p>
+</li>
+<li>
+<p>引用来源归属，在视觉/语音等模块更严重，难以识别出对应的小区域</p>
+</li>
+<li>
+<p>多模态的对抗性扰动，误导性信息</p>
+</li>
+</ul>
+<hr>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="推理">推理<a class="hash-link" aria-label="Direct link to 推理" title="Direct link to 推理" href="/blog/Ask in Any Modality A Comprehensive Survey on Multimodal Retrieval-Augmented Generation#推理">​</a></h3>
+<p>多模态融入KG</p>
+<p>如何进行实体感知检索</p>
+<p>位置敏感性</p>
+<p>冗余检索</p>
+<p>具身智能</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="长上下文效率可拓展">长上下文，效率，可拓展<a class="hash-link" aria-label="Direct link to 长上下文，效率，可拓展" title="Direct link to 长上下文，效率，可拓展" href="/blog/Ask in Any Modality A Comprehensive Survey on Multimodal Retrieval-Augmented Generation#长上下文效率可拓展">​</a></h3>
+<ul>
+<li>带图像的多页文档</li>
+<li>视频这种超长上下文</li>
+</ul></div><footer class="docusaurus-mt-lg"><div class="row margin-top--sm theme-blog-footer-edit-meta-row"><div class="col"><b>Tags:</b><ul class="tags_jXut padding--none margin-left--sm"><li class="tag_QGVx"><a class="tag_zVej tagRegular_sFm0" href="/blog/tags/mllm">mllm</a></li><li class="tag_QGVx"><a class="tag_zVej tagRegular_sFm0" href="/blog/tags/ai">ai</a></li><li class="tag_QGVx"><a class="tag_zVej tagRegular_sFm0" href="/blog/tags/llm">llm</a></li></ul></div></div></footer></article><nav class="pagination-nav docusaurus-mt-lg" aria-label="Blog post page navigation"><a class="pagination-nav__link pagination-nav__link--prev" href="/blog/llm-tech-report"><div class="pagination-nav__sublabel">Newer Post</div><div class="pagination-nav__label">部分llm技术报告的阅读</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/blog/精读 AAAI 2025 Fit and Prune Fast and Training-free Visual Token Pruning for Multi-modal Large Language Models"><div class="pagination-nav__sublabel">Older Post</div><div class="pagination-nav__label">Paper reading - Fit and Prune Fast and Training-free Visual Token Pruning for Multi-modal Large Language Models</div></a></nav><div>Loading Comments...</div></main><div class="col col--2"><div class="tableOfContents_bqdL thin-scrollbar"><ul class="table-of-contents table-of-contents__left-border"><li><a class="table-of-contents__link toc-highlight" href="/blog/Ask in Any Modality A Comprehensive Survey on Multimodal Retrieval-Augmented Generation#数据集">数据集</a></li><li><a class="table-of-contents__link toc-highlight" href="/blog/Ask in Any Modality A Comprehensive Survey on Multimodal Retrieval-Augmented Generation#benchmark">Benchmark</a></li><li><a class="table-of-contents__link toc-highlight" href="/blog/Ask in Any Modality A Comprehensive Survey on Multimodal Retrieval-Augmented Generation#创新和方法">创新和方法</a><ul><li><a class="table-of-contents__link toc-highlight" href="/blog/Ask in Any Modality A Comprehensive Survey on Multimodal Retrieval-Augmented Generation#检索策略">检索策略</a><ul><li><a class="table-of-contents__link toc-highlight" href="/blog/Ask in Any Modality A Comprehensive Survey on Multimodal Retrieval-Augmented Generation#高效和精度">高效和精度</a></li><li><a class="table-of-contents__link toc-highlight" href="/blog/Ask in Any Modality A Comprehensive Survey on Multimodal Retrieval-Augmented Generation#以模态为中心的检索">以模态为中心的检索</a></li><li><a class="table-of-contents__link toc-highlight" href="/blog/Ask in Any Modality A Comprehensive Survey on Multimodal Retrieval-Augmented Generation#文档检索和布局理解">文档检索和布局理解</a></li></ul></li><li><a class="table-of-contents__link toc-highlight" href="/blog/Ask in Any Modality A Comprehensive Survey on Multimodal Retrieval-Augmented Generation#重排序和选择">重排序和选择</a></li><li><a class="table-of-contents__link toc-highlight" href="/blog/Ask in Any Modality A Comprehensive Survey on Multimodal Retrieval-Augmented Generation#相关性评估">相关性评估</a></li><li><a class="table-of-contents__link toc-highlight" href="/blog/Ask in Any Modality A Comprehensive Survey on Multimodal Retrieval-Augmented Generation#过滤机制">过滤机制</a></li><li><a class="table-of-contents__link toc-highlight" href="/blog/Ask in Any Modality A Comprehensive Survey on Multimodal Retrieval-Augmented Generation#融合机制">融合机制</a></li><li><a class="table-of-contents__link toc-highlight" href="/blog/Ask in Any Modality A Comprehensive Survey on Multimodal Retrieval-Augmented Generation#增强技术">增强技术</a></li><li><a class="table-of-contents__link toc-highlight" href="/blog/Ask in Any Modality A Comprehensive Survey on Multimodal Retrieval-Augmented Generation#生成技术">生成技术</a></li><li><a class="table-of-contents__link toc-highlight" href="/blog/Ask in Any Modality A Comprehensive Survey on Multimodal Retrieval-Augmented Generation#来源归属">来源归属</a></li><li><a class="table-of-contents__link toc-highlight" href="/blog/Ask in Any Modality A Comprehensive Survey on Multimodal Retrieval-Augmented Generation#对齐">对齐</a></li><li><a class="table-of-contents__link toc-highlight" href="/blog/Ask in Any Modality A Comprehensive Survey on Multimodal Retrieval-Augmented Generation#噪声管理">噪声管理</a></li></ul></li><li><a class="table-of-contents__link toc-highlight" href="/blog/Ask in Any Modality A Comprehensive Survey on Multimodal Retrieval-Augmented Generation#mrag解决的任务">MRAG解决的任务</a></li><li><a class="table-of-contents__link toc-highlight" href="/blog/Ask in Any Modality A Comprehensive Survey on Multimodal Retrieval-Augmented Generation#未来方向">未来方向</a><ul><li><a class="table-of-contents__link toc-highlight" href="/blog/Ask in Any Modality A Comprehensive Survey on Multimodal Retrieval-Augmented Generation#泛化">泛化</a></li><li><a class="table-of-contents__link toc-highlight" href="/blog/Ask in Any Modality A Comprehensive Survey on Multimodal Retrieval-Augmented Generation#推理">推理</a></li><li><a class="table-of-contents__link toc-highlight" href="/blog/Ask in Any Modality A Comprehensive Survey on Multimodal Retrieval-Augmented Generation#长上下文效率可拓展">长上下文，效率，可拓展</a></li></ul></li></ul></div></div></div></div></div><footer class="footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="col footer__col"><div class="footer__title">notes</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/docs/RL">课程笔记</a></li></ul></div><div class="col footer__col"><div class="footer__title">Community</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://stackoverflow.com/questions/tagged/docusaurus" target="_blank" rel="noopener noreferrer" class="footer__link-item">Stack Overflow<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li><li class="footer__item"><a href="https://discordapp.com/invite/docusaurus" target="_blank" rel="noopener noreferrer" class="footer__link-item">Discord<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li><li class="footer__item"><a href="https://twitter.com/docusaurus" target="_blank" rel="noopener noreferrer" class="footer__link-item">Twitter<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li></ul></div><div class="col footer__col"><div class="footer__title">More</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/blog">Blog</a></li><li class="footer__item"><a class="footer__link-item" href="/personal-essays">Personal Essays</a></li><li class="footer__item"><a href="https://github.com/facebook/docusaurus" target="_blank" rel="noopener noreferrer" class="footer__link-item">GitHub<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2025 Ayanami, Inc. Built with Docusaurus.</div></div></div></footer></div>
+</body>
+</html>
