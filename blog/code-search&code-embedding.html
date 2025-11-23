@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="blog-wrapper blog-post-page plugin-blog plugin-id-default" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.4.0">
+<title data-rh="true">从现代Coding Agent视角回看代码搜索与嵌入 | Ayanami&#x27;s Cave</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://ayanami1314.github.io/img/docusaurus-social-card.jpg"><meta data-rh="true" name="twitter:image" content="https://ayanami1314.github.io/img/docusaurus-social-card.jpg"><meta data-rh="true" property="og:url" content="https://ayanami1314.github.io/blog/code-search&amp;code-embedding"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docusaurus_tag" content="default"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docsearch:docusaurus_tag" content="default"><meta data-rh="true" property="og:title" content="从现代Coding Agent视角回看代码搜索与嵌入 | Ayanami&#x27;s Cave"><meta data-rh="true" name="description" content="应该如何说起代码搜索呢，先说代码搜索的几个小的子流派吧，这方面可能略微和其他领域不同"><meta data-rh="true" property="og:description" content="应该如何说起代码搜索呢，先说代码搜索的几个小的子流派吧，这方面可能略微和其他领域不同"><meta data-rh="true" name="keywords" content="code embedding,code search"><meta data-rh="true" property="og:type" content="article"><meta data-rh="true" property="article:published_time" content="2025-11-23T15:35:41.000Z"><meta data-rh="true" property="article:tag" content="ai,ai4se,coding agent,embedding,rag"><link data-rh="true" rel="icon" href="/img/ayanami.jpg"><link data-rh="true" rel="canonical" href="https://ayanami1314.github.io/blog/code-search&amp;code-embedding"><link data-rh="true" rel="alternate" href="https://ayanami1314.github.io/blog/code-search&amp;code-embedding" hreflang="en"><link data-rh="true" rel="alternate" href="https://ayanami1314.github.io/blog/code-search&amp;code-embedding" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://ayanami1314.github.io/blog/code-search&code-embedding","mainEntityOfPage":"https://ayanami1314.github.io/blog/code-search&code-embedding","url":"https://ayanami1314.github.io/blog/code-search&code-embedding","headline":"从现代Coding Agent视角回看代码搜索与嵌入","name":"从现代Coding Agent视角回看代码搜索与嵌入","description":"应该如何说起代码搜索呢，先说代码搜索的几个小的子流派吧，这方面可能略微和其他领域不同","datePublished":"2025-11-23T15:35:41.000Z","author":{"@type":"Person","name":"ayanami"},"keywords":["code embedding","code search"],"isPartOf":{"@type":"Blog","@id":"https://ayanami1314.github.io/blog","name":"Blog"}}</script><link rel="alternate" type="application/rss+xml" href="/blog/rss.xml" title="Ayanami&#39;s Cave RSS Feed">
+<link rel="alternate" type="application/atom+xml" href="/blog/atom.xml" title="Ayanami&#39;s Cave Atom Feed">
+
+
+
+<link rel="alternate" type="application/rss+xml" href="/personal-essays/rss.xml" title="Ayanami&#39;s Cave RSS Feed">
+<link rel="alternate" type="application/atom+xml" href="/personal-essays/atom.xml" title="Ayanami&#39;s Cave Atom Feed">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.24/dist/katex.min.css" integrity="sha384-odtC+0UGzzFL/6PNoE8rX/SPcQDXBJ+uRepguP4QkPCm2LBxH3FA3y+fKSiJ+AmM" crossorigin="anonymous"><link rel="stylesheet" href="/assets/css/styles.00dd3480.css">
+<script src="/assets/js/runtime~main.5a5b8d46.js" defer="defer"></script>
+<script src="/assets/js/main.cc42b366.js" defer="defer"></script>
+</head>
+<body class="navigation-with-keyboard">
+<script>!function(){function t(t){document.documentElement.setAttribute("data-theme",t)}var e=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();t(null!==e?e:"light")}(),function(){try{const n=new URLSearchParams(window.location.search).entries();for(var[t,e]of n)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><div role="region" aria-label="Skip to main content"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="navbar navbar--fixed-top"><div class="navbar__inner"><div class="navbar__items"><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/"><div class="navbar__logo"><img src="/img/logo.svg" alt="My Site Logo" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/img/logo.svg" alt="My Site Logo" class="themedComponent_mlkZ themedComponent--dark_xIcU"></div><b class="navbar__title text--truncate">Ayanami&#x27;s Cave</b></a><a class="navbar__item navbar__link" href="/docs/Chcore源码阅读">课程笔记</a><a aria-current="page" class="navbar__item navbar__link navbar__link--active" href="/blog">技术博客</a><a class="navbar__item navbar__link" href="/personal-essays">个人随笔</a></div><div class="navbar__items navbar__items--right"><a href="https://github.com/facebook/docusaurus" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link">GitHub<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="Switch between dark and light mode (currently light mode)" aria-label="Switch between dark and light mode (currently light mode)" aria-live="polite"><svg viewBox="0 0 24 24" width="24" height="24" class="lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" class="darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg></button></div><div class="navbarSearchContainer_Bca1"><div class="navbar__search searchBarContainer_NW3z" dir="ltr"><input placeholder="Search" aria-label="Search" class="navbar__search-input"><div class="loadingRing_RJI3 searchBarLoadingRing_YnHq"><div></div><div></div><div></div><div></div></div></div></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="main-wrapper mainWrapper_z2l0"><div class="container margin-vert--lg"><div class="row"><aside class="col col--3"><nav class="sidebar_re4s thin-scrollbar" aria-label="Blog recent posts navigation"><div class="sidebarItemTitle_pO2u margin-bottom--md">All our posts</div><ul class="sidebarItemList_Yudw clean-list"><li class="sidebarItem__DBe"><a aria-current="page" class="sidebarItemLink_mo7H sidebarItemLinkActive_I1ZP" href="/blog/code-search&amp;code-embedding">从现代Coding Agent视角回看代码搜索与嵌入</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/AI limu">李沐dl笔记</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/llm for code paper notes">paper-reading, code&amp;rl方向</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/speculative-decode-overview">投机解码简述</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/Paper reading Context Pruning and beyond hard pruning">Paper reading - Context Pruning and beyond hard pruning</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/结构化输出">结构化输出与AI工具与Agent</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/context-engineering">context-engineering</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/从微调reranker到搜推">从微调reranker到搜推工程实践</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/llm-tech-report">部分llm技术报告的阅读</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/Ask in Any Modality A Comprehensive Survey on Multimodal Retrieval-Augmented Generation">Paper reading-Ask in Any Modality A Comprehensive Survey on Multimodal Retrieval-Augmented Generation</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/精读 AAAI 2025 Fit and Prune Fast and Training-free Visual Token Pruning for Multi-modal Large Language Models">Paper reading - Fit and Prune Fast and Training-free Visual Token Pruning for Multi-modal Large Language Models</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/精读：Eagle Exploring The Design Space for Multi- modal LLMs with Mixture of Encoders">Paper reading-Eagle Exploring The Design Space for Multi- modal LLMs with Mixture of Encoders</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/RAG的一些思考和细节">RAG的一些思考与细节</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/精读  Interleaved Scene Graph for Interleaved Text-and-Image Generation Assessment">Paper reading - Interleaved Scene Graph for Interleaved Text-and-Image Generation Assessment</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/ColBERT">ColBERT-后期交互方法</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/2025/05/26/技术博客阅读">美团技术博客阅读</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/Milvus">稀疏神经嵌入</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/RocketMQ">RocketMQ学习</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/cs186-database-WIP">ucb cs186 课程笔记(更新中)</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/jyy-os-虚拟化">NJU操作系统(jyy OS)课程笔记-虚拟化部分</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/local-llm">来本地部署大模型!</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/ostep-chapter42-44">ostep阅读笔记：单机fs的崩溃一致性(chapter42-44)</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/系统架构设计笔记">system-design-interview笔记</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/JUC">JUC</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/cs144 labs">cs144 labs(Winter 2024)</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/jyy-os：并发">NJU操作系统(jyy OS)课程笔记-并发部分</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/nginx">nginx基础</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/cs144/cs144 lec notes">CS144 Lecture Notes</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/django-mosh">Django_mosh</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/splay-tree">splay tree</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/xv6book-notes">xv6book Notes(C1-4)</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/Go-Gin学习">Go,Gin学习</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/godis源码阅读">godis源码阅读</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/hibernate-jpa">hibernate&amp;jpa</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/linking-复习">linking 复习</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/ts基础">ts基础</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/实战2-mosh-gamehub">react practice:mosh gamehub</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/浅入理解断点和调试器">浅入理解断点和调试器</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/黑马点评">黑马点评(速通版)</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/js基础">js基础</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/11-14-11-26学习双周记">11-14-11-26学习双周记</a></li></ul></nav></aside><main class="col col--7"><article><header><h1 class="title_f1Hy">从现代Coding Agent视角回看代码搜索与嵌入</h1><div class="container_mt6G margin-vert--md"><time datetime="2025-11-23T15:35:41.000Z">November 23, 2025</time> · <!-- -->24 min read</div><div class="margin-top--md margin-bottom--sm row"><div class="col col--6 authorCol_Hf19"><div class="avatar margin-bottom--sm"><div class="avatar__intro"><div class="avatar__name"><span>ayanami</span></div></div></div></div></div></header><div id="__blog-post-container" class="markdown"><p>应该如何说起代码搜索呢，先说代码搜索的几个小的子流派吧，这方面可能略微和其他领域不同</p>
+<p>代码的检索我认为是可以分解成以下几种的：</p>
+<ul>
+<li>搜索引擎式</li>
+<li>grep传统搜</li>
+<li>向量embedding搜</li>
+<li>码仓index</li>
+</ul>
+<p>每一种都是什么意思呢，举个例子</p>
+<p>搜索引擎式是复用传统的搜索引擎，如elasticsearch, meilisearch等；也有一些变体，比如github的代码搜索，主要是弥补传统搜索引擎在代码搜索的不足</p>
+<p>grep如其名字，基于linux grep或者riggrep，在agent内使用最广</p>
+<p>向量embedding搜则有多个子任务，如NL2Code, Code2Code, Code2NL等，每个还有一些细微差别，这个很有意思，待会讲；</p>
+<p>码仓index呢，则大致有两种：一种基于传统的AST分析，希望构建整个码仓的符号树或者CKG来辅助搜，另一种则寄希望于新型的生成式大模型，希望让LLM读了仓库之后能生成”索引“，典型的做法比如deepwiki。</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="搜索引擎式">搜索引擎式<a class="hash-link" aria-label="Direct link to 搜索引擎式" title="Direct link to 搜索引擎式" href="/blog/code-search&amp;code-embedding#搜索引擎式">​</a></h3>
+<p>传统的搜索引擎其实在代码搜上有很多问题，参见</p>
+<p><a href="https://github.blog/engineering/architecture-optimization/the-technology-behind-githubs-new-code-search/" target="_blank" rel="noopener noreferrer">https://github.blog/engineering/architecture-optimization/the-technology-behind-githubs-new-code-search/</a></p>
+<p>最严重的问题甚至不是想象的NL2Code的问题，而是传统搜索引擎的部分优化不够、部分优化又不足，总之不与代码适配</p>
+<ol>
+<li>索引的开销, 恐怖的内存消耗</li>
+</ol>
+<blockquote>
+<p>当我们第一次部署 Elasticsearch 时，需要几个月的时间才能索引 GitHub 上的所有代码（当时大约有 800 万个存储库）。今天，这个数字已经超过 2 亿，而且代码不是静态的：它不断变化，这对搜索引擎来说是相当具有挑战性的。</p>
+</blockquote>
+<ol start="2">
+<li>可不可以不要索引？对大规模库高并发是不可能的：</li>
+</ol>
+<blockquote>
+<p>首先，让我们探讨一下解决问题的蛮力方法。我们经常收到这样的问题：“你<strong>为什么不直接使用 grep</strong>？为了回答这个问题，让我们使用 <a href="https://github.com/BurntSushi/ripgrep" target="_blank" rel="noopener noreferrer">ripgrep</a> 对这 115 TB 的内容进行一些数学计算。在具有八核 Intel CPU 的机器上，ripgrep 可以在 2.769 秒内对缓存在内存中的 13 GB 文件运行<a href="https://github.com/BurntSushi/ripgrep#quick-examples-comparing-tools" target="_blank" rel="noopener noreferrer">详尽的正则表达式查询 </a>，即大约 0.6 GB/秒/内核。
+我们很快就会发现，这对于我们拥有的大量数据来说确实不起作用。代码搜索在 64 个核心、32 个机器集群上运行。即使我们设法将 115 TB 的代码放入内存中并假设我们可以完美并行化工作，我们也会在 96 秒内使 2,048 个 CPU 内核饱和，以处理单个查询！只能运行一个查询。其他人都必须排队。结果是<strong>每秒 0.01 次查询</strong></p>
+</blockquote>
+<ol start="3">
+<li>
+<p>分词器不需要了：搜索引擎依赖分词来减少构建倒排的成本和作为基础搜索单元，但就和Tokenizer的引入一样，这个开销的减少从来不是免费的，接下来的问题就是：代码如何分词？另一个问题是：停用词全部没用了！无论是<code>!@?/#$:{}()[]</code>还是什么别的乱七八糟的符号，都是编程语言的最爱, 这使得传统的分词系统更加雪上加霜</p>
+<ol>
+<li>如果提前跑一遍AST分析呢？我们的CPU要算爆炸了<code>:)</code>, 并且你如何统一没有LSP小众语言，不同的语法版本（<code>py2-&gt;3</code>）... 工程量立刻爆炸了</li>
+<li>能不能在char level倒排？太爆炸了索引，所以github是使用<strong>3-char</strong>的倒排的 <code>argument -&gt; arg、rgu、gum、...</code></li>
+<li>代码里面还有注释，注释还有多语言，甚至单个仓库都很常见中英两种语言的注释...看起来朴素的分词器比如jieba要全面阵亡了...</li>
+</ol>
+</li>
+<li>
+<p>基于git的增量更新：增量更新本身可以用merkel tree，这也是cursor在用的技术，但结合git版本？你发现事情变  得复杂起来了，这是纯工程的复杂性。一次git commit涉及到十几个文件的几行变化，需要触发至少十几个chunk的embedding更新？如何处理多分支呢？我的每一个存储代码块是否还得加一个tag标识它的branch，然后在搜索引擎里面支持完备地按tag过滤，省的不同branch的代码在同一个搜索引擎中返回？（然后发现branch name作为tag简直太烂了，它是一个完全动态的无限的集合）</p>
+</li>
+</ol>
+<p>鉴于恐怖的存储代码数量，github采用的搜索引擎相当简陋，甚至是弱化版本的完全匹配：3-grams索引</p>
+<blockquote>
+<p>对于代码搜索，我们需要一种特殊类型的倒排索引，称为 ngram 索引，它对于查找内容的子字符串很有用。<a href="https://en.wikipedia.org/wiki/N-gram" target="_blank" rel="noopener noreferrer">ngram</a> 是长度为 <em>n</em> 的字符序列。例如，如果我们选择 n=3，则构成内容“limits”的 ngram 是 <code>lim</code>、<code>imi</code>、<code>mit</code>、<code>its</code>。<strong>(二元组的选择性不够，四元组占用了太多空间)</strong></p>
+</blockquote>
+<p>这个索引显然是非常大无法放入内存的，所以github采用了一些传统数据库里面的懒加载和流式优化技术，使得可以仅读取一个小子集完成搜索</p>
+<p>而关于构建索引本身，github还有很多特殊设计，但这其实属于system/后端任务了，不细讲：</p>
+<ul>
+<li>
+<p>用Git blob object ID来分片，kafka分区</p>
+</li>
+<li>
+<p>用path, branch, repository + 元信息(owner, visibility, etc.) 来构建增量索引key</p>
+</li>
+<li>
+<p>commit-level的一致性</p>
+</li>
+<li>
+<p>Github相当多的blob是相同的，使用增量编码很有吸引力, 这里用到了概率上的近似数据结构和一些分布式图（近似）算法</p>
+<blockquote>
+<p>To determine the optimal ingest order, we need a way to tell how similar one repository is to another (similar in terms of their content), so <strong>we invented a new probabilistic data structure to do this in the same class of data structures as <a href="https://en.wikipedia.org/wiki/MinHash" target="_blank" rel="noopener noreferrer">MinHash</a> and <a href="https://en.wikipedia.org/wiki/HyperLogLog" target="_blank" rel="noopener noreferrer">HyperLogLog</a></strong>. This data structure, which we call a geometric filter, allows computing set similarity and the symmetric difference between sets with logarithmic space. <strong>In this case, the sets we’re comparing are the contents of each repository as represented by (path, blob_sha) tuples. Armed with that knowledge, we can construct a graph where the vertices are repositories and edges are weighted with this similarity metric. Calculating a minimum spanning tree of this graph (with similarity as cost) and then doing a level order traversal of the tree gives us an ingest order where we can make best use of delta encoding. Really though, this graph is enormous (millions of nodes, trillions of edges), so our MST algorithm computes an approximation that only takes a few minutes to calculate and provides 90% of the delta compression benefits we’re going for.</strong></p>
+</blockquote>
+</li>
+</ul>
+<hr>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="grep">Grep<a class="hash-link" aria-label="Direct link to Grep" title="Direct link to Grep" href="/blog/code-search&amp;code-embedding#grep">​</a></h3>
+<p>grep属实是在Coding Agent时代焕发了第二春，由于其系统级别自带+完美匹配Bash工具和Unix文本管道的特性，在现代的LLM之中都大量训练了如何写出各种米奇妙妙grep的数据</p>
+<p>claude code这种经过更多优化的grep会更过分一点，它会有几个细节优化：</p>
+<ul>
+<li>使用更现代的<code>rg</code>(riggrep)代替原始的grep</li>
+<li>逆向cc源码可知，它的grep有<strong>七八个参数</strong>，分别对应grep里面的不同参数比如 <code>-A</code> <code>-E</code> <code>-C</code> , 除了一些呈现格式（比如带不带行号和文件名）之类的差别，主要的几个参数就是在<strong>匹配行前保留多少行、匹配行后保留多少行、和上下保留多少行</strong>
+<ul>
+<li>如果读者熟悉coding agent的工作的话，其实早在swe-agent就已经探究过这个context window开多少的问题，原始论文的实验结论是50行</li>
+</ul>
+</li>
+</ul>
+<div class="language-shell codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-shell codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">❯ tldr grep</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">grep</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">Find patterns in files using regular expressions.More information: https://www.gnu.org/software/grep/manual/grep.html.</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"> - Search for a pattern within a file:</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">   grep &quot;{{search_pattern}}&quot; {{path/to/file}}</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"> - Search for an exact string (disables regular expressions):</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">   grep {{[-F|--fixed-strings]}} &quot;{{exact_string}}&quot; {{path/to/file}}</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"> - Search for a pattern in all files recursively in a directory, showing line numbers of matches, ignoring binary files:</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">   grep {{[-r|--recursive]}} {{[-n|--line-number]}} --binary-files {{without-match}} &quot;{{search_pattern}}&quot; {{path/to/directory}}</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"> - Use extended regular expressions (supports ?, +, {}, (), and |), in case-insensitive mode:</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">   grep {{[-E|--extended-regexp]}} {{[-i|--ignore-case]}} &quot;{{search_pattern}}&quot; {{path/to/file}}</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"> - Print 3 lines of [C]ontext around, [B]efore or [A]fter each match:</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">   grep --{{context|before-context|after-context}} 3 &quot;{{search_pattern}}&quot; {{path/to/file}}</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"> - Print file name and line number for each match with color output:</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">   grep {{[-H|--with-filename]}} {{[-n|--line-number]}} --color=always &quot;{{search_pattern}}&quot; {{path/to/file}}</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"> - Search for lines matching a pattern, printing only the matched text:</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">   grep {{[-o|--only-matching]}} &quot;{{search_pattern}}&quot; {{path/to/file}}</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"> - Search stdin for lines that do not match a pattern:</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">   cat {{path/to/file}} | grep {{[-v|--invert-match]}} &quot;{{search_pattern}}&quot;</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<p>另一个有趣的事情是，现在的coding agent不约而同地使用了grep而不是rag作为其系统原生的工具，我觉得理由也是非常清晰的：</p>
+<ol>
+<li>grep的输出是标准可预测的，而rag的输出依赖于 <code>{基础模型， 分块方法，召回topk，重排模型}</code> 等多个配置参数，一个标准的输出带来的好处是 <strong>可强化学习</strong>， 如果对一个 code llm + rag 的系统做RL，最后的搜索策略一定会是拟合到和rag的embedding模型和具体策略相匹配，丧失了可迁移性</li>
+<li>除此之外的好处也有很多，比如RL环境不需要embedding的额外开销（存储和计算上甚至编码成本上），整体轨迹可解释，精确匹配效果好，速度快...</li>
+</ol>
+<p>rag的index开销其实相当大，学界不在乎这个，为了提升精度每个token一个embedding的方法也有，但一个embedding是一个1024维的向量，光存储开销就是4KB，对于百万行级别的代码仓库，其chunk可能在数万，达到了GB级别的存储开销</p>
+<p>而工业项目有百万码仓，在TB级别的存储上进行高效地索引和查询着实压力很大，可以参考 美团和milvus/lancedb的相关文章 ，索引优化也有相当多的新实践，但这是做DB的人考虑的（雾</p>
+<p>但Grep就是万灵药吗？并非如此</p>
+<p><strong>Grep提供了一个切面，能够让模型Agentic Search，根据搜索到的局部反馈调整搜索方法，从部分开始探索整个代码仓库——大部分需求的完成不需要对全仓的理解</strong></p>
+<p>——吗？</p>
+<p>一个Grep的bad case是<strong>高阶语义的需求</strong>：</p>
+<ul>
+<li>哪里导 致了这个bug?</li>
+<li>某个模块的核心逻辑是什么？</li>
+<li>整体的代码结构？</li>
+<li>...</li>
+</ul>
+<p>模型要么老实cat，要么就只能在log中见到它尝试“猜”你的变量名字，比如你问“...的实现”就会开始Grep <code>impl</code>，如果你把所有变量换成abcde，它立刻就GG了</p>
+<p>比起失败的搜索浪费的上下文更糟地是浪费的交互轮数 —— 长达几百轮的agent轨迹是相当稀少的训练数据，如果再配合没那么好的历史压缩方法，或是没有精心设计的防止模型死循环的额外环境反馈，连续失败的grep会让agent的性能迅速地劣化</p>
+<p>基于这方面的需求，在推理阶段Grep还是得配合别的工具，比如deepwiki，比如CKG（代码知识图谱，例如每个函数的caller和callee），</p>
+<p>比如Code RAG</p>
+<p>这方面也有一些新的探索，例如 <a href="https://cognition.ai/blog/swe-grep" target="_blank" rel="noopener noreferrer">https://cognition.ai/blog/swe-grep</a> 的RL并行工具调用（<strong>关键不在速度，关键在减少交互轮数！</strong>），比如在工程侧融合Grep和RAG如<a href="https://github.com/daimh/mgrep" target="_blank" rel="noopener noreferrer">https://github.com/daimh/mgrep</a> 和 <a href="https://github.com/zilliztech/claude-context" target="_blank" rel="noopener noreferrer">https://github.com/zilliztech/claude-context</a> ，以及我们将要发的一篇文章（自吹自擂一下，关注主包后续的工作谢谢喵）</p>
+<hr>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="code-embedding">code embedding<a class="hash-link" aria-label="Direct link to code embedding" title="Direct link to code embedding" href="/blog/code-search&amp;code-embedding#code-embedding">​</a></h3>
+<p>主包主包，code embedding和文本的embedding有什么区别呢？为什么要强调code?</p>
+<p>非常好问题，爱来自AI4SE。我认为code其实和图像比较像，某种意义上<strong>算是一种特殊的模态</strong>，不完全是文本——code某种意义上是“反语言常理”的，例如大部分语言的上下文有限，一句话很难和1000个字之前的某个东西形成强烈的联系，而这种长程交互在code之中非常常见——甚至有跨文件、跨模块、跨仓库的交互</p>
+<p>而另一个很有趣的事情是，<strong>当我们在讲“某段代码的语义”的时候，这件事本身是模糊的</strong>，文本没有那么强的二义性，太阳就是太阳，月亮就是月亮，但一个递归斐波那契函数的语义到底是 “递归“ 还是 ”斐波那契“？这其实折射出了代码的某种特殊性，它同时具备<strong>字面义</strong> ”斐波那契“ 和<strong>运行义</strong> ”递归“（甚至”低效“、”算法“、“python”），而在一个代码仓库之中，代码还具备了<strong>上下游的属性</strong>：谁是我的caller，谁是我的callee?</p>
+<p><strong>这件事情为什么重要呢，因为传统的embedding向量相似度产出的是一个标量，它只能衡量一个维度的相似性！</strong></p>
+<ul>
+<li>当你在说“查找与function A相关的代码”时，你想要的到底是什么？<!-- -->
+<ul>
+<li>function A的字面义相关的代码？</li>
+<li>function A的运行效果相关的代码？</li>
+<li>function A的caller/callee?</li>
+<li>...</li>
+</ul>
+</li>
+</ul>
+<p>然后你就发现从这个角度上来说，Code2Code的向量搜是很诡异的一件事情，至少传统的cos相似度无法干这件事——</p>
+<ul>
+<li>更悲伤（从学术研究的角度上来说或许是兴奋）的是，在现实需求中，我们真的不在意找到和一个function的字面意相关的function...假设你想要补全一段代码，你可能更需要关注谁会是它的caller，假设你需要优化一段代码，你可能搜索的方法是某种低效的pattern...<strong>而这些embedding相似度全部做不到</strong>
+<ul>
+<li>据我所知，企业对这个接近摆烂了，只有MSRA有一  个group还在研究，我之前溯源到的比较早的上下游建模技术是Order Embedding，感兴趣的或许可以试试做</li>
+</ul>
+</li>
+</ul>
+<p><strong>直接结果是：我们只有NL2Code了</strong></p>
+<p>并且这个NL也只能关注一个方面...</p>
+<p>什么样的NL才是真实会问会写的NL呢？Coding Agent的轨迹数据</p>
+<p>没有轨迹数据怎么办？从大规模代码中<strong>挖掘注释作为NL</strong></p>
+<p><strong>一个人写注释的方法和提问的方法不一样，这个语义空间的unmatch如何处理？各家自显神通</strong></p>
+<ul>
+<li>
+<p>例如2025年5月快手的OASIS: Order-Augmented Strategy for Improved Code Search，认为<strong>现有的code</strong> <strong>embedding</strong>往往关注的是<strong>代码的字面相似性</strong>，即只把代码认为是一种特殊的“语言”，而忽略了代码的非文字意义上的相似性</p>
+<ul>
+<li>对代码片段（结合其他静态分析信息），用LLM产生其作用的描述文本</li>
+<li>计算这个描述文本和其他代码片段的相似性，以此来挖掘难负样本</li>
+<li>因为这个文本描述的是相对High Level的函数作用，能够一定程度上避免变量名字等带来的影响，专注于实际作用</li>
+</ul>
+</li>
+<li>
+<p>24年12月的Nomic AI的cornstack</p>
+<ul>
+<li>强调<code>&lt;文档，代码&gt;</code>对的相关性重要性，并采用双重过滤：如果文档与代码间相似度低，或者并不在topK，只要有一个满足就筛掉</li>
+<li>动态硬负例挖掘策略：对于批内负样本挖掘，采用softmax概率采样，但是在训练过程中，逐步改变softmax的温度，前期温度高提高多样性，后期温度低，注重难负样本的区分</li>
+</ul>
+</li>
+<li>
+<p>25年5月的BAAI Towards A Generalist Code Embedding Model Based On Massive Data Synthesis</p>
+<ul>
+<li>强调退火训练，第一阶段纯文本，第二阶段全数据训练text-code能力，第三阶段纯代码</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="码仓index---deepwikickg">码仓Index - DeepWiki/CKG<a class="hash-link" aria-label="Direct link to 码仓Index - DeepWiki/CKG" title="Direct link to 码仓Index - DeepWiki/CKG" href="/blog/code-search&amp;code-embedding#码仓index---deepwikickg">​</a></h3>
+<p>这个说起来就比较简单了，deepwiki重要的始终是LLM的能力，而CKG则是静态分析的质量，开源的tree-sitter固然可用，企业也有一些统一各种语言的私有AST，静态分析已经日趋成熟，困难的是<strong>如何将这个信息给到LLM</strong>？</p>
+<p>很早在Google的博客中就有论述: <strong>现在的vibe coding就像是把一个几千行的代码粘贴到记事本里面，然后让程序员来修改bug</strong> —— LLM看到的就是 “记事本”，而不是程序员的带有各种Lint和跳转的IDE界面</p>
+<p>AST分析树如此庞大，除了摆烂式地提供一个获取caller/callee的mcp工具给agent之外，还可以做些什么？</p>
+<p>先前在web领域有一个llms.txt的旨在LLM-friendly的格式，代码领域却暂时缺乏哪怕是新兴的统一处理格式</p>
+<p>AI-friendly IDE可能对于Coding Agent的能力提升相当重要，这也是moonbit社区他们宣传的，不过我没有实际上手用过，也不是学PL的，就不瞎讲了，感兴趣的可以看张宏波的演讲</p>
+<p>【AI时代下的基础软件 | 张宏波 刘子悦 蚂蚁&amp;MoonBit Meetup杭州站回放】</p>
+<p><a href="https://www.bilibili.com/video/BV1wL8DzgEXZ/" target="_blank" rel="noopener noreferrer">https://www.bilibili.com/video/BV1wL8DzgEXZ/</a></p>
+<p><strong>除此之外，可能我们原先认为不能搜索或者没必要搜索的部分，现在也正在发挥着额外的作用</strong>：</p>
+<ul>
+<li>python的package，众所周知（可能并非），pip包只是一个特殊的压缩包，可以直接看到文本格式的原始代码，现代的claude-sonnet-4等模型在环境出错的时候会主动读/搜 <code>pyproject.toml</code>, <code>.venv</code>等特殊文件，遇到<code>import</code>的不了解api还会尝试进入package观看源码</li>
+<li>而某些binary风格或是一串神秘哈希引入的包可能对于LLM并不是很友好...</li>
+</ul>
+<p>除此之外也有很多新兴的想法，例如注释本身可不可以作为一个天生的码仓Index? ...</p>
+<p><strong>CLI版本</strong>的Coding Agent好处是可以在各处方便的引用，尤其利于<strong>大规模并发采集数据</strong></p>
+<p>但<strong>IDE版本的Coding Agent则会更加地“懂人</strong>”，原因是AI IDE在背后做了一大堆不仅仅是diff等格式渲染的工作，用户环境信息，用户系统信息，... 这些都被从后台塞入了Coding Agent的system prompt，使得你在Linux上运行Copilot的时候，模型不会让你执行 <code>brew install</code>命令</p>
+<p>但文本本身依然有着局限，或许在某个未来，我们能看到真正的code native架构，不在绞尽脑汁地想把编译器的报错，AST的分析等等原本结构化的东西转成markdown再塞入永远不够的agent上下文...</p></div><footer class="docusaurus-mt-lg"><div class="row margin-top--sm theme-blog-footer-edit-meta-row"><div class="col"><b>Tags:</b><ul class="tags_jXut padding--none margin-left--sm"><li class="tag_QGVx"><a class="tag_zVej tagRegular_sFm0" href="/blog/tags/ai">ai</a></li><li class="tag_QGVx"><a class="tag_zVej tagRegular_sFm0" href="/blog/tags/ai-4-se">ai4se</a></li><li class="tag_QGVx"><a class="tag_zVej tagRegular_sFm0" href="/blog/tags/coding-agent">coding agent</a></li><li class="tag_QGVx"><a class="tag_zVej tagRegular_sFm0" href="/blog/tags/embedding">embedding</a></li><li class="tag_QGVx"><a class="tag_zVej tagRegular_sFm0" href="/blog/tags/rag">rag</a></li></ul></div></div></footer></article><nav class="pagination-nav docusaurus-mt-lg" aria-label="Blog post page navigation"><a class="pagination-nav__link pagination-nav__link--next" href="/blog/AI limu"><div class="pagination-nav__sublabel">Older Post</div><div class="pagination-nav__label">李沐dl笔记</div></a></nav><div>Loading Comments...</div></main><div class="col col--2"><div class="tableOfContents_bqdL thin-scrollbar"><ul class="table-of-contents table-of-contents__left-border"><li><a class="table-of-contents__link toc-highlight" href="/blog/code-search&amp;code-embedding#搜索引擎式">搜索引擎式</a></li><li><a class="table-of-contents__link toc-highlight" href="/blog/code-search&amp;code-embedding#grep">Grep</a></li><li><a class="table-of-contents__link toc-highlight" href="/blog/code-search&amp;code-embedding#code-embedding">code embedding</a></li><li><a class="table-of-contents__link toc-highlight" href="/blog/code-search&amp;code-embedding#码仓index---deepwikickg">码仓Index - DeepWiki/CKG</a></li></ul></div></div></div></div></div><footer class="footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="col footer__col"><div class="footer__title">notes</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/docs/RL">课程笔记</a></li></ul></div><div class="col footer__col"><div class="footer__title">Community</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://stackoverflow.com/questions/tagged/docusaurus" target="_blank" rel="noopener noreferrer" class="footer__link-item">Stack Overflow<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li><li class="footer__item"><a href="https://discordapp.com/invite/docusaurus" target="_blank" rel="noopener noreferrer" class="footer__link-item">Discord<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li><li class="footer__item"><a href="https://twitter.com/docusaurus" target="_blank" rel="noopener noreferrer" class="footer__link-item">Twitter<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li></ul></div><div class="col footer__col"><div class="footer__title">More</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/blog">Blog</a></li><li class="footer__item"><a class="footer__link-item" href="/personal-essays">Personal Essays</a></li><li class="footer__item"><a href="https://github.com/facebook/docusaurus" target="_blank" rel="noopener noreferrer" class="footer__link-item">GitHub<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2025 Ayanami, Inc. Built with Docusaurus.</div></div></div></footer></div>
+</body>
+</html>
