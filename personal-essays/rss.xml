@@ -4,10 +4,133 @@
         <title>Ayanami's Cave Blog</title>
         <link>https://ayanami1314.github.io/personal-essays</link>
         <description>Ayanami's Cave Blog</description>
-        <lastBuildDate>Sun, 23 Nov 2025 15:28:43 GMT</lastBuildDate>
+        <lastBuildDate>Tue, 10 Feb 2026 05:12:11 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
+        <item>
+            <title><![CDATA[2025暑期总结]]></title>
+            <link>https://ayanami1314.github.io/personal-essays/2025-summer</link>
+            <guid>https://ayanami1314.github.io/personal-essays/2025-summer</guid>
+            <pubDate>Tue, 10 Feb 2026 05:12:11 GMT</pubDate>
+            <description><![CDATA[由于这个夏天确实发生了很多事情，所以打算写一个夏季的总结，也算是一反春秋两季总结的常态吧www]]></description>
+            <content:encoded><![CDATA[<p>由于这个夏天确实发生了很多事情，所以打算写一个夏季的总结，也算是一反春秋两季总结的常态吧www</p>
+<p>一时不知道从哪里说起，就按照时间线顺序吧</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="20256">2025.6<a class="hash-link" aria-label="Direct link to 2025.6" title="Direct link to 2025.6" href="https://ayanami1314.github.io/personal-essays/2025-summer#20256">​</a></h2>
+<p>在5月底6月初的时候，我结束了我的第一段实习，回到了学校；由于这个学期我并没有什么课，所以一直到期末考试结束，我反而是放假的，当时的初步打算是休息休息、沉淀沉淀，然后在9月开学的时候再投下一段实习</p>
+<p>但说实话，第一段实习主要做的是AI应用，虽然有涉及到不少算法工作，但本质上是公司太草台了根本没有专门做这个的算法岗，所以实习生当全栈用，于是当时其实不太知道投些什么好，在学校的帖子中是这么写的</p>
+<blockquote>
+<p>楼主准备在八九月分投下一段日常实习，目前还在</p>
+<ul>
+<li>LLM应用</li>
+<li>搜推</li>
+<li>后端</li>
+</ul>
+<p>中摇摆，大概到时候都会投一些，而从现在到八月的时间空闲不少，楼主认为有必要沉淀沉淀
+遂开此楼，记录一下楼主在准备力扣八股中的思考，不过力扣估计是7月份才会启动，最近主要是战八股。</p>
+</blockquote>
+<p>于是当时就开始看一些传统后端八股，之前没学的东西，当时还列了一个学习list，从mq到spring cloud, dubbo等等（虽然最后也只看了mq），顺带看一些大厂技术博客，主要是RAG方向（沿着实习的继续看，例如美团对向量搜的优化等等，当时对搜广推的想法主要是搜索），还有像是王树森的搜推基础</p>
+<p>然后在这个时候发生了一个很有趣的事情，让我又开始找起来了实习。起因是一直想参与一些开源工作，当时GSoC已经错过了，但是ospp还是可以报的，于是花了不少时间在ospp项目的筛选和查看上。结果进到一个项目的群里，三四十个人抢一个机会，当时就感觉很离谱，然后就润了，在和很多同学的交流过程中也对AI到底有多火拿到了新的认知。</p>
+<p>但ospp没拿到机会，突然又觉得暑假没什么事情做，尝试联系了一两个老师，做的项目又总是很草台或者很没意思（例如，benchmark），于是打算还是找一段暑期实习吧，看看有没有什么机会，就开始再刷刷力扣和招聘软件。</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="20257">2025.7<a class="hash-link" aria-label="Direct link to 2025.7" title="Direct link to 2025.7" href="https://ayanami1314.github.io/personal-essays/2025-summer#20257">​</a></h2>
+<p>但比实习面试更先一步肘击的是我们学校的暑假小学期课程，这门课程就是把人关在教室里面结对开发，一周五天从早到晚，属于是没含金量没钱没需求的实习了。于是6月底和7月前半的生活主要在写这门课相关的项目（自命题了个想做的写，主要做文档补全相关的东西，在其中把之前接触相对较少的vllm等推理引擎和很多文档补全的算法和设计接触了一下，比如Fill in the Middle， 多模态rag，reranker的调优等等）</p>
+<p>而在找实习方面，也是第一次直面了就业市场的压力（第一段实习其实算是实验室合作项目），投了100家就几个面试，最后offer的更是寥寥（不过后来发现其实已经算好的了，交大title还是好用的），白天上课推项目晚上投实习刷八股力扣，中间抽空面试，到后面是真的负能量很多很破防。</p>
+<p>最后面下来的结果是几个offer, 一个华为的AI rag实习生，但做的是培训这种听起来就很草台的业务；一个是百度的文档理解实习生，但百度实在是太抠了200/d，再加上学长同学都觉得百度业务不行，最后接的是另一个百亿私募的offer，说做AI工具这一块（不过后来又出现了奇怪的经历www），面下来还是收获很多的：</p>
+<ul>
+<li>对面试过程有了正确的了解，在去年面字节的时候说实话完全不能算是经验，就是完全没达到标准还，在7月的时候已经面麻了，真有一种对简历也好其他也好越来越得心应手，知道面试官会对哪些内容感兴趣的感觉</li>
+<li>建立了对转行的信心，学期初对跑路AI应用这件事情惴惴不安，在5月的时候也完全不敢碰算法岗，但百度的offer真的极大增强了找算法岗的信心，原来这样工程的简历在算法侧也是有公司肯要的，当时就和同学说“感觉后面再做一段应该能找到大厂的算法实习”（现在看来实则不一定www，当时过于乐观）</li>
+<li>在6月份到7月份的沉淀过程中逐渐了解了学界和业界都在做什么东西，配合自己写的项目，对整个rag链路的了解更深了，实习期间因为业务原因没机会做的一些东西也做了起来</li>
+</ul>
+<p>由于第一段比较草台，说实话没对quant或者qd岗有什么额外的了解，于是接了私募的offer打算再做一段正经些的qd。</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="20258">2025.8<a class="hash-link" aria-label="Direct link to 2025.8" title="Direct link to 2025.8" href="https://ayanami1314.github.io/personal-essays/2025-summer#20258">​</a></h2>
+<p>后半个七月+八月是很有趣的实习time</p>
+<p>实习期间干的东西特别神奇，半个ai infra+半个devops，说好的ai tools呢，几乎只有入职后的landing任务是ai tools（笑）</p>
+<p>由于涉及到一些保密政策，所以不能说很多。但主要是在做两个方向，一个code agent，第二个是模型部署和推理优化</p>
+<p>但很搞的是，我不会ai infra啊！但在和+2的第一次meeting中，+2说了一句现在这个还没人做，你就做这个方向吧，实习任务就是这个了，其实我更想做当时+2提出的训练侧和文档理解agent相关任务来着（笑，不过现在看来未必是坏事， +2说没事你可以学啊！</p>
+<p>于是草台对草台，稀里糊涂的就接了部署k2的任务，目标就是打到一个指定的qps来支撑公司后续的ai服务</p>
+<p>还没说的是在公司的第一周有一个很完善的入职培训，真被强制要求学了一些quant相关的基础知识，感觉还是很开眼界的，看了2天视频（笑</p>
+<p>开始是在显卡云厂商上部署，mt帮我配好了nccl之类环境，我再加装了deepEP之类，一边是看着vllm/sglang文档开关各种参数测性能，另一边是在测的时候也就顺带看看这些参数对应的论文和博客，了解一下是什么意思。当时因为觉得从来没做过ai infra写算子之类肯定没什么产出，所以一直在看投机解码这个方向的文章想看看能不能训个草稿模型加上去（了解到投机解码也是6月份沉淀的时候www），倒是真用specForge训了点，但一个是对k2这种新模型支持不好，另一个是训练的结果并没有很出彩......所以就没太多产出吧</p>
+<p>然后这一小块结束之后就是上k8s，也是苦痛和成长（?）的来源（至少我之前确实没操过k8，遑论是gpu集群）</p>
+<p>+2最开始想用的是ome，说让我们先调研一下，于是看了production stack, ome等，然后+2就给了个k8s集群，说那你们开始部署吧！谁能想到这个aws集群是苦痛来源呢......</p>
+<p>这个aws到底为什么恶心呢？</p>
+<ul>
+<li>
+<p>给到我们的aws的pod不是“裸”的（aws hyperpod sagemaker），在上面有专门的nvidia plugin pod，不能直接装gpu operator不然会把集群干爆.......</p>
+</li>
+<li>
+<p>vllm/sglang社区没有对aws sagemaker这一aws新推出的产品做适配，只有普通版本的aws eks的解决方案，而我们因为租不到机器只有sagemaker可用</p>
+</li>
+<li>
+<p>我的aws经常缺各种权限，整个context也非常神秘，aws自己的文档也是大芬，控制台界面一点都不清晰，十分难用，多亏了mt的扶持......</p>
+</li>
+<li>
+<p>aws的网络栈问题: aws的pod是没有InfiniBand的!!!取而代之的是一个叫做efa的网络系统，在我解决了九九八十一难安装好lws，cert-manager，理解和处理好s3,pv,pvc等问题之后，尝试部署ome的时候又发现缺这个缺那个，设备map里面没有sagemaker...之后，发现部署不起来的原因是这个b没有eth0网卡！太神人了太抽象了，于是后面涉及到的大量组件都没有支持，全是我们和aws那边自己打镜像装驱动打出来的，比如基本的nccl, ucx和deepgemm......</p>
+</li>
+<li>
+<p>然后production stack那边，kuberay方案倒是能正常跑起来，但lmcache和MLA模型的兼容到我离职还没修好，在和aws的人一起战完ome和production stack宣布倒下之后转向了裸sgl部署.....</p>
+</li>
+<li>
+<p>这个sagemaker启动还很麻烦，开开关关，每次都要重新下载模型，完成配置等。最开始还没有ssh这种权限，全靠ai告诉我怎么写一个k8s job去启动下载......中间看过一点k8s operator相关的东西，但说实话没怎么看明白；后期装了node-shell插件之后倒是好了些，也知道node-shell省去自己写debug container，再看host宿主机了</p>
+</li>
+<li>
+<p>整个这个方向就是特别草台，比如在实习期间起aws的hyperpod的时候，有一次起不来，看了一下log发现在s3失败了，找了很久终于找到是因为名字写得太长（流汗黄豆，aws会在你的名字之外拉一坨哈希之类的东西，又只给了64的长度，还没有报错）；结果修了之后还是炸，发现是helm add nvidia的gpu operator炸了，原因是nv那边推了一个错误的commit到主分支......</p>
+</li>
+</ul>
+<p>在整个过程中天天就是敲kubectl logs events describe apply delete+各种搜github issue, 感觉代码都不会写了（残念）；不过也因为部署这个活，抽空看了不少论文，infra &amp; rl &amp; rag &amp; code &amp; agent</p>
+<p>反正最后的结果是32H200的k8集群，k2在32k上下文80%cache hit rate下差不多 5.5 QPS，感觉对我自己来说还是一个可接受的值吧，lmsys 博客里面那个数据有点太玄幻了，好像也是在短上下文测的 ...... pd分离也做过没感觉有提升吞吐，dp-attention更是不知道为什么纯负优化，可能是姿势不对；</p>
+<p>在公司还享受到一个福利是用上了最新的AI工具，cursor&amp;claude code，还是有很多之前copilot没带给我的体验的，也为后续做codellm打了一定基础吧</p>
+<p>然后在 8月底到9月初 这段时间吧，有点想离职了，一方面是做的方向确实和未来发展不搭：在干了一个月之后我比较确定后面是不想做ai infra的，还是算法更有意思一些；另一方面是学校那边各种事情也没完全结束，例如组会，例如勾搭到了另一些机会去做一些正统的llm4code研究，也通过相关的一些经验拿到了字节的offer......</p>
+<p>于是就在9月中旬结束了这一段，一个是处理学校那边的事情，另一个是开启了下一段字节旅程，这次应该是做“算法”了.......</p>
+<p>除此之外可记的主要就是一些娱乐的东西，比如打mai，或者丝之歌</p>
+<p>整体上来说，这三个月确实对对整个眼界也好还是对AI算法的了解也好有了很大的breaking change，包括经常和一些很厉害的同学交流，有人在美国的、有大二就开始大厂实习的、有经验丰富的研究生和博士...... 包括自己看的一些论文吧，对可能前沿在哪边大致有一个轮廓了。</p>
+<p>另一个比较有意思的是和aws那边的接触，感觉和他们开了特别多会www，在后面的时候，有一个他们那边的产品(?)来上海和我约了下咖啡，然后聊了一些关于我们的项目的事情，并对我大二跑出来实习这件事情感到很惊讶，说后面感兴趣也可以试试能不能去他们那里实习。然后和aws那边说我应该快要离职的时候，他们也挺惊讶的，问我是去新公司还是还在学校，并问我博几了（笑，绷不住了），然后我和他们说是本科，还有两年才毕业www</p>
+<p>整体上也算是体验了一把系统工作，还低成本的体验了oncall(主要是看aws和mt oncall，笑)</p>
+<p>但还是可能会感觉量化做的东西比较小家子气，所以下一段实习比较坚定地选了去大厂看看整体的技术深度也好，对产品或者业务的理解也好，去接触一些真正scale out的项目，其实也有和同学们聊天，更清晰地认识到了同一个方向，大小厂做的可能完全是两种东西的现状。</p>]]></content:encoded>
+            <category>总结</category>
+        </item>
+        <item>
+            <title><![CDATA[2025秋季学期总结]]></title>
+            <link>https://ayanami1314.github.io/personal-essays/2025-fall</link>
+            <guid>https://ayanami1314.github.io/personal-essays/2025-fall</guid>
+            <pubDate>Tue, 10 Feb 2026 05:11:17 GMT</pubDate>
+            <description><![CDATA[时间飞逝啊，站在26年回望去年的自己，当时估计完全想不到现在的情况吧。]]></description>
+            <content:encoded><![CDATA[<p>时间飞逝啊，站在26年回望去年的自己，当时估计完全想不到现在的情况吧。</p>
+<p>这一年主要是两个大的变化：一是找到了比较喜欢的方向，也在这个方向上做了一些工作；二是实习了几乎一整年，对业界有了非常多之前难以想象的了解</p>
+<p>书接暑期总结，处理完学校的事情之后，开始了我第一次在大厂的实习经历，入职字节</p>
+<p>在前一个半月的时候，对大厂的一切都还处于一个非常新奇的状态，像海绵一样汲取着各种文档和其他同事见解的知识。字节的一个半月是飞速成长的一个半月, 大厂的各种东西确实和外界有很大不同，强烈建议所有同学至少去大厂实习一段，无论是学术、工程还是想躺平我觉得都是大有裨益的。</p>
+<p>刚入职的时候，日记上是这么写的：</p>
+<blockquote>
+<p>先说结论: 字节跳动对策性极强，泛用性极强，属于超大杯上，主包感觉第一天就要变成节孝子了，之前过的什么苦日子啊。电脑是m3pro 32+512；食堂是免费的，挺好吃的感觉大于学校；咖啡机刚上新，味道不错；mt人也很好，我直接没什么业务要做叫我多学学看看文档和paper；文档都可以看，技术栈深得很,吃饭就是听mt三个算法老ass讲设计拆方案，聊到自己的什么想法就能甩出几篇相关文档看。今天和mt讨论了一个多小时算法，真的爽聊了</p>
+</blockquote>
+<p>对字节印象最深的就是bytetech和组内不间断的交流，当你的周围全是老算法工程师和顶尖Phd的时候，光是看他们每天在做什么、如何分析一个问题都能学到相当多的东西，更何况大家还是一起在研究一个共同的方向，能吃到一大堆业内的动态和最新最热研究成果，有人带着你拆openai/anthoropic的布局设计，有人能讲我之前就在阿里和微软工作，你看的这篇就是我们组之前干的，有人能写出来质量大于外场综述的技术文档、机器人给你推送不同组横跨多个领域的顶尖工作......如果有技术热情的话，你很难不被这种工作氛围深深吸引，“我们正在改变世界”。</p>
+<p>曾经有一个同学和我说“你永远可以相信字节ld的技术insight”，确实如此，进来实习之后比起具体技术的提升，自觉收获更大的是对技术的一种嗅觉。在ai如此火热的当下，每年arxiv能产出几万甚至十几万篇文章，然而纷繁芜杂的论文背后，究竟哪些是值得follow的技术方向，哪些受限于资源难以做成，哪些是局部的优解但几个月后就会失去价值，又是哪些是rubbish paper？这些藏在学校头部实验室的top phd/教授的脑子里面的信息，在大厂里却能海量接触到：在厂里面你们是同事，随时询问，热心解答；厂外大家来自五湖四海，各自都在领域内有所建树，或许在学术会议上social半天还未必social得到...agent memory的落地，context的管理，搜索技术的边界，强化学习的落地，曾经不解的、质疑的、萌芽的想法在这里都得到了或阶段性或实验形式的答案，在和mentor提出一个设想的时候，被回答一句“你说的这个很有意思，之前豆包做过一个类似的东西，我给你看看文档了解一下他们怎么做的”，怎不会有一种和他人共鸣的强烈爽感？甚至有一次看到了某篇论文，感觉似乎挺有趣，一看trae组做的，就和那边约了一个meeting讨论，这种交流的感觉相当好。</p>
+<p>除却技术眼界上的进步，字节给我带来的还有大厂生活的一窥：完善的基础设施建设、加班与赶工需求、组间的“小心机”、休息时对其他产品的吐槽......带来了一种小团队不会有的“真实感”，工业级需求到底是什么，技术方案设计究竟是什么样子，互联网是一种怎样的行业，字节给了一种近乎野蛮生长的体验，正如友人的评价</p>
+<blockquote>
+<p>自己觉得现在正走在对的路上就会越走越轻松，主包现在就是步入正轨了所以越干越年轻</p>
+</blockquote>
+<p>学术界主要承担的还是探索的作用，但是到底哪些想法能够落地？这种敏感性不在企业是锻炼不出来的，对需求判别和可行性判别做了强化学习说是。</p>
+<p>另一个感觉值得一提的是某个小红书的AMA，</p>
+<blockquote>
+<p>Q：课题组没卡，怎么做大模型？</p>
+<p>A：如果卡少，就做inference加速，不怎么吃资源；如果有钱，就做Agent；啥都没有建议躺平</p>
+</blockquote>
+<p>说的是真没错，如果实验室两个都不能满足的话，还是积极出去找工吧。
+在llm这种scale up的场景，没卡真的是没得做，按照现在的情况来说，大部分实验室连跑个小训练或者调api做原型验证的财力都没有。校企合作是对的，不放正常企业的老师是有问题的</p>
+<p>如友人评述：</p>
+<blockquote>
+<p>企业的资源太丰富了，包括软性的各种交流、文档和硬性的软硬件，真没得比</p>
+</blockquote>
+<p>在后一个半月的时候，看文档的时间相对变少了，主要原因是在做一篇llm coding相关的paper，从10月份和学长讨论决定做做试试，再到11月训练出来模型work，然后再是适用范围的放广，下游实验的不断加多，迭代训练和数据......一个非常幸运的是实习也恰好在遇到了对应的问题，然后伟大的mentor和+1大手一挥给了自由时间可以上班做这篇paper（相当于校企合作），于是也是在月初以一作投出去了</p>
+<p>说起这篇paper还有一个很有趣的事情，书接上文在暑假的时候对代码补全起了一些兴趣，然后小红书给我推了一个招科研实习的，练习了一下发现居然是本院的博士（笑）还有找回自家来这么有趣的事情，经过一些paper reading和交流之后也是做起了RA，并且一起做了两篇paper，也建立了比较长期的合作关系......</p>
+<p>在实习的这段时间和做科研的时间里面，感觉也算是找到了一个相当感兴趣的方向，即代码大模型，或者更广义一些是ai4se，一个原因是感觉这个方向处在一个微妙的ai和系统工程的叠加态，算是走回舒适圈；二是它在工业上的应用真的相当广泛，也是现在ai最能落地和解放生产力的方向之一，让所有人都能通过代码进行创造是一个相当promising的愿景。</p>
+<p>除此之外好像就是正常上班，做一些业务需求，和前辈讨论一下新的idea和最佳实践。还有就是迷上了打乌蒙，也是在期末周上了w4了wwwww，正如某个群聊里面的给自己起的群昵称，上班磕盐舞萌ing。感觉就是一个正反馈循环，作息极其阴间的同时还挺享受的。</p>
+<p>在上班下班的时间里面也和不少人聊天，再次仔细地想了想未来的一些规划，感觉现在一是继续深造不一定能吃到这一波大模型红利了，其实很赌；二是观察了几个做ai4se的组，感觉组内的去向最后也就是大厂相关方向实习；三是总体来看，厂里面做这个在资源、选题和成果的质量上都感觉远超学界，感觉学界相当多工作真没啥意义。倒是也想过去港新读一年硕，但经济开销和一些互联网里面对于硕士的观点好像也感觉没太多必要，感觉本科能找到的话硕士学历似乎好像没啥用，可能真想要的是一些休息的时间或者说眼界上的开拓，但国外情况越来越差、国内硕士的最好情况又是纯放养变成实习仙人——那倒是还不如早点上班，说不定不用做横向还更wlb一点。</p>
+<p>还有一个体验是基模组的作息和出差，感觉真的很累，之前和同事聊也有类似的感受，真的一定要卷基础模型吗（我承认确实有一些美化滤镜）？还是说做一些更业务的算法方向比如偏agent、搜索之类的，但有机会还是想要体验一下，虽然我看我知道的大部分基础模型的老哥的工作也就是洗数据然后给infra搭好的训练基架提任务(笑)，真能做模型架构创新的还是蛮少的，并且产出相当不稳定。</p>
+<p>至于本学期的校内课，确实丢到犄角旮旯里面去了（心虚），成绩估计是烂完，基本就是不挂科吧。说实话我感觉这些课对我的未来规划没啥用。</p>
+<p>除此之外产出了一些公共的贡献吧！在校内论坛发了不少精品技术帖，包括bytetech也搬运了一些www，给学弟学妹也提供了不少建议，感觉还是体验很好的。</p>
+<p>之后就是寒假！希望我能稍微干点活www，前面其实积攒了不少idea，也有挺多社区的新paper也可以看，看看还能不能在秋招之前再产出一些成果吧，相信道路是曲折的，前途是光明的</p>]]></content:encoded>
+            <category>总结</category>
+        </item>
         <item>
             <title><![CDATA[2025春季学期总结]]></title>
             <link>https://ayanami1314.github.io/personal-essays/2025-spring</link>
@@ -34,7 +157,7 @@
             <guid>https://ayanami1314.github.io/personal-essays/mygo文学类二创盘点——被大多数冰友忽略的同人角落</guid>
             <pubDate>Sun, 23 Nov 2025 15:28:43 GMT</pubDate>
             <description><![CDATA[[安利]mygo文学类二创盘点——被大多数go友忽略的同人角落]]></description>
-            <content:encoded><![CDATA[<h2 class="anchor anchorWithStickyNavbar_LWe7" id="安利mygo文学类二创盘点被大多数go友忽略的同人角落">[安利]mygo文学类二创盘点——被大多数go友忽略的同人角落<a class="hash-link" aria-label="Direct link to [安利]mygo文学类二创盘点——被大多数go友忽略的同人角落" title="Direct link to [安利]mygo文学类二创盘点——被大多数go友忽略的同人角落" href="https://ayanami1314.github.io/personal-essays/mygo%E6%96%87%E5%AD%A6%E7%B1%BB%E4%BA%8C%E5%88%9B%E7%9B%98%E7%82%B9%E2%80%94%E2%80%94%E8%A2%AB%E5%A4%A7%E5%A4%9A%E6%95%B0%E5%86%B0%E5%8F%8B%E5%BF%BD%E7%95%A5%E7%9A%84%E5%90%8C%E4%BA%BA%E8%A7%92%E8%90%BD#%E5%AE%89%E5%88%A9mygo%E6%96%87%E5%AD%A6%E7%B1%BB%E4%BA%8C%E5%88%9B%E7%9B%98%E7%82%B9%E8%A2%AB%E5%A4%A7%E5%A4%9A%E6%95%B0go%E5%8F%8B%E5%BF%BD%E7%95%A5%E7%9A%84%E5%90%8C%E4%BA%BA%E8%A7%92%E8%90%BD">​</a></h2>
+            <content:encoded><![CDATA[<h2 class="anchor anchorWithStickyNavbar_LWe7" id="安利mygo文学类二创盘点被大多数go友忽略的同人角落">[安利]mygo文学类二创盘点——被大多数go友忽略的同人角落<a class="hash-link" aria-label="Direct link to [安利]mygo文学类二创盘点——被大多数go友忽略的同人角落" title="Direct link to [安利]mygo文学类二创盘点——被大多数go友忽略的同人角落" href="https://ayanami1314.github.io/personal-essays/mygo%E6%96%87%E5%AD%A6%E7%B1%BB%E4%BA%8C%E5%88%9B%E7%9B%98%E7%82%B9%E2%80%94%E2%80%94%E8%A2%AB%E5%A4%A7%E5%A4%9A%E6%95%B0%E5%86%B0%E5%8F%8B%E5%BF%BD%E7%95%A5%E7%9A%84%E5%90%8C%E4%BA%BA%E8%A7%92%E8%90%BD#%E5%AE%89%E5%88%A9mygo%E6%96%87%E5%AD%A6%E7%B1%BB%E4%BA%8C%E5%88%9B%E7%9B%98%E7%82%B9%E8%A2%AB%E5%A4%A7%E5%A4%9A%E6%95%B0go%E5%8F%8B%E5%BF%BD%E7%95%A5%E7%9A%84%E5%90%8C%E4%BA%BA%E8%A7%92%EF%BF%BD%EF%BF%BD%E8%90%BD">​</a></h2>
 <p>说起mygo的二创冰, 源u简直可以说三天三夜, 从始皇帝马小花儿老师的《素颜》《AnO_od》《祥distance》到后来的班青马老师的《我还年轻》，从睦头角色曲《暗恋是一个人的事情》到大祥主题曲《假如有一天我变得很有钱》，言力华老师的mygo二头身小人，大水母的go棍结合之《罗密欧内该与朱比叶》，均是溜冰的上品。除却B站之外, 贴吧也是go友的主战场, 从古老的睦祥姐妹说到最新的初华失忆假药, 各种清奇的脑洞简直令人欲罢不能。还有诸如瓶皇和泛团两个直播间定时产出高质量切片，33989也干了.jpg，各种表情包、梗图和小漫画等等。但除去以上这些流传甚广（在MyGo &amp; Mujica楼之中已有记载）的二创冰之外，还有一个大部分go友还未探索的地带——同人小说，也正是下文之中楼主溜了一年多想要开个帖子系统分享的体裁。</p>
 <p>mygo同人小说从连载平台上可以分成几个主战场, Lofter, 刺猬猫&amp;起点, 贴吧&amp;nga以及极少的b站原创小视频。而从写作形式上又分短中长三种篇幅，短篇主要还是贴吧生产的假药居多，在本文主要探讨中长篇的同人（&gt;20w字），凭借楼主在刺猬猫基本大部分go文都尝试读过的经历为大伙神农尝一波百草，顺带给平时不看小说的go友推荐几个可以入坑的佳作。</p>
 <p>叠甲:</p>
@@ -100,7 +223,7 @@ mygo唯一真主攻一对多的含金量，她段位实在太高了呀！
 <p>楼主评分: 9.2/10</p>
 <p>嗜血程度: 0星</p>
 <p>字数: 50w, 断更中</p>
-<h4 class="anchor anchorWithStickyNavbar_LWe7" id="不换世界观有原创男主">不换世界观,有原创男主<a class="hash-link" aria-label="Direct link to 不换世界观,有原创男主" title="Direct link to 不换世界观,有原创男主" href="https://ayanami1314.github.io/personal-essays/mygo%E6%96%87%E5%AD%A6%E7%B1%BB%E4%BA%8C%E5%88%9B%E7%9B%98%E7%82%B9%E2%80%94%E2%80%94%E8%A2%AB%E5%A4%A7%E5%A4%9A%E6%95%B0%E5%86%B0%E5%8F%8B%E5%BF%BD%E7%95%A5%E7%9A%84%E5%90%8C%E4%BA%BA%E8%A7%92%E8%90%BD#%E4%B8%8D%E6%8D%A2%E4%B8%96%E7%95%8C%E8%A7%82%E6%9C%89%E5%8E%9F%E5%88%9B%EF%BF%BD%E7%94%B7%E4%B8%BB">​</a></h4>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="不换世界观有原创男主">不换世界观,有原创男主<a class="hash-link" aria-label="Direct link to 不换世界观,有原创男主" title="Direct link to 不换世界观,有原创男主" href="https://ayanami1314.github.io/personal-essays/mygo%E6%96%87%E5%AD%A6%E7%B1%BB%E4%BA%8C%E5%88%9B%E7%9B%98%E7%82%B9%E2%80%94%E2%80%94%E8%A2%AB%E5%A4%A7%E5%A4%9A%E6%95%B0%E5%86%B0%E5%8F%8B%E5%BF%BD%E7%95%A5%E7%9A%84%E5%90%8C%E4%BA%BA%E8%A7%92%E8%90%BD#%E4%B8%8D%E6%8D%A2%E4%B8%96%E7%95%8C%E8%A7%82%E6%9C%89%E5%8E%9F%E5%88%9B%E7%94%B7%E4%B8%BB">​</a></h4>
 <p>实在是太多了，我起码看过20本，但写得好的并不多</p>
 <p>换皮桃子文必然是不会端出脏源u的眼睛的，至于其他几个有名的男主文(牢陆啊牢空啊之类)感觉都有点太典了，不够雅（bushi）</p>
 <p>这种文最好玩的一部分是炒股（暴论</p>
@@ -163,7 +286,7 @@ mygo唯一真主攻一对多的含金量，她段位实在太高了呀！
 <p>楼主评分: 9.3/10</p>
 <p>嗜血程度: 5星</p>
 <p>字数: 10集, 已完结</p>
-<h4 class="anchor anchorWithStickyNavbar_LWe7" id="羽丘封校">羽丘封校<a class="hash-link" aria-label="Direct link to 羽丘封校" title="Direct link to 羽丘封校" href="https://ayanami1314.github.io/personal-essays/mygo%E6%96%87%E5%AD%A6%E7%B1%BB%E4%BA%8C%E5%88%9B%E7%9B%98%E7%82%B9%E2%80%94%E2%80%94%E8%A2%AB%E5%A4%A7%E5%A4%9A%E6%95%B0%E5%86%B0%E5%8F%8B%E5%BF%BD%E7%95%A5%E7%9A%84%E5%90%8C%E4%BA%BA%E8%A7%92%E8%90%BD#%E7%BE%BD%E4%B8%98%E5%B0%81%E6%A0%A1">​</a></h4>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="羽丘封校">羽丘封校<a class="hash-link" aria-label="Direct link to 羽丘封校" title="Direct link to 羽丘��封校" href="https://ayanami1314.github.io/personal-essays/mygo%E6%96%87%E5%AD%A6%E7%B1%BB%E4%BA%8C%E5%88%9B%E7%9B%98%E7%82%B9%E2%80%94%E2%80%94%E8%A2%AB%E5%A4%A7%E5%A4%9A%E6%95%B0%E5%86%B0%E5%8F%8B%E5%BF%BD%E7%95%A5%E7%9A%84%E5%90%8C%E4%BA%BA%E8%A7%92%E8%90%BD#%E7%BE%BD%E4%B8%98%E5%B0%81%E6%A0%A1">​</a></h4>
 <p>参考阅读链接: <a href="https://www.bilibili.com/video/BV1p9vjeeEoL" target="_blank" rel="noopener noreferrer">https://www.bilibili.com/video/BV1p9vjeeEoL</a></p>
 <p>楼主简介: 规则怪谈mygo, 团灭?之后全员存活的结局</p>
 <p>楼主点评: 单纯从怪谈的角度上看也是不错的规则怪谈，但楼主自己不太喜欢规则怪谈一定要带一个击败怪谈本身/怪谈存在幕后黑手的设定，这让我感觉拉低了可以遐想的空间, 削弱了恐怖感。但对于规则怪谈萌新来说，绝对是带劲的。这个没有jump scare, 纯氛围恐怖好评。</p>
@@ -610,7 +733,7 @@ openHarmony：之前tmp说TEE数据库挺有意思，看来多少还得抽点时
 <p><strong>什么，你问我这么多资源哪里来的？</strong></p>
 <p><strong>我是真的0基础欸，我相信从csdiy起，github，知乎一些sjtu学长的关注列表，关注列表的关注列表......各种地方多看看，大家都能找到一些的，</strong></p>
 <p>最后贴一个魔理沙的回答的全文</p>
-<h2 class="anchor anchorWithStickyNavbar_LWe7" id="知乎cs大佬魔理沙的编程之路是什么样的"><a href="https://www.zhihu.com/question/304752391/answer/699930080" target="_blank" rel="noopener noreferrer">知乎cs大佬<em>魔理沙</em>的编程之路是什么样的？</a><a class="hash-link" aria-label="Direct link to 知乎cs大佬魔理沙的编程之路是什么样的" title="Direct link to 知乎cs大佬魔理沙的编程之路是什么样的" href="https://ayanami1314.github.io/personal-essays/%E6%A0%A1%E5%A4%96cs%E7%BE%A4%E8%A7%81%E9%97%BB%E4%B9%8B%E2%80%94%E2%80%94%E6%99%AE%E9%80%9A%E4%BA%BA%E7%9A%84%E5%AD%A6%E4%B9%A0%E9%81%93%E8%B7%AF#%E7%9F%A5%E4%B9%8Ecs%E5%A4%A7%E4%BD%AC%E9%AD%94%E7%90%86%E6%B2%99%E7%9A%84%E7%BC%96%E7%A8%8B%E4%B9%8B%E8%B7%AF%E6%98%AF%E4%BB%80%E4%B9%88%E6%A0%B7%E7%9A%84">​</a></h2>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="知乎cs大佬魔理沙的编程之路是什么样的"><a href="https://www.zhihu.com/question/304752391/answer/699930080" target="_blank" rel="noopener noreferrer">知乎cs大佬<em>魔理沙</em>的编程之路是什么样的？</a><a class="hash-link" aria-label="Direct link to 知乎cs大佬魔理沙的编程之路是什么样的" title="Direct link to 知乎cs大佬魔理沙的编�程之路是什么样的" href="https://ayanami1314.github.io/personal-essays/%E6%A0%A1%E5%A4%96cs%E7%BE%A4%E8%A7%81%E9%97%BB%E4%B9%8B%E2%80%94%E2%80%94%E6%99%AE%E9%80%9A%E4%BA%BA%E7%9A%84%E5%AD%A6%E4%B9%A0%E9%81%93%E8%B7%AF#%E7%9F%A5%E4%B9%8Ecs%E5%A4%A7%E4%BD%AC%E9%AD%94%E7%90%86%E6%B2%99%E7%9A%84%E7%BC%96%E7%A8%8B%E4%B9%8B%E8%B7%AF%E6%98%AF%E4%BB%80%E4%B9%88%E6%A0%B7%E7%9A%84">​</a></h2>
 <p><a href="https://www.zhihu.com/people/marisa.moe" target="_blank" rel="noopener noreferrer">圆角骑士魔理沙</a></p>
 <p><a href="https://www.zhihu.com/search?q=%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6&amp;search_source=Entity&amp;hybrid_search_source=Entity&amp;hybrid_search_extra=%7B%22sourceType%22%3A%22answer%22%2C%22sourceId%22%3A%22699930080%22%7D" target="_blank" rel="noopener noreferrer">计算机科学</a>已经有六七十年历史了，这段时间内书写历史的人不在小数：<a href="https://www.zhihu.com/search?q=%E5%9B%BE%E7%81%B5&amp;search_source=Entity&amp;hybrid_search_source=Entity&amp;hybrid_search_extra=%7B%22sourceType%22%3A%22answer%22%2C%22sourceId%22%3A%22699930080%22%7D" target="_blank" rel="noopener noreferrer">图灵</a>，冯洛伊曼，Dijkstra，John Reynold，Tony Hoare，John McCarthy，Alan Kay。。。有的人生怕你不知道谁做出了杰出<a href="https://www.zhihu.com/search?q=%E5%A5%89%E7%8C%AE&amp;search_source=Entity&amp;hybrid_search_source=Entity&amp;hybrid_search_extra=%7B%22sourceType%22%3A%22answer%22%2C%22sourceId%22%3A%22699930080%22%7D" target="_blank" rel="noopener noreferrer">奉献</a>，专门弄了个奖出来呢:)！</p>
 <p>你如果真想向更强的人学习，图灵老冯<a href="https://www.zhihu.com/search?q=%E5%93%A5%E5%BE%B7%E5%B0%94&amp;search_source=Entity&amp;hybrid_search_source=Entity&amp;hybrid_search_extra=%7B%22sourceType%22%3A%22answer%22%2C%22sourceId%22%3A%22699930080%22%7D" target="_blank" rel="noopener noreferrer">哥德尔</a>都有传记，尽管我没看过，也不知道年代久远的天才有什么借鉴之处；ACM每年都会请图灵奖得主来做<a href="https://www.zhihu.com/search?q=freestyle&amp;search_source=Entity&amp;hybrid_search_source=Entity&amp;hybrid_search_extra=%7B%22sourceType%22%3A%22answer%22%2C%22sourceId%22%3A%22699930080%22%7D" target="_blank" rel="noopener noreferrer">freestyle</a>演讲，有展示自己领域的一个漂亮的idea的（<a href="https://link.zhihu.com/?target=https%3A//www.archive.ece.cmu.edu/~ganger/712.fall02/papers/p761-thompson.pdf" target="_blank" rel="noopener noreferrer">Reflections on Trusting Trust</a>），有总结自己所在领域的（<a href="https://link.zhihu.com/?target=http%3A//www.bwlampson.site/Slides/TuringLectureAbstract.htm" target="_blank" rel="noopener noreferrer">Principles for Computer System Design</a>），有当场开创新领域的（<a href="https://link.zhihu.com/?target=https%3A//www.thocp.net/biographies/papers/backus_turingaward_lecture.pdf" target="_blank" rel="noopener noreferrer">Can programming be liberated from the von Neumann style?</a>），有对编程跟设计做出foundational comment的（<a href="https://link.zhihu.com/?target=https%3A//www.cs.utexas.edu/users/EWD/ewd03xx/EWD340.PDF" target="_blank" rel="noopener noreferrer">The humble programmer</a>, <a href="https://link.zhihu.com/?target=http%3A//zoo.cs.yale.edu/classes/cs422/2014/bib/hoare81emperor.pdf" target="_blank" rel="noopener noreferrer">The Emperor’s Old Clothes</a>），还有让我们rethink computer的（<a href="https://link.zhihu.com/?target=https%3A//www.youtube.com/watch%3Fv%3DoKg1hTOQXoY" target="_blank" rel="noopener noreferrer">The Computer Revolution Hasnt Happened Yet</a>）。</p>
@@ -618,7 +741,7 @@ openHarmony：之前tmp说TEE数据库挺有意思，看来多少还得抽点时
 <p>领域相关的也有很多：在<a href="https://www.zhihu.com/search?q=%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80&amp;search_source=Entity&amp;hybrid_search_source=Entity&amp;hybrid_search_extra=%7B%22sourceType%22%3A%22answer%22%2C%22sourceId%22%3A%22699930080%22%7D" target="_blank" rel="noopener noreferrer">编程语言</a>领域，<a href="https://link.zhihu.com/?target=http%3A//research.ihost.com/hopl/HOPL.html" target="_blank" rel="noopener noreferrer">History of Programming Languages</a> 把这半世纪的杰出的编程语言设计者的见解汇集在一起， <a href="https://link.zhihu.com/?target=https%3A//www.amazon.com/Dealers-Lightning-Xerox-PARC-Computer/dp/0887309895" target="_blank" rel="noopener noreferrer">Dealers of Lightning</a> 跟<a href="https://link.zhihu.com/?target=https%3A//www.amazon.com/Dream-Machine-Licklider-Revolution-Computing/dp/014200135X" target="_blank" rel="noopener noreferrer">The Dream Machine</a> 则描述了改变了世界的Xerox Parc的文化。如果你看的paper足够多，你可以从里面倒推出一个researcher的taste：比如John Reynold就很软，能把多种风格混合在一起（<a href="https://zhuanlan.zhihu.com/p/42907876%EF%BC%89%EF%BC%8C%E5%90%8C%E6%97%B6%E8%83%BD%E5%9C%A8%E5%BE%88%E8%84%8F%E7%9A%84%E9%A2%86%E5%9F%9F%E5%81%9A%E5%87%BA%E4%B8%A5%E8%B0%A8%E7%9A%84%E5%B7%A5%E4%BD%9C%EF%BC%88Seprational" target="_blank" rel="noopener noreferrer">https://zhuanlan.zhihu.com/p/42907876），同时能在很脏的领域做出严谨的工作（Seprational</a> Logic），我就很喜欢。</p>
 <p>如果嫌这些人都是上世纪的，很多<a href="https://www.zhihu.com/search?q=%E6%88%90%E5%8A%9F%E4%BA%BA%E5%A3%AB&amp;search_source=Entity&amp;hybrid_search_source=Entity&amp;hybrid_search_extra=%7B%22sourceType%22%3A%22answer%22%2C%22sourceId%22%3A%22699930080%22%7D" target="_blank" rel="noopener noreferrer">成功人士</a>也有blog，教你如何做research，如何申请大学，如何规划career，还有自己领域的见解：<a href="https://link.zhihu.com/?target=http%3A//www.pgbovine.net/" target="_blank" rel="noopener noreferrer">http://www.pgbovine.net/</a>，<a href="https://link.zhihu.com/?target=https%3A//programanalysis.blogspot.com/" target="_blank" rel="noopener noreferrer">https://programanalysis.blogspot.com/</a>，<a href="https://link.zhihu.com/?target=https%3A//existentialtype.wordpress.com/" target="_blank" rel="noopener noreferrer">https://existentialtype.wordpress.com/</a>，<a href="https://link.zhihu.com/?target=http%3A//worrydream.com/" target="_blank" rel="noopener noreferrer">http://worrydream.com/</a>，<a href="https://link.zhihu.com/?target=http%3A//matt.might.net/" target="_blank" rel="noopener noreferrer">http://matt.might.net/</a></p>
 <p><strong>我一个小本科生，拿啥跟上面的人比，也就比普通人更努力点更早学<a href="https://www.zhihu.com/search?q=%E7%BC%96%E7%A8%8B&amp;search_source=Entity&amp;hybrid_search_source=Entity&amp;hybrid_search_extra=%7B%22sourceType%22%3A%22answer%22%2C%22sourceId%22%3A%22699930080%22%7D" target="_blank" rel="noopener noreferrer">编程</a>而已，没什么好讨教的</strong>。</p>
-<h4 class="anchor anchorWithStickyNavbar_LWe7" id="我相信我们更努力点学编程也能触及另一片天空">我相信，我们更努力点学编程，也能触及另一片天空<a class="hash-link" aria-label="Direct link to 我相信，我们更努力点学编程，也能触及另一片天空" title="Direct link to 我相信，我们更努力点��学编程，也能触及另一片天空" href="https://ayanami1314.github.io/personal-essays/%E6%A0%A1%E5%A4%96cs%E7%BE%A4%E8%A7%81%E9%97%BB%E4%B9%8B%E2%80%94%E2%80%94%E6%99%AE%E9%80%9A%E4%BA%BA%E7%9A%84%E5%AD%A6%E4%B9%A0%E9%81%93%E8%B7%AF#%E6%88%91%E7%9B%B8%E4%BF%A1%E6%88%91%E4%BB%AC%E6%9B%B4%E5%8A%AA%E5%8A%9B%E7%82%B9%E5%AD%A6%E7%BC%96%E7%A8%8B%E4%B9%9F%E8%83%BD%E8%A7%A6%E5%8F%8A%E5%8F%A6%E4%B8%80%E7%89%87%E5%A4%A9%E7%A9%BA">​</a></h4>]]></content:encoded>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="我相信我们更努力点学编程也能触及另一片天空">我相信，我们更努力点学编程，也能触及另一片天空<a class="hash-link" aria-label="Direct link to 我相信，我们更努力点学编程，也能触及另一片天空" title="Direct link to 我相信，我们更努力点学编程，也能触及另一片天空" href="https://ayanami1314.github.io/personal-essays/%E6%A0%A1%E5%A4%96cs%E7%BE%A4%E8%A7%81%E9%97%BB%E4%B9%8B%E2%80%94%E2%80%94%E6%99%AE%E9%80%9A%E4%BA%BA%E7%9A%84%E5%AD%A6%E4%B9%A0%E9%81%93%E8%B7%AF#%E6%88%91%E7%9B%B8%E4%BF%A1%E6%88%91%E4%BB%AC%E6%9B%B4%E5%8A%AA%E5%8A%9B%E7%82%B9%E5%AD%A6%E7%BC%96%E7%A8%8B%E4%B9%9F%E8%83%BD%E8%A7%A6%E5%8F%8A%E5%8F%A6%E4%B8%80%E7%89%87%E5%A4%A9%E7%A9%BA">​</a></h4>]]></content:encoded>
             <category>随想</category>
         </item>
         <item>
