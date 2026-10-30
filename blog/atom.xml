@@ -2,11 +2,170 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://ayanami1314.github.io/blog</id>
     <title>Ayanami's Cave Blog</title>
-    <updated>2026-07-06T00:00:00.000Z</updated>
+    <updated>2026-10-31T00:00:00.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://ayanami1314.github.io/blog"/>
     <subtitle>Ayanami's Cave Blog</subtitle>
     <icon>https://ayanami1314.github.io/img/ayanami.jpg</icon>
+    <entry>
+        <title type="html"><![CDATA[paper reading-pretrain data相关]]></title>
+        <id>https://ayanami1314.github.io/blog/2026/10/31/paper-reading-pretrain-data</id>
+        <link href="https://ayanami1314.github.io/blog/2026/10/31/paper-reading-pretrain-data"/>
+        <updated>2026-10-31T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[数据的配比一直是一个很重要甚至非常关键的问题，但，怎么配呢？]]></summary>
+        <content type="html"><![CDATA[<p>数据的配比一直是一个很重要甚至非常关键的问题，但，怎么配呢？
+目前大体可以分成两派，</p>
+<p>传统派信奉人的先验和经验，靠人的一些想法，例 "语言 = 日语 &amp;&amp; domain=工业自动化 上采样"，因为日本的先进制造强
+革新派采用一些启发式搜索或者相信小模型的scaling law的方法，在小模型上进行一些消融搜索，然后scale到大模型
+如果从“科学”的角度来考虑，革新派肯定是更加科学的，但问题在于，国内给pretrain data的算力实在是有限，如果你太革新，那就验不完了，所以大部分pretrain data团队还是使用的传统 + 革新的方式，即，用传统派定一个或若干个方案，而方案的具体参数可以革新
+（不过这里的另一个玄学是，你到底信不信小模型的结果能scale到大模型，以及多大的模型的消融是可信的，以及你到底信不信你的metric和benchmark，显然，你的mmlu涨分的原因除了模型学到了更好的东西之外，也可能只是新分布更类似于bench数据的分布）</p>
+<p>在最早的nvidia Nemotron-CC之中，就提出了两个实验结论：</p>
+<p>质量分桶是对的，高质量样本完全可以多采样
+过滤的正确性要看质量，也要看多样性，提高阈值的方案是不如分档加权保多样性的方案的</p>
+<p>而在weborganizer这篇文章之中，则更近一步，提出了领域分类树
+可以把网页数据按照领域（法律、代码、...）和形态（论坛、博客、...）分成两个领域树，把领域树和质量 join 起来进行配比，会比仅使用质量进行配比要好得多</p>
+<p>而如何形成领域树，则有两派方案：聚类方案和人工方案，人工方案就是先归类一版，然后从共现矩阵和模糊case去衡量哪些领域是可以归并的，哪些领域划分的并不好，聚类就是先embedding再想办法找个解释</p>
+<p>文章中的结论是，1. 人工方案是比聚类方案更好的 2. 聚类方案更类似于基于领域的分类，我们的embedding对与更general的骨架或者说格式其实是比较低敏感的</p>
+<p>但不难看出，这些文章主要还是研究网页的配比问题，但code呢？
+code的形态（如果以语言或者技术栈之类定义）的话和领域（如果以应用范围，例如前端、后端、系统...) 依然能保持这个交叉关系吗？</p>
+<p>一些细微的差别是，code对于筛选其实是更加敏感的（数据不够），以及，code的形态，往往不局限于一个用于聚类的中间维度，而是作为目标本身存在（例如，网页没有about页，其实我觉得是没什么问题，code没有rust代码就不可能会写rust）...</p>
+<p>在pretrain data中，构建可信的benchmark几乎等同于构建整个配比方案，可惜学界对此能做的探究确实太少, 写到此，笔者就再去进行了一些paper reading(让cc帮我找了找)，不过配比的文章确实不多，所以下面也很多是一些general的data部分</p>
+<p>放点觉得有意思的部分和没意思的部分。</p>
+<hr>
+<p><strong>HERMES: A Multi-Granularity Labeling Substrate for Pre-training Data Mixtures</strong>
+<a href="https://arxiv.org/abs/2607.02266" target="_blank" rel="noopener noreferrer">https://arxiv.org/abs/2607.02266</a></p>
+<p>ai-gen。</p>
+<p><strong>Essential-Web v1.0: 24T tokens of organized web data</strong>
+<a href="https://arxiv.org/abs/2506.14111" target="_blank" rel="noopener noreferrer">https://arxiv.org/abs/2506.14111</a></p>
+<p>没什么好说的。</p>
+<p><strong>propella-1: Multi-Property Document Annotation for LLM Data Curation at Scale</strong>
+<a href="https://arxiv.org/abs/2602.12414" target="_blank" rel="noopener noreferrer">https://arxiv.org/abs/2602.12414</a></p>
+<p>结论非常 well known：按语言配单独阈值，多维度避免 bias。</p>
+<p><strong>Topic Over Source: The Key to Effective Data Mixing for Language Models Pre-training</strong>
+<a href="https://arxiv.org/abs/2502.16802" target="_blank" rel="noopener noreferrer">https://arxiv.org/abs/2502.16802</a></p>
+<p>结论非常 well known：按 domain 配比，按 source 配好。</p>
+<p><strong>QuaDMix: Quality-Diversity Balanced Data Selection for Efficient LLM Pretraining</strong>
+<a href="https://arxiv.org/abs/2504.16511" target="_blank" rel="noopener noreferrer">https://arxiv.org/abs/2504.16511</a></p>
+<p>革新派传统文章，用拍脑袋的公式得到一个看似科学的配比，实则并不是很科学。</p>
+<hr>
+<p><strong>Scaling Laws for Mixture Pretraining Under Data Constraints</strong>
+<a href="https://arxiv.org/abs/2605.12715" target="_blank" rel="noopener noreferrer">https://arxiv.org/abs/2605.12715</a></p>
+<p>有趣的观点，但暂时信度不大：长尾小领域可以训更多遍，但这个「更多」会随着模型变大而变小，只有个定性的结论，并且还是不一定可以 scale。</p>
+<p><strong>InfoLaw: Information Scaling Laws for Large Language Models with Quality-Weighted Mixture Data and Repetition</strong>
+<a href="https://arxiv.org/abs/2605.02364" target="_blank" rel="noopener noreferrer">https://arxiv.org/abs/2605.02364</a></p>
+<p>公式太多太简化了，且暴力拟合（重复衰减 e 指数，指数因子实验数据拟合），但最后实验的论断是有一些意义的（虽然也 well known 了）：</p>
+<p>首先，在训练令牌数量固定的情况下，较小的模型倾向于使用更高比例的高质量数据，而较大的模型则更注重数据多样性，因此分配给高质量数据的比例较小。其次，随着训练令牌总数的增加，最优 LayerMix 参数从优先考虑高质量数据转向优先考虑数据多样性。</p>
+<p><strong>The Finetuner's Fallacy: When to Pretrain with Your Finetuning Data</strong>
+<a href="https://arxiv.org/abs/2603.16177" target="_blank" rel="noopener noreferrer">https://arxiv.org/abs/2603.16177</a></p>
+<p>给一个经验结论带来了一些定量实验：</p>
+<p>为了最大限度地利用领域数据，应尽早将其纳入训练过程，垂域数据进预训 &gt; 微调，CPT 的兴起就是类似的观点。</p>
+<p>不过它得到了一个有趣的数字，这个增益在下游 bench 上约等于 50% 这个量级的 token efficiency 提升。</p>
+<blockquote>
+<p>为了理解 SPT 为何能降低过拟合，我们比较了领域训练集与测试集之间的差距在预训练和微调过程中的变化（图6）。关键在于，在微调阶段，过拟合领域数据的风险远高于预训练阶段。在预训练阶段，领域词元仅占每个批次的一小部分，而周围的通用数据则起到了天然的正则化作用。</p>
+</blockquote>
+<p>这个倒是其他论文也有提到：</p>
+<blockquote>
+<ul>
+<li>预训练数据和微调数据之间的分布差距增大，SPT 带来的增益也随之增加</li>
+<li>当预训练语料库已经包含领域相关信号时，在预训练期间纳入领域数据带来的改进较小</li>
+</ul>
+</blockquote>
+<p>不奇怪。很容易想到的原则，反过来说，越是缺少对应的数据/能力，在预训就学足够的量越重要，这是否解释了一些工作想要把一些特殊的后训方向数据前移到预训？anyway，也再次佐证了预训数据分布的重要性。</p>
+<blockquote>
+<p>Replay is not a substitute for early domain exposure.</p>
+</blockquote>
+<p><strong>Scaling Laws for Code: Every Programming Language Matters</strong>
+<a href="https://arxiv.org/abs/2512.13472" target="_blank" rel="noopener noreferrer">https://arxiv.org/abs/2512.13472</a></p>
+<p>看过这篇，几个实验结论：</p>
+<ol>
+<li><strong>解释型与编译型语言的差异</strong>：解释型语言（如 Python）比编译型语言（如 Rust）对模型规模和数据扩展表现出更强的收益；而严格类型语言通常比动态类型语言更容易学习</li>
+<li><strong>语言复杂度排序（Irreducible Loss 序）</strong>：从易到难的复杂度顺序大致为：C# &lt; Java ≈ Rust &lt; Go &lt; TypeScript &lt; JavaScript &lt; Python</li>
+<li><strong>多语言协同效应（Synergy）</strong>：多语言混合预训练能带来正向迁移，句法相似的语言之间协同效应最强（例如 Java-C# 或 JavaScript-TypeScript）</li>
+</ol>
+<p>但我其实很 challenge 的一个点是，到底有多少结论是因为语言本身，有多少论断是因为不同语言的领域分布本身就不同。感觉除非根据语言分桶，论文的大部分结论并不能直接用。</p>
+<p>并且局限于翻译任务有点 narrow。</p>
+<p><strong>On Code-Induced Reasoning in LLMs</strong>
+<a href="https://arxiv.org/abs/2509.21499" target="_blank" rel="noopener noreferrer">https://arxiv.org/abs/2509.21499</a></p>
+<blockquote>
+<p>几乎所有扰动都会降低性能，使其低于未扰动的、经过微调的基线模型。更重要的是，结构扰动对性能的损害始终比语义扰动更为严重，尤其是在数学和编程任务中（例如，图3）。随着模型规模的扩大，这种差异更加明显（例如，图23）。这与先前的研究结果相似，即推理结构而非内容对学习过程更为关键（Li 等人，2025）。我们假设，数学和编程等任务更依赖于格式和布局线索来构建推理过程。</p>
+</blockquote>
+<blockquote>
+<p>然而，对于其他任务，某些抽象形式（例如伪代码或流程图）通常可以达到甚至超越未扰动代码的性能，因为它们突出了算法结构，同时去除了表面语法。相比之下，最隐式的形式——自然语言过程——几乎没有优势，并且在所有任务中通常表现最差。</p>
+</blockquote>
+<p>这个挺有意思的，结构而不是内容实质上引导了 reasoning。</p>
+<blockquote>
+<p>大幅或适度降低密度通常能达到甚至优于基线的性能。</p>
+</blockquote>
+<p>that's why we need info density in labeling</p>
+<blockquote>
+<p>有趣的是，低可读性变体尽管增加了噪声或失真，但通常不会比未扰动的基线性能下降太多，而且通常与中等可读性变体的性能相当甚至更好（例如图6、图38-42）。这种反直觉的趋势表明，模型可以利用即使在噪声或不透明的形式中仍然存在的表面规律和重复出现的结构线索。</p>
+</blockquote>
+<blockquote>
+<p>然而，在数学任务中，高级脚本语言的性能始终低于中级和低级系统语言（例如，图7顶部，图48-51(a)）。我们假设，低级语言中更丰富的结构细节为数学推理提供了有益的信号。</p>
+</blockquote>
+<blockquote>
+<p>在单个语言层面（例如图7底部、图49-51(b)），在所有模型中，Python 在自然语言任务上通常表现最佳，这可能是因为其表面形式更接近自然语言。与群体层面的结果一致，Java 和 Rust 等底层语言在数学任务中通常名列前茅。对于跨多种语言的代码任务，结果则更为复杂，没有明显的领先者，性能差距也相对较小。</p>
+</blockquote>
+<p>有意思的结论。</p>
+<p><strong>Not All Code Is Equal: A Data-Centric Study of Code Complexity and LLM Reasoning</strong>
+<a href="https://arxiv.org/abs/2601.21894" target="_blank" rel="noopener noreferrer">https://arxiv.org/abs/2601.21894</a></p>
+<blockquote>
+<p>除了推理时的辅助之外，在训练过程中接触代码也被证明可以更广泛地增强推理能力：与仅使用自然语言训练的模型相比，使用代码数据训练的模型通常在多步骤推理和定量问题解决方面表现出更优的性能。</p>
+<p>我们的研究结果表明，并非所有代码都是相同的。</p>
+<ol>
+<li><strong>代码微调并不能带来一致的推理增益</strong>：即使使用先前证明有效的代码数据集，改进效果也会因模型和基准测试的不同而有很大差异，并且很大程度上取决于微调数据的结构复杂性</li>
+<li><strong>代码复杂度和推理性能之间的关系是强烈的非单调的</strong>：准确率通常在中等复杂度水平上达到峰值，对于非常简单和非常复杂的代码都会下降</li>
+<li><strong>混合了所有复杂程度代码的控制数据集很少是最优的</strong>：在 83% 的实验中，将微调限制在特定的复杂程度范围内比在多样化的代码语料库上训练能产生更好的推理性能</li>
+</ol>
+</blockquote>
+<p>很神奇的结论，但研究的是 posttrain 微调，pretrain 存疑。</p>
+<blockquote>
+<p>绝对结构复杂性——而非这种复杂性是源于问题难度还是解法的多样性——才是影响推理能力的主要因素。</p>
+</blockquote>
+<p>和上面那一篇的结论类似。</p>
+<blockquote>
+<p>这些案例表明，结构复杂度并非仅仅是收益递减的信号，当其超出模型的有效范围时，还会导致负迁移效应。</p>
+</blockquote>
+<blockquote>
+<p>这表明，先前报道的大型代码语料库带来的性能提升，可能并非源于多样性本身，而是更多地源于偶然接触到恰好适合特定模型的结构属性。</p>
+</blockquote>
+<p><strong>On the Interplay of Pre-Training, Mid-Training, and RL on Reasoning Language Models</strong>
+<a href="https://arxiv.org/abs/2512.07783" target="_blank" rel="noopener noreferrer">https://arxiv.org/abs/2512.07783</a></p>
+<p>well known。</p>
+<p><strong>PRISM: Demystifying Retention and Interaction in Mid-Training</strong>
+<a href="https://arxiv.org/abs/2603.17074" target="_blank" rel="noopener noreferrer">https://arxiv.org/abs/2603.17074</a></p>
+<p>感觉很多结论都不可信了啊，看起来像是兜兜转转几次才放出来的，怎么 26 年还在用 GPT-4，剩下的一些结论大多是 well known 的。</p>
+<p><strong>Understanding Reasoning from Pretraining to Post-Training</strong>
+<a href="https://arxiv.org/abs/2607.16097" target="_blank" rel="noopener noreferrer">https://arxiv.org/abs/2607.16097</a></p>
+<blockquote>
+<p>强化学习过程中推理轨迹质量有所提高，但更深层次的搜索仍然具有挑战性。解析后的轨迹表明，模型主要扩展的是搜索的广度而非深度：搜索的宽度与深度之比以及分支因子均有所增加，而最大搜索深度则基本保持不变。</p>
+</blockquote>
+<blockquote>
+<p>对于较简单的谜题，强化学习（RL）训练主要放大了 SFT 策略已经偏好的正确走法；而对于较难的谜题，它既会挖掘出 SFT 策略下几乎不存在的走法，也会强化错误走法。</p>
+</blockquote>
+<p>感觉也基本 well known 了，前者和 <code>pass@k</code> 放大相同，后者看各家排各种 bug 就知道了。</p>
+<p><strong>Procedural Knowledge in Pretraining Drives Reasoning in Large Language Models</strong>
+<a href="https://arxiv.org/abs/2411.12580" target="_blank" rel="noopener noreferrer">https://arxiv.org/abs/2411.12580</a></p>
+<p>好早期的文章，感觉似乎给到了一些结论，但这个实验 setting 有点太古早了。</p>
+<p><strong>Which Data Attributes Stimulate Math and Code Reasoning? An Investigation via Influence Functions</strong>
+<a href="https://arxiv.org/abs/2505.19949" target="_blank" rel="noopener noreferrer">https://arxiv.org/abs/2505.19949</a></p>
+<p>不复杂的归因，但问题在于无论是数据集还是 bench 还是模型都太老了，它的结论「简单 code 能更好配合难 math」这个事情也信度不高了。</p>
+<p><strong>CodeI/O: Condensing Reasoning Patterns via Code Input-Output Prediction</strong>
+<a href="https://arxiv.org/abs/2502.07316" target="_blank" rel="noopener noreferrer">https://arxiv.org/abs/2502.07316</a></p>
+<p>太早了，DeepSeek 做的，但是已经没什么参考价值了。</p>
+<p><strong>Understanding by Reconstruction: Reversing the Software Development Process for LLM Pretraining</strong>
+<a href="https://arxiv.org/abs/2603.11103" target="_blank" rel="noopener noreferrer">https://arxiv.org/abs/2603.11103</a></p>
+<p>Seed 的合成数据方法，但实验不 solid，没什么参考价值。</p>
+<p><strong>Procedural Pretraining: Warming Up Language Models with Abstract Data</strong>
+<a href="https://arxiv.org/abs/2601.21725" target="_blank" rel="noopener noreferrer">https://arxiv.org/abs/2601.21725</a></p>
+<p>很有意思的 research，但是应该和主线没什么关系，但是确实很有趣，不知道真假。</p>]]></content>
+        <author>
+            <name>ayanami</name>
+        </author>
+        <category label="paper reading" term="paper reading"/>
+        <category label="pretrain" term="pretrain"/>
+        <category label="LLM" term="LLM"/>
+    </entry>
     <entry>
         <title type="html"><![CDATA[SWE-Pruner Pro: Read Its Mind, Not Its Output]]></title>
         <id>https://ayanami1314.github.io/blog/swe-pruner-pro/Read Its Mind, Not Its Output 377b099561948029a91efc6147a9a29d</id>
@@ -136,7 +295,7 @@
 <p>另外一个可以看的是翁家翌做的，挺有意思——不是规则限定自进化，而是<strong>自进化的方式是写规则</strong>而不是写skill这种黑盒叠黑盒。</p>
 <p>说白了这就像是自动生成证明或者AutoML，屎山可解释性总比模型强，控制好屎山的出入口就行直接当黑盒优化。</p>
 <hr>
-<h2 class="anchor anchorWithStickyNavbar_LWe7" id="关于opd��自蒸馏与cursor的讨论">关于OPD、自蒸馏与Cursor的讨论<a class="hash-link" aria-label="Direct link to 关于OPD、自蒸馏与Cursor的讨论" title="Direct link to 关于OPD、自蒸馏与Cursor的讨论" href="https://ayanami1314.github.io/blog/paper-reading-june-september-2026#%E5%85%B3%E4%BA%8Eopd%E8%87%AA%E8%92%B8%E9%A6%8F%E4%B8%8Ecursor%E7%9A%84%E8%AE%A8%E8%AE%BA">​</a></h2>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="关于opd自蒸馏与cursor的讨论">关于OPD、自蒸馏与Cursor的讨论<a class="hash-link" aria-label="Direct link to 关于OPD、自蒸馏与Cursor的讨论" title="Direct link to 关于OPD、自蒸馏与Cursor的讨论" href="https://ayanami1314.github.io/blog/paper-reading-june-september-2026#%E5%85%B3%E4%BA%8Eopd%E8%87%AA%E8%92%B8%E9%A6%8F%E4%B8%8Ecursor%E7%9A%84%E8%AE%A8%E8%AE%BA">​</a></h2>
 <p>关于Online Policy Distillation（OPD），推荐两篇：</p>
 <ul>
 <li><a href="http://yumoxu.notion.site/Multi-Teacher-On-Policy-Distillation-A-New-Post-Training-Primitive-34c81712111280aea6a8eb211e576067" target="_blank" rel="noopener noreferrer">http://yumoxu.notion.site/Multi-Teacher-On-Policy-Distillation-A-New-Post-Training-Primitive-34c81712111280aea6a8eb211e576067</a></li>
@@ -506,7 +665,7 @@ c100.7 8.3 195.3 44 280 108 55.3 42 101.7 93 139 153l9 14c2.7-4 5.7-8.7 9-14
 <li>根据阈值保留得分高的行，同时移除得分低的行</li>
 </ol>
 <p>一个有趣的细节是阈值的选择，在Provence的开源模型之中，他们推荐将threshold设置为0.1来保守裁剪；而我们阈值调优实验发现，和训练保持一致的0.5阈值就能在下游任务中达到最佳性能，而0.1似乎过于保守——0.3已经会保留非常多的部分，这也可能是代码数据的分布特点和文本不同所导致的，在下文中会详细说明。</p>
-<h2 class="anchor anchorWithStickyNavbar_LWe7" id="训练数据如何构造部分相关的查询-代码对"><strong>训练数据：如何构造“部分相关”的查询-代码对？</strong><a class="hash-link" aria-label="Direct link to 训练数据如何构造部分相关的查询-代码对" title="Direct link to 训练数据如何构造部分相关的查询-代码对" href="https://ayanami1314.github.io/blog/swe-pruner-blog/%E8%BF%88%E5%90%91%E7%9C%9F%E5%AE%9E%E4%B8%96%E7%95%8C%E7%9A%84%E8%BD%AF%E4%BB%B6%E6%99%BA%E8%83%BD%E4%BD%93%EF%BC%9A%E5%A6%82%E4%BD%95%E5%B0%86%E8%AF%AD%E4%B9%89%E9%AB%98%E4%BA%AE%E5%8A%9F%E8%83%BD%E8%9E%8D%E5%85%A5%E6%99%BA%E8%83%BD%E4%BD%93%E7%BC%96%E7%A8%8B%EF%BC%9F%202f5b0995619480ff8bc5edce30de6b92#%E8%AE%AD%E7%BB%83%E6%95%B0%E6%8D%AE%E5%A6%82%E4%BD%95%E6%9E%84%E9%80%A0%E9%83%A8%E5%88%86%E7%9B%B8%E5%85%B3%E7%9A%84%E6%9F%A5%E8%AF%A2-%E4%BB%A3%E7%A0%81%E5%AF%B9">​</a></h2>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="训练数据如何构造部分相关的查询-代码对"><strong>训练数据：如何构造“部分相关”的查询-代码对？</strong><a class="hash-link" aria-label="Direct link to 训练数据如何构造部分相关的查询-代码对" title="Direct link to 训练数据如何构造部分相关的查询-代码对" href="https://ayanami1314.github.io/blog/swe-pruner-blog/%E8%BF%88%E5%90%91%E7%9C%9F%E5%AE%9E%E4%B8%96%E7%95%8C%E7%9A%84%E8%BD%AF%E4%BB%B6%E6%99%BA%E8%83%BD%E4%BD%93%EF%BC%9A%E5%A6%82%E4%BD%95%E5%B0%86%EF%BF%BD%E8%AF%AD%E4%B9%89%E9%AB%98%E4%BA%AE%E5%8A%9F%E8%83%BD%E8%9E%8D%E5%85%A5%E6%99%BA%E8%83%BD%E4%BD%93%E7%BC%96%E7%A8%8B%EF%BC%9F%202f5b0995619480ff8bc5edce30de6b92#%E8%AE%AD%E7%BB%83%E6%95%B0%E6%8D%AE%E5%A6%82%E4%BD%95%E6%9E%84%E9%80%A0%E9%83%A8%E5%88%86%E7%9B%B8%E5%85%B3%E7%9A%84%E6%9F%A5%E8%AF%A2-%E4%BB%A3%E7%A0%81%E5%AF%B9">​</a></h2>
 <p>我们使用Qwen-Coder-30B-A3B-Instruct，从github 2025年的新仓库上自行构建数据（再次感谢qwen团队的优秀工作！），在来自6k个仓库、19w个文件的20w条代码片段上，使用了9个种子任务构建数据，并使用Qwen3-Next-80B-A3B-Thinking进行质量筛选，最后得到了约5万条高质量“部分关联query code对”</p>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="为什么是部分相关"><strong>为什么是“部分相关”？</strong><a class="hash-link" aria-label="Direct link to 为什么是部分相关" title="Direct link to 为什么是部分相关" href="https://ayanami1314.github.io/blog/swe-pruner-blog/%E8%BF%88%E5%90%91%E7%9C%9F%E5%AE%9E%E4%B8%96%E7%95%8C%E7%9A%84%E8%BD%AF%E4%BB%B6%E6%99%BA%E8%83%BD%E4%BD%93%EF%BC%9A%E5%A6%82%E4%BD%95%E5%B0%86%E8%AF%AD%E4%B9%89%E9%AB%98%E4%BA%AE%E5%8A%9F%E8%83%BD%E8%9E%8D%E5%85%A5%E6%99%BA%E8%83%BD%E4%BD%93%E7%BC%96%E7%A8%8B%EF%BC%9F%202f5b0995619480ff8bc5edce30de6b92#%E4%B8%BA%E4%BB%80%E4%B9%88%E6%98%AF%E9%83%A8%E5%88%86%E7%9B%B8%E5%85%B3">​</a></h3>
 <p>与文本领域不同的是，代码领域的QA数据集相对较少，缺少类似ms macro这样规模的query，code对；另一个问题是，由于缺少搜索引擎商开源的数据，现有的code query数据集的query往往分布偏窄，常是“这个函数的功能是什么？”“这段代码的运行结果是什么？”这种与整段代码相关的查询</p>
@@ -1597,7 +1756,7 @@ A: 上一版本中，这批样本只是相似度靠后，现在直接划为负�
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="后端架构概览">后端架构概览<a class="hash-link" aria-label="Direct link to 后端架构概览" title="Direct link to 后端架构概览" href="https://ayanami1314.github.io/blog/propilot-part2-team-dev-and-optimization#%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E6%A6%82%E8%A7%88">​</a></h2>
 <p>项目后端采用了清晰的模块化设计：</p>
 <div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">├── api/</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">│   ├── routes/          # 路由层：propilot, users, milvus 等</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">│   ├── services/        # 业务逻辑层</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">│   │   ├── completion_service.py    # 补全核心</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">│   │   ├── doc_service.py          # 文档处理</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">│   │   ├── search_engine_service.py # 搜索引擎</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">│   │   ├── image_service.py        # 图片搜索</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">│   │   ├── web/                    # 网络搜索（jina, langchain）</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">│   │   └── downloader/             # 文档下载器</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">│   ├── dto/             # 数据传输对象</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">│   └── models.py        # ORM 模型</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">├── search/</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">│   └── rag/             # RAG 管道：chunker, hierarchy, prehandler</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">├── finetune/            # 模型微调相关</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">├── coherence/           # 连贯性模型</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">├── prompts/             # Prompt 模板</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">├── tests/               # 测试：API、Benchmark、ndcg 评估等</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">├── utils/               # 工具：logger, parser, reranker 等</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">├── milvus/              # 向量数据库</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">├── mineru/              # 文档解析（Docker）</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">└── typesense/           # 搜索引擎</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
-<h2 class="anchor anchorWithStickyNavbar_LWe7" id="系统级性能瓶颈llm-的困境">系统级性能瓶颈：LLM 的困境<a class="hash-link" aria-label="Direct link to 系统级性能瓶颈：LLM 的困境" title="Direct link to 系统级性能瓶颈：LLM 的困境" href="https://ayanami1314.github.io/blog/propilot-part2-team-dev-and-optimization#%E7%B3%BB%E7%BB%9F%E7%BA%A7%E6%80%A7%E8%83%BD%E7%93%B6%E9%A2%88llm-%E7%9A%84%E5%9B%B0%E5%A2%83">​</a></h2>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="系统级性能瓶颈llm-的困境">系统级性能瓶颈：LLM 的困境<a class="hash-link" aria-label="Direct link to 系统级性能瓶颈：LLM 的困境" title="Direct link to 系统�级性能瓶颈：LLM 的困境" href="https://ayanami1314.github.io/blog/propilot-part2-team-dev-and-optimization#%E7%B3%BB%E7%BB%9F%E7%BA%A7%E6%80%A7%E8%83%BD%E7%93%B6%E9%A2%88llm-%E7%9A%84%E5%9B%B0%E5%A2%83">​</a></h2>
 <p>随着系统跑通，一个严峻的问题浮出水面——<strong>全部的时延和精度压力都在 LLM 上</strong>。</p>
 <p>不算 LLM 的其他地方可以做到 100 QPS+（即使有 rerank，reranker 的加速比 LLM 简单多了），但整个系统只要有 1 QPS 就是成功。</p>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="两难困境">两难困境<a class="hash-link" aria-label="Direct link to 两难困境" title="Direct link to 两难困境" href="https://ayanami1314.github.io/blog/propilot-part2-team-dev-and-optimization#%E4%B8%A4%E9%9A%BE%E5%9B%B0%E5%A2%83">​</a></h3>
@@ -1644,7 +1803,7 @@ A: 上一版本中，这批样本只是相似度靠后，现在直接划为负�
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="测试评估框架">测试评估框架<a class="hash-link" aria-label="Direct link to 测试评估框架" title="Direct link to 测试评估框架" href="https://ayanami1314.github.io/blog/propilot-part2-team-dev-and-optimization#%E6%B5%8B%E8%AF%95%E8%AF%84%E4%BC%B0%E6%A1%86%E6%9E%B6">​</a></h2>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="核心问题如何评估补全系统">核心问题：如何评估补全系统？<a class="hash-link" aria-label="Direct link to 核心问题：如何评估补全系统？" title="Direct link to 核心问题：如何评估补全系统？" href="https://ayanami1314.github.io/blog/propilot-part2-team-dev-and-optimization#%E6%A0%B8%E5%BF%83%E9%97%AE%E9%A2%98%E5%A6%82%E4%BD%95%E8%AF%84%E4%BC%B0%E8%A1%A5%E5%85%A8%E7%B3%BB%E7%BB%9F">​</a></h3>
 <p>开发补全应用时，一个必须面对的问题是：如何评估整个系统的成效？当然可以让 LLM 评估，但耗费大量 token 不说，整体迭代速度也会慢下来，还有组件太多调参困难的问题。</p>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="测试集生成策略">测试集生成策略<a class="hash-link" aria-label="Direct link to 测试集生成策略" title="Direct link to 测试集�生成策略" href="https://ayanami1314.github.io/blog/propilot-part2-team-dev-and-optimization#%E6%B5%8B%E8%AF%95%E9%9B%86%E7%94%9F%E6%88%90%E7%AD%96%E7%95%A5">​</a></h3>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="测试集生成策略">测试集生成策略<a class="hash-link" aria-label="Direct link to 测试集生成策略" title="Direct link to 测试集生成策略" href="https://ayanami1314.github.io/blog/propilot-part2-team-dev-and-optimization#%E6%B5%8B%E8%AF%95%E9%9B%86%E7%94%9F%E6%88%90%E7%AD%96%E7%95%A5">​</a></h3>
 <p><strong>作为传统手艺人，测试集必然是利用现有数据而不是 LLM 生成的。</strong></p>
 <p>策略如下：</p>
 <ol>
@@ -2635,7 +2794,7 @@ A: 上一版本中，这批样本只是相似度靠后，现在直接划为负�
 <li>改进<strong>pre-alignment</strong>和数据混合</li>
 </ol>
 <hr>
-<h2 class="anchor anchorWithStickyNavbar_LWe7" id="增加输入分辨率的做法">增加输入分辨率的做法<a class="hash-link" aria-label="Direct link to 增加输入分辨率的做法" title="Direct link to 增加输入分辨率的做法" href="https://ayanami1314.github.io/blog/%E7%B2%BE%E8%AF%BB%EF%BC%9AEagle%20Exploring%20The%20Design%20Space%20for%20Multi-%20modal%20LLMs%20with%20Mixture%20of%20Encoders#%E5%A2%9E%E5%8A%A0%E8%BE%93%E5%85%A5%E5%88%86%E8%BE%A8%E7%8E%87%E7%9A%84%E5%81%9A%EF%BF%BD%EF%BF%BD%E6%B3%95">​</a></h2>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="增加输入分辨率的做法">增加输入分辨率的做法<a class="hash-link" aria-label="Direct link to 增加输入分辨率的做法" title="Direct link to 增��加输入分辨率的做法" href="https://ayanami1314.github.io/blog/%E7%B2%BE%E8%AF%BB%EF%BC%9AEagle%20Exploring%20The%20Design%20Space%20for%20Multi-%20modal%20LLMs%20with%20Mixture%20of%20Encoders#%E5%A2%9E%E5%8A%A0%E8%BE%93%E5%85%A5%E5%88%86%E8%BE%A8%E7%8E%87%E7%9A%84%E5%81%9A%E6%B3%95">​</a></h2>
 <ul>
 <li>Tiling 将输入分割为子图，CLIP-ViT单独编码</li>
 <li>直接放大输入分辨率，并对位置编码进行进行插值</li>
@@ -2797,7 +2956,7 @@ A: 上一版本中，这批样本只是相似度靠后，现在直接划为负�
 <p>后总结，或者说 query-based 总结大体上是用 LLM 做比较多，但对于时延和开销的增加太高了，一个比较新的方法是 paragraph sentence-level mask bert（自己造的词），在段落中根据 q, d 的交叉编码得到句子级别的二进制掩码，从而删除无关部分。有一篇 ICLR2025 基于 bge 训了个，<a href="https://huggingface.co/blog/nadiinchi/provence" target="_blank" rel="noopener noreferrer">https://huggingface.co/blog/nadiinchi/provence</a></p>
 <p>provence效果非常好，又快又几乎对齐例如GPT4.1这种顶级模型的效果</p>
 <p>另一个思路就是绕过这个问题，切小块，依赖 rerank 和重新合并乃至知识图谱检索之类的策略保证相关性，也就是在查询完之后是合并还是切分的思路差距</p>
-<h4 class="anchor anchorWithStickyNavbar_LWe7" id="半结构化数据">半结构化数据<a class="hash-link" aria-label="Direct link to 半结��构化数据" title="Direct link to 半结构化数据" href="https://ayanami1314.github.io/blog/RAG%E7%9A%84%E4%B8%80%E4%BA%9B%E6%80%9D%E8%80%83%E5%92%8C%E7%BB%86%E8%8A%82#%E5%8D%8A%E7%BB%93%E6%9E%84%E5%8C%96%E6%95%B0%E6%8D%AE">​</a></h4>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="半结构化数据">半结构化数据<a class="hash-link" aria-label="Direct link to 半结构化数据" title="Direct link to 半结构化数据" href="https://ayanami1314.github.io/blog/RAG%E7%9A%84%E4%B8%80%E4%BA%9B%E6%80%9D%E8%80%83%E5%92%8C%E7%BB%86%E8%8A%82#%E5%8D%8A%E7%BB%93%E6%9E%84%E5%8C%96%E6%95%B0%E6%8D%AE">​</a></h4>
 <p><a href="https://docs.superlinked.com/getting-started/installation" target="_blank" rel="noopener noreferrer">https://docs.superlinked.com/getting-started/installation</a> 聚焦半结构化的异构数据，例如朴素 embedding 方案对数字的理解不足，无法建模 1-99 的相似度分数与 higher/lower 这种文本的关系</p>
 <p><a href="https://github.com/microsoft/multifield-adaptive-retrieval" target="_blank" rel="noopener noreferrer">https://github.com/microsoft/multifield-adaptive-retrieval</a> 做多字段的权重学习(自适应选择查询应该着重的权重)</p>
 <h4 class="anchor anchorWithStickyNavbar_LWe7" id="embedding-相关的调优">embedding 相关的调优<a class="hash-link" aria-label="Direct link to embedding 相关的调优" title="Direct link to embedding 相关的调优" href="https://ayanami1314.github.io/blog/RAG%E7%9A%84%E4%B8%80%E4%BA%9B%E6%80%9D%E8%80%83%E5%92%8C%E7%BB%86%E8%8A%82#embedding-%E7%9B%B8%E5%85%B3%E7%9A%84%E8%B0%83%E4%BC%98">​</a></h4>
@@ -2913,77 +3072,5 @@ A: 上一版本中，这批样本只是相似度靠后，现在直接划为负�
         </author>
         <category label="Multimodal LLM" term="Multimodal LLM"/>
         <category label="LLM" term="LLM"/>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[ColBERT-后期交互方法]]></title>
-        <id>https://ayanami1314.github.io/blog/ColBERT</id>
-        <link href="https://ayanami1314.github.io/blog/ColBERT"/>
-        <updated>2025-05-29T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[如果简单引入语义搜索，那么第一时间想到的肯定是向量搜索的方法]]></summary>
-        <content type="html"><![CDATA[<p>如果简单引入语义搜索，那么第一时间想到的肯定是向量搜索的方法</p>
-<p>先不论小的优化，向量方法现在大体上就是两种架构，单塔和双塔，对应Cross-Encoder和普通的Encoder模型。</p>
-<p>双塔模型如下，查询<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>q</mi></mrow><annotation encoding="application/x-tex">q</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em"></span><span class="mord mathnormal" style="margin-right:0.03588em">q</span></span></span></span>和文档<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>d</mi></mrow><annotation encoding="application/x-tex">d</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em"></span><span class="mord mathnormal">d</span></span></span></span>分别通过两个独立的编码器，得到向量表示<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>q</mi><mi>v</mi></msub></mrow><annotation encoding="application/x-tex">q_v</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em">q</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em"><span class="pstrut" style="height:2.7em"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.03588em">v</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em"><span></span></span></span></span></span></span></span></span></span>和<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>d</mi><mi>v</mi></msub></mrow><annotation encoding="application/x-tex">d_v</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8444em;vertical-align:-0.15em"></span><span class="mord"><span class="mord mathnormal">d</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em"><span class="pstrut" style="height:2.7em"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.03588em">v</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em"><span></span></span></span></span></span></span></span></span></span>，然后计算相似度（内积，余弦，等等）。</p>
-<p><img decoding="async" loading="lazy" src="https://blog.vespa.ai/assets/2024-02-14-announcing-colbert-embedder-in-vespa/image5.png" alt="overview traditional text embedding models" class="img_ev3q"></p>
-<p>而单塔模型则是将查询和文档拼接在一起，输入到一个交叉编码器中，这个交叉编码器很多时候就直接输出相关性得分score了，即为我们所说的reranker</p>
-<p>单塔虽然精度远高于双塔，但有无法离线计算的缺点</p>
-<p>而双塔的一大精度困境在于，当编码的文档变长时，文档的大部分内容可能都和查询没什么关系，这会导致查询向量和文档向量的相似度计算不准确。实际上，在楼主之前的一些实验之中，一整个很大的文档集合内，和某个查询最无关和最相关的文档的余弦相似度相差也就0.2左右，这就是长文档带来的问题。</p>
-<p>但客观地讲，长文档是无法避免的，如果把文档切成更细粒度的句子，在上下文补齐语义，后续合并等麻烦可能更多，并且会出现"长文档实际上是在让相似度检索考虑上下文"这样的情况，一个例子是，问题是"上海交大的用户论坛中，...."，而文档可能是"...水源社区是上海交大的用户论坛。水源社区....." 如果仅在句子等短文本上面匹配，那缺少了上下文的情况下，"水源社区"当然和"上海交大"没什么关系。</p>
-<p>那么，如何保证精度的同时又能离线计算呢？</p>
-<p>ColBERT的思路是，使用双塔模型来计算相似度，但在编码文档时，<strong>使用了一个更细粒度的向量表示</strong>。</p>
-<p>ColBERT<strong>给每个token一个向量表示</strong>，而不是给每个文档一个向量表示。这样，查询和文档的相似度计算就可以在token级别进行。</p>
-<p>如下图，ColBERT在拿到最后一层的输出之后（这一层有非常多的语义信息！），将每一个token对应的vector都存下来，这一部分是离线的。</p>
-<p>而在计算相似度的时候，将query的tensor和文档的tensor进行一个<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi><mi>a</mi><mi>x</mi><mi>S</mi><mi>i</mi><mi>m</mi></mrow><annotation encoding="application/x-tex">MaxSim</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em"></span><span class="mord mathnormal" style="margin-right:0.10903em">M</span><span class="mord mathnormal">a</span><span class="mord mathnormal">x</span><span class="mord mathnormal" style="margin-right:0.05764em">S</span><span class="mord mathnormal">im</span></span></span></span>算子</p>
-<p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi><mi>a</mi><mi>x</mi><mi>S</mi><mi>i</mi><mi>m</mi></mrow><annotation encoding="application/x-tex">MaxSim</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em"></span><span class="mord mathnormal" style="margin-right:0.10903em">M</span><span class="mord mathnormal">a</span><span class="mord mathnormal">x</span><span class="mord mathnormal" style="margin-right:0.05764em">S</span><span class="mord mathnormal">im</span></span></span></span>是一个最大池化操作，取出<strong>每个token的向量中与查询向量最相似的那个向量</strong>，然后计算相似度。</p>
-<p><img decoding="async" loading="lazy" src="https://blog.vespa.ai/assets/2024-02-14-announcing-colbert-embedder-in-vespa/image1.png" alt="overview colbert" class="img_ev3q"></p>
-<p>ColBERT的性能是逼近reranker的，这个也很好理解，毕竟交叉编码器的优势就是可以考虑<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>q</mi><mo separator="true">,</mo><mi>d</mi></mrow><annotation encoding="application/x-tex">q,d</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em"></span><span class="mord mathnormal" style="margin-right:0.03588em">q</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em"></span><span class="mord mathnormal">d</span></span></span></span>之间的交互，而ColBERT除了保留语义嵌入之外，比起更暴力的加大embedding维度，更重要的是它<strong>保存了上下文次序的信息</strong></p>
-<p>而ColBERT的最后一层MaxSim，而没有采用神经网络的方案，让他带来了良好的可解释性</p>
-<p><img decoding="async" loading="lazy" src="https://blog.vespa.ai/assets/2024-02-14-announcing-colbert-embedder-in-vespa/image3.png" alt="colbert snippet" class="img_ev3q"></p>
-<p>那看了上面立刻就会想到，这每一个token保存一个<code>768/1024/...</code>维的向量，存储开销不会很大吗？</p>
-<p>ColBERT也考虑到了这个问题，因此在ColBERTv2中，采用了这样质心编码的方法来降低存储开销，能降低8倍</p>
-<ol>
-<li>
-<p>对每个token的向量进行聚类，得到<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em"></span><span class="mord mathnormal" style="margin-right:0.03148em">k</span></span></span></span>个质心（k是一个预定义的数字）</p>
-</li>
-<li>
-<p>对每个token的向量，找到距离最近的质心，并将其索引存储下来，也就是从 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><msub><mi>v</mi><mi>d</mi></msub><mo separator="true">,</mo><mo stretchy="false">)</mo><mo>−</mo><mo>&gt;</mo><mo stretchy="false">(</mo><mn>1</mn><mo separator="true">,</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(v_d, ) -&gt;(1,)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em"></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em">v</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em"><span class="pstrut" style="height:2.7em"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">d</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em"></span><span class="mclose">)</span><span class="mord">−</span><span class="mspace" style="margin-right:0.2778em"></span><span class="mrel">&gt;</span><span class="mspace" style="margin-right:0.2778em"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em"></span><span class="mopen">(</span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em"></span><span class="mclose">)</span></span></span></span></p>
-</li>
-<li>
-<p>将质心向量库构建ANN索引，例如FAISS, ScaNN</p>
-</li>
-<li>
-<p>在计算相似度时，查询向量也进行同样的处理，找到距离查询最近的质心索引，然后从质心向量库中取出对应的质心向量进行相似度计算</p>
-</li>
-</ol>
-<p>在实际使用的时候，商业rag公司甚至对大规模检索做更狠的二值化向量压缩（说实话这也能检索出来真的有点现代模型神力了），让ColBERT的开销可以和单独的embedding媲美</p>
-<p><img decoding="async" loading="lazy" src="https://blog.vespa.ai/assets/2024-02-14-announcing-colbert-embedder-in-vespa/image2.png" alt="colbert token" class="img_ev3q"></p>
-<p>二值化的说法是这样的:</p>
-<blockquote>
-<p>压缩方法通过将正维度表示为 1、负维度表示为 0 来简化文档标记向量。<strong>这种二进制表示有效地指示了文档标记向量中重要语义特征的存在与否</strong>。
-<strong>正维度有助于增加点积，表明相关的语义相似性，而负维度则被忽略。</strong></p>
-</blockquote>
-<p>ColBERT的使用上，很多公司都有了支持，例如vespa, jina等等，开源方案则有早期的ragatouile和后来的上下游如milvus，llamaindex的支持</p>
-<p>但是，文档ColBERT还不是它发挥全部潜能的时候，据说SPLADE算法就比他效果好不少（这个我没有实测过），它在图像又活出了第二世，即所谓的ColPali架构</p>
-<p>ColPali是MRAG、MLLM那边的新论文和解决方案，几个月的时间砍了1.9k star，ColPali的想法是这样的</p>
-<ul>
-<li>OCR的多个组件和分块带来误差传播，且预处理流程耗时也长，能不能直接端到端一次使用文档截图解决</li>
-<li>但是如果将整页的文档编码成一个向量，肯定精度不够</li>
-<li>我的ViT等视觉编码器会将整页文档变成一系列的patch（可以理解为子图），进而变成一系列视觉token，那我重用ColBERT，不就又有了多向量吗？并且这个存储和交互上比每个token存一个向量更合理! 子图本身就有很多的空间位置信息</li>
-</ul>
-<p><img decoding="async" loading="lazy" alt="image-20250529232012895" src="https://ayanami1314.github.io/assets/images/image-20250529232012895-e3798d5e7863883d9a90645e57d47f43.png" width="1506" height="916" class="img_ev3q"></p>
-<p>并且，你会发现ColBERT的强可解释性在图像上有更关键的作用！模型在文本中关注了什么可能是某个词，还需要人进行一点逻辑推理来判断关系是否合理，而图像中关注了什么，直接看图就知道了！</p>
-<p><img decoding="async" loading="lazy" alt="image-20250529232211333" src="https://ayanami1314.github.io/assets/images/image-20250529232211333-f16577089d8023fe748d53489301703c.png" width="1402" height="1150" class="img_ev3q"></p>
-<p>作为一种新的RAG范式，ColPali从源头上解决了复杂的OCR和切块的问题</p>
-<p>虽然其在重文字领域上的泛化性还留待验证，精度的提升也依赖于未来VLM的发展，但无疑社区已经认同了这个想法的价值</p>
-<blockquote>
-<p>基于 OCR 的文本提取，以及随后的布局和边界框分析，仍然是重要文档 AI 模型（例如 LayoutLM）的核心。例如， <a href="https://huggingface.co/microsoft/layoutlmv3-base" target="_blank" rel="noopener noreferrer">LayoutLMv3</a> 对文档文本进行编码，包括文本标记序列的顺序、标记或线段的 OCR 边界框坐标以及文档本身。这在关键的文档 AI 任务中取得了最佳成果，但前提是第一步——OCR 文本提取——能够顺利完成。</p>
-<p><strong>但通常情况并非如此。</strong></p>
-<p>根据我最近的经验，<strong>OCR 瓶颈导致现实世界生产文档档案中的命名实体识别 (NER) 任务的性能下降近 50%。</strong></p>
-</blockquote>
-<p>目前例如ColQwen2这种ColBERT + Qwen2.5-VL-3B-Instruct的方案也很火，很多榜上都刷到了SOTA，感兴趣的同学也可以自己试试</p>]]></content>
-        <author>
-            <name>ayanami</name>
-        </author>
-        <category label="Embedding" term="Embedding"/>
-        <category label="RAG" term="RAG"/>
     </entry>
 </feed>
