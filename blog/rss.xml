@@ -4,10 +4,132 @@
         <title>Ayanami's Cave Blog</title>
         <link>https://ayanami1314.github.io/blog</link>
         <description>Ayanami's Cave Blog</description>
-        <lastBuildDate>Sat, 31 Oct 2026 00:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Sun, 08 Nov 2026 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
+        <item>
+            <title><![CDATA[paper reading - Mistral Large 4 tech report / Ernie 5.5]]></title>
+            <link>https://ayanami1314.github.io/blog/2026/11/08/paper-reading-mistral-large-4</link>
+            <guid>https://ayanami1314.github.io/blog/2026/11/08/paper-reading-mistral-large-4</guid>
+            <pubDate>Sun, 08 Nov 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[列一些我觉得有意思的部分]]></description>
+            <content:encoded><![CDATA[<p>列一些我觉得有意思的部分</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="batch-size调度策略">batch size调度策略<a class="hash-link" aria-label="Direct link to batch size调度策略" title="Direct link to batch size调度策略" href="https://ayanami1314.github.io/blog/2026/11/08/paper-reading-mistral-large-4#batch-size%E8%B0%83%E5%BA%A6%E7%AD%96%E7%95%A5">​</a></h3>
+<blockquote>
+<p>2.3.1 Batch size ramp-up
+The optimal batch size increases throughout training. Early in training, a larger batch size wastes compute (and tokens) because a gradient estimate from a fraction of the batch’s tokens suffices, whereas later in training, we benefit from more precise gradients. Therefore, we ramp up the batch size in stages with a share of tokens that grows exponentially per stage: the final batch size (stage) runs for the last 50% of tokens, the penultimate batch size runs for 25% of tokens, and so on. We rescale the learning rate for each stage by a factor that is tuned empirically. Batch-size ramp-up also acts as a regularizer: noisier gradient estimates from the smaller early batches reduce overfitting, and the benefits of regularization increase with the number of data repeats. Like the batch-size compute multiplier, the choice of schedule trades off optimization efficiency against throughput. From an optimization perspective, we find that ramp-up from 0.25× to 2× the predicted batch size performs best empirically. However, larger batch sizes achieve higher MFU in our setting. Therefore, we chose to ramp up from 1× to 4× based on wall-clock performance, which produces the 40M, 80M, 160M schedule above</p>
+</blockquote>
+<p>motivation是</p>
+<ol>
+<li>
+<p>数据不够，pretrain需要适当的重复（尤其是mistral使用了两阶段配比，第一阶段65%数据配17%code, 第二阶段35%数据配39%的code, code应该是要重复好几遍的
+<img decoding="async" loading="lazy" src="https://ayanami1314.github.io/assets/images/ml4-data-mix-0a4fc2d0ed5fbea17be15c5cb9decdf3.png" width="986" height="406" class="img_ev3q"></p>
+</li>
+<li>
+<p>重复会overfit</p>
+</li>
+<li>
+<p>小batch 噪声大 ，防overfit， 同时对于数据的利用较大batch更高， 所以前期用小batch更好</p>
+</li>
+<li>
+<p>但是小batch会影响mfu，速度降低，所以 设scaling ladder算出来的最优batch size为x, 并没有采用从 0.25x -&gt; 2x 的方案，而是采用了 x -&gt; 4x的方案，优先保证速度（4000 GB200 45day 完成1t pretrain）</p>
+</li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="sparse-attn-带来agentic性能下降">Sparse Attn 带来agentic性能下降？<a class="hash-link" aria-label="Direct link to Sparse Attn 带来agentic性能下降？" title="Direct link to Sparse Attn 带来agentic性能下降？" href="https://ayanami1314.github.io/blog/2026/11/08/paper-reading-mistral-large-4#sparse-attn-%E5%B8%A6%E6%9D%A5agentic%E6%80%A7%E8%83%BD%E4%B8%8B%E9%99%8D">​</a></h3>
+<blockquote>
+<p>3.1 Agentic penalty on architecture
+Initially, we used multiple optimizations to reduce the KV-cache footprint of ML4, notably:
+• Ragged multi-head latent attention (MLA): One in every four layers uses full attention, the
+remaining layers use sliding-window attention (SWA) [18–20] with a window size of 512 tokens.
+• Cross-layer attention sharing (CLA) [21]: Every other full-attention layer reuses the KV cache
+of the preceding full-attention layer.
+• YOCO [22]: Full-attention layers in the second half of the transformer attend to the KV cache
+produced by the first half instead of maintaining their own KV cache. Beyond KV-cache reduction,
+YOCO enables two-stage prefilling, which is 1.7× faster at 1M context on our benchmarks.
+The combination of these optimizations reduced the KV-cache size by a factor of 16 compared to a full-attention baseline. Early ablations suggested that impact on pretraining performance, including perplexity and other common pretraining and post-training benchmarks, was either negligible or small enough to justify the efficiency gains.
+However, as ML4 pretraining continued, early SFT cooldowns on intermediate checkpoints revealed poor performance. Despite expected performance on pretraining evaluations, including perplexity and knowledge-based benchmarks, the model’s post-SFT performance was lower than expected on agentic evaluations, especially those that require long-context reasoning like SWE-bench [23] and BrowseComp [24]. Parallel research efforts helped us to isolate the performance regression. Under the same training token budget, SWE-bench Verified [25] scores measured after midtraining and SFT decreased as we moved from full attention to SWA, and regressed further when applying CLA</p>
+</blockquote>
+<p>在预训指标上，yoco，swa和fa（mla）混合并没有怎么掉点的同时，带来了16x 的kvcache减少，但当训练进行到midtrain/sft阶段时，full attn却表现出来了明显的优势</p>
+<p><img decoding="async" loading="lazy" src="https://ayanami1314.github.io/assets/images/ml4-sparse-attn-swe-b0452dfef5d6a21522238dd8ed14f619.jpeg" width="690" height="489" class="img_ev3q">
+<img decoding="async" loading="lazy" src="https://ayanami1314.github.io/assets/images/ml4-attn-variants-7c5985d9e0bceb5d4000ef6350045797.png" width="690" height="412" class="img_ev3q"></p>
+<p>sparse attn可能会导致agentic任务掉点是一个比较广为人知的认识，想想也知道agentic实际上是相当长程的任务，window一定是有一些影响的，只是之前赞同sparse的人也观测到了相反的，某些情况下，sparse反而有助于提升性能的现象，但我觉得这只是模型的长文能力不够强，随着模型reasoning越来越长，长文能力肯定是在加强的，window的效果相对存疑，截断reasoning会比截断tool response要严重</p>
+<p>我觉得mistral这里最有insight的反倒是明确揭示了这个pretrain bench不掉是真的 != posttrain 不掉，pretrain bench某种程度上不可信，这和大伙的认知一致，但国模真的有卡进行充分的heldout sft消融验证吗？哎.....</p>
+<hr>
+<p>我觉得还是有优势的，感觉它这里的两个claim都是最近国模实际遇到的问题
+一个是数据不够，导致重复次数在上升，但上升多少是崩溃的拐点这个纯靠经验，这里小batch当正则化或许是一个策略
+另一个是卡太少速度不够，mistral这里somehow验证了训练后期可以放4x bs 而不崩，感觉还是有空间用到国模pretrain上的，就是大家pretrain都完全不开源，所以用了也不知道</p>
+<hr>
+<p>我觉得他们最变态的是训练中间换架构</p>
+<p>我记得我上次问 xpr 的时候被他喷了，说我是不是脑子不清醒怎么可能中间换架构，最多中间换换数据和参数</p>
+<p>这下见到中间换架构的了</p>
+<blockquote>
+<p>3.2 Model surgery</p>
+<ul>
+<li>3.2.1 Removing KV compression, adding LeRoPE and SSMax</li>
+<li>3.2.2 Scaling up to the full model</li>
+<li>3.3.3 DeepSeek Sparse Attention (DSA)</li>
+</ul>
+</blockquote>
+<p>拆掉了swa, 换位置编码，本来想拆yoco的，发现加回去还是有收益, 由于本人对架构并没有非常了解，这里也没法评价</p>
+<hr>
+<p>4.1 Agentic instance authoring</p>
+<p><img decoding="async" loading="lazy" src="https://ayanami1314.github.io/assets/images/ml4-agentic-tasks-7d264c14e51dee4826e30fb01e50f2ec.jpeg" width="690" height="383" class="img_ev3q"></p>
+<p>也是大家常见的思路了，只是感觉他们这个领域树有点奇怪，为什么math / cowork的sandbox是和code一起合成的，直接从github裸做有点狂野，不过现在确实有些是直接拿着github上资源文件比如lean或者一个svg之类去合任务的</p>
+<p>相信模型能力！其实这种和直接从网页上合都不好说有啥区别（），虽然直接从网页里面合cowork应该各家也都有管线</p>
+<p>正当我疑惑它想咋整例如法律这种边角领域的环境的时候，他来了个</p>
+<blockquote>
+<ul>
+<li>Real-world seeds: For broad coverage of terminal use, we collect millions of technical seeds from our pretraining corpus. This content includes software engineering, system administration, security, databases, optimization, and so on.</li>
+<li>Synthetic seeds: To supplement the real-world challenges, we generate more seeds from a
+taxonomy (e.g., Figure 10). Each seed is a tuple drawn from combinations of skill, domain,
+difficulty, verbosity, and other attributes.</li>
+</ul>
+</blockquote>
+<p>直接合成！相信模型(😂)</p>
+<p>从预训数据里面回捞是常规思路，只要没有部门墙都是可以推的</p>
+<p>下面的github测试不行之类都是老生常谈了，参考mimo v2.6 tech report</p>
+<blockquote>
+<p>we observe that the generated samples are higher quality, more realistic, and more diverse when conditioned on taxonomies than otherwis</p>
+</blockquote>
+<p>4.3.3 讲了讲agent逃逸沙盒环境的事情，有点忘了是在哪个report里看到的，container的隔离性并没有那么好，如果是python用于沙箱调度，那agent有读python runtime的切面来定位测试的做法，当时的解法是上MicroVM隔离性更强一些，但我觉得更简单的做法是直接在机器层面做隔离，把测试外放到物理隔离的集群服务里面，我记得openai的swarm（是叫这个名字吗？）就是这个思路来着，感觉平台基建做得好的话是不影响rl的async的，依稀记得这方面如果可以用nix的话会干净很多</p>
+<p>不过这个东西反正也是基建越好，优化越多（例如缓存或者prefetch或者jit etc），状态越难全局一致，agent bug hack的次数就会多，所以基建越好基建越差（bushi</p>
+<hr>
+<p>4.4 RL</p>
+<p>使用mmx的 cispo + mimo的 segment level advantage correction</p>
+<p>然后是训推不匹配
+经典路由重放，经典kl截断，经典batch invariant算子，经典tokenize问题修复</p>
+<p>4.4.5 Finding other agents in web search task</p>
+<p>这个倒是挺有意思的，benchmark测试的搜索越来越长尾，测试这一行为本身对公用网页的影响就越大，网站自己的SEO和搜索引擎的返回结果就会变化，最后就变成了，使用公用搜索api 这个事情（例如google search） ，本身就会受到一定的泄露影响</p>
+<p><strong>搜索并不是一个无状态的操作</strong>，网站和搜索引擎双方的优化改变了搜索的重放语义</p>
+<p>感觉都快和量化一样了，再之后是不是还要有一个冲击模型衡量测量bench本身对于bench的影响（笑）</p>
+<p>想起唐杰说智谱曾经尝试自建搜索引擎，但发现过于困难，最后放弃了，自己的search engine mirror确实是 search rl 的必需品啊，感觉为了维护良好的行为语义，llm厂商被逼的要重新发明一切了，这里面又会有多少infra bug我都不敢想</p>
+<p>4.5.1 的长度奖励就比较简单了
+简单的线性内部相对惩罚</p>
+<p>但report有个观点是是不需要很精细的挑这个，反正不同的超参得到的 效率-性能 tradeoff 模型都可以通过MOPD蒸回去，这个还挺暴力的hhh</p>
+<hr>
+<p>好像ERNIE 5.5 flash也用了一些独特的策略, 比如 <a href="https://zhouyuxuanyx.github.io/2026/11/05/one-knob-is-not-enough-softmax-temperature-vs-multimax.html" target="_blank" rel="noopener noreferrer">https://zhouyuxuanyx.github.io/2026/11/05/one-knob-is-not-enough-softmax-temperature-vs-multimax.html</a> ，给对数学过敏的人（比如我）省流</p>
+<p>softmax是单峰的，但真实注意力 or 标签预测之类可能是多峰的
+本质上从 logits -&gt; 概率需要满足两个事情</p>
+<ol>
+<li>稀疏性：垃圾choice被压低</li>
+<li>（sometimes）多峰性: 合理的选择都可以高峰</li>
+</ol>
+<p>而传统softmax只有一个旋钮温度T, T高多峰但不稀疏，T低稀疏但不多峰</p>
+<p>本质上理想的做法是一个阶梯函数，</p>
+<ul>
+<li>if 低logits -&gt; 压低（稀疏）</li>
+<li>if 中logits -&gt; 保持</li>
+<li>if 高logits -&gt; 抬高（多峰）</li>
+</ul>
+<p>，然后可以relu把if-else变得可导，再二阶化变得光滑，就得到了一些可学习的旋钮（而不只是一个T），再把这族旋钮的初始化变成softmax, 就能获取到剩下的增益</p>
+<p>听起来相当合理，但有一个问题是，multimax在保留了多峰的同时也削弱了主峰的学习强度，对于小模型有限样本的情况下验出来效果不佳（例如在质量模型使用multimax替换softmax）</p>
+<p>ernie-5-5-flash这篇主要是架构上的东西啊
+用了好多新架构, echo之前群里也宣传过，没想到是ernie的工作. 活太多了，架构上的就暂时先不看了，我得先把管线和配比还有消融搞好（</p>]]></content:encoded>
+            <category>paper reading</category>
+            <category>LLM</category>
+            <category>pretrain</category>
+        </item>
         <item>
             <title><![CDATA[paper reading-pretrain data相关]]></title>
             <link>https://ayanami1314.github.io/blog/2026/10/31/paper-reading-pretrain-data</link>
@@ -654,7 +776,7 @@ c100.7 8.3 195.3 44 280 108 55.3 42 101.7 93 139 153l9 14c2.7-4 5.7-8.7 9-14
 <li>根据阈值保留得分高的行，同时移除得分低的行</li>
 </ol>
 <p>一个有趣的细节是阈值的选择，在Provence的开源模型之中，他们推荐将threshold设置为0.1来保守裁剪；而我们阈值调优实验发现，和训练保持一致的0.5阈值就能在下游任务中达到最佳性能，而0.1似乎过于保守——0.3已经会保留非常多的部分，这也可能是代码数据的分布特点和文本不同所导致的，在下文中会详细说明。</p>
-<h2 class="anchor anchorWithStickyNavbar_LWe7" id="训练数据如何构造部分相关的查询-代码对"><strong>训练数据：如何构造“部分相关”的查询-代码对？</strong><a class="hash-link" aria-label="Direct link to 训练数据如何构造部分相关的查询-代码对" title="Direct link to 训练数据如何构造部分相关的查询-代码对" href="https://ayanami1314.github.io/blog/swe-pruner-blog/%E8%BF%88%E5%90%91%E7%9C%9F%E5%AE%9E%E4%B8%96%E7%95%8C%E7%9A%84%E8%BD%AF%E4%BB%B6%E6%99%BA%E8%83%BD%E4%BD%93%EF%BC%9A%E5%A6%82%E4%BD%95%E5%B0%86%EF%BF%BD%E8%AF%AD%E4%B9%89%E9%AB%98%E4%BA%AE%E5%8A%9F%E8%83%BD%E8%9E%8D%E5%85%A5%E6%99%BA%E8%83%BD%E4%BD%93%E7%BC%96%E7%A8%8B%EF%BC%9F%202f5b0995619480ff8bc5edce30de6b92#%E8%AE%AD%E7%BB%83%E6%95%B0%E6%8D%AE%E5%A6%82%E4%BD%95%E6%9E%84%E9%80%A0%E9%83%A8%E5%88%86%E7%9B%B8%E5%85%B3%E7%9A%84%E6%9F%A5%E8%AF%A2-%E4%BB%A3%E7%A0%81%E5%AF%B9">​</a></h2>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="训练数据如何构造部分相关的查询-代码对"><strong>训练数据：如何构造“部分相关”的查询-代码对？</strong><a class="hash-link" aria-label="Direct link to 训练数据如何构造部分��相关的查询-代码对" title="Direct link to 训练数据如何构造部分相关的查询-代码对" href="https://ayanami1314.github.io/blog/swe-pruner-blog/%E8%BF%88%E5%90%91%E7%9C%9F%E5%AE%9E%E4%B8%96%E7%95%8C%E7%9A%84%E8%BD%AF%E4%BB%B6%E6%99%BA%E8%83%BD%E4%BD%93%EF%BC%9A%E5%A6%82%E4%BD%95%E5%B0%86%E8%AF%AD%E4%B9%89%E9%AB%98%E4%BA%AE%E5%8A%9F%E8%83%BD%E8%9E%8D%E5%85%A5%E6%99%BA%E8%83%BD%E4%BD%93%E7%BC%96%E7%A8%8B%EF%BC%9F%202f5b0995619480ff8bc5edce30de6b92#%E8%AE%AD%E7%BB%83%E6%95%B0%E6%8D%AE%E5%A6%82%E4%BD%95%E6%9E%84%E9%80%A0%E9%83%A8%E5%88%86%E7%9B%B8%E5%85%B3%E7%9A%84%E6%9F%A5%E8%AF%A2-%E4%BB%A3%E7%A0%81%E5%AF%B9">​</a></h2>
 <p>我们使用Qwen-Coder-30B-A3B-Instruct，从github 2025年的新仓库上自行构建数据（再次感谢qwen团队的优秀工作！），在来自6k个仓库、19w个文件的20w条代码片段上，使用了9个种子任务构建数据，并使用Qwen3-Next-80B-A3B-Thinking进行质量筛选，最后得到了约5万条高质量“部分关联query code对”</p>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="为什么是部分相关"><strong>为什么是“部分相关”？</strong><a class="hash-link" aria-label="Direct link to 为什么是部分相关" title="Direct link to 为什么是部分相关" href="https://ayanami1314.github.io/blog/swe-pruner-blog/%E8%BF%88%E5%90%91%E7%9C%9F%E5%AE%9E%E4%B8%96%E7%95%8C%E7%9A%84%E8%BD%AF%E4%BB%B6%E6%99%BA%E8%83%BD%E4%BD%93%EF%BC%9A%E5%A6%82%E4%BD%95%E5%B0%86%E8%AF%AD%E4%B9%89%E9%AB%98%E4%BA%AE%E5%8A%9F%E8%83%BD%E8%9E%8D%E5%85%A5%E6%99%BA%E8%83%BD%E4%BD%93%E7%BC%96%E7%A8%8B%EF%BC%9F%202f5b0995619480ff8bc5edce30de6b92#%E4%B8%BA%E4%BB%80%E4%B9%88%E6%98%AF%E9%83%A8%E5%88%86%E7%9B%B8%E5%85%B3">​</a></h3>
 <p>与文本领域不同的是，代码领域的QA数据集相对较少，缺少类似ms macro这样规模的query，code对；另一个问题是，由于缺少搜索引擎商开源的数据，现有的code query数据集的query往往分布偏窄，常是“这个函数的功能是什么？”“这段代码的运行结果是什么？”这种与整段代码相关的查询</p>
@@ -1298,7 +1420,7 @@ A：传统投机是不接受，但其他head的结果可以加入候选池，就
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="离线硬裁剪">离线硬裁剪<a class="hash-link" aria-label="Direct link to 离线硬裁剪" title="Direct link to 离线硬裁剪" href="https://ayanami1314.github.io/blog/Paper%20reading%20Context%20Pruning%20and%20beyond%20hard%20pruning#%E7%A6%BB%E7%BA%BF%E7%A1%AC%E8%A3%81%E5%89%AA">​</a></h3>
 <p>在最早期的时候，就有相关的一些朴素方法，例如直接对查询文本段做一次总结摘要，再用总结后的文本段去做后续的任务，这种方法是离线硬裁剪的典型代表。如果用的是llm就是离线的，如果用轻量级模型做摘要或者总结就是在线的</p>
 <p>而在后面的时候，出现了例如微软的llmlingua这样的工作，直接用一个小模型(gpt2 small，llama-7b, etc)去预测哪些token是重要的，哪些token是不重要的，然后把不重要的token直接裁剪掉，这种方法也是离线硬裁剪的典型代表。(llmlingua2 换成了微调的 BERT 来做这个事情，所以可以说在线的)， 其出发点和常规的硬裁剪可能有部分地方不同，例如llmlingua认为，裁剪本身是可以得到一些人类不可读但是大模型可以理解的token序列的，所以可解释性上可能并没有想象的那么强。</p>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="离线软裁剪">离线软裁剪<a class="hash-link" aria-label="Direct link to 离线软裁剪" title="Direct link to 离线软裁剪" href="https://ayanami1314.github.io/blog/Paper%20reading%20Context%20Pruning%20and%20beyond%20hard%20pruning#%E7%A6%BB%E7%BA%BF%E8%BD%AF%E8%A3%81%E5%89%AA">​</a></h3>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="离线软裁剪">离线软裁剪<a class="hash-link" aria-label="Direct link to 离线�软裁剪" title="Direct link to 离线软裁剪" href="https://ayanami1314.github.io/blog/Paper%20reading%20Context%20Pruning%20and%20beyond%20hard%20pruning#%E7%A6%BB%E7%BA%BF%E8%BD%AF%E8%A3%81%E5%89%AA">​</a></h3>
 <p>和硬裁剪同时推进的是软裁剪相关的工作，其想法很简单: 如果我牺牲解释性，直接调整prompt的embedding这类，即使产生的是不对应任何token的"fake embedding"，其在高维空间中也应该融合了多个token的语义，理应得到更高的压缩率(可以理解为，在训练过程中为llm 扩充为无限词表，然后定义了一些高效的"额外语言")</p>
 <p>比较早期的工作是 xRAG， 其裁剪策略非常极端，将整个段落都压缩成1个embedding X，怎么训练呢？一个在此类论文中经常出现的是重建loss，即</p>
 <p>压缩前<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>D</mi><mi>o</mi><mi>c</mi><mo>+</mo><mi>q</mi><mi>u</mi><mi>e</mi><mi>r</mi><mi>y</mi><mo>→</mo><mi>x</mi></mrow><annotation encoding="application/x-tex">Doc + query \to x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7667em;vertical-align:-0.0833em"></span><span class="mord mathnormal">Doc</span><span class="mspace" style="margin-right:0.2222em"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em"></span></span><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em"></span><span class="mord mathnormal" style="margin-right:0.03588em">q</span><span class="mord mathnormal">u</span><span class="mord mathnormal" style="margin-right:0.03588em">ery</span><span class="mspace" style="margin-right:0.2778em"></span><span class="mrel">→</span><span class="mspace" style="margin-right:0.2778em"></span></span><span class="base"><span class="strut" style="height:0.4306em"></span><span class="mord mathnormal">x</span></span></span></span></p>
@@ -1362,7 +1484,7 @@ A：传统投机是不接受，但其他head的结果可以加入候选池，就
 <p>而还是复用Provence的工程技巧，把裁剪和rerank overlap起来，OSCAR的compressor留了一个RR头，在这个头和Teacher Reranker对齐，整体的Loss就是rerank loss + generation loss</p>
 <p>而令LLM理解embedding这件事情还是通过LoRA adapter来做，这篇文章其实像是序列工作的延申，综合了PISCO的训练方法，把PISCO的压缩部分从LLM + LoRA换成目标模型的前N层transformer，然后压缩器全参微调、生成器LoRA微调，再使用和Provence相同的技巧进行rerank的overlap</p>
 <p><img decoding="async" loading="lazy" src="https://s2.loli.net/2025/09/07/pDRSe2sCwFabN8X.png" alt="image-20250907213839337" class="img_ev3q"></p>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="异曲同工">异曲同工<a class="hash-link" aria-label="Direct link to 异曲同工" title="Direct link to 异曲同工" href="https://ayanami1314.github.io/blog/Paper%20reading%20Context%20Pruning%20and%20beyond%20hard%20pruning#%E5%BC%82%E6%9B%B2%E5%90%8C%E5%B7%A5">​</a></h3>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="异曲同工">异曲同工<a class="hash-link" aria-label="Direct link to 异��曲同工" title="Direct link to 异曲同工" href="https://ayanami1314.github.io/blog/Paper%20reading%20Context%20Pruning%20and%20beyond%20hard%20pruning#%E5%BC%82%E6%9B%B2%E5%90%8C%E5%B7%A5">​</a></h3>
 <h4 class="anchor anchorWithStickyNavbar_LWe7" id="从hyde到投机解码">从HyDE到“投机解码”<a class="hash-link" aria-label="Direct link to 从HyDE到“投机解码”" title="Direct link to 从HyDE到“投机解码”" href="https://ayanami1314.github.io/blog/Paper%20reading%20Context%20Pruning%20and%20beyond%20hard%20pruning#%E4%BB%8Ehyde%E5%88%B0%E6%8A%95%E6%9C%BA%E8%A7%A3%E7%A0%81">​</a></h4>
 <p>另一个有趣的工作是广义上的“裁剪”，或者就是更好的搜索吧。我们知道HyDE的思想是原始query一般都比较短，而生成的假设文档可能会更好地与索引文档对齐，所以使用 q‘ = q + generated d 来进行搜索。</p>
 <p>而智谱的<a href="https://arxiv.org/abs/2409.05591" target="_blank" rel="noopener noreferrer">memorag</a> 则提出了这样一种场景，我们是否能以低成本训练一个小模型，来根据源文本生成这个假设答案呢？（例如，使用Llama3-8B在哈利波特上训练比用Deepseek-R1在哈利波特上训练成本要低廉的多，将HyDE的生成方从R1自己换成小模型）这就非常像是投机解码的思想了</p>
@@ -1721,7 +1843,7 @@ A: 上一版本中，这批样本只是相似度靠后，现在直接划为负�
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="后端架构概览">后端架构概览<a class="hash-link" aria-label="Direct link to 后端架构概览" title="Direct link to 后端架构概览" href="https://ayanami1314.github.io/blog/propilot-part2-team-dev-and-optimization#%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E6%A6%82%E8%A7%88">​</a></h2>
 <p>项目后端采用了清晰的模块化设计：</p>
 <div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">├── api/</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">│   ├── routes/          # 路由层：propilot, users, milvus 等</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">│   ├── services/        # 业务逻辑层</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">│   │   ├── completion_service.py    # 补全核心</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">│   │   ├── doc_service.py          # 文档处理</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">│   │   ├── search_engine_service.py # 搜索引擎</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">│   │   ├── image_service.py        # 图片搜索</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">│   │   ├── web/                    # 网络搜索（jina, langchain）</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">│   │   └── downloader/             # 文档下载器</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">│   ├── dto/             # 数据传输对象</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">│   └── models.py        # ORM 模型</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">├── search/</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">│   └── rag/             # RAG 管道：chunker, hierarchy, prehandler</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">├── finetune/            # 模型微调相关</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">├── coherence/           # 连贯性模型</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">├── prompts/             # Prompt 模板</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">├── tests/               # 测试：API、Benchmark、ndcg 评估等</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">├── utils/               # 工具：logger, parser, reranker 等</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">├── milvus/              # 向量数据库</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">├── mineru/              # 文档解析（Docker）</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">└── typesense/           # 搜索引擎</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
-<h2 class="anchor anchorWithStickyNavbar_LWe7" id="系统级性能瓶颈llm-的困境">系统级性能瓶颈：LLM 的困境<a class="hash-link" aria-label="Direct link to 系统级性能瓶颈：LLM 的困境" title="Direct link to 系统�级性能瓶颈：LLM 的困境" href="https://ayanami1314.github.io/blog/propilot-part2-team-dev-and-optimization#%E7%B3%BB%E7%BB%9F%E7%BA%A7%E6%80%A7%E8%83%BD%E7%93%B6%E9%A2%88llm-%E7%9A%84%E5%9B%B0%E5%A2%83">​</a></h2>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="系统级性能瓶颈llm-的困境">系统级性能瓶颈：LLM 的困境<a class="hash-link" aria-label="Direct link to 系统级性能瓶颈：LLM 的困境" title="Direct link to 系统级性能瓶颈：LLM 的困境" href="https://ayanami1314.github.io/blog/propilot-part2-team-dev-and-optimization#%E7%B3%BB%E7%BB%9F%E7%BA%A7%E6%80%A7%E8%83%BD%E7%93%B6%E9%A2%88llm-%E7%9A%84%E5%9B%B0%E5%A2%83">​</a></h2>
 <p>随着系统跑通，一个严峻的问题浮出水面——<strong>全部的时延和精度压力都在 LLM 上</strong>。</p>
 <p>不算 LLM 的其他地方可以做到 100 QPS+（即使有 rerank，reranker 的加速比 LLM 简单多了），但整个系统只要有 1 QPS 就是成功。</p>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="两难困境">两难困境<a class="hash-link" aria-label="Direct link to 两难困境" title="Direct link to 两难困境" href="https://ayanami1314.github.io/blog/propilot-part2-team-dev-and-optimization#%E4%B8%A4%E9%9A%BE%E5%9B%B0%E5%A2%83">​</a></h3>
@@ -1743,7 +1865,7 @@ A: 上一版本中，这批样本只是相似度靠后，现在直接划为负�
 <li><strong>主缓存（NextEditCache）</strong>：&lt; 300ms，直接命中或通过"重定基"技术调整旧建议</li>
 <li><strong>拒绝列表</strong>：避免重复提供已拒绝的建议</li>
 </ol>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="重定基rebasing技术">重定基（Rebasing）技术<a class="hash-link" aria-label="Direct link to 重定基（Rebasing）技术" title="Direct link to 重定基（Rebasing）技术" href="https://ayanami1314.github.io/blog/propilot-part2-team-dev-and-optimization#%E9%87%8D%E5%AE%9A%E5%9F%BArebasing%E6%8A%80%E6%9C%AF">​</a></h3>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="重定基rebasing技��术">重定基（Rebasing）技术<a class="hash-link" aria-label="Direct link to 重定基（Rebasing）技术" title="Direct link to 重定基（Rebasing）技术" href="https://ayanami1314.github.io/blog/propilot-part2-team-dev-and-optimization#%E9%87%8D%E5%AE%9A%E5%9F%BArebasing%E6%8A%80%E6%9C%AF">​</a></h3>
 <p>这是最核心的创新——即使用户在建议生成后继续编辑，系统也能智能地调整缓存的建议：</p>
 <div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">原始文档: "function add"</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">AI 建议: "function add(a, b) { return a + b; }"</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">用户继续输入: "function addNumbers"</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">重定基结果: "function addNumbers(a, b) { return a + b; }"</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
 <p>实现上采用了三方合并算法：将大编辑分解为原子操作，然后对 AI 编辑和用户编辑进行合并，解决位置偏移和冲突。</p>
@@ -2744,7 +2866,7 @@ A: 上一版本中，这批样本只是相似度靠后，现在直接划为负�
 <li>改进<strong>pre-alignment</strong>和数据混合</li>
 </ol>
 <hr>
-<h2 class="anchor anchorWithStickyNavbar_LWe7" id="增加输入分辨率的做法">增加输入分辨率的做法<a class="hash-link" aria-label="Direct link to 增加输入分辨率的做法" title="Direct link to 增��加输入分辨率的做法" href="https://ayanami1314.github.io/blog/%E7%B2%BE%E8%AF%BB%EF%BC%9AEagle%20Exploring%20The%20Design%20Space%20for%20Multi-%20modal%20LLMs%20with%20Mixture%20of%20Encoders#%E5%A2%9E%E5%8A%A0%E8%BE%93%E5%85%A5%E5%88%86%E8%BE%A8%E7%8E%87%E7%9A%84%E5%81%9A%E6%B3%95">​</a></h2>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="增加输入分辨率的做法">增加输入分辨率的做法<a class="hash-link" aria-label="Direct link to 增加输入分辨率的做法" title="Direct link to 增加输入分辨率的做法" href="https://ayanami1314.github.io/blog/%E7%B2%BE%E8%AF%BB%EF%BC%9AEagle%20Exploring%20The%20Design%20Space%20for%20Multi-%20modal%20LLMs%20with%20Mixture%20of%20Encoders#%E5%A2%9E%E5%8A%A0%E8%BE%93%E5%85%A5%E5%88%86%E8%BE%A8%E7%8E%87%E7%9A%84%E5%81%9A%E6%B3%95">​</a></h2>
 <ul>
 <li>Tiling 将输入分割为子图，CLIP-ViT单独编码</li>
 <li>直接放大输入分辨率，并对位置编码进行进行插值</li>
@@ -2950,68 +3072,6 @@ A: 上一版本中，这批样本只是相似度靠后，现在直接划为负�
 <h4 class="anchor anchorWithStickyNavbar_LWe7" id="一篇非常有insight的blog上下文相关上下文充足定量充足性和它的应用">一篇非常有insight的blog：上下文相关!=上下文充足，定量充足性和它的应用<a class="hash-link" aria-label="Direct link to 一篇非常有insight的blog：上下文相关!=上下文充足，定量充足性和它的应用" title="Direct link to 一篇非常有insight的blog：上下文相关!=上下文充足，定量充足性和它的应用" href="https://ayanami1314.github.io/blog/RAG%E7%9A%84%E4%B8%80%E4%BA%9B%E6%80%9D%E8%80%83%E5%92%8C%E7%BB%86%E8%8A%82#%E4%B8%80%E7%AF%87%E9%9D%9E%E5%B8%B8%E6%9C%89insight%E7%9A%84blog%E4%B8%8A%E4%B8%8B%E6%96%87%E7%9B%B8%E5%85%B3%E4%B8%8A%E4%B8%8B%E6%96%87%E5%85%85%E8%B6%B3%E5%AE%9A%E9%87%8F%E5%85%85%E8%B6%B3%E6%80%A7%E5%92%8C%E5%AE%83%E7%9A%84%E5%BA%94%E7%94%A8">​</a></h4>
 <p><a href="https://research.google/blog/deeper-insights-into-retrieval-augmented-generation-the-role-of-sufficient-context/" target="_blank" rel="noopener noreferrer">https://research.google/blog/deeper-insights-into-retrieval-augmented-generation-the-role-of-sufficient-context/</a></p>]]></content:encoded>
             <category>RAG</category>
-            <category>LLM</category>
-        </item>
-        <item>
-            <title><![CDATA[Paper reading - Interleaved Scene Graph for Interleaved Text-and-Image Generation Assessment]]></title>
-            <link>https://ayanami1314.github.io/blog/精读  Interleaved Scene Graph for Interleaved Text-and-Image Generation Assessment</link>
-            <guid>https://ayanami1314.github.io/blog/精读  Interleaved Scene Graph for Interleaved Text-and-Image Generation Assessment</guid>
-            <pubDate>Fri, 30 May 2025 00:00:00 GMT</pubDate>
-            <description><![CDATA[开发了一个交错文本和图像生成综合评估框架ISG]]></description>
-            <content:encoded><![CDATA[<p>开发了一个<strong>交错文本和图像生成综合评估框架</strong>ISG</p>
-<p>使用<code>scene graph</code>捕获文本和图像的关系，提供四个级别的评估：整体的、结构性的、块级别和特定于图像的，并引入了一个新benchmark，ISG-BENCH</p>
-<p>作者实验认为现有模型在端到端生成文本图像交错内容时，效果不好，于是做了一个Agent来完成这个任务</p>
-<hr>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="motivation">motivation<a class="hash-link" aria-label="Direct link to motivation" title="Direct link to motivation" href="https://ayanami1314.github.io/blog/%E7%B2%BE%E8%AF%BB%20%20Interleaved%20Scene%20Graph%20for%20Interleaved%20Text-and-Image%20Generation%20Assessment#motivation">​</a></h3>
-<p><img decoding="async" loading="lazy" alt="image-20250530152606364" src="https://ayanami1314.github.io/assets/images/image-20250530152606364-d9605f8fed7f263b463ed75398a8cf8a.png" width="990" height="433" class="img_ev3q"></p>
-<p>如图，现有MLLM<strong>不能直接生成交错文本和图像内容</strong>，需要将生成图像部分交给SD等外部模型再组合，带来了更大的开销与不一致性</p>
-<hr>
-<p>为了专注这一任务，作者的Benchmark优先考虑视觉为中心的任务，例如风格迁移等图像输出的特定要求。</p>
-<ul>
-<li>作者的数据集和人工标注比较有<strong>较高Pearson相似度，以此说明准确性</strong></li>
-<li>作者表示先前没什么<strong>benchmark主要以视觉为中心，以此说明新颖度</strong></li>
-<li>但有一说一，作者的表还是有点不公平的，例如它自己的<strong>sample很少</strong>(一千多)，同时评估级别是自己提出的这个四级别评估</li>
-</ul>
-<hr>
-<h2 class="anchor anchorWithStickyNavbar_LWe7" id="作者的表">作者的表<a class="hash-link" aria-label="Direct link to 作者的表" title="Direct link to 作者的表" href="https://ayanami1314.github.io/blog/%E7%B2%BE%E8%AF%BB%20%20Interleaved%20Scene%20Graph%20for%20Interleaved%20Text-and-Image%20Generation%20Assessment#%E4%BD%9C%E8%80%85%E7%9A%84%E8%A1%A8">​</a></h2>
-<p><img decoding="async" loading="lazy" alt="image-20250530160048840" src="https://ayanami1314.github.io/assets/images/image-20250530160048840-646ee93968c80f9867ea0f316414a5a5.png" width="1052" height="362" class="img_ev3q"></p>
-<hr>
-<h1>方法</h1>
-<p><img decoding="async" loading="lazy" alt="image-20250530153213139 h:500" src="https://ayanami1314.github.io/assets/images/image-20250530153213139-4ceb43c19d4bcc07cdc1baeb75d2408b.png" width="1151" height="576" class="img_ev3q"></p>
-<p>注意点: <strong>中间看起来很复杂, 实际上是很多组prompt完成的</strong></p>
-<hr>
-<p>评估框架将query拆成scene-graph-like structure，<strong>其中图文作为节点，而它们的关系作为边</strong></p>
-<p>在整体，结构，块和图四级别的评估中，每个级别都会生成一些用于评估的QA对。作者的意图是，<strong>让整体和结构评估连贯性和整体质量，块和图像评估指令完成的细节</strong></p>
-<hr>
-<p>结构性：用一个LLM预估图文交替内容的结构，然后与实际生成的内容进行比较</p>
-<p><img decoding="async" loading="lazy" alt="image-20250530163448151" src="https://ayanami1314.github.io/assets/images/image-20250530163448151-71150c0f60bd09aee45e9107edd3eaa7.png" width="1060" height="523" class="img_ev3q"></p>
-<hr>
-<p>整体：MLLM-as-a-Judge和CoT，用1-10打分配合Yes/No判断</p>
-<p>块： 将prompt P用LLM表示成三元组 （subj, obj, rel）,再用LLM生成问题，并用VQA评估</p>
-<p><img decoding="async" loading="lazy" alt="image-20250530163519317" src="https://ayanami1314.github.io/assets/images/image-20250530163519317-1ba26e8e2cd40c56119403af2ba7b9b9.png" width="1047" height="770" class="img_ev3q"></p>
-<hr>
-<p>图像：从prompt 给的图像中用LLM抽出三元组关系和实体，判断query类别，根据类别不同使用不同的prompt产生判断的VQA，例如如果是"How to"，则需要包含特定实体，如果是“Painting”，则需要图像的准确生成</p>
-<p><img decoding="async" loading="lazy" alt="image-20250530163331400 h:600" src="https://ayanami1314.github.io/assets/images/image-20250530163331400-1b1c3b6298aa1e9aad449957c2e03fd3.png" width="1039" height="679" class="img_ev3q"></p>
-<hr>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="实验结果">实验结果<a class="hash-link" aria-label="Direct link to 实验结果" title="Direct link to 实验结果" href="https://ayanami1314.github.io/blog/%E7%B2%BE%E8%AF%BB%20%20Interleaved%20Scene%20Graph%20for%20Interleaved%20Text-and-Image%20Generation%20Assessment#%E5%AE%9E%E9%AA%8C%E7%BB%93%E6%9E%9C">​</a></h3>
-<blockquote>
-<p>所有统一模型在按照说明生成交错文本和图像内容方面都存在重大缺陷。许多模型只生成 1 到 3 张图像，而有些模型根本无法生成任何图像。</p>
-</blockquote>
-<blockquote>
-<p>整体评估结果与三个细粒度级别的评估结果之间的不一致表明，即使同时提供用户指示和正确的黄金答案，MLLM-as-a-Judge 在全面评估回答方面也存在显着局限性。具体来说，Judge MLLM 努力根据细粒度的标准评估响应，例如输出结构（包括图像数量）和提示中规定的详细文本-图像关系。此外，我们对结果的分析揭示了 <strong>MLLM-as-a-Judge 中固有的偏见</strong>，即“图像质量偏见”，即<strong>具有更高质量图像内容的回答始终获得更高的分数，尽管这些回答可能违反用户的指导要求和评判指南</strong>。这种偏见表明，即使获得了黄金答案，MLLM-as-a-Judge 仍然无法正确地对符合指定要求的交错回答进行准确评估。</p>
-</blockquote>
-<hr>
-<p><img decoding="async" loading="lazy" alt="image-20250530160948640" src="https://ayanami1314.github.io/assets/images/image-20250530160948640-8a5505eaeadfe2ed274a09937abf96eb.png" width="1200" height="519" class="img_ev3q"></p>
-<hr>
-<h1>效果展示: 跑一次它这个Benchmark要60美刀</h1>
-<p><img decoding="async" loading="lazy" alt="image-20250530163815015 h:600" src="https://ayanami1314.github.io/assets/images/image-20250530163815015-79e642937f498c3c9f5bde75cd8d23e3.png" width="1051" height="1016" class="img_ev3q"></p>
-<hr>
-<h1>结论</h1>
-<ol>
-<li>MLLM-as-a-judge存在图像质量bias</li>
-<li>现有端到端MLLM生成图文内容效果不佳, 可能需要在工程性上的agent做补救</li>
-</ol>]]></content:encoded>
-            <category>Multimodal LLM</category>
             <category>LLM</category>
         </item>
     </channel>
